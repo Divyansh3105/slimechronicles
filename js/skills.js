@@ -22,7 +22,7 @@ async function getAllSkills() {
       }
     }
 
-    
+
     if (!basicCharacters || basicCharacters.length === 0) {
       console.warn(
         "GameState not available or returned empty, trying CharacterLoader directly...",
@@ -51,7 +51,7 @@ async function getAllSkills() {
     let processedCount = 0;
     let errorCount = 0;
 
-    
+
     for (let i = 0; i < basicCharacters.length; i++) {
       const basicChar = basicCharacters[i];
       try {
@@ -401,13 +401,13 @@ function viewCharacter(characterId) {
       }, 300);
     }
 
-    
+
     setTimeout(() => {
       window.location.href = `character.html?id=${encodeURIComponent(characterId)}`;
     }, 150);
   } catch (error) {
     console.error("Error navigating to character:", error);
-    
+
     window.location.href = `character.html?id=${encodeURIComponent(characterId)}`;
   }
 }
@@ -489,7 +489,7 @@ async function initializeSkillsPage() {
   try {
     console.log("Initializing skills page...");
 
-    
+
     if (!window.GameState) {
       console.error("GameState not loaded");
       const grid = document.getElementById("skills-grid");
@@ -507,7 +507,7 @@ async function initializeSkillsPage() {
     console.log("GameState available:", window.GameState);
     console.log("CHARACTERS available:", window.CHARACTERS);
 
-    
+
     allSkills = await getAllSkills();
     console.log(`Found ${allSkills.length} unique skills`);
 
@@ -531,7 +531,7 @@ async function initializeSkillsPage() {
     renderSkillStats();
     renderLearningPaths();
 
-    
+
     const typeFilter = document.getElementById("type-filter");
     const difficultyFilter = document.getElementById("difficulty-filter");
     const sortSelect = document.getElementById("sort-select");
@@ -584,7 +584,7 @@ function openSkillDetail(skillName) {
   const skill = allSkills.find((s) => s.name === skillName);
   if (!skill) return;
 
-  
+
   document.querySelector(".skill-detail-modal")?.remove();
 
   const modal = document.createElement("div");
@@ -669,22 +669,22 @@ function openSkillDetail(skillName) {
 
   document.body.appendChild(modal);
 
-  
+
   document.body.style.overflow = "hidden";
 
-  
+
   setTimeout(() => {
     modal.classList.add("active");
   }, 10);
 
-  
+
   modal.addEventListener("click", (e) => {
     if (e.target === modal) {
       closeSkillDetail();
     }
   });
 
-  
+
   modal.querySelectorAll(".character-tag").forEach((tag) => {
     tag.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
@@ -694,7 +694,7 @@ function openSkillDetail(skillName) {
     });
   });
 
-  
+
   const closeButton = modal.querySelector(".close-detail");
   if (closeButton) {
     closeButton.focus();
@@ -705,7 +705,7 @@ function closeSkillDetail() {
   const modal = document.querySelector(".skill-detail-modal");
   if (modal) {
     modal.classList.remove("active");
-    
+
     document.body.style.overflow = "";
     setTimeout(() => {
       modal.remove();
@@ -713,12 +713,12 @@ function closeSkillDetail() {
   }
 }
 document.addEventListener("keydown", (e) => {
-  
+
   if (e.key === "Escape") {
     closeSkillDetail();
   }
 
-  
+
   if ((e.ctrlKey && e.key === "f") || e.key === "/") {
     e.preventDefault();
     document.getElementById("search-input")?.focus();

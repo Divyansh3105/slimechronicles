@@ -16,15 +16,26 @@ class AnimatedBackground {
 
   async init() {
     try {
+      // Always try fallback first to ensure background is visible
+      console.log("Initializing background with fallback image:", this.options.baseImageUrl);
+      this.fallbackBackground();
+
       if (typeof THREE === "undefined" || typeof VANTA === "undefined") {
         console.warn("Vanta.js or THREE.js not loaded, loading from CDN...");
         await this.loadDependencies();
       }
 
-      this.createVantaEffect();
-      this.isInitialized = true;
+      // Only create vanta effect if dependencies loaded successfully
+      if (typeof THREE !== "undefined" && typeof VANTA !== "undefined") {
+        console.log("Dependencies loaded successfully, creating Vanta effect");
+        this.createVantaEffect();
+        this.isInitialized = true;
+      } else {
+        console.warn("Dependencies failed to load, keeping static background");
+      }
     } catch (error) {
       console.error("Failed to initialize animated background:", error);
+      console.log("Using fallback background due to error");
       this.fallbackBackground();
     }
   }
@@ -49,8 +60,24 @@ class AnimatedBackground {
 
       const script = document.createElement("script");
       script.src = src;
-      script.onload = resolve;
-      script.onerror = reject;
+
+      // Add timeout to prevent hanging
+      const timeout = setTimeout(() => {
+        console.warn(`Script loading timeout: ${src}`);
+        reject(new Error(`Timeout loading ${src}`));
+      }, 10000); // 10 second timeout
+
+      script.onload = () => {
+        clearTimeout(timeout);
+        resolve();
+      };
+
+      script.onerror = (error) => {
+        clearTimeout(timeout);
+        console.warn(`Failed to load script: ${src}`, error);
+        reject(error);
+      };
+
       document.head.appendChild(script);
     });
   }
@@ -127,7 +154,15 @@ class AnimatedBackground {
   }
 
   fallbackBackground() {
-    // Fallback to original gradient + image background
+    console.log("Falling back to static background image:", this.options.baseImageUrl);
+
+    // Remove any existing vanta background
+    const existingVanta = document.getElementById("vanta-bg");
+    if (existingVanta) {
+      existingVanta.remove();
+    }
+
+    // Apply static background to body
     const body = document.body;
     body.style.background = `
       linear-gradient(rgba(10, 14, 39, 0.7), rgba(10, 14, 39, 0.7)),
@@ -136,6 +171,17 @@ class AnimatedBackground {
     body.style.backgroundSize = "cover";
     body.style.backgroundAttachment = "fixed";
     body.style.backgroundPosition = "center";
+    body.style.backgroundRepeat = "no-repeat";
+
+    // Ensure the background is applied with higher specificity
+    body.style.setProperty('background', `
+      linear-gradient(rgba(10, 14, 39, 0.7), rgba(10, 14, 39, 0.7)),
+      url('${this.options.baseImageUrl}')
+    `, 'important');
+    body.style.setProperty('background-size', 'cover', 'important');
+    body.style.setProperty('background-attachment', 'fixed', 'important');
+    body.style.setProperty('background-position', 'center', 'important');
+    body.style.setProperty('background-repeat', 'no-repeat', 'important');
   }
 
   destroy() {

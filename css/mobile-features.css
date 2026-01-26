@@ -1892,3 +1892,69 @@
         background: none !important;
     }
 }
+
+/* 🔒 SCROLL HIJACKING FIX */
+/* Prevent child elements from hijacking scroll events */
+@media (max-width: 768px) {
+  /* Ensure mobile nav doesn't block scroll when inactive */
+  .mobile-nav:not(.active) {
+    pointer-events: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+
+  /* Remove momentum scrolling from elements that could hijack scroll */
+  .main-content,
+  .analytics-overview,
+  .modal-content,
+  .skill-detail-content,
+  .comparison-content,
+  .skills-container,
+  .timeline-container {
+    -webkit-overflow-scrolling: auto !important;
+    overflow: visible !important;
+    touch-action: auto !important;
+  }
+
+  /* Ensure body maintains scroll control */
+  body {
+    -webkit-overflow-scrolling: touch !important;
+    overflow-y: auto !important;
+    touch-action: pan-y !important;
+    position: relative !important;
+  }
+
+  /* Prevent transforms from creating scroll-blocking contexts */
+  .character-card,
+  .skill-card,
+  .record-card,
+  .stat-card {
+    transform: none !important;
+    will-change: auto !important;
+  }
+
+  /* Only allow transforms on active touch */
+  .character-card:active,
+  .skill-card:active,
+  .record-card:active,
+  .stat-card:active {
+    transform: scale(0.98) !important;
+    transition: transform 0.1s ease !important;
+  }
+}
+
+/* 🔒 DESKTOP SCROLL LOCK FIX */
+@media (hover: hover) and (pointer: fine) {
+  * {
+    -webkit-overflow-scrolling: auto !important;
+    scroll-behavior: auto !important;
+  }
+
+  .main-content,
+  .container,
+  .content-area,
+  .timeline-container,
+  .skills-container {
+    overflow: visible !important;
+  }
+}

@@ -25,6 +25,21 @@
   --slime-blue-glow: rgba(77, 212, 255, 0.6);
   --border-subtle: #1a2a40;
 }
+
+html {
+  height: 100%;
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  height: auto;
+  min-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background:
@@ -38,13 +53,40 @@ body {
       rgba(170, 85, 255, 0.08) 0%,
       transparent 50%
     ),
-    linear-gradient(135deg, var(--primary-dark), #0d1428, var(--secondary-dark));
-  background-attachment: fixed;
+    linear-gradient(
+      135deg,
+      var(--primary-dark),
+      #0d1428,
+      var(--secondary-dark)
+    ),
+    url("../assets/bg.jpg");
+  background-attachment: scroll, scroll, scroll, fixed;
+  background-size: auto, auto, auto, cover;
+  background-position: center, center, center, center;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
   color: var(--text-light);
   min-height: 100vh;
-  overflow-x: hidden;
+  height: auto;
   position: relative;
+  touch-action: pan-y;
 }
+
+/* Ensure no child elements block scroll events */
+body > * {
+  overflow-y: visible;
+  pointer-events: auto;
+}
+
+/* Background elements should not interfere with scrolling */
+.particles,
+.starfield,
+body::before {
+  pointer-events: none;
+  overscroll-behavior: none;
+  position: fixed;
+  z-index: 1;
+}
+
 body::before {
   content: "";
   position: fixed;
@@ -84,7 +126,8 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: 2;
-  overflow: hidden;
+  overflow: visible !important;
+  height: 100%;
   will-change: transform;
   transform: translate3d(0, 0, 0);
 }
@@ -598,6 +641,7 @@ body::before {
   transform: rotate(-45deg) translate(6px, -6px);
   background: var(--primary-blue);
 }
+
 .mobile-nav {
   position: fixed;
   top: 0;
@@ -619,6 +663,7 @@ body::before {
   gap: 1rem;
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
   transition: all 0.3s ease;
   padding: 2rem;
   overflow: hidden;
@@ -656,9 +701,13 @@ body::before {
 .mobile-nav.active {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
   animation: mobileNavSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 .mobile-nav:not(.active) {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
   animation: mobileNavSlideOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 @keyframes mobileNavSlideIn {
@@ -1051,18 +1100,25 @@ body::before {
   body {
     padding-top: 80px !important;
     -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
+    overflow-y: auto !important;
     overflow-x: hidden;
     width: 100%;
     position: relative;
+    touch-action: pan-y;
   }
   .main-content {
     padding: 1rem;
     min-height: calc(100vh - 80px);
     min-height: calc(var(--vh, 1vh) * 100 - 80px);
+    overflow: visible !important;
   }
   html {
     font-size: 14px;
+    overflow-y: auto !important;
+  }
+
+  body {
+    overflow-y: visible !important;
   }
   button,
   .nav-action-btn,

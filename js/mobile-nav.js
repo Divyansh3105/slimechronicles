@@ -18,7 +18,9 @@ function toggleMobileMenu() {
     const isActive = mobileNav.classList.contains('active');
 
     if (!isActive) {
-        
+        // Enable pointer events for active nav
+        mobileNav.style.pointerEvents = 'auto';
+
         mobileNav.style.display = 'flex';
         mobileNav.style.position = 'fixed';
         mobileNav.style.top = '0';
@@ -37,7 +39,7 @@ function toggleMobileMenu() {
         mobileNav.style.padding = '2rem';
         mobileNav.style.overflow = 'hidden';
 
-        
+        // Style nav links
         const navLinks = mobileNav.querySelectorAll('a');
         navLinks.forEach((link, index) => {
             link.style.display = 'flex';
@@ -62,7 +64,7 @@ function toggleMobileMenu() {
             link.style.fontFamily = 'Rajdhani, sans-serif';
             link.style.letterSpacing = '0.5px';
 
-            
+            // Animate in
             link.style.opacity = '0';
             link.style.transform = 'translateY(20px)';
             setTimeout(() => {
@@ -70,7 +72,7 @@ function toggleMobileMenu() {
                 link.style.transform = 'translateY(0)';
             }, 100 + (index * 50));
 
-            
+            // Style icons
             const icon = link.querySelector('.nav-icon');
             if (icon) {
                 icon.style.fontSize = '1.6rem';
@@ -84,7 +86,7 @@ function toggleMobileMenu() {
                 icon.style.transition = 'all 0.3s ease';
             }
 
-            
+            // Add hover effects
             const addHoverEffect = () => {
                 link.style.background = 'linear-gradient(135deg, rgba(77, 212, 255, 0.25), rgba(77, 212, 255, 0.15))';
                 link.style.color = '#4dd4ff';
@@ -113,14 +115,14 @@ function toggleMobileMenu() {
                 }
             };
 
-            
+            // Event listeners
             link.addEventListener('mouseenter', addHoverEffect);
             link.addEventListener('mouseleave', removeHoverEffect);
             link.addEventListener('touchstart', addHoverEffect, { passive: true });
             link.addEventListener('touchend', removeHoverEffect, { passive: true });
         });
 
-        
+        // Style close button
         const closeBtn = mobileNav.querySelector('.mobile-nav-close');
         if (closeBtn) {
             closeBtn.style.display = 'flex';
@@ -142,7 +144,7 @@ function toggleMobileMenu() {
             closeBtn.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
             closeBtn.style.cursor = 'pointer';
 
-            
+            // Animate in
             closeBtn.style.opacity = '0';
             closeBtn.style.transform = 'scale(0.8) rotate(-90deg)';
             setTimeout(() => {
@@ -150,7 +152,7 @@ function toggleMobileMenu() {
                 closeBtn.style.transform = 'scale(1) rotate(0deg)';
             }, 200);
 
-            
+            // Hover effects
             const addCloseHover = () => {
                 closeBtn.style.background = 'linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.15))';
                 closeBtn.style.borderColor = 'rgba(255, 255, 255, 0.4)';
@@ -171,17 +173,20 @@ function toggleMobileMenu() {
             closeBtn.addEventListener('touchend', removeCloseHover, { passive: true });
         }
 
-        
+        // Create particles
         createMobileNavParticles(mobileNav);
 
-        
+        // Prevent body scroll
         document.body.style.overflow = 'hidden';
 
     } else {
-        
+        // Disable pointer events for inactive nav
+        mobileNav.style.pointerEvents = 'none';
+
+        // Restore body scroll
         document.body.style.overflow = '';
 
-        
+        // Remove particles
         const particles = mobileNav.querySelectorAll('.mobile-nav-particle');
         particles.forEach(particle => particle.remove());
     }
@@ -205,34 +210,34 @@ function createMobileNavParticles(container) {
         particle.style.background = 'rgba(77, 212, 255, 0.6)';
         particle.style.borderRadius = '50%';
         particle.style.pointerEvents = 'none';
-        
+
         particle.style.transform = `translate3d(${Math.random() * 100}vw, ${Math.random() * 100}vh, 0)`;
         particle.style.animation = `mobileNavParticleFloat ${8 + Math.random() * 4}s ease-in-out infinite`;
         particle.style.animationDelay = Math.random() * 2 + 's';
-        
+
         particle.style.willChange = 'transform';
 
         container.appendChild(particle);
     }
 }
 function initMobileNavigation() {
-    
+
     setViewportHeight();
 
-    
+
     window.addEventListener('resize', setViewportHeight);
     window.addEventListener('orientationchange', () => {
         setTimeout(setViewportHeight, 100);
     });
 
-    
+
     document.querySelectorAll('.mobile-nav a').forEach(link => {
         link.addEventListener('click', () => {
             toggleMobileMenu();
         });
     });
 
-    
+
     document.addEventListener('click', (e) => {
         const mobileNav = document.getElementById('mobile-nav');
         const toggle = document.querySelector('.mobile-menu-toggle');
@@ -244,7 +249,7 @@ function initMobileNavigation() {
         }
     });
 
-    
+
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             const mobileNav = document.getElementById('mobile-nav');
@@ -254,7 +259,7 @@ function initMobileNavigation() {
         }
     });
 
-    
+
     const cards = document.querySelectorAll('.stat-card, .state-card, .badge');
     cards.forEach(card => {
         card.addEventListener('touchstart', function() {
@@ -266,7 +271,7 @@ function initMobileNavigation() {
         }, { passive: true });
     });
 
-    
+
     if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
         document.body.style.paddingBottom = 'env(safe-area-inset-bottom)';
     }
