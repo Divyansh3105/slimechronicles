@@ -16,9 +16,21 @@
     <link rel="stylesheet" href="css/sound-effects.css">
     <link rel="stylesheet" href="css/mobile-features.css">
     <script src="js/animated-bg.js" defer></script>
+    <script src="js/loading-screen.js" defer></script>
 </head>
 
 <body>
+    <!-- Loading screen -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loading-orb">
+            <div class="loading-inner"></div>
+        </div>
+        <div class="loading-text">Loading Codex...</div>
+        <div class="loading-progress">
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+
     <!-- Added starfield effect -->
     <div class="starfield" id="starfield"></div>
     <div class="particles" id="particles"></div>

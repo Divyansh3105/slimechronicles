@@ -19,6 +19,17 @@
 </head>
 
 <body>
+    <!-- Loading screen -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loading-orb">
+            <div class="loading-inner"></div>
+        </div>
+        <div class="loading-text">Loading Overview...</div>
+        <div class="loading-progress">
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+
     <!-- Added starfield and magic circle effects -->
     <div class="starfield" id="starfield"></div>
     <div class="magic-circle" style="top: 20%; left: 80%;"></div>
@@ -364,6 +375,7 @@
         </div>
     </main>
 
+    <script src="js/loading-screen.js"></script>
     <script src="js/character-loader.js"></script>
     <script src="js/game-state-optimized.js"></script>
     <script src="js/particles.js"></script>

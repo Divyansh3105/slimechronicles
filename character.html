@@ -20,6 +20,17 @@
 </head>
 
 <body>
+    <!-- Loading screen -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loading-orb">
+            <div class="loading-inner"></div>
+        </div>
+        <div class="loading-text">Loading Character...</div>
+        <div class="loading-progress">
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+
     <!-- Dynamic background elements -->
     <div class="starfield" id="starfield"></div>
     <div class="character-background" id="character-background"></div>
@@ -231,6 +242,7 @@
     </main>
 
     <!-- JavaScript Files -->
+    <script src="js/loading-screen.js"></script>
     <script src="js/performance-optimizer.js"></script>
     <script src="js/character-loader.js"></script>
     <script src="js/game-state-optimized.js"></script>
