@@ -11,6 +11,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Rajdhani:wght@400;500;600;700&display=swap"
         rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/shared.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/sound-effects.css">
@@ -41,13 +43,65 @@
 
     <div class="intro-container" id="intro-container">
         <div class="logo-container">
-            <!-- Enhanced slime orb with multiple layers -->
-            <div class="slime-orb" id="slime-orb">
-                <div class="slime-core"></div>
-                <div class="slime-inner"></div>
-                <div class="slime-shine"></div>
-                <div class="slime-particles"></div>
-                <div class="slime-aura"></div>
+            <!-- Enhanced SVG slime logo -->
+            <div class="main-logo-icon">
+                <svg width="180" height="180" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Slime body with gradient -->
+                    <defs>
+                        <radialGradient id="mainSlimeGradient" cx="50%" cy="40%" r="60%">
+                            <stop offset="0%" style="stop-color:#4dd4ff;stop-opacity:1" />
+                            <stop offset="70%" style="stop-color:#2a9fd8;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#1a7fb8;stop-opacity:1" />
+                        </radialGradient>
+                        <filter id="mainGlow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+                            <feMerge>
+                                <feMergeNode in="coloredBlur" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+
+                    <!-- Main slime body -->
+                    <ellipse cx="16" cy="20" rx="12" ry="8" fill="url(#mainSlimeGradient)" filter="url(#mainGlow)">
+                        <animateTransform attributeName="transform" type="scale" values="1,1;1.1,0.9;1,1" dur="2s"
+                            repeatCount="indefinite" />
+                    </ellipse>
+
+                    <!-- Slime highlight -->
+                    <ellipse cx="13" cy="17" rx="3" ry="2" fill="#ffffff" opacity="0.6">
+                        <animate attributeName="opacity" values="0.6;0.8;0.6" dur="2s" repeatCount="indefinite" />
+                    </ellipse>
+
+                    <!-- Eyes -->
+                    <circle cx="12" cy="18" r="1.5" fill="#0a0e27">
+                        <animate attributeName="r" values="1.5;1.2;1.5" dur="3s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="20" cy="18" r="1.5" fill="#0a0e27">
+                        <animate attributeName="r" values="1.5;1.2;1.5" dur="3s" repeatCount="indefinite" />
+                    </circle>
+
+                    <!-- Eye highlights -->
+                    <circle cx="12.5" cy="17.5" r="0.5" fill="#ffffff" opacity="0.8" />
+                    <circle cx="20.5" cy="17.5" r="0.5" fill="#ffffff" opacity="0.8" />
+
+                    <!-- Floating particles around slime -->
+                    <circle cx="8" cy="12" r="1" fill="#4dd4ff" opacity="0.4">
+                        <animateTransform attributeName="transform" type="translate" values="0,0;2,-2;0,0" dur="3s"
+                            repeatCount="indefinite" />
+                        <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="24" cy="14" r="0.8" fill="#4dd4ff" opacity="0.3">
+                        <animateTransform attributeName="transform" type="translate" values="0,0;-1,-3;0,0" dur="4s"
+                            repeatCount="indefinite" />
+                        <animate attributeName="opacity" values="0.3;0.7;0.3" dur="4s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="16" cy="8" r="0.6" fill="#4dd4ff" opacity="0.5">
+                        <animateTransform attributeName="transform" type="translate" values="0,0;1,-1;0,0" dur="2.5s"
+                            repeatCount="indefinite" />
+                        <animate attributeName="opacity" values="0.5;0.9;0.5" dur="2.5s" repeatCount="indefinite" />
+                    </circle>
+                </svg>
             </div>
             <h1 class="title">Jura Tempest Federation</h1>
             <p class="subtitle">A Kingdom Born of Bonds and Magic</p>
@@ -163,6 +217,65 @@
             </div>
         </div>
     </div>
+
+    <footer class="main-footer"
+        style="padding: 1.5rem 0 1rem; background: transparent; border-top: 1px solid rgba(77, 212, 255, 0.2);">
+        <div class="footer-content"
+            style="grid-template-columns: 1fr 1fr; text-align: left; gap: 2rem; align-items: center;">
+            <div class="footer-brand" style="align-items: flex-start;">
+                <div class="footer-brand-header">
+                    <div class="footer-logo"></div>
+                    <div>
+                        <div class="footer-brand-text">Jura Tempest Federation</div>
+                        <div class="footer-tagline">Where bonds forge destiny</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-info" style="text-align: right;">
+                <div class="footer-copyright">© 2025 Tensura Chronicles</div>
+                <div class="footer-version">Inspired by "That Time I Got Reincarnated as a Slime"</div>
+
+                <!-- Compact Developer Credit -->
+                <div
+                    style="margin: 0.5rem 0; padding: 0.5rem; background: rgba(10, 14, 39, 0.3); border: 1px solid rgba(77, 212, 255, 0.3); border-radius: 6px; position: relative; overflow: hidden; backdrop-filter: blur(5px);">
+                    <div
+                        style="position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan)); animation: footerGlow 3s ease-in-out infinite;">
+                    </div>
+                    <div style="font-size: 0.85rem; color: var(--text-light);">
+                        🧠 Brain + 💻 Keyboard =
+                        <a href="https://github.com/Divyansh3105"
+                            style="color: var(--accent-cyan); text-decoration: none; font-weight: bold;">Divyansh
+                            Garg</a>
+                    </div>
+                    <div
+                        style="font-size: 1rem; margin-top: 0.2rem; filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.4));">
+                        ✨ ⭐ ✨
+                    </div>
+                </div>
+
+                <!-- Social Links -->
+                <div class="footer-social" style="justify-content: flex-end; gap: 0.6rem; margin: 0.5rem 0;">
+                    <a href="https://github.com/Divyansh3105" class="social-link" title="GitHub Repository"
+                        style="width: 35px; height: 35px;">
+                        <i class="fab fa-github"
+                            style="color:#fff; font-size:1.1rem; text-decoration:none; transition:color 0.3s;"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/divyanshgarg3105/" class="social-link" title="LinkedIn Profile"
+                        style="width: 35px; height: 35px;">
+                        <i class="fab fa-linkedin"
+                            style="color:#fff; font-size:1.1rem; text-decoration:none; transition:color 0.3s;"></i>
+                    </a>
+                </div>
+
+                <!-- Final Message -->
+                <div
+                    style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.7; font-style: italic; margin-top: 0.5rem;">
+                    "In unity, there is strength. In friendship, there is magic."
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="js/character-loader.js"></script>
     <script src="js/game-state-optimized.js"></script>
