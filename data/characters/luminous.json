@@ -1,0 +1,80 @@
+{
+  "id": "luminous",
+  "name": "Luminous Valentine",
+  "race": "Vampire (Demon Lord)",
+  "role": "Demon Lord",
+  "power": "Catastrophe+",
+  "portrait": "🧛",
+  "image": "assets/characters/Luminous.png",
+  "colorScheme": {
+    "primary": "#8b008b",
+    "secondary": "#ba55d3",
+    "glow": "rgba(139, 0, 139, 0.8)"
+  },
+  "lore": "The Demon Lord who rules over the Holy Empire of Ruberios alongside Leon. A vampire with incredible regenerative abilities and light magic. Known for her beauty, power, and strategic mind.",
+  "backstory": "Luminous is a vampire Demon Lord who rules alongside Leon. She possesses incredible regenerative abilities and powerful light magic. She is known for her beauty, intelligence, and strategic thinking.",
+  "personality": "Elegant, strategic, and powerful. Luminous maintains a graceful demeanor while being a formidable opponent. She is intelligent and makes decisions based on long-term strategy.",
+  "philosophy": "Power through elegance and strategy. Believes that true power comes from intelligence and strategic thinking. Advocates for elegant solutions and long-term planning. Core principle: 'Elegance is the highest form of power; strategy is the path to victory.'",
+  "leadershipStyle": "Strategic and elegant - leads through intelligence and careful planning. Maintains grace while being effective. Makes decisions based on long-term strategy and elegance.",
+  "worldInfluence": "Demonstrated that vampires can be powerful and strategic. Her rule showed the effectiveness of elegant leadership. Proved that beauty and power can coexist in leadership.",
+  "alternateScenario": "Without Luminous, the Holy Empire would be less strategic. The concept of elegant vampire leadership would be less developed.",
+  "relationships": {
+    "allies": ["Leon", "Vampire race"],
+    "rivals": ["Other powerful beings"],
+    "mentors": ["Experience", "Strategic thinking"]
+  },
+  "achievements": ["Became Demon Lord", "Ruled alongside Leon", "Mastered light magic", "Demonstrated vampire power"],
+  "weaknesses": ["Can be overly strategic", "Sometimes prefers indirect methods"],
+  "specialties": ["Light Magic", "Regeneration", "Strategic Thinking"],
+  "evolution": [
+    {
+      "form": "Vampire",
+      "description": "Born or turned as vampire",
+      "trigger": "Vampire transformation"
+    },
+    {
+      "form": "Demon Lord",
+      "description": "Became Demon Lord",
+      "trigger": "Demon Lord awakening"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Elegance is the highest form of power.",
+      "context": "Philosophy on power"
+    },
+    {
+      "text": "Strategy wins battles; elegance wins wars.",
+      "context": "Belief in strategy"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Light Magic",
+      "type": "Magic",
+      "description": "Mastery over light and holy magic",
+      "bonus": "+30 Magic",
+      "icon": "✨"
+    },
+    {
+      "name": "Regeneration",
+      "type": "Support",
+      "description": "Incredible healing and regeneration",
+      "bonus": "+20 Population",
+      "icon": "💫"
+    },
+    {
+      "name": "Blood Magic",
+      "type": "Magic",
+      "description": "Controls blood and life force",
+      "bonus": "+25 Magic",
+      "icon": "🩸"
+    }
+  ],
+  "impact": {
+    "population": 1200,
+    "military": 35,
+    "economy": 10,
+    "magic": 40
+  }
+}

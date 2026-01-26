@@ -1,0 +1,80 @@
+{
+  "id": "adalmann",
+  "name": "Adalmann",
+  "race": "Undead (Archbishop)",
+  "role": "Undead Commander",
+  "power": "Special S",
+  "portrait": "💀",
+  "image": "assets/characters/Adalmann.png",
+  "colorScheme": {
+    "primary": "#4a4a4a",
+    "secondary": "#6a6a6a",
+    "glow": "rgba(74, 74, 74, 0.6)"
+  },
+  "lore": "A powerful undead mage who serves Rimuru. Originally an enemy, he became a loyal subordinate after being defeated. He commands undead forces and specializes in death magic and necromancy.",
+  "backstory": "Adalmann was once a powerful archbishop who was defeated by Rimuru. After being named and evolving, he became a loyal servant, using his undead powers to serve the Federation.",
+  "personality": "Formal, respectful, and methodical. Adalmann maintains the dignity of his former position while serving Rimuru with absolute loyalty. He is calm and strategic in battle.",
+  "philosophy": "Service through mastery of death magic. Believes that understanding death leads to understanding life. Advocates for order and discipline. Core principle: 'In death, there is order; in order, there is purpose.'",
+  "leadershipStyle": "Commanding and disciplined - leads undead forces with military precision. Maintains strict hierarchy and expects obedience. Makes tactical decisions based on strategic advantage.",
+  "worldInfluence": "Demonstrated that undead can serve constructive purposes. His necromantic techniques advanced understanding of death magic. Changed perceptions of undead from mindless threats to organized forces.",
+  "alternateScenario": "Without Rimuru, Adalmann would remain a hostile undead archbishop, eventually being destroyed or becoming a greater threat. The concept of undead serving benevolent purposes would never emerge.",
+  "relationships": {
+    "allies": ["Rimuru", "Undead subordinates"],
+    "rivals": ["None"],
+    "mentors": ["Rimuru"]
+  },
+  "achievements": ["Became loyal to Rimuru", "Mastered death magic", "Commands undead forces", "Evolved through naming"],
+  "weaknesses": ["Can be overly formal", "Limited by undead nature"],
+  "specialties": ["Death Magic", "Necromancy", "Undead Command"],
+  "evolution": [
+    {
+      "form": "Archbishop",
+      "description": "Powerful undead mage",
+      "trigger": "Death and resurrection"
+    },
+    {
+      "form": "Named Undead",
+      "description": "Evolved after being named by Rimuru",
+      "trigger": "Named by Rimuru"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "I serve Rimuru-sama with undying loyalty.",
+      "context": "Expressing devotion"
+    },
+    {
+      "text": "Death magic is a tool, like any other.",
+      "context": "Philosophy on magic"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Death Magic",
+      "type": "Magic",
+      "description": "Mastery over death and necromancy",
+      "bonus": "+20 Magic",
+      "icon": "💀"
+    },
+    {
+      "name": "Undead Summoning",
+      "type": "Combat",
+      "description": "Commands legions of undead",
+      "bonus": "+15 Military",
+      "icon": "👻"
+    },
+    {
+      "name": "Bone Magic",
+      "type": "Magic",
+      "description": "Manipulates bones and skeletons",
+      "bonus": "+10 Magic",
+      "icon": "🦴"
+    }
+  ],
+  "impact": {
+    "population": 300,
+    "military": 20,
+    "economy": 5,
+    "magic": 25
+  }
+}

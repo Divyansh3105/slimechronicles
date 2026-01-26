@@ -1,0 +1,85 @@
+{
+  "id": "chloe",
+  "name": "Chloe Aubert",
+  "race": "Human (Hero)",
+  "role": "Hero & Time Manipulator",
+  "power": "Catastrophe+",
+  "portrait": "⏰",
+  "image": "assets/characters/Chloe.png",
+  "colorScheme": {
+    "primary": "#9370db",
+    "secondary": "#ba55d3",
+    "glow": "rgba(147, 112, 219, 0.8)"
+  },
+  "lore": "A mysterious individual with time manipulation abilities. Her true nature and origins are shrouded in mystery. She possesses incredible power and plays a crucial role in the timeline.",
+  "backstory": "Chloe is a Hero with the ability to manipulate time. Her existence is complex, involving time loops and multiple timelines. She has a deep connection to the world's fate and Rimuru's destiny.",
+  "personality": "Mysterious, determined, and powerful. Chloe carries the weight of multiple timelines and experiences. She is calm and collected, with deep understanding of the flow of time and destiny.",
+  "philosophy": "Time flows, but destiny can be changed. Believes that the future is not set in stone and that actions in the present can alter the timeline. Advocates for protecting the timeline while allowing necessary changes. Core principle: 'Time is a river, but we can choose which currents to follow.'",
+  "leadershipStyle": "Guiding and protective - works behind the scenes to ensure the timeline flows correctly. Makes decisions based on temporal consequences and long-term outcomes.",
+  "worldInfluence": "Her time manipulation abilities have shaped the course of history. Her interventions have prevented catastrophic timelines and ensured the world's survival. Advanced understanding of temporal mechanics.",
+  "alternateScenario": "Without Chloe's time manipulation, multiple catastrophic timelines would have occurred. The world would have faced destruction many times over. The concept of timeline protection would be unknown.",
+  "relationships": {
+    "allies": ["Rimuru", "Heroes", "Time guardians"],
+    "rivals": ["Time itself"],
+    "mentors": ["Time and experience"]
+  },
+  "achievements": ["Mastered time manipulation", "Protected multiple timelines", "Became a Hero", "Altered destiny"],
+  "weaknesses": ["Burdened by multiple timelines", "Complex existence"],
+  "specialties": ["Time Magic", "Hero Abilities", "Timeline Protection"],
+  "evolution": [
+    {
+      "form": "Human",
+      "description": "Born as a human",
+      "trigger": "Birth"
+    },
+    {
+      "form": "Hero",
+      "description": "Awakened as a Hero",
+      "trigger": "Hero awakening"
+    },
+    {
+      "form": "Time Manipulator",
+      "description": "Mastered time manipulation",
+      "trigger": "Time loop experiences"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Time flows, but we can change its course.",
+      "context": "Philosophy on time"
+    },
+    {
+      "text": "The future is not set in stone.",
+      "context": "Belief in change"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Time Manipulation",
+      "type": "Magic",
+      "description": "Controls the flow of time",
+      "bonus": "+35 Magic",
+      "icon": "⏰"
+    },
+    {
+      "name": "Hero Abilities",
+      "type": "Combat",
+      "description": "Powers of a Hero",
+      "bonus": "+30 Military",
+      "icon": "⚔️"
+    },
+    {
+      "name": "Timeline Protection",
+      "type": "Support",
+      "description": "Protects the timeline from destruction",
+      "bonus": "+20 Population",
+      "icon": "🛡️"
+    }
+  ],
+  "impact": {
+    "population": 500,
+    "military": 40,
+    "economy": 10,
+    "magic": 50
+  }
+}

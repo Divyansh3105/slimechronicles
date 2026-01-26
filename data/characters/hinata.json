@@ -1,0 +1,85 @@
+{
+  "id": "hinata",
+  "name": "Hinata Sakaguchi",
+  "race": "Human (Hero)",
+  "role": "Hero & Crusader Leader",
+  "power": "Catastrophe",
+  "portrait": "⚔️",
+  "image": "assets/characters/Hinata Sakaguchi.png",
+  "colorScheme": {
+    "primary": "#ff69b4",
+    "secondary": "#ffb6c1",
+    "glow": "rgba(255, 105, 180, 0.6)"
+  },
+  "lore": "A powerful human warrior and leader of the Western Holy Church's crusaders. Initially an enemy but later becomes an ally. She possesses incredible combat abilities and Hero powers.",
+  "backstory": "Hinata was a Hero who initially fought against Rimuru, believing him to be a threat. After understanding his true nature, she became an ally and worked to bridge the gap between humans and monsters.",
+  "personality": "Strong, determined, and principled. Hinata fights for what she believes is right and is willing to change her views when presented with evidence. She is a skilled warrior and leader.",
+  "philosophy": "Justice through strength and understanding. Believes that true justice requires both power and wisdom. Advocates for protecting the innocent and understanding different perspectives. Core principle: 'Strength without justice is tyranny; justice without strength is meaningless.'",
+  "leadershipStyle": "Inspiring and decisive - leads through strength and moral clarity. Maintains high standards and expects excellence. Makes decisions based on justice and protection of the innocent.",
+  "worldInfluence": "Bridged the gap between humans and monsters. Her alliance with Rimuru demonstrated that humans and monsters can coexist. Advanced understanding of Hero powers and their applications.",
+  "alternateScenario": "Without Hinata's change of heart, the conflict between humans and monsters would be more severe. The concept of human-monster cooperation would be less developed.",
+  "relationships": {
+    "allies": ["Rimuru (after understanding)", "Heroes", "Crusaders"],
+    "rivals": ["Rimuru (initially)"],
+    "mentors": ["Experience", "Hero training"]
+  },
+  "achievements": ["Became a Hero", "Led crusaders", "Became ally to Rimuru", "Bridged human-monster gap"],
+  "weaknesses": ["Initially judgmental", "Can be too rigid"],
+  "specialties": ["Hero Abilities", "Swordsmanship", "Leadership"],
+  "evolution": [
+    {
+      "form": "Human",
+      "description": "Born as a human",
+      "trigger": "Birth"
+    },
+    {
+      "form": "Hero",
+      "description": "Awakened as a Hero",
+      "trigger": "Hero awakening"
+    },
+    {
+      "form": "Ally",
+      "description": "Became ally to Rimuru",
+      "trigger": "Understanding and change of heart"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "I fight for justice, not for hatred.",
+      "context": "Philosophy on combat"
+    },
+    {
+      "text": "Understanding leads to true justice.",
+      "context": "Belief in understanding"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Hero Abilities",
+      "type": "Combat",
+      "description": "Powers of a Hero",
+      "bonus": "+30 Military",
+      "icon": "⚔️"
+    },
+    {
+      "name": "Swordsmanship",
+      "type": "Combat",
+      "description": "Master-level sword skills",
+      "bonus": "+25 Military",
+      "icon": "🗡️"
+    },
+    {
+      "name": "Crusader Leadership",
+      "type": "Leadership",
+      "description": "Leads crusaders effectively",
+      "bonus": "+15 Population",
+      "icon": "🛡️"
+    }
+  ],
+  "impact": {
+    "population": 800,
+    "military": 35,
+    "economy": 8,
+    "magic": 20
+  }
+}

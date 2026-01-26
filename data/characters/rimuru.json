@@ -1,0 +1,103 @@
+{
+  "id": "rimuru",
+  "name": "Rimuru Tempest",
+  "race": "True Dragon (Ultimate Slime)",
+  "role": "Demon Lord & Founder",
+  "power": "Catastrophe",
+  "portrait": "💧",
+  "image": "assets/characters/Rimuru.png",
+  "colorScheme": {
+    "primary": "#00c8ff",
+    "secondary": "#40d0ff",
+    "glow": "rgba(0, 200, 255, 0.6)"
+  },
+  "lore": "The founder and ruler of the Jura-Tempest Federation. Originally a 37-year-old human named Satoru Mikami, reincarnated as a slime with unique abilities including Predator, Great Sage, and the power to name and evolve monsters.",
+  "backstory": "Once a corporate worker in Japan, Satoru Mikami was stabbed and died, only to be reborn as a slime in a fantasy world. Through his journey, he gained incredible powers and built a nation where all races can coexist peacefully.",
+  "personality": "Kind-hearted, strategic, and protective of his people. Despite his immense power, he maintains his human compassion and seeks diplomatic solutions before resorting to force.",
+  "philosophy": "Believes in the fundamental equality of all sentient beings and that strength should be used to protect the weak, not dominate them. Advocates for peaceful coexistence through mutual understanding and shared prosperity. His core principle: 'A leader serves their people, not the other way around.'",
+  "leadershipStyle": "Collaborative and empowering - delegates authority to capable subordinates while maintaining final decision-making power. Leads by example rather than decree, often working alongside citizens. Combines strategic thinking with emotional intelligence, making decisions based on both logic and compassion.",
+  "worldInfluence": "Revolutionized inter-species relations by proving peaceful coexistence is possible. His Federation model inspired other nations to reconsider racial hierarchies. Advanced magical technology through knowledge sharing. Established new diplomatic norms based on mutual benefit rather than conquest.",
+  "alternateScenario": "Without Rimuru, the Jura Forest would remain a chaotic battleground. The Orcs would have consumed everything, becoming an unstoppable Orc Disaster. Veldora would remain sealed, eventually dying. The various monster tribes would never unite, remaining vulnerable to human expansion. The concept of a multi-racial nation would never emerge, perpetuating centuries of racial conflict.",
+  "relationships": {
+    "allies": ["Veldora", "Milim", "Shion", "Benimaru", "Shuna"],
+    "rivals": ["Clayman", "Yuuki Kagurazaka"],
+    "mentors": ["Great Sage", "Veldora"]
+  },
+  "achievements": ["Founded Jura-Tempest Federation", "Became a True Demon Lord", "Defeated Clayman", "United multiple races"],
+  "weaknesses": ["Overly trusting", "Sometimes naive about politics"],
+  "specialties": ["Diplomacy", "Magic Analysis", "Monster Evolution"],
+  "evolution": [
+    {
+      "form": "Human (Satoru Mikami)",
+      "description": "37-year-old corporate worker in Japan",
+      "trigger": "Death by stabbing"
+    },
+    {
+      "form": "Slime",
+      "description": "Reincarnated as a basic slime with unique skills",
+      "trigger": "Reincarnation"
+    },
+    {
+      "form": "Named Slime",
+      "description": "Gained name and evolved after meeting Veldora",
+      "trigger": "Named by Veldora"
+    },
+    {
+      "form": "Demon Slime",
+      "description": "Evolved after becoming a Demon Lord",
+      "trigger": "Harvest Festival"
+    },
+    {
+      "form": "True Dragon",
+      "description": "Ultimate evolution as a True Dragon species",
+      "trigger": "Ultimate Skill mastery"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "I don't want to become a monster, but I don't want to be weak either.",
+      "context": "Early character development"
+    },
+    {
+      "text": "The strong devour the weak. Such is the way of the world.",
+      "context": "Philosophical reflection"
+    },
+    {
+      "text": "I'll create a nation where everyone can live happily.",
+      "context": "Founding the Federation"
+    },
+    {
+      "text": "Great Sage, what should I do?",
+      "context": "Seeking guidance"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Predator",
+      "type": "Combat",
+      "description": "Absorbs targets and analyzes their abilities",
+      "bonus": "+20 All Stats",
+      "icon": "🐺"
+    },
+    {
+      "name": "Great Sage",
+      "type": "Magic",
+      "description": "Ultimate intelligence support system",
+      "bonus": "+25 Magic",
+      "icon": "🧠"
+    },
+    {
+      "name": "Storm Magic",
+      "type": "Magic",
+      "description": "Mastery over wind and lightning elements",
+      "bonus": "+15 Military",
+      "icon": "⚡"
+    }
+  ],
+  "impact": {
+    "population": 2000,
+    "military": 35,
+    "economy": 30,
+    "magic": 40
+  }
+}

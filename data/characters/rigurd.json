@@ -1,0 +1,78 @@
+{
+  "id": "rigurd",
+  "name": "Rigurd",
+  "race": "Hobgoblin",
+  "role": "Village Chief",
+  "power": "B-Rank",
+  "portrait": "👨",
+  "image": "assets/characters/Rigurd.png",
+  "colorScheme": {
+    "primary": "#8b7355",
+    "secondary": "#a0826d",
+    "glow": "rgba(139, 115, 85, 0.6)"
+  },
+  "lore": "The village chief and one of Rimuru's first named monsters. A hobgoblin who handles much of the Federation's administrative duties. He is reliable, hardworking, and dedicated to serving Rimuru and the village.",
+  "backstory": "Rigurd was a goblin who became one of Rimuru's first named monsters. He evolved into a hobgoblin and became the village chief, handling administrative duties and serving as a reliable leader.",
+  "personality": "Reliable, hardworking, and dedicated. Rigurd takes great pride in his administrative duties and works tirelessly to serve Rimuru and the village. He is organized and efficient.",
+  "philosophy": "Service through dedication and organization. Believes that reliable service is the foundation of success. Advocates for hard work and organization. Core principle: 'Reliability is the foundation of trust; organization is the path to efficiency.'",
+  "leadershipStyle": "Organized and supportive - leads through reliability and hard work. Maintains order through organization and dedication. Makes decisions based on efficiency and service.",
+  "worldInfluence": "Demonstrated the value of reliable administration. His organization skills improved the Federation's efficiency. Proved that even lower-ranked monsters can be valuable through dedication.",
+  "alternateScenario": "Without Rigurd, the Federation's administration would be less organized. The value of reliable lower-ranked monsters would be less demonstrated.",
+  "relationships": {
+    "allies": ["Rimuru", "Goblin tribe", "Village members"],
+    "rivals": ["None"],
+    "mentors": ["Rimuru"]
+  },
+  "achievements": ["Became one of Rimuru's first named monsters", "Evolved to hobgoblin", "Became village chief", "Established administrative systems"],
+  "weaknesses": ["Limited combat ability", "Lower power level"],
+  "specialties": ["Administration", "Organization", "Reliability"],
+  "evolution": [
+    {
+      "form": "Goblin",
+      "description": "Born as a goblin",
+      "trigger": "Birth"
+    },
+    {
+      "form": "Named Goblin",
+      "description": "Named by Rimuru",
+      "trigger": "Named by Rimuru"
+    },
+    {
+      "form": "Hobgoblin",
+      "description": "Evolved to hobgoblin",
+      "trigger": "Evolution through naming and experience"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "I'll handle the administration, Lord Rimuru!",
+      "context": "Accepting duties"
+    },
+    {
+      "text": "Organization is the key to efficiency.",
+      "context": "Philosophy on administration"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Administration",
+      "type": "Support",
+      "description": "Handles administrative tasks efficiently",
+      "bonus": "+15 Economy",
+      "icon": "📋"
+    },
+    {
+      "name": "Organization",
+      "type": "Support",
+      "description": "Organizes systems and processes",
+      "bonus": "+10 Population",
+      "icon": "🗂️"
+    }
+  ],
+  "impact": {
+    "population": 1000,
+    "military": 5,
+    "economy": 20,
+    "magic": 2
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "id": "gazef",
+  "name": "Gazef Stronoff",
+  "race": "Human",
+  "role": "Human Warrior",
+  "power": "Special A",
+  "portrait": "⚔️",
+  "image": "assets/characters/Gazef.png",
+  "colorScheme": {
+    "primary": "#4169e1",
+    "secondary": "#6495ed",
+    "glow": "rgba(65, 105, 225, 0.6)"
+  },
+  "lore": "A skilled human warrior and knight. Known for his honor and dedication to protecting others. He represents the best of human warriors and maintains high moral standards.",
+  "backstory": "Gazef is a renowned human warrior known for his skill and honor. He serves as a knight and protector, dedicated to defending the innocent and upholding justice.",
+  "personality": "Honorable, skilled, and dedicated. Gazef maintains high moral standards and fights for justice. He is respected by both allies and enemies for his honor and skill.",
+  "philosophy": "Honor and justice above all. Believes that strength should be used to protect the weak. Advocates for honorable combat and moral conduct. Core principle: 'A warrior's duty is to protect, not to dominate.'",
+  "leadershipStyle": "Inspiring and honorable - leads through example and moral strength. Maintains high standards and expects the same from others. Makes decisions based on honor and justice.",
+  "worldInfluence": "Demonstrated that humans can be honorable and powerful. His example showed that strength and honor can coexist. Proved that humans can be valuable allies.",
+  "alternateScenario": "Without Gazef's example, human warriors would be less honorable. The concept of honorable human combat would be less developed.",
+  "relationships": {
+    "allies": ["Human kingdoms", "Honorable warriors"],
+    "rivals": ["None (respects all honorable opponents)"],
+    "mentors": ["Experience", "Honor"]
+  },
+  "achievements": ["Became renowned warrior", "Maintained honor", "Protected the innocent", "Demonstrated human strength"],
+  "weaknesses": ["Limited by human nature", "Sometimes too honorable"],
+  "specialties": ["Swordsmanship", "Honor", "Protection"],
+  "evolution": [
+    {
+      "form": "Human",
+      "description": "Born as a human",
+      "trigger": "Birth"
+    },
+    {
+      "form": "Warrior",
+      "description": "Trained as a warrior",
+      "trigger": "Training and experience"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Honor is the foundation of a true warrior.",
+      "context": "Philosophy on honor"
+    },
+    {
+      "text": "I fight to protect, not to conquer.",
+      "context": "Purpose in combat"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Swordsmanship",
+      "type": "Combat",
+      "description": "Master-level sword skills",
+      "bonus": "+15 Military",
+      "icon": "⚔️"
+    },
+    {
+      "name": "Warrior's Honor",
+      "type": "Support",
+      "description": "Inspires through honor",
+      "bonus": "+10 Population",
+      "icon": "🛡️"
+    }
+  ],
+  "impact": {
+    "population": 300,
+    "military": 15,
+    "economy": 5,
+    "magic": 5
+  }
+}

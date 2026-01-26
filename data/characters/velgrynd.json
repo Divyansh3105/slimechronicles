@@ -1,0 +1,75 @@
+{
+  "id": "velgrynd",
+  "name": "Velgrynd",
+  "race": "True Dragon",
+  "role": "Scorch Dragon",
+  "power": "Catastrophe+",
+  "portrait": "🔥",
+  "image": "assets/characters/Velgrynd.jpg",
+  "colorScheme": {
+    "primary": "#ff4500",
+    "secondary": "#ff6347",
+    "glow": "rgba(255, 69, 0, 0.8)"
+  },
+  "lore": "A True Dragon known as the 'Scorch Dragon.' Possesses incredible fire-based abilities and ancient wisdom. One of the most powerful beings in existence, capable of controlling fire and heat at will.",
+  "backstory": "Velgrynd is one of the True Dragons, ancient beings of immense power. She is known as the Scorch Dragon and possesses mastery over fire and heat. She is one of the oldest and most powerful beings.",
+  "personality": "Powerful, ancient, and wise. Velgrynd maintains the dignity of a True Dragon while being approachable. She is calm and collected, with deep understanding of the world's workings.",
+  "philosophy": "Power through ancient wisdom and fire mastery. Believes that true power comes from understanding and mastery. Advocates for balance and wisdom. Core principle: 'Fire creates and destroys; wisdom guides both.'",
+  "leadershipStyle": "Wise and powerful - leads through ancient wisdom and overwhelming power. Maintains balance through understanding. Makes decisions based on long-term wisdom and stability.",
+  "worldInfluence": "Maintains the balance of elemental forces. Her fire mastery influences understanding of elemental magic. Proved that ancient beings can maintain relevance and wisdom.",
+  "alternateScenario": "Without Velgrynd, the balance of elemental forces would be unstable. Understanding of fire magic would be less advanced. The concept of True Dragon wisdom would be less accessible.",
+  "relationships": {
+    "allies": ["Other True Dragons", "Veldora", "Velzard"],
+    "rivals": ["None (maintains balance)"],
+    "mentors": ["None (she is ancient)"]
+  },
+  "achievements": ["Existed as True Dragon", "Mastered fire magic", "Maintained elemental balance", "Demonstrated ancient wisdom"],
+  "weaknesses": ["Can be detached", "Sometimes too ancient"],
+  "specialties": ["Fire Magic", "True Dragon Power", "Ancient Wisdom"],
+  "evolution": [
+    {
+      "form": "True Dragon",
+      "description": "Born as a True Dragon",
+      "trigger": "Creation"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Fire creates and destroys; wisdom guides both.",
+      "context": "Philosophy on fire and wisdom"
+    },
+    {
+      "text": "Ancient power requires ancient wisdom.",
+      "context": "Belief in wisdom"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Scorch Dragon",
+      "type": "Magic",
+      "description": "Ultimate fire and heat control",
+      "bonus": "+40 Magic",
+      "icon": "🔥"
+    },
+    {
+      "name": "True Dragon Power",
+      "type": "Combat",
+      "description": "Overwhelming dragon power",
+      "bonus": "+35 Military",
+      "icon": "🐉"
+    },
+    {
+      "name": "Ancient Wisdom",
+      "type": "Support",
+      "description": "Provides guidance through experience",
+      "bonus": "+20 Population",
+      "icon": "📜"
+    }
+  ],
+  "impact": {
+    "population": 1000,
+    "military": 45,
+    "economy": 10,
+    "magic": 50
+  }
+}

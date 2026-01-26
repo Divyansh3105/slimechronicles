@@ -1,0 +1,85 @@
+{
+  "id": "ranga",
+  "name": "Ranga",
+  "race": "Tempest Wolf",
+  "role": "Rimuru's Companion",
+  "power": "Special S",
+  "portrait": "🐺",
+  "image": "assets/characters/Ranga.png",
+  "colorScheme": {
+    "primary": "#2f4f4f",
+    "secondary": "#708090",
+    "glow": "rgba(47, 79, 79, 0.6)"
+  },
+  "lore": "Rimuru's loyal companion and mount. A Tempest Wolf with incredible speed and the ability to manipulate storms and lightning. He is fiercely loyal and serves as Rimuru's primary mode of transportation.",
+  "backstory": "Ranga was a direwolf who became Rimuru's first named monster. He evolved into a Tempest Wolf and became Rimuru's loyal companion, serving as both mount and protector.",
+  "personality": "Loyal, energetic, and protective. Ranga is completely devoted to Rimuru and takes great pride in serving as his mount. He is enthusiastic and always ready for adventure.",
+  "philosophy": "Loyalty through service and protection. Believes that true loyalty comes from dedicated service. Advocates for protecting those you care about. Core principle: 'My master's safety is my highest priority.'",
+  "leadershipStyle": "Protective and supportive - leads wolf packs through loyalty and strength. Maintains pack hierarchy while serving Rimuru. Makes decisions based on Rimuru's safety and well-being.",
+  "worldInfluence": "Demonstrated the bond between master and monster. His evolution showed the potential of named monsters. Proved that loyalty and service create powerful bonds.",
+  "alternateScenario": "Without Rimuru, Ranga would remain a simple direwolf. The concept of named monster evolution would be less demonstrated. The bond between master and monster would be less explored.",
+  "relationships": {
+    "allies": ["Rimuru", "Tempest Wolves", "Federation members"],
+    "rivals": ["None"],
+    "mentors": ["Rimuru"]
+  },
+  "achievements": ["Became Rimuru's first named monster", "Evolved to Tempest Wolf", "Mastered storm magic", "Served as loyal companion"],
+  "weaknesses": ["Sometimes overly enthusiastic", "Can be reckless"],
+  "specialties": ["Storm Magic", "Speed", "Loyalty"],
+  "evolution": [
+    {
+      "form": "Direwolf",
+      "description": "Born as a direwolf",
+      "trigger": "Birth"
+    },
+    {
+      "form": "Named Direwolf",
+      "description": "Named by Rimuru",
+      "trigger": "Named by Rimuru"
+    },
+    {
+      "form": "Tempest Wolf",
+      "description": "Evolved to Tempest Wolf",
+      "trigger": "Evolution through power and loyalty"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Master Rimuru, I'm ready to serve!",
+      "context": "Expressing loyalty"
+    },
+    {
+      "text": "I'll protect you with my life!",
+      "context": "Protective declaration"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Storm Magic",
+      "type": "Magic",
+      "description": "Controls storms and lightning",
+      "bonus": "+20 Magic",
+      "icon": "⚡"
+    },
+    {
+      "name": "Lightning Speed",
+      "type": "Support",
+      "description": "Extremely fast movement",
+      "bonus": "+15 Military",
+      "icon": "💨"
+    },
+    {
+      "name": "Pack Leadership",
+      "type": "Leadership",
+      "description": "Leads wolf packs effectively",
+      "bonus": "+10 Population",
+      "icon": "🐺"
+    }
+  ],
+  "impact": {
+    "population": 500,
+    "military": 20,
+    "economy": 5,
+    "magic": 20
+  }
+}

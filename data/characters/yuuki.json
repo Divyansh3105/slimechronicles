@@ -1,0 +1,85 @@
+{
+  "id": "yuuki",
+  "name": "Yuuki Kagurazaka",
+  "race": "Human (Otherworlder)",
+  "role": "Otherworlder & Strategist",
+  "power": "Catastrophe",
+  "portrait": "🎭",
+  "image": "assets/characters/Yuuki Kagurazaka.png",
+  "colorScheme": {
+    "primary": "#9370db",
+    "secondary": "#ba55d3",
+    "glow": "rgba(147, 112, 219, 0.6)"
+  },
+  "lore": "A former otherworlder with powerful abilities. Plays a complex role as both ally and antagonist throughout the series. Known for his strategic mind and ability to manipulate situations to his advantage.",
+  "backstory": "Yuuki is an otherworlder who was reincarnated into the fantasy world. He possesses unique abilities and uses his knowledge from his previous world to gain power and influence. His relationship with Rimuru is complex.",
+  "personality": "Strategic, manipulative, and ambitious. Yuuki uses his intelligence and knowledge to achieve his goals. He is complex, sometimes working with Rimuru and sometimes against him, always pursuing his own agenda.",
+  "philosophy": "Power through knowledge and strategy. Believes that knowledge from another world gives him an advantage. Advocates for strategic manipulation and careful planning. Core principle: 'Knowledge is power; strategy is the path to victory.'",
+  "leadershipStyle": "Strategic and manipulative - leads through intelligence and careful planning. Maintains control through knowledge and strategy. Makes decisions based on long-term goals and personal advantage.",
+  "worldInfluence": "Demonstrated the power of otherworlder knowledge. His strategic thinking influenced how conflicts are approached. Proved that knowledge from another world can be a powerful advantage.",
+  "alternateScenario": "Without Yuuki, the influence of otherworlder knowledge would be less demonstrated. Strategic approaches to conflicts would be less developed.",
+  "relationships": {
+    "allies": ["Various (strategic)", "Otherworlders"],
+    "rivals": ["Rimuru (complex relationship)"],
+    "mentors": ["Knowledge from previous world"]
+  },
+  "achievements": ["Reincarnated as otherworlder", "Gained powerful abilities", "Became strategic mastermind", "Influenced world events"],
+  "weaknesses": ["Can be overly manipulative", "Sometimes too ambitious"],
+  "specialties": ["Strategy", "Otherworlder Knowledge", "Manipulation"],
+  "evolution": [
+    {
+      "form": "Human (Previous World)",
+      "description": "Lived in previous world",
+      "trigger": "Previous life"
+    },
+    {
+      "form": "Otherworlder",
+      "description": "Reincarnated into fantasy world",
+      "trigger": "Reincarnation"
+    },
+    {
+      "form": "Strategic Mastermind",
+      "description": "Gained power through strategy",
+      "trigger": "Knowledge and experience"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Knowledge is power; strategy is the path to victory.",
+      "context": "Philosophy on strategy"
+    },
+    {
+      "text": "Everything is going according to plan.",
+      "context": "Confident in strategy"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Otherworlder Knowledge",
+      "type": "Support",
+      "description": "Uses knowledge from previous world",
+      "bonus": "+25 Population",
+      "icon": "🌐"
+    },
+    {
+      "name": "Strategic Mind",
+      "type": "Support",
+      "description": "Calculates all possibilities",
+      "bonus": "+30 Military",
+      "icon": "🧠"
+    },
+    {
+      "name": "Manipulation",
+      "type": "Support",
+      "description": "Manipulates situations to advantage",
+      "bonus": "+20 Economy",
+      "icon": "🎭"
+    }
+  ],
+  "impact": {
+    "population": 500,
+    "military": 30,
+    "economy": 25,
+    "magic": 20
+  }
+}

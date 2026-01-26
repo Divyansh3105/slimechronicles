@@ -1,0 +1,80 @@
+{
+  "id": "guy",
+  "name": "Guy Crimson",
+  "race": "Daemon (Primordial Red)",
+  "role": "Demon Lord",
+  "power": "Catastrophe+",
+  "portrait": "👹",
+  "image": "assets/characters/Guy.png",
+  "colorScheme": {
+    "primary": "#8b0000",
+    "secondary": "#dc143c",
+    "glow": "rgba(139, 0, 0, 0.8)"
+  },
+  "lore": "The oldest Demon Lord and one of the most powerful beings in existence. Rules over the frozen continent and maintains the balance of power among Demon Lords. Known for his immense power and strategic mind.",
+  "backstory": "Guy Crimson is the oldest Demon Lord, having existed since ancient times. He is a Primordial Daemon known as 'Rouge' and maintains the balance of power in the world through his strength and influence.",
+  "personality": "Powerful, strategic, and enigmatic. Guy maintains a calm demeanor despite his immense power. He is calculating and prefers to observe rather than act directly, but when he does act, the results are devastating.",
+  "philosophy": "Balance through overwhelming power. Believes that true peace comes from maintaining balance through strength. Advocates for strategic thinking and measured action. Core principle: 'Power without purpose is meaningless; purpose without power is futile.'",
+  "leadershipStyle": "Strategic and authoritative - leads through overwhelming power and strategic influence. Maintains balance through careful observation and measured intervention. Makes decisions based on long-term stability.",
+  "worldInfluence": "Maintains the balance of power among Demon Lords. His existence prevents catastrophic conflicts. His strategic thinking influences how powerful beings approach conflicts. Proved that ancient beings can maintain relevance.",
+  "alternateScenario": "Without Guy's influence, the Demon Lord system would be more chaotic. Conflicts between Demon Lords would be more frequent and destructive. The balance of power would be unstable.",
+  "relationships": {
+    "allies": ["Other Demon Lords (strategic)", "Primordial Demons"],
+    "rivals": ["Veldanava (in the past)", "Other powerful beings"],
+    "mentors": ["None (he is the oldest)"]
+  },
+  "achievements": ["Became the oldest Demon Lord", "Maintained balance of power", "Ruled frozen continent", "Demonstrated ultimate power"],
+  "weaknesses": ["Sometimes too calculating", "Can be detached"],
+  "specialties": ["Strategic Thinking", "Ultimate Power", "Balance Maintenance"],
+  "evolution": [
+    {
+      "form": "Primordial Demon (Rouge)",
+      "description": "Ancient primordial demon of red",
+      "trigger": "Existence since the beginning of time"
+    },
+    {
+      "form": "Demon Lord",
+      "description": "Became the first Demon Lord",
+      "trigger": "Demon Lord awakening"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Balance is everything.",
+      "context": "Philosophy on power"
+    },
+    {
+      "text": "Power without purpose is meaningless.",
+      "context": "Belief in purpose"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Frost Magic",
+      "type": "Magic",
+      "description": "Absolute zero and ice manipulation",
+      "bonus": "+40 Magic",
+      "icon": "❄️"
+    },
+    {
+      "name": "Prideful King",
+      "type": "Leadership",
+      "description": "Maintains balance through authority",
+      "bonus": "+35 Military",
+      "icon": "👑"
+    },
+    {
+      "name": "Strategic Mind",
+      "type": "Support",
+      "description": "Calculates all possibilities",
+      "bonus": "+20 Population",
+      "icon": "🧠"
+    }
+  ],
+  "impact": {
+    "population": 2000,
+    "military": 50,
+    "economy": 15,
+    "magic": 50
+  }
+}

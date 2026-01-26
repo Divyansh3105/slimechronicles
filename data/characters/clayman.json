@@ -1,0 +1,75 @@
+{
+  "id": "clayman",
+  "name": "Clayman",
+  "race": "Demon Lord",
+  "role": "Former Demon Lord",
+  "power": "Catastrophe",
+  "portrait": "🎭",
+  "image": "assets/characters/Clayman.png",
+  "colorScheme": {
+    "primary": "#8b4513",
+    "secondary": "#a0522d",
+    "glow": "rgba(139, 69, 19, 0.6)"
+  },
+  "lore": "A former Demon Lord known for his scheming and manipulation. Often considered one of the weaker Demon Lords in terms of direct combat, but dangerous due to his cunning and ability to manipulate others.",
+  "backstory": "Clayman was a Demon Lord who rose to power through manipulation and schemes rather than raw strength. He was eventually defeated by Rimuru and the other Demon Lords after his schemes were exposed.",
+  "personality": "Cunning, manipulative, and scheming. Clayman preferred to work from the shadows, using others as pawns in his plans. He was arrogant and believed his intelligence made him superior to others.",
+  "philosophy": "Power through manipulation and schemes. Believes that intelligence and cunning are superior to raw strength. Advocates for using others as tools. Core principle: 'Why fight when you can make others fight for you?'",
+  "leadershipStyle": "Manipulative and controlling - leads through deception and schemes. Uses subordinates as pawns and discards them when no longer useful. Makes decisions based on personal gain.",
+  "worldInfluence": "Demonstrated the dangers of manipulation and schemes. His defeat showed that cunning alone is not enough without genuine strength. Changed how Demon Lords view each other.",
+  "alternateScenario": "Without Rimuru's intervention, Clayman's schemes would have continued, potentially causing more conflicts. The Demon Lord system would remain more unstable and manipulative.",
+  "relationships": {
+    "allies": ["None (manipulated others)"],
+    "rivals": ["Rimuru", "Other Demon Lords"],
+    "mentors": ["None"]
+  },
+  "achievements": ["Became a Demon Lord", "Created multiple schemes", "Manipulated other Demon Lords"],
+  "weaknesses": ["Weak in direct combat", "Overly reliant on schemes", "Arrogant"],
+  "specialties": ["Manipulation", "Scheming", "Marionette Control"],
+  "evolution": [
+    {
+      "form": "Demon Lord",
+      "description": "Achieved Demon Lord status",
+      "trigger": "Demon Lord awakening"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Everything is going according to plan.",
+      "context": "Confident in schemes"
+    },
+    {
+      "text": "Why fight when I can make others fight?",
+      "context": "Philosophy on manipulation"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Marionette Master",
+      "type": "Magic",
+      "description": "Controls puppets and marionettes",
+      "bonus": "+20 Magic",
+      "icon": "🎭"
+    },
+    {
+      "name": "Manipulation",
+      "type": "Support",
+      "description": "Manipulates others to do his bidding",
+      "bonus": "+15 Military",
+      "icon": "🧠"
+    },
+    {
+      "name": "Doll Creation",
+      "type": "Magic",
+      "description": "Creates and controls dolls",
+      "bonus": "+10 Magic",
+      "icon": "🎎"
+    }
+  ],
+  "impact": {
+    "population": 0,
+    "military": 15,
+    "economy": 0,
+    "magic": 20
+  }
+}

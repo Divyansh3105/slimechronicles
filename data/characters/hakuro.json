@@ -1,0 +1,94 @@
+{
+  "id": "hakuro",
+  "name": "Hakuro",
+  "race": "Divine Oni",
+  "role": "Sword Oni & Grand Master",
+  "power": "Catastrophe",
+  "portrait": "🗡️",
+  "image": "assets/characters/hakuro.png",
+  "colorScheme": {
+    "primary": "#b0b0b0",
+    "secondary": "#d0d0d0",
+    "glow": "rgba(176, 176, 176, 0.6)"
+  },
+  "lore": "An elderly Kijin swordmaster whose skill with the blade is legendary. He serves as Chief Instructor, training the Federation's warriors. His mastery of the sword transcends mere technique, reaching the realm of true art.",
+  "backstory": "The eldest and wisest of the Ogre survivors, Hakuro was already a master swordsman before meeting Rimuru. His evolution into a Kijin only refined his already incredible abilities. He has dedicated his life to perfecting the art of the sword and passing on his knowledge to the next generation.",
+  "personality": "Wise, patient, and disciplined. Hakuro embodies the ideal of a master warrior - calm in battle, thoughtful in strategy, and generous in teaching. He speaks little but his words carry great weight. Despite his age, he maintains a youthful enthusiasm for swordsmanship.",
+  "philosophy": "The way of the sword is the way of life - discipline, respect, and continuous improvement. Believes that true mastery comes not from defeating others, but from conquering oneself. Advocates for the preservation and transmission of knowledge. Core principle: 'A master's greatest victory is seeing their student surpass them.'",
+  "leadershipStyle": "Mentoring and traditional - leads through wisdom and example rather than commands. Believes in gradual development and personal growth. Maintains strict standards while showing infinite patience. Focuses on building character alongside skill.",
+  "worldInfluence": "Established martial arts academies that spread advanced sword techniques across nations. His teaching methods influenced military training worldwide. Proved that age and wisdom are as valuable as youth and strength in leadership roles.",
+  "alternateScenario": "Without Rimuru, Hakuro would have died defending his village, taking centuries of martial knowledge with him. Advanced sword techniques would be lost forever. The concept of honorable combat and martial mentorship would not spread beyond isolated warrior traditions.",
+  "relationships": {
+    "allies": ["Rimuru", "Benimaru", "All Tempest warriors"],
+    "rivals": ["Worthy swordsmen (respectful rivalry)"],
+    "mentors": ["Ancient sword masters (deceased)"],
+    "students": ["Benimaru", "Gobta", "Many Tempest soldiers"]
+  },
+  "achievements": ["Became Chief Instructor", "Mastered multiple sword styles", "Trained countless warriors", "Achieved sword saint level", "Survived the Ogre village massacre", "Evolved from Ogre to Divine Oni"],
+  "weaknesses": ["Advanced age (though still formidable)", "Sometimes too focused on tradition", "Can be overly critical of students"],
+  "specialties": ["Swordsmanship", "Military Training", "Battle Strategy", "Martial Arts Philosophy"],
+  "evolution": [
+    {
+      "form": "Ogre",
+      "description": "Elder warrior and sword master of the Ogre village",
+      "trigger": "Birth and decades of training"
+    },
+    {
+      "form": "Kijin",
+      "description": "Evolved after being named by Rimuru",
+      "trigger": "Named by Rimuru"
+    },
+    {
+      "form": "Divine Oni",
+      "description": "Achieved through mastery of the sword arts",
+      "trigger": "Harvest Festival and martial perfection"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "The way of the sword is the way of life itself.",
+      "context": "Teaching philosophy"
+    },
+    {
+      "text": "A true warrior protects what is precious to them.",
+      "context": "Lesson to students"
+    },
+    {
+      "text": "Lord Rimuru, my blade is yours to command.",
+      "context": "Pledge of loyalty"
+    },
+    {
+      "text": "Again! Your stance is still imperfect!",
+      "context": "Training session"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Master Swordsman",
+      "type": "Combat",
+      "description": "Unparalleled skill with the blade",
+      "bonus": "+25 Military",
+      "icon": "⚔️"
+    },
+    {
+      "name": "Battle Tactics",
+      "type": "Leadership",
+      "description": "Strategic genius in warfare",
+      "bonus": "+15 Military",
+      "icon": "📋"
+    },
+    {
+      "name": "Flawless Arts",
+      "type": "Combat",
+      "description": "Perfect technique in all forms of combat",
+      "bonus": "+8 Population",
+      "icon": "🎯"
+    }
+  ],
+  "impact": {
+    "population": 500,
+    "military": 40,
+    "economy": 3,
+    "magic": 8
+  }
+}

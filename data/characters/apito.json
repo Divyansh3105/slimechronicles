@@ -1,0 +1,69 @@
+{
+  "id": "apito",
+  "name": "Apito",
+  "race": "Honeybee (Queen Bee)",
+  "role": "Scout & Messenger",
+  "power": "A-Rank",
+  "portrait": "🐝",
+  "image": "assets/characters/Apito.png",
+  "colorScheme": {
+    "primary": "#ffd700",
+    "secondary": "#ffed4e",
+    "glow": "rgba(255, 215, 0, 0.6)"
+  },
+  "lore": "A bee-type monster with incredible speed and agility. Serves as a scout and messenger for the Federation, using her flight abilities to gather intelligence and deliver messages across vast distances.",
+  "backstory": "Apito evolved from a regular bee after being named by Rimuru. She gained intelligence and became a valuable scout, using her speed and flight to serve the Federation.",
+  "personality": "Energetic, loyal, and hardworking. Apito takes great pride in her duties and works tirelessly to serve Rimuru and the Federation. She is quick and efficient in her tasks.",
+  "philosophy": "Diligence and speed in service. Believes that quick action and reliable communication are essential. Advocates for teamwork and coordination. Core principle: 'Swift wings carry important messages; diligence ensures they arrive safely.'",
+  "leadershipStyle": "Coordinating and supportive - works with other scouts to cover large areas. Maintains communication networks and ensures information flows efficiently.",
+  "worldInfluence": "Demonstrated the value of aerial scouts in intelligence gathering. Her communication networks improved coordination across the Federation. Advanced understanding of monster evolution through naming.",
+  "alternateScenario": "Without Rimuru, Apito would remain a simple bee, never gaining intelligence or the ability to serve constructively. Aerial intelligence networks would be much less developed.",
+  "relationships": {
+    "allies": ["Rimuru", "Other scouts", "Federation members"],
+    "rivals": ["None"],
+    "mentors": ["Rimuru"]
+  },
+  "achievements": ["Evolved through naming", "Established scout network", "Mastered aerial reconnaissance"],
+  "weaknesses": ["Limited combat ability", "Small size"],
+  "specialties": ["Scouting", "Messenger Service", "Aerial Reconnaissance"],
+  "evolution": [
+    {
+      "form": "Honeybee",
+      "description": "Regular bee monster",
+      "trigger": "Natural evolution"
+    },
+    {
+      "form": "Queen Bee",
+      "description": "Evolved after being named by Rimuru",
+      "trigger": "Named by Rimuru"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "I'll deliver this message as fast as my wings can carry me!",
+      "context": "Accepting a mission"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Aerial Speed",
+      "type": "Support",
+      "description": "Extremely fast flight for scouting",
+      "bonus": "+10 Military",
+      "icon": "🐝"
+    },
+    {
+      "name": "Scout Network",
+      "type": "Support",
+      "description": "Coordinates intelligence gathering",
+      "bonus": "+5 Population",
+      "icon": "📡"
+    }
+  ],
+  "impact": {
+    "population": 100,
+    "military": 10,
+    "economy": 5,
+    "magic": 3
+  }
+}

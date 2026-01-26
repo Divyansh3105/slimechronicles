@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" type="image/png" href="assets/fav.png">
+    <link rel="icon" type="image/x-icon" href="assets/fav.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills Database - Jura Tempest Federation</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Rajdhani:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/skills.css">
+    <link rel="stylesheet" href="css/mobile-features.css">
+    <script src="js/animated-bg.js" defer></script>
+</head>
+
+<body>
+    <div class="starfield" id="starfield"></div>
+    <div class="magic-circle" style="top: 20%; left: 80%;"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Enhanced Navigation -->
+    <nav class="main-nav" id="main-nav">
+        <a href="index.html" class="nav-brand">
+            <div class="nav-brand-icon">
+                <svg width="64" height="64" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Slime body with gradient -->
+                    <defs>
+                        <radialGradient id="slimeGradient" cx="50%" cy="40%" r="60%">
+                            <stop offset="0%" style="stop-color:#4dd4ff;stop-opacity:1" />
+                            <stop offset="70%" style="stop-color:#2a9fd8;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#1a7fb8;stop-opacity:1" />
+                        </radialGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+                            <feMerge>
+                                <feMergeNode in="coloredBlur" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+
+                    <!-- Main slime body -->
+                    <ellipse cx="16" cy="20" rx="12" ry="8" fill="url(#slimeGradient)" filter="url(#glow)">
+                        <animateTransform attributeName="transform" type="scale" values="1,1;1.1,0.9;1,1" dur="2s"
+                            repeatCount="indefinite" />
+                    </ellipse>
+
+                    <!-- Slime highlight -->
+                    <ellipse cx="13" cy="17" rx="3" ry="2" fill="#ffffff" opacity="0.6">
+                        <animate attributeName="opacity" values="0.6;0.8;0.6" dur="2s" repeatCount="indefinite" />
+                    </ellipse>
+
+                    <!-- Eyes -->
+                    <circle cx="12" cy="18" r="1.5" fill="#0a0e27">
+                        <animate attributeName="r" values="1.5;1.2;1.5" dur="3s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="20" cy="18" r="1.5" fill="#0a0e27">
+                        <animate attributeName="r" values="1.5;1.2;1.5" dur="3s" repeatCount="indefinite" />
+                    </circle>
+
+                    <!-- Eye highlights -->
+                    <circle cx="12.5" cy="17.5" r="0.5" fill="#ffffff" opacity="0.8" />
+                    <circle cx="20.5" cy="17.5" r="0.5" fill="#ffffff" opacity="0.8" />
+
+                    <!-- Floating particles around slime -->
+                    <circle cx="8" cy="12" r="1" fill="#4dd4ff" opacity="0.4">
+                        <animateTransform attributeName="transform" type="translate" values="0,0;2,-2;0,0" dur="3s"
+                            repeatCount="indefinite" />
+                        <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="24" cy="14" r="0.8" fill="#4dd4ff" opacity="0.3">
+                        <animateTransform attributeName="transform" type="translate" values="0,0;-1,-3;0,0" dur="4s"
+                            repeatCount="indefinite" />
+                        <animate attributeName="opacity" values="0.3;0.7;0.3" dur="4s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="16" cy="8" r="0.6" fill="#4dd4ff" opacity="0.5">
+                        <animateTransform attributeName="transform" type="translate" values="0,0;1,-1;0,0" dur="2.5s"
+                            repeatCount="indefinite" />
+                        <animate attributeName="opacity" values="0.5;0.9;0.5" dur="2.5s" repeatCount="indefinite" />
+                    </circle>
+                </svg>
+            </div>
+            <span>Jura Tempest</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="overview.html">
+                <span class="nav-icon">🏛️</span>
+                <span>Overview</span>
+            </a>
+            <a href="codex.html">
+                <span class="nav-icon">📚</span>
+                <span>Codex</span>
+            </a>
+            <a href="skills.html" class="active">
+                <span class="nav-icon">✨</span>
+                <span>Skills</span>
+            </a>
+            <a href="timeline.html">
+                <span class="nav-icon">📜</span>
+                <span>Chronicle</span>
+            </a>
+            <a href="records.html">
+                <span class="nav-icon">📜</span>
+                <span>Historical Records</span>
+            </a>
+            <a href="index.html">
+                <span class="nav-icon">🚪</span>
+                <span>Exit</span>
+            </a>
+        </div>
+
+        <div class="nav-actions">
+            <button class="nav-action-btn" onclick="toggleSound()" title="Toggle Sound">
+                <span class="icon" id="sound-toggle">🔊</span>
+            </button>
+            <button class="nav-action-btn" onclick="toggleFullscreen()" title="Fullscreen">
+                <span class="icon">⛶</span>
+            </button>
+        </div>
+
+        <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="nav-progress" id="nav-progress"></div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobile-nav">
+        <button class="mobile-nav-close" onclick="toggleMobileMenu()">
+            <span>✕</span>
+        </button>
+        <a href="overview.html">
+            <span class="nav-icon">🏛️</span>
+            <span>Overview</span>
+        </a>
+        <a href="codex.html">
+            <span class="nav-icon">📚</span>
+            <span>Codex</span>
+        </a>
+        <a href="skills.html" class="active">
+            <span class="nav-icon">✨</span>
+            <span>Skills</span>
+        </a>
+        <a href="timeline.html">
+            <span class="nav-icon">📜</span>
+            <span>Chronicle</span>
+        </a>
+        <a href="records.html">
+            <span class="nav-icon">📜</span>
+            <span>Historical Records</span>
+        </a>
+        <a href="index.html">
+            <span class="nav-icon">🚪</span>
+            <span>Exit</span>
+        </a>
+    </div>
+
+    <div class="skills-container">
+        <h1 class="page-title">Skills Database</h1>
+        <p class="page-subtitle">Master the arts of magic, combat, and leadership</p>
+
+        <div class="skills-controls">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Search skills..." autocomplete="off" />
+            </div>
+
+            <div class="filter-group">
+                <label>Sort By:</label>
+                <select id="sort-select">
+                    <option value="name">Name</option>
+                    <option value="type">Type</option>
+                    <option value="characters">Most Used</option>
+                    <option value="difficulty">Difficulty</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Filter Type:</label>
+                <select id="type-filter">
+                    <option value="all">All Types</option>
+                    <option value="combat">Combat</option>
+                    <option value="magic">Magic</option>
+                    <option value="support">Support</option>
+                    <option value="leadership">Leadership</option>
+                    <option value="crafting">Crafting</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Difficulty:</label>
+                <select id="difficulty-filter">
+                    <option value="all">All Levels</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                    <option value="Expert">Expert</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>View:</label>
+                <select id="view-mode">
+                    <option value="grid">Grid View</option>
+                    <option value="list">List View</option>
+                    <option value="compact">Compact View</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="skills-grid" id="skills-grid">
+            <!-- Loading state -->
+            <div class="loading-state" style="grid-column: 1/-1; text-align: center; padding: 4rem;">
+                <div class="loading-spinner"
+                    style="width: 40px; height: 40px; border: 3px solid rgba(77, 212, 255, 0.3); border-top: 3px solid var(--primary-blue); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem;">
+                </div>
+                <h3>Loading Skills...</h3>
+                <p>Please wait while we gather the skills database</p>
+                <button onclick="forceInitialize()"
+                    style="margin-top: 1rem; padding: 0.5rem 1rem; background: var(--primary-blue); color: white; border: none; border-radius: 4px; cursor: pointer;">Force
+                    Load</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/character-loader.js"></script>
+    <script src="js/game-state-optimized.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/mobile-nav.js"></script>
+    <script src="js/skills.js"></script>
+</body>
+
+</html>

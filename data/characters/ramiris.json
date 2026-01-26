@@ -1,0 +1,85 @@
+{
+  "id": "ramiris",
+  "name": "Ramiris",
+  "race": "Fairy (Fairy Queen)",
+  "role": "Fairy Queen & Former Demon Lord",
+  "power": "Catastrophe",
+  "portrait": "🧚",
+  "image": "assets/characters/Ramiris.png",
+  "colorScheme": {
+    "primary": "#98fb98",
+    "secondary": "#90ee90",
+    "glow": "rgba(152, 251, 152, 0.6)"
+  },
+  "lore": "The Fairy Queen and a former Demon Lord. Despite her small size and childlike demeanor, she possesses ancient wisdom and powerful magic. She creates labyrinths and serves as a guardian of knowledge.",
+  "backstory": "Ramiris is an ancient being who was once a Demon Lord but lost much of her power. Despite this, she retains her wisdom and magical abilities, creating labyrinths and serving as a guardian.",
+  "personality": "Childlike, wise, and energetic. Ramiris appears young and playful but possesses ancient wisdom. She is cheerful and optimistic, using her knowledge to help others.",
+  "philosophy": "Wisdom through experience and joy. Believes that true wisdom comes from experience and maintaining joy. Advocates for learning and growth. Core principle: 'Wisdom is not about age; it's about understanding and joy.'",
+  "leadershipStyle": "Guiding and supportive - leads through wisdom and encouragement. Maintains cheerfulness while providing guidance. Makes decisions based on long-term wisdom and growth.",
+  "worldInfluence": "Demonstrated that wisdom comes in many forms. Her labyrinths advanced understanding of dimensional magic. Proved that former power doesn't define current value.",
+  "alternateScenario": "Without Ramiris, labyrinths would be less developed. The concept of dimensional magic would be less advanced. Ancient wisdom would be less accessible.",
+  "relationships": {
+    "allies": ["Rimuru", "Veldora", "Fairies"],
+    "rivals": ["None"],
+    "mentors": ["Experience", "Ancient knowledge"]
+  },
+  "achievements": ["Was a Demon Lord", "Created labyrinths", "Maintained wisdom", "Served as guardian"],
+  "weaknesses": ["Lost much power", "Small size"],
+  "specialties": ["Labyrinth Creation", "Dimensional Magic", "Ancient Wisdom"],
+  "evolution": [
+    {
+      "form": "Fairy",
+      "description": "Born as a fairy",
+      "trigger": "Birth"
+    },
+    {
+      "form": "Demon Lord",
+      "description": "Became Demon Lord",
+      "trigger": "Demon Lord awakening"
+    },
+    {
+      "form": "Fairy Queen",
+      "description": "Became Fairy Queen after losing Demon Lord power",
+      "trigger": "Power loss and adaptation"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Wisdom comes from experience, not age!",
+      "context": "Philosophy on wisdom"
+    },
+    {
+      "text": "Labyrinths are my specialty!",
+      "context": "Pride in abilities"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Labyrinth Creation",
+      "type": "Magic",
+      "description": "Creates dimensional labyrinths",
+      "bonus": "+25 Magic",
+      "icon": "🏛️"
+    },
+    {
+      "name": "Fairy Magic",
+      "type": "Magic",
+      "description": "Powerful fairy magic",
+      "bonus": "+20 Magic",
+      "icon": "🧚"
+    },
+    {
+      "name": "Ancient Wisdom",
+      "type": "Support",
+      "description": "Provides guidance through experience",
+      "bonus": "+15 Population",
+      "icon": "📚"
+    }
+  ],
+  "impact": {
+    "population": 600,
+    "military": 15,
+    "economy": 12,
+    "magic": 35
+  }
+}

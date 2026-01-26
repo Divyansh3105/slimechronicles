@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" type="image/png" href="assets/fav.png">
+    <link rel="icon" type="image/x-icon" href="assets/fav.ico">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Codex</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Rajdhani:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/codex.css">
+    <link rel="stylesheet" href="css/sound-effects.css">
+    <link rel="stylesheet" href="css/mobile-features.css">
+    <script src="js/animated-bg.js" defer></script>
+</head>
+
+<body>
+    <!-- Added starfield effect -->
+    <div class="starfield" id="starfield"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Enhanced Navigation -->
+    <nav class="main-nav" id="main-nav">
+        <a href="index.html" class="nav-brand">
+            <div class="nav-brand-icon">
+                <svg width="64" height="64" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Slime body with gradient -->
+                    <defs>
+                        <radialGradient id="slimeGradient" cx="50%" cy="40%" r="60%">
+                            <stop offset="0%" style="stop-color:#4dd4ff;stop-opacity:1" />
+                            <stop offset="70%" style="stop-color:#2a9fd8;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#1a7fb8;stop-opacity:1" />
+                        </radialGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+                            <feMerge>
+                                <feMergeNode in="coloredBlur" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+
+                    <!-- Main slime body -->
+                    <ellipse cx="16" cy="20" rx="12" ry="8" fill="url(#slimeGradient)" filter="url(#glow)">
+                        <animateTransform attributeName="transform" type="scale" values="1,1;1.1,0.9;1,1" dur="2s"
+                            repeatCount="indefinite" />
+                    </ellipse>
+
+                    <!-- Slime highlight -->
+                    <ellipse cx="13" cy="17" rx="3" ry="2" fill="#ffffff" opacity="0.6">
+                        <animate attributeName="opacity" values="0.6;0.8;0.6" dur="2s" repeatCount="indefinite" />
+                    </ellipse>
+
+                    <!-- Eyes -->
+                    <circle cx="12" cy="18" r="1.5" fill="#0a0e27">
+                        <animate attributeName="r" values="1.5;1.2;1.5" dur="3s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="20" cy="18" r="1.5" fill="#0a0e27">
+                        <animate attributeName="r" values="1.5;1.2;1.5" dur="3s" repeatCount="indefinite" />
+                    </circle>
+
+                    <!-- Eye highlights -->
+                    <circle cx="12.5" cy="17.5" r="0.5" fill="#ffffff" opacity="0.8" />
+                    <circle cx="20.5" cy="17.5" r="0.5" fill="#ffffff" opacity="0.8" />
+
+                    <!-- Floating particles around slime -->
+                    <circle cx="8" cy="12" r="1" fill="#4dd4ff" opacity="0.4">
+                        <animateTransform attributeName="transform" type="translate" values="0,0;2,-2;0,0" dur="3s"
+                            repeatCount="indefinite" />
+                        <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="24" cy="14" r="0.8" fill="#4dd4ff" opacity="0.3">
+                        <animateTransform attributeName="transform" type="translate" values="0,0;-1,-3;0,0" dur="4s"
+                            repeatCount="indefinite" />
+                        <animate attributeName="opacity" values="0.3;0.7;0.3" dur="4s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="16" cy="8" r="0.6" fill="#4dd4ff" opacity="0.5">
+                        <animateTransform attributeName="transform" type="translate" values="0,0;1,-1;0,0" dur="2.5s"
+                            repeatCount="indefinite" />
+                        <animate attributeName="opacity" values="0.5;0.9;0.5" dur="2.5s" repeatCount="indefinite" />
+                    </circle>
+                </svg>
+            </div>
+            <span>Jura Tempest</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="overview.html">
+                <span class="nav-icon">🏛️</span>
+                <span>Overview</span>
+            </a>
+            <a href="codex.html" class="active">
+                <span class="nav-icon">📚</span>
+                <span>Codex</span>
+            </a>
+            <a href="skills.html">
+                <span class="nav-icon">✨</span>
+                <span>Skills</span>
+            </a>
+            <a href="timeline.html">
+                <span class="nav-icon">📜</span>
+                <span>Chronicle</span>
+            </a>
+            <a href="records.html">
+                <span class="nav-icon">📜</span>
+                <span>Historical Records</span>
+            </a>
+            <a href="index.html">
+                <span class="nav-icon">🚪</span>
+                <span>Exit</span>
+            </a>
+        </div>
+
+        <div class="nav-actions">
+            <button class="nav-action-btn" onclick="toggleSound()" title="Toggle Sound">
+                <span class="icon" id="sound-toggle">🔊</span>
+            </button>
+            <button class="nav-action-btn" onclick="toggleFullscreen()" title="Fullscreen">
+                <span class="icon">⛶</span>
+            </button>
+        </div>
+
+        <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="nav-progress" id="nav-progress"></div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobile-nav">
+        <button class="mobile-nav-close" onclick="toggleMobileMenu()">
+            <span>✕</span>
+        </button>
+        <a href="overview.html">
+            <span class="nav-icon">🏛️</span>
+            <span>Overview</span>
+        </a>
+        <a href="codex.html" class="active">
+            <span class="nav-icon">📚</span>
+            <span>Codex</span>
+        </a>
+        <a href="skills.html">
+            <span class="nav-icon">✨</span>
+            <span>Skills</span>
+        </a>
+        <a href="timeline.html">
+            <span class="nav-icon">📜</span>
+            <span>Chronicle</span>
+        </a>
+        <a href="records.html">
+            <span class="nav-icon">📜</span>
+            <span>Historical Records</span>
+        </a>
+        <a href="index.html">
+            <span class="nav-icon">🚪</span>
+            <span>Exit</span>
+        </a>
+    </div>
+
+    <div class="codex-container">
+        <header class="codex-header">
+            <h1 class="page-title">Character Codex</h1>
+            <p class="page-subtitle">Comprehensive guide to the inhabitants of the Jura Tempest Federation</p>
+
+            <!-- Statistics Overview -->
+            <div class="codex-stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-characters">0</div>
+                    <div class="stat-label">Total Characters</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="demon-lords-count">0</div>
+                    <div class="stat-label">Demon Lords</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="disasters-count">0</div>
+                    <div class="stat-label">Disasters</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="races-count">0</div>
+                    <div class="stat-label">Unique Races</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Enhanced Search and Filter Section -->
+        <div class="codex-controls">
+            <div class="search-container">
+                <input type="text" id="character-search" class="search-input"
+                    placeholder="🔍 Search characters by name, race, role, or abilities...">
+                <div class="search-suggestions" id="search-suggestions"></div>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-filter="all">All Characters</button>
+                    <button class="filter-tab" data-filter="demon-lord">Demon Lords</button>
+                    <button class="filter-tab" data-filter="disaster">Disasters</button>
+                    <button class="filter-tab" data-filter="named">Named Monsters</button>
+                </div>
+
+                <div class="advanced-filters">
+                    <select id="race-filter" class="filter-select">
+                        <option value="">All Races</option>
+                    </select>
+                    <select id="power-filter" class="filter-select">
+                        <option value="">All Power Levels</option>
+                    </select>
+                    <button class="clear-filters-btn" onclick="clearAllFilters()">Clear Filters</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Toggle -->
+        <div class="view-controls">
+            <button class="view-toggle active" data-view="grid" onclick="toggleView('grid')">
+                <span class="icon">⊞</span> Grid View
+            </button>
+            <button class="view-toggle" data-view="detailed" onclick="toggleView('detailed')">
+                <span class="icon">📋</span> Detailed View
+            </button>
+        </div>
+
+        <!-- Character Display Area -->
+        <div class="character-display">
+            <div class="character-grid" id="character-grid">
+                <!-- Characters will be loaded here -->
+            </div>
+
+            <!-- Character Details Modal -->
+            <div class="character-modal" id="character-modal">
+                <div class="modal-content">
+                    <button class="modal-close" onclick="closeCharacterModal()">&times;</button>
+                    <div class="modal-body" id="modal-body">
+                        <!-- Character details will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lore Section -->
+        <section class="lore-section">
+            <h2 class="section-title">Federation Lore</h2>
+            <div class="lore-content">
+                <div class="lore-card">
+                    <h3>The Great Jura Forest</h3>
+                    <p>Once a dangerous wilderness filled with monsters, the Great Jura Forest has been transformed into
+                        a thriving nation under Rimuru's leadership. The forest serves as the heart of the Jura Tempest
+                        Federation.</p>
+                </div>
+                <div class="lore-card">
+                    <h3>Monster Integration</h3>
+                    <p>The Federation is unique in its successful integration of various monster races, creating a
+                        harmonious society where different species work together for mutual prosperity.</p>
+                </div>
+                <div class="lore-card">
+                    <h3>Naming System</h3>
+                    <p>The act of naming monsters grants them increased power and intelligence. This system has been
+                        crucial in the development of the Federation's strongest members.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/character-loader.js"></script>
+    <script src="js/game-state-optimized.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/sound-effects.js"></script>
+    <script src="js/mobile-nav.js"></script>
+    <script src="js/codex.js"></script>
+</body>
+
+</html>

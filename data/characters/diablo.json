@@ -1,0 +1,94 @@
+{
+  "id": "diablo",
+  "name": "Diablo",
+  "race": "Daemon (Primordial Black)",
+  "role": "Second Secretary",
+  "power": "Catastrophe",
+  "portrait": "😈",
+  "image": "assets/characters/diablo.png",
+  "colorScheme": {
+    "primary": "#aa55ff",
+    "secondary": "#d488ff",
+    "glow": "rgba(170, 85, 255, 0.8)"
+  },
+  "lore": "A Primordial Daemon and one of the oldest and most powerful beings in existence. Fanatically loyal to Rimuru, he serves as second secretary while managing diplomatic affairs and eliminating threats with overwhelming demonic power.",
+  "backstory": "Known as 'Noir' among the Primordials, Diablo is an ancient demon who has existed since the dawn of time. He was summoned by Rimuru and became instantly fascinated by his master's unique nature. His devotion to Rimuru is absolute, viewing service to him as the greatest honor imaginable.",
+  "personality": "Elegant, sophisticated, and utterly devoted to Rimuru. Diablo maintains perfect manners and speaks formally, but beneath his polite exterior lies immense power and a ruthless nature toward Rimuru's enemies. He takes great pride in his butler duties and competes with Shion for Rimuru's attention.",
+  "philosophy": "Perfect service as the highest form of existence. Believes that true fulfillment comes from serving someone worthy of devotion. Advocates for absolute efficiency and flawless execution. Core principle: 'Excellence in service is the path to transcendence, and my master deserves nothing less than perfection.'",
+  "leadershipStyle": "Meticulous and authoritative - demands perfection from subordinates while providing comprehensive support. Leads through superior competence and unwavering standards. Combines diplomatic finesse with overwhelming power when necessary. Makes decisions based on what best serves Rimuru's interests.",
+  "worldInfluence": "Redefined diplomatic protocols by combining demonic power with perfect etiquette. His administrative systems influenced governmental efficiency across nations. Proved that even ancient beings could find new purpose through loyal service, changing perspectives on redemption and transformation.",
+  "alternateScenario": "Without Rimuru, Diablo would remain an ancient primordial demon, eventually growing bored and potentially becoming a world-ending threat. The concept of demons serving benevolent purposes would never emerge. Diplomatic relations would lack the perfect efficiency that prevents many conflicts.",
+  "relationships": {
+    "allies": ["Rimuru", "Fellow Primordials", "Tempest executives"],
+    "rivals": ["Shion (for Rimuru's attention)", "Guy Crimson (ancient rivalry)"],
+    "mentors": ["None (he is ancient)"],
+    "subordinates": ["Demon subordinates", "Diplomatic staff"]
+  },
+  "achievements": ["Became Rimuru's second secretary", "Mastered ultimate skills", "Eliminated countless threats to Tempest", "Established diplomatic protocols", "Evolved from Arch Demon to Demon Peer"],
+  "weaknesses": ["Obsessive devotion to Rimuru", "Can be overzealous in eliminating threats", "Disdain for those he deems unworthy"],
+  "specialties": ["Demonic Magic", "Diplomacy", "Administrative Excellence", "Threat Elimination"],
+  "evolution": [
+    {
+      "form": "Primordial Demon (Noir)",
+      "description": "Ancient primordial demon of black",
+      "trigger": "Existence since the beginning of time"
+    },
+    {
+      "form": "Arch Demon",
+      "description": "Summoned and named by Rimuru",
+      "trigger": "Summoned and named by Rimuru"
+    },
+    {
+      "form": "Demon Peer",
+      "description": "Evolved through devotion and power",
+      "trigger": "Harvest Festival and ultimate loyalty"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "It is my greatest honor to serve Rimuru-sama.",
+      "context": "Expressing devotion"
+    },
+    {
+      "text": "Those who threaten my master shall know true despair.",
+      "context": "Threatening enemies"
+    },
+    {
+      "text": "Allow me to handle this matter, Rimuru-sama.",
+      "context": "Offering to eliminate a problem"
+    },
+    {
+      "text": "Perfection in service is the only acceptable standard.",
+      "context": "Butler philosophy"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Temptation World",
+      "type": "Magic",
+      "description": "Creates an illusory realm of absolute control",
+      "bonus": "+30 Magic",
+      "icon": "🌀"
+    },
+    {
+      "name": "Death Streak",
+      "type": "Combat",
+      "description": "Instant death magic for multiple targets",
+      "bonus": "+25 Military",
+      "icon": "💀"
+    },
+    {
+      "name": "Perfect Butler",
+      "type": "Support",
+      "description": "Handles all administrative tasks flawlessly",
+      "bonus": "+15 Economy",
+      "icon": "🎩"
+    }
+  ],
+  "impact": {
+    "population": 500,
+    "military": 40,
+    "economy": 15,
+    "magic": 45
+  }
+}

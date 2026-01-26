@@ -1,0 +1,73 @@
+{
+  "id": "gabiru",
+  "name": "Gabiru",
+  "race": "Lizardman",
+  "role": "Lizardman Warrior",
+  "power": "A-Rank",
+  "portrait": "🦎",
+  "image": "assets/characters/Gabiru.png",
+  "colorScheme": {
+    "primary": "#228b22",
+    "secondary": "#32cd32",
+    "glow": "rgba(34, 139, 34, 0.6)"
+  },
+  "lore": "A lizardman warrior known for his enthusiasm and loyalty. Often overestimates his abilities but has a good heart. He serves Rimuru with dedication despite his sometimes comedic failures.",
+  "backstory": "Gabiru was a lizardman who initially overestimated his abilities but proved his loyalty to Rimuru. Despite his failures, he has grown and become a valuable member of the Federation.",
+  "personality": "Enthusiastic, loyal, and sometimes overconfident. Gabiru has a good heart and genuine dedication, even if he sometimes fails spectacularly. He learns from his mistakes and grows stronger.",
+  "philosophy": "Enthusiasm and loyalty overcome failures. Believes that trying and failing is better than not trying at all. Advocates for learning from mistakes. Core principle: 'Even if I fail, I'll try again with more enthusiasm!'",
+  "leadershipStyle": "Enthusiastic and motivating - leads through passion and example. Maintains high morale even in failure. Makes decisions based on enthusiasm and loyalty.",
+  "worldInfluence": "Demonstrated that enthusiasm and loyalty can overcome initial failures. His growth showed that character development is possible. Proved that comedic failures can lead to genuine growth.",
+  "alternateScenario": "Without Rimuru, Gabiru would remain an overconfident lizardman who never grows. The value of learning from failures would be less demonstrated.",
+  "relationships": {
+    "allies": ["Rimuru", "Lizardman tribe", "Federation members"],
+    "rivals": ["None (friendly competition)"],
+    "mentors": ["Rimuru", "Experience"]
+  },
+  "achievements": ["Proved loyalty to Rimuru", "Grew through failures", "Became valuable warrior", "Learned from mistakes"],
+  "weaknesses": ["Overconfident", "Sometimes fails spectacularly"],
+  "specialties": ["Enthusiasm", "Loyalty", "Growth"],
+  "evolution": [
+    {
+      "form": "Lizardman",
+      "description": "Born as a lizardman",
+      "trigger": "Birth"
+    },
+    {
+      "form": "Named Lizardman",
+      "description": "Evolved after being named",
+      "trigger": "Named by Rimuru"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "I'll show you the power of Gabiru!",
+      "context": "Overconfident declaration"
+    },
+    {
+      "text": "Even if I fail, I'll try again!",
+      "context": "Learning from failure"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Enthusiastic Charge",
+      "type": "Combat",
+      "description": "Charges with great enthusiasm",
+      "bonus": "+10 Military",
+      "icon": "🦎"
+    },
+    {
+      "name": "Loyalty Boost",
+      "type": "Support",
+      "description": "Boosts morale through loyalty",
+      "bonus": "+5 Population",
+      "icon": "❤️"
+    }
+  ],
+  "impact": {
+    "population": 200,
+    "military": 10,
+    "economy": 5,
+    "magic": 3
+  }
+}

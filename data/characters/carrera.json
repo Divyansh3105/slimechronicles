@@ -1,0 +1,80 @@
+{
+  "id": "carrera",
+  "name": "Carrera",
+  "race": "Daemon (Primordial)",
+  "role": "Primordial Demon",
+  "power": "Catastrophe",
+  "portrait": "💥",
+  "image": "assets/characters/Carrera.png",
+  "colorScheme": {
+    "primary": "#ff4500",
+    "secondary": "#ff6347",
+    "glow": "rgba(255, 69, 0, 0.8)"
+  },
+  "lore": "One of the three Primordial Demons summoned by Rimuru. Known for her destructive tendencies and explosive magic. Despite her chaotic nature, she serves Rimuru with absolute loyalty.",
+  "backstory": "Carrera is one of the three Primordials (alongside Testarossa and Ultima) who were summoned by Rimuru. She is known as 'Jaune' among the Primordials and possesses incredible destructive power.",
+  "personality": "Energetic, explosive, and enthusiastic. Carrera loves destruction and combat, but channels her destructive tendencies into serving Rimuru. She is cheerful and straightforward, though her methods can be extreme.",
+  "philosophy": "Destruction as creation's foundation. Believes that sometimes things must be destroyed to build something better. Advocates for decisive action and overwhelming force. Core principle: 'When in doubt, explode it - then rebuild it better.'",
+  "leadershipStyle": "Direct and explosive - leads through overwhelming power and decisive action. Prefers quick solutions and immediate results. Makes decisions based on maximum impact.",
+  "worldInfluence": "Demonstrated controlled destruction as a tool for construction. Her explosive magic techniques advanced understanding of energy manipulation. Proved that even destructive forces can serve constructive purposes.",
+  "alternateScenario": "Without Rimuru, Carrera would remain an unbound primordial demon, potentially causing massive destruction. The concept of destructive forces serving constructive purposes would never emerge.",
+  "relationships": {
+    "allies": ["Rimuru", "Testarossa", "Ultima", "Other Primordials"],
+    "rivals": ["None (friendly rivalry with other Primordials)"],
+    "mentors": ["None (she is ancient)"]
+  },
+  "achievements": ["Summoned by Rimuru", "Mastered explosive magic", "Serves as Primordial Demon", "Evolved through service"],
+  "weaknesses": ["Can be overly destructive", "Sometimes lacks subtlety"],
+  "specialties": ["Explosive Magic", "Destruction", "Combat"],
+  "evolution": [
+    {
+      "form": "Primordial Demon (Jaune)",
+      "description": "Ancient primordial demon of yellow",
+      "trigger": "Existence since the beginning of time"
+    },
+    {
+      "form": "Named Primordial",
+      "description": "Summoned and named by Rimuru",
+      "trigger": "Summoned by Rimuru"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Let's blow this up!",
+      "context": "Enthusiastic about destruction"
+    },
+    {
+      "text": "Explosions solve everything!",
+      "context": "Philosophy on problem-solving"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Nuclear Magic",
+      "type": "Magic",
+      "description": "Devastating explosive attacks",
+      "bonus": "+30 Military",
+      "icon": "💥"
+    },
+    {
+      "name": "Explosion Mastery",
+      "type": "Combat",
+      "description": "Controls explosions with precision",
+      "bonus": "+25 Magic",
+      "icon": "💣"
+    },
+    {
+      "name": "Destructive Force",
+      "type": "Combat",
+      "description": "Overwhelming destructive power",
+      "bonus": "+20 Military",
+      "icon": "⚡"
+    }
+  ],
+  "impact": {
+    "population": 300,
+    "military": 45,
+    "economy": 5,
+    "magic": 40
+  }
+}

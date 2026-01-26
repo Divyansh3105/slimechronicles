@@ -1,0 +1,80 @@
+{
+  "id": "benimaru",
+  "name": "Benimaru",
+  "race": "Divine Oni (Flame Soul Oni)",
+  "role": "Commander-in-Chief",
+  "power": "Catastrophe",
+  "portrait": "🔥",
+  "image": "assets/characters/benimaru.png",
+  "colorScheme": {
+    "primary": "#ff3366",
+    "secondary": "#ff6b8a",
+    "glow": "rgba(255, 51, 102, 0.6)"
+  },
+  "lore": "A powerful Kijin warrior who evolved from an Ogre after receiving a name from Rimuru. As Commander-in-Chief and Minister of Defense, he leads the Tempest Military with his mastery over flames and black lightning.",
+  "backstory": "Originally the young master of an Ogre village, Benimaru witnessed his home's destruction and swore loyalty to Rimuru after being named and evolved into a Kijin.",
+  "personality": "Proud, loyal, and strategic. A natural leader with a fierce protective instinct for his people and unwavering dedication to Rimuru.",
+  "philosophy": "Honor through strength and loyalty. Believes that true power comes from protecting those you care about, not from dominating others. Advocates for decisive action backed by careful planning. Core belief: 'A warrior's blade should defend the innocent and strike down evil.'",
+  "leadershipStyle": "Direct and inspirational - leads from the front lines and expects excellence from subordinates. Combines tactical brilliance with personal charisma. Makes quick decisions in battle but consults advisors for strategic planning. Mentors younger warriors personally.",
+  "worldInfluence": "Established new military doctrines that balance overwhelming force with restraint. His integration of multiple combat styles influenced martial arts across nations. Proved that former enemies can become the most loyal allies, changing recruitment practices worldwide.",
+  "alternateScenario": "Without Rimuru's intervention, Benimaru would have died defending his village or become a vengeful wanderer seeking revenge against humans. His tactical genius would be lost, and the concept of honorable warfare between species would never develop. Military conflicts would remain purely destructive rather than protective.",
+  "relationships": {
+    "allies": ["Rimuru", "Shuna", "Hakuro", "Shion"],
+    "rivals": ["Souei (friendly rivalry)"],
+    "mentors": ["Hakuro"]
+  },
+  "achievements": ["Evolved to Kijin", "Became Commander-in-Chief", "Mastered Black Lightning", "Led successful military campaigns"],
+  "weaknesses": ["Can be overly aggressive", "Sometimes acts without consulting others"],
+  "specialties": ["Military Strategy", "Fire Magic", "Leadership"],
+  "evolution": [
+    {
+      "form": "Ogre",
+      "description": "Young master of an Ogre village",
+      "trigger": "Birth"
+    },
+    {
+      "form": "Kijin",
+      "description": "Evolved after being named by Rimuru",
+      "trigger": "Named by Rimuru"
+    },
+    {
+      "form": "Fair Oni",
+      "description": "Further evolution through combat experience",
+      "trigger": "Battle experience"
+    },
+    {
+      "form": "Divine Oni",
+      "description": "Achieved divine status through loyalty and power",
+      "trigger": "Harvest Festival"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Hell Flare",
+      "type": "Combat",
+      "description": "Devastating flame-based area attack",
+      "bonus": "+20 Military",
+      "icon": "🔥"
+    },
+    {
+      "name": "Black Lightning",
+      "type": "Magic",
+      "description": "Combines flame and lightning into ultimate attack",
+      "bonus": "+15 Magic",
+      "icon": "⚡"
+    },
+    {
+      "name": "Samurai General",
+      "type": "Leadership",
+      "description": "Commands troops with legendary tactical prowess",
+      "bonus": "+10 Population",
+      "icon": "⚔️"
+    }
+  ],
+  "impact": {
+    "population": 800,
+    "military": 35,
+    "economy": 8,
+    "magic": 15
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "id": "dagruel",
+  "name": "Dagruel",
+  "race": "Giant (Giant King)",
+  "role": "Demon Lord",
+  "power": "Catastrophe+",
+  "portrait": "🗿",
+  "image": "assets/characters/Dagruel.png",
+  "colorScheme": {
+    "primary": "#696969",
+    "secondary": "#808080",
+    "glow": "rgba(105, 105, 105, 0.8)"
+  },
+  "lore": "The Giant King and one of the oldest Demon Lords. Possesses immense physical strength and rules over the giants. Known for his straightforward nature and incredible power.",
+  "backstory": "Dagruel is one of the oldest Demon Lords, having existed for thousands of years. He rules over the giants and is known for his immense physical strength and straightforward personality.",
+  "personality": "Straightforward, powerful, and honorable. Dagruel values strength and honor above all else. He is direct in his approach and respects those who prove themselves through strength.",
+  "philosophy": "Strength through honor and direct action. Believes that true power comes from physical might and honorable conduct. Advocates for straightforward solutions and direct confrontation. Core principle: 'Strength without honor is meaningless; honor without strength is powerless.'",
+  "leadershipStyle": "Direct and powerful - leads through overwhelming strength and respect. Maintains clear hierarchy based on power and honor. Makes decisions based on strength and honor.",
+  "worldInfluence": "Demonstrated that physical strength combined with honor creates true power. His leadership style influenced how giants are perceived. Proved that ancient beings can adapt to modern times.",
+  "alternateScenario": "Without Dagruel's influence, giants would be more chaotic and less organized. The concept of honorable strength would be less developed among powerful beings.",
+  "relationships": {
+    "allies": ["Other Demon Lords", "Giant race"],
+    "rivals": ["Other powerful beings"],
+    "mentors": ["None (he is ancient)"]
+  },
+  "achievements": ["Became Demon Lord", "Ruled giants for millennia", "Maintained ancient traditions", "Demonstrated honorable strength"],
+  "weaknesses": ["Can be overly straightforward", "Sometimes lacks subtlety"],
+  "specialties": ["Physical Strength", "Giant Leadership", "Earth Magic"],
+  "evolution": [
+    {
+      "form": "Giant",
+      "description": "Born as a giant",
+      "trigger": "Birth"
+    },
+    {
+      "form": "Giant King",
+      "description": "Became ruler of giants",
+      "trigger": "Demonstration of power"
+    },
+    {
+      "form": "Demon Lord",
+      "description": "Achieved Demon Lord status",
+      "trigger": "Demon Lord awakening"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Strength is nothing without honor.",
+      "context": "Philosophy on power"
+    },
+    {
+      "text": "Let's settle this with our fists!",
+      "context": "Preferring direct confrontation"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Colossal Strength",
+      "type": "Combat",
+      "description": "Immense physical power",
+      "bonus": "+35 Military",
+      "icon": "💪"
+    },
+    {
+      "name": "Earth Magic",
+      "type": "Magic",
+      "description": "Controls earth and stone",
+      "bonus": "+25 Magic",
+      "icon": "🌍"
+    },
+    {
+      "name": "Giant Transformation",
+      "type": "Combat",
+      "description": "Transforms into massive form",
+      "bonus": "+20 Military",
+      "icon": "🗿"
+    }
+  ],
+  "impact": {
+    "population": 1000,
+    "military": 40,
+    "economy": 10,
+    "magic": 25
+  }
+}

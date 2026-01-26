@@ -1,0 +1,80 @@
+{
+  "id": "leon",
+  "name": "Leon Cromwell",
+  "race": "Demon Lord",
+  "role": "Demon Lord",
+  "power": "Catastrophe+",
+  "portrait": "👑",
+  "image": "assets/characters/Leon.png",
+  "colorScheme": {
+    "primary": "#4169e1",
+    "secondary": "#6495ed",
+    "glow": "rgba(65, 105, 225, 0.8)"
+  },
+  "lore": "A Demon Lord who rules over the Holy Empire of Ruberios. Known for his pride and powerful magic abilities. He is one of the most powerful Demon Lords and maintains strict control over his domain.",
+  "backstory": "Leon is a Demon Lord who rules the Holy Empire of Ruberios. He is known for his pride, powerful magic, and strict rule. He was originally a human who became a Demon Lord through his own power.",
+  "personality": "Proud, powerful, and controlling. Leon maintains strict control over his domain and expects absolute obedience. He is confident in his power and makes decisions based on his own judgment.",
+  "philosophy": "Power through pride and control. Believes that true power comes from absolute control and pride. Advocates for strict order and hierarchy. Core principle: 'Pride is the foundation of power; control is the expression of strength.'",
+  "leadershipStyle": "Authoritative and controlling - leads through absolute power and strict hierarchy. Maintains order through force and expectation. Makes decisions based on personal judgment and control.",
+  "worldInfluence": "Demonstrated that humans can become powerful Demon Lords. His rule showed the effectiveness of strict control. Proved that pride and power can create stability.",
+  "alternateScenario": "Without Leon's influence, the Holy Empire would be less organized. The concept of human Demon Lords would be less developed.",
+  "relationships": {
+    "allies": ["Luminous", "Other Demon Lords (strategic)"],
+    "rivals": ["Other powerful beings"],
+    "mentors": ["None (self-made)"]
+  },
+  "achievements": ["Became Demon Lord", "Ruled Holy Empire", "Mastered powerful magic", "Demonstrated human potential"],
+  "weaknesses": ["Overly proud", "Can be too controlling"],
+  "specialties": ["Magic Mastery", "Prideful King", "Light Magic"],
+  "evolution": [
+    {
+      "form": "Human",
+      "description": "Born as a human",
+      "trigger": "Birth"
+    },
+    {
+      "form": "Demon Lord",
+      "description": "Became Demon Lord through own power",
+      "trigger": "Demon Lord awakening"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Pride is everything.",
+      "context": "Philosophy on pride"
+    },
+    {
+      "text": "Control is the essence of power.",
+      "context": "Belief in control"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Disintegration",
+      "type": "Magic",
+      "description": "Ultimate destruction magic",
+      "bonus": "+35 Magic",
+      "icon": "💥"
+    },
+    {
+      "name": "Prideful King",
+      "type": "Leadership",
+      "description": "Maintains control through pride",
+      "bonus": "+30 Military",
+      "icon": "👑"
+    },
+    {
+      "name": "Spatial Domination",
+      "type": "Magic",
+      "description": "Controls space and dimensions",
+      "bonus": "+25 Magic",
+      "icon": "🌀"
+    }
+  ],
+  "impact": {
+    "population": 1500,
+    "military": 40,
+    "economy": 12,
+    "magic": 45
+  }
+}

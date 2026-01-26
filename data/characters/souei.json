@@ -1,0 +1,94 @@
+{
+  "id": "souei",
+  "name": "Souei",
+  "race": "Divine Oni",
+  "role": "Minister of Intelligence",
+  "power": "Special S",
+  "portrait": "🥷",
+  "image": "assets/characters/souei.png",
+  "colorScheme": {
+    "primary": "#6c7b7f",
+    "secondary": "#95a5a6",
+    "glow": "rgba(149, 165, 166, 0.6)"
+  },
+  "lore": "The head of the Federation's intelligence network and espionage operations. His Shadow Clone technique allows him to gather information from multiple locations simultaneously, making him invaluable for reconnaissance.",
+  "backstory": "A skilled ninja among the Ogres, Souei was responsible for scouting and intelligence gathering for his village. After evolution, his abilities expanded dramatically, allowing him to create shadow clones and establish a vast spy network across multiple nations.",
+  "personality": "Calm, analytical, and mysterious. Souei rarely shows emotion and speaks in measured tones. He is extremely loyal to Rimuru and takes his intelligence duties seriously. Despite his stoic exterior, he cares deeply for his comrades and has a dry sense of humor.",
+  "philosophy": "Information is the ultimate weapon, and knowledge is power. Believes that preventing conflicts through intelligence is superior to winning them through force. Advocates for strategic patience and careful planning. Core principle: 'The shadow that protects the light is as important as the light itself.'",
+  "leadershipStyle": "Subtle and strategic - operates behind the scenes to enable others' success. Leads through careful coordination and information sharing. Prefers to remain invisible while ensuring mission success. Makes decisions based on comprehensive intelligence analysis.",
+  "worldInfluence": "Revolutionized intelligence gathering by establishing the first inter-species spy network. His methods influenced diplomatic and military intelligence across nations. Proved that information warfare could prevent actual warfare, changing international relations.",
+  "alternateScenario": "Without Rimuru, Souei would have remained a village scout, his potential for large-scale intelligence operations never realized. International conflicts would be bloodier and more frequent without advanced intelligence networks. The concept of preventive diplomacy through information would not develop.",
+  "relationships": {
+    "allies": ["Rimuru", "Benimaru", "Shion", "His spy network"],
+    "rivals": ["Enemy spies and assassins"],
+    "mentors": ["Rimuru"],
+    "subordinates": ["Souka", "Various intelligence operatives"]
+  },
+  "achievements": ["Established Tempest's intelligence network", "Mastered Shadow Clone technique", "Prevented numerous threats through espionage", "Evolved from Ogre to Divine Oni", "Created the Shadow Squad"],
+  "weaknesses": ["Can be overly secretive", "Sometimes acts independently", "Difficulty expressing emotions"],
+  "specialties": ["Espionage", "Assassination", "Information Gathering", "Stealth Operations"],
+  "evolution": [
+    {
+      "form": "Ogre",
+      "description": "Scout and ninja of the Ogre village",
+      "trigger": "Birth and ninja training"
+    },
+    {
+      "form": "Kijin",
+      "description": "Evolved after being named by Rimuru",
+      "trigger": "Named by Rimuru"
+    },
+    {
+      "form": "Divine Oni",
+      "description": "Advanced through mastery of shadow arts",
+      "trigger": "Harvest Festival and espionage mastery"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Information is the most valuable weapon.",
+      "context": "Explaining his role"
+    },
+    {
+      "text": "Lord Rimuru, I have gathered the intelligence you requested.",
+      "context": "Reporting to Rimuru"
+    },
+    {
+      "text": "The shadows see all, hear all.",
+      "context": "Intimidating enemies"
+    },
+    {
+      "text": "My clones are already in position.",
+      "context": "Preparing for operation"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Shadow Clone",
+      "type": "Support",
+      "description": "Creates multiple copies for infiltration",
+      "bonus": "+10 Military",
+      "icon": "👥"
+    },
+    {
+      "name": "Espionage Network",
+      "type": "Support",
+      "description": "Gathers intelligence across vast territories",
+      "bonus": "+18 Economy",
+      "icon": "🕵️"
+    },
+    {
+      "name": "Assassination Arts",
+      "type": "Combat",
+      "description": "Silent elimination of targets",
+      "bonus": "+15 Military",
+      "icon": "🗡️"
+    }
+  ],
+  "impact": {
+    "population": 400,
+    "military": 25,
+    "economy": 18,
+    "magic": 10
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "id": "kumara",
+  "name": "Kumara",
+  "race": "Nine-Tailed Fox",
+  "role": "Spirit Beast",
+  "power": "Special S",
+  "portrait": "🦊",
+  "image": "assets/characters/Kumara.png",
+  "colorScheme": {
+    "primary": "#ff8c00",
+    "secondary": "#ffa500",
+    "glow": "rgba(255, 140, 0, 0.6)"
+  },
+  "lore": "A nine-tailed fox with powerful illusion and fire magic. Serves as one of Rimuru's trusted companions. Known for her beauty, intelligence, and powerful magical abilities.",
+  "backstory": "Kumara is a nine-tailed fox spirit beast who serves Rimuru. She evolved through naming and became a powerful magical being with control over illusions and fire.",
+  "personality": "Elegant, intelligent, and loyal. Kumara maintains a graceful demeanor while being fiercely protective of those she cares about. She is wise and strategic in her approach.",
+  "philosophy": "Wisdom through experience and magic. Believes that true power comes from understanding and mastery. Advocates for elegant solutions and strategic thinking. Core principle: 'Magic is an art; mastery is achieved through understanding, not force.'",
+  "leadershipStyle": "Graceful and strategic - leads through wisdom and magical mastery. Maintains elegance while being effective. Makes decisions based on understanding and long-term outcomes.",
+  "worldInfluence": "Demonstrated the power of spirit beasts and their potential. Her illusion magic advanced understanding of mental manipulation. Proved that beauty and power can coexist.",
+  "alternateScenario": "Without Rimuru, Kumara would remain a simple fox or never evolve. The potential of spirit beasts would be less explored. Illusion magic would be less developed.",
+  "relationships": {
+    "allies": ["Rimuru", "Spirit beasts", "Federation members"],
+    "rivals": ["None"],
+    "mentors": ["Rimuru", "Experience"]
+  },
+  "achievements": ["Evolved to nine-tails", "Mastered illusion magic", "Became trusted companion", "Demonstrated spirit beast power"],
+  "weaknesses": ["Can be overly elegant", "Sometimes prefers indirect methods"],
+  "specialties": ["Illusion Magic", "Fire Magic", "Spirit Beast Abilities"],
+  "evolution": [
+    {
+      "form": "Fox",
+      "description": "Born as a fox",
+      "trigger": "Birth"
+    },
+    {
+      "form": "Spirit Beast",
+      "description": "Evolved to spirit beast",
+      "trigger": "Natural evolution"
+    },
+    {
+      "form": "Nine-Tailed Fox",
+      "description": "Evolved to nine-tails",
+      "trigger": "Named by Rimuru and power growth"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Illusions reveal truth more than reality.",
+      "context": "Philosophy on illusions"
+    },
+    {
+      "text": "Elegance is the highest form of power.",
+      "context": "Belief in elegance"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Illusion Magic",
+      "type": "Magic",
+      "description": "Creates powerful illusions",
+      "bonus": "+25 Magic",
+      "icon": "🌀"
+    },
+    {
+      "name": "Fire Magic",
+      "type": "Magic",
+      "description": "Controls fire and flames",
+      "bonus": "+20 Magic",
+      "icon": "🔥"
+    },
+    {
+      "name": "Spirit Beast Form",
+      "type": "Combat",
+      "description": "Transforms into powerful fox form",
+      "bonus": "+15 Military",
+      "icon": "🦊"
+    }
+  ],
+  "impact": {
+    "population": 400,
+    "military": 20,
+    "economy": 8,
+    "magic": 30
+  }
+}

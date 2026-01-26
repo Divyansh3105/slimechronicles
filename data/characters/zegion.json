@@ -1,0 +1,85 @@
+{
+  "id": "zegion",
+  "name": "Zegion",
+  "race": "Insect (Mystic Insect)",
+  "role": "Insect Commander",
+  "power": "Catastrophe",
+  "portrait": "🦋",
+  "image": "assets/characters/Zegion.png",
+  "colorScheme": {
+    "primary": "#4b0082",
+    "secondary": "#6a5acd",
+    "glow": "rgba(75, 0, 130, 0.6)"
+  },
+  "lore": "An insect-type monster who serves as one of Rimuru's most powerful subordinates. Possesses incredible combat abilities and serves as a commander of insect-type monsters. Known for his strength and loyalty.",
+  "backstory": "Zegion is an insect-type monster who evolved through Rimuru's naming and became one of his most powerful subordinates. He serves as a commander and demonstrates incredible combat abilities.",
+  "personality": "Loyal, powerful, and determined. Zegion is completely devoted to Rimuru and takes great pride in serving as a commander. He is strong and reliable, always ready to fight for Rimuru.",
+  "philosophy": "Power through loyalty and determination. Believes that true power comes from dedication and loyalty. Advocates for protecting those you serve. Core principle: 'Loyalty creates strength; determination creates victory.'",
+  "leadershipStyle": "Commanding and loyal - leads through strength and dedication. Maintains discipline while being effective. Makes decisions based on Rimuru's interests and protection.",
+  "worldInfluence": "Demonstrated the potential of insect-type monsters. His evolution showed the power of naming. Proved that loyalty and determination create powerful subordinates.",
+  "alternateScenario": "Without Rimuru, Zegion would remain a simple insect or never evolve. The potential of insect-type monsters would be less explored. The power of naming would be less demonstrated.",
+  "relationships": {
+    "allies": ["Rimuru", "Insect-type monsters", "Federation members"],
+    "rivals": ["None"],
+    "mentors": ["Rimuru"]
+  },
+  "achievements": ["Evolved through naming", "Became powerful commander", "Mastered combat abilities", "Demonstrated insect potential"],
+  "weaknesses": ["Can be overly focused on combat", "Sometimes lacks subtlety"],
+  "specialties": ["Combat", "Insect Command", "Absolute Defense"],
+  "evolution": [
+    {
+      "form": "Insect",
+      "description": "Born as an insect",
+      "trigger": "Birth"
+    },
+    {
+      "form": "Named Insect",
+      "description": "Named by Rimuru",
+      "trigger": "Named by Rimuru"
+    },
+    {
+      "form": "Mystic Insect",
+      "description": "Evolved to mystic insect",
+      "trigger": "Evolution through power and loyalty"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "I'll protect Rimuru-sama with my life!",
+      "context": "Expressing loyalty"
+    },
+    {
+      "text": "Loyalty creates strength.",
+      "context": "Philosophy on loyalty"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Absolute Defense",
+      "type": "Defense",
+      "description": "Impenetrable defensive abilities",
+      "bonus": "+30 Military",
+      "icon": "🛡️"
+    },
+    {
+      "name": "Spatial Domination",
+      "type": "Magic",
+      "description": "Controls space and dimensions",
+      "bonus": "+25 Magic",
+      "icon": "🌀"
+    },
+    {
+      "name": "Insect Magic",
+      "type": "Magic",
+      "description": "Controls insects and swarms",
+      "bonus": "+20 Magic",
+      "icon": "🦋"
+    }
+  ],
+  "impact": {
+    "population": 600,
+    "military": 40,
+    "economy": 8,
+    "magic": 30
+  }
+}

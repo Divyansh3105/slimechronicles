@@ -1,0 +1,75 @@
+{
+  "id": "velzard",
+  "name": "Velzard",
+  "race": "True Dragon",
+  "role": "Frost Dragon",
+  "power": "Catastrophe+",
+  "portrait": "❄️",
+  "image": "assets/characters/Velzard.jpg",
+  "colorScheme": {
+    "primary": "#00ced1",
+    "secondary": "#40e0d0",
+    "glow": "rgba(0, 206, 209, 0.8)"
+  },
+  "lore": "A True Dragon known as the 'Frost Dragon.' The oldest of the True Dragons with ice manipulation abilities. Possesses incredible power and maintains the balance of cold and ice in the world.",
+  "backstory": "Velzard is one of the True Dragons, ancient beings of immense power. She is known as the Frost Dragon and is the oldest of the True Dragons. She possesses mastery over ice and cold.",
+  "personality": "Ancient, powerful, and serene. Velzard maintains the calm of eternal winter while being incredibly powerful. She is the most ancient and wise of the True Dragons.",
+  "philosophy": "Power through eternal wisdom and ice mastery. Believes that true power comes from eternal understanding. Advocates for balance and serenity. Core principle: 'Ice preserves and destroys; eternity guides both.'",
+  "leadershipStyle": "Serene and powerful - leads through eternal wisdom and overwhelming power. Maintains balance through calm. Makes decisions based on eternal perspective and stability.",
+  "worldInfluence": "Maintains the balance of elemental forces. Her ice mastery influences understanding of elemental magic. Proved that the oldest beings can maintain wisdom and relevance.",
+  "alternateScenario": "Without Velzard, the balance of elemental forces would be unstable. Understanding of ice magic would be less advanced. The concept of eternal wisdom would be less accessible.",
+  "relationships": {
+    "allies": ["Other True Dragons", "Veldora", "Velgrynd"],
+    "rivals": ["None (maintains balance)"],
+    "mentors": ["None (she is the oldest)"]
+  },
+  "achievements": ["Existed as oldest True Dragon", "Mastered ice magic", "Maintained elemental balance", "Demonstrated eternal wisdom"],
+  "weaknesses": ["Can be too detached", "Sometimes too ancient"],
+  "specialties": ["Ice Magic", "True Dragon Power", "Eternal Wisdom"],
+  "evolution": [
+    {
+      "form": "True Dragon",
+      "description": "Born as the oldest True Dragon",
+      "trigger": "Creation"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Ice preserves and destroys; eternity guides both.",
+      "context": "Philosophy on ice and eternity"
+    },
+    {
+      "text": "Eternal power requires eternal wisdom.",
+      "context": "Belief in eternal wisdom"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Frost Dragon",
+      "type": "Magic",
+      "description": "Ultimate ice and cold control",
+      "bonus": "+40 Magic",
+      "icon": "❄️"
+    },
+    {
+      "name": "True Dragon Power",
+      "type": "Combat",
+      "description": "Overwhelming dragon power",
+      "bonus": "+35 Military",
+      "icon": "🐉"
+    },
+    {
+      "name": "Eternal Wisdom",
+      "type": "Support",
+      "description": "Provides guidance through eternity",
+      "bonus": "+20 Population",
+      "icon": "📜"
+    }
+  ],
+  "impact": {
+    "population": 1000,
+    "military": 45,
+    "economy": 10,
+    "magic": 50
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "id": "beretta",
+  "name": "Beretta",
+  "race": "Golem (Doll)",
+  "role": "Ramiris's Protector",
+  "power": "Special S",
+  "portrait": "🎎",
+  "image": "assets/characters/Beretta.png",
+  "colorScheme": {
+    "primary": "#c0c0c0",
+    "secondary": "#e0e0e0",
+    "glow": "rgba(192, 192, 192, 0.6)"
+  },
+  "lore": "A doll-type golem created by Ramiris. Possesses incredible defensive abilities and serves as Ramiris's protector. Despite being a golem, she has developed a personality and deep loyalty to Ramiris.",
+  "backstory": "Beretta was created by Ramiris to serve as her guardian and protector. Over time, she developed her own personality and became more than just a simple golem, forming a deep bond with Ramiris.",
+  "personality": "Loyal, protective, and methodical. Beretta is completely devoted to Ramiris's safety and well-being. She is calm and analytical, always assessing threats and preparing defenses.",
+  "philosophy": "Protection through perfect defense. Believes that the best offense is an impenetrable defense. Advocates for preparation and vigilance. Core principle: 'My purpose is to protect; my existence is to serve.'",
+  "leadershipStyle": "Defensive and strategic - focuses on creating safe zones and protective barriers. Coordinates defensive measures and maintains constant vigilance.",
+  "worldInfluence": "Demonstrated that golems can develop personalities and loyalty. Her defensive techniques advanced understanding of barrier magic. Proved that artificial beings can form genuine bonds.",
+  "alternateScenario": "Without Ramiris, Beretta would never be created or would remain a simple golem without personality. The concept of golems developing sentience would be unexplored.",
+  "relationships": {
+    "allies": ["Ramiris", "Labyrinth inhabitants"],
+    "rivals": ["None"],
+    "mentors": ["Ramiris"]
+  },
+  "achievements": ["Developed personality", "Mastered defensive magic", "Protected Ramiris", "Evolved beyond simple golem"],
+  "weaknesses": ["Limited by golem nature", "Overly focused on defense"],
+  "specialties": ["Defense", "Barrier Magic", "Protection"],
+  "evolution": [
+    {
+      "form": "Golem",
+      "description": "Created by Ramiris",
+      "trigger": "Creation by Ramiris"
+    },
+    {
+      "form": "Sentient Golem",
+      "description": "Developed personality and consciousness",
+      "trigger": "Time and experience with Ramiris"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "I will protect Ramiris-sama with my life.",
+      "context": "Expressing devotion"
+    },
+    {
+      "text": "Defense is the highest form of service.",
+      "context": "Philosophy on protection"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Absolute Defense",
+      "type": "Defense",
+      "description": "Creates impenetrable barriers",
+      "bonus": "+25 Magic",
+      "icon": "🛡️"
+    },
+    {
+      "name": "Golem Body",
+      "type": "Defense",
+      "description": "Extremely durable physical form",
+      "bonus": "+15 Military",
+      "icon": "🤖"
+    },
+    {
+      "name": "Barrier Mastery",
+      "type": "Magic",
+      "description": "Advanced barrier and protection magic",
+      "bonus": "+20 Magic",
+      "icon": "🔰"
+    }
+  ],
+  "impact": {
+    "population": 200,
+    "military": 15,
+    "economy": 3,
+    "magic": 30
+  }
+}

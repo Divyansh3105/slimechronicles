@@ -1,0 +1,93 @@
+{
+  "id": "shuna",
+  "name": "Shuna",
+  "race": "Wicked Oni",
+  "role": "Minister of Production",
+  "power": "Special S",
+  "portrait": "🌸",
+  "image": "assets/characters/shuna.png",
+  "colorScheme": {
+    "primary": "#ffb3d9",
+    "secondary": "#ffd6ec",
+    "glow": "rgba(255, 179, 217, 0.6)"
+  },
+  "lore": "Benimaru's younger sister and a graceful Kijin princess. She oversees all textile production and crafts in the Federation. Her Analytical Appraisal skill allows her to understand the structure of any item she examines.",
+  "backstory": "Born as an Ogre princess, Shuna was the spiritual leader and healer of her village. After being named by Rimuru and evolving into a Kijin, she found her calling in craftsmanship and production management. Her gentle nature and keen analytical mind made her perfect for overseeing Tempest's economic development.",
+  "personality": "Gentle, intelligent, and nurturing. She possesses a calm wisdom that complements her brother's fiery nature. Shuna is diplomatic and caring, often serving as a mediator in conflicts. She has a subtle competitive streak, especially regarding her cooking compared to Shion's disasters.",
+  "philosophy": "Beauty and function should be harmoniously balanced in all creations. Believes that craftsmanship is a form of love made manifest, and that economic prosperity should benefit all citizens equally. Core principle: 'True wealth lies not in gold, but in the happiness and wellbeing of the people.'",
+  "leadershipStyle": "Collaborative and nurturing - builds consensus through patient discussion and mutual understanding. Leads through inspiration and example rather than authority. Focuses on long-term sustainable growth over quick gains. Personally mentors craftspeople and takes pride in their individual success.",
+  "worldInfluence": "Revolutionized textile and crafting industries by combining magical analysis with traditional techniques. Her economic models influenced trade relationships across nations. Established new standards for worker welfare and artistic expression in manufacturing.",
+  "alternateScenario": "Without Rimuru, Shuna would have remained a village healer, her analytical genius never applied to large-scale production. The advancement of magical crafting techniques would be delayed by centuries. Economic cooperation between species would remain limited to basic resource trading.",
+  "relationships": {
+    "allies": ["Rimuru", "Benimaru", "Shion", "Rigurd"],
+    "rivals": ["None (too diplomatic)", "Shion (friendly cooking rivalry)"],
+    "mentors": ["Rimuru", "Kaijin (crafting techniques)"]
+  },
+  "achievements": ["Became Minister of Production", "Mastered Analytical Appraisal", "Revolutionized Tempest's textile industry", "Created magical fabrics", "Established trade relationships", "Evolved from Ogre to Wicked Oni"],
+  "weaknesses": ["Sometimes too trusting", "Can be overly perfectionist", "Tends to overwork herself"],
+  "specialties": ["Craftsmanship", "Economic Management", "Diplomacy", "Healing Magic"],
+  "evolution": [
+    {
+      "form": "Ogre",
+      "description": "Princess and spiritual leader of the Ogre village",
+      "trigger": "Birth"
+    },
+    {
+      "form": "Kijin",
+      "description": "Evolved after being named by Rimuru",
+      "trigger": "Named by Rimuru"
+    },
+    {
+      "form": "Wicked Oni",
+      "description": "Advanced evolution through skill mastery",
+      "trigger": "Harvest Festival and crafting mastery"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Lord Rimuru, please allow me to serve you with my abilities.",
+      "context": "Offering her services"
+    },
+    {
+      "text": "The beauty of creation lies in bringing joy to others.",
+      "context": "Philosophy on craftsmanship"
+    },
+    {
+      "text": "Brother, sometimes strength isn't the only solution.",
+      "context": "Advising Benimaru"
+    },
+    {
+      "text": "This fabric will be perfect for Lord Rimuru!",
+      "context": "Working on a special project"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Analytical Appraisal",
+      "type": "Support",
+      "description": "Perfectly analyzes any item or material",
+      "bonus": "+15 Economy",
+      "icon": "🔍"
+    },
+    {
+      "name": "Master Craftsman",
+      "type": "Crafting",
+      "description": "Creates items of exceptional quality",
+      "bonus": "+20 Economy",
+      "icon": "🎨"
+    },
+    {
+      "name": "Spirit Magic",
+      "type": "Magic",
+      "description": "Commands elemental spirits",
+      "bonus": "+12 Magic",
+      "icon": "✨"
+    }
+  ],
+  "impact": {
+    "population": 800,
+    "military": 5,
+    "economy": 35,
+    "magic": 12
+  }
+}

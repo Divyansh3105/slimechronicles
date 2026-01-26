@@ -1,0 +1,89 @@
+{
+  "id": "geld",
+  "name": "Geld",
+  "race": "High Orc",
+  "role": "Minister of Infrastructure",
+  "power": "Special S",
+  "portrait": "🏗️",
+  "image": "assets/characters/Geld.png",
+  "colorScheme": {
+    "primary": "#654321",
+    "secondary": "#8b7355",
+    "glow": "rgba(101, 67, 33, 0.6)"
+  },
+  "lore": "The successor to the defeated Orc Disaster. Now serving as Minister of Infrastructure, Geld leads the construction and development of Rimuru City and all Federation infrastructure projects with unmatched efficiency.",
+  "backstory": "Originally the son of the Orc Lord who became the Orc Disaster, Geld inherited his father's name and burden. After Rimuru defeated the Orc Disaster and freed the Orcs from their curse of endless hunger, Geld pledged his loyalty and became instrumental in building Tempest's infrastructure.",
+  "personality": "Hardworking, humble, and deeply grateful. Geld carries the weight of his father's sins but channels that burden into positive action. He is methodical, reliable, and takes great pride in his construction work. Despite his intimidating appearance, he is gentle and caring.",
+  "philosophy": "Redemption through honest work and service to others. Believes that past sins can be overcome through present good deeds. Advocates for practical solutions and sustainable development. Core principle: 'Every stone laid in service builds not just structures, but also character.'",
+  "leadershipStyle": "Hands-on and collaborative - works alongside his teams and leads by example. Focuses on practical problem-solving and efficient resource management. Maintains high standards while being patient with learning. Makes decisions based on long-term sustainability.",
+  "worldInfluence": "Revolutionized construction techniques by combining Orc strength with advanced engineering. His infrastructure projects became models for sustainable development. Proved that former enemies could become the most dedicated allies, changing post-conflict reconstruction approaches worldwide.",
+  "alternateScenario": "Without Rimuru's intervention, Geld would have become the Orc Disaster himself, consuming everything in an endless hunger. The Orc race would be extinct or eternally cursed. Advanced construction techniques combining magic and engineering would never develop, leaving infrastructure primitive for centuries.",
+  "relationships": {
+    "allies": ["Rimuru", "All Tempest citizens", "Construction crews"],
+    "rivals": ["None (too focused on work)"],
+    "mentors": ["Rimuru", "Kaijin (engineering)"],
+    "subordinates": ["Orc construction teams", "Infrastructure workers"]
+  },
+  "achievements": ["Built Rimuru City", "Established efficient construction systems", "Redeemed the Orc race's reputation", "Mastered advanced engineering", "Created innovative building techniques"],
+  "weaknesses": ["Carries guilt from father's actions", "Can be overly self-critical", "Sometimes works to exhaustion"],
+  "specialties": ["Construction", "Engineering", "Project Management", "Urban Planning"],
+  "evolution": [
+    {
+      "form": "Orc",
+      "description": "Son of the Orc Lord, inherited leadership",
+      "trigger": "Birth and succession"
+    },
+    {
+      "form": "High Orc",
+      "description": "Evolved through Rimuru's naming and leadership",
+      "trigger": "Named by Rimuru and character growth"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "I will build a city worthy of Lord Rimuru's vision.",
+      "context": "Dedication to construction"
+    },
+    {
+      "text": "My father's sins will not define our future.",
+      "context": "Overcoming the past"
+    },
+    {
+      "text": "Every brick laid is a step toward redemption.",
+      "context": "Philosophy on work"
+    },
+    {
+      "text": "The foundation must be strong for the structure to endure.",
+      "context": "Construction wisdom"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Construction Mastery",
+      "type": "Crafting",
+      "description": "Builds structures with incredible efficiency",
+      "bonus": "+25 Economy",
+      "icon": "🏗️"
+    },
+    {
+      "name": "Engineering Genius",
+      "type": "Crafting",
+      "description": "Designs advanced infrastructure systems",
+      "bonus": "+20 Population",
+      "icon": "⚙️"
+    },
+    {
+      "name": "Orc Leadership",
+      "type": "Leadership",
+      "description": "Commands construction teams effectively",
+      "bonus": "+8 Military",
+      "icon": "👷"
+    }
+  ],
+  "impact": {
+    "population": 2000,
+    "military": 8,
+    "economy": 45,
+    "magic": 2
+  }
+}

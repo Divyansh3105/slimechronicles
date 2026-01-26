@@ -1,0 +1,94 @@
+{
+  "id": "milim",
+  "name": "Milim Nava",
+  "race": "Dragonoid (True Dragon)",
+  "role": "Demon Lord Ally",
+  "power": "Catastrophe+",
+  "portrait": "⚡",
+  "image": "assets/characters/milim.png",
+  "colorScheme": {
+    "primary": "#ff1493",
+    "secondary": "#ff69b4",
+    "glow": "rgba(255, 20, 147, 0.8)"
+  },
+  "lore": "One of the oldest and most powerful Demon Lords, known as the 'Destroyer'. Despite her childish personality, she is one of the strongest beings in existence. She considers Rimuru her 'Bestie' and ally of Tempest.",
+  "backstory": "The daughter of the True Dragon Veldanava and a human woman, Milim inherited incredible power. After her pet dragon Gaia was killed, she went on a rampage that earned her the title 'Destroyer'. She has lived for over 2000 years but maintains a childlike personality and appearance.",
+  "personality": "Energetic, childish, and incredibly powerful. Milim acts like an excited child despite her ancient age and immense strength. She loves making friends, playing games, and eating delicious food. Her mood can shift quickly, and when angered, she becomes a terrifying force of destruction.",
+  "philosophy": "Friendship and fun are the most important things in life. Believes that power should be used to protect friends and have exciting adventures. Advocates for living in the moment and following your heart. Core principle: 'Life is too short to be serious all the time - make friends, have fun, and protect what matters!'",
+  "leadershipStyle": "Charismatic and impulsive - leads through personal magnetism and overwhelming power. Makes quick decisions based on emotion and instinct. Inspires fierce loyalty through genuine care and protection. Prefers direct action over complex planning.",
+  "worldInfluence": "Redefined what it means to be a Demon Lord by showing that power doesn't require cruelty or domination. Her friendships with other races influenced diplomatic relations across the world. Proved that ancient beings could maintain wonder and joy despite their age and experiences.",
+  "alternateScenario": "Without Rimuru's friendship, Milim would remain isolated and potentially destructive, her loneliness making her unpredictable and dangerous. The concept of Demon Lords as potential allies rather than inevitable enemies would never develop. Her immense power would be a constant threat rather than a protective force.",
+  "relationships": {
+    "allies": ["Rimuru (Bestie)", "Carrion", "Frey", "Veldora"],
+    "rivals": ["Guy Crimson", "Other Demon Lords"],
+    "mentors": ["Veldanava (father, deceased)"],
+    "friends": ["Rimuru", "Shuna", "Shion"]
+  },
+  "achievements": ["Became one of the oldest Demon Lords", "Survived 2000+ years", "Mastered Drago Nova", "Formed alliance with Tempest", "Maintained her childlike wonder", "Inherited True Dragon bloodline"],
+  "weaknesses": ["Childish behavior", "Can be manipulated with food/friendship", "Prone to destructive tantrums", "Easily bored"],
+  "specialties": ["Destruction Magic", "Dragon Heritage", "Combat Prowess", "Friendship"],
+  "evolution": [
+    {
+      "form": "Half-Dragon Child",
+      "description": "Born from True Dragon and human",
+      "trigger": "Birth from Veldanava and human mother"
+    },
+    {
+      "form": "Awakened Demon Lord",
+      "description": "Became Demon Lord after Gaia's death",
+      "trigger": "Rage and grief over pet dragon's death"
+    },
+    {
+      "form": "True Demon Lord",
+      "description": "Achieved true demon lord status through power",
+      "trigger": "Accumulation of power and experience"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Rimuru is my bestie! Anyone who hurts him will face my wrath!",
+      "context": "Declaring friendship with Rimuru"
+    },
+    {
+      "text": "I'm bored! Let's do something fun!",
+      "context": "Typical childish behavior"
+    },
+    {
+      "text": "Drago Nova! Time for some destruction!",
+      "context": "Using her ultimate attack"
+    },
+    {
+      "text": "Food! Glorious food! I love this place!",
+      "context": "Enjoying Tempest's cuisine"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Drago Nova",
+      "type": "Combat",
+      "description": "Ultimate dragon-type destruction magic",
+      "bonus": "+45 Military",
+      "icon": "🐲"
+    },
+    {
+      "name": "Milim Eye",
+      "type": "Magic",
+      "description": "Sees through all illusions and barriers",
+      "bonus": "+30 Magic",
+      "icon": "👁️"
+    },
+    {
+      "name": "Dragon's Wrath",
+      "type": "Combat",
+      "description": "Channels pure draconic fury",
+      "bonus": "+20 Military",
+      "icon": "💥"
+    }
+  ],
+  "impact": {
+    "population": 1000,
+    "military": 65,
+    "economy": 5,
+    "magic": 40
+  }
+}

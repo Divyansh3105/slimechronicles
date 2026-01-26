@@ -1,0 +1,80 @@
+{
+  "id": "ultima",
+  "name": "Ultima",
+  "race": "Daemon (Primordial)",
+  "role": "Primordial Demon",
+  "power": "Catastrophe",
+  "portrait": "🕷️",
+  "image": "assets/characters/Ultima.png",
+  "colorScheme": {
+    "primary": "#8b008b",
+    "secondary": "#9370db",
+    "glow": "rgba(139, 0, 139, 0.8)"
+  },
+  "lore": "The youngest of the three Primordial Demons summoned by Rimuru. Known for her playful nature and powerful combat abilities. Despite her youth, she is incredibly powerful and serves Rimuru with enthusiasm.",
+  "backstory": "Ultima is one of the three Primordials (alongside Testarossa and Carrera) who were summoned by Rimuru. She is known as 'Violet' among the Primordials and is the youngest but no less powerful.",
+  "personality": "Playful, energetic, and enthusiastic. Ultima maintains a cheerful demeanor while being incredibly powerful. She is the most playful of the three Primordials and enjoys combat and adventure.",
+  "philosophy": "Power through joy and enthusiasm. Believes that true power comes from enjoying what you do. Advocates for playful solutions and enthusiastic action. Core principle: 'Power is fun; combat is a game; service is a joy.'",
+  "leadershipStyle": "Enthusiastic and energetic - leads through joy and enthusiasm. Maintains cheerfulness while being effective. Makes decisions based on what's most fun and effective.",
+  "worldInfluence": "Demonstrated that power can be joyful. Her playful approach influenced how powerful beings view service. Proved that youth and power can coexist.",
+  "alternateScenario": "Without Rimuru, Ultima would remain an unbound primordial demon. The concept of joyful demonic service would never emerge.",
+  "relationships": {
+    "allies": ["Rimuru", "Testarossa", "Carrera", "Other Primordials"],
+    "rivals": ["None (friendly rivalry with other Primordials)"],
+    "mentors": ["None (she is ancient)"]
+  },
+  "achievements": ["Summoned by Rimuru", "Mastered combat abilities", "Serves as Primordial Demon", "Evolved through service"],
+  "weaknesses": ["Can be overly playful", "Sometimes lacks seriousness"],
+  "specialties": ["Combat", "Poison Magic", "Enthusiasm"],
+  "evolution": [
+    {
+      "form": "Primordial Demon (Violet)",
+      "description": "Ancient primordial demon of violet",
+      "trigger": "Existence since the beginning of time"
+    },
+    {
+      "form": "Named Primordial",
+      "description": "Summoned and named by Rimuru",
+      "trigger": "Summoned by Rimuru"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "This is so much fun!",
+      "context": "Enjoying combat"
+    },
+    {
+      "text": "Power is meant to be enjoyed!",
+      "context": "Philosophy on power"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Poison Magic",
+      "type": "Magic",
+      "description": "Mastery over poison and toxins",
+      "bonus": "+25 Magic",
+      "icon": "☠️"
+    },
+    {
+      "name": "Insect Magic",
+      "type": "Magic",
+      "description": "Controls insects and swarms",
+      "bonus": "+20 Magic",
+      "icon": "🕷️"
+    },
+    {
+      "name": "Playful Combat",
+      "type": "Combat",
+      "description": "Fights with joy and enthusiasm",
+      "bonus": "+20 Military",
+      "icon": "⚔️"
+    }
+  ],
+  "impact": {
+    "population": 300,
+    "military": 30,
+    "economy": 5,
+    "magic": 35
+  }
+}

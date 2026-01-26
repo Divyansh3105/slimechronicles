@@ -1,0 +1,80 @@
+{
+  "id": "testarossa",
+  "name": "Testarossa",
+  "race": "Daemon (Primordial)",
+  "role": "Primordial Demon",
+  "power": "Catastrophe",
+  "portrait": "🌹",
+  "image": "assets/characters/Testarossa.png",
+  "colorScheme": {
+    "primary": "#dc143c",
+    "secondary": "#ff1493",
+    "glow": "rgba(220, 20, 60, 0.8)"
+  },
+  "lore": "The eldest of the three Primordial Demons summoned by Rimuru. Possesses incredible intelligence and strategic thinking abilities. Known for her elegance, power, and strategic mind.",
+  "backstory": "Testarossa is one of the three Primordials (alongside Carrera and Ultima) who were summoned by Rimuru. She is known as 'Blanc' among the Primordials and is the eldest and most strategic of the three.",
+  "personality": "Elegant, intelligent, and strategic. Testarossa maintains perfect composure while being incredibly powerful. She is the most strategic of the three Primordials and makes decisions based on careful analysis.",
+  "philosophy": "Power through intelligence and strategy. Believes that true power comes from understanding and strategic thinking. Advocates for elegant solutions and careful planning. Core principle: 'Intelligence is the highest form of power; strategy is the path to victory.'",
+  "leadershipStyle": "Strategic and elegant - leads through intelligence and careful planning. Maintains composure while being effective. Makes decisions based on strategic analysis and long-term outcomes.",
+  "worldInfluence": "Demonstrated that intelligence and strategy create true power. Her strategic thinking influenced how powerful beings approach conflicts. Proved that elegance and power can coexist.",
+  "alternateScenario": "Without Rimuru, Testarossa would remain an unbound primordial demon. The concept of strategic demonic service would never emerge.",
+  "relationships": {
+    "allies": ["Rimuru", "Carrera", "Ultima", "Other Primordials"],
+    "rivals": ["None (friendly rivalry with other Primordials)"],
+    "mentors": ["None (she is ancient)"]
+  },
+  "achievements": ["Summoned by Rimuru", "Mastered strategic thinking", "Serves as Primordial Demon", "Evolved through service"],
+  "weaknesses": ["Can be overly strategic", "Sometimes prefers indirect methods"],
+  "specialties": ["Strategic Thinking", "Death Magic", "Intelligence"],
+  "evolution": [
+    {
+      "form": "Primordial Demon (Blanc)",
+      "description": "Ancient primordial demon of white",
+      "trigger": "Existence since the beginning of time"
+    },
+    {
+      "form": "Named Primordial",
+      "description": "Summoned and named by Rimuru",
+      "trigger": "Summoned by Rimuru"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Strategy wins battles; intelligence wins wars.",
+      "context": "Philosophy on strategy"
+    },
+    {
+      "text": "Elegance is the highest form of power.",
+      "context": "Belief in elegance"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Death Magic",
+      "type": "Magic",
+      "description": "Mastery over death and curses",
+      "bonus": "+30 Magic",
+      "icon": "💀"
+    },
+    {
+      "name": "Strategic Mind",
+      "type": "Support",
+      "description": "Calculates all possibilities",
+      "bonus": "+25 Population",
+      "icon": "🧠"
+    },
+    {
+      "name": "Analytical Thinking",
+      "type": "Support",
+      "description": "Analyzes situations perfectly",
+      "bonus": "+20 Economy",
+      "icon": "📊"
+    }
+  ],
+  "impact": {
+    "population": 400,
+    "military": 35,
+    "economy": 20,
+    "magic": 40
+  }
+}

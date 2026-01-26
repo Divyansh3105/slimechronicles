@@ -1,0 +1,93 @@
+{
+  "id": "shion",
+  "name": "Shion",
+  "race": "Wicked Oni",
+  "role": "First Secretary",
+  "power": "Chaos",
+  "portrait": "⚔️",
+  "image": "assets/characters/shion.png",
+  "colorScheme": {
+    "primary": "#aa55ff",
+    "secondary": "#c788ff",
+    "glow": "rgba(170, 85, 255, 0.6)"
+  },
+  "lore": "Rimuru's first secretary and bodyguard. Despite her questionable cooking skills, her combat prowess is legendary. She possesses Hercules Strength and gained the unique skill 'Cook' which can alter the nature of anything she prepares.",
+  "backstory": "Once an Ogre warrior from a proud village, Shion was among the first to be named by Rimuru and evolved into a Kijin. Her unwavering loyalty stems from Rimuru saving her people and giving them new purpose. She initially misunderstood Rimuru as their village's destroyer but quickly became his most devoted follower.",
+  "personality": "Devoted, protective, and sometimes overzealous. Her dedication to Rimuru borders on obsession, but her heart is pure and her intentions noble. She's competitive, especially with others vying for Rimuru's attention, yet maintains a cheerful and straightforward demeanor. Her terrible cooking has become legendary among Tempest citizens.",
+  "philosophy": "Absolute loyalty and devotion as the highest virtues. Believes that protecting one's lord is more important than one's own life. Advocates for direct action and honest communication. Core principle: 'True strength comes from the heart, and the heart belongs to those we serve.'",
+  "leadershipStyle": "Protective and hands-on - personally involves herself in every aspect of Rimuru's safety and comfort. Leads by example through unwavering dedication. Can be overly controlling but genuinely cares for subordinates' wellbeing. Makes decisions based on loyalty rather than pure logic.",
+  "worldInfluence": "Redefined the role of personal bodyguards from mere protection to comprehensive life management. Her administrative innovations influenced secretarial practices across nations. Demonstrated that emotional intelligence can be as valuable as combat prowess in leadership roles.",
+  "alternateScenario": "Without Rimuru, Shion would have died defending her village or lived as a bitter survivor seeking revenge. Her potential for administrative excellence would never be discovered. The concept of loyal service transcending species barriers would not emerge, maintaining traditional master-servant hierarchies.",
+  "relationships": {
+    "allies": ["Rimuru", "Benimaru", "Shuna", "Diablo"],
+    "rivals": ["Diablo (for Rimuru's attention)", "Anyone who threatens Rimuru"],
+    "mentors": ["Rimuru", "Hakuro (combat training)"]
+  },
+  "achievements": ["Became First Secretary", "Mastered Hercules Strength", "Developed unique Cook skill", "Protected Rimuru countless times", "Led successful military operations", "Evolved from Ogre to Wicked Oni"],
+  "weaknesses": ["Terrible cooking despite Cook skill", "Can be overly possessive of Rimuru", "Sometimes lacks subtlety in diplomatic situations", "Prone to jealousy"],
+  "specialties": ["Close Combat", "Bodyguard Duties", "Unwavering Loyalty", "Administrative Work"],
+  "evolution": [
+    {
+      "form": "Ogre",
+      "description": "A powerful warrior from the Ogre village",
+      "trigger": "Birth"
+    },
+    {
+      "form": "Kijin",
+      "description": "Evolved after being named by Rimuru",
+      "trigger": "Named by Rimuru"
+    },
+    {
+      "form": "Wicked Oni",
+      "description": "Further evolution through combat and loyalty",
+      "trigger": "Harvest Festival and devotion"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "My name is Shion. I am Lord Rimuru's number one secretary!",
+      "context": "Introducing herself to enemies"
+    },
+    {
+      "text": "I would gladly give my life for Lord Rimuru!",
+      "context": "Expressing her loyalty"
+    },
+    {
+      "text": "Anyone who threatens Lord Rimuru will face my blade!",
+      "context": "Protecting Rimuru"
+    },
+    {
+      "text": "My cooking will definitely work this time!",
+      "context": "Eternal optimism about her cooking"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Hercules Strength",
+      "type": "Combat",
+      "description": "Supernatural physical strength beyond normal limits",
+      "bonus": "+18 Military",
+      "icon": "💪"
+    },
+    {
+      "name": "Ultra-Speed Regeneration",
+      "type": "Support",
+      "description": "Rapidly recovers from any injury",
+      "bonus": "+12 Population",
+      "icon": "💚"
+    },
+    {
+      "name": "Master Chef",
+      "type": "Crafting",
+      "description": "Reality-altering cooking abilities",
+      "bonus": "+5 Economy",
+      "icon": "🍳"
+    }
+  ],
+  "impact": {
+    "population": 600,
+    "military": 30,
+    "economy": 5,
+    "magic": 10
+  }
+}

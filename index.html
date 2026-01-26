@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" type="image/png" href="assets/fav.png">
+    <link rel="icon" type="image/x-icon" href="assets/fav.ico">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jura Tempest Federation</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Rajdhani:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/sound-effects.css">
+    <link rel="stylesheet" href="css/mobile-features.css">
+    <script src="js/animated-bg.js" defer></script>
+</head>
+
+<body>
+    <!-- Enhanced background effects -->
+    <div class="starfield" id="starfield"></div>
+    <div class="particles" id="particles"></div>
+    <div class="magic-circles">
+        <div class="magic-circle large" style="top: 10%; left: 10%;"></div>
+        <div class="magic-circle medium" style="top: 70%; right: 15%;"></div>
+        <div class="magic-circle small" style="bottom: 20%; left: 20%;"></div>
+    </div>
+
+    <!-- Loading screen -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loading-orb">
+            <div class="loading-inner"></div>
+        </div>
+        <div class="loading-text">Initializing Federation...</div>
+        <div class="loading-progress">
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+
+    <div class="intro-container" id="intro-container">
+        <div class="logo-container">
+            <!-- Enhanced slime orb with multiple layers -->
+            <div class="slime-orb" id="slime-orb">
+                <div class="slime-core"></div>
+                <div class="slime-inner"></div>
+                <div class="slime-shine"></div>
+                <div class="slime-particles"></div>
+                <div class="slime-aura"></div>
+            </div>
+            <h1 class="title">Jura Tempest Federation</h1>
+            <p class="subtitle">A Kingdom Born of Bonds and Magic</p>
+
+            <!-- Status indicator -->
+            <div class="federation-status">
+                <div class="status-dot"></div>
+                <span class="status-text">Federation Online</span>
+            </div>
+        </div>
+
+        <!-- Enhanced lore section -->
+        <div class="lore-section">
+            <div class="lore-text">
+                <div class="lore-line" data-delay="0">In the heart of the Great Jura Forest, a new power rises...</div>
+                <div class="lore-line" data-delay="1">Where monsters and humans coexist in harmony, united under the
+                    banner of the Slime Lord.</div>
+                <div class="lore-line" data-delay="2">A federation built on trust, strength, and the promise of a
+                    brighter tomorrow.</div>
+            </div>
+
+            <!-- Stats preview -->
+            <div class="stats-preview">
+                <div class="stat-item">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-value" data-target="32">0</div>
+                    <div class="stat-label">Characters</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-value" data-target="15">0</div>
+                    <div class="stat-label">Achievements</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">⚔️</div>
+                    <div class="stat-value" data-target="50">0</div>
+                    <div class="stat-label">Skills</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Enhanced button group -->
+        <div class="button-group">
+            <button class="primary-button" onclick="enterFederation()" data-tooltip="Access the main overview">
+                <span class="button-glow"></span>
+                <span class="button-icon">🏛️</span>
+                <span class="button-text">Enter Federation</span>
+                <span class="button-particles"></span>
+            </button>
+            <button class="secondary-button" onclick="openCodex()" data-tooltip="Browse character profiles">
+                <span class="button-glow"></span>
+                <span class="button-icon">📚</span>
+                <span class="button-text">Character Codex</span>
+            </button>
+            <button class="tertiary-button" onclick="openSkills()" data-tooltip="Explore skills database">
+                <span class="button-glow"></span>
+                <span class="button-icon">✨</span>
+                <span class="button-text">Skills Database</span>
+            </button>
+            <button class="tertiary-button" onclick="openGreatSage()" data-tooltip="Great Sage analysis">
+                <span class="button-glow"></span>
+                <span class="button-icon">🧠</span>
+                <span class="button-text">Great Sage</span>
+            </button>
+            <button class="tertiary-button" onclick="openTimeline()" data-tooltip="Browse historical timeline">
+                <span class="button-glow"></span>
+                <span class="button-icon">📜</span>
+                <span class="button-text">Chronicle Timeline</span>
+            </button>
+        </div>
+
+        <!-- Quick access menu -->
+        <div class="quick-access">
+            <div class="quick-item" onclick="openHistoricalRecords()" data-tooltip="View historical records">
+                <span class="quick-icon">📜</span>
+            </div>
+            <div class="quick-item" onclick="toggleSound()" data-tooltip="Toggle sound effects">
+                <span class="quick-icon" id="sound-icon">🔊</span>
+            </div>
+            <div class="quick-item" onclick="showInfo()" data-tooltip="About this project">
+                <span class="quick-icon">ℹ️</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info modal -->
+    <div class="modal-overlay" id="info-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>About Jura Tempest Federation</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>An interactive web application inspired by the world of "That Time I Got Reincarnated as a Slime".
+                </p>
+                <p>Explore characters, view achievements, and discover the magical world of
+                    Tempest.</p>
+                <div class="modal-features">
+                    <div class="feature-item">
+                        <span class="feature-icon">🎮</span>
+                        <span>Interactive Overview</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">📖</span>
+                        <span>Character Profiles</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">⚡</span>
+                        <span>Skills System</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🏆</span>
+                        <span>Achievement System</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/character-loader.js"></script>
+    <script src="js/game-state-optimized.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/sound-effects.js"></script>
+    <script>
+        let soundEnabled = true;
+
+        // Enhanced loading sequence
+        function initializeApp() {
+            const loadingScreen = document.getElementById('loading-screen');
+            const introContainer = document.getElementById('intro-container');
+
+            // Simulate loading
+            setTimeout(() => {
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                    introContainer.style.opacity = '1';
+                    startAnimations();
+                }, 500);
+            }, 2000);
+        }
+
+        function startAnimations() {
+            // Animate lore lines
+            const loreLines = document.querySelectorAll('.lore-line');
+            loreLines.forEach((line, index) => {
+                setTimeout(() => {
+                    line.classList.add('animate');
+                }, index * 800);
+            });
+
+            // Animate stats
+            setTimeout(() => {
+                animateStats();
+            }, 1500);
+
+            // Add interactive particles to slime orb
+            addSlimeInteractivity();
+        }
+
+        function animateStats() {
+            const statValues = document.querySelectorAll('.stat-value');
+            statValues.forEach(stat => {
+                const target = parseInt(stat.dataset.target);
+                let current = 0;
+                const increment = target / 50;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    stat.textContent = Math.floor(current);
+                }, 30);
+            });
+        }
+
+        function addSlimeInteractivity() {
+            const slimeOrb = document.getElementById('slime-orb');
+
+            slimeOrb.addEventListener('mouseenter', () => {
+                slimeOrb.classList.add('hover');
+                if (soundEnabled) SoundFeedback.playEffect('hover');
+            });
+
+            slimeOrb.addEventListener('mouseleave', () => {
+                slimeOrb.classList.remove('hover');
+            });
+
+            slimeOrb.addEventListener('click', () => {
+                slimeOrb.classList.add('clicked');
+                if (soundEnabled) SoundFeedback.playEffect('click');
+                setTimeout(() => {
+                    slimeOrb.classList.remove('clicked');
+                }, 600);
+            });
+        }
+
+        // Navigation functions
+        function enterFederation() {
+            if (soundEnabled) SoundFeedback.playEffect('click');
+            addButtonEffect(event.target);
+            setTimeout(() => {
+                window.location.href = 'overview.html';
+            }, 300);
+        }
+
+        function openCodex() {
+            if (soundEnabled) SoundFeedback.playEffect('click');
+            addButtonEffect(event.target);
+            setTimeout(() => {
+                window.location.href = 'codex.html';
+            }, 300);
+        }
+
+        function openSkills() {
+            if (soundEnabled) SoundFeedback.playEffect('click');
+            addButtonEffect(event.target);
+            setTimeout(() => {
+                window.location.href = 'skills.html';
+            }, 300);
+        }
+
+
+        function openTimeline() {
+            if (soundEnabled) SoundFeedback.playEffect('click');
+            addButtonEffect(event.target);
+            setTimeout(() => {
+                window.location.href = 'timeline.html';
+            }, 300);
+        }
+
+        function openHistoricalRecords() {
+            if (soundEnabled) SoundFeedback.playEffect('click');
+            window.location.href = 'records.html';
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const soundIcon = document.getElementById('sound-icon');
+            soundIcon.textContent = soundEnabled ? '🔊' : '🔇';
+
+            if (soundEnabled) {
+                SoundFeedback.playEffect('click');
+            }
+        }
+
+        function showInfo() {
+            if (soundEnabled) SoundFeedback.playEffect('click');
+            document.getElementById('info-modal').classList.add('active');
+        }
+
+        function closeModal() {
+            if (soundEnabled) SoundFeedback.playEffect('click');
+            document.getElementById('info-modal').classList.remove('active');
+        }
+
+        function addButtonEffect(button) {
+            button.classList.add('clicked');
+            setTimeout(() => {
+                button.classList.remove('clicked');
+            }, 300);
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.altKey) return;
+
+            switch (e.key.toLowerCase()) {
+                case 'd':
+                    e.preventDefault();
+                    enterFederation();
+                    break;
+                case 'c':
+                    e.preventDefault();
+                    openCodex();
+                    break;
+                case 's':
+                    e.preventDefault();
+                    openSkills();
+                    break;
+                case 'g':
+                    e.preventDefault();
+                    openGreatSage();
+                    break;
+                case 't':
+                    e.preventDefault();
+                    openTimeline();
+                    break;
+                case 'a':
+                    e.preventDefault();
+                    openHistoricalRecords();
+                    break;
+                case 'escape':
+                    closeModal();
+                    break;
+            }
+        });
+
+        // Initialize app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initializeApp);
+
+        // Close modal when clicking outside
+        document.getElementById('info-modal').addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal-overlay')) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+
+</html>
