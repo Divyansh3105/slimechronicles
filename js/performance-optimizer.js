@@ -28,10 +28,6 @@ class PerformanceOptimizer {
       this.applyLowEndOptimizations();
     }
 
-    if (this.isMobile) {
-      this.applyMobileOptimizations();
-    }
-
     if (this.prefersReducedMotion) {
       this.applyReducedMotionOptimizations();
     }
@@ -66,38 +62,6 @@ class PerformanceOptimizer {
 
       .timeline-marker {
         animation: none !important;
-      }
-    `;
-    document.head.appendChild(style);
-  }
-
-  applyMobileOptimizations() {
-    const style = document.createElement('style');
-    style.textContent = `
-      @media (max-width: 768px) {
-        .character-background::before,
-        .character-background::after {
-          animation-duration: 60s !important;
-        }
-
-        .floating-elements {
-          opacity: 0.3 !important;
-        }
-
-        .particles {
-          opacity: 0.4 !important;
-        }
-
-        .starfield {
-          opacity: 0.5 !important;
-        }
-
-
-        .info-card:hover,
-        .skill-card-detailed:hover,
-        .relationship-category:hover {
-          transform: none !important;
-        }
       }
     `;
     document.head.appendChild(style);

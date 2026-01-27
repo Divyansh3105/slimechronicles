@@ -1,6 +1,5 @@
 let currentFilter = "all";
 let searchTerm = "";
-let currentView = "grid";
 let raceFilter = "";
 let powerFilter = "";
 let isMobile = window.innerWidth <= 768;
@@ -183,7 +182,7 @@ function renderCurrentPage() {
   );
   const pageCharacters = filteredCharacters.slice(startIndex, endIndex);
 
-  grid.className = `character-grid ${currentView}-view`;
+  grid.className = "character-grid";
 
   if (pageCharacters.length === 11) {
     grid.classList.add("eleven-cards");
@@ -236,11 +235,7 @@ function renderCurrentPage() {
           `
                 : "";
 
-            if (currentView === "detailed") {
-              return renderDetailedCharacterCard(character, "", [], stats, cssVars);
-            } else {
-              return renderCompactCharacterCard(character, stats, cssVars);
-            }
+            return renderCompactCharacterCard(character, stats, cssVars);
           } catch (error) {
             console.error(`Error rendering character ${character.id}:`, error);
             return `<div class="character-card error">Error loading ${character.name}</div>`;
@@ -283,11 +278,7 @@ function renderCurrentPage() {
           `
                 : "";
 
-            if (currentView === "detailed") {
-              return renderDetailedCharacterCard(character, "", [], stats, cssVars);
-            } else {
-              return renderCompactCharacterCard(character, stats, cssVars);
-            }
+            return renderCompactCharacterCard(character, stats, cssVars);
           } catch (error) {
             console.error(`Error rendering character ${character.id}:`, error);
             return `<div class="character-card error">Error loading ${character.name}</div>`;
@@ -335,11 +326,7 @@ function renderCurrentPage() {
             `
                 : "";
 
-            if (currentView === "detailed") {
-              return renderDetailedCharacterCard(character, "", [], stats, cssVars);
-            } else {
-              return renderCompactCharacterCard(character, stats, cssVars);
-            }
+            return renderCompactCharacterCard(character, stats, cssVars);
           } catch (error) {
             console.error(`Error rendering character ${character.id}:`, error);
             return `<div class="character-card error">Error loading ${character.name}</div>`;
@@ -350,66 +337,6 @@ function renderCurrentPage() {
 
     addScrollAnimations();
   }, 100);
-}
-
-function renderDetailedCharacterCard(character, description, abilities, stats, cssVars) {
-  // Get description and abilities from character data or use defaults
-  const charDescription = character.lore || character.backstory || "A mysterious character with unknown origins and abilities.";
-  const charAbilities = character.skills ? character.skills.slice(0, 3).map(s => s.name) : ["Unknown Ability"];
-
-  return `
-    <div class="character-card character-themed ${character.id === "diablo" ? "dark-theme" : ""}"
-         style="${cssVars}" data-character-id="${character.id}">
-        <div class="character-image-wrapper">
-            <img src="${character.image}" alt="${character.name}" class="character-card-image"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                 loading="lazy">
-            <div class="character-portrait">${character.portrait}</div>
-        </div>
-
-        <div class="character-info">
-            <h3 class="character-name">${character.name}</h3>
-            <p class="character-title">${character.race} - ${character.role}</p>
-
-            <div class="character-description">
-                ${charDescription}
-            </div>
-
-            <div class="character-stats">
-                <div class="stat">
-                    <span class="stat-label">ATK</span>
-                    <span class="stat-value">${stats.atk}</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-label">DEF</span>
-                    <span class="stat-value">${stats.def}</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-label">SPD</span>
-                    <span class="stat-value">${stats.spd}</span>
-                </div>
-            </div>
-
-            <div class="character-abilities">
-                <h4>Key Abilities</h4>
-                <div class="abilities-list">
-                    ${charAbilities
-                      .map(
-                        (ability) =>
-                          `<span class="ability-tag">${ability}</span>`,
-                      )
-                      .join("")}
-                </div>
-            </div>
-
-            <div class="character-actions">
-                <button class="view-profile-btn" onclick="viewCharacter('${character.id}')">
-                    View Full Profile
-                </button>
-            </div>
-        </div>
-    </div>
-  `;
 }
 
 function renderCompactCharacterCard(character, stats, cssVars) {
@@ -720,17 +647,6 @@ function initializeFilters() {
     });
   }
 }
-function toggleView(view) {
-  currentView = view;
-
-  document.querySelectorAll(".view-toggle").forEach((btn) => {
-    btn.classList.remove("active");
-  });
-  document.querySelector(`[data-view="${view}"]`).classList.add("active");
-
-  renderCharacters();
-}
-
 function clearAllFilters() {
   searchTerm = "";
   currentFilter = "all";
@@ -921,7 +837,6 @@ document.addEventListener("DOMContentLoaded", () => {
     renderCharacters();
   });
 });
-window.toggleView = toggleView;
 window.clearAllFilters = clearAllFilters;
 window.openCharacterProfile = openCharacterProfile;
 window.openCharacterModal = openCharacterModal;

@@ -1172,142 +1172,12 @@ body::before {
     filter: drop-shadow(0 0 40px var(--glow-blue));
   }
 }
-@media (max-width: 768px) {
-  .main-nav {
-    padding: 1rem 1.5rem;
-    height: 80px;
-    display: flex;
-    align-items: center;
-  }
-  .nav-links {
-    display: none;
-  }
-  .mobile-menu-toggle {
-    display: flex;
-  }
-  .nav-brand {
-    font-size: 1.4rem;
-  }
-  .nav-brand-icon {
-    font-size: 1.8rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .nav-brand-icon svg {
-    width: 56px;
-    height: 56px;
-  }
-  .nav-actions {
-    gap: 0.5rem;
-  }
-  .nav-action-btn {
-    width: 36px;
-    height: 36px;
-  }
-  .page-title {
-    font-size: 2rem;
-  }
-  .mobile-nav {
-    z-index: 1001;
-  }
-  .mobile-menu-toggle {
-    position: relative;
-    z-index: 1002;
-    min-width: 40px;
-    min-height: 40px;
-    display: flex !important;
-  }
-  body {
-    padding-top: 80px !important;
-    -webkit-overflow-scrolling: touch;
-    overflow-y: auto !important;
-    overflow-x: hidden;
-    width: 100%;
-    position: relative;
-    touch-action: pan-y;
-  }
-  .main-content {
-    padding: 1rem;
-    min-height: calc(100vh - 80px);
-    min-height: calc(var(--vh, 1vh) * 100 - 80px);
-    overflow: visible !important;
-  }
-  html {
-    font-size: 14px;
-    overflow-y: auto !important;
-  }
 
-  body {
-    overflow-y: visible !important;
-  }
-  button,
-  .nav-action-btn,
-  .mobile-nav a {
-    min-height: 44px;
-    min-width: 44px;
-  }
-  button:focus,
-  a:focus {
-    outline: 2px solid var(--primary-blue);
-    outline-offset: 2px;
-  }
-  .particles,
-  .magic-circle,
-  .starfield {
-    display: none;
-  }
-  .stat-card::before,
-  .stat-card::after,
-  .character-card::before,
-  .character-card::after {
-    display: none;
-  }
-  .stat-card,
-  .character-card,
-  .filter-tab,
-  .view-toggle {
-    -webkit-tap-highlight-color: rgba(77, 212, 255, 0.2);
-  }
-  .stat-card.active,
-  .character-card.active,
-  .filter-tab.active,
-  .view-toggle.active {
-    transform: scale(0.98);
-    transition: transform 0.1s ease;
-  }
-}
-@media (max-width: 480px) {
-  .main-nav {
-    padding: 0.75rem 1rem;
-  }
-  .nav-brand {
-    font-size: 1.2rem;
-  }
-  .nav-brand-icon {
-    font-size: 1.6rem;
-  }
-  .nav-brand-icon svg {
-    width: 48px;
-    height: 48px;
-  }
-  .nav-actions {
-    display: none;
-  }
-  html {
-    font-size: 13px;
-  }
-  .page-title {
-    font-size: 1.8rem;
-  }
-  .main-content {
-    padding: 0.5rem;
-  }
-}
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
 }
+
 ::-webkit-scrollbar-track {
   background: linear-gradient(
     180deg,
@@ -1318,6 +1188,7 @@ body::before {
   border-radius: 10px;
   border: 1px solid rgba(77, 212, 255, 0.1);
 }
+
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(
     180deg,
@@ -1331,6 +1202,7 @@ body::before {
   inset: 0 1px 0 rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(
     180deg,
@@ -1342,6 +1214,7 @@ body::before {
   inset: 0 1px 0 rgba(255, 255, 255, 0.3);
   transform: scale(1.1);
 }
+
 ::-webkit-scrollbar-thumb:active {
   background: linear-gradient(
     180deg,
@@ -1352,14 +1225,17 @@ body::before {
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
   inset: 0 1px 0 rgba(255, 255, 255, 0.4);
 }
+
 ::-webkit-scrollbar-corner {
   background: rgba(10, 14, 39, 0.8);
   border-radius: 10px;
 }
+
 html {
   scrollbar-width: thin;
   scrollbar-color: rgba(77, 212, 255, 0.8) rgba(21, 27, 61, 0.6);
 }
+
 /* ============================================
    ENHANCED FOOTER STYLES
    ============================================ */
@@ -1554,35 +1430,6 @@ html {
   }
 }
 
-/* Mobile Footer Styles */
-@media (max-width: 768px) {
-  .footer-content {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 1.5rem;
-  }
-
-  .footer-info {
-    text-align: center;
-  }
-
-  .footer-social {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .main-footer {
-    padding: 1.5rem 0 1rem;
-    margin-top: 2rem;
-  }
-
-  .footer-content {
-    padding: 0 1rem;
-  }
-
-}
-
 .footer-info {
   text-align: right;
   color: var(--text-secondary);
@@ -1687,44 +1534,5 @@ html {
       0 0 50px rgba(77, 212, 255, 0.4),
       inset 0 2px 15px rgba(255, 255, 255, 0.3);
     transform: scale(1.05);
-  }
-}
-
-/* Enhanced Mobile Footer Styles */
-@media (max-width: 768px) {
-  .footer-content {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 2rem;
-  }
-
-  .footer-brand {
-    align-items: center;
-  }
-
-  .footer-info {
-    text-align: center;
-  }
-
-  .footer-social {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .main-footer {
-    padding: 2rem 0 1.5rem;
-    margin-top: 3rem;
-  }
-
-  .footer-content {
-    padding: 0 1rem;
-    gap: 1.5rem;
-  }
-
-  .social-link {
-    width: 36px;
-    height: 36px;
-    font-size: 1.1rem;
   }
 }
