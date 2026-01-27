@@ -11,11 +11,7 @@ async function updateStatistics() {
   }
 
   try {
-    console.log("Updating statistics...");
-
     const totalCharacters = await window.GameState.getCharacterCount();
-    console.log("Total characters:", totalCharacters);
-
     const totalElement = document.getElementById("total-characters");
     if (totalElement) {
       totalElement.textContent = totalCharacters;
@@ -26,8 +22,6 @@ async function updateStatistics() {
       console.error("No characters returned for statistics");
       return;
     }
-
-    console.log("Characters for statistics:", characters.length);
 
     const demonLords = characters.filter(
       (char) =>
@@ -65,8 +59,6 @@ async function updateStatistics() {
       acc[char.power] = (acc[char.power] || 0) + 1;
       return acc;
     }, {});
-
-    console.log("Power levels:", powerLevels);
 
     Object.entries(powerLevels).forEach(([power, count]) => {
       const element = document.getElementById(
@@ -131,9 +123,7 @@ async function renderCharacters() {
     grid.innerHTML =
       '<div class="loading-characters">Loading characters...</div>';
 
-    console.log("Calling GameState.getAllCharacters()...");
     const characters = await window.GameState.getAllCharacters();
-    console.log("GameState.getAllCharacters() returned:", characters);
 
     if (!characters || characters.length === 0) {
       console.error("No characters returned from GameState.getAllCharacters()");
@@ -141,12 +131,6 @@ async function renderCharacters() {
         '<div class="no-results">No characters found. Check console for errors.</div>';
       return;
     }
-
-    console.log("Total characters loaded:", characters.length);
-    console.log(
-      "Character names:",
-      characters.map((c) => c.name),
-    );
 
     allCharacters = characters;
     applyFiltersAndRender();
@@ -157,11 +141,6 @@ async function renderCharacters() {
 }
 
 function applyFiltersAndRender() {
-  console.log("applyFiltersAndRender called");
-  console.log("allCharacters:", allCharacters);
-  console.log("searchTerm:", searchTerm);
-  console.log("currentFilter:", currentFilter);
-
   filteredCharacters = allCharacters.filter((character) => {
     const matchesSearch =
       character.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -175,8 +154,6 @@ function applyFiltersAndRender() {
     return matchesSearch && matchesFilter && matchesRace && matchesPower;
   });
 
-  console.log("filteredCharacters:", filteredCharacters);
-
   currentPage = 0;
   renderCurrentPage();
   setupPagination();
@@ -184,11 +161,8 @@ function applyFiltersAndRender() {
 
 function renderCurrentPage() {
   const grid = document.getElementById("character-grid");
-  console.log("renderCurrentPage called");
-  console.log("filteredCharacters length:", filteredCharacters.length);
 
   if (filteredCharacters.length === 0) {
-    console.log("No filtered characters, showing no results message");
     grid.innerHTML = `
       <div class="no-results" style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: rgba(255, 255, 255, 0.7);">
         <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
@@ -208,13 +182,6 @@ function renderCurrentPage() {
     filteredCharacters.length,
   );
   const pageCharacters = filteredCharacters.slice(startIndex, endIndex);
-
-  console.log("Rendering characters from", startIndex, "to", endIndex);
-  console.log("pageCharacters:", pageCharacters.length, "characters");
-  console.log(
-    "Character names on this page:",
-    pageCharacters.map((c) => c.name),
-  );
 
   grid.className = `character-grid ${currentView}-view`;
 
@@ -380,8 +347,6 @@ function renderCurrentPage() {
         })
         .join("");
     }
-
-    console.log("Characters rendered to grid");
 
     addScrollAnimations();
   }, 100);
@@ -904,11 +869,7 @@ function addScrollAnimations() {
   });
 }
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOM Content Loaded - initializing codex page");
-
   isMobile = window.innerWidth <= 768;
-  console.log("Mobile detected:", isMobile);
-
   const particleContainer = document.getElementById("particles");
   const starfieldContainer = document.getElementById("starfield");
   if (particleContainer) {
@@ -919,23 +880,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   window.debugCharacters = async () => {
-    console.log("=== DEBUG CHARACTER LOADING ===");
     try {
-      console.log("1. Testing direct JSON fetch...");
       const response = await fetch("data/characters-basic.json");
       const jsonData = await response.json();
-      console.log("Direct JSON result:", jsonData.length, "characters");
 
-      console.log("2. Testing CharacterLoader...");
       const loaderData = await window.CharacterLoader.loadBasicCharacters();
-      console.log("CharacterLoader result:", loaderData.length, "characters");
 
-      console.log("3. Testing GameState...");
       const gameStateData = await window.GameState.getAllCharacters();
-      console.log("GameState result:", gameStateData.length, "characters");
-
-      console.log("4. Current allCharacters:", allCharacters.length);
-      console.log("5. Current filteredCharacters:", filteredCharacters.length);
 
       return {
         json: jsonData.length,
@@ -950,13 +901,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  console.log("Initializing filters...");
   initializeFilters();
 
-  console.log("Updating statistics...");
   updateStatistics();
 
-  console.log("Rendering characters...");
   renderCharacters();
 
   const modal = document.getElementById("character-modal");
@@ -972,13 +920,6 @@ document.addEventListener("DOMContentLoaded", () => {
     isMobile = window.innerWidth <= 768;
     renderCharacters();
   });
-
-  console.log(
-    "Codex page initialization complete - particles disabled for performance",
-  );
-  console.log(
-    "Run window.debugCharacters() in console to debug character loading",
-  );
 });
 window.toggleView = toggleView;
 window.clearAllFilters = clearAllFilters;

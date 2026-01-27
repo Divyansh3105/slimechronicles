@@ -9,7 +9,7 @@ class PerformanceOptimizer {
   }
 
   detectLowEndDevice() {
-    
+
     const indicators = {
       lowMemory: navigator.deviceMemory && navigator.deviceMemory < 2,
       lowCores: navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4,
@@ -18,7 +18,7 @@ class PerformanceOptimizer {
       oldBrowser: !window.IntersectionObserver || !window.requestIdleCallback
     };
 
-    
+
     const lowEndCount = Object.values(indicators).filter(Boolean).length;
     return lowEndCount >= 2;
   }
@@ -36,14 +36,11 @@ class PerformanceOptimizer {
       this.applyReducedMotionOptimizations();
     }
 
-    
+
     this.startPerformanceMonitoring();
   }
 
   applyLowEndOptimizations() {
-    console.log('Applying low-end device optimizations');
-
-    
     const style = document.createElement('style');
     style.textContent = `
       .particles, .starfield, .floating-elements {
@@ -75,9 +72,6 @@ class PerformanceOptimizer {
   }
 
   applyMobileOptimizations() {
-    console.log('Applying mobile optimizations');
-
-    
     const style = document.createElement('style');
     style.textContent = `
       @media (max-width: 768px) {
@@ -98,7 +92,7 @@ class PerformanceOptimizer {
           opacity: 0.5 !important;
         }
 
-        
+
         .info-card:hover,
         .skill-card-detailed:hover,
         .relationship-category:hover {
@@ -110,8 +104,6 @@ class PerformanceOptimizer {
   }
 
   applyReducedMotionOptimizations() {
-    console.log('Applying reduced motion optimizations');
-
     const style = document.createElement('style');
     style.textContent = `
       @media (prefers-reduced-motion: reduce) {
@@ -145,7 +137,7 @@ class PerformanceOptimizer {
         frameCount = 0;
         lastTime = currentTime;
 
-        
+
         if (fps < 30 && !this.emergencyOptimizationsApplied) {
           this.applyEmergencyOptimizations();
         }
@@ -154,17 +146,14 @@ class PerformanceOptimizer {
       requestAnimationFrame(measureFPS);
     };
 
-    
     setTimeout(() => {
       requestAnimationFrame(measureFPS);
     }, 2000);
   }
 
   applyEmergencyOptimizations() {
-    console.log('Applying emergency performance optimizations due to low FPS');
     this.emergencyOptimizationsApplied = true;
 
-    
     const style = document.createElement('style');
     style.textContent = `
       * {
@@ -187,13 +176,13 @@ class PerformanceOptimizer {
     `;
     document.head.appendChild(style);
 
-    
+
     if (window.particleSystem) {
       window.particleSystem.cleanup();
     }
   }
 
-  
+
   shouldOptimize(feature) {
     switch (feature) {
       case 'particles':

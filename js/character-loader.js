@@ -12,24 +12,18 @@ class CharacterDataLoader {
 
   async loadBasicCharacters() {
     if (this.basicCharacters) {
-      console.log('Returning cached basic characters:', this.basicCharacters.length);
       return this.basicCharacters
     }
 
-    console.log('Loading basic characters from data/characters-basic.json...');
 
     try {
       const response = await fetch('data/characters-basic.json')
-      console.log('Fetch response:', response.status, response.statusText);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`)
       }
 
       const data = await response.json()
-      console.log('Basic characters loaded successfully:', data.length, 'characters');
-      console.log('Sample character:', data[0]);
-
 
       if (!Array.isArray(data)) {
         throw new Error('Character data is not an array');
@@ -48,17 +42,14 @@ class CharacterDataLoader {
         return true;
       });
 
-      console.log('Validated characters:', validatedData.length, 'out of', data.length);
 
       this.basicCharacters = validatedData
       return this.basicCharacters
     } catch (error) {
       console.error('Failed to load basic character data:', error)
-      console.log('Falling back to embedded data...');
 
 
       const fallbackData = await this.getFallbackBasicData();
-      console.log('Using fallback data:', fallbackData.length, 'characters');
       this.basicCharacters = fallbackData;
       return this.basicCharacters;
     }
@@ -156,20 +147,16 @@ class CharacterDataLoader {
 
 
   async getFallbackBasicData() {
-    console.log('Using embedded fallback character data');
-
     try {
       const response = await fetch('data/characters-basic.json');
       if (response.ok) {
         const data = await response.json();
-        console.log('Fallback successfully loaded from JSON file:', data.length, 'characters');
         return data;
       }
     } catch (error) {
       console.warn('Could not load from JSON file in fallback mode:', error);
     }
 
-    // Minimal embedded fallback data - only essential characters
     return [
       {
         id: "rimuru",
@@ -224,6 +211,4 @@ class CharacterDataLoader {
     return `${(size / 1024).toFixed(2)} KB`
   }
 }
-console.log('Creating CharacterDataLoader instance...');
 window.CharacterLoader = new CharacterDataLoader()
-console.log('CharacterLoader created:', window.CharacterLoader);

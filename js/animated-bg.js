@@ -16,8 +16,6 @@ class AnimatedBackground {
 
   async init() {
     try {
-      // Always try fallback first to ensure background is visible
-      console.log("Initializing background with fallback image:", this.options.baseImageUrl);
       this.fallbackBackground();
 
       if (typeof THREE === "undefined" || typeof VANTA === "undefined") {
@@ -27,7 +25,6 @@ class AnimatedBackground {
 
       // Only create vanta effect if dependencies loaded successfully
       if (typeof THREE !== "undefined" && typeof VANTA !== "undefined") {
-        console.log("Dependencies loaded successfully, creating Vanta effect");
         this.createVantaEffect();
         this.isInitialized = true;
       } else {
@@ -35,7 +32,6 @@ class AnimatedBackground {
       }
     } catch (error) {
       console.error("Failed to initialize animated background:", error);
-      console.log("Using fallback background due to error");
       this.fallbackBackground();
     }
   }
@@ -154,9 +150,6 @@ class AnimatedBackground {
   }
 
   fallbackBackground() {
-    console.log("Falling back to static background image:", this.options.baseImageUrl);
-
-    // Remove any existing vanta background
     const existingVanta = document.getElementById("vanta-bg");
     if (existingVanta) {
       existingVanta.remove();

@@ -316,20 +316,9 @@
     <script>
         // Debug logging
         window.addEventListener('load', () => {
-            console.log('=== CHARACTER PAGE DEBUG ===');
-            console.log('Page loaded');
-            console.log('CharacterLoader:', !!window.CharacterLoader);
-            console.log('GameState:', !!window.GameState);
-            console.log('profile-content element:', !!document.getElementById('profile-content'));
-
             // Check URL parameters
             const urlParams = new URLSearchParams(window.location.search);
             const characterId = urlParams.get("id");
-            console.log('Character ID from URL:', characterId);
-
-            if (!characterId) {
-                console.log('No character ID in URL - add ?id=rimuru to test');
-            }
         });
     </script>
 </body>

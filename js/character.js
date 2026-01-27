@@ -1,12 +1,5 @@
-console.log("Character.js loaded");
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOM loaded, checking dependencies...");
-  console.log("GameState available:", !!window.GameState);
-  console.log("CharacterLoader available:", !!window.CharacterLoader);
-
   setTimeout(() => {
-    console.log("Delayed check - GameState:", !!window.GameState);
-    console.log("Delayed check - CharacterLoader:", !!window.CharacterLoader);
     loadCharacterProfile();
   }, 100);
 });
@@ -80,8 +73,6 @@ function renderBasicCharacterProfile(character) {
     return;
   }
 
-  console.log("Rendering basic character profile for:", character.name);
-
   content.innerHTML = `
     <div class="profile-header">
       <div class="profile-image-container">
@@ -104,8 +95,6 @@ function renderBasicCharacterProfile(character) {
 }
 
 function renderCharacterProfile(character) {
-  console.log("Rendering complete character profile for:", character.name);
-
   const content = document.getElementById("profile-content");
   if (!content) {
     console.error("profile-content element not found!");
@@ -461,18 +450,11 @@ function renderCharacterProfile(character) {
 }
 
 function setupTabSwitching() {
-  console.log("Setting up tab switching...");
-
   const tabs = document.querySelectorAll(".profile-tab");
   const sections = document.querySelectorAll(".tab-section");
 
-  console.log("Found tabs:", tabs.length);
-  console.log("Found sections:", sections.length);
-
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => {
-      console.log("Tab clicked:", tab.getAttribute("data-tab"));
-
       tabs.forEach((t) => t.classList.remove("active"));
       sections.forEach((s) => s.classList.remove("active"));
 
@@ -480,8 +462,6 @@ function setupTabSwitching() {
 
       const targetTab = tab.getAttribute("data-tab");
       const targetSection = document.getElementById(`tab-${targetTab}`);
-
-      console.log("Target section:", targetTab, !!targetSection);
 
       if (targetSection) {
         targetSection.classList.add("active");
@@ -515,8 +495,6 @@ function setupTabSwitching() {
       }
     });
   });
-
-  console.log("Tab switching setup complete");
 }
 
 function applyCharacterTheme(colorScheme, characterId) {
@@ -584,12 +562,8 @@ function showNotification(message) {
 }
 
 async function loadCharacterProfile() {
-  console.log("loadCharacterProfile called - optimized version");
-
   const urlParams = new URLSearchParams(window.location.search);
   const characterId = urlParams.get("id");
-  console.log("characterId from URL:", characterId);
-
   if (!characterId) {
     displayError(
       "No Character Selected",
@@ -598,9 +572,6 @@ async function loadCharacterProfile() {
     );
     return;
   }
-
-  console.log("Checking GameState availability:", !!window.GameState);
-  console.log("GameState object:", window.GameState);
 
   if (!window.GameState) {
     console.error("GameState not found on window object");
@@ -613,12 +584,8 @@ async function loadCharacterProfile() {
 
   try {
     showLoadingIndicator();
-    console.log("Loading indicator shown");
-
-    console.log("Attempting to load basic character data...");
     const basicCharacter =
       await window.GameState.getBasicCharacter(characterId);
-    console.log("Basic character loaded:", basicCharacter);
 
     if (!basicCharacter) {
       displayError(
@@ -629,20 +596,14 @@ async function loadCharacterProfile() {
       return;
     }
 
-    console.log("Applying character theme and creating layout...");
     applyCharacterTheme(basicCharacter.colorScheme, characterId);
     createFloatingElements(basicCharacter);
     renderBasicCharacterProfile(basicCharacter);
 
-    console.log("Loading detailed character data...");
     const detailedCharacter = await window.GameState.getCharacter(characterId);
-    console.log("Detailed character loaded:", detailedCharacter);
 
     if (detailedCharacter) {
-      console.log("Rendering complete character profile...");
       renderCharacterProfile(detailedCharacter);
-    } else {
-      console.log("No detailed character data, keeping basic profile");
     }
 
     setupTabSwitching();
@@ -661,8 +622,6 @@ async function loadCharacterProfile() {
 
 // Enhanced error recovery
 function attemptErrorRecovery() {
-  console.log('Attempting error recovery...');
-
   if (window.GameState) {
     window.GameState.clearCharacterCache();
   }

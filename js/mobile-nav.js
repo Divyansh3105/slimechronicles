@@ -5,7 +5,6 @@ function setViewportHeight() {
     document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
 function toggleMobileMenu() {
-    console.log('toggleMobileMenu called');
 
     const toggle = document.querySelector('.mobile-menu-toggle');
     const mobileNav = document.getElementById('mobile-nav');

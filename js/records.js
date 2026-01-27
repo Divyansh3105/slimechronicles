@@ -1,5 +1,3 @@
-console.log("Records.js loaded successfully");
-
 const CONFIG = {
   ANIMATION_DELAYS: {
     MOBILE: 0.03,
@@ -48,7 +46,6 @@ function loadRecordsFromHTML() {
     };
   });
 
-  console.log(`Loaded ${HISTORICAL_RECORDS.length} records from HTML`);
   return HISTORICAL_RECORDS;
 }
 
@@ -521,7 +518,6 @@ function createFilterControls() {
 
   try {
     titleElement.insertAdjacentHTML("afterend", controlsHTML);
-    console.log("Filter controls created successfully");
   } catch (error) {
     console.error("Error creating filter controls:", error);
   }
@@ -592,13 +588,10 @@ function updateVisibleRecordsCount() {
   }
 }
 function initializeHistoricalRecordsPage() {
-  console.log("initializeHistoricalRecordsPage called");
 
   try {
-    // First, load records from HTML elements
     loadRecordsFromHTML();
 
-    // Check if required elements exist
     const container = document.querySelector(".historical-records-container");
     const grid = document.getElementById("records-grid");
 
@@ -610,23 +603,14 @@ function initializeHistoricalRecordsPage() {
       throw new Error("Records grid element not found");
     }
 
-    // Create filter controls
     createFilterControls();
-
-    // Render initial records
     renderRecords();
-
-    // Add event listeners for better UX
     addGlobalEventListeners();
-
-    // Ensure scrolling works properly
     ensureScrollingWorks();
 
-    console.log("Historical records page initialized successfully");
   } catch (error) {
     console.error("Error initializing historical records page:", error);
 
-    // Show error message to user
     const grid = document.getElementById("records-grid");
     if (grid) {
       grid.innerHTML = `
@@ -642,17 +626,12 @@ function initializeHistoricalRecordsPage() {
 }
 
 function addGlobalEventListeners() {
-  // Add debounced resize handler
   window.addEventListener('resize', handleResize);
-
-  // Add keyboard shortcuts
   document.addEventListener('keydown', function(e) {
-    // Escape key to close expanded records
     if (e.key === 'Escape' && expandedRecord) {
       toggleRecordExpansion(expandedRecord);
     }
 
-    // Ctrl/Cmd + F to focus search
     if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
       e.preventDefault();
       const searchInput = document.getElementById('search-input');
@@ -662,30 +641,25 @@ function addGlobalEventListeners() {
       }
     }
 
-    // Ctrl/Cmd + R to reset filters
     if ((e.ctrlKey || e.metaKey) && e.key === 'r') {
       e.preventDefault();
       resetAllFilters();
     }
   });
 
-  // Ensure scroll is never blocked
   ensureScrollingWorks();
 }
 
 function ensureScrollingWorks() {
-  // Force proper scroll behavior
   document.documentElement.style.overflow = 'auto';
   document.body.style.overflow = 'auto';
 
-  // Remove any potential scroll blocking
   const potentialBlockers = document.querySelectorAll('.historical-records-container, .records-grid, .record-card, .record-details');
   potentialBlockers.forEach(element => {
     element.style.overflow = 'visible';
     element.style.contain = 'none';
   });
 
-  // Add scroll restoration after any DOM changes
   const observer = new MutationObserver(() => {
     // Ensure scroll is still working after DOM changes
     setTimeout(() => {
@@ -728,25 +702,17 @@ function resetAllFilters() {
   announceToScreenReader('All filters have been reset');
 }
 function initializeRecordsPage() {
-  console.log("initializeRecordsPage called");
   try {
-    console.log("Calling initializeHistoricalRecordsPage...");
     initializeHistoricalRecordsPage();
-    console.log("All initialization functions completed");
   } catch (error) {
     console.error("Error in initializeRecordsPage:", error);
   }
 }
 
-console.log("Records.js loaded successfully");
-
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("DOMContentLoaded event fired");
 
   const grid = document.getElementById("records-grid");
   if (grid) {
-    console.log("Found records-grid element");
-    // Show loading message initially
     grid.innerHTML = `
       <div style="text-align: center; padding: 40px; color: var(--text-light);">
         <div style="font-size: 2rem; margin-bottom: 1rem;">⏳</div>
@@ -764,9 +730,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Small delay to ensure all elements are ready
     setTimeout(() => {
       initializeRecordsPage();
-      console.log("initializeRecordsPage completed successfully");
 
-      // Ensure scrolling is working after initialization
       setTimeout(() => {
         ensureScrollingWorks();
       }, 500);
@@ -854,13 +818,11 @@ function toggleHelp() {
 }
 
 function testFunction() {
-  console.log('Test function called - JavaScript is working!');
   alert('JavaScript is working correctly!');
 
   // Test the main functionality
   try {
     renderRecords();
-    console.log('Records rendered successfully');
   } catch (error) {
     console.error('Error rendering records:', error);
     alert('Error rendering records: ' + error.message);

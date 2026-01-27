@@ -1,22 +1,10 @@
-console.log("Skills.js loaded");
-console.log("CharacterLoader available:", !!window.CharacterLoader);
-console.log("GameState available:", !!window.GameState);
-console.log("GameState type:", typeof window.GameState);
-
 async function getAllSkills() {
   try {
-    console.log("getAllSkills called");
-    console.log("Checking window.GameState:", window.GameState);
-    console.log("Checking window.CharacterLoader:", window.CharacterLoader);
-
     let basicCharacters = null;
 
     if (window.GameState) {
       try {
         basicCharacters = await window.GameState.getAllCharacters();
-        console.log(
-          `Found ${basicCharacters ? basicCharacters.length : 0} basic characters (via GameState)`,
-        );
       } catch (err) {
         console.error("GameState.getAllCharacters() failed:", err);
       }
@@ -30,9 +18,6 @@ async function getAllSkills() {
       if (window.CharacterLoader) {
         try {
           basicCharacters = await window.CharacterLoader.loadBasicCharacters();
-          console.log(
-            `Found ${basicCharacters ? basicCharacters.length : 0} basic characters (via CharacterLoader)`,
-          );
         } catch (err) {
           console.error("CharacterLoader.loadBasicCharacters() failed:", err);
         }
@@ -55,20 +40,12 @@ async function getAllSkills() {
     for (let i = 0; i < basicCharacters.length; i++) {
       const basicChar = basicCharacters[i];
       try {
-        console.log(
-          `Loading character ${i + 1}/${basicCharacters.length}: ${basicChar.name}`,
-        );
-
         const response = await fetch(`data/characters/${basicChar.id}.json`);
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}`);
         }
 
         const character = await response.json();
-        console.log(
-          `Loaded details for ${character.name}, skills:`,
-          character.skills,
-        );
 
         if (!character.skills || !Array.isArray(character.skills)) {
           console.warn(`Character ${character.name} has no skills array`);
@@ -106,9 +83,6 @@ async function getAllSkills() {
     }
 
     const skills = Array.from(skillsMap.values());
-    console.log(
-      `Processed ${skills.length} unique skills from ${processedCount} characters (${errorCount} errors)`,
-    );
     return skills;
   } catch (error) {
     console.error("Error in getAllSkills:", error);
@@ -487,9 +461,6 @@ function updateResultsCount() {
 
 async function initializeSkillsPage() {
   try {
-    console.log("Initializing skills page...");
-
-
     if (!window.GameState) {
       console.error("GameState not loaded");
       const grid = document.getElementById("skills-grid");
@@ -504,12 +475,7 @@ async function initializeSkillsPage() {
       return;
     }
 
-    console.log("GameState available:", window.GameState);
-    console.log("CHARACTERS available:", window.CHARACTERS);
-
-
     allSkills = await getAllSkills();
-    console.log(`Found ${allSkills.length} unique skills`);
 
     if (allSkills.length === 0) {
       console.warn("No skills found");
@@ -559,7 +525,6 @@ async function initializeSkillsPage() {
 
     applyFilters();
 
-    console.log(`Skills page initialized with ${allSkills.length} skills`);
   } catch (error) {
     console.error("Error initializing skills page:", error);
     const grid = document.getElementById("skills-grid");

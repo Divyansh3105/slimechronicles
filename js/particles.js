@@ -199,9 +199,6 @@ if (typeof performance !== "undefined" && performance.mark) {
     try {
       performance.measure("particles-init", "particles-start", "particles-end");
       const measure = performance.getEntriesByName("particles-init")[0];
-      console.log(
-        `Particle system initialized in ${measure.duration.toFixed(2)}ms`,
-      );
     } catch (e) {}
   }, 100);
 }

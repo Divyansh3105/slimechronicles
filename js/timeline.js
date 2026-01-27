@@ -490,7 +490,6 @@ function toggleSound() {
 function toggleFullscreen() {
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen().catch(err => {
-            console.log('Error attempting to enable fullscreen:', err);
         });
     } else {
         document.exitFullscreen();
@@ -534,10 +533,7 @@ function filterByEra(era) {
     }
 }
 function initializeArcs() {
-    console.log('Initializing all arcs to collapsed state...');
-
     const arcs = document.querySelectorAll('.timeline-arc');
-    console.log(`Found ${arcs.length} arcs to initialize`);
 
     arcs.forEach((arc, index) => {
         const content = arc.querySelector('.arc-content');
@@ -561,13 +557,11 @@ function initializeArcs() {
                 toggle.textContent = '▼';
             }
 
-            console.log(`Arc ${index + 1} initialized to collapsed state`);
         } else {
             console.warn(`Arc ${index + 1} missing content element`);
         }
     });
 
-    console.log('Arc initialization complete');
 }
 let scrollTimeout;
 window.addEventListener('scroll', () => {
@@ -644,54 +638,24 @@ window.toggleFullscreen = toggleFullscreen;
 window.scrollToTop = scrollToTop;
 window.filterByEra = filterByEra;
 window.testArcExpansion = function() {
-    console.log('=== TESTING ARC EXPANSION ===');
     const firstArc = document.querySelector('.timeline-arc');
     if (firstArc) {
         const arcHeader = firstArc.querySelector('.arc-header');
         const arcContent = firstArc.querySelector('.arc-content');
 
-        console.log('First arc:', firstArc);
-        console.log('Arc header:', arcHeader);
-        console.log('Arc content:', arcContent);
-
         if (arcContent) {
-            console.log('Current arc content styles:', {
-                maxHeight: arcContent.style.maxHeight,
-                opacity: arcContent.style.opacity,
-                overflow: arcContent.style.overflow,
-                display: arcContent.style.display,
-                visibility: arcContent.style.visibility
-            });
-
             const computedStyles = window.getComputedStyle(arcContent);
-            console.log('Computed styles:', {
-                maxHeight: computedStyles.maxHeight,
-                opacity: computedStyles.opacity,
-                overflow: computedStyles.overflow,
-                display: computedStyles.display,
-                visibility: computedStyles.visibility,
-                transition: computedStyles.transition
-            });
         }
 
         if (arcHeader) {
-            console.log('Calling toggleArcSimple...');
             window.toggleArcSimple(arcHeader);
         }
     }
 };
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Timeline page loaded');
-
-
     initializeArcs();
-
-
     window.timelineManager = new TimelineManager();
-
-
     document.body.style.paddingTop = '80px';
-
 
     const timelineContainer = document.querySelector('.timeline-container');
     const timelineYears = document.querySelectorAll('.timeline-year');
@@ -699,7 +663,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (timelineContainer) {
         timelineContainer.style.display = 'block';
         timelineContainer.style.visibility = 'visible';
-        console.log('Timeline container made visible');
     }
 
 
@@ -707,7 +670,6 @@ document.addEventListener('DOMContentLoaded', () => {
         year.style.display = 'block';
         year.style.opacity = '1';
         year.style.transform = 'translateY(0)';
-        console.log(`Timeline year ${index + 1} made visible`);
     });
 
 
@@ -717,5 +679,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    console.log('Timeline initialization complete');
 });

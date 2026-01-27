@@ -71,9 +71,6 @@ function setStat(id, value) {
 }
 
 function updateOverview() {
-  console.log("updateOverview called");
-
-  
   setStat("population-value", JURA_TEMPEST_STATS.population.total);
   setStat("military-value", JURA_TEMPEST_STATS.defense.totalPersonnel);
 
@@ -92,23 +89,19 @@ function updateOverview() {
     console.error("Technology element not found!");
   }
 
-  
-  console.log("Creating stat card breakdowns...");
+
   try {
     createPopulationBreakdown();
     createDefenseBreakdown();
     createEconomyBreakdown();
     createTechnologyBreakdown();
-    console.log("All stat card breakdowns created successfully!");
   } catch (error) {
     console.error("Error creating breakdowns:", error);
   }
 }
 
 function createPopulationBreakdown() {
-  console.log("Creating population breakdown...");
   const card = document.getElementById("population-card");
-  console.log("Population card element:", card);
 
   if (!card) {
     console.error("Population card not found!");
@@ -116,11 +109,9 @@ function createPopulationBreakdown() {
   }
 
   const breakdown = JURA_TEMPEST_STATS.population.breakdown;
-  console.log("Population breakdown data:", breakdown);
 
   const existingBreakdown = card.querySelector('.stat-breakdown');
   if (existingBreakdown) {
-    console.log("Removing existing breakdown");
     existingBreakdown.remove();
   }
 
@@ -160,13 +151,10 @@ function createPopulationBreakdown() {
     </div>
   `;
 
-  console.log("Appending breakdown to card");
   card.appendChild(breakdownDiv);
-  console.log("Population breakdown created successfully!");
 }
 
 function createDefenseBreakdown() {
-  console.log("Creating defense breakdown...");
   const card = document.getElementById("military-card");
   if (!card) {
     console.error("Military card not found!");
@@ -223,13 +211,10 @@ function createDefenseBreakdown() {
     </div>
   `;
   card.appendChild(breakdownDiv);
-  console.log("Defense breakdown created successfully!");
 }
 
 function createEconomyBreakdown() {
-  console.log("Creating economy breakdown...");
   const card = document.getElementById("economy-card");
-  console.log("Economy card element:", card);
 
   if (!card) {
     console.error("Economy card not found!");
@@ -286,13 +271,10 @@ function createEconomyBreakdown() {
     </div>
   `;
   card.appendChild(breakdownDiv);
-  console.log("Economy breakdown created successfully!");
 }
 
 function createTechnologyBreakdown() {
-  console.log("Creating technology breakdown...");
   const card = document.getElementById("technology-card");
-  console.log("Technology card element:", card);
 
   if (!card) {
     console.error("Technology card not found!");
@@ -349,7 +331,6 @@ function createTechnologyBreakdown() {
     </div>
   `;
   card.appendChild(breakdownDiv);
-  console.log("Technology breakdown created successfully!");
 }
 
 function addEvent(icon, text) {
@@ -373,10 +354,10 @@ function renderEventLog() {
     .join("");
 }
 function initInteractiveElements() {
-  
+
   const supportsHover = window.matchMedia('(hover: hover)').matches;
 
-  
+
   initChartControls();
 
   document.querySelectorAll('.stat-card').forEach(el => {
@@ -388,13 +369,13 @@ function initInteractiveElements() {
       });
     }
 
-    
+
     el.addEventListener('click', () => {
       if (window.SoundFeedback) {
         window.SoundFeedback.playEffect('click');
       }
 
-      
+
       if (!supportsHover) {
         el.style.transform = 'scale(0.98)';
         setTimeout(() => {
@@ -404,7 +385,7 @@ function initInteractiveElements() {
     });
   });
 
-  
+
   document.querySelectorAll('.state-card').forEach(el => {
     if (supportsHover) {
       el.addEventListener('mouseenter', () => {
@@ -414,7 +395,7 @@ function initInteractiveElements() {
       });
     }
 
-    
+
     el.addEventListener('click', () => {
       if (window.SoundFeedback) {
         window.SoundFeedback.playEffect('click');
@@ -422,14 +403,14 @@ function initInteractiveElements() {
     });
   });
 
-  
+
   document.querySelectorAll('.strength-category').forEach(el => {
     el.addEventListener('click', () => {
       if (window.SoundFeedback) {
         window.SoundFeedback.playEffect('click');
       }
 
-      
+
       el.style.transform = 'scale(0.98)';
       setTimeout(() => {
         el.style.transform = '';
@@ -437,7 +418,7 @@ function initInteractiveElements() {
     });
   });
 
-  
+
   document.querySelectorAll('.badge').forEach(badge => {
     if (supportsHover) {
       badge.addEventListener('mouseenter', () => {
@@ -452,7 +433,7 @@ function initInteractiveElements() {
         window.SoundFeedback.playEffect('click');
       }
 
-      
+
       const ripple = document.createElement('div');
       ripple.style.cssText = `
         position: absolute;
@@ -478,7 +459,7 @@ function initInteractiveElements() {
     });
   });
 
-  
+
   const federationEmblem = document.querySelector('.federation-emblem');
   if (federationEmblem) {
     federationEmblem.addEventListener('click', () => {
@@ -511,18 +492,18 @@ function initChartControls() {
 
   chartControls.forEach(btn => {
     btn.addEventListener('click', () => {
-      
+
       chartControls.forEach(b => b.classList.remove('active'));
 
-      
+
       btn.classList.add('active');
 
-      
+
       if (window.SoundFeedback) {
         window.SoundFeedback.playEffect('click');
       }
 
-      
+
       const period = btn.dataset.period;
       updateAnalyticsByPeriod(period);
     });
@@ -532,11 +513,11 @@ function updateAnalyticsByPeriod(period) {
   const analyticsOverview = document.getElementById('analytics-overview');
   if (!analyticsOverview) return;
 
-  
+
   analyticsOverview.style.opacity = '0.5';
 
   setTimeout(() => {
-    
+
     const periodMultipliers = {
       live: 1,
       daily: 0.95,
@@ -546,17 +527,15 @@ function updateAnalyticsByPeriod(period) {
 
     const multiplier = periodMultipliers[period] || 1;
 
-    
+
     renderAnalyticsOverview(multiplier);
 
-    
+
     analyticsOverview.style.opacity = '1';
   }, 300);
 }
 function renderAnalyticsOverview(multiplier = 1) {
-  console.log("renderAnalyticsOverview called with multiplier:", multiplier);
   const overview = document.getElementById("analytics-overview");
-  console.log("Analytics overview element found:", !!overview);
 
   if (!overview) {
     console.error("Analytics overview element not found!");
@@ -565,7 +544,7 @@ function renderAnalyticsOverview(multiplier = 1) {
 
   overview.innerHTML = "";
 
-  
+
   const analyticsData = [
     {
       title: "Governance Excellence",
@@ -596,7 +575,6 @@ function renderAnalyticsOverview(multiplier = 1) {
     }
   ];
 
-  console.log("Creating", analyticsData.length, "analytics sections");
   analyticsData.forEach((section, index) => {
     const sectionDiv = document.createElement('div');
     sectionDiv.className = 'analytics-section';
@@ -619,27 +597,24 @@ function renderAnalyticsOverview(multiplier = 1) {
     `;
 
     overview.appendChild(sectionDiv);
-    console.log(`Added section ${index + 1}: ${section.title}`);
   });
-
-  console.log("Analytics overview rendering completed!");
 }
 function initMobileOptimizations() {
-  
+
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
   if (isMobile) {
-    
+
     document.documentElement.style.setProperty('--animation-duration', '0.3s');
 
-    
+
     document.body.classList.add('mobile-device');
 
-    
+
     document.addEventListener('touchstart', function() {}, { passive: true });
     document.addEventListener('touchmove', function() {}, { passive: true });
 
-    
+
     const setVH = () => {
       const vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -664,7 +639,7 @@ function initIntersectionObserver() {
       rootMargin: '50px'
     });
 
-    
+
     document.querySelectorAll('.stat-card, .state-card, .analytics-section').forEach(el => {
       observer.observe(el);
     });
@@ -681,10 +656,10 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.transform = 'translateY(0)';
   }, 100);
 
-  
+
   initMobileOptimizations();
 
-  
+
   setTimeout(() => {
     updateOverview();
     renderAnalyticsOverview();
