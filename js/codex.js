@@ -4,244 +4,6 @@ let currentView = "grid";
 let raceFilter = "";
 let powerFilter = "";
 let isMobile = window.innerWidth <= 768;
-const characterDescriptions = {
-  rimuru:
-    "The founder and leader of the Jura Tempest Federation. Originally a human who was reincarnated as a slime, Rimuru possesses the unique ability to absorb and mimic other creatures' abilities.",
-  diablo:
-    "One of the most powerful demons in existence, serving as Rimuru's secretary and loyal subordinate. Known for his unwavering devotion and terrifying combat abilities.",
-  shion:
-    "Rimuru's devoted secretary and bodyguard. An Oni with incredible physical strength and an unfortunate tendency to destroy things while trying to help.",
-  benimaru:
-    "The military commander of the Jura Tempest Federation. A skilled strategist and powerful warrior who leads the Federation's armed forces.",
-  shuna:
-    "Benimaru's sister and the Federation's head of domestic affairs. Known for her gentle nature, exceptional cooking skills, and mastery of barrier magic.",
-  souei:
-    "The head of intelligence and espionage for the Federation. A master of stealth and information gathering with shadow manipulation abilities.",
-  hakuro:
-    "An elderly swordsman and master instructor. Despite his age, he remains one of the most skilled combatants in the Federation.",
-  ranga:
-    "Rimuru's loyal companion and mount. A Tempest Wolf with incredible speed and the ability to manipulate storms and lightning.",
-  gobta:
-    "A goblin warrior known for his luck and unexpected moments of competence. Often serves as comic relief but has proven surprisingly capable in battle.",
-  rigurd:
-    "The village chief and one of Rimuru's first named monsters. A hobgoblin who handles much of the Federation's administrative duties.",
-  milim:
-    "One of the oldest and most powerful Demon Lords. Despite her childlike appearance and personality, she possesses devastating destructive power.",
-  veldora:
-    'A True Dragon and Rimuru\'s sworn friend. Known as the "Storm Dragon," he was sealed for centuries before being freed by Rimuru.',
-  guy: "The oldest Demon Lord and one of the most powerful beings in existence. Rules over the frozen continent and maintains the balance of power among Demon Lords.",
-  leon: "A Demon Lord who rules over the Holy Empire of Ruberios. Known for his pride and powerful magic abilities.",
-  luminous:
-    "The Demon Lord who rules over the Holy Empire of Ruberios alongside Leon. A vampire with incredible regenerative abilities and light magic.",
-  ramiris:
-    "The Fairy Queen and a former Demon Lord. Despite her small size and childlike demeanor, she possesses ancient wisdom and powerful magic.",
-  carrion:
-    "The Beast King and ruler of the Animal Kingdom of Eurazania. A powerful beastman with incredible physical abilities.",
-  frey: "The Sky Queen and ruler of the Harpy Kingdom. Known for her aerial combat abilities and wind magic.",
-  clayman:
-    "A former Demon Lord known for his scheming and manipulation. Often considered one of the weaker Demon Lords in terms of direct combat.",
-  dagruel:
-    "The Giant King and one of the oldest Demon Lords. Possesses immense physical strength and rules over the giants.",
-  dino: "The Sleeping Ruler, known for his laziness despite being incredibly powerful. Prefers to avoid conflict and sleep.",
-  zelanus:
-    "A powerful angel serving under the True Dragon Veldanava. Known for his unwavering loyalty and divine magic.",
-  feldway:
-    "A high-ranking angel with incredible power and authority. Serves as one of the primary antagonists in later conflicts.",
-  michael:
-    "An archangel with immense power and influence. Plays a significant role in the cosmic balance of the world.",
-  gabriel:
-    "An archangel known for divine magic and healing abilities. Often works alongside other angels in maintaining order.",
-  raphael:
-    "An archangel with analytical abilities and strategic thinking. Often provides guidance and support in complex situations.",
-  uriel:
-    "An archangel with powerful defensive and protective abilities. Known for creating barriers and shields.",
-  raguel:
-    "An archangel focused on justice and punishment. Often involved in judging and executing divine will.",
-  sariel:
-    "An archangel with unique abilities related to death and rebirth. Plays a complex role in the cosmic order.",
-  adalmann:
-    "A powerful undead mage who serves Rimuru. Originally an enemy, he became a loyal subordinate after being defeated.",
-  apito:
-    "A bee-type monster with incredible speed and agility. Serves as a scout and messenger for the Federation.",
-  beretta:
-    "A doll-type golem created by Ramiris. Possesses incredible defensive abilities and serves as Ramiris's protector.",
-  carrera:
-    "One of the three Primordial Demons summoned by Rimuru. Known for her destructive tendencies and explosive magic.",
-  testarossa:
-    "The eldest of the three Primordial Demons. Possesses incredible intelligence and strategic thinking abilities.",
-  ultima:
-    "The youngest of the three Primordial Demons. Known for her playful nature and powerful combat abilities.",
-  zegion:
-    "An insect-type monster who serves as one of Rimuru's most powerful subordinates. Possesses incredible combat abilities.",
-  kumara:
-    "A nine-tailed fox with powerful illusion and fire magic. Serves as one of Rimuru's trusted companions.",
-  gabiru:
-    "A lizardman warrior known for his enthusiasm and loyalty. Often overestimates his abilities but has a good heart.",
-  geld: "A former orc lord who now serves Rimuru. Handles much of the Federation's construction and infrastructure projects.",
-  hinata:
-    "A powerful human warrior and leader of the Western Holy Church's crusaders. Initially an enemy but later becomes an ally.",
-  yuuki:
-    "A former otherworlder with powerful abilities. Plays a complex role as both ally and antagonist throughout the series.",
-  chloe:
-    "A mysterious individual with time manipulation abilities. Her true nature and origins are shrouded in mystery.",
-  gazef:
-    "A skilled human warrior and knight. Known for his honor and dedication to protecting others.",
-  velgrynd:
-    'A True Dragon known as the "Scorch Dragon." Possesses incredible fire-based abilities and ancient wisdom.',
-  velzard:
-    'A True Dragon known as the "Frost Dragon." The oldest of the True Dragons with ice manipulation abilities.',
-};
-
-const characterAbilities = {
-  rimuru: ["Predator", "Great Sage", "Storm Magic", "Spatial Magic", "Mimicry"],
-  diablo: [
-    "Temptation",
-    "Death Magic",
-    "Spatial Magic",
-    "Illusion Magic",
-    "Demon Summoning",
-  ],
-  shion: [
-    "Hercules",
-    "Cook",
-    "Thought Acceleration",
-    "Analytical Appraisal",
-    "Spatial Motion",
-  ],
-  benimaru: [
-    "Hell Flare",
-    "Black Lightning",
-    "Samurai Spirit",
-    "Strategic Thinking",
-    "Fire Magic",
-  ],
-  shuna: [
-    "Analyst",
-    "Barrier Magic",
-    "Cooking",
-    "Thread Manipulation",
-    "Spatial Magic",
-  ],
-  souei: [
-    "Shadow Motion",
-    "Stealth",
-    "Information Analysis",
-    "Clone",
-    "Assassination Arts",
-  ],
-  hakuro: [
-    "Swordsmanship",
-    "Iaido",
-    "Teaching",
-    "Battle Instinct",
-    "Weapon Mastery",
-  ],
-  ranga: [
-    "Storm Magic",
-    "Lightning Speed",
-    "Pack Leadership",
-    "Howling",
-    "Wind Manipulation",
-  ],
-  milim: [
-    "Drago Nova",
-    "Milim Eye",
-    "Dragon Spirit Haki",
-    "Stampede",
-    "Destruction Magic",
-  ],
-  veldora: [
-    "Storm Magic",
-    "Probability Manipulation",
-    "Investigator",
-    "Manga Otaku",
-    "Dragon Roar",
-  ],
-  guy: [
-    "Frost Magic",
-    "Absolute Zero",
-    "Prideful King",
-    "Strategic Mind",
-    "Ice Manipulation",
-  ],
-  leon: [
-    "Disintegration",
-    "Spatial Domination",
-    "Prideful King",
-    "Light Magic",
-    "Barrier Magic",
-  ],
-  luminous: [
-    "Vampire",
-    "Regeneration",
-    "Light Magic",
-    "Blood Magic",
-    "Immortality",
-  ],
-  ramiris: [
-    "Labyrinth Creation",
-    "Fairy Magic",
-    "Dimensional Magic",
-    "Ancient Wisdom",
-    "Spirit Magic",
-  ],
-  carrion: [
-    "Beast Transformation",
-    "Physical Enhancement",
-    "Pack Leadership",
-    "Roar",
-    "Claw Arts",
-  ],
-  clayman: [
-    "Marionette Master",
-    "Doll Creation",
-    "Mind Control",
-    "Scheming",
-    "Manipulation",
-  ],
-  dagruel: [
-    "Colossal Strength",
-    "Earth Magic",
-    "Giant Transformation",
-    "Earthquake",
-    "Rock Manipulation",
-  ],
-  adalmann: [
-    "Death Magic",
-    "Undead Summoning",
-    "Bone Magic",
-    "Curse Magic",
-    "Necromancy",
-  ],
-  zegion: [
-    "Absolute Defense",
-    "Spatial Domination",
-    "Insect Magic",
-    "Hive Mind",
-    "Evolution",
-  ],
-  carrera: [
-    "Nuclear Magic",
-    "Explosion Magic",
-    "Destruction",
-    "Atomic Manipulation",
-    "Energy Blast",
-  ],
-  testarossa: [
-    "Death Magic",
-    "Strategic Mind",
-    "Analytical Thinking",
-    "Curse Magic",
-    "Intelligence",
-  ],
-  ultima: [
-    "Poison Magic",
-    "Insect Magic",
-    "Playful Combat",
-    "Toxin Creation",
-    "Swarm Control",
-  ],
-};
 async function updateStatistics() {
   if (!window.GameState) {
     console.error("GameState not available for statistics");
@@ -481,13 +243,6 @@ function renderCurrentPage() {
               spd: Math.floor(Math.random() * 50) + 50,
             };
 
-            const description =
-              characterDescriptions[character.id] ||
-              "A mysterious character with unknown origins and abilities.";
-            const abilities = characterAbilities[character.id] || [
-              "Unknown Ability",
-            ];
-
             const hexToRgb = (hex) => {
               const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(
                 hex,
@@ -515,13 +270,7 @@ function renderCurrentPage() {
                 : "";
 
             if (currentView === "detailed") {
-              return renderDetailedCharacterCard(
-                character,
-                description,
-                abilities,
-                stats,
-                cssVars,
-              );
+              return renderDetailedCharacterCard(character, "", [], stats, cssVars);
             } else {
               return renderCompactCharacterCard(character, stats, cssVars);
             }
@@ -541,13 +290,6 @@ function renderCurrentPage() {
               spd: Math.floor(Math.random() * 50) + 50,
             };
 
-            const description =
-              characterDescriptions[character.id] ||
-              "A mysterious character with unknown origins and abilities.";
-            const abilities = characterAbilities[character.id] || [
-              "Unknown Ability",
-            ];
-
             const hexToRgb = (hex) => {
               const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(
                 hex,
@@ -575,13 +317,7 @@ function renderCurrentPage() {
                 : "";
 
             if (currentView === "detailed") {
-              return renderDetailedCharacterCard(
-                character,
-                description,
-                abilities,
-                stats,
-                cssVars,
-              );
+              return renderDetailedCharacterCard(character, "", [], stats, cssVars);
             } else {
               return renderCompactCharacterCard(character, stats, cssVars);
             }
@@ -605,13 +341,6 @@ function renderCurrentPage() {
               def: Math.floor(Math.random() * 50) + 50,
               spd: Math.floor(Math.random() * 50) + 50,
             };
-
-            const description =
-              characterDescriptions[character.id] ||
-              "A mysterious character with unknown origins and abilities.";
-            const abilities = characterAbilities[character.id] || [
-              "Unknown Ability",
-            ];
 
             const hexToRgb = (hex) => {
               const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(
@@ -640,13 +369,7 @@ function renderCurrentPage() {
                 : "";
 
             if (currentView === "detailed") {
-              return renderDetailedCharacterCard(
-                character,
-                description,
-                abilities,
-                stats,
-                cssVars,
-              );
+              return renderDetailedCharacterCard(character, "", [], stats, cssVars);
             } else {
               return renderCompactCharacterCard(character, stats, cssVars);
             }
@@ -664,13 +387,11 @@ function renderCurrentPage() {
   }, 100);
 }
 
-function renderDetailedCharacterCard(
-  character,
-  description,
-  abilities,
-  stats,
-  cssVars,
-) {
+function renderDetailedCharacterCard(character, description, abilities, stats, cssVars) {
+  // Get description and abilities from character data or use defaults
+  const charDescription = character.lore || character.backstory || "A mysterious character with unknown origins and abilities.";
+  const charAbilities = character.skills ? character.skills.slice(0, 3).map(s => s.name) : ["Unknown Ability"];
+
   return `
     <div class="character-card character-themed ${character.id === "diablo" ? "dark-theme" : ""}"
          style="${cssVars}" data-character-id="${character.id}">
@@ -686,7 +407,7 @@ function renderDetailedCharacterCard(
             <p class="character-title">${character.race} - ${character.role}</p>
 
             <div class="character-description">
-                ${description}
+                ${charDescription}
             </div>
 
             <div class="character-stats">
@@ -707,8 +428,7 @@ function renderDetailedCharacterCard(
             <div class="character-abilities">
                 <h4>Key Abilities</h4>
                 <div class="abilities-list">
-                    ${abilities
-                      .slice(0, 3)
+                    ${charAbilities
                       .map(
                         (ability) =>
                           `<span class="ability-tag">${ability}</span>`,
@@ -1092,10 +812,8 @@ async function openCharacterModal(characterId) {
     const modal = document.getElementById("character-modal");
     const modalBody = document.getElementById("modal-body");
 
-    const description =
-      characterDescriptions[character.id] ||
-      "A mysterious character with unknown origins and abilities.";
-    const abilities = characterAbilities[character.id] || ["Unknown Ability"];
+    const description = character.lore || character.backstory || "A mysterious character with unknown origins and abilities.";
+    const abilities = character.skills ? character.skills.slice(0, 3).map(s => s.name) : ["Unknown Ability"];
 
     const modalContent = `
     <div class="modal-character-header">
