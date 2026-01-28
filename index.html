@@ -103,12 +103,6 @@
             </div>
             <h1 class="title">Jura Tempest Federation</h1>
             <p class="subtitle">A Kingdom Born of Bonds and Magic</p>
-
-            <!-- Status indicator -->
-            <div class="federation-status">
-                <div class="status-dot"></div>
-                <span class="status-text">Federation Online</span>
-            </div>
         </div>
 
         <!-- Enhanced lore section -->
@@ -143,28 +137,28 @@
 
         <!-- Enhanced button group -->
         <div class="button-group">
-            <button class="primary-button" onclick="enterFederation()" data-tooltip="Access the main overview">
+            <button class="primary-button" onclick="enterFederation(event)" data-tooltip="Access the main overview">
                 <span class="button-glow"></span>
                 <span class="button-icon">🏛️</span>
                 <span class="button-text">Enter Federation</span>
                 <span class="button-particles"></span>
             </button>
-            <button class="secondary-button" onclick="openCodex()" data-tooltip="Browse character profiles">
+            <button class="secondary-button" onclick="openCodex(event)" data-tooltip="Browse character profiles">
                 <span class="button-glow"></span>
                 <span class="button-icon">📚</span>
                 <span class="button-text">Character Codex</span>
             </button>
-            <button class="tertiary-button" onclick="openSkills()" data-tooltip="Explore skills database">
+            <button class="tertiary-button" onclick="openSkills(event)" data-tooltip="Explore skills database">
                 <span class="button-glow"></span>
                 <span class="button-icon">✨</span>
                 <span class="button-text">Skills Database</span>
             </button>
-            <button class="tertiary-button" onclick="openTimeline()" data-tooltip="Browse historical timeline">
+            <button class="tertiary-button" onclick="openTimeline(event)" data-tooltip="Browse historical timeline">
                 <span class="button-glow"></span>
                 <span class="button-icon">📜</span>
                 <span class="button-text">Chronicle Timeline</span>
             </button>
-            <button class="tertiary-button" onclick="openHistoricalRecords()" data-tooltip="Historical Records">
+            <button class="tertiary-button" onclick="openHistoricalRecords(event)" data-tooltip="Historical Records">
                 <span class="button-glow"></span>
                 <span class="button-icon">🧠</span>
                 <span class="button-text">Historical Records</span>
@@ -173,9 +167,6 @@
 
         <!-- Quick access menu -->
         <div class="quick-access">
-            <div class="quick-item" onclick="toggleSound()" data-tooltip="Toggle sound effects">
-                <span class="quick-icon" id="sound-icon">🔊</span>
-            </div>
             <div class="quick-item" onclick="showInfo()" data-tooltip="About this project">
                 <span class="quick-icon">ℹ️</span>
             </div>
@@ -280,6 +271,14 @@
     <script>
         let soundEnabled = true;
 
+        // Create SoundFeedback object to prevent errors
+        window.SoundFeedback = {
+            playEffect: function (effectType) {
+                // Placeholder for sound effects - can be implemented later
+                console.log('Sound effect:', effectType);
+            }
+        };
+
         function initializeApp() {
             const loadingScreen = document.getElementById('loading-screen');
             const introContainer = document.getElementById('intro-container');
@@ -328,27 +327,30 @@
         }
 
         function addSlimeInteractivity() {
-            const slimeOrb = document.getElementById('slime-orb');
+            const slimeOrb = document.querySelector('.main-logo-icon');
 
-            slimeOrb.addEventListener('mouseenter', () => {
-                slimeOrb.classList.add('hover');
-                if (soundEnabled) SoundFeedback.playEffect('hover');
-            });
+            if (slimeOrb) {
+                slimeOrb.addEventListener('mouseenter', () => {
+                    slimeOrb.classList.add('hover');
+                    if (soundEnabled) SoundFeedback.playEffect('hover');
+                });
 
-            slimeOrb.addEventListener('mouseleave', () => {
-                slimeOrb.classList.remove('hover');
-            });
+                slimeOrb.addEventListener('mouseleave', () => {
+                    slimeOrb.classList.remove('hover');
+                });
 
-            slimeOrb.addEventListener('click', () => {
-                slimeOrb.classList.add('clicked');
-                if (soundEnabled) SoundFeedback.playEffect('click');
-                setTimeout(() => {
-                    slimeOrb.classList.remove('clicked');
-                }, 600);
-            });
+                slimeOrb.addEventListener('click', () => {
+                    slimeOrb.classList.add('clicked');
+                    if (soundEnabled) SoundFeedback.playEffect('click');
+                    setTimeout(() => {
+                        slimeOrb.classList.remove('clicked');
+                    }, 600);
+                });
+            }
         }
 
-        function enterFederation() {
+        function enterFederation(event) {
+            console.log('Enter Federation button clicked');
             if (soundEnabled) SoundFeedback.playEffect('click');
             addButtonEffect(event.target);
             setTimeout(() => {
@@ -356,7 +358,8 @@
             }, 300);
         }
 
-        function openCodex() {
+        function openCodex(event) {
+            console.log('Open Codex button clicked');
             if (soundEnabled) SoundFeedback.playEffect('click');
             addButtonEffect(event.target);
             setTimeout(() => {
@@ -364,7 +367,8 @@
             }, 300);
         }
 
-        function openSkills() {
+        function openSkills(event) {
+            console.log('Open Skills button clicked');
             if (soundEnabled) SoundFeedback.playEffect('click');
             addButtonEffect(event.target);
             setTimeout(() => {
@@ -373,7 +377,8 @@
         }
 
 
-        function openTimeline() {
+        function openTimeline(event) {
+            console.log('Open Timeline button clicked');
             if (soundEnabled) SoundFeedback.playEffect('click');
             addButtonEffect(event.target);
             setTimeout(() => {
@@ -381,19 +386,10 @@
             }, 300);
         }
 
-        function openHistoricalRecords() {
+        function openHistoricalRecords(event) {
+            console.log('Open Historical Records button clicked');
             if (soundEnabled) SoundFeedback.playEffect('click');
             window.location.href = 'records.html';
-        }
-
-        function toggleSound() {
-            soundEnabled = !soundEnabled;
-            const soundIcon = document.getElementById('sound-icon');
-            soundIcon.textContent = soundEnabled ? '🔊' : '🔇';
-
-            if (soundEnabled) {
-                SoundFeedback.playEffect('click');
-            }
         }
 
         function showInfo() {
@@ -407,10 +403,12 @@
         }
 
         function addButtonEffect(button) {
-            button.classList.add('clicked');
-            setTimeout(() => {
-                button.classList.remove('clicked');
-            }, 300);
+            if (button) {
+                button.classList.add('clicked');
+                setTimeout(() => {
+                    button.classList.remove('clicked');
+                }, 300);
+            }
         }
 
         document.addEventListener('keydown', (e) => {

@@ -615,61 +615,6 @@ body::before {
 .nav-links a:hover .nav-icon {
   transform: scale(1.2) rotate(5deg);
 }
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-.nav-action-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0.05)
-  );
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  color: var(--text-light);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-.nav-action-btn::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(77, 212, 255, 0.2), transparent);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.nav-action-btn:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(77, 212, 255, 0.2),
-    rgba(77, 212, 255, 0.1)
-  );
-  border-color: var(--primary-blue);
-  color: var(--primary-blue);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(77, 212, 255, 0.3);
-}
-.nav-action-btn:hover::before {
-  opacity: 1;
-}
-.nav-action-btn .icon {
-  font-size: 1.1rem;
-  transition: transform 0.3s ease;
-  position: relative;
-  z-index: 1;
-}
-.nav-action-btn:hover .icon {
-  transform: scale(1.1);
-}
 @keyframes navSlideDown {
   from {
     opacity: 0;

@@ -445,26 +445,6 @@ function toggleMobileMenu() {
     window.SoundFeedback.playEffect("click");
   }
 }
-function toggleSound() {
-  soundEnabled = !soundEnabled;
-  const soundIcon = document.getElementById("sound-toggle");
-  soundIcon.textContent = soundEnabled ? "🔊" : "🔇";
-
-  if (soundEnabled && window.SoundFeedback) {
-    window.SoundFeedback.playEffect("click");
-  }
-}
-function toggleFullscreen() {
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen().catch((err) => {});
-  } else {
-    document.exitFullscreen();
-  }
-
-  if (soundEnabled && window.SoundFeedback) {
-    window.SoundFeedback.playEffect("click");
-  }
-}
 function scrollToTop() {
   window.scrollTo({
     top: 0,
@@ -578,8 +558,6 @@ document.addEventListener("keydown", (e) => {
   }
 });
 window.toggleMobileMenu = toggleMobileMenu;
-window.toggleSound = toggleSound;
-window.toggleFullscreen = toggleFullscreen;
 window.scrollToTop = scrollToTop;
 window.testArcExpansion = function () {
   const firstArc = document.querySelector(".timeline-arc");

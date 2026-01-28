@@ -455,34 +455,6 @@
   animation: subtitleFloat 4s ease-in-out infinite;
 }
 
-.federation-status {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 255, 136, 0.1),
-    rgba(0, 255, 136, 0.05)
-  );
-  border: 1px solid rgba(0, 255, 136, 0.3);
-  border-radius: 20px;
-  font-size: 0.9rem;
-  color: var(--accent-emerald);
-  animation: statusPulse 2s ease-in-out infinite;
-}
-
-.status-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--accent-emerald);
-  border-radius: 50%;
-  box-shadow: 0 0 10px var(--accent-emerald-glow);
-  animation: dotPulse 2s ease-in-out infinite;
-}
-
 @keyframes titleShimmer {
   to {
     background-position: 300% center;
@@ -508,28 +480,6 @@
   }
   50% {
     transform: translateY(-3px);
-  }
-}
-
-@keyframes statusPulse {
-  0%,
-  100% {
-    opacity: 0.85;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-@keyframes dotPulse {
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.6;
-    transform: scale(1.2);
   }
 }
 

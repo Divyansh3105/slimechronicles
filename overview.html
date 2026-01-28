@@ -128,15 +128,6 @@
             </a>
         </div>
 
-        <div class="nav-actions">
-            <button class="nav-action-btn" onclick="toggleSound()" title="Toggle Sound">
-                <span class="icon" id="sound-toggle">🔊</span>
-            </button>
-            <button class="nav-action-btn" onclick="toggleFullscreen()" title="Fullscreen">
-                <span class="icon">⛶</span>
-            </button>
-        </div>
-
         <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
             <span></span>
             <span></span>
@@ -195,26 +186,26 @@
                     Tempest as a major continental power under the leadership of Demon Lord Rimuru Tempest.
                 </p>
                 <div class="welcome-badges">
-                    <div class="badge">
+                    <div class="badge" tabindex="0" role="button" aria-label="Federal Republic Information">
                         <span class="badge-icon">🏛️</span>
                         <span>Federal Republic</span>
                     </div>
-                    <div class="badge">
+                    <div class="badge" tabindex="0" role="button" aria-label="Continental Power Information">
                         <span class="badge-icon">🌍</span>
                         <span>Continental Power</span>
                     </div>
-                    <div class="badge">
+                    <div class="badge" tabindex="0" role="button" aria-label="Diplomatic Leader Information">
                         <span class="badge-icon">🤝</span>
                         <span>Diplomatic Leader</span>
                     </div>
-                    <div class="badge">
+                    <div class="badge" tabindex="0" role="button" aria-label="Innovation Hub Information">
                         <span class="badge-icon">🔬</span>
                         <span>Innovation Hub</span>
                     </div>
                 </div>
             </div>
             <div class="welcome-visual">
-                <div class="federation-emblem">
+                <div class="federation-emblem" tabindex="0" role="button" aria-label="Federation Emblem">
                     <div class="emblem-core">
                         <img src="assets/federation.jpg" alt="Jura Tempest Federation" class="emblem-image">
                     </div>
@@ -230,6 +221,8 @@
 
 
         <h2 class="section-title">Federation Analysis</h2>
+
+        <!-- Enhanced Quick Stats Dashboard -->
 
         <!-- Current State Summary -->
         <div class="state-summary mobile-stack">
@@ -323,7 +316,8 @@
         </div>
 
         <div class="nation-grid mobile-animate">
-            <div class="stat-card gold mobile-full-width" id="population-card">
+            <div class="stat-card gold mobile-full-width" id="population-card" tabindex="0" role="button"
+                aria-label="Population Statistics">
                 <div class="stat-header">
                     <div class="stat-icon">👥</div>
                 </div>
@@ -332,7 +326,8 @@
                 <div class="stat-subtext">Federation Citizens</div>
             </div>
 
-            <div class="stat-card crimson mobile-full-width" id="military-card">
+            <div class="stat-card crimson mobile-full-width" id="military-card" tabindex="0" role="button"
+                aria-label="Defense Statistics">
                 <div class="stat-header">
                     <div class="stat-icon">🛡️</div>
                 </div>
@@ -341,7 +336,8 @@
                 <div class="stat-subtext">Security & Defense Forces</div>
             </div>
 
-            <div class="stat-card cyan mobile-full-width" id="economy-card">
+            <div class="stat-card cyan mobile-full-width" id="economy-card" tabindex="0" role="button"
+                aria-label="Economic Statistics">
                 <div class="stat-header">
                     <div class="stat-icon">💼</div>
                 </div>
@@ -350,7 +346,8 @@
                 <div class="stat-subtext">High-income developed nation</div>
             </div>
 
-            <div class="stat-card purple mobile-full-width" id="technology-card">
+            <div class="stat-card purple mobile-full-width" id="technology-card" tabindex="0" role="button"
+                aria-label="Technology Statistics">
                 <div class="stat-header">
                     <div class="stat-icon">🔬</div>
                 </div>
@@ -360,18 +357,84 @@
             </div>
         </div>
 
-        <div class="chart-card">
-            <div class="chart-header">
-                <span class="chart-title">Federation Performance Metrics</span>
-                <div class="chart-controls">
-                    <button class="chart-control-btn active" data-period="live">Live</button>
-                    <button class="chart-control-btn" data-period="daily">Daily</button>
-                    <button class="chart-control-btn" data-period="weekly">Weekly</button>
-                    <button class="chart-control-btn" data-period="monthly">Monthly</button>
+        <!-- By the Numbers Section -->
+        <div class="by-numbers-section">
+            <h2 class="section-title">By the Numbers</h2>
+            <p class="section-subtitle">Real-world impact of "That Time I Got Reincarnated as a Slime"</p>
+
+            <div class="numbers-grid">
+                <div class="number-card anime-card" tabindex="0" role="button" aria-label="Anime Statistics">
+                    <div class="number-header">
+                        <div class="number-icon">📺</div>
+                        <div class="number-category">Anime Series</div>
+                    </div>
+                    <div class="number-stats">
+                        <div class="stat-item">
+                            <div class="stat-label">Episodes Aired</div>
+                            <div class="stat-number" id="episodes-count">72</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Seasons Released</div>
+                            <div class="stat-number" id="seasons-count">3</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Years Running</div>
+                            <div class="stat-number" id="anime-years">6</div>
+                        </div>
+                    </div>
+                    <div class="number-highlight">
+                        <span class="highlight-text">Global Phenomenon</span>
+                    </div>
+                </div>
+
+                <div class="number-card novel-card" tabindex="0" role="button" aria-label="Light Novel Statistics">
+                    <div class="number-header">
+                        <div class="number-icon">📚</div>
+                        <div class="number-category">Light Novel</div>
+                    </div>
+                    <div class="number-stats">
+                        <div class="stat-item">
+                            <div class="stat-label">Copies Sold</div>
+                            <div class="stat-number" id="copies-sold">30M+</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Volumes Published</div>
+                            <div class="stat-number" id="volumes-count">21</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Years of Legacy</div>
+                            <div class="stat-number" id="novel-years">10</div>
+                        </div>
+                    </div>
+                    <div class="number-highlight">
+                        <span class="highlight-text">Bestselling Series</span>
+                    </div>
+                </div>
+
+                <div class="number-card revenue-card" tabindex="0" role="button" aria-label="Revenue Statistics">
+                    <div class="number-header">
+                        <div class="number-icon">💰</div>
+                        <div class="number-category">Revenue Impact</div>
+                    </div>
+                    <div class="number-stats">
+                        <div class="stat-item">
+                            <div class="stat-label">Revenue Generated</div>
+                            <div class="stat-number" id="revenue-amount">¥50B+</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Merchandise Lines</div>
+                            <div class="stat-number" id="merchandise-lines">500+</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Global Markets</div>
+                            <div class="stat-number" id="global-markets">40+</div>
+                        </div>
+                    </div>
+                    <div class="number-highlight">
+                        <span class="highlight-text">Economic Powerhouse</span>
+                    </div>
                 </div>
             </div>
-            <!-- Analytics Overview -->
-            <div class="analytics-overview" id="analytics-overview"></div>
         </div>
     </main>
 

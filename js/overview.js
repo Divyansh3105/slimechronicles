@@ -354,38 +354,50 @@ function renderEventLog() {
     .join("");
 }
 function initInteractiveElements() {
-
   const supportsHover = window.matchMedia('(hover: hover)').matches;
 
+  // Enhanced stat card interactions
+  document.querySelectorAll('.stat-card').forEach((el, index) => {
+    // Add staggered animation
+    el.style.animationDelay = `${index * 0.1}s`;
 
-  initChartControls();
-
-  document.querySelectorAll('.stat-card').forEach(el => {
     if (supportsHover) {
       el.addEventListener('mouseenter', () => {
         if (window.SoundFeedback) {
           window.SoundFeedback.playEffect('hover');
         }
+        // Add subtle glow effect
+        el.style.filter = 'drop-shadow(0 0 20px rgba(77, 212, 255, 0.3))';
+      });
+
+      el.addEventListener('mouseleave', () => {
+        el.style.filter = '';
       });
     }
 
-
+    // Enhanced click interaction
     el.addEventListener('click', () => {
       if (window.SoundFeedback) {
         window.SoundFeedback.playEffect('click');
       }
 
+      // Create ripple effect
+      createRippleEffect(el, event);
 
-      if (!supportsHover) {
-        el.style.transform = 'scale(0.98)';
-        setTimeout(() => {
-          el.style.transform = '';
-        }, 150);
+      // Trigger detailed view (placeholder for future functionality)
+      showCardDetails(el.id);
+    });
+
+    // Keyboard support
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        el.click();
       }
     });
   });
 
-
+  // Enhanced state card interactions
   document.querySelectorAll('.state-card').forEach(el => {
     if (supportsHover) {
       el.addEventListener('mouseenter', () => {
@@ -395,22 +407,22 @@ function initInteractiveElements() {
       });
     }
 
-
     el.addEventListener('click', () => {
       if (window.SoundFeedback) {
         window.SoundFeedback.playEffect('click');
       }
+      createRippleEffect(el, event);
     });
   });
 
-
+  // Enhanced strength category interactions
   document.querySelectorAll('.strength-category').forEach(el => {
     el.addEventListener('click', () => {
       if (window.SoundFeedback) {
         window.SoundFeedback.playEffect('click');
       }
 
-
+      // Smooth scale animation
       el.style.transform = 'scale(0.98)';
       setTimeout(() => {
         el.style.transform = '';
@@ -418,7 +430,7 @@ function initInteractiveElements() {
     });
   });
 
-
+  // Enhanced badge interactions
   document.querySelectorAll('.badge').forEach(badge => {
     if (supportsHover) {
       badge.addEventListener('mouseenter', () => {
@@ -428,38 +440,53 @@ function initInteractiveElements() {
       });
     }
 
-    badge.addEventListener('click', () => {
+    badge.addEventListener('click', (e) => {
       if (window.SoundFeedback) {
         window.SoundFeedback.playEffect('click');
       }
 
+      createRippleEffect(badge, e);
+      showBadgeInfo(badge);
+    });
 
-      const ripple = document.createElement('div');
-      ripple.style.cssText = `
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(77, 212, 255, 0.3);
-        transform: scale(0);
-        animation: ripple 0.6s linear;
-        pointer-events: none;
-      `;
-
-      const rect = badge.getBoundingClientRect();
-      const size = Math.max(rect.width, rect.height);
-      ripple.style.width = ripple.style.height = size + 'px';
-      ripple.style.left = (rect.width / 2 - size / 2) + 'px';
-      ripple.style.top = (rect.height / 2 - size / 2) + 'px';
-
-      badge.style.position = 'relative';
-      badge.appendChild(ripple);
-
-      setTimeout(() => {
-        ripple.remove();
-      }, 600);
+    // Keyboard support
+    badge.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        badge.click();
+      }
     });
   });
 
+  // Enhanced number cards interactions
+  document.querySelectorAll('.number-card').forEach(card => {
+    if (supportsHover) {
+      card.addEventListener('mouseenter', () => {
+        if (window.SoundFeedback) {
+          window.SoundFeedback.playEffect('hover');
+        }
+      });
+    }
 
+    card.addEventListener('click', (e) => {
+      if (window.SoundFeedback) {
+        window.SoundFeedback.playEffect('click');
+      }
+
+      createRippleEffect(card, e);
+      showNumberCardDetails(card);
+    });
+
+    // Keyboard support
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.click();
+      }
+    });
+  });
+
+  // Enhanced federation emblem interaction
   const federationEmblem = document.querySelector('.federation-emblem');
   if (federationEmblem) {
     federationEmblem.addEventListener('click', () => {
@@ -468,136 +495,111 @@ function initInteractiveElements() {
       }
 
       const emblemCore = federationEmblem.querySelector('.emblem-core');
-      const rings = federationEmblem.querySelectorAll('.ring');
 
-      emblemCore.style.animation = 'none';
-      emblemCore.style.transform = 'scale(1.1)';
-
-      rings.forEach((ring, index) => {
-        ring.style.animationPlayState = 'paused';
-        setTimeout(() => {
-          ring.style.animationPlayState = 'running';
-        }, 100 * (index + 1));
-      });
+      // Simple scale animation
+      emblemCore.style.transform = 'scale(1.05)';
 
       setTimeout(() => {
-        emblemCore.style.animation = 'emblemFloat 4s ease-in-out infinite';
         emblemCore.style.transform = '';
-      }, 300);
+      }, 200);
+    });
+
+    // Keyboard support
+    federationEmblem.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        federationEmblem.click();
+      }
     });
   }
 }
-function initChartControls() {
-  const chartControls = document.querySelectorAll('.chart-control-btn');
 
-  chartControls.forEach(btn => {
-    btn.addEventListener('click', () => {
+// New helper functions
+function createRippleEffect(element, event) {
+  const ripple = document.createElement('div');
+  ripple.style.cssText = `
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(77, 212, 255, 0.3);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+    z-index: 100;
+  `;
 
-      chartControls.forEach(b => b.classList.remove('active'));
+  const rect = element.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height);
+  const x = event ? event.clientX - rect.left : rect.width / 2;
+  const y = event ? event.clientY - rect.top : rect.height / 2;
 
+  ripple.style.width = ripple.style.height = size + 'px';
+  ripple.style.left = (x - size / 2) + 'px';
+  ripple.style.top = (y - size / 2) + 'px';
 
-      btn.classList.add('active');
+  element.style.position = 'relative';
+  element.appendChild(ripple);
 
-
-      if (window.SoundFeedback) {
-        window.SoundFeedback.playEffect('click');
+  // Add ripple animation keyframes if not exists
+  if (!document.querySelector('#ripple-styles')) {
+    const style = document.createElement('style');
+    style.id = 'ripple-styles';
+    style.textContent = `
+      @keyframes ripple {
+        to {
+          transform: scale(4);
+          opacity: 0;
+        }
       }
-
-
-      const period = btn.dataset.period;
-      updateAnalyticsByPeriod(period);
-    });
-  });
-}
-function updateAnalyticsByPeriod(period) {
-  const analyticsOverview = document.getElementById('analytics-overview');
-  if (!analyticsOverview) return;
-
-
-  analyticsOverview.style.opacity = '0.5';
+    `;
+    document.head.appendChild(style);
+  }
 
   setTimeout(() => {
+    ripple.remove();
+  }, 600);
+}
 
-    const periodMultipliers = {
-      live: 1,
-      daily: 0.95,
-      weekly: 0.92,
-      monthly: 0.88
-    };
+function showCardDetails(cardId) {
+  // Placeholder for detailed view functionality
+  console.log(`Showing details for ${cardId}`);
 
-    const multiplier = periodMultipliers[period] || 1;
+  // Future: Could open a modal with detailed statistics
+  // For now, just add a subtle feedback
+  const card = document.getElementById(cardId);
+  if (card) {
+    card.style.transform = 'scale(1.05)';
+    setTimeout(() => {
+      card.style.transform = '';
+    }, 200);
+  }
+}
 
+function showNumberCardDetails(card) {
+  const category = card.querySelector('.number-category').textContent;
+  console.log(`Number card details: ${category}`);
 
-    renderAnalyticsOverview(multiplier);
+  // Simplified visual feedback
+  const icon = card.querySelector('.number-icon');
 
+  // Simple scale animation
+  icon.style.transform = 'scale(1.2)';
 
-    analyticsOverview.style.opacity = '1';
+  setTimeout(() => {
+    icon.style.transform = '';
   }, 300);
 }
-function renderAnalyticsOverview(multiplier = 1) {
-  const overview = document.getElementById("analytics-overview");
 
-  if (!overview) {
-    console.error("Analytics overview element not found!");
-    return;
-  }
+function showBadgeInfo(badge) {
+  // Placeholder for badge information display
+  const badgeText = badge.querySelector('span:last-child').textContent;
+  console.log(`Badge info: ${badgeText}`);
 
-  overview.innerHTML = "";
-
-
-  const analyticsData = [
-    {
-      title: "Governance Excellence",
-      metrics: [
-        { label: "Administrative Efficiency", value: Math.floor(96 * multiplier), color: "var(--slime-blue)" },
-        { label: "Policy Implementation", value: Math.floor(94 * multiplier), color: "var(--accent-cyan)" },
-        { label: "Citizen Engagement", value: Math.floor(92 * multiplier), color: "var(--accent-emerald)" },
-        { label: "Transparency Index", value: Math.floor(89 * multiplier), color: "var(--accent-gold)" }
-      ]
-    },
-    {
-      title: "Economic Performance",
-      metrics: [
-        { label: "GDP Growth Rate", value: Math.floor(88 * multiplier), color: "var(--accent-gold)" },
-        { label: "Trade Balance", value: Math.floor(91 * multiplier), color: "var(--accent-cyan)" },
-        { label: "Employment Rate", value: Math.floor(97 * multiplier), color: "var(--accent-emerald)" },
-        { label: "Innovation Investment", value: Math.floor(95 * multiplier), color: "var(--accent-purple)" }
-      ]
-    },
-    {
-      title: "Development Indicators",
-      metrics: [
-        { label: "Infrastructure Quality", value: Math.floor(93 * multiplier), color: "var(--accent-gold)" },
-        { label: "Education Standards", value: Math.floor(89 * multiplier), color: "var(--accent-purple)" },
-        { label: "Healthcare Access", value: Math.floor(94 * multiplier), color: "var(--accent-emerald)" },
-        { label: "Environmental Sustainability", value: Math.floor(87 * multiplier), color: "var(--accent-cyan)" }
-      ]
-    }
-  ];
-
-  analyticsData.forEach((section, index) => {
-    const sectionDiv = document.createElement('div');
-    sectionDiv.className = 'analytics-section';
-
-    sectionDiv.innerHTML = `
-      <h4 class="analytics-title">${section.title}</h4>
-      <div class="analytics-metrics">
-        ${section.metrics.map(metric => `
-          <div class="analytics-metric">
-            <div class="metric-header">
-              <span class="metric-name">${metric.label}</span>
-              <span class="metric-score">${metric.value}%</span>
-            </div>
-            <div class="metric-bar">
-              <div class="metric-fill" style="width: ${metric.value}%; background: ${metric.color}"></div>
-            </div>
-          </div>
-        `).join('')}
-      </div>
-    `;
-
-    overview.appendChild(sectionDiv);
-  });
+  // Future: Could show tooltip or modal with detailed information
+  // For now, just add visual feedback
+  badge.style.transform = 'scale(1.1)';
+  setTimeout(() => {
+    badge.style.transform = '';
+  }, 200);
 }
 function initMobileOptimizations() {
 
@@ -647,25 +649,112 @@ function initIntersectionObserver() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Enhanced loading sequence
   document.body.style.opacity = '0';
   document.body.style.transform = 'translateY(20px)';
+
+  // Preload critical resources
+  preloadCriticalResources();
 
   setTimeout(() => {
     document.body.style.transition = 'all 0.6s ease-out';
     document.body.style.opacity = '1';
-    document.body.style.transform = 'translateY(0)';
+    document.body.transform = 'translateY(0)';
   }, 100);
 
-
+  // Initialize mobile optimizations first
   initMobileOptimizations();
 
-
+  // Staggered initialization for better performance
   setTimeout(() => {
     updateOverview();
-    renderAnalyticsOverview();
+  }, 200);
+
+  setTimeout(() => {
     initInteractiveElements();
+  }, 600);
+
+  setTimeout(() => {
     initIntersectionObserver();
-  }, 300);
+    initPerformanceOptimizations();
+  }, 800);
+});
+
+// New performance optimization functions
+function preloadCriticalResources() {
+  // Preload federation image
+  const img = new Image();
+  img.src = 'assets/federation.jpg';
+
+  // Preload fonts if needed
+  if ('fonts' in document) {
+    document.fonts.load('1rem Cinzel');
+    document.fonts.load('1rem Rajdhani');
+  }
+}
+
+function initPerformanceOptimizations() {
+  // Throttle scroll events
+  let scrollTimeout;
+  window.addEventListener('scroll', () => {
+    if (scrollTimeout) {
+      clearTimeout(scrollTimeout);
+    }
+    scrollTimeout = setTimeout(() => {
+      updateScrollProgress();
+    }, 16); // ~60fps
+  }, { passive: true });
+
+  // Optimize animations for low-end devices
+  if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
+    document.documentElement.style.setProperty('--animation-duration', '0.1s');
+    // Disable complex animations on low-end devices
+    document.documentElement.classList.add('reduced-animations');
+  }
+
+  // Reduce motion for users who prefer it
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.style.setProperty('--animation-duration', '0.01s');
+    document.documentElement.classList.add('reduced-animations');
+  }
+
+  // Optimize for mobile devices
+  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    document.documentElement.classList.add('mobile-optimized');
+  }
+}
+
+function updateScrollProgress() {
+  const scrolled = window.pageYOffset;
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = (scrolled / maxScroll) * 100;
+
+  const progressBar = document.getElementById('nav-progress');
+  if (progressBar) {
+    progressBar.style.width = `${progress}%`;
+    progressBar.classList.toggle('visible', scrolled > 100);
+  }
+}
+
+// Enhanced error handling
+window.addEventListener('error', (e) => {
+  console.error('Overview page error:', e.error);
+  // Could implement user-friendly error reporting here
+});
+
+// Enhanced visibility change handling
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    // Pause animations when tab is not visible
+    document.querySelectorAll('.stat-card, .emblem-core, .ring').forEach(el => {
+      el.style.animationPlayState = 'paused';
+    });
+  } else {
+    // Resume animations when tab becomes visible
+    document.querySelectorAll('.stat-card, .emblem-core, .ring').forEach(el => {
+      el.style.animationPlayState = 'running';
+    });
+  }
 });
 
 window.updateOverview = updateOverview;
