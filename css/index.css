@@ -1215,7 +1215,7 @@
   .quick-item,
   .modal-close {
     -webkit-tap-highlight-color: rgba(77, 212, 255, 0.3);
-    tap-highlight-color: rgba(77, 212, 255, 0.3);
+    -tap-highlight-color: rgba(77, 212, 255, 0.3);
   }
 
   /* Prevent zoom on input focus */
