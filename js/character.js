@@ -1,3 +1,217 @@
+// Mobile Navigation Functions
+function toggleMobileMenu() {
+  const toggle = document.querySelector(".mobile-menu-toggle");
+  const mobileNav = document.getElementById("mobile-nav");
+  const mainNav = document.getElementById("main-nav");
+
+  if (!toggle || !mobileNav) {
+    console.warn("Mobile navigation elements not found");
+    return;
+  }
+
+  const isActive = mobileNav.classList.contains("active");
+
+  if (isActive) {
+    // Close menu
+    mobileNav.classList.remove("active");
+    toggle.classList.remove("active");
+    document.body.classList.remove("mobile-nav-open");
+
+    // Re-enable main nav
+    if (mainNav) {
+      mainNav.style.pointerEvents = "auto";
+    }
+  } else {
+    // Open menu
+    mobileNav.classList.add("active");
+    toggle.classList.add("active");
+    document.body.classList.add("mobile-nav-open");
+
+    // Disable main nav interaction
+    if (mainNav) {
+      mainNav.style.pointerEvents = "none";
+    }
+  }
+
+  // Haptic feedback on supported devices
+  if ("vibrate" in navigator) {
+    navigator.vibrate(50);
+  }
+
+  // Play sound effect if available
+  if (window.playSound) {
+    window.playSound("menu-toggle");
+  }
+}
+
+// Initialize mobile navigation
+function initializeMobileNavigation() {
+  const toggle = document.querySelector(".mobile-menu-toggle");
+  const mobileNav = document.getElementById("mobile-nav");
+
+  if (!toggle || !mobileNav) return;
+
+  // Handle swipe gestures on mobile nav
+  let startY = 0;
+  let currentY = 0;
+
+  mobileNav.addEventListener("touchstart", (e) => {
+    startY = e.touches[0].clientY;
+  });
+
+  mobileNav.addEventListener("touchmove", (e) => {
+    currentY = e.touches[0].clientY;
+  });
+
+  mobileNav.addEventListener("touchend", () => {
+    const swipeDistance = startY - currentY;
+
+    // If swiped up significantly, close the menu
+    if (swipeDistance > 100) {
+      toggleMobileMenu();
+    }
+  });
+
+  // Close menu when clicking nav links
+  document.querySelectorAll(".mobile-nav a").forEach((link) => {
+    link.addEventListener("click", () => {
+      toggleMobileMenu();
+    });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener("click", (e) => {
+    if (mobileNav.classList.contains("active") &&
+        !mobileNav.contains(e.target) &&
+        !toggle.contains(e.target)) {
+      toggleMobileMenu();
+    }
+  });
+
+  // Close menu with Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && mobileNav && mobileNav.classList.contains("active")) {
+      toggleMobileMenu();
+    }
+  });
+
+  // Handle visibility change (tab switching)
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      if (mobileNav && mobileNav.classList.contains("active")) {
+        // Close mobile nav when tab becomes hidden
+        toggleMobileMenu();
+      }
+    }
+  });
+
+  // Handle resize events
+  let isMobile = window.innerWidth <= 768;
+  window.addEventListener("resize", () => {
+    const newIsMobile = window.innerWidth <= 768;
+    if (!newIsMobile && mobileNav.classList.contains("active")) {
+      // Close mobile nav when switching to desktop
+      toggleMobileMenu();
+    }
+    isMobile = newIsMobile;
+  });
+}
+
+// Additional mobile-specific functions
+function shareCharacter() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const characterId = urlParams.get("id");
+
+  if (!characterId) {
+    showNotification("No character selected to share");
+    return;
+  }
+
+  const shareData = {
+    title: `${document.querySelector('.profile-name')?.textContent || 'Character'} - Jura Tempest Federation`,
+    text: `Check out this character profile from the Jura Tempest Federation!`,
+    url: window.location.href
+  };
+
+  if (navigator.share && /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    navigator.share(shareData).catch((error) => {
+      console.log("Error sharing:", error);
+      fallbackShare();
+    });
+  } else {
+    fallbackShare();
+  }
+}
+
+function fallbackShare() {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      showNotification("Character link copied to clipboard!");
+    }).catch(() => {
+      showNotification("Unable to copy link");
+    });
+  } else {
+    showNotification("Sharing not supported on this device");
+  }
+}
+
+function compareCharacter() {
+  showNotification("Character comparison feature coming soon!");
+}
+
+function downloadProfile() {
+  showNotification("Profile download feature coming soon!");
+}
+
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+  const themes = ['dark', 'high-contrast', 'sepia'];
+  const currentIndex = themes.indexOf(currentTheme);
+  const nextTheme = themes[(currentIndex + 1) % themes.length];
+
+  document.documentElement.setAttribute('data-theme', nextTheme);
+  localStorage.setItem('preferred-theme', nextTheme);
+
+  showNotification(`Theme changed to ${nextTheme}`);
+}
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+
+function toggleFabMenu() {
+  const fabMenu = document.getElementById("fab-menu");
+  const fabMainIcon = document.getElementById("fab-main-icon");
+
+  if (!fabMenu || !fabMainIcon) return;
+
+  const isActive = fabMenu.classList.contains("active");
+
+  if (isActive) {
+    fabMenu.classList.remove("active");
+    fabMainIcon.textContent = "⚡";
+  } else {
+    fabMenu.classList.add("active");
+    fabMainIcon.textContent = "✕";
+  }
+
+  if ("vibrate" in navigator) {
+    navigator.vibrate(30);
+  }
+}
+
+// Make functions globally available
+window.toggleMobileMenu = toggleMobileMenu;
+window.shareCharacter = shareCharacter;
+window.compareCharacter = compareCharacter;
+window.downloadProfile = downloadProfile;
+window.toggleTheme = toggleTheme;
+window.scrollToTop = scrollToTop;
+window.toggleFabMenu = toggleFabMenu;
+
 class CharacterDataLoader {
   constructor() {
     this.basicCharacters = null;
@@ -203,6 +417,10 @@ class CharacterDataLoader {
 window.CharacterLoader = new CharacterDataLoader();
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Initialize mobile navigation
+  initializeMobileNavigation();
+
+  // Load character profile after a short delay
   setTimeout(() => {
     loadCharacterProfile();
   }, 100);
@@ -839,6 +1057,9 @@ function attemptErrorRecovery() {
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
+    // Initialize mobile navigation
+    initializeMobileNavigation();
+
     setTimeout(() => {
       const tabs = document.querySelectorAll(".profile-tab");
       tabs.forEach((tab, index) => {
@@ -865,6 +1086,40 @@ if (document.readyState === "loading") {
           }
         });
       });
+
+      // Add mobile-specific optimizations
+      if (window.innerWidth <= 768) {
+        // Optimize for mobile performance
+        document.body.classList.add('mobile-device');
+
+        // Add touch event listeners for better mobile interaction
+        const profileTabs = document.querySelector('.profile-tabs');
+        if (profileTabs) {
+          let isScrolling = false;
+          profileTabs.addEventListener('touchstart', () => {
+            isScrolling = false;
+          });
+
+          profileTabs.addEventListener('touchmove', () => {
+            isScrolling = true;
+          });
+
+          profileTabs.addEventListener('touchend', (e) => {
+            if (!isScrolling && e.target.classList.contains('profile-tab')) {
+              e.target.click();
+            }
+          });
+        }
+
+        // Optimize images for mobile
+        const images = document.querySelectorAll('.profile-image');
+        images.forEach(img => {
+          img.loading = 'lazy';
+        });
+      }
     }, 1000);
   });
+} else {
+  // Initialize immediately if DOM is already loaded
+  initializeMobileNavigation();
 }

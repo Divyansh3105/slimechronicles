@@ -537,7 +537,7 @@ document.addEventListener("keydown", (e) => {
         break;
       case "4":
         e.preventDefault();
-        window.location.href = "timeline.html";
+        window.location.href = "Chronicle.html";
         break;
       case "5":
         e.preventDefault();

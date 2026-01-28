@@ -116,7 +116,7 @@ slimechronicles/
 ├── character.html       # Character profiles
 ├── skills.html          # Skills database
 ├── records.html         # Historical records and achievements
-├── timeline.html        # Chronicle timeline
+├── Chronicle.html        # Chronicle timeline
 ├── data/                # Character and event data (JSON)
 ├── js/                  # Application logic and effects
 ├── css/                 # Themed stylesheets
