@@ -1326,3 +1326,654 @@
 .event-header:hover {
   backdrop-filter: blur(15px);
 }
+
+@media (max-width: 767px) {
+  .main-content {
+    padding: 1rem;
+    padding-top: 5rem; /* Account for fixed navbar */
+    max-width: 100%;
+  }
+
+  /* Page Header */
+  .page-header {
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+  }
+
+  .page-title {
+    font-size: 2.2rem;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+
+  .page-title::after {
+    right: -30px;
+    font-size: 2rem;
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Timeline Container */
+  .timeline-container {
+    margin: 2rem 0;
+    padding-left: 1.5rem;
+  }
+
+  /* Central Line → Left aligned on mobile */
+  .timeline-line {
+    left: 1rem !important;
+    transform: none !important;
+    width: 3px;
+  }
+
+  /* Year Section */
+  .timeline-year {
+    padding-left: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* Year Marker */
+  .year-marker {
+    left: -0.5rem !important;
+    transform: none !important;
+    padding: 0.75rem 1.25rem;
+    min-width: auto;
+    width: fit-content;
+    max-width: calc(100vw - 4rem);
+  }
+
+  .year-number {
+    font-size: 1.8rem;
+    white-space: nowrap;
+  }
+
+  .year-label {
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
+  /* Timeline Arcs */
+  .timeline-arc {
+    margin-left: 0;
+    margin-bottom: 2rem;
+  }
+
+  /* Arc Header */
+  .arc-header {
+    padding: 1rem 1.25rem;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    min-height: 60px;
+  }
+
+  .arc-icon {
+    font-size: 2rem;
+  }
+
+  .arc-title {
+    font-size: 1.3rem;
+    line-height: 1.3;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .arc-toggle {
+    font-size: 1.3rem;
+    margin-left: auto;
+  }
+
+  /* Arc Content */
+  .arc-content {
+    padding: 0;
+  }
+
+  /* Events */
+  .timeline-event {
+    margin-bottom: 1rem;
+    border-radius: 12px;
+  }
+
+  .event-header {
+    padding: 1rem 1.25rem;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .event-icon {
+    font-size: 1.3rem;
+    width: 36px;
+    height: 36px;
+  }
+
+  .event-title {
+    font-size: 1.1rem;
+    line-height: 1.3;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .event-date {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.6rem;
+    white-space: nowrap;
+  }
+
+  .event-expand-hint {
+    font-size: 0.7rem;
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+
+  .event-content {
+    padding: 0 1.25rem 1.25rem 1.25rem;
+  }
+
+  .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .event-consequences,
+  .event-characters {
+    margin-bottom: 1.25rem;
+    padding: 1rem;
+  }
+
+  .event-consequences h4,
+  .event-characters h4 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .event-consequences li {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+
+  .character-links {
+    gap: 0.75rem;
+  }
+
+  .character-link {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .character-link img {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Timeline Stats */
+  .timeline-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .stat-card {
+    padding: 1.25rem;
+  }
+
+  .stat-icon {
+    font-size: 2rem;
+  }
+
+  .stat-value {
+    font-size: 2rem;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+  }
+
+  /* Timeline FAB */
+  .timeline-fab {
+    width: 50px;
+    height: 50px;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    font-size: 1.3rem;
+  }
+
+  /* Disable heavy animations on mobile */
+  .timeline-arc,
+  .timeline-event,
+  .year-marker {
+    animation: none !important;
+  }
+
+  /* Touch-friendly interactions */
+  .arc-header,
+  .event-header {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(77, 212, 255, 0.2);
+  }
+}
+
+/* ---------- Small Phones (≤ 479px) ---------- */
+@media (max-width: 479px) {
+  .main-content {
+    padding: 0.75rem;
+    padding-top: 4.5rem;
+  }
+
+  .page-header {
+    margin-bottom: 1.5rem;
+    padding: 0.75rem 0;
+  }
+
+  .page-title {
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+
+  .page-title::after {
+    right: -25px;
+    font-size: 1.5rem;
+  }
+
+  .page-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .timeline-container {
+    padding-left: 1rem;
+  }
+
+  .timeline-line {
+    left: 0.75rem !important;
+    width: 2px;
+  }
+
+  .timeline-year {
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .year-marker {
+    left: -0.75rem !important;
+    padding: 0.5rem 1rem;
+    max-width: calc(100vw - 3rem);
+  }
+
+  .year-number {
+    font-size: 1.5rem;
+  }
+
+  .year-label {
+    font-size: 0.75rem;
+  }
+
+  .arc-header {
+    padding: 0.875rem 1rem;
+    gap: 0.5rem;
+  }
+
+  .arc-icon {
+    font-size: 1.8rem;
+  }
+
+  .arc-title {
+    font-size: 1.1rem;
+  }
+
+  .arc-toggle {
+    font-size: 1.2rem;
+  }
+
+  .event-header {
+    padding: 0.875rem 1rem;
+    gap: 0.5rem;
+  }
+
+  .event-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 1.1rem;
+  }
+
+  .event-title {
+    font-size: 1rem;
+  }
+
+  .event-date {
+    font-size: 0.75rem;
+    padding: 0.15rem 0.5rem;
+  }
+
+  .event-expand-hint {
+    font-size: 0.65rem;
+  }
+
+  .event-content {
+    padding: 0 1rem 1rem 1rem;
+  }
+
+  .event-description {
+    font-size: 0.9rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .event-consequences,
+  .event-characters {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .event-consequences h4,
+  .event-characters h4 {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .event-consequences li {
+    font-size: 0.8rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .character-link {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .character-link img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .timeline-stats {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .stat-card {
+    padding: 1rem;
+  }
+
+  .stat-icon {
+    font-size: 1.8rem;
+  }
+
+  .stat-value {
+    font-size: 1.8rem;
+  }
+
+  .timeline-fab {
+    width: 44px;
+    height: 44px;
+    bottom: 1rem;
+    right: 1rem;
+    font-size: 1.2rem;
+  }
+}
+
+/* ---------- Tablets (≥ 768px) ---------- */
+@media (min-width: 768px) {
+  .main-content {
+    padding: 2rem;
+    padding-top: 6rem;
+  }
+
+  /* Restore center line */
+  .timeline-line {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 4px;
+  }
+
+  .timeline-year {
+    padding-left: 0;
+  }
+
+  .year-marker {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .timeline-container {
+    padding-left: 0;
+  }
+
+  .page-title {
+    font-size: 3rem;
+  }
+
+  .page-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .timeline-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ---------- Laptops (≥ 1024px) ---------- */
+@media (min-width: 1024px) {
+  .main-content {
+    max-width: 1200px;
+    padding: 2rem;
+    padding-top: 6rem;
+  }
+
+  .page-title {
+    font-size: 3.5rem;
+  }
+
+  .page-subtitle {
+    font-size: 1.3rem;
+  }
+}
+
+/* ---------- Large Screens (≥ 1280px) ---------- */
+@media (min-width: 1280px) {
+  .main-content {
+    max-width: 1400px;
+  }
+
+  .page-title {
+    font-size: 3.8rem;
+  }
+}
+
+/* ---------- Mobile Performance & UX ---------- */
+@media (max-width: 767px) {
+  /* Disable heavy background effects on mobile */
+  .magic-circle,
+  .particles,
+  .starfield {
+    display: none !important;
+  }
+
+  /* Reduce backdrop blur for better performance */
+  .timeline-arc,
+  .year-marker,
+  .event-description,
+  .event-consequences,
+  .event-characters {
+    backdrop-filter: blur(10px) !important;
+  }
+
+  /* Disable hover-only transforms on touch */
+  .timeline-event:hover,
+  .timeline-arc:hover,
+  .year-marker:hover {
+    transform: none !important;
+  }
+
+  /* Optimize scrolling */
+  body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  /* Improve touch targets */
+  .arc-header,
+  .event-header {
+    min-height: 48px;
+    touch-action: manipulation;
+  }
+
+  /* Reduce motion for better performance */
+  * {
+    animation-duration: 0.2s !important;
+    transition-duration: 0.2s !important;
+  }
+
+  /* Hide decorative elements */
+  .page-title::after {
+    display: none;
+  }
+
+  /* Optimize text rendering */
+  .year-number,
+  .year-label,
+  .arc-title,
+  .event-title {
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+
+  /* Disable hover-only transforms on touch */
+  .timeline-event:hover,
+  .timeline-arc:hover {
+    transform: none;
+  }
+
+  body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+}
+
+/* ---------- Reduced Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .timeline-arc,
+  .timeline-event,
+  .year-marker,
+  .arc-header,
+  .event-header {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- Mobile-specific improvements ---------- */
+@media (max-width: 767px) {
+  /* Improve text selection on mobile */
+  .arc-title,
+  .event-title,
+  .event-description {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
+
+  /* Better focus indicators for accessibility */
+  .arc-header:focus,
+  .event-header:focus {
+    outline: 3px solid var(--primary-blue);
+    outline-offset: 2px;
+  }
+
+  /* Improve contrast for better readability */
+  .event-date {
+    background: rgba(77, 212, 255, 0.2);
+    border-color: rgba(77, 212, 255, 0.4);
+  }
+
+  /* Better spacing for touch targets */
+  .character-links {
+    gap: 1rem;
+    justify-content: flex-start;
+  }
+
+  /* Optimize loading states */
+  .timeline-loading {
+    padding: 2rem 1rem;
+  }
+
+  .timeline-loading-spinner {
+    width: 32px;
+    height: 32px;
+    border-width: 2px;
+  }
+
+  /* Better error states */
+  .timeline-error {
+    margin: 1rem 0;
+    padding: 2rem 1rem;
+  }
+
+  .timeline-error-icon {
+    font-size: 2rem;
+  }
+
+  .timeline-error-text {
+    font-size: 1rem;
+  }
+
+  /* Improve search highlights */
+  .search-highlight {
+    background: rgba(255, 215, 0, 0.3);
+    padding: 0.1rem 0.2rem;
+    border-radius: 3px;
+  }
+
+  /* Better no-results state */
+  .no-results {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-secondary);
+    background: rgba(77, 212, 255, 0.05);
+    border: 1px solid rgba(77, 212, 255, 0.1);
+    border-radius: 12px;
+    margin: 2rem 0;
+  }
+
+  .no-results-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.6;
+  }
+
+  .no-results-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+  }
+
+  .no-results-hint {
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+}
+
+/* ---------- High DPI displays ---------- */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .character-link img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* ---------- Dark mode support ---------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-light: #f0f8ff;
+    --text-secondary: rgba(240, 248, 255, 0.8);
+  }
+}
+/* End of Chronicle.css */
