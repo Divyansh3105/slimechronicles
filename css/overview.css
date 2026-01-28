@@ -1,5 +1,37 @@
-/* --- Smooth Animation for Main Logo and Emblem Core --- */
+/* ============================================================================
+   OVERVIEW PAGE - ENHANCED STYLES WITH FIXES
+   ============================================================================ */
 
+/* Fix double scrollbar issue - Override shared.css settings */
+html {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  height: 100%;
+}
+
+body {
+  overflow-y: visible !important;
+  overflow-x: hidden !important;
+  height: auto;
+  min-height: 100vh;
+}
+
+/* Ensure main content doesn't create additional scrollbars */
+.main-content {
+  overflow: visible;
+  height: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Scroll margin for smooth navigation */
+.nation-grid,
+.state-summary,
+.chart-card {
+  scroll-margin-top: 80px;
+}
+
+/* --- Smooth Animation for Main Logo and Emblem Core --- */
 .main-logo-icon,
 .nav-brand-icon {
   transition:
@@ -49,8 +81,9 @@
     transform: translateY(-2.5px) scale(1.005);
   }
 }
+
 /* ============================================================================
-   OVERVIEW PAGE - MAIN LAYOUT & HERO SECTION
+   MAIN LAYOUT & HERO SECTION
    ============================================================================ */
 
 .main-content {
@@ -486,13 +519,6 @@
   }
   to {
     transform: rotate(360deg);
-  }
-}
-
-@keyframes ripple {
-  to {
-    transform: scale(4);
-    opacity: 0;
   }
 }
 
@@ -1049,31 +1075,14 @@
 .stat-card::after {
   content: "";
   position: absolute;
-  inset: -2px;
-  background: linear-gradient(
-    45deg,
-    transparent,
-    rgba(77, 21, 22, 0.1),
-    transparent,
-    rgba(77, 21, 22, 0.1),
-    transparent
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(77, 21, 22, 0.05),
+    transparent 70%
   );
-  background-size: 400% 400%;
-  border-radius: 24px;
-  z-index: -1;
   opacity: 0;
-  animation: cardGlow 6s ease-in-out infinite;
   transition: opacity 0.4s ease;
-}
-
-@keyframes cardGlow {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
 }
 
 .stat-card.gold::before {
@@ -1086,13 +1095,10 @@
 }
 
 .stat-card.gold::after {
-  background: linear-gradient(
-    45deg,
-    transparent,
-    rgba(255, 165, 0, 0.1),
-    transparent,
-    rgba(255, 165, 0, 0.1),
-    transparent
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 165, 0, 0.05),
+    transparent 70%
   );
 }
 
@@ -1106,13 +1112,10 @@
 }
 
 .stat-card.crimson::after {
-  background: linear-gradient(
-    45deg,
-    transparent,
-    rgba(255, 51, 102, 0.1),
-    transparent,
-    rgba(255, 51, 102, 0.1),
-    transparent
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 51, 102, 0.05),
+    transparent 70%
   );
 }
 
@@ -1126,13 +1129,10 @@
 }
 
 .stat-card.cyan::after {
-  background: linear-gradient(
-    45deg,
-    transparent,
-    rgba(0, 212, 255, 0.1),
-    transparent,
-    rgba(0, 212, 255, 0.1),
-    transparent
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(0, 212, 255, 0.05),
+    transparent 70%
   );
 }
 
@@ -1146,23 +1146,19 @@
 }
 
 .stat-card.purple::after {
-  background: linear-gradient(
-    45deg,
-    transparent,
-    rgba(170, 85, 255, 0.1),
-    transparent,
-    rgba(170, 85, 255, 0.1),
-    transparent
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(170, 85, 255, 0.05),
+    transparent 70%
   );
 }
 
 .stat-card:hover {
-  transform: translateY(-12px) scale(1.03);
+  transform: translateY(-8px) scale(1.02);
   border-color: var(--primary-blue);
   box-shadow:
-    0 25px 50px rgba(77, 21, 22, 0.25),
-    0 0 0 1px rgba(77, 21, 22, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    0 20px 40px rgba(77, 21, 22, 0.2),
+    0 0 0 1px rgba(77, 21, 22, 0.1);
 }
 
 .stat-card:hover::before,
@@ -1173,33 +1169,86 @@
 .stat-card.gold:hover {
   border-color: var(--accent-gold);
   box-shadow:
-    0 25px 50px rgba(255, 165, 0, 0.25),
-    0 0 0 1px rgba(255, 165, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    0 20px 40px rgba(255, 165, 0, 0.2),
+    0 0 0 1px rgba(255, 165, 0, 0.1);
 }
 
 .stat-card.crimson:hover {
   border-color: var(--accent-crimson);
   box-shadow:
-    0 25px 50px rgba(255, 51, 102, 0.25),
-    0 0 0 1px rgba(255, 51, 102, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    0 20px 40px rgba(255, 51, 102, 0.2),
+    0 0 0 1px rgba(255, 51, 102, 0.1);
 }
 
 .stat-card.cyan:hover {
   border-color: var(--accent-cyan);
   box-shadow:
-    0 25px 50px rgba(0, 212, 255, 0.25),
-    0 0 0 1px rgba(0, 212, 255, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    0 20px 40px rgba(0, 212, 255, 0.2),
+    0 0 0 1px rgba(0, 212, 255, 0.1);
 }
 
 .stat-card.purple:hover {
   border-color: var(--accent-purple);
   box-shadow:
-    0 25px 50px rgba(170, 85, 255, 0.25),
-    0 0 0 1px rgba(170, 85, 255, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    0 20px 40px rgba(170, 85, 255, 0.2),
+    0 0 0 1px rgba(170, 85, 255, 0.1);
+}
+
+.stat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.stat-icon {
+  font-size: 2.5rem;
+  filter: drop-shadow(0 0 8px currentColor);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover .stat-icon {
+  transform: scale(1.1) rotate(5deg);
+  filter: drop-shadow(0 0 12px currentColor);
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: rgba(232, 224, 25, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.stat-value {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 20px rgba(232, 224, 25, 0.3);
+  transition: all 0.3s ease;
+  word-wrap: break-word;
+  hyphens: auto;
+  line-height: 1.1;
+}
+
+#economy-value,
+#magic-value {
+  font-size: 2.2rem;
+  line-height: 1.2;
+}
+
+.stat-card:hover .stat-value {
+  transform: scale(1.05);
+  text-shadow: 0 0 25px rgba(232, 224, 25, 0.5);
+}
+
+.stat-subtext {
+  font-size: 0.75rem;
+  color: rgba(232, 224, 25, 0.5);
 }
 
 .stat-breakdown {
@@ -1279,6 +1328,22 @@
   animation: shimmer 2s ease-in-out infinite;
 }
 
+.stat-card.gold .breakdown-fill {
+  background: linear-gradient(90deg, var(--accent-gold), #ffed4e);
+}
+
+.stat-card.crimson .breakdown-fill {
+  background: linear-gradient(90deg, var(--accent-crimson), #ff6b8a);
+}
+
+.stat-card.cyan .breakdown-fill {
+  background: linear-gradient(90deg, var(--accent-cyan), #40d0ff);
+}
+
+.stat-card.purple .breakdown-fill {
+  background: linear-gradient(90deg, var(--accent-purple), #d488ff);
+}
+
 .strategic-metrics {
   margin-top: 1rem;
   padding-top: 1rem;
@@ -1306,218 +1371,6 @@
   font-weight: 600;
   color: var(--accent-gold);
   text-shadow: 0 0 8px rgba(255, 165, 0, 0.3);
-}
-
-.stat-card.gold .breakdown-fill {
-  background: linear-gradient(90deg, var(--accent-gold), #ffed4e);
-}
-
-.stat-card.crimson .breakdown-fill {
-  background: linear-gradient(90deg, var(--accent-crimson), #ff6b8a);
-}
-
-.stat-card.cyan .breakdown-fill {
-  background: linear-gradient(90deg, var(--accent-cyan), #40d0ff);
-}
-
-.stat-card.purple .breakdown-fill {
-  background: linear-gradient(90deg, var(--accent-purple), #d488ff);
-}
-
-.stat-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--slime-blue),
-    transparent
-  );
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.stat-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(77, 21, 22, 0.05),
-    transparent 70%
-  );
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.stat-card.gold::before {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--accent-gold),
-    transparent
-  );
-}
-
-.stat-card.crimson::before {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--accent-crimson),
-    transparent
-  );
-}
-
-.stat-card.cyan::before {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--accent-cyan),
-    transparent
-  );
-}
-
-.stat-card.purple::before {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--accent-purple),
-    transparent
-  );
-}
-
-.stat-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  border-color: var(--primary-blue);
-  box-shadow:
-    0 20px 40px rgba(77, 21, 22, 0.2),
-    0 0 0 1px rgba(77, 21, 22, 0.1);
-}
-
-.stat-card:hover::before,
-.stat-card:hover::after {
-  opacity: 1;
-}
-
-.stat-card.gold:hover {
-  border-color: var(--accent-gold);
-  box-shadow:
-    0 20px 40px rgba(255, 165, 0, 0.2),
-    0 0 0 1px rgba(255, 165, 0, 0.1);
-}
-
-.stat-card.gold:hover::after {
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(255, 165, 0, 0.05),
-    transparent 70%
-  );
-}
-
-.stat-card.crimson:hover {
-  border-color: var(--accent-crimson);
-  box-shadow:
-    0 20px 40px rgba(255, 51, 102, 0.2),
-    0 0 0 1px rgba(255, 51, 102, 0.1);
-}
-
-.stat-card.crimson:hover::after {
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(255, 51, 102, 0.05),
-    transparent 70%
-  );
-}
-
-.stat-card.cyan:hover {
-  border-color: var(--accent-cyan);
-  box-shadow:
-    0 20px 40px rgba(0, 212, 255, 0.2),
-    0 0 0 1px rgba(0, 212, 255, 0.1);
-}
-
-.stat-card.cyan:hover::after {
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(0, 212, 255, 0.05),
-    transparent 70%
-  );
-}
-
-.stat-card.purple:hover {
-  border-color: var(--accent-purple);
-  box-shadow:
-    0 20px 40px rgba(170, 85, 255, 0.2),
-    0 0 0 1px rgba(170, 85, 255, 0.1);
-}
-
-.stat-card.purple:hover::after {
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(170, 85, 255, 0.05),
-    transparent 70%
-  );
-}
-
-.stat-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  position: relative;
-}
-
-.stat-icon {
-  font-size: 2.5rem;
-  filter: drop-shadow(0 0 8px currentColor);
-  transition: all 0.3s ease;
-}
-
-.stat-card:hover .stat-icon {
-  transform: scale(1.1) rotate(5deg);
-  filter: drop-shadow(0 0 12px currentColor);
-}
-
-.stat-label {
-  font-size: 0.9rem;
-  color: rgba(232, 224, 25, 0.7);
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-bottom: 0.75rem;
-  font-weight: 600;
-}
-
-.stat-value {
-  font-family: "Rajdhani", sans-serif;
-  font-size: 3rem;
-  font-weight: 800;
-  color: var(--text-light);
-  margin-bottom: 1.5rem;
-  text-shadow: 0 0 20px rgba(232, 224, 25, 0.3);
-  transition: all 0.3s ease;
-  word-wrap: break-word;
-  hyphens: auto;
-  line-height: 1.1;
-}
-
-#economy-value,
-#magic-value {
-  font-size: 2.2rem;
-  line-height: 1.2;
-}
-
-.stat-card:hover .stat-value {
-  transform: scale(1.05);
-  text-shadow: 0 0 25px rgba(232, 224, 25, 0.5);
-}
-
-.stat-subtext {
-  font-size: 0.75rem;
-  color: rgba(232, 224, 25, 0.5);
 }
 
 /* ============================================================================
@@ -1737,6 +1590,10 @@
   }
 }
 
+/* ============================================================================
+   RESPONSIVE DESIGN & OPTIMIZATIONS
+   ============================================================================ */
+
 /* Animation delay utilities */
 .stat-card:nth-child(1) {
   animation-delay: 0.1s;
@@ -1780,6 +1637,7 @@
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
+  *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
@@ -1814,39 +1672,101 @@
   }
 }
 
-/* Global animation and transition reductions */
-* {
-  animation-duration: 0.3s !important;
-  transition-duration: 0.3s !important;
+/* Remove duplicate scrollbar styling - handled in shared.css */
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1rem 1.5rem;
+    padding-top: 5rem;
+  }
+
+  .hero-welcome {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .welcome-title {
+    font-size: 2.4rem;
+  }
+
+  .federation-emblem {
+    width: 200px;
+    height: 200px;
+  }
+
+  .emblem-core {
+    width: 120px;
+    height: 120px;
+  }
+
+  .emblem-image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .state-summary {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .nation-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .stat-card {
+    padding: 2rem;
+    min-height: auto;
+  }
+
+  .stat-value {
+    font-size: 2.5rem;
+  }
+
+  #economy-value,
+  #magic-value {
+    font-size: 2rem;
+  }
+
+  .welcome-badges {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .analytics-overview {
+    grid-template-columns: 1fr;
+  }
 }
 
-.main-content {
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
-}
+@media (max-width: 480px) {
+  .main-content {
+    padding: 1rem;
+    padding-top: 4.5rem;
+  }
 
-.nation-grid,
-.state-summary,
-.chart-card {
-  scroll-margin-top: 80px;
-}
+  .hero-welcome {
+    padding: 1.5rem;
+  }
 
-/* Custom scrollbar styling */
-::-webkit-scrollbar {
-  width: 8px;
-}
+  .welcome-title {
+    font-size: 2rem;
+  }
 
-::-webkit-scrollbar-track {
-  background: rgba(21, 27, 61, 0.3);
-  border-radius: 4px;
-}
+  .stat-card {
+    padding: 1.5rem;
+  }
 
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--slime-blue), var(--accent-cyan));
-  border-radius: 4px;
-  box-shadow: 0 0 10px rgba(77, 21, 22, 0.3);
-}
+  .stat-value {
+    font-size: 2rem;
+  }
 
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, var(--accent-cyan), var(--slime-blue));
+  #economy-value,
+  #magic-value {
+    font-size: 1.8rem;
+  }
 }
