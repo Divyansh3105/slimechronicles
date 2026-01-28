@@ -665,6 +665,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize mobile optimizations first
   initMobileOptimizations();
 
+  // Initialize mobile navigation
+  initMobileNavigation();
+
   // Staggered initialization for better performance
   setTimeout(() => {
     updateOverview();
@@ -757,4 +760,201 @@ document.addEventListener('visibilitychange', () => {
   }
 });
 
+// Mobile Navigation Functions
+let scrollPosition = 0;
+let touchStartY = 0;
+
+function preventTouchMove(e) {
+  // Allow scrolling within the mobile nav itself
+  if (e.target.closest('.mobile-nav')) {
+    return;
+  }
+  // Prevent all other touch scrolling
+  e.preventDefault();
+}
+
+function disableScroll() {
+  // Store current scroll position
+  scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+
+  // Add CSS classes for scroll prevention
+  document.body.classList.add('mobile-nav-active');
+  document.documentElement.classList.add('mobile-nav-active');
+
+  // Apply styles to prevent scrolling
+  document.body.style.top = `-${scrollPosition}px`;
+
+  // Prevent touch scrolling
+  document.addEventListener('touchmove', preventTouchMove, { passive: false });
+}
+
+function enableScroll() {
+  // Remove CSS classes
+  document.body.classList.remove('mobile-nav-active');
+  document.documentElement.classList.remove('mobile-nav-active');
+
+  // Remove inline styles
+  document.body.style.top = '';
+
+  // Remove touch event listener
+  document.removeEventListener('touchmove', preventTouchMove);
+
+  // Restore scroll position
+  window.scrollTo(0, scrollPosition);
+}
+
+function toggleMobileMenu() {
+  const toggle = document.querySelector(".mobile-menu-toggle");
+  const mobileNav = document.getElementById("mobile-nav");
+
+  if (!toggle || !mobileNav) {
+    console.error("Mobile navigation elements not found");
+    return;
+  }
+
+  const isActive = mobileNav.classList.contains("active");
+
+  if (isActive) {
+    // Close menu
+    mobileNav.classList.remove("active");
+    toggle.classList.remove("active");
+    enableScroll();
+  } else {
+    // Open menu
+    mobileNav.classList.add("active");
+    toggle.classList.add("active");
+    disableScroll();
+  }
+}
+
+// Close mobile menu when clicking on navigation links
+function initMobileNavLinks() {
+  document.querySelectorAll(".mobile-nav a").forEach((link) => {
+    link.addEventListener("click", () => {
+      toggleMobileMenu();
+    });
+  });
+}
+
+// Close mobile menu when clicking outside
+function initMobileNavOutsideClick() {
+  document.addEventListener("click", (e) => {
+    const mobileNav = document.getElementById("mobile-nav");
+    const toggle = document.querySelector(".mobile-menu-toggle");
+
+    if (!mobileNav || !toggle) return;
+
+    if (mobileNav.classList.contains("active") &&
+        !mobileNav.contains(e.target) &&
+        !toggle.contains(e.target)) {
+      toggleMobileMenu();
+    }
+  });
+}
+
+// Close mobile menu on escape key
+function initMobileNavKeyboard() {
+  document.addEventListener("keydown", (e) => {
+    const mobileNav = document.getElementById("mobile-nav");
+    if (e.key === "Escape" && mobileNav && mobileNav.classList.contains("active")) {
+      toggleMobileMenu();
+    }
+  });
+}
+
+// Handle orientation change and resize events
+function initMobileNavResize() {
+  window.addEventListener("resize", () => {
+    const mobileNav = document.getElementById("mobile-nav");
+    if (mobileNav && mobileNav.classList.contains("active")) {
+      // Recalculate scroll position on resize
+      setTimeout(() => {
+        if (mobileNav.classList.contains("active")) {
+          disableScroll();
+        }
+      }, 100);
+    }
+  });
+
+  window.addEventListener("orientationchange", () => {
+    const mobileNav = document.getElementById("mobile-nav");
+    if (mobileNav && mobileNav.classList.contains("active")) {
+      // Handle orientation change
+      setTimeout(() => {
+        if (mobileNav.classList.contains("active")) {
+          disableScroll();
+        }
+      }, 500);
+    }
+  });
+}
+
+// Handle page unload to ensure scroll is restored
+function initMobileNavCleanup() {
+  window.addEventListener('beforeunload', () => {
+    const mobileNav = document.getElementById("mobile-nav");
+    if (mobileNav && mobileNav.classList.contains("active")) {
+      enableScroll();
+    }
+  });
+
+  // Handle visibility change (tab switching)
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      const mobileNav = document.getElementById("mobile-nav");
+      if (mobileNav && mobileNav.classList.contains("active")) {
+        // Close mobile nav when tab becomes hidden
+        toggleMobileMenu();
+      }
+    }
+  });
+}
+
+// Initialize mobile navigation
+function initMobileNavigation() {
+  initMobileNavLinks();
+  initMobileNavOutsideClick();
+  initMobileNavKeyboard();
+  initMobileNavResize();
+  initMobileNavCleanup();
+}
+
+// Test function for mobile navigation
+function testMobileNav() {
+  console.log("=== Mobile Navigation Test ===");
+
+  const toggle = document.querySelector(".mobile-menu-toggle");
+  const mobileNav = document.getElementById("mobile-nav");
+
+  console.log("Toggle element exists:", !!toggle);
+  console.log("Mobile nav element exists:", !!mobileNav);
+
+  if (toggle) {
+    console.log("Toggle display style:", window.getComputedStyle(toggle).display);
+    console.log("Toggle visibility:", window.getComputedStyle(toggle).visibility);
+    console.log("Toggle classes:", toggle.className);
+  }
+
+  if (mobileNav) {
+    console.log("Mobile nav display style:", window.getComputedStyle(mobileNav).display);
+    console.log("Mobile nav visibility:", window.getComputedStyle(mobileNav).visibility);
+    console.log("Mobile nav opacity:", window.getComputedStyle(mobileNav).opacity);
+    console.log("Mobile nav classes:", mobileNav.className);
+  }
+
+  console.log("Window width:", window.innerWidth);
+  console.log("Should show mobile toggle:", window.innerWidth <= 1023);
+
+  // Test the toggle function
+  if (toggle && mobileNav) {
+    console.log("Testing toggle function...");
+    toggleMobileMenu();
+  }
+
+  console.log("=== End Test ===");
+}
+
+// Make functions globally available
+window.toggleMobileMenu = toggleMobileMenu;
+window.testMobileNav = testMobileNav;
 window.updateOverview = updateOverview;

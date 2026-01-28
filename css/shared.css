@@ -24,6 +24,7 @@
   --slime-blue: #4dd4ff;
   --slime-blue-glow: rgba(77, 212, 255, 0.6);
   --border-subtle: #1a2a40;
+  --vh: 1vh;
 }
 
 .loading-screen {
@@ -690,12 +691,32 @@ body::before {
   background: var(--primary-blue);
 }
 
+/* Prevent scrolling when mobile nav is active */
+body.mobile-nav-active {
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100% !important;
+  height: 100% !important;
+  touch-action: none !important;
+}
+
+html.mobile-nav-active {
+  overflow: hidden !important;
+  height: 100% !important;
+}
+
+/* Prevent momentum scrolling on iOS */
+body.mobile-nav-active * {
+  -webkit-overflow-scrolling: auto !important;
+}
+
 .mobile-nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  height: calc(var(--vh, 1vh) * 100);
   background: linear-gradient(
     135deg,
     rgba(10, 14, 39, 0.98),
@@ -708,13 +729,20 @@ body::before {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.75rem;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   transition: all 0.3s ease;
-  padding: 2rem;
+  padding: 1rem;
+  padding-top: max(5rem, env(safe-area-inset-top, 5rem));
+  padding-bottom: max(3rem, env(safe-area-inset-bottom, 3rem));
+  padding-left: max(1rem, env(safe-area-inset-left, 1rem));
+  padding-right: max(1rem, env(safe-area-inset-right, 1rem));
   overflow: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: manipulation;
 }
 .mobile-nav::before {
   content: "";
@@ -751,6 +779,8 @@ body::before {
   visibility: visible;
   pointer-events: auto;
   animation: mobileNavSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  touch-action: manipulation;
+  overscroll-behavior: contain;
 }
 .mobile-nav:not(.active) {
   opacity: 0;
@@ -824,15 +854,15 @@ body::before {
 .mobile-nav a {
   color: var(--text-light);
   text-decoration: none;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  padding: 1.2rem 2rem;
-  border-radius: 16px;
+  padding: 0.9rem 1.5rem;
+  border-radius: 14px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
-  gap: 1.2rem;
-  width: 300px;
+  gap: 1rem;
+  width: 280px;
   max-width: 85vw;
   justify-content: flex-start;
   background: linear-gradient(
@@ -884,14 +914,14 @@ body::before {
   transform: translateX(8px) scale(0.98);
 }
 .mobile-nav a .nav-icon {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.2rem;
+  height: 2.2rem;
   background: rgba(77, 212, 255, 0.1);
-  border-radius: 10px;
+  border-radius: 8px;
   transition: all 0.3s ease;
 }
 .mobile-nav a:hover .nav-icon,
@@ -1487,5 +1517,245 @@ html {
       0 0 50px rgba(77, 212, 255, 0.4),
       inset 0 2px 15px rgba(255, 255, 255, 0.3);
     transform: scale(1.05);
+  }
+}
+
+/* ========== MOBILE RESPONSIVE STYLES ========== */
+
+/* Mobile Navigation */
+@media (max-width: 1023px) {
+  .main-nav {
+    padding: 1rem 1.5rem;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+  }
+}
+
+@media (max-width: 767px) {
+  .main-nav {
+    padding: 0.75rem 1rem;
+  }
+
+  .nav-brand {
+    font-size: 1.3rem;
+  }
+
+  .nav-brand-icon svg {
+    width: 48px;
+    height: 48px;
+  }
+
+  .mobile-nav {
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+    gap: 0.6rem;
+  }
+
+  .mobile-nav a {
+    width: 280px;
+    font-size: 1rem;
+    padding: 0.8rem 1.2rem;
+  }
+
+  .mobile-nav a .nav-icon {
+    font-size: 1.3rem;
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .main-nav {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .nav-brand {
+    font-size: 1.1rem;
+  }
+
+  .nav-brand-icon svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .mobile-nav {
+    padding-top: 3.5rem;
+    padding-bottom: 1.5rem;
+    gap: 0.5rem;
+  }
+
+  .mobile-nav a {
+    width: 260px;
+    font-size: 0.95rem;
+    padding: 0.7rem 1rem;
+  }
+
+  .mobile-nav a .nav-icon {
+    font-size: 1.2rem;
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  .mobile-nav-close {
+    width: 48px;
+    height: 48px;
+    font-size: 1.4rem;
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+  .mobile-nav {
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+    gap: 0.4rem;
+  }
+
+  .mobile-nav a {
+    width: 240px;
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .mobile-nav a .nav-icon {
+    font-size: 1.1rem;
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+
+  .mobile-nav-close {
+    width: 44px;
+    height: 44px;
+    font-size: 1.2rem;
+    top: 1rem;
+    right: 1rem;
+  }
+}
+
+/* Button Responsive Styles */
+@media (max-width: 767px) {
+  .primary-button,
+  .secondary-button,
+  .tertiary-button {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .view-profile-button,
+  .view-details-button,
+  .recruit-button {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .primary-button,
+  .secondary-button,
+  .tertiary-button {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Footer Mobile Responsive */
+@media (max-width: 1023px) {
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .main-footer {
+    padding: 2rem 0 1rem;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  .footer-brand {
+    align-items: center;
+  }
+
+  .footer-brand-header {
+    justify-content: center;
+  }
+
+  .footer-info {
+    text-align: center;
+  }
+
+  .footer-social {
+    justify-content: center;
+  }
+
+  .footer-brand-text {
+    font-size: 1.1rem;
+  }
+
+  .footer-tagline {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .main-footer {
+    padding: 1.5rem 0 0.75rem;
+  }
+
+  .footer-content {
+    padding: 0 0.75rem;
+    gap: 1rem;
+  }
+
+  .footer-brand-text {
+    font-size: 1rem;
+  }
+
+  .footer-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .social-link {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+  }
+}
+
+/* Page Title Responsive */
+@media (max-width: 767px) {
+  .page-title {
+    font-size: 2.2rem;
+  }
+
+  .page-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .page-title {
+    font-size: 1.8rem;
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
   }
 }
