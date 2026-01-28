@@ -3,6 +3,115 @@ let searchTerm = "";
 let raceFilter = "";
 let powerFilter = "";
 let isMobile = window.innerWidth <= 768;
+
+// Mobile Navigation Functions
+function toggleMobileMenu() {
+  const toggle = document.querySelector(".mobile-menu-toggle");
+  const mobileNav = document.getElementById("mobile-nav");
+  const body = document.body;
+  const html = document.documentElement;
+
+  if (!toggle || !mobileNav) return;
+
+  const isActive = mobileNav.classList.contains("active");
+
+  if (isActive) {
+    // Close mobile nav
+    mobileNav.classList.remove("active");
+    toggle.classList.remove("active");
+    body.classList.remove("mobile-nav-active");
+    html.classList.remove("mobile-nav-active");
+
+    // Re-enable scrolling
+    body.style.overflow = "";
+    body.style.position = "";
+    body.style.width = "";
+    html.style.overflow = "";
+    html.style.height = "";
+  } else {
+    // Open mobile nav
+    mobileNav.classList.add("active");
+    toggle.classList.add("active");
+    body.classList.add("mobile-nav-active");
+    html.classList.add("mobile-nav-active");
+
+    // Disable scrolling
+    body.style.overflow = "hidden";
+    body.style.position = "fixed";
+    body.style.width = "100%";
+    html.style.overflow = "hidden";
+    html.style.height = "100%";
+  }
+}
+
+function initializeMobileNav() {
+  const toggle = document.querySelector(".mobile-menu-toggle");
+  const mobileNav = document.getElementById("mobile-nav");
+
+  if (!toggle || !mobileNav) return;
+
+  // Add touch event handling for better mobile experience
+  let touchStartY = 0;
+  let touchEndY = 0;
+
+  // Handle swipe to close on mobile nav
+  mobileNav.addEventListener('touchstart', (e) => {
+    touchStartY = e.changedTouches[0].screenY;
+  });
+
+  mobileNav.addEventListener('touchend', (e) => {
+    touchEndY = e.changedTouches[0].screenY;
+    const swipeDistance = touchStartY - touchEndY;
+
+    // If swiped up significantly, close the menu
+    if (swipeDistance > 100) {
+      toggleMobileMenu();
+    }
+  });
+
+  // Close mobile nav when clicking on links
+  document.querySelectorAll(".mobile-nav a").forEach((link) => {
+    link.addEventListener("click", () => {
+      toggleMobileMenu();
+    });
+  });
+
+  // Close mobile nav when clicking outside
+  document.addEventListener("click", (e) => {
+    if (mobileNav.classList.contains("active") &&
+        !mobileNav.contains(e.target) &&
+        !toggle.contains(e.target)) {
+      toggleMobileMenu();
+    }
+  });
+
+  // Close mobile nav on escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && mobileNav && mobileNav.classList.contains("active")) {
+      toggleMobileMenu();
+    }
+  });
+
+  // Handle visibility change (when tab becomes hidden/visible)
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      if (mobileNav && mobileNav.classList.contains("active")) {
+        // Close mobile nav when tab becomes hidden
+        toggleMobileMenu();
+      }
+    }
+  });
+
+  // Handle window resize
+  window.addEventListener("resize", () => {
+    const newIsMobile = window.innerWidth <= 768;
+    if (!newIsMobile && mobileNav.classList.contains("active")) {
+      // Close mobile nav when switching to desktop
+      toggleMobileMenu();
+    }
+    isMobile = newIsMobile;
+  });
+}
 async function updateStatistics() {
   if (!window.GameState) {
     console.error("GameState not available for statistics");
@@ -352,7 +461,7 @@ function renderCompactCharacterCard(character, stats, cssVars) {
               ${character.power}
           </div>
           <div class="character-status-badge">
-              ${character.role}
+              ${isMobile ? character.role.split(' ').slice(0, 2).join(' ') : character.role}
           </div>
 
           <div class="character-image-wrapper">
@@ -368,7 +477,7 @@ function renderCompactCharacterCard(character, stats, cssVars) {
 
             <div class="character-race-role">
                 <span class="character-race">${character.race}</span>
-                <span class="character-role">${character.role}</span>
+                <span class="character-role">${isMobile ? character.role.split(' ').slice(0, 2).join(' ') : character.role}</span>
             </div>
 
             <div class="character-stats">
@@ -786,6 +895,10 @@ function addScrollAnimations() {
 }
 document.addEventListener("DOMContentLoaded", () => {
   isMobile = window.innerWidth <= 768;
+
+  // Initialize mobile navigation
+  initializeMobileNav();
+
   const particleContainer = document.getElementById("particles");
   const starfieldContainer = document.getElementById("starfield");
   if (particleContainer) {
@@ -842,3 +955,4 @@ window.openCharacterProfile = openCharacterProfile;
 window.openCharacterModal = openCharacterModal;
 window.closeCharacterModal = closeCharacterModal;
 window.changePage = changePage;
+window.toggleMobileMenu = toggleMobileMenu;
