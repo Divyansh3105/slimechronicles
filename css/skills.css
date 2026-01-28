@@ -438,7 +438,6 @@
   overflow: hidden;
   cursor: pointer;
   contain: layout style paint;
-  will-change: transform;
 }
 
 .skill-card::before {
@@ -1367,13 +1366,7 @@
   -webkit-font-smoothing: antialiased;
 }
 
-.skill-icon {
-  will-change: transform;
-}
 
-.character-tag {
-  will-change: transform;
-}
 
 .skill-detail-content::-webkit-scrollbar,
 .comparison-content::-webkit-scrollbar {
@@ -1441,5 +1434,545 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 767px) {
+  .skills-container {
+    padding: 1.25rem 1rem;
+    margin-top: 80px; /* Account for fixed navbar */
+  }
+
+  .page-title {
+    font-size: 2.1rem;
+    line-height: 1.15;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-subtitle {
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    opacity: 0.85;
+  }
+
+  /* Controls */
+  .skills-controls {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .search-box {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .search-box input {
+    font-size: 16px; /* Prevent zoom on iOS */
+    padding: 0.875rem 1rem 0.875rem 3rem;
+  }
+
+  .filter-group {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: stretch;
+  }
+
+  .filter-group label {
+    font-size: 0.8rem;
+    text-align: left;
+  }
+
+  .filter-group select {
+    width: 100%;
+    min-width: auto;
+    font-size: 16px; /* Prevent zoom on iOS */
+    padding: 0.875rem 3rem 0.875rem 1rem;
+  }
+
+  /* Stats */
+  .skills-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .stat-item {
+    padding: 0.875rem;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+  }
+
+  /* Learning Paths */
+  .skills-learning-path {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .learning-path-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .learning-paths {
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+  }
+
+  .learning-path-item {
+    padding: 0.875rem;
+  }
+
+  .path-name {
+    font-size: 0.9rem;
+  }
+
+  .path-description {
+    font-size: 0.8rem;
+  }
+
+  .path-skills-count {
+    font-size: 0.7rem;
+  }
+
+  /* Results Count */
+  .results-count {
+    font-size: 0.8rem;
+    padding: 0.875rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Skills Grid */
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  /* Skill Cards */
+  .skill-card {
+    padding: 1.25rem;
+    border-radius: 16px;
+  }
+
+  .skill-header {
+    gap: 0.875rem;
+    margin-bottom: 1rem;
+  }
+
+  .skill-icon {
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+  }
+
+  .skill-name {
+    font-size: 1.1rem;
+  }
+
+  .skill-type {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+  }
+
+  .skill-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  /* Category Badge */
+  .category-badge {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.7rem;
+  }
+
+  /* Difficulty */
+  .skill-difficulty {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.6rem;
+  }
+
+  /* Bonus */
+  .skill-bonus {
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Prerequisites */
+  .skill-prerequisites {
+    margin-top: 0.875rem;
+    padding-top: 0.875rem;
+  }
+
+  .prerequisites-title {
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .prerequisite-tag {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  /* Applications */
+  .skill-applications {
+    margin-top: 0.875rem;
+    padding-top: 0.875rem;
+  }
+
+  .applications-title {
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .application-tag {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  /* Characters */
+  .skill-characters {
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+
+  .skill-characters-title {
+    font-size: 0.8rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .character-tag {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.75rem;
+    gap: 0.4rem;
+  }
+
+  .character-tag-icon {
+    font-size: 1.1rem;
+  }
+
+  /* Modal Adjustments */
+  .skill-detail-modal,
+  .skill-comparison-modal {
+    padding: 1rem;
+  }
+
+  .skill-detail-content,
+  .comparison-content {
+    padding: 1.5rem;
+    max-height: 85vh;
+    border-radius: 16px;
+  }
+
+  .skill-detail-name {
+    font-size: 1.5rem;
+  }
+
+  .skill-detail-type {
+    font-size: 0.8rem;
+  }
+
+  .skill-detail-description {
+    font-size: 0.9rem;
+  }
+
+  .section-title {
+    font-size: 0.9rem;
+  }
+
+  .section-content {
+    font-size: 0.85rem;
+  }
+
+  /* Disable hover effects on touch devices */
+  .skill-card:hover {
+    transform: none;
+  }
+
+  /* Improve touch targets */
+  .character-tag,
+  .prerequisite-tag,
+  .application-tag,
+  .learning-path-item {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    touch-action: manipulation;
+  }
+
+  /* Performance optimizations */
+  .magic-circle,
+  .particles,
+  .starfield {
+    display: none !important;
+  }
+
+  /* Scrolling improvements */
+  body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  /* Skill Categories */
+  .skill-categories {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Skill Grid */
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  /* Skill Card */
+  .skill-card,
+  .skill-card-detailed {
+    padding: 1.25rem;
+    border-radius: 16px;
+  }
+
+  /* Skill Card Header */
+  .skill-card-header {
+    gap: 0.75rem;
+  }
+
+  .skill-card-icon {
+    font-size: 1.6rem;
+  }
+
+  .skill-card-name {
+    font-size: 1.1rem;
+  }
+
+  .skill-card-type {
+    font-size: 0.7rem;
+  }
+
+  /* Skill Description */
+  .skill-card-description {
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  /* Skill Bonus */
+  .skill-card-bonus {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.7rem;
+  }
+
+  /* Action Buttons */
+  .skill-actions button {
+    width: 100%;
+    min-height: 44px;
+    font-size: 0.9rem;
+    touch-action: manipulation;
+  }
+}
+
+/* ---------- Small Phones (≤ 479px) ---------- */
+@media (max-width: 479px) {
+  .skills-container {
+    padding: 1rem 0.75rem;
+    margin-top: 75px;
+  }
+
+  .page-title {
+    font-size: 1.8rem;
+  }
+
+  .page-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .skills-controls {
+    padding: 1.25rem;
+  }
+
+  .skills-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.875rem;
+    padding: 1.25rem;
+  }
+
+  .stat-item {
+    padding: 0.75rem;
+  }
+
+  .stat-value {
+    font-size: 1.3rem;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+  }
+
+  .skills-learning-path {
+    padding: 1.25rem;
+  }
+
+  .skill-card {
+    padding: 1rem;
+  }
+
+  .skill-name {
+    font-size: 1rem;
+  }
+
+  .skill-icon {
+    font-size: 1.8rem;
+    width: 45px;
+    height: 45px;
+  }
+
+  .skill-detail-content {
+    padding: 1.25rem;
+  }
+
+  .skill-detail-name {
+    font-size: 1.3rem;
+  }
+}
+
+/* ---------- Tablets (≥ 768px) ---------- */
+@media (min-width: 768px) {
+  .skills-container {
+    padding: 2rem;
+    margin-top: 100px;
+  }
+
+  .page-title {
+    font-size: 2.6rem;
+  }
+
+  .skills-controls {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .filter-group {
+    flex-direction: row;
+    width: auto;
+  }
+
+  .skills-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .learning-paths {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ---------- Laptops (≥ 1024px) ---------- */
+@media (min-width: 1024px) {
+  .skills-container {
+    max-width: 1400px;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .learning-paths {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .skills-stats {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* ---------- Large Screens (≥ 1280px) ---------- */
+@media (min-width: 1280px) {
+  .skills-container {
+    max-width: 1600px;
+  }
+}
+
+/* ---------- Mobile Performance Tweaks ---------- */
+@media (max-width: 767px) {
+  /* Disable heavy background effects for better performance */
+  .magic-circle,
+  .particles,
+  .starfield,
+  .floating-element {
+    display: none !important;
+  }
+
+  /* Disable hover transforms on touch devices */
+  .skill-card:hover,
+  .skill-card:hover .skill-icon,
+  .skill-card:hover .skill-name,
+  .skill-card:hover .skill-type,
+  .skill-card:hover .skill-description,
+  .skill-card:hover .category-badge,
+  .skill-card:hover .skill-difficulty,
+  .skill-card:hover .skill-bonus,
+  .character-tag:hover,
+  .prerequisite-tag:hover,
+  .application-tag:hover,
+  .learning-path-item:hover,
+  .stat-item:hover {
+    transform: none !important;
+  }
+
+  /* Optimize scrolling */
+  body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  /* Reduce animations for better performance */
+  .skill-card {
+    animation-duration: 0.2s;
+  }
+
+  /* Improve touch interaction */
+  .skill-card,
+  .character-tag,
+  .prerequisite-tag,
+  .application-tag,
+  .learning-path-item {
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(77, 212, 255, 0.2);
+  }
+
+  /* Ensure proper touch targets */
+  .character-tag,
+  .prerequisite-tag,
+  .application-tag,
+  .learning-path-item,
+  .close-detail,
+  .close-comparison {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* ---------- Reduced Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .skill-card,
+  .skill-card-detailed {
+    animation: none;
+    transition: none;
   }
 }
