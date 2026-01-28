@@ -1,8 +1,3 @@
-/* ============================================================================
-   OVERVIEW PAGE - ENHANCED STYLES WITH FIXES
-   ============================================================================ */
-
-/* Fix double scrollbar issue - Override shared.css settings */
 html {
   overflow-y: auto !important;
   overflow-x: hidden !important;
@@ -15,7 +10,6 @@ body {
   min-height: 100vh;
 }
 
-/* Ensure main content doesn't create additional scrollbars */
 .main-content {
   overflow: visible;
   height: auto;
@@ -23,14 +17,12 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Scroll margin for smooth navigation */
 .nation-grid,
 .state-summary,
 .chart-card {
   scroll-margin-top: 80px;
 }
 
-/* --- Smooth Animation for Main Logo and Emblem Core --- */
 .main-logo-icon,
 .nav-brand-icon {
   transition:
@@ -81,10 +73,6 @@ body {
   }
 }
 
-/* ============================================================================
-   MAIN LAYOUT & HERO SECTION
-   ============================================================================ */
-
 .main-content {
   position: relative;
   z-index: 10;
@@ -92,10 +80,8 @@ body {
   padding-top: 6rem;
   max-width: 1600px;
   margin: 0 auto;
-  animation: fadeInUp 0.8s ease-out;
 }
 
-/* Floating background orbs */
 .floating-orb {
   position: absolute;
   border-radius: 50%;
@@ -105,7 +91,6 @@ body {
     rgba(77, 21, 22, 0.1)
   );
   filter: blur(1px);
-  animation: orbFloat 8s ease-in-out infinite;
   pointer-events: none;
   z-index: 1;
 }
@@ -144,19 +129,6 @@ body {
   );
 }
 
-@keyframes orbFloat {
-  0%,
-  100% {
-    transform: translateY(0) translateX(0) scale(1);
-    opacity: 0.6;
-  }
-  50% {
-    transform: translateY(-20px) translateX(10px) scale(1.1);
-    opacity: 0.8;
-  }
-}
-
-/* Hero Welcome Section */
 .hero-welcome {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -164,19 +136,11 @@ body {
   align-items: center;
   margin-bottom: 4rem;
   padding: 4rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.95),
-    rgba(77, 21, 22, 0.08),
-    rgba(170, 85, 25, 0.05),
-    rgba(21, 27, 61, 0.95)
-  );
   border-radius: 32px;
   border: 1px solid var(--border-subtle);
   backdrop-filter: blur(25px);
   position: relative;
   overflow: hidden;
-  animation: heroSlideIn 1s ease-out;
   box-shadow:
     0 20px 60px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -195,7 +159,6 @@ body {
     rgba(77, 21, 22, 0.15),
     transparent
   );
-  animation: heroShimmer 8s ease-in-out infinite;
 }
 
 .hero-welcome::after {
@@ -215,39 +178,7 @@ body {
   background-size: 400% 400%;
   border-radius: 32px;
   z-index: -1;
-  animation: gradientShift 6s ease-in-out infinite;
   opacity: 0.3;
-}
-
-@keyframes heroSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-30px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes heroShimmer {
-  0%,
-  100% {
-    transform: translateX(-100%);
-  }
-  50% {
-    transform: translateX(200%);
-  }
-}
-
-@keyframes gradientShift {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
 }
 
 .welcome-content {
@@ -271,7 +202,6 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: titleGlow 4s ease-in-out infinite alternate;
   line-height: 1.1;
   position: relative;
 }
@@ -291,30 +221,6 @@ body {
     transparent
   );
   border-radius: 2px;
-  animation: titleUnderline 3s ease-in-out infinite;
-}
-
-@keyframes titleUnderline {
-  0%,
-  100% {
-    width: 0%;
-    left: 50%;
-  }
-  50% {
-    width: 100%;
-    left: 0%;
-  }
-}
-
-@keyframes titleGlow {
-  from {
-    text-shadow: 0 0 20px rgba(77, 21, 22, 0.5);
-  }
-  to {
-    text-shadow:
-      0 0 40px rgba(77, 21, 22, 0.8),
-      0 0 60px rgba(77, 21, 22, 0.3);
-  }
 }
 
 .welcome-description {
@@ -395,7 +301,6 @@ body {
   transform: scale(1.2) rotate(10deg);
 }
 
-/* Welcome Visual - Federation Emblem */
 .welcome-visual {
   display: flex;
   justify-content: center;
@@ -520,10 +425,6 @@ body {
     transform: rotate(360deg);
   }
 }
-
-/* ============================================================================
-   QUICK STATS DASHBOARD
-   ============================================================================ */
 
 .quick-stats-dashboard {
   margin-bottom: 4rem;
@@ -725,10 +626,6 @@ body {
   }
 }
 
-/* ============================================================================
-   SECTION TITLES & STATE SUMMARY
-   ============================================================================ */
-
 .section-title {
   font-family: "Cinzel", serif;
   font-size: 2rem;
@@ -737,7 +634,6 @@ body {
   text-align: center;
   text-shadow: 0 0 20px var(--glow-blue);
   position: relative;
-  animation: titlePulse 3s ease-in-out infinite;
 }
 
 .section-title::after {
@@ -757,24 +653,11 @@ body {
   border-radius: 2px;
 }
 
-@keyframes titlePulse {
-  0%,
-  100% {
-    text-shadow: 0 0 20px var(--glow-blue);
-  }
-  50% {
-    text-shadow:
-      0 0 30px var(--glow-blue),
-      0 0 40px rgba(77, 21, 22, 0.3);
-  }
-}
-
 .state-summary {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   margin-bottom: 3rem;
-  animation: slideInFromBottom 0.8s ease-out 0.4s both;
 }
 
 .state-card {
@@ -1010,27 +893,11 @@ body {
   padding-left: 1.85rem;
 }
 
-/* ============================================================================
-   NATION STATISTICS GRID
-   ============================================================================ */
-
 .nation-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-bottom: 3rem;
-  animation: staggerIn 0.8s ease-out 0.6s both;
-}
-
-@keyframes staggerIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .stat-card {
@@ -1372,10 +1239,6 @@ body {
   text-shadow: 0 0 8px rgba(255, 165, 0, 0.3);
 }
 
-/* ============================================================================
-   CHART & ANALYTICS SECTIONS
-   ============================================================================ */
-
 .chart-card {
   background: linear-gradient(
     135deg,
@@ -1579,21 +1442,6 @@ body {
   animation: metricShimmer 2.5s ease-in-out infinite;
 }
 
-@keyframes metricShimmer {
-  0%,
-  100% {
-    transform: translateX(-100%);
-  }
-  50% {
-    transform: translateX(100%);
-  }
-}
-
-/* ============================================================================
-   RESPONSIVE DESIGN & OPTIMIZATIONS
-   ============================================================================ */
-
-/* Animation delay utilities */
 .stat-card:nth-child(1) {
   animation-delay: 0.1s;
 }
@@ -1615,15 +1463,6 @@ body {
   will-change: transform;
 }
 
-/* Touch device optimizations */
-@media (hover: none) and (pointer: coarse) {
-  .stat-card:hover,
-  .state-card:hover,
-  .analytics-section:hover {
-    transform: none;
-  }
-}
-
 .stat-card:active {
   transform: scale(0.98);
   transition: transform 0.1s ease;
@@ -1632,140 +1471,4 @@ body {
 .state-card:active {
   transform: scale(0.98);
   transition: transform 0.1s ease;
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  .particles,
-  .magic-circle,
-  .starfield {
-    display: none;
-  }
-}
-
-/* High contrast mode */
-@media (prefers-contrast: high) {
-  .stat-card,
-  .chart-card,
-  .state-card {
-    border-width: 2px;
-    border-color: var(--text-light);
-  }
-
-  .stat-value,
-  .section-title,
-  .welcome-title {
-    color: #ffffff;
-  }
-
-  .metric-fill {
-    background: #ffffff !important;
-  }
-}
-
-/* Remove duplicate scrollbar styling - handled in shared.css */
-
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  .main-content {
-    padding: 1rem 1.5rem;
-    padding-top: 5rem;
-  }
-
-  .hero-welcome {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 2rem;
-  }
-
-  .welcome-title {
-    font-size: 2.4rem;
-  }
-
-  .federation-emblem {
-    width: 200px;
-    height: 200px;
-  }
-
-  .emblem-core {
-    width: 120px;
-    height: 120px;
-  }
-
-  .emblem-image {
-    width: 100px;
-    height: 100px;
-  }
-
-  .state-summary {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .nation-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .stat-card {
-    padding: 2rem;
-    min-height: auto;
-  }
-
-  .stat-value {
-    font-size: 2.5rem;
-  }
-
-  #economy-value,
-  #magic-value {
-    font-size: 2rem;
-  }
-
-  .welcome-badges {
-    grid-template-columns: 1fr;
-  }
-
-  .quick-stats-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .analytics-overview {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  .main-content {
-    padding: 1rem;
-    padding-top: 4.5rem;
-  }
-
-  .hero-welcome {
-    padding: 1.5rem;
-  }
-
-  .welcome-title {
-    font-size: 2rem;
-  }
-
-  .stat-card {
-    padding: 1.5rem;
-  }
-
-  .stat-value {
-    font-size: 2rem;
-  }
-
-  #economy-value,
-  #magic-value {
-    font-size: 1.8rem;
-  }
 }

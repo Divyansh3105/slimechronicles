@@ -11,46 +11,42 @@ class AnimatedBackground {
   }
 
   init() {
-    // Always show the base background image first
     this.setupBaseBackground();
 
-    // Create animated particle background using particles.js
     if (this.options.enableAnimation) {
       this.loadParticlesJS();
     }
   }
 
   setupBaseBackground() {
-    // Apply base background image to body
     const body = document.body;
     const backgroundStyle = `
       linear-gradient(rgba(10, 14, 39, 0.7), rgba(10, 14, 39, 0.7)),
       url('${this.options.baseImageUrl}')
     `;
 
-    body.style.setProperty('background', backgroundStyle, 'important');
-    body.style.setProperty('background-size', 'cover', 'important');
-    body.style.setProperty('background-attachment', 'fixed', 'important');
-    body.style.setProperty('background-position', 'center', 'important');
-    body.style.setProperty('background-repeat', 'no-repeat', 'important');
-
+    body.style.setProperty("background", backgroundStyle, "important");
+    body.style.setProperty("background-size", "cover", "important");
+    body.style.setProperty("background-attachment", "fixed", "important");
+    body.style.setProperty("background-position", "center", "important");
+    body.style.setProperty("background-repeat", "no-repeat", "important");
   }
 
   async loadParticlesJS() {
     try {
-      // Check if particles.js is already loaded
       if (typeof particlesJS === "undefined") {
-        await this.loadScript("https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js");
+        await this.loadScript(
+          "https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js",
+        );
       }
 
-      // Create particles container
       this.createParticlesContainer();
-
-      // Initialize particles.js
       this.initializeParticles();
-
     } catch (error) {
-      console.log("Failed to load particles.js, using base background only:", error);
+      console.log(
+        "Failed to load particles.js, using base background only:",
+        error,
+      );
     }
   }
 
@@ -70,15 +66,13 @@ class AnimatedBackground {
   }
 
   createParticlesContainer() {
-    // Remove existing particles container if any
     const existing = document.getElementById("particles-js");
     if (existing) {
       existing.remove();
     }
 
-    // Create new particles container
-    const particlesContainer = document.createElement('div');
-    particlesContainer.id = 'particles-js';
+    const particlesContainer = document.createElement("div");
+    particlesContainer.id = "particles-js";
     particlesContainer.style.cssText = `
       position: fixed;
       top: 0;
@@ -94,123 +88,119 @@ class AnimatedBackground {
 
   initializeParticles() {
     const particlesConfig = {
-      "particles": {
-        "number": {
-          "value": 80,
-          "density": {
-            "enable": true,
-            "value_area": 800
-          }
+      particles: {
+        number: {
+          value: 80,
+          density: {
+            enable: true,
+            value_area: 800,
+          },
         },
-        "color": {
-          "value": ["#4dd4ff", "#8a2be2", "#ffd700", "#00bfff"]
+        color: {
+          value: ["#4dd4ff", "#8a2be2", "#ffd700", "#00bfff"],
         },
-        "shape": {
-          "type": "circle",
-          "stroke": {
-            "width": 0,
-            "color": "#000000"
-          }
+        shape: {
+          type: "circle",
+          stroke: {
+            width: 0,
+            color: "#000000",
+          },
         },
-        "opacity": {
-          "value": 0.5,
-          "random": false,
-          "anim": {
-            "enable": true,
-            "speed": 1,
-            "opacity_min": 0.1,
-            "sync": false
-          }
+        opacity: {
+          value: 0.5,
+          random: false,
+          anim: {
+            enable: true,
+            speed: 1,
+            opacity_min: 0.1,
+            sync: false,
+          },
         },
-        "size": {
-          "value": 3,
-          "random": true,
-          "anim": {
-            "enable": false,
-            "speed": 40,
-            "size_min": 0.1,
-            "sync": false
-          }
+        size: {
+          value: 3,
+          random: true,
+          anim: {
+            enable: false,
+            speed: 40,
+            size_min: 0.1,
+            sync: false,
+          },
         },
-        "line_linked": {
-          "enable": true,
-          "distance": 150,
-          "color": "#4dd4ff",
-          "opacity": 0.4,
-          "width": 1
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#4dd4ff",
+          opacity: 0.4,
+          width: 1,
         },
-        "move": {
-          "enable": true,
-          "speed": 2,
-          "direction": "none",
-          "random": false,
-          "straight": false,
-          "out_mode": "out",
-          "bounce": false,
-          "attract": {
-            "enable": false,
-            "rotateX": 600,
-            "rotateY": 1200
-          }
-        }
+        move: {
+          enable: true,
+          speed: 2,
+          direction: "none",
+          random: false,
+          straight: false,
+          out_mode: "out",
+          bounce: false,
+          attract: {
+            enable: false,
+            rotateX: 600,
+            rotateY: 1200,
+          },
+        },
       },
-      "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-          "onhover": {
-            "enable": true,
-            "mode": "repulse"
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: {
+            enable: true,
+            mode: "repulse",
           },
-          "onclick": {
-            "enable": true,
-            "mode": "push"
+          onclick: {
+            enable: true,
+            mode: "push",
           },
-          "resize": true
+          resize: true,
         },
-        "modes": {
-          "grab": {
-            "distance": 140,
-            "line_linked": {
-              "opacity": 1
-            }
+        modes: {
+          grab: {
+            distance: 140,
+            line_linked: {
+              opacity: 1,
+            },
           },
-          "bubble": {
-            "distance": 400,
-            "size": 40,
-            "duration": 2,
-            "opacity": 8,
-            "speed": 3
+          bubble: {
+            distance: 400,
+            size: 40,
+            duration: 2,
+            opacity: 8,
+            speed: 3,
           },
-          "repulse": {
-            "distance": 100,
-            "duration": 0.4
+          repulse: {
+            distance: 100,
+            duration: 0.4,
           },
-          "push": {
-            "particles_nb": 4
+          push: {
+            particles_nb: 4,
           },
-          "remove": {
-            "particles_nb": 2
-          }
-        }
+          remove: {
+            particles_nb: 2,
+          },
+        },
       },
-      "retina_detect": true
+      retina_detect: true,
     };
 
-    // Initialize particles.js
-    particlesJS('particles-js', particlesConfig);
+    particlesJS("particles-js", particlesConfig);
 
-    // Store reference for cleanup
     this.particlesInstance = window.pJSDom && window.pJSDom[0];
   }
 
   destroy() {
-    // Clean up particles.js instance
     if (this.particlesInstance && this.particlesInstance.pJS) {
       this.particlesInstance.pJS.fn.vendors.destroypJS();
       this.particlesInstance = null;
     }
 
-    // Remove particles container
     const container = document.getElementById("particles-js");
     if (container) {
       container.remove();
@@ -230,7 +220,6 @@ class AnimatedBackground {
   }
 }
 
-// ===== PARTICLE SYSTEM MODULE =====
 class ParticleSystem {
   constructor() {
     this.particlePool = [];
@@ -386,7 +375,6 @@ class ParticleSystem {
   }
 }
 
-// ===== LOADING SCREEN MODULE =====
 class LoadingScreenManager {
   constructor() {
     this.loadingScreen = document.getElementById("loading-screen");
@@ -427,14 +415,12 @@ class LoadingScreenManager {
 
     this.loadingScreen.style.opacity = "0";
 
-    // Hide after fade completes
     setTimeout(() => {
       if (this.loadingScreen && this.loadingScreen.parentElement) {
         this.loadingScreen.style.display = "none";
         this.loadingScreen.style.visibility = "hidden";
       }
       this.isLoading = false;
-      // Restore scroll if needed
       document.body.style.overflowY = "auto";
       document.documentElement.style.overflowY = "auto";
     }, delay + 400);
@@ -450,7 +436,6 @@ class LoadingScreenManager {
   }
 }
 
-// ===== INITIALIZATION AND GLOBAL FUNCTIONS =====
 let particleSystem = null;
 
 function createParticles() {
@@ -473,24 +458,19 @@ function cleanupParticles() {
   }
 }
 
-// Initialize loading screen manager immediately
 const initLoadingScreen = () => {
   window.loadingScreenManager = new LoadingScreenManager();
 };
 
-// ===== AUTO-INITIALIZATION =====
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
-    // Initialize animated background with particles.js
     window.animatedBG = new AnimatedBackground();
 
-    // Initialize particle system
     if (!particleSystem) {
       particleSystem = new ParticleSystem();
     }
     particleSystem.initialize();
 
-    // Initialize loading screen
     initLoadingScreen();
   });
 
@@ -500,7 +480,6 @@ if (document.readyState === "loading") {
     }
   });
 } else {
-  // DOM is already interactive or complete
   window.animatedBG = new AnimatedBackground();
 
   if (!particleSystem) {
@@ -517,7 +496,6 @@ if (document.readyState === "loading") {
   });
 }
 
-// Cleanup on page unload
 window.addEventListener("beforeunload", () => {
   if (particleSystem) {
     particleSystem.cleanup();
@@ -527,7 +505,6 @@ window.addEventListener("beforeunload", () => {
   }
 });
 
-// Export for Node.js environments
 if (typeof module !== "undefined" && module.exports) {
   module.exports = {
     AnimatedBackground,
@@ -535,6 +512,6 @@ if (typeof module !== "undefined" && module.exports) {
     LoadingScreenManager,
     createParticles,
     createStarfield,
-    cleanupParticles
+    cleanupParticles,
   };
 }

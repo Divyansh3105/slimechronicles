@@ -15,7 +15,6 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/shared.css">
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/sound-effects.css">
     <script src="js/effects.js" defer></script>
 </head>
 
@@ -278,16 +277,13 @@
 
     <script src="js/character.js"></script>
     <script src="js/game-state-optimized.js"></script>
-    <script src="js/sound-effects.js"></script>
     <script>
         let soundEnabled = true;
 
-        // Enhanced loading sequence
         function initializeApp() {
             const loadingScreen = document.getElementById('loading-screen');
             const introContainer = document.getElementById('intro-container');
 
-            // Simulate loading
             setTimeout(() => {
                 loadingScreen.style.opacity = '0';
                 setTimeout(() => {
@@ -299,7 +295,6 @@
         }
 
         function startAnimations() {
-            // Animate lore lines
             const loreLines = document.querySelectorAll('.lore-line');
             loreLines.forEach((line, index) => {
                 setTimeout(() => {
@@ -307,12 +302,10 @@
                 }, index * 800);
             });
 
-            // Animate stats
             setTimeout(() => {
                 animateStats();
             }, 1500);
 
-            // Add interactive particles to slime orb
             addSlimeInteractivity();
         }
 
@@ -355,7 +348,6 @@
             });
         }
 
-        // Navigation functions
         function enterFederation() {
             if (soundEnabled) SoundFeedback.playEffect('click');
             addButtonEffect(event.target);
@@ -421,7 +413,6 @@
             }, 300);
         }
 
-        // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {
             if (e.altKey) return;
 
@@ -456,10 +447,8 @@
             }
         });
 
-        // Initialize app when DOM is loaded
         document.addEventListener('DOMContentLoaded', initializeApp);
 
-        // Close modal when clicking outside
         document.getElementById('info-modal').addEventListener('click', (e) => {
             if (e.target.classList.contains('modal-overlay')) {
                 closeModal();

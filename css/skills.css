@@ -1,7 +1,3 @@
-/* ========================================
-   SKILLS PAGE - MAIN STYLES
-   ======================================== */
-
 :root {
   --primary-blue: #4dd4ff;
   --accent-purple: #aa55ff;
@@ -26,10 +22,6 @@
   margin-top: 100px;
   animation: fadeInUp 0.8s ease-out;
 }
-
-/* ========================================
-   CONTROLS SECTION (Search & Filters)
-   ======================================== */
 
 .skills-controls {
   display: flex;
@@ -207,10 +199,6 @@
   );
 }
 
-/* ========================================
-   STATS SECTION
-   ======================================== */
-
 .skills-stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -323,7 +311,6 @@
   color: var(--primary-blue);
 }
 
-/* Results Counter */
 .results-count {
   text-align: center;
   margin-bottom: 1.5rem;
@@ -342,10 +329,6 @@
   letter-spacing: 0.5px;
   animation: fadeInUp 0.4s ease-out 0.3s both;
 }
-
-/* ========================================
-   LEARNING PATHS SECTION
-   ======================================== */
 
 .skills-learning-path {
   margin-bottom: 2rem;
@@ -431,10 +414,6 @@
   margin-top: 0.5rem;
   font-weight: 600;
 }
-
-/* ========================================
-   SKILLS GRID
-   ======================================== */
 
 .skills-grid {
   display: grid;
@@ -527,7 +506,6 @@
   }
 }
 
-/* Skill Type Specific Hover Effects */
 .skill-card.combat:hover {
   border-color: var(--accent-crimson);
   box-shadow:
@@ -648,7 +626,6 @@
   );
 }
 
-/* Skill Card Content */
 .skill-header {
   display: flex;
   align-items: center;
@@ -722,7 +699,6 @@
   transform: translateY(-2px);
 }
 
-/* Category Badges */
 .category-badge {
   display: inline-block;
   padding: 0.4rem 0.9rem;
@@ -862,7 +838,6 @@
   color: rgba(232, 240, 255, 0.9);
 }
 
-/* Skill Difficulty Indicator */
 .skill-difficulty {
   display: inline-flex;
   align-items: center;
@@ -936,7 +911,6 @@
   left: 100%;
 }
 
-/* Prerequisites */
 .skill-prerequisites {
   margin-top: 1rem;
   padding-top: 1rem;
@@ -992,7 +966,6 @@
   box-shadow: 0 2px 8px rgba(170, 85, 255, 0.2);
 }
 
-/* Applications */
 .skill-applications {
   margin-top: 1rem;
   padding-top: 1rem;
@@ -1047,7 +1020,6 @@
   box-shadow: 0 2px 8px rgba(2, 213, 54, 0.2);
 }
 
-/* Skill Characters Section */
 .skill-characters {
   margin-top: 1.5rem;
   padding-top: 1.5rem;
@@ -1148,7 +1120,6 @@
   transform: scale(1.2) rotate(5deg);
 }
 
-/* Staggered Animation for Skill Cards */
 .skill-card:nth-child(1) {
   animation-delay: 0.1s;
 }
@@ -1176,10 +1147,6 @@
 .skill-card:nth-child(9) {
   animation-delay: 0.5s;
 }
-
-/* ========================================
-   MODALS - DETAIL & COMPARISON
-   ======================================== */
 
 .skill-detail-modal,
 .skill-comparison-modal {
@@ -1314,10 +1281,6 @@
   line-height: 1.6;
 }
 
-/* ========================================
-   MASTERY PROGRESS
-   ======================================== */
-
 .skill-mastery {
   display: flex;
   align-items: center;
@@ -1375,69 +1338,6 @@
   min-width: fit-content;
 }
 
-/* Accessibility and Performance */
-@media (prefers-reduced-motion: reduce) {
-  .skill-card,
-  .character-tag,
-  .skill-icon,
-  .skill-bonus {
-    animation: none !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-@media (prefers-contrast: high) {
-  .skill-card,
-  .skills-controls {
-    border-width: 2px;
-    border-color: var(--text-light);
-  }
-
-  .skill-name {
-    color: #ffffff;
-  }
-}
-
-/* ========================================
-   PRINT STYLES
-   ======================================== */
-
-@media print {
-  .skills-controls,
-  .nav-actions,
-  .mobile-menu-toggle,
-  .skill-detail-modal,
-  .skill-comparison-modal {
-    display: none !important;
-  }
-
-  .skill-card {
-    break-inside: avoid;
-    margin-bottom: 1rem;
-    border: 1px solid var(--border-subtle);
-    background: white;
-    color: black;
-  }
-
-  .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-
-  .skill-name {
-    color: #000;
-  }
-
-  .stat-value,
-  .path-name {
-    color: #333;
-  }
-}
-
-/* ========================================
-   FOCUS & KEYBOARD NAVIGATION
-   ======================================== */
-
 .skill-card:focus,
 .character-tag:focus,
 .learning-path-item:focus,
@@ -1462,10 +1362,6 @@
   outline-offset: 2px;
 }
 
-/* ========================================
-   PERFORMANCE OPTIMIZATIONS
-   ======================================== */
-
 .skill-card {
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
@@ -1478,10 +1374,6 @@
 .character-tag {
   will-change: transform;
 }
-
-/* ========================================
-   SCROLLBAR STYLING
-   ======================================== */
 
 .skill-detail-content::-webkit-scrollbar,
 .comparison-content::-webkit-scrollbar {
@@ -1509,10 +1401,6 @@
 .comparison-content::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, var(--accent-cyan), var(--primary-blue));
 }
-
-/* ========================================
-   KEYFRAME ANIMATIONS
-   ======================================== */
 
 @keyframes fadeInUp {
   from {

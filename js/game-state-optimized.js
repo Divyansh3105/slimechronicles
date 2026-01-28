@@ -1,4 +1,3 @@
-
 class OptimizedGameState {
   constructor() {
     this.STATE_KEY = "juraTempestState"
@@ -14,7 +13,6 @@ class OptimizedGameState {
     }
   }
 
-
   getCharacterLoader() {
     if (!window.CharacterLoader) {
       console.error('CharacterLoader not available');
@@ -22,7 +20,6 @@ class OptimizedGameState {
     }
     return window.CharacterLoader;
   }
-
 
   load() {
     try {
@@ -36,7 +33,6 @@ class OptimizedGameState {
     }
     return { ...this.defaultState }
   }
-
 
   save(state) {
     try {
@@ -52,18 +48,15 @@ class OptimizedGameState {
     }
   }
 
-
   update(updates) {
     const currentState = this.load()
     const newState = { ...currentState, ...updates }
     return this.save(newState)
   }
 
-
   get() {
     return this.load()
   }
-
 
   async getAllCharacters() {
     const loader = this.getCharacterLoader()
@@ -75,7 +68,6 @@ class OptimizedGameState {
     return result
   }
 
-
   async getCharacter(characterId) {
     const loader = this.getCharacterLoader()
     if (!loader) {
@@ -85,7 +77,6 @@ class OptimizedGameState {
     const result = await loader.loadCharacterDetails(characterId)
     return result
   }
-
 
   async getBasicCharacter(characterId) {
     const loader = this.getCharacterLoader()
@@ -98,13 +89,11 @@ class OptimizedGameState {
     return result
   }
 
-
   async searchCharacters(query) {
     const loader = this.getCharacterLoader()
     if (!loader) return []
     return await loader.searchCharacters(query)
   }
-
 
   async getCharacterBatch(startIndex = 0, batchSize = 10) {
     const loader = this.getCharacterLoader()
@@ -112,20 +101,17 @@ class OptimizedGameState {
     return await loader.loadCharacterBatch(startIndex, batchSize)
   }
 
-
   async getCharacterCount() {
     const loader = this.getCharacterLoader()
     if (!loader) return 0
     return await loader.getCharacterCount()
   }
 
-
   async preloadCharacters(characterIds) {
     const loader = this.getCharacterLoader()
     if (!loader) return
     return await loader.preloadCharacterDetails(characterIds)
   }
-
 
   setCharacterCustomName(characterId, customName) {
     const state = this.load()
@@ -136,22 +122,18 @@ class OptimizedGameState {
       ...state,
       customCharacterNames: customNames
     }
-
     this.save(newState)
     return newState
   }
-
 
   getCharacterCustomName(characterId) {
     const state = this.load()
     return state.customCharacterNames?.[characterId] || null
   }
 
-
   checkAchievements(state) {
     const achievements = [...(state.achievements || [])]
     let updated = false
-
 
     const checks = [
       { id: "military_power", condition: state.military >= 70 },
@@ -174,14 +156,12 @@ class OptimizedGameState {
     return updated
   }
 
-
   clearCharacterCache() {
     const loader = this.getCharacterLoader()
     if (loader) {
       loader.clearCache()
     }
   }
-
 
   getPerformanceStats() {
     const loader = this.getCharacterLoader()

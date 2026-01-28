@@ -13,7 +13,6 @@ const CONFIG = {
   },
 };
 
-// Debounced resize handler
 let resizeTimeout;
 function handleResize() {
   clearTimeout(resizeTimeout);
@@ -22,27 +21,30 @@ function handleResize() {
   }, CONFIG.TIMEOUTS.RESIZE_DEBOUNCE);
 }
 
-// HISTORICAL_RECORDS data is now defined as HTML elements and loaded dynamically
 let HISTORICAL_RECORDS = [];
 
-// Function to load records from HTML elements
 function loadRecordsFromHTML() {
-  const recordElements = document.querySelectorAll('#historical-records-data .record-data');
-  HISTORICAL_RECORDS = Array.from(recordElements).map(element => {
-    const participants = element.querySelector('.record-participants').textContent.split(', ').map(p => p.trim());
+  const recordElements = document.querySelectorAll(
+    "#historical-records-data .record-data",
+  );
+  HISTORICAL_RECORDS = Array.from(recordElements).map((element) => {
+    const participants = element
+      .querySelector(".record-participants")
+      .textContent.split(", ")
+      .map((p) => p.trim());
 
     return {
       id: element.dataset.id,
       icon: element.dataset.icon,
-      title: element.querySelector('.record-title').textContent,
-      description: element.querySelector('.record-description').textContent,
+      title: element.querySelector(".record-title").textContent,
+      description: element.querySelector(".record-description").textContent,
       category: element.dataset.category,
       volume: element.dataset.volume,
       importance: element.dataset.importance,
       date: element.dataset.date,
       location: element.dataset.location,
       participants: participants,
-      details: element.querySelector('.record-details').textContent
+      details: element.querySelector(".record-details").textContent,
     };
   });
 
@@ -235,7 +237,6 @@ function renderRecords(records = HISTORICAL_RECORDS) {
     })
     .join("");
 
-  // Enhanced mobile touch handling
   if (isMobile) {
     document.querySelectorAll(".record-card").forEach((card, index) => {
       let touchStartY = 0;
@@ -277,7 +278,6 @@ function renderRecords(records = HISTORICAL_RECORDS) {
             this.style.transform = "";
           }, 100);
 
-          // Only trigger click if it was a quick tap and didn't move much
           if (!touchMoved && touchDuration < 500) {
             const recordId = this.dataset.recordId;
             if (recordId) {
@@ -289,7 +289,6 @@ function renderRecords(records = HISTORICAL_RECORDS) {
         { passive: false },
       );
 
-      // Remove the duplicate click handler for mobile
       if (!isMobile) {
         card.addEventListener("click", function (e) {
           const recordId = this.dataset.recordId;
@@ -310,7 +309,6 @@ function renderRecords(records = HISTORICAL_RECORDS) {
       });
     });
   } else {
-    // Desktop click handlers
     document.querySelectorAll(".record-card").forEach((card) => {
       card.addEventListener("click", function (e) {
         const recordId = this.dataset.recordId;
@@ -382,7 +380,6 @@ function toggleRecordExpansion(recordId) {
   const isCurrentlyExpanded = detailsElement.classList.contains("expanded");
 
   if (isCurrentlyExpanded) {
-    // Collapse this record
     expandedRecord = null;
     detailsElement.classList.remove("expanded");
     expandText.textContent = "Show More";
@@ -391,10 +388,8 @@ function toggleRecordExpansion(recordId) {
     detailsElement.setAttribute("aria-hidden", "true");
     expandBtn.classList.remove("expanded");
   } else {
-    // Expand this record and collapse others
     expandedRecord = recordId;
 
-    // Collapse all other expanded records without re-rendering
     document
       .querySelectorAll(".record-details.expanded")
       .forEach((otherDetails) => {
@@ -413,7 +408,6 @@ function toggleRecordExpansion(recordId) {
         }
       });
 
-    // Expand the clicked record
     detailsElement.classList.add("expanded");
     expandText.textContent = "Show Less";
     expandIcon.textContent = "▲";
@@ -422,14 +416,15 @@ function toggleRecordExpansion(recordId) {
     expandBtn.classList.add("expanded");
   }
 
-  // Play sound effect if available
-  if (window.SoundFeedback && typeof window.SoundFeedback.playEffect === "function") {
+  if (
+    window.SoundFeedback &&
+    typeof window.SoundFeedback.playEffect === "function"
+  ) {
     window.SoundFeedback.playEffect("click");
   }
 
-  // Ensure page scrolling is not blocked after expansion
-  document.body.style.overflow = '';
-  document.documentElement.style.overflow = '';
+  document.body.style.overflow = "";
+  document.documentElement.style.overflow = "";
 }
 function createFilterControls() {
   const container = document.querySelector(".historical-records-container");
@@ -525,12 +520,10 @@ function createFilterControls() {
 function handleSearch(query) {
   searchQuery = query;
 
-  // Clear existing timeout
   if (window.searchTimeout) {
     clearTimeout(window.searchTimeout);
   }
 
-  // Debounce the search to improve performance
   window.searchTimeout = setTimeout(() => {
     updateVisibleRecordsCount();
 
@@ -541,7 +534,6 @@ function handleSearch(query) {
       clearBtn.style.display = query ? "block" : "none";
     }
 
-    // Accessibility announcements for mobile
     if (window.innerWidth <= CONFIG.BREAKPOINTS.MOBILE) {
       const visibleCount = document.querySelectorAll(".record-card").length;
       if (query && visibleCount === 0) {
@@ -588,7 +580,6 @@ function updateVisibleRecordsCount() {
   }
 }
 function initializeHistoricalRecordsPage() {
-
   try {
     loadRecordsFromHTML();
 
@@ -607,7 +598,6 @@ function initializeHistoricalRecordsPage() {
     renderRecords();
     addGlobalEventListeners();
     ensureScrollingWorks();
-
   } catch (error) {
     console.error("Error initializing historical records page:", error);
 
@@ -626,22 +616,22 @@ function initializeHistoricalRecordsPage() {
 }
 
 function addGlobalEventListeners() {
-  window.addEventListener('resize', handleResize);
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && expandedRecord) {
+  window.addEventListener("resize", handleResize);
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && expandedRecord) {
       toggleRecordExpansion(expandedRecord);
     }
 
-    if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+    if ((e.ctrlKey || e.metaKey) && e.key === "f") {
       e.preventDefault();
-      const searchInput = document.getElementById('search-input');
+      const searchInput = document.getElementById("search-input");
       if (searchInput) {
         searchInput.focus();
         searchInput.select();
       }
     }
 
-    if ((e.ctrlKey || e.metaKey) && e.key === 'r') {
+    if ((e.ctrlKey || e.metaKey) && e.key === "r") {
       e.preventDefault();
       resetAllFilters();
     }
@@ -651,20 +641,21 @@ function addGlobalEventListeners() {
 }
 
 function ensureScrollingWorks() {
-  document.documentElement.style.overflow = 'auto';
-  document.body.style.overflow = 'auto';
+  document.documentElement.style.overflow = "auto";
+  document.body.style.overflow = "auto";
 
-  const potentialBlockers = document.querySelectorAll('.historical-records-container, .records-grid, .record-card, .record-details');
-  potentialBlockers.forEach(element => {
-    element.style.overflow = 'visible';
-    element.style.contain = 'none';
+  const potentialBlockers = document.querySelectorAll(
+    ".historical-records-container, .records-grid, .record-card, .record-details",
+  );
+  potentialBlockers.forEach((element) => {
+    element.style.overflow = "visible";
+    element.style.contain = "none";
   });
 
   const observer = new MutationObserver(() => {
-    // Ensure scroll is still working after DOM changes
     setTimeout(() => {
-      document.documentElement.style.overflow = 'auto';
-      document.body.style.overflow = 'auto';
+      document.documentElement.style.overflow = "auto";
+      document.body.style.overflow = "auto";
     }, 100);
   });
 
@@ -672,34 +663,32 @@ function ensureScrollingWorks() {
     childList: true,
     subtree: true,
     attributes: true,
-    attributeFilter: ['class', 'style']
+    attributeFilter: ["class", "style"],
   });
 }
 
 function resetAllFilters() {
-  currentFilter = 'all';
-  currentSort = 'chronological';
-  searchQuery = '';
+  currentFilter = "all";
+  currentSort = "chronological";
+  searchQuery = "";
   expandedRecord = null;
 
-  // Update UI elements
-  const searchInput = document.getElementById('search-input');
-  const categoryFilter = document.getElementById('category-filter');
-  const importanceFilter = document.getElementById('importance-filter');
-  const sortSelect = document.getElementById('sort-select');
-  const clearBtn = document.querySelector('.clear-search');
+  const searchInput = document.getElementById("search-input");
+  const categoryFilter = document.getElementById("category-filter");
+  const importanceFilter = document.getElementById("importance-filter");
+  const sortSelect = document.getElementById("sort-select");
+  const clearBtn = document.querySelector(".clear-search");
 
-  if (searchInput) searchInput.value = '';
-  if (categoryFilter) categoryFilter.value = 'all';
-  if (importanceFilter) importanceFilter.value = 'all';
-  if (sortSelect) sortSelect.value = 'chronological';
-  if (clearBtn) clearBtn.style.display = 'none';
+  if (searchInput) searchInput.value = "";
+  if (categoryFilter) categoryFilter.value = "all";
+  if (importanceFilter) importanceFilter.value = "all";
+  if (sortSelect) sortSelect.value = "chronological";
+  if (clearBtn) clearBtn.style.display = "none";
 
   updateVisibleRecordsCount();
   renderRecords();
 
-  // Announce to screen readers
-  announceToScreenReader('All filters have been reset');
+  announceToScreenReader("All filters have been reset");
 }
 function initializeRecordsPage() {
   try {
@@ -710,7 +699,6 @@ function initializeRecordsPage() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-
   const grid = document.getElementById("records-grid");
   if (grid) {
     grid.innerHTML = `
@@ -727,7 +715,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   try {
-    // Small delay to ensure all elements are ready
     setTimeout(() => {
       initializeRecordsPage();
 
@@ -738,7 +725,6 @@ document.addEventListener("DOMContentLoaded", function () {
   } catch (error) {
     console.error("Error in initializeRecordsPage:", error);
 
-    // Show error in grid if initialization fails
     if (grid) {
       grid.innerHTML = `
         <div class="no-results">
@@ -752,84 +738,79 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// Add keyboard shortcuts
-document.addEventListener('keydown', function(e) {
-  // Escape key to close expanded records
-  if (e.key === 'Escape' && expandedRecord) {
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" && expandedRecord) {
     toggleRecordExpansion(expandedRecord);
   }
 
-  // Ctrl/Cmd + F to focus search
-  if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+  if ((e.ctrlKey || e.metaKey) && e.key === "f") {
     e.preventDefault();
-    const searchInput = document.getElementById('search-input');
+    const searchInput = document.getElementById("search-input");
     if (searchInput) {
       searchInput.focus();
     }
   }
 
-  // Ctrl/Cmd + R to reset filters
-  if ((e.ctrlKey || e.metaKey) && e.key === 'r') {
+  if ((e.ctrlKey || e.metaKey) && e.key === "r") {
     e.preventDefault();
-    currentFilter = 'all';
-    currentSort = 'chronological';
-    searchQuery = '';
+    currentFilter = "all";
+    currentSort = "chronological";
+    searchQuery = "";
 
-    // Update UI elements
-    const searchInput = document.getElementById('search-input');
-    const categoryFilter = document.getElementById('category-filter');
-    const importanceFilter = document.getElementById('importance-filter');
-    const sortSelect = document.getElementById('sort-select');
-    const clearBtn = document.querySelector('.clear-search');
+    const searchInput = document.getElementById("search-input");
+    const categoryFilter = document.getElementById("category-filter");
+    const importanceFilter = document.getElementById("importance-filter");
+    const sortSelect = document.getElementById("sort-select");
+    const clearBtn = document.querySelector(".clear-search");
 
-    if (searchInput) searchInput.value = '';
-    if (categoryFilter) categoryFilter.value = 'all';
-    if (importanceFilter) importanceFilter.value = 'all';
-    if (sortSelect) sortSelect.value = 'chronological';
-    if (clearBtn) clearBtn.style.display = 'none';
+    if (searchInput) searchInput.value = "";
+    if (categoryFilter) categoryFilter.value = "all";
+    if (importanceFilter) importanceFilter.value = "all";
+    if (sortSelect) sortSelect.value = "chronological";
+    if (clearBtn) clearBtn.style.display = "none";
 
     updateVisibleRecordsCount();
     renderRecords();
   }
 });
-// Missing functions that are referenced in HTML
+
 function toggleHelp() {
-  const helpContent = document.getElementById('help-content');
-  const helpToggle = document.querySelector('.help-toggle');
+  const helpContent = document.getElementById("help-content");
+  const helpToggle = document.querySelector(".help-toggle");
 
   if (!helpContent || !helpToggle) return;
 
-  const isExpanded = helpContent.classList.contains('expanded');
+  const isExpanded = helpContent.classList.contains("expanded");
 
   if (isExpanded) {
-    helpContent.classList.remove('expanded');
-    helpToggle.classList.remove('active');
-    helpToggle.setAttribute('aria-expanded', 'false');
+    helpContent.classList.remove("expanded");
+    helpToggle.classList.remove("active");
+    helpToggle.setAttribute("aria-expanded", "false");
   } else {
-    helpContent.classList.add('expanded');
-    helpToggle.classList.add('active');
-    helpToggle.setAttribute('aria-expanded', 'true');
+    helpContent.classList.add("expanded");
+    helpToggle.classList.add("active");
+    helpToggle.setAttribute("aria-expanded", "true");
   }
 
-  // Play sound effect if available
-  if (window.SoundFeedback && typeof window.SoundFeedback.playEffect === 'function') {
-    window.SoundFeedback.playEffect('click');
+  if (
+    window.SoundFeedback &&
+    typeof window.SoundFeedback.playEffect === "function"
+  ) {
+    window.SoundFeedback.playEffect("click");
   }
 }
 
 function testFunction() {
-  alert('JavaScript is working correctly!');
+  alert("JavaScript is working correctly!");
 
-  // Test the main functionality
   try {
     renderRecords();
   } catch (error) {
-    console.error('Error rendering records:', error);
-    alert('Error rendering records: ' + error.message);
+    console.error("Error rendering records:", error);
+    alert("Error rendering records: " + error.message);
   }
 }
 
-// Export functions to global scope
 window.handleSearch = handleSearch;
 window.clearSearch = clearSearch;
 window.handleCategoryFilter = handleCategoryFilter;

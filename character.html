@@ -16,7 +16,6 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/shared.css">
     <link rel="stylesheet" href="css/character.css">
-    <link rel="stylesheet" href="css/sound-effects.css">
     <script src="js/effects.js" defer></script>
 </head>
 
@@ -304,14 +303,11 @@
     <!-- JavaScript Files -->
     <script src="js/performance-optimizer.js"></script>
     <script src="js/game-state-optimized.js"></script>
-    <script src="js/sound-effects.js"></script>
     <script src="js/character.js"></script>
 
     <!-- Debug Script -->
     <script>
-        // Debug logging
         window.addEventListener('load', () => {
-            // Check URL parameters
             const urlParams = new URLSearchParams(window.location.search);
             const characterId = urlParams.get("id");
         });

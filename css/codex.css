@@ -1,5 +1,4 @@
-﻿/* Codex Container */
-.codex-container {
+﻿.codex-container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 6rem 1rem 2rem 1rem;
@@ -12,7 +11,6 @@
   margin-bottom: 3rem;
 }
 
-/* Stats Section */
 .codex-stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -91,7 +89,6 @@
   font-weight: 600;
 }
 
-/* Filter Section */
 .filter-section {
   display: flex;
   flex-direction: column;
@@ -198,16 +195,10 @@
   border-bottom: none;
 }
 
-
-
-
-
-/* Character Display */
 .character-display {
   position: relative;
 }
 
-/* Character Modal */
 .character-modal {
   display: none;
   position: fixed;
@@ -474,7 +465,6 @@
   background: linear-gradient(135deg, #2a9fd8, var(--primary-blue));
 }
 
-/* Lore Section */
 .lore-section {
   margin-top: 4rem;
   padding: 3rem 0;
@@ -567,7 +557,6 @@
   font-size: 0.95rem;
 }
 
-/* Codex Controls */
 .codex-controls {
   margin-bottom: 3rem;
 }
@@ -633,7 +622,6 @@
   color: rgba(232, 240, 255, 0.5);
 }
 
-/* Filter Tabs */
 .filter-tabs {
   display: flex;
   gap: 0.5rem;
@@ -733,7 +721,6 @@
   box-shadow: 0 0 10px var(--glow-blue);
 }
 
-/* Character Grid */
 .character-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -762,7 +749,6 @@
   border-radius: 1px;
 }
 
-/* Character Grid with 11+ cards */
 .character-grid:has(.character-card:nth-child(11)) {
   grid-template-columns: repeat(4, 1fr);
 }
@@ -808,7 +794,6 @@
   }
 }
 
-/* Character Card */
 .character-card {
   background: linear-gradient(
     145deg,
@@ -922,7 +907,6 @@
   z-index: 10;
 }
 
-/* Character Header */
 .character-header {
   position: relative;
   height: 200px;
@@ -1022,7 +1006,6 @@
   box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
 }
 
-/* Character Image */
 .character-image-wrapper {
   position: relative;
   width: 120px;
@@ -1128,7 +1111,6 @@
   transform: scale(1.1);
 }
 
-/* Character Info */
 .character-info {
   text-align: center;
   padding: 1.5rem;
@@ -1250,7 +1232,6 @@
   box-shadow: 0 4px 12px rgba(var(--character-primary-rgb), 0.3);
 }
 
-/* Character Stats */
 .character-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1347,7 +1328,6 @@
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
-/* Bonuses */
 .character-bonuses {
   display: flex;
   gap: 0.5rem;
@@ -1419,7 +1399,6 @@
   border-color: rgba(255, 255, 255, 0.6);
 }
 
-/* Character Actions */
 .character-actions {
   display: flex;
   flex-direction: column;
@@ -1603,7 +1582,6 @@
   transform: translateY(-1px) scale(0.98);
 }
 
-/* Pagination */
 .pagination-controls {
   display: flex;
   justify-content: center;
@@ -1708,7 +1686,6 @@
   text-shadow: 0 0 10px var(--glow-blue);
 }
 
-/* Character Color Schemes */
 .character-card[data-character-id="rimuru"] {
   --character-primary: #4dd4ff;
   --character-secondary: #2a9fd8;
@@ -1758,7 +1735,6 @@
   --character-secondary-rgb: 147, 112, 219;
 }
 
-/* Loading State */
 .character-grid.loading {
   opacity: 0.5;
   pointer-events: none;
@@ -1792,7 +1768,6 @@
   opacity: 0.5;
 }
 
-/* Focus Styles - Consolidated will-change properties */
 .character-card,
 .filter-tab,
 .view-profile-button,
@@ -1816,7 +1791,6 @@
   transition: transform 0.3s ease;
 }
 
-/* Enhanced Mobile Responsiveness */
 .character-card[data-character-id="geld"] .character-name,
 .character-card[data-character-id="geld"] .character-title,
 .character-card[data-character-id="geld"] .stat-value,
@@ -2054,7 +2028,6 @@
   max-width: 320px;
 }
 
-/* Performance optimizations - consolidated */
 .stat-card,
 .filter-select,
 .search-input,
@@ -2071,7 +2044,6 @@
 
 .character-card {
   contain: layout style paint;
-  /* will-change already defined in Focus Styles section */
 }
 
 .character-card:hover .character-actions {

@@ -1,48 +1,49 @@
-// Character Data Loader Class
 class CharacterDataLoader {
   constructor() {
-    this.basicCharacters = null
-    this.detailedCache = new Map()
-    this.loadingPromises = new Map()
-    this.batchSize = 10
-    this.cacheHits = 0
-    this.cacheRequests = 0
+    this.basicCharacters = null;
+    this.detailedCache = new Map();
+    this.loadingPromises = new Map();
+    this.batchSize = 10;
+    this.cacheHits = 0;
+    this.cacheRequests = 0;
   }
 
   async loadBasicCharacters() {
     if (this.basicCharacters) {
-      return this.basicCharacters
+      return this.basicCharacters;
     }
 
     try {
-      const response = await fetch('data/characters-basic.json')
+      const response = await fetch("data/characters-basic.json");
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`)
+        throw new Error(
+          `HTTP error! status: ${response.status} - ${response.statusText}`,
+        );
       }
 
-      const data = await response.json()
+      const data = await response.json();
 
       if (!Array.isArray(data)) {
-        throw new Error('Character data is not an array');
+        throw new Error("Character data is not an array");
       }
 
       if (data.length === 0) {
-        throw new Error('Character data array is empty');
+        throw new Error("Character data array is empty");
       }
 
-      const validatedData = data.filter(char => {
+      const validatedData = data.filter((char) => {
         if (!char.id || !char.name || !char.race || !char.role) {
-          console.warn('Invalid character data:', char);
+          console.warn("Invalid character data:", char);
           return false;
         }
         return true;
       });
 
-      this.basicCharacters = validatedData
-      return this.basicCharacters
+      this.basicCharacters = validatedData;
+      return this.basicCharacters;
     } catch (error) {
-      console.error('Failed to load basic character data:', error)
+      console.error("Failed to load basic character data:", error);
 
       const fallbackData = await this.getFallbackBasicData();
       this.basicCharacters = fallbackData;
@@ -51,94 +52,98 @@ class CharacterDataLoader {
   }
 
   async loadCharacterDetails(characterId) {
-    this.cacheRequests++
+    this.cacheRequests++;
 
     if (this.detailedCache.has(characterId)) {
-      this.cacheHits++
-      return this.detailedCache.get(characterId)
+      this.cacheHits++;
+      return this.detailedCache.get(characterId);
     }
 
     if (this.loadingPromises.has(characterId)) {
-      return this.loadingPromises.get(characterId)
+      return this.loadingPromises.get(characterId);
     }
 
-    const loadingPromise = this.fetchCharacterDetails(characterId)
-    this.loadingPromises.set(characterId, loadingPromise)
+    const loadingPromise = this.fetchCharacterDetails(characterId);
+    this.loadingPromises.set(characterId, loadingPromise);
 
     try {
-      const details = await loadingPromise
-      this.detailedCache.set(characterId, details)
-      this.loadingPromises.delete(characterId)
-      return details
+      const details = await loadingPromise;
+      this.detailedCache.set(characterId, details);
+      this.loadingPromises.delete(characterId);
+      return details;
     } catch (error) {
-      this.loadingPromises.delete(characterId)
-      throw error
+      this.loadingPromises.delete(characterId);
+      throw error;
     }
   }
 
   async fetchCharacterDetails(characterId) {
     try {
-      const response = await fetch(`data/characters/${characterId}.json`)
+      const response = await fetch(`data/characters/${characterId}.json`);
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-      return await response.json()
+      return await response.json();
     } catch (error) {
-      console.error(`Failed to load details for character ${characterId}:`, error)
+      console.error(
+        `Failed to load details for character ${characterId}:`,
+        error,
+      );
 
-      const basicChar = this.basicCharacters?.find(c => c.id === characterId)
-      return basicChar || null
+      const basicChar = this.basicCharacters?.find((c) => c.id === characterId);
+      return basicChar || null;
     }
   }
 
   async loadCharacterBatch(startIndex = 0, batchSize = this.batchSize) {
-    const basicChars = await this.loadBasicCharacters()
-    if (!basicChars) return []
+    const basicChars = await this.loadBasicCharacters();
+    if (!basicChars) return [];
 
-    const endIndex = Math.min(startIndex + batchSize, basicChars.length)
-    return basicChars.slice(startIndex, endIndex)
+    const endIndex = Math.min(startIndex + batchSize, basicChars.length);
+    return basicChars.slice(startIndex, endIndex);
   }
 
   async getCharacterCount() {
-    const basicChars = await this.loadBasicCharacters()
-    return basicChars ? basicChars.length : 0
+    const basicChars = await this.loadBasicCharacters();
+    return basicChars ? basicChars.length : 0;
   }
 
   async searchCharacters(query) {
-    const basicChars = await this.loadBasicCharacters()
-    if (!basicChars || !query) return basicChars || []
+    const basicChars = await this.loadBasicCharacters();
+    if (!basicChars || !query) return basicChars || [];
 
-    const searchTerm = query.toLowerCase()
-    return basicChars.filter(char =>
-      char.name.toLowerCase().includes(searchTerm) ||
-      char.role.toLowerCase().includes(searchTerm) ||
-      char.race.toLowerCase().includes(searchTerm)
-    )
+    const searchTerm = query.toLowerCase();
+    return basicChars.filter(
+      (char) =>
+        char.name.toLowerCase().includes(searchTerm) ||
+        char.role.toLowerCase().includes(searchTerm) ||
+        char.race.toLowerCase().includes(searchTerm),
+    );
   }
 
   async preloadCharacterDetails(characterIds) {
-    const promises = characterIds.map(id => this.loadCharacterDetails(id))
+    const promises = characterIds.map((id) => this.loadCharacterDetails(id));
     try {
-      await Promise.allSettled(promises)
+      await Promise.allSettled(promises);
     } catch (error) {
-      console.warn('Some character details failed to preload:', error)
+      console.warn("Some character details failed to preload:", error);
     }
   }
 
   clearCache() {
-    this.detailedCache.clear()
-    this.loadingPromises.clear()
+    this.detailedCache.clear();
+    this.loadingPromises.clear();
   }
 
   async getFallbackBasicData() {
     try {
-      const response = await fetch('data/characters-basic.json');
+      const response = await fetch("data/characters-basic.json");
       if (response.ok) {
         const data = await response.json();
         return data;
       }
     } catch (error) {
-      console.warn('Could not load from JSON file in fallback mode:', error);
+      console.warn("Could not load from JSON file in fallback mode:", error);
     }
 
     return [
@@ -153,8 +158,8 @@ class CharacterDataLoader {
         colorScheme: {
           primary: "#00c8ff",
           secondary: "#40d0ff",
-          glow: "rgba(0, 200, 255, 0.6)"
-        }
+          glow: "rgba(0, 200, 255, 0.6)",
+        },
       },
       {
         id: "diablo",
@@ -167,10 +172,10 @@ class CharacterDataLoader {
         colorScheme: {
           primary: "#aa55ff",
           secondary: "#d488ff",
-          glow: "rgba(170, 85, 255, 0.8)"
-        }
-      }
-    ]
+          glow: "rgba(170, 85, 255, 0.8)",
+        },
+      },
+    ];
   }
 
   getPerformanceMetrics() {
@@ -179,26 +184,24 @@ class CharacterDataLoader {
       cachedCharacters: this.detailedCache.size,
       activeLoading: this.loadingPromises.size,
       cacheHitRate: this.cacheHits / Math.max(this.cacheRequests, 1),
-      memoryUsage: this.estimateMemoryUsage()
-    }
+      memoryUsage: this.estimateMemoryUsage(),
+    };
   }
 
   estimateMemoryUsage() {
-    let size = 0
+    let size = 0;
     if (this.basicCharacters) {
-      size += JSON.stringify(this.basicCharacters).length
+      size += JSON.stringify(this.basicCharacters).length;
     }
     for (const [key, value] of this.detailedCache) {
-      size += JSON.stringify(value).length
+      size += JSON.stringify(value).length;
     }
-    return `${(size / 1024).toFixed(2)} KB`
+    return `${(size / 1024).toFixed(2)} KB`;
   }
 }
 
-// Initialize CharacterLoader on window
-window.CharacterLoader = new CharacterDataLoader()
+window.CharacterLoader = new CharacterDataLoader();
 
-// Initialize character profile loading
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     loadCharacterProfile();
@@ -254,9 +257,9 @@ function displayError(title, message, backLink = null) {
             <summary>🔍 Technical Details</summary>
             <div class="tech-details">
               <p><strong>URL:</strong> ${window.location.href}</p>
-              <p><strong>Character ID:</strong> ${new URLSearchParams(window.location.search).get('id') || 'None'}</p>
-              <p><strong>GameState:</strong> ${!!window.GameState ? 'Available' : 'Missing'}</p>
-              <p><strong>CharacterLoader:</strong> ${!!window.CharacterLoader ? 'Available' : 'Missing'}</p>
+              <p><strong>Character ID:</strong> ${new URLSearchParams(window.location.search).get("id") || "None"}</p>
+              <p><strong>GameState:</strong> ${!!window.GameState ? "Available" : "Missing"}</p>
+              <p><strong>CharacterLoader:</strong> ${!!window.CharacterLoader ? "Available" : "Missing"}</p>
               <p><strong>Timestamp:</strong> ${new Date().toISOString()}</p>
             </div>
           </details>
@@ -821,41 +824,39 @@ async function loadCharacterProfile() {
   }
 }
 
-// Enhanced error recovery
 function attemptErrorRecovery() {
   if (window.GameState) {
     window.GameState.clearCharacterCache();
   }
 
-  const firstTab = document.querySelector('.profile-tab');
+  const firstTab = document.querySelector(".profile-tab");
   if (firstTab) {
     firstTab.click();
   }
 
-  showNotification('System recovered. Please try again.');
+  showNotification("System recovered. Please try again.");
 }
 
-// Initialize enhancements
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
-      const tabs = document.querySelectorAll('.profile-tab');
+      const tabs = document.querySelectorAll(".profile-tab");
       tabs.forEach((tab, index) => {
-        tab.setAttribute('tabindex', '0');
-        tab.addEventListener('keydown', (e) => {
-          switch(e.key) {
-            case 'Enter':
-            case ' ':
+        tab.setAttribute("tabindex", "0");
+        tab.addEventListener("keydown", (e) => {
+          switch (e.key) {
+            case "Enter":
+            case " ":
               e.preventDefault();
               tab.click();
               break;
-            case 'ArrowLeft':
+            case "ArrowLeft":
               e.preventDefault();
               const prevTab = tabs[index - 1] || tabs[tabs.length - 1];
               prevTab.focus();
               prevTab.click();
               break;
-            case 'ArrowRight':
+            case "ArrowRight":
               e.preventDefault();
               const nextTab = tabs[index + 1] || tabs[0];
               nextTab.focus();

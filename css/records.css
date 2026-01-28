@@ -1,7 +1,3 @@
-/* ============================================
-   RECORDS PAGE - MAIN STYLES
-   ============================================ */
-
 .historical-records-container {
   position: relative;
   z-index: 10;
@@ -13,10 +9,6 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
-
-/* ============================================
-   BACKGROUND DECORATION
-   ============================================ */
 
 .historical-records-container::before {
   content: "";
@@ -54,10 +46,6 @@
     transform: translateZ(0);
   }
 }
-
-/* ============================================
-   PAGE TITLE STYLES
-   ============================================ */
 
 .page-title {
   font-family: "Cinzel", serif;
@@ -121,10 +109,6 @@
   }
 }
 
-/* ============================================
-   PAGE SUBTITLE STYLES
-   ============================================ */
-
 .page-subtitle {
   font-size: 1.1rem;
   color: var(--text-secondary);
@@ -168,10 +152,6 @@
     transform: translateY(-50%) scale(1.2);
   }
 }
-
-/* ============================================
-   HELP SECTION STYLES
-   ============================================ */
 
 .help-section {
   margin-bottom: 2rem;
@@ -351,10 +331,6 @@ kbd {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-/* ============================================
-   RECORDS CONTROLS STYLES
-   ============================================ */
-
 .records-controls {
   background: linear-gradient(
     135deg,
@@ -375,10 +351,6 @@ kbd {
   overflow: hidden;
   z-index: 2;
 }
-
-/* ============================================
-   SEARCH CONTAINER STYLES
-   ============================================ */
 
 .search-container {
   margin-bottom: 2rem;
@@ -485,10 +457,6 @@ kbd {
   color: #ffffff;
 }
 
-/* ============================================
-   FILTER CONTAINER STYLES
-   ============================================ */
-
 .filter-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -553,10 +521,6 @@ kbd {
   color: var(--text-light);
   padding: 0.5rem;
 }
-
-/* ============================================
-   RECORDS STATS STYLES
-   ============================================ */
 
 .records-stats {
   display: flex;
@@ -643,10 +607,6 @@ kbd {
   color: var(--text-light);
 }
 
-/* ============================================
-   NO RESULTS STYLES
-   ============================================ */
-
 .no-results {
   text-align: center;
   padding: 5rem 2rem;
@@ -700,10 +660,6 @@ kbd {
   position: relative;
   z-index: 2;
 }
-
-/* ============================================
-   RECORD CARD STYLES
-   ============================================ */
 
 .record-card {
   background: linear-gradient(
@@ -798,10 +754,6 @@ kbd {
   border-left-color: var(--primary-blue);
 }
 
-/* ============================================
-   RECORD ICON CONTAINER STYLES
-   ============================================ */
-
 .record-icon-container {
   flex-shrink: 0;
   width: 80px;
@@ -873,10 +825,6 @@ kbd {
   transform: scale(1.1);
 }
 
-/* ============================================
-   RECORD CONTENT STYLES
-   ============================================ */
-
 .record-content {
   flex: 1;
   text-align: left;
@@ -932,10 +880,6 @@ kbd {
   color: rgba(232, 240, 255, 0.9);
   transform: translateX(2px);
 }
-
-/* ============================================
-   RECORD META STYLES
-   ============================================ */
 
 .record-meta {
   display: flex;
@@ -1018,10 +962,6 @@ kbd {
   border-color: rgba(77, 212, 255, 0.3);
   background: rgba(21, 27, 61, 0.6);
 }
-
-/* ============================================
-   RECORD DETAILS STYLES
-   ============================================ */
 
 .record-details {
   display: grid;
@@ -1166,10 +1106,6 @@ kbd {
   color: var(--accent-gold);
 }
 
-/* ============================================
-   RECORDS GRID STYLES
-   ============================================ */
-
 .records-grid {
   position: relative;
   display: flex;
@@ -1205,10 +1141,6 @@ kbd {
     0 0 20px rgba(77, 212, 255, 0.1);
 }
 
-/* ============================================
-   ACCESSIBILITY & KEYBOARD FOCUS STYLES
-   ============================================ */
-
 .sr-only {
   position: absolute !important;
   width: 1px !important;
@@ -1228,10 +1160,6 @@ kbd {
   outline-offset: 4px;
   z-index: 10;
 }
-
-/* ============================================
-   ANIMATION DELAYS
-   ============================================ */
 
 .record-card:nth-child(1) {
   animation-delay: 0.05s;
@@ -1263,79 +1191,6 @@ kbd {
 .record-card:nth-child(10) {
   animation-delay: 0.5s;
 }
-
-/* ============================================
-   ACCESSIBILITY PREFERENCES
-   ============================================ */
-
-@media (prefers-reduced-motion: reduce) {
-  .record-card,
-  .record-icon,
-  .record-expand-btn,
-  .help-toggle,
-  .stat-item,
-  .page-title,
-  .help-icon {
-    animation: none !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  .record-card:hover,
-  .record-expand-btn:hover,
-  .help-toggle:hover {
-    transform: none !important;
-  }
-}
-
-@media (prefers-contrast: high) {
-  .record-card {
-    border-width: 3px;
-    border-color: var(--text-light);
-    background: rgba(0, 0, 0, 0.9);
-  }
-
-  .record-title {
-    color: #ffffff;
-  }
-
-  .record-description,
-  .detail-value {
-    color: #ffffff;
-  }
-
-  .records-controls {
-    background: rgba(0, 0, 0, 0.9);
-    border-color: var(--text-light);
-  }
-}
-
-/* ============================================
-   PRINT STYLES
-   ============================================ */
-
-@media print {
-  .historical-records-container::before,
-  .records-controls::before,
-  .record-card::after,
-  .record-icon-container::before {
-    display: none;
-  }
-
-  .record-card {
-    break-inside: avoid;
-    box-shadow: none;
-    border: 1px solid #000;
-  }
-
-  .page-title {
-    color: #000;
-    text-shadow: none;
-  }
-}
-
-/* ============================================
-   TEXT SELECTION STYLING
-   ============================================ */
 
 ::selection {
   background: rgba(77, 212, 255, 0.3);
