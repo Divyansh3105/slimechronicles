@@ -10,8 +10,7 @@ html {
 }
 
 body {
-  overflow-y: visible !important;
-  overflow-x: hidden !important;
+  overflow: visible !important;
   height: auto;
   min-height: 100vh;
 }
