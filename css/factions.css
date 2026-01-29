@@ -142,29 +142,6 @@
   background: rgba(77, 212, 255, 0.15);
 }
 
-.faction-details {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: all 0.4s ease;
-}
-
-.faction-card.expanded .faction-details {
-  max-height: 300px;
-  opacity: 1;
-  margin-top: 1rem;
-}
-
-.faction-details ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.faction-details li {
-  margin-bottom: 0.6rem;
-  color: rgba(232, 240, 255, 0.9);
-}
-
 /* Enhanced animations and transitions */
 .faction-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -491,4 +468,294 @@
 .faction-card[data-type="race"] .power-snapshot .power-bar div {
   background: linear-gradient(90deg, #ba55d3, #9370db);
   box-shadow: 0 0 8px rgba(186, 85, 211, 0.5);
+}
+/* ========== FACTION MODAL ========== */
+.faction-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 1010;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+  box-sizing: border-box;
+}
+
+.faction-modal.active {
+  display: flex;
+}
+
+.faction-modal .modal-content {
+  background: linear-gradient(
+    145deg,
+    rgba(21, 25, 35, 0.98),
+    rgba(35, 53, 80, 0.95)
+  );
+  border: 2px solid rgba(77, 212, 255, 0.4);
+  border-radius: 24px;
+  padding: 0;
+  max-width: 900px;
+  max-height: 85vh;
+  overflow: hidden;
+  position: relative;
+  margin: 2rem 1rem 1rem 1rem;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(77, 212, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.faction-modal .modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  z-index: 1020;
+  backdrop-filter: blur(10px);
+}
+
+.faction-modal .modal-close:hover {
+  background: rgba(255, 87, 87, 0.2);
+  border-color: #ff5757;
+  color: #ff5757;
+  transform: rotate(90deg) scale(1.1);
+}
+
+.faction-modal .modal-body {
+  padding: 2rem;
+  overflow-y: auto;
+  max-height: 85vh;
+}
+
+/* Modal faction header */
+.modal-faction-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(77, 212, 255, 0.3);
+}
+
+.modal-faction-title {
+  font-family: "Cinzel", serif;
+  font-size: 2.2rem;
+  background: linear-gradient(135deg, #4dd4ff, #ffd700);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+.modal-faction-tag {
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.modal-faction-summary {
+  font-size: 1.1rem;
+  color: rgba(232, 240, 255, 0.9);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+/* Modal power snapshot */
+.modal-power-snapshot {
+  background: rgba(21, 27, 61, 0.4);
+  border: 1px solid rgba(77, 212, 255, 0.2);
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.modal-power-snapshot h3 {
+  color: #ffd700;
+  font-family: "Cinzel", serif;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.modal-power-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.modal-power-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.modal-power-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  color: rgba(232, 240, 255, 0.9);
+}
+
+.modal-power-value {
+  font-size: 0.9rem;
+  color: #4dd4ff;
+  font-weight: bold;
+}
+
+.modal-power-bar {
+  height: 12px;
+  background: rgba(77, 212, 255, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.modal-power-bar div {
+  height: 100%;
+  background: linear-gradient(90deg, #4dd4ff, #ffd700);
+  border-radius: 10px;
+  transition: width 1s ease-in-out;
+  box-shadow: 0 0 10px rgba(77, 212, 255, 0.6);
+}
+
+/* Modal detail sections */
+.modal-detail-sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.modal-detail-section {
+  background: rgba(21, 27, 61, 0.3);
+  border: 1px solid rgba(77, 212, 255, 0.2);
+  border-radius: 15px;
+  padding: 1.5rem;
+}
+
+.modal-detail-section h4 {
+  color: #ffd700;
+  font-family: "Cinzel", serif;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.modal-detail-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.modal-detail-section li {
+  margin-bottom: 0.8rem;
+  color: rgba(232, 240, 255, 0.9);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(77, 212, 255, 0.1);
+  line-height: 1.5;
+}
+
+.modal-detail-section li:last-child {
+  border-bottom: none;
+}
+
+.modal-detail-section strong {
+  color: #4dd4ff;
+  font-weight: 600;
+}
+
+/* Mobile responsiveness for modal */
+@media (max-width: 768px) {
+  .faction-modal .modal-content {
+    margin: 1rem 0.5rem 0.5rem 0.5rem;
+    max-height: 90vh;
+  }
+
+  .faction-modal .modal-body {
+    padding: 1.5rem;
+    max-height: 80vh;
+  }
+
+  .modal-faction-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .modal-faction-title {
+    font-size: 1.8rem;
+  }
+
+  .modal-detail-sections {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .modal-power-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* Hide faction details on cards since they're now modal-only */
+.faction-details {
+  display: none;
+}
+
+/* ===== Federation Impact ===== */
+.impact-section ul li {
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.impact-positive::before {
+  content: "▲";
+  color: #90ee90;
+  position: absolute;
+  left: 0;
+}
+
+.impact-negative::before {
+  content: "▼";
+  color: #ff6347;
+  position: absolute;
+  left: 0;
+}
+
+.impact-neutral::before {
+  content: "●";
+  color: #ffd700;
+  position: absolute;
+  left: 0;
 }
