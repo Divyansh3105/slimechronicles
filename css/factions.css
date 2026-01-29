@@ -415,3 +415,80 @@
     max-width: 200px;
   }
 }
+/* ===== Faction Power Snapshot ===== */
+.power-snapshot {
+  margin: 1.2rem 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.power-item {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: rgba(232, 240, 255, 0.8);
+}
+
+.power-bar {
+  height: 8px;
+  background: rgba(77, 212, 255, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.power-bar div {
+  height: 100%;
+  width: calc(var(--power) * 1%);
+  background: linear-gradient(90deg, #4dd4ff, #ffd700);
+  box-shadow: 0 0 8px rgba(77, 212, 255, 0.6);
+  border-radius: 10px;
+  transition: width 0.8s ease-in-out;
+}
+
+/* Enhanced power bar animations */
+.faction-card:hover .power-bar div {
+  box-shadow: 0 0 12px rgba(77, 212, 255, 0.8);
+}
+
+/* Power level color variations */
+.power-bar div[style*="--power: 9"],
+.power-bar div[style*="--power: 10"] {
+  background: linear-gradient(90deg, #ffd700, #ff6b35);
+}
+
+.power-bar div[style*="--power: 8"] {
+  background: linear-gradient(90deg, #4dd4ff, #ffd700);
+}
+
+.power-bar div[style*="--power: 7"] {
+  background: linear-gradient(90deg, #4dd4ff, #90ee90);
+}
+
+.power-bar div[style*="--power: 6"],
+.power-bar div[style*="--power: 5"] {
+  background: linear-gradient(90deg, #90ee90, #87ceeb);
+}
+/* Special styling for fallen/dissolved factions */
+.faction-card[data-type="nation"]:has(h2:contains("Fallen")) .power-bar,
+.faction-card h2:contains("Fallen") ~ .power-snapshot .power-bar {
+  background: rgba(255, 99, 71, 0.15);
+}
+
+.faction-card h2:contains("Fallen") ~ .power-snapshot .power-bar div {
+  background: linear-gradient(90deg, #ff6347, #8b0000);
+  box-shadow: 0 0 8px rgba(255, 99, 71, 0.4);
+}
+
+/* Enhanced power bar for trade/economic factions */
+.faction-card[data-type="guild"] .power-snapshot .power-item:nth-child(2) .power-bar div {
+  background: linear-gradient(90deg, #90ee90, #ffd700);
+  box-shadow: 0 0 10px rgba(144, 238, 144, 0.6);
+}
+
+/* Race faction power bar styling */
+.faction-card[data-type="race"] .power-snapshot .power-bar div {
+  background: linear-gradient(90deg, #ba55d3, #9370db);
+  box-shadow: 0 0 8px rgba(186, 85, 211, 0.5);
+}
