@@ -20,6 +20,7 @@ class TimelineManager {
     this.setupEventListeners();
     this.initializeTooltips();
     this.updateStatistics();
+    this.handleURLParameters();
   }
 
   // Cache timeline events - Extract and process timeline events from DOM
@@ -370,6 +371,75 @@ class TimelineManager {
     document.getElementById("arcs-count").textContent = visibleArcs;
     document.getElementById("events-count").textContent = visibleEvents;
     document.getElementById("characters-count").textContent = visibleCharacters.size;
+  }
+
+  // Handle URL parameters to automatically navigate to specific events or arcs
+  handleURLParameters() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const eventParam = urlParams.get('event');
+
+    if (eventParam) {
+      // Map event parameters to arc titles for navigation
+      const eventToArcMap = {
+        'Falmuth_War': 'Falmuth Incident Arc',
+        'Demon_Lord_Awakening': 'Falmuth Incident Arc',
+        'Walpurgis': 'Walpurgis Arc',
+        'Eastern_Empire': 'Eastern Empire Arc',
+        'True_Dragon': 'True Dragon Arc',
+        'Labyrinth': 'Labyrinth Arc',
+        'Phantom_King': 'Phantom King Arc',
+        'Orc_Disaster': 'Orc Disaster Arc',
+        'Reincarnation': 'Reincarnation Arc'
+      };
+
+      const targetArcTitle = eventToArcMap[eventParam];
+
+      if (targetArcTitle) {
+        // Find and expand the target arc
+        setTimeout(() => {
+          const arcs = document.querySelectorAll('.timeline-arc');
+          let targetArc = null;
+
+          // First try to find by data-event attribute
+          targetArc = document.querySelector(`[data-event="${eventParam}"]`);
+
+          // If not found, search by arc title
+          if (!targetArc) {
+            arcs.forEach(arc => {
+              const arcTitle = arc.querySelector('.arc-title');
+              if (arcTitle && arcTitle.textContent.trim() === targetArcTitle) {
+                targetArc = arc;
+              }
+            });
+          }
+
+          if (targetArc) {
+            // Expand the arc if it's not already expanded
+            if (!targetArc.classList.contains('expanded')) {
+              const arcHeader = targetArc.querySelector('.arc-header');
+              if (arcHeader) {
+                window.toggleArcSimple(arcHeader);
+              }
+            }
+
+            // Scroll to the arc with a slight delay to ensure expansion animation completes
+            setTimeout(() => {
+              targetArc.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+                inline: 'nearest'
+              });
+
+              // Add a visual highlight effect
+              targetArc.style.boxShadow = '0 0 20px rgba(77, 212, 255, 0.6)';
+              setTimeout(() => {
+                targetArc.style.boxShadow = '';
+              }, 3000);
+            }, 500);
+          }
+        }, 100);
+      }
+    }
   }
 
 
