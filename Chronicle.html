@@ -192,6 +192,51 @@
         <div class="page-header">
             <h1 class="page-title">Chronicle of Tempest</h1>
             <p class="page-subtitle">A Historical Archive of the Jura Tempest Federation</p>
+
+            <!-- Enhanced search and filter controls -->
+            <div class="timeline-controls">
+                <div class="search-container">
+                    <div class="search-input-wrapper">
+                        <i class="ri-search-line search-icon"></i>
+                        <input type="text" id="timeline-search" placeholder="Search events, characters, or keywords..."
+                            class="timeline-search-input" autocomplete="off">
+                        <button class="clear-search-btn" onclick="window.timelineManager?.clearSearch()"
+                            title="Clear search" style="display: none;">
+                            <i class="ri-close-line"></i>
+                        </button>
+                    </div>
+                    <button class="search-btn" onclick="window.timelineManager?.searchTimeline()" title="Search">
+                        <i class="ri-search-2-line"></i>
+                    </button>
+                </div>
+
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label for="era-filter">Era:</label>
+                        <select id="era-filter" class="filter-select">
+                            <option value="all">All Eras</option>
+                            <option value="founding">Founding Era</option>
+                            <option value="expansion">Expansion Era</option>
+                            <option value="demon-lord">Demon Lord Era</option>
+                            <option value="imperial">Imperial Era</option>
+                            <option value="dragon">Dragon Era</option>
+                            <option value="cosmic">Cosmic Era</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="importance-filter">Importance:</label>
+                        <select id="importance-filter" class="filter-select">
+                            <option value="all">All Events</option>
+                            <option value="high">High Impact</option>
+                            <option value="medium">Medium Impact</option>
+                            <option value="low">Low Impact</option>
+                        </select>
+                    </div>
+
+
+                </div>
+            </div>
         </div>
 
         <!-- Interactive timeline container with chronological events -->
@@ -200,7 +245,7 @@
             <div class="timeline-line"></div>
 
             <!-- Year 2013 - Founding Era section -->
-            <div class="timeline-year visible" data-era="founding"
+            <div class="timeline-year visible" data-era="founding" id="year-2013"
                 style="display: block; opacity: 1; transform: translateY(0);">
                 <!-- Year marker with era designation -->
                 <div class="year-marker">
@@ -304,7 +349,7 @@
             </div>
 
             <!-- Year 2014 - Expansion Era section -->
-            <div class="timeline-year visible" data-era="expansion"
+            <div class="timeline-year visible" data-era="expansion" id="year-2014"
                 style="display: block; opacity: 1; transform: translateY(0);">
                 <!-- Year marker with era designation -->
                 <div class="year-marker">
@@ -371,7 +416,7 @@
             </div>
 
             <!-- Year 2015 - Demon Lord Era section -->
-            <div class="timeline-year visible" data-era="demon-lord"
+            <div class="timeline-year visible" data-era="demon-lord" id="year-2015"
                 style="display: block; opacity: 1; transform: translateY(0);">
                 <!-- Year marker with era designation -->
                 <div class="year-marker">
@@ -532,7 +577,7 @@
             </div>
 
             <!-- Year 2016 - Imperial Era -->
-            <div class="timeline-year visible" data-era="imperial"
+            <div class="timeline-year visible" data-era="imperial" id="year-2016"
                 style="display: block; opacity: 1; transform: translateY(0);">
                 <!-- Year marker with era designation -->
                 <div class="year-marker">
@@ -632,7 +677,7 @@
             </div>
 
             <!-- Year 2017 - Dragon Era section -->
-            <div class="timeline-year visible" data-era="dragon"
+            <div class="timeline-year visible" data-era="dragon" id="year-2017"
                 style="display: block; opacity: 1; transform: translateY(0);">
                 <!-- Year marker with era designation -->
                 <div class="year-marker">
@@ -790,7 +835,7 @@
             </div>
 
             <!-- Year 2018 - Cosmic Era section -->
-            <div class="timeline-year visible" data-era="cosmic"
+            <div class="timeline-year visible" data-era="cosmic" id="year-2018"
                 style="display: block; opacity: 1; transform: translateY(0);">
                 <!-- Year marker with era designation -->
                 <div class="year-marker">
@@ -900,28 +945,30 @@
             <!-- Years chronicled statistic -->
             <div class="stat-card">
                 <div class="stat-icon">📅</div>
-                <div class="stat-value">6</div>
+                <div class="stat-value" id="years-count">6</div>
                 <div class="stat-label">Years Chronicled</div>
             </div>
             <!-- Major story arcs statistic -->
             <div class="stat-card">
                 <div class="stat-icon">📖</div>
-                <div class="stat-value">8</div>
+                <div class="stat-value" id="arcs-count">8</div>
                 <div class="stat-label">Major Arcs</div>
             </div>
             <!-- Pivotal events statistic -->
             <div class="stat-card">
                 <div class="stat-icon">⚡</div>
-                <div class="stat-value">16</div>
+                <div class="stat-value" id="events-count">16</div>
                 <div class="stat-label">Pivotal Events</div>
             </div>
             <!-- Key characters statistic -->
             <div class="stat-card">
                 <div class="stat-icon">👥</div>
-                <div class="stat-value">20</div>
+                <div class="stat-value" id="characters-count">20</div>
                 <div class="stat-label">Key Characters</div>
             </div>
         </div>
+
+
     </main>
 
     <!-- Timeline progress indicator showing scroll position -->

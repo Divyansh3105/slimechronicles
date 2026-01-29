@@ -9,6 +9,17 @@
   visibility: visible;
 }
 
+/* Ensure main navigation uses shared styles - no overrides */
+.main-nav {
+  /* Ensure proper z-index above timeline elements */
+  z-index: 1000 !important;
+}
+
+/* Ensure mobile navigation also uses correct z-index */
+.mobile-nav {
+  z-index: 1001 !important;
+}
+
 /* Page header section with title and subtitle styling */
 .page-header {
   text-align: center;
@@ -17,6 +28,157 @@
   padding: 2rem 0;
   z-index: 10;
 }
+
+/* Enhanced timeline controls for search and filtering */
+.timeline-controls {
+  max-width: 800px;
+  margin: 2rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.15), rgba(0, 212, 255, 0.1));
+  border: 2px solid rgba(77, 212, 255, 0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(25px);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* Search container with input and button */
+.search-container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.search-input-wrapper {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  z-index: 2;
+}
+
+.timeline-search-input {
+  width: 100%;
+  padding: 1rem 1rem 1rem 3rem;
+  background: rgba(77, 212, 255, 0.1);
+  border: 2px solid rgba(77, 212, 255, 0.3);
+  border-radius: 12px;
+  color: var(--text-light);
+  font-size: 1rem;
+  font-family: inherit;
+  backdrop-filter: blur(15px);
+  transition: all 0.3s ease;
+}
+
+.timeline-search-input:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 20px rgba(77, 212, 255, 0.4);
+  background: rgba(77, 212, 255, 0.15);
+}
+
+.timeline-search-input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.8;
+}
+
+.clear-search-btn {
+  position: absolute;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clear-search-btn:hover {
+  color: var(--accent-crimson);
+  background: rgba(220, 20, 60, 0.1);
+}
+
+.search-btn {
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
+  border: none;
+  border-radius: 12px;
+  color: var(--primary-dark);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(77, 212, 255, 0.3);
+}
+
+.search-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(77, 212, 255, 0.4);
+}
+
+/* Filter controls section */
+.filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 140px;
+}
+
+.filter-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.filter-select {
+  padding: 0.75rem 1rem;
+  background: rgba(77, 212, 255, 0.1);
+  border: 2px solid rgba(77, 212, 255, 0.3);
+  border-radius: 8px;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 15px rgba(77, 212, 255, 0.3);
+}
+
+.filter-select option {
+  background: var(--primary-dark);
+  color: var(--text-light);
+  padding: 0.5rem;
+}
+
+
+
+
 
 /* Main page title with gradient text and glow effects */
 .page-title {
@@ -95,6 +257,9 @@
   transform: translateY(0);
   transition: all 0.6s ease-out;
   z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Year marker badge with glassmorphism design */
@@ -109,18 +274,20 @@
   );
   border: 3px solid var(--primary-blue);
   border-radius: 20px;
-  padding: 1.5rem 2.5rem;
+  padding: 2rem 2.5rem;
   text-align: center;
   box-shadow:
     0 0 30px var(--glow-blue),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   z-index: 2;
   margin-bottom: 3rem;
-  min-width: 220px;
+  width: 100%;
+  max-width: calc(100vw - 4rem);
   backdrop-filter: blur(25px);
   position: relative;
   overflow: visible;
   word-wrap: break-word;
+  box-sizing: border-box;
 }
 
 .year-marker:hover {
@@ -173,6 +340,9 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   transition: all 0.4s cubic-bezier(0.4, 0.21);
   position: relative;
+  width: 100%;
+  max-width: calc(100vw - 4rem);
+  box-sizing: border-box;
 }
 
 .timeline-arc:hover {
@@ -905,12 +1075,12 @@
 /* Layout fixes and positioning overrides for timeline elements */
 .year-marker {
   position: relative !important;
-  left: auto !important;
-  transform: none !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
   margin: 0 auto 2rem auto !important;
   display: block !important;
-  width: fit-content !important;
-  max-width: calc(100vw - 2rem) !important;
+  width: 100% !important;
+  max-width: calc(100vw - 4rem) !important;
   box-sizing: border-box !important;
 }
 
@@ -923,7 +1093,7 @@
   margin-left: 0 !important;
   margin-right: 0 !important;
   width: 100% !important;
-  max-width: calc(100vw - 2rem) !important;
+  max-width: calc(100vw - 4rem) !important;
   box-sizing: border-box !important;
 }
 
@@ -1200,21 +1370,173 @@
   }
 }
 
-@keyframes cyanPulse {
-  0%,
-  100% {
-    background: linear-gradient(
-      135deg,
-      var(--primary-blue),
-      var(--accent-cyan)
-    );
+/* Search highlighting and visual enhancements */
+.search-highlight {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.4), rgba(255, 215, 0, 0.2));
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
+  font-weight: 600;
+  color: var(--primary-dark);
+  box-shadow: 0 1px 3px rgba(255, 215, 0, 0.3);
+  animation: highlightPulse 2s ease-in-out infinite;
+}
+
+@keyframes highlightPulse {
+  0%, 100% {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.4), rgba(255, 215, 0, 0.2));
   }
   50% {
-    background: linear-gradient(
-      135deg,
-      var(--accent-cyan),
-      var(--primary-blue)
-    );
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.6), rgba(255, 215, 0, 0.4));
+  }
+}
+
+/* Enhanced no-results state */
+.no-results {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--text-secondary);
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.08), rgba(77, 212, 255, 0.04));
+  border: 2px solid rgba(77, 212, 255, 0.15);
+  border-radius: 20px;
+  margin: 3rem 0;
+  backdrop-filter: blur(20px);
+  position: relative;
+  overflow: hidden;
+}
+
+.no-results::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(77, 212, 255, 0.1), transparent);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.no-results-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.6;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.no-results-text {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--text-light);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.no-results-hint {
+  font-size: 1rem;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+/* Enhanced loading states */
+.timeline-loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  color: var(--text-secondary);
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.05), rgba(77, 212, 255, 0.02));
+  border-radius: 20px;
+  margin: 2rem 0;
+}
+
+.timeline-loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(77, 212, 255, 0.2);
+  border-top: 4px solid var(--primary-blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 20px rgba(77, 212, 255, 0.3);
+}
+
+.timeline-loading-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--primary-blue);
+  text-shadow: 0 0 10px var(--glow-blue);
+}
+
+/* Improved accessibility focus states */
+.timeline-search-input:focus,
+.filter-select:focus,
+.view-btn:focus,
+.expand-all-btn:focus,
+.collapse-all-btn:focus,
+.search-btn:focus {
+  outline: 3px solid rgba(77, 212, 255, 0.6);
+  outline-offset: 2px;
+}
+
+/* Enhanced hover effects for interactive elements */
+.timeline-search-input:hover {
+  border-color: rgba(77, 212, 255, 0.5);
+  background: rgba(77, 212, 255, 0.12);
+}
+
+.filter-select:hover {
+  border-color: rgba(77, 212, 255, 0.5);
+  background: rgba(77, 212, 255, 0.12);
+}
+
+/* Smooth transitions for all interactive elements */
+.timeline-controls * {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced visual feedback for active states */
+.filter-select:active,
+.timeline-search-input:active {
+  transform: scale(0.98);
+}
+
+.search-btn:active,
+.view-btn:active,
+.expand-all-btn:active,
+.collapse-all-btn:active {
+  transform: translateY(1px) scale(0.95);
+}
+
+/* Improved contrast for better readability */
+.timeline-controls {
+  box-shadow:
+    0 15px 50px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Enhanced mobile touch targets */
+@media (max-width: 767px) {
+  .view-btn, .expand-all-btn, .collapse-all-btn, .search-btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .timeline-search-input {
+    min-height: 44px;
+  }
+
+  .filter-select {
+    min-height: 44px;
   }
 }
 
@@ -1376,10 +1698,41 @@
     margin-bottom: 2rem;
   }
 
+  /* Timeline Controls - Mobile Layout */
+  .timeline-controls {
+    padding: 1.5rem;
+    gap: 1rem;
+    margin: 1.5rem auto 0;
+  }
+
+  .search-container {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .search-btn {
+    width: 100%;
+    padding: 0.875rem;
+  }
+
+  .filter-controls {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .filter-group {
+    min-width: auto;
+  }
+
+
+
+
+
   /* Timeline Container */
   .timeline-container {
     margin: 2rem 0;
-    padding-left: 1.5rem;
+    padding-left: 0;
   }
 
   /* Central Line → Left aligned on mobile */
@@ -1393,16 +1746,18 @@
   .timeline-year {
     padding-left: 2rem;
     margin-bottom: 2.5rem;
+    align-items: flex-start;
   }
 
   /* Year Marker */
   .year-marker {
-    left: -0.5rem !important;
+    left: 0 !important;
     transform: none !important;
-    padding: 0.75rem 1.25rem;
+    padding: 1.5rem 2rem;
     min-width: auto;
-    width: fit-content;
-    max-width: calc(100vw - 4rem);
+    width: calc(100% - 2rem);
+    max-width: calc(100vw - 6rem);
+    margin-left: -2rem;
   }
 
   .year-number {
@@ -1621,9 +1976,11 @@
   }
 
   .year-marker {
-    left: -0.75rem !important;
-    padding: 0.5rem 1rem;
-    max-width: calc(100vw - 3rem);
+    left: 0 !important;
+    transform: none !important;
+    padding: 1.25rem 1.5rem;
+    max-width: calc(100vw - 5rem);
+    margin-left: -1.5rem;
   }
 
   .year-number {
@@ -1745,6 +2102,22 @@
     padding-top: 6rem;
   }
 
+  /* Timeline Controls - Tablet Layout */
+  .timeline-controls {
+    max-width: 900px;
+  }
+
+  .search-container {
+    flex-direction: row;
+  }
+
+  .filter-controls {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+
+
   /* Restore center line */
   .timeline-line {
     left: 50% !important;
@@ -1754,6 +2127,7 @@
 
   .timeline-year {
     padding-left: 0;
+    align-items: center;
   }
 
   .year-marker {

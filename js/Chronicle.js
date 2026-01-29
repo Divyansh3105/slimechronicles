@@ -5,6 +5,8 @@ class TimelineManager {
     this.currentView = "detailed";
     this.currentSort = "chronological";
     this.searchTerm = "";
+    this.currentEraFilter = "all";
+    this.currentImportanceFilter = "all";
     this.events = [];
     this.originalOrder = [];
 
@@ -17,6 +19,7 @@ class TimelineManager {
     this.cacheEvents();
     this.setupEventListeners();
     this.initializeTooltips();
+    this.updateStatistics();
   }
 
   // Cache timeline events - Extract and process timeline events from DOM
@@ -149,6 +152,33 @@ class TimelineManager {
       });
     }
 
+    // Set up filter controls
+    const eraFilter = document.getElementById("era-filter");
+    if (eraFilter) {
+      eraFilter.addEventListener("change", (e) => {
+        this.currentEraFilter = e.target.value;
+        this.applyFilters();
+      });
+    }
+
+    const importanceFilter = document.getElementById("importance-filter");
+    if (importanceFilter) {
+      importanceFilter.addEventListener("change", (e) => {
+        this.currentImportanceFilter = e.target.value;
+        this.applyFilters();
+      });
+    }
+
+    // Set up view controls
+    document.querySelectorAll(".view-btn").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        document.querySelectorAll(".view-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        this.currentView = btn.dataset.view;
+        this.updateView();
+      });
+    });
+
     // Add keyboard shortcut for search focus (Ctrl+F)
     document.addEventListener("keydown", (e) => {
       if (e.ctrlKey && e.key === "f") {
@@ -274,14 +304,31 @@ class TimelineManager {
     timelineYears.forEach((year) => {
       const events = year.querySelectorAll(".timeline-event");
       let hasMatchingEvents = false;
+      const yearEra = year.dataset.era;
 
-      if (!this.searchTerm) {
+      // Check era filter
+      if (this.currentEraFilter !== "all" && yearEra !== this.currentEraFilter) {
+        year.style.display = "none";
+        return;
+      }
+
+      // Check search and importance filters
+      if (!this.searchTerm && this.currentImportanceFilter === "all") {
         hasMatchingEvents = true;
       } else {
         events.forEach((event) => {
           const eventData = this.events.find((e) => e.element === event);
-          if (eventData && eventData.searchText.includes(this.searchTerm)) {
-            hasMatchingEvents = true;
+          if (eventData) {
+            let matchesSearch = !this.searchTerm || eventData.searchText.includes(this.searchTerm);
+            let matchesImportance = this.currentImportanceFilter === "all" ||
+                                  event.dataset.importance === this.currentImportanceFilter;
+
+            if (matchesSearch && matchesImportance) {
+              hasMatchingEvents = true;
+              event.style.display = "block";
+            } else {
+              event.style.display = "none";
+            }
           }
         });
       }
@@ -296,7 +343,36 @@ class TimelineManager {
     });
 
     this.showNoResultsMessage(visibleCount === 0);
+    this.updateStatistics();
   }
+
+  updateView() {
+    const container = document.querySelector(".timeline-container");
+    if (this.currentView === "compact") {
+      container.classList.add("compact-view");
+    } else {
+      container.classList.remove("compact-view");
+    }
+  }
+
+  updateStatistics() {
+    const visibleYears = document.querySelectorAll(".timeline-year[style*='display: block'], .timeline-year:not([style*='display: none'])").length;
+    const visibleArcs = document.querySelectorAll(".timeline-year[style*='display: block'] .timeline-arc, .timeline-year:not([style*='display: none']) .timeline-arc").length;
+    const visibleEvents = document.querySelectorAll(".timeline-year[style*='display: block'] .timeline-event[style*='display: block'], .timeline-year:not([style*='display: none']) .timeline-event:not([style*='display: none'])").length;
+    const visibleCharacters = new Set();
+
+    document.querySelectorAll(".timeline-year[style*='display: block'] .character-link, .timeline-year:not([style*='display: none']) .character-link").forEach(link => {
+      const name = link.querySelector("span")?.textContent;
+      if (name) visibleCharacters.add(name);
+    });
+
+    document.getElementById("years-count").textContent = visibleYears;
+    document.getElementById("arcs-count").textContent = visibleArcs;
+    document.getElementById("events-count").textContent = visibleEvents;
+    document.getElementById("characters-count").textContent = visibleCharacters.size;
+  }
+
+
 
   showNoResultsMessage(show) {
     let noResultsDiv = document.querySelector(".no-results");
@@ -616,6 +692,34 @@ function scrollToTop() {
   }
 }
 
+// Expand all timeline arcs
+function expandAllArcs() {
+  const arcs = document.querySelectorAll(".timeline-arc");
+  arcs.forEach(arc => {
+    if (!arc.classList.contains("expanded")) {
+      const arcHeader = arc.querySelector(".arc-header");
+      if (arcHeader) {
+        window.toggleArcSimple(arcHeader);
+      }
+    }
+  });
+}
+
+// Collapse all timeline arcs
+function collapseAllArcs() {
+  const arcs = document.querySelectorAll(".timeline-arc");
+  arcs.forEach(arc => {
+    if (arc.classList.contains("expanded")) {
+      const arcHeader = arc.querySelector(".arc-header");
+      if (arcHeader) {
+        window.toggleArcSimple(arcHeader);
+      }
+    }
+  });
+}
+
+
+
 function initializeArcs() {
   const arcs = document.querySelectorAll(".timeline-arc");
 
@@ -740,6 +844,8 @@ document.addEventListener("keydown", (e) => {
 window.toggleMobileMenu = toggleMobileMenu;
 window.scrollToTop = scrollToTop;
 window.initializeMobileNavigation = initializeMobileNavigation;
+window.expandAllArcs = expandAllArcs;
+window.collapseAllArcs = collapseAllArcs;
 window.testArcExpansion = function () {
   const firstArc = document.querySelector(".timeline-arc");
   if (firstArc) {
