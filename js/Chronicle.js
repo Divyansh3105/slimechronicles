@@ -387,7 +387,12 @@ class TimelineManager {
         'Eastern_Empire': 'Eastern Empire Arc',
         'True_Dragon': 'True Dragon Arc',
         'Labyrinth': 'Labyrinth Arc',
+        'Tenma_War': 'Tenma War Arc',
+        'Saint_Monster_Confrontation': 'Saint-Monster Confrontation Arc',
+        'Michael_Arc': 'Michael Arc',
         'Phantom_King': 'Phantom King Arc',
+        'Ivarage_Arc': 'Ivarage Arc',
+        'Epilogue_Arc': 'Epilogue Arc',
         'Orc_Disaster': 'Orc Disaster Arc',
         'Reincarnation': 'Reincarnation Arc'
       };

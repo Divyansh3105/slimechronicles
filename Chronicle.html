@@ -221,6 +221,8 @@
                             <option value="imperial">Imperial Era</option>
                             <option value="dragon">Dragon Era</option>
                             <option value="cosmic">Cosmic Era</option>
+                            <option value="transcendence">Transcendence Era</option>
+                            <option value="final">Final Era</option>
                         </select>
                     </div>
 
@@ -844,8 +846,315 @@
                     <div class="year-label">Cosmic Era</div>
                 </div>
 
+                <!-- Tenma War Arc containing the great war events -->
+                <div class="timeline-arc" data-event="Tenma_War">
+                    <!-- Arc header with toggle functionality -->
+                    <div class="arc-header" onclick="toggleArcSimple(this)">
+                        <div class="arc-icon">⚔️</div>
+                        <div class="arc-title">Tenma War Arc</div>
+                        <div class="arc-toggle">▼</div>
+                    </div>
+                    <!-- Arc content with detailed war events -->
+                    <div class="arc-content">
+                        <!-- Individual timeline event - Empire's final assault -->
+                        <div class="timeline-event" onclick="toggleEvent(this)" data-importance="high">
+                            <div class="event-header">
+                                <div class="event-icon">�</div>
+                                <div class="event-title">Empire's Final Assault</div>
+                                <div class="event-date">Early Spring</div>
+                                <div class="event-expand-hint">Click to expand</div>
+                            </div>
+                            <!-- Detailed event information -->
+                            <div class="event-content">
+                                <div class="event-description">
+                                    The Eastern Empire launches its ultimate invasion against Tempest with overwhelming
+                                    military force, including advanced magical weapons and elite soldiers, in a
+                                    desperate
+                                    attempt to eliminate the growing threat of Rimuru's nation.
+                                </div>
+                                <!-- Event consequences and impact -->
+                                <div class="event-consequences">
+                                    <h4>Consequences:</h4>
+                                    <ul>
+                                        <li>Massive military confrontation between Empire and Tempest</li>
+                                        <li>Demonstration of Tempest's evolved defensive capabilities</li>
+                                        <li>Capture and conversion of imperial forces</li>
+                                        <li>Revelation of the Empire's true technological power</li>
+                                    </ul>
+                                </div>
+                                <!-- Key characters involved in the event -->
+                                <div class="event-characters">
+                                    <h4>Key Characters:</h4>
+                                    <div class="character-links">
+                                        <a href="character.html?id=rimuru" class="character-link">
+                                            <img src="assets/characters/Rimuru.png" alt="Rimuru">
+                                            <span>Rimuru Tempest</span>
+                                        </a>
+                                        <a href="character.html?id=benimaru" class="character-link">
+                                            <img src="assets/characters/Benimaru.png" alt="Benimaru">
+                                            <span>Benimaru</span>
+                                        </a>
+                                        <a href="character.html?id=diablo" class="character-link">
+                                            <img src="assets/characters/Diablo.png" alt="Diablo">
+                                            <span>Diablo</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Individual timeline event - Velgrynd's intervention -->
+                        <div class="timeline-event" onclick="toggleEvent(this)" data-importance="high">
+                            <div class="event-header">
+                                <div class="event-icon">🔥</div>
+                                <div class="event-title">Velgrynd's Intervention</div>
+                                <div class="event-date">Spring</div>
+                                <div class="event-expand-hint">Click to expand</div>
+                            </div>
+                            <!-- Detailed event information -->
+                            <div class="event-content">
+                                <div class="event-description">
+                                    Velgrynd, the Scorch Dragon, intervenes in the war between Tempest and the Empire,
+                                    leading to a dramatic confrontation with Veldora and revealing deeper connections
+                                    between the True Dragons and the ongoing conflict.
+                                </div>
+                                <!-- Event consequences and impact -->
+                                <div class="event-consequences">
+                                    <h4>Consequences:</h4>
+                                    <ul>
+                                        <li>Epic battle between True Dragons Veldora and Velgrynd</li>
+                                        <li>Revelation of parallel world connections</li>
+                                        <li>Velgrynd's eventual understanding and alliance</li>
+                                        <li>Expansion of Tempest's cosmic significance</li>
+                                    </ul>
+                                </div>
+                                <!-- Key characters involved in the event -->
+                                <div class="event-characters">
+                                    <h4>Key Characters:</h4>
+                                    <div class="character-links">
+                                        <a href="character.html?id=velgrynd" class="character-link">
+                                            <img src="assets/characters/Velgrynd.jpg" alt="Velgrynd">
+                                            <span>Velgrynd</span>
+                                        </a>
+                                        <a href="character.html?id=veldora" class="character-link">
+                                            <img src="assets/characters/Veldora.png" alt="Veldora">
+                                            <span>Veldora Tempest</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Saint-Monster Confrontation Arc -->
+                <div class="timeline-arc" data-event="Saint_Monster_Confrontation">
+                    <!-- Arc header with toggle functionality -->
+                    <div class="arc-header" onclick="toggleArcSimple(this)">
+                        <div class="arc-icon">⚖️</div>
+                        <div class="arc-title">Saint-Monster Confrontation Arc</div>
+                        <div class="arc-toggle">▼</div>
+                    </div>
+                    <!-- Arc content with detailed confrontation events -->
+                    <div class="arc-content">
+                        <!-- Individual timeline event - Hinata's challenge -->
+                        <div class="timeline-event" onclick="toggleEvent(this)" data-importance="high">
+                            <div class="event-header">
+                                <div class="event-icon">⚔️</div>
+                                <div class="event-title">Hinata's Final Challenge</div>
+                                <div class="event-date">Late Spring</div>
+                                <div class="event-expand-hint">Click to expand</div>
+                            </div>
+                            <!-- Detailed event information -->
+                            <div class="event-content">
+                                <div class="event-description">
+                                    Hinata Sakaguchi confronts Rimuru in what appears to be their final battle, but
+                                    reveals deeper motivations and ultimately leads to a resolution of the conflict
+                                    between the Western Holy Church and Tempest.
+                                </div>
+                                <!-- Event consequences and impact -->
+                                <div class="event-consequences">
+                                    <h4>Consequences:</h4>
+                                    <ul>
+                                        <li>Resolution of the Saint-Monster conflict</li>
+                                        <li>Hinata's full alliance with Rimuru</li>
+                                        <li>Reform of the Western Holy Church</li>
+                                        <li>Establishment of religious tolerance</li>
+                                    </ul>
+                                </div>
+                                <!-- Key characters involved in the event -->
+                                <div class="event-characters">
+                                    <h4>Key Characters:</h4>
+                                    <div class="character-links">
+                                        <a href="character.html?id=hinata" class="character-link">
+                                            <img src="assets/characters/Hinata Sakaguchi.png" alt="Hinata">
+                                            <span>Hinata Sakaguchi</span>
+                                        </a>
+                                        <a href="character.html?id=rimuru" class="character-link">
+                                            <img src="assets/characters/Rimuru.png" alt="Rimuru">
+                                            <span>Rimuru Tempest</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Individual timeline event - Church reformation -->
+                        <div class="timeline-event" onclick="toggleEvent(this)" data-importance="medium">
+                            <div class="event-header">
+                                <div class="event-icon">⛪</div>
+                                <div class="event-title">Church Reformation</div>
+                                <div class="event-date">Summer</div>
+                                <div class="event-expand-hint">Click to expand</div>
+                            </div>
+                            <!-- Detailed event information -->
+                            <div class="event-content">
+                                <div class="event-description">
+                                    The Western Holy Church undergoes major reforms under Hinata's leadership,
+                                    abandoning its anti-monster policies and establishing new diplomatic relations
+                                    with monster nations, particularly Tempest.
+                                </div>
+                                <!-- Event consequences and impact -->
+                                <div class="event-consequences">
+                                    <h4>Consequences:</h4>
+                                    <ul>
+                                        <li>End of systematic monster persecution</li>
+                                        <li>New era of human-monster cooperation</li>
+                                        <li>Establishment of joint research initiatives</li>
+                                        <li>Cultural exchange programs</li>
+                                    </ul>
+                                </div>
+                                <!-- Key characters involved in the event -->
+                                <div class="event-characters">
+                                    <h4>Key Characters:</h4>
+                                    <div class="character-links">
+                                        <a href="character.html?id=hinata" class="character-link">
+                                            <img src="assets/characters/Hinata Sakaguchi.png" alt="Hinata">
+                                            <span>Hinata Sakaguchi</span>
+                                        </a>
+                                        <a href="character.html?id=luminous" class="character-link">
+                                            <img src="assets/characters/Luminous.png" alt="Luminous">
+                                            <span>Luminous Valentine</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Year 2019 - Transcendence Era section -->
+            <div class="timeline-year visible" data-era="transcendence" id="year-2019"
+                style="display: block; opacity: 1; transform: translateY(0);">
+                <!-- Year marker with era designation -->
+                <div class="year-marker">
+                    <div class="year-number">2019</div>
+                    <div class="year-label">Transcendence Era</div>
+                </div>
+
+                <!-- Michael Arc containing angelic threat events -->
+                <div class="timeline-arc" data-event="Michael_Arc">
+                    <!-- Arc header with toggle functionality -->
+                    <div class="arc-header" onclick="toggleArcSimple(this)">
+                        <div class="arc-icon">👼</div>
+                        <div class="arc-title">Michael Arc</div>
+                        <div class="arc-toggle">▼</div>
+                    </div>
+                    <!-- Arc content with detailed angelic events -->
+                    <div class="arc-content">
+                        <!-- Individual timeline event - Michael's awakening -->
+                        <div class="timeline-event" onclick="toggleEvent(this)" data-importance="high">
+                            <div class="event-header">
+                                <div class="event-icon">⚡</div>
+                                <div class="event-title">Michael's Awakening</div>
+                                <div class="event-date">Early Spring</div>
+                                <div class="event-expand-hint">Click to expand</div>
+                            </div>
+                            <!-- Detailed event information -->
+                            <div class="event-content">
+                                <div class="event-description">
+                                    The Ultimate Skill Michael awakens and begins manipulating events from behind the
+                                    scenes, seeking to establish a new world order under angelic rule and eliminate
+                                    threats to its vision of perfect order.
+                                </div>
+                                <!-- Event consequences and impact -->
+                                <div class="event-consequences">
+                                    <h4>Consequences:</h4>
+                                    <ul>
+                                        <li>Discovery of Ultimate Skill consciousness</li>
+                                        <li>Manipulation of world leaders and events</li>
+                                        <li>Threat to the balance of power</li>
+                                        <li>Formation of anti-Michael alliance</li>
+                                    </ul>
+                                </div>
+                                <!-- Key characters involved in the event -->
+                                <div class="event-characters">
+                                    <h4>Key Characters:</h4>
+                                    <div class="character-links">
+                                        <a href="character.html?id=rimuru" class="character-link">
+                                            <img src="assets/characters/Rimuru.png" alt="Rimuru">
+                                            <span>Rimuru Tempest</span>
+                                        </a>
+                                        <a href="character.html?id=guy" class="character-link">
+                                            <img src="assets/characters/Guy.png" alt="Guy">
+                                            <span>Guy Crimson</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Individual timeline event - Angelic domination attempt -->
+                        <div class="timeline-event" onclick="toggleEvent(this)" data-importance="high">
+                            <div class="event-header">
+                                <div class="event-icon">🌟</div>
+                                <div class="event-title">Angelic Domination Attempt</div>
+                                <div class="event-date">Spring</div>
+                                <div class="event-expand-hint">Click to expand</div>
+                            </div>
+                            <!-- Detailed event information -->
+                            <div class="event-content">
+                                <div class="event-description">
+                                    Michael attempts to dominate the world through manipulation of key figures and
+                                    direct confrontation with the Demon Lords, leading to a cosmic-scale battle that
+                                    threatens the very fabric of reality.
+                                </div>
+                                <!-- Event consequences and impact -->
+                                <div class="event-consequences">
+                                    <h4>Consequences:</h4>
+                                    <ul>
+                                        <li>Epic battle between angelic and demonic forces</li>
+                                        <li>Revelation of the true nature of Ultimate Skills</li>
+                                        <li>Rimuru's evolution to near-godlike status</li>
+                                        <li>Establishment of new cosmic balance</li>
+                                    </ul>
+                                </div>
+                                <!-- Key characters involved in the event -->
+                                <div class="event-characters">
+                                    <h4>Key Characters:</h4>
+                                    <div class="character-links">
+                                        <a href="character.html?id=rimuru" class="character-link">
+                                            <img src="assets/characters/Rimuru.png" alt="Rimuru">
+                                            <span>Rimuru Tempest</span>
+                                        </a>
+                                        <a href="character.html?id=milim" class="character-link">
+                                            <img src="assets/characters/Milim.png" alt="Milim">
+                                            <span>Milim Nava</span>
+                                        </a>
+                                        <a href="character.html?id=guy" class="character-link">
+                                            <img src="assets/characters/Guy.png" alt="Guy">
+                                            <span>Guy Crimson</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Phantom King Arc containing cosmic-level threat events -->
-                <div class="timeline-arc">
+                <div class="timeline-arc" data-event="Phantom_King">
                     <!-- Arc header with toggle functionality -->
                     <div class="arc-header" onclick="toggleArcSimple(this)">
                         <div class="arc-icon">👻</div>
@@ -855,19 +1164,19 @@
                     <!-- Arc content with detailed cosmic events -->
                     <div class="arc-content">
                         <!-- Individual timeline event - Yuuki's revelation -->
-                        <div class="timeline-event" onclick="toggleEvent(this)">
+                        <div class="timeline-event" onclick="toggleEvent(this)" data-importance="high">
                             <div class="event-header">
                                 <div class="event-icon">🌌</div>
-                                <div class="event-title">Yuuki's Revelation</div>
-                                <div class="event-date">Spring</div>
+                                <div class="event-title">Yuuki's True Nature Revealed</div>
+                                <div class="event-date">Summer</div>
                                 <div class="event-expand-hint">Click to expand</div>
                             </div>
                             <!-- Detailed event information -->
                             <div class="event-content">
                                 <div class="event-description">
-                                    Yuuki Kagurazaka reveals his true nature and cosmic-level ambitions, threatening not
-                                    just Tempest but the entire world's stability through his manipulation of
-                                    space-time.
+                                    Yuuki Kagurazaka reveals his true nature as a multiversal threat, having gained
+                                    power across multiple timelines and realities. His ambition extends beyond mere
+                                    world domination to complete universal control.
                                 </div>
                                 <!-- Event consequences and impact -->
                                 <div class="event-consequences">
@@ -897,24 +1206,26 @@
                         </div>
 
                         <!-- Individual timeline event - Ultimate Skill mastery -->
-                        <div class="timeline-event" onclick="toggleEvent(this)">
+                        <div class="timeline-event" onclick="toggleEvent(this)" data-importance="high">
                             <div class="event-header">
                                 <div class="event-icon">⭐</div>
                                 <div class="event-title">Ultimate Skill Mastery</div>
-                                <div class="event-date">Summer</div>
+                                <div class="event-date">Late Summer</div>
                                 <div class="event-expand-hint">Click to expand</div>
                             </div>
                             <!-- Detailed event information -->
                             <div class="event-content">
                                 <div class="event-description">
-                                    Rimuru achieves mastery over multiple Ultimate Skills, transcending normal
+                                    Rimuru achieves complete mastery over multiple Ultimate Skills, transcending normal
                                     limitations and preparing for the final confrontation with cosmic-level threats.
+                                    Ciel evolves to become an independent consciousness.
                                 </div>
                                 <!-- Event consequences and impact -->
                                 <div class="event-consequences">
                                     <h4>Consequences:</h4>
                                     <ul>
                                         <li>Transcendence of normal power limitations</li>
+                                        <li>Ciel's evolution to independent existence</li>
                                         <li>Ability to manipulate space-time directly</li>
                                         <li>Protection of multiple parallel worlds</li>
                                         <li>Establishment as a multiversal guardian</li>
@@ -939,6 +1250,183 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Year 2020 - Final Era section -->
+            <div class="timeline-year visible" data-era="final" id="year-2020"
+                style="display: block; opacity: 1; transform: translateY(0);">
+                <!-- Year marker with era designation -->
+                <div class="year-marker">
+                    <div class="year-number">2020</div>
+                    <div class="year-label">Final Era</div>
+                </div>
+
+                <!-- Ivarage Arc containing the ultimate threat -->
+                <div class="timeline-arc" data-event="Ivarage_Arc">
+                    <!-- Arc header with toggle functionality -->
+                    <div class="arc-header" onclick="toggleArcSimple(this)">
+                        <div class="arc-icon">🌑</div>
+                        <div class="arc-title">Ivarage Arc</div>
+                        <div class="arc-toggle">▼</div>
+                    </div>
+                    <!-- Arc content with detailed final threat events -->
+                    <div class="arc-content">
+                        <!-- Individual timeline event - Ivarage's awakening -->
+                        <div class="timeline-event" onclick="toggleEvent(this)" data-importance="high">
+                            <div class="event-header">
+                                <div class="event-icon">🌌</div>
+                                <div class="event-title">Ivarage's Awakening</div>
+                                <div class="event-date">Early Spring</div>
+                                <div class="event-expand-hint">Click to expand</div>
+                            </div>
+                            <!-- Detailed event information -->
+                            <div class="event-content">
+                                <div class="event-description">
+                                    The ancient evil Ivarage awakens, representing a threat that transcends even the
+                                    True Dragons and Demon Lords. This primordial entity seeks to return the world
+                                    to primordial chaos, threatening all existence.
+                                </div>
+                                <!-- Event consequences and impact -->
+                                <div class="event-consequences">
+                                    <h4>Consequences:</h4>
+                                    <ul>
+                                        <li>Emergence of the ultimate existential threat</li>
+                                        <li>Unity of all major powers against common enemy</li>
+                                        <li>Revelation of the world's true history</li>
+                                        <li>Final test of Rimuru's evolved abilities</li>
+                                    </ul>
+                                </div>
+                                <!-- Key characters involved in the event -->
+                                <div class="event-characters">
+                                    <h4>Key Characters:</h4>
+                                    <div class="character-links">
+                                        <a href="character.html?id=rimuru" class="character-link">
+                                            <img src="assets/characters/Rimuru.png" alt="Rimuru">
+                                            <span>Rimuru Tempest</span>
+                                        </a>
+                                        <a href="character.html?id=veldora" class="character-link">
+                                            <img src="assets/characters/Veldora.png" alt="Veldora">
+                                            <span>Veldora Tempest</span>
+                                        </a>
+                                        <a href="character.html?id=guy" class="character-link">
+                                            <img src="assets/characters/Guy.png" alt="Guy">
+                                            <span>Guy Crimson</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Individual timeline event - Final confrontation -->
+                        <div class="timeline-event" onclick="toggleEvent(this)" data-importance="high">
+                            <div class="event-header">
+                                <div class="event-icon">⚡</div>
+                                <div class="event-title">Final Confrontation</div>
+                                <div class="event-date">Spring</div>
+                                <div class="event-expand-hint">Click to expand</div>
+                            </div>
+                            <!-- Detailed event information -->
+                            <div class="event-content">
+                                <div class="event-description">
+                                    The ultimate battle against Ivarage brings together all of Rimuru's allies and
+                                    former enemies in a desperate fight for existence itself. This confrontation
+                                    determines the fate of not just their world, but all possible realities.
+                                </div>
+                                <!-- Event consequences and impact -->
+                                <div class="event-consequences">
+                                    <h4>Consequences:</h4>
+                                    <ul>
+                                        <li>Ultimate test of all evolved powers and alliances</li>
+                                        <li>Resolution of all major conflicts and threats</li>
+                                        <li>Establishment of permanent cosmic balance</li>
+                                        <li>Rimuru's ascension to true godhood</li>
+                                        <li>Beginning of a new age of peace and prosperity</li>
+                                    </ul>
+                                </div>
+                                <!-- Key characters involved in the event -->
+                                <div class="event-characters">
+                                    <h4>Key Characters:</h4>
+                                    <div class="character-links">
+                                        <a href="character.html?id=rimuru" class="character-link">
+                                            <img src="assets/characters/Rimuru.png" alt="Rimuru">
+                                            <span>Rimuru Tempest</span>
+                                        </a>
+                                        <a href="character.html?id=milim" class="character-link">
+                                            <img src="assets/characters/Milim.png" alt="Milim">
+                                            <span>Milim Nava</span>
+                                        </a>
+                                        <a href="character.html?id=guy" class="character-link">
+                                            <img src="assets/characters/Guy.png" alt="Guy">
+                                            <span>Guy Crimson</span>
+                                        </a>
+                                        <a href="character.html?id=veldora" class="character-link">
+                                            <img src="assets/characters/Veldora.png" alt="Veldora">
+                                            <span>Veldora Tempest</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Epilogue Arc containing the resolution -->
+                <div class="timeline-arc" data-event="Epilogue_Arc">
+                    <!-- Arc header with toggle functionality -->
+                    <div class="arc-header" onclick="toggleArcSimple(this)">
+                        <div class="arc-icon">🌅</div>
+                        <div class="arc-title">Epilogue Arc</div>
+                        <div class="arc-toggle">▼</div>
+                    </div>
+                    <!-- Arc content with detailed resolution events -->
+                    <div class="arc-content">
+                        <!-- Individual timeline event - New world order -->
+                        <div class="timeline-event" onclick="toggleEvent(this)" data-importance="medium">
+                            <div class="event-header">
+                                <div class="event-icon">🌍</div>
+                                <div class="event-title">New World Order</div>
+                                <div class="event-date">Summer</div>
+                                <div class="event-expand-hint">Click to expand</div>
+                            </div>
+                            <!-- Detailed event information -->
+                            <div class="event-content">
+                                <div class="event-description">
+                                    With all major threats eliminated, a new world order emerges with Tempest at its
+                                    center. Rimuru, now recognized as a true god-like being, works to establish
+                                    lasting peace and prosperity across all nations and species.
+                                </div>
+                                <!-- Event consequences and impact -->
+                                <div class="event-consequences">
+                                    <h4>Consequences:</h4>
+                                    <ul>
+                                        <li>Establishment of permanent world peace</li>
+                                        <li>Universal cooperation between all species</li>
+                                        <li>Technological and magical advancement</li>
+                                        <li>Rimuru's role as benevolent world guardian</li>
+                                    </ul>
+                                </div>
+                                <!-- Key characters involved in the event -->
+                                <div class="event-characters">
+                                    <h4>Key Characters:</h4>
+                                    <div class="character-links">
+                                        <a href="character.html?id=rimuru" class="character-link">
+                                            <img src="assets/characters/Rimuru.png" alt="Rimuru">
+                                            <span>Rimuru Tempest</span>
+                                        </a>
+                                        <a href="character.html?id=shuna" class="character-link">
+                                            <img src="assets/characters/Shuna.png" alt="Shuna">
+                                            <span>Shuna</span>
+                                        </a>
+                                        <a href="character.html?id=benimaru" class="character-link">
+                                            <img src="assets/characters/Benimaru.png" alt="Benimaru">
+                                            <span>Benimaru</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Timeline statistics summary displaying key metrics -->
@@ -946,25 +1434,25 @@
             <!-- Years chronicled statistic -->
             <div class="stat-card">
                 <div class="stat-icon">📅</div>
-                <div class="stat-value" id="years-count">6</div>
+                <div class="stat-value" id="years-count">8</div>
                 <div class="stat-label">Years Chronicled</div>
             </div>
             <!-- Major story arcs statistic -->
             <div class="stat-card">
                 <div class="stat-icon">📖</div>
-                <div class="stat-value" id="arcs-count">8</div>
+                <div class="stat-value" id="arcs-count">13</div>
                 <div class="stat-label">Major Arcs</div>
             </div>
             <!-- Pivotal events statistic -->
             <div class="stat-card">
                 <div class="stat-icon">⚡</div>
-                <div class="stat-value" id="events-count">16</div>
+                <div class="stat-value" id="events-count">25</div>
                 <div class="stat-label">Pivotal Events</div>
             </div>
             <!-- Key characters statistic -->
             <div class="stat-card">
                 <div class="stat-icon">👥</div>
-                <div class="stat-value" id="characters-count">20</div>
+                <div class="stat-value" id="characters-count">25</div>
                 <div class="stat-label">Key Characters</div>
             </div>
         </div>
