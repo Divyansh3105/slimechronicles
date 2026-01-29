@@ -1,0 +1,417 @@
+.factions-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 7rem 2rem 4rem;
+  position: relative;
+  z-index: 10;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.page-title {
+  font-family: "Cinzel", serif;
+  font-size: 3.2rem;
+  background: linear-gradient(135deg, #4dd4ff, #ffd700);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.page-subtitle {
+  color: rgba(232, 240, 255, 0.8);
+  max-width: 700px;
+  margin: 1rem auto 0;
+}
+
+.factions-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.factions-controls input,
+.factions-controls select {
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(77, 212, 255, 0.3);
+  background: rgba(21, 27, 61, 0.6);
+  color: #e8f0ff;
+  font-family: "Rajdhani", sans-serif;
+  transition: border-color 0.3s ease;
+}
+
+.factions-controls input:focus,
+.factions-controls select:focus {
+  outline: none;
+  border-color: rgba(77, 212, 255, 0.6);
+}
+
+.results-counter {
+  color: rgba(232, 240, 255, 0.7);
+  font-size: 0.9rem;
+  font-family: "Rajdhani", sans-serif;
+  margin-left: 1rem;
+}
+
+.factions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.faction-card {
+  background: linear-gradient(
+    135deg,
+    rgba(21, 27, 61, 0.85),
+    rgba(10, 14, 39, 0.85)
+  );
+  border: 2px solid rgba(77, 212, 255, 0.3);
+  border-radius: 18px;
+  padding: 1.8rem;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.faction-card:hover {
+  transform: translateY(-5px);
+}
+
+.faction-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faction-header h2 {
+  font-family: "Cinzel", serif;
+  font-size: 1.5rem;
+  color: #4dd4ff;
+}
+
+.faction-tag {
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.faction-tag.nation {
+  background: rgba(77, 212, 255, 0.2);
+  color: #4dd4ff;
+}
+
+.faction-tag.council {
+  background: rgba(255, 215, 0, 0.2);
+  color: #ffd700;
+}
+
+.faction-tag.military {
+  background: rgba(255, 99, 71, 0.2);
+  color: #ff6347;
+}
+
+.faction-tag.guild {
+  background: rgba(144, 238, 144, 0.2);
+  color: #90ee90;
+}
+
+.faction-summary {
+  margin: 1rem 0;
+  color: rgba(232, 240, 255, 0.85);
+  line-height: 1.6;
+}
+
+.expand-btn {
+  background: none;
+  border: 1px solid rgba(77, 212, 255, 0.4);
+  color: #4dd4ff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.expand-btn:hover {
+  background: rgba(77, 212, 255, 0.15);
+}
+
+.faction-details {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.faction-card.expanded .faction-details {
+  max-height: 300px;
+  opacity: 1;
+  margin-top: 1rem;
+}
+
+.faction-details ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.faction-details li {
+  margin-bottom: 0.6rem;
+  color: rgba(232, 240, 255, 0.9);
+}
+
+/* Enhanced animations and transitions */
+.faction-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.faction-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(77, 212, 255, 0.15);
+}
+
+.faction-card.expanded {
+  transform: translateY(-3px);
+}
+
+.expand-btn {
+  transition: all 0.3s ease;
+}
+
+.expand-btn:hover {
+  background: rgba(77, 212, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Responsive design improvements */
+@media (max-width: 768px) {
+  .factions-container {
+    padding: 6rem 1rem 3rem;
+  }
+
+  .page-title {
+    font-size: 2.5rem;
+  }
+
+  .factions-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .factions-controls input,
+  .factions-controls select {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .results-counter {
+    text-align: center;
+    margin: 1rem 0 0 0;
+  }
+
+  .factions-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .faction-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .faction-header h2 {
+    font-size: 1.3rem;
+  }
+}
+
+/* Loading animation for cards */
+.faction-card {
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.faction-card:nth-child(1) { animation-delay: 0.1s; }
+.faction-card:nth-child(2) { animation-delay: 0.2s; }
+.faction-card:nth-child(3) { animation-delay: 0.3s; }
+.faction-card:nth-child(4) { animation-delay: 0.4s; }
+.faction-card:nth-child(5) { animation-delay: 0.5s; }
+.faction-card:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced faction details styling */
+.faction-details ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.faction-details li {
+  margin-bottom: 0.8rem;
+  color: rgba(232, 240, 255, 0.9);
+  padding: 0.3rem 0;
+  border-bottom: 1px solid rgba(77, 212, 255, 0.1);
+}
+
+.faction-details li:last-child {
+  border-bottom: none;
+}
+
+.faction-details strong {
+  color: #4dd4ff;
+  font-weight: 600;
+}
+/* Enhanced faction detail sections */
+.detail-section {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(77, 212, 255, 0.1);
+}
+
+.detail-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.detail-section h4 {
+  color: #ffd700;
+  font-family: "Cinzel", serif;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-section ul {
+  margin-top: 0.5rem;
+}
+
+/* Race faction styling */
+.faction-tag.race {
+  background: rgba(186, 85, 211, 0.2);
+  color: #ba55d3;
+}
+
+/* Relation-based styling */
+.faction-card[data-relation="allied"] {
+  border-left: 4px solid #90ee90;
+}
+
+.faction-card[data-relation="hostile"] {
+  border-left: 4px solid #ff6347;
+}
+
+.faction-card[data-relation="neutral"] {
+  border-left: 4px solid #ffd700;
+}
+
+.faction-card[data-relation="unknown"] {
+  border-left: 4px solid #808080;
+}
+
+/* Improved faction card layout */
+.faction-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.faction-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg,
+    rgba(77, 212, 255, 0.3) 0%,
+    rgba(77, 212, 255, 0.1) 50%,
+    rgba(77, 212, 255, 0.3) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.faction-card:hover::before {
+  opacity: 1;
+}
+
+/* Enhanced search and filter styling */
+.factions-controls {
+  background: rgba(21, 27, 61, 0.3);
+  padding: 1.5rem;
+  border-radius: 15px;
+  border: 1px solid rgba(77, 212, 255, 0.2);
+}
+
+.factions-controls input::placeholder {
+  color: rgba(232, 240, 255, 0.5);
+}
+
+/* Improved mobile responsiveness for detail sections */
+@media (max-width: 768px) {
+  .detail-section h4 {
+    font-size: 1rem;
+  }
+
+  .detail-section {
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+  }
+}
+/* Quick filter buttons */
+.quick-filters {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.quick-filter {
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(77, 212, 255, 0.3);
+  background: rgba(21, 27, 61, 0.4);
+  color: #4dd4ff;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Rajdhani", sans-serif;
+}
+
+.quick-filter:hover {
+  background: rgba(77, 212, 255, 0.1);
+  border-color: rgba(77, 212, 255, 0.5);
+  transform: translateY(-1px);
+}
+
+.quick-filter:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .quick-filters {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .quick-filter {
+    width: 100%;
+    max-width: 200px;
+  }
+}
