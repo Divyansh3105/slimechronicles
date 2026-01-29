@@ -1,4 +1,5 @@
-﻿.codex-container {
+﻿/* ========== MAIN CONTAINER ========== */
+.codex-container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 6rem 1rem 2rem 1rem;
@@ -6,11 +7,13 @@
   width: 100%;
 }
 
+/* ========== PAGE HEADER ========== */
 .codex-header {
   text-align: center;
   margin-bottom: 3rem;
 }
 
+/* ========== STATISTICS CARDS ========== */
 .codex-stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -89,6 +92,7 @@
   font-weight: 600;
 }
 
+/* ========== FILTER CONTROLS ========== */
 .filter-section {
   display: flex;
   flex-direction: column;
@@ -163,6 +167,7 @@
   transform: translateY(-2px);
 }
 
+/* ========== SEARCH FUNCTIONALITY ========== */
 .search-suggestions {
   position: absolute;
   top: 100%;
@@ -195,10 +200,12 @@
   border-bottom: none;
 }
 
+/* ========== CHARACTER DISPLAY ========== */
 .character-display {
   position: relative;
 }
 
+/* ========== CHARACTER MODAL ========== */
 .character-modal {
   display: none;
   position: fixed;
@@ -465,6 +472,7 @@
   background: linear-gradient(135deg, #2a9fd8, var(--primary-blue));
 }
 
+/* ========== LORE SECTION ========== */
 .lore-section {
   margin-top: 4rem;
   padding: 3rem 0;
@@ -557,6 +565,7 @@
   font-size: 0.95rem;
 }
 
+/* ========== SEARCH CONTAINER ========== */
 .codex-controls {
   margin-bottom: 3rem;
 }
@@ -622,6 +631,7 @@
   color: rgba(232, 240, 255, 0.5);
 }
 
+/* ========== FILTER TABS ========== */
 .filter-tabs {
   display: flex;
   gap: 0.5rem;
@@ -721,6 +731,7 @@
   box-shadow: 0 0 10px var(--glow-blue);
 }
 
+/* ========== CHARACTER GRID ========== */
 .character-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -794,6 +805,7 @@
   }
 }
 
+/* ========== CHARACTER CARDS ========== */
 .character-card {
   background: linear-gradient(
     145deg,
@@ -907,6 +919,7 @@
   z-index: 10;
 }
 
+/* ========== CHARACTER CARD HEADER ========== */
 .character-header {
   position: relative;
   height: 200px;
@@ -1089,6 +1102,7 @@
   filter: brightness(1.1) contrast(1.2);
 }
 
+/* ========== CHARACTER INFO SECTION ========== */
 .character-portrait {
   display: none;
   position: absolute;
@@ -1399,6 +1413,7 @@
   border-color: rgba(255, 255, 255, 0.6);
 }
 
+/* ========== CHARACTER ACTIONS ========== */
 .character-actions {
   display: flex;
   flex-direction: column;
@@ -1582,6 +1597,7 @@
   transform: translateY(-1px) scale(0.98);
 }
 
+/* ========== PAGINATION CONTROLS ========== */
 .pagination-controls {
   display: flex;
   justify-content: center;
@@ -1686,6 +1702,7 @@
   text-shadow: 0 0 10px var(--glow-blue);
 }
 
+/* ========== CHARACTER THEMING ========== */
 .character-card[data-character-id="rimuru"] {
   --character-primary: #4dd4ff;
   --character-secondary: #2a9fd8;
@@ -1735,6 +1752,7 @@
   --character-secondary-rgb: 147, 112, 219;
 }
 
+/* ========== LOADING AND ERROR STATES ========== */
 .character-grid.loading {
   opacity: 0.5;
   pointer-events: none;
@@ -1768,6 +1786,7 @@
   opacity: 0.5;
 }
 
+/* ========== ACCESSIBILITY AND FOCUS STATES ========== */
 .character-card,
 .filter-tab,
 .view-profile-button,
@@ -1791,6 +1810,7 @@
   transition: transform 0.3s ease;
 }
 
+/* ========== SPECIAL CHARACTER OVERRIDES ========== */
 .character-card[data-character-id="geld"] .character-name,
 .character-card[data-character-id="geld"] .character-title,
 .character-card[data-character-id="geld"] .stat-value,
@@ -1917,6 +1937,7 @@
     0 2px 4px rgba(0, 0, 0, 0.9) !important;
 }
 
+/* ========== RESPONSIVE TEXT SIZING ========== */
 .character-role {
   font-size: 0.65rem;
   line-height: 1.1;
@@ -1960,6 +1981,7 @@
   z-index: 3;
 }
 
+/* ========== LOADING AND NO RESULTS STATES ========== */
 .loading-characters {
   display: flex;
   flex-direction: column;
@@ -2028,6 +2050,7 @@
   max-width: 320px;
 }
 
+/* ========== PERFORMANCE OPTIMIZATIONS ========== */
 .stat-card,
 .filter-select,
 .search-input,
@@ -2050,6 +2073,7 @@
   transform: translateY(-2px);
 }
 
+/* ========== MOBILE RESPONSIVE STYLES ========== */
 @media (max-width: 767px) {
   .codex-container {
     padding: 1.5rem 1rem;
@@ -2326,7 +2350,7 @@
   }
 }
 
-/* ---------- Small Phones (≤ 479px) ---------- */
+/* ========== SMALL PHONE STYLES ========== */
 @media (max-width: 479px) {
   .codex-container {
     padding: 1rem 0.5rem;
@@ -2406,7 +2430,7 @@
   }
 }
 
-/* ---------- Tablets (≥ 768px) ---------- */
+/* ========== TABLET STYLES ========== */
 @media (min-width: 768px) {
   .main-content.codex-page {
     padding: 2rem;
@@ -2429,7 +2453,7 @@
   }
 }
 
-/* ---------- Laptops (≥ 1024px) ---------- */
+/* ========== LAPTOP STYLES ========== */
 @media (min-width: 1024px) {
   .main-content.codex-page {
     max-width: 1400px;
@@ -2442,14 +2466,14 @@
   }
 }
 
-/* ---------- Large Screens (≥ 1280px) ---------- */
+/* ========== LARGE SCREEN STYLES ========== */
 @media (min-width: 1280px) {
   .main-content.codex-page {
     max-width: 1600px;
   }
 }
 
-/* ---------- Performance & UX (Mobile Only) ---------- */
+/* ========== MOBILE PERFORMANCE & UX OPTIMIZATIONS ========== */
 @media (max-width: 767px) {
   /* Disable heavy background effects */
   .magic-circle,
@@ -2552,7 +2576,7 @@
   }
 }
 
-/* ---------- Reduced Motion ---------- */
+/* ========== REDUCED MOTION ACCESSIBILITY ========== */
 @media (prefers-reduced-motion: reduce) {
   .codex-card,
   .entry-card {

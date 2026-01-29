@@ -1,3 +1,4 @@
+/* Loading screen overlay with animated elements */
 .loading-screen {
   position: fixed;
   top: 0;
@@ -18,7 +19,7 @@
   transition: opacity 0.5s ease;
 }
 
-/* Main Logo Icon Styles */
+/* Main logo icon styling with hover and click effects */
 .main-logo-icon {
   display: inline-block;
   transform: scale(1.2); /* Increased base size */
@@ -42,6 +43,7 @@
   animation: logoClick 0.6s ease-out;
 }
 
+/* Logo click animation keyframes */
 @keyframes logoClick {
   0% {
     transform: scale(1.2);
@@ -57,6 +59,7 @@
   }
 }
 
+/* Loading orb with pulsing animation */
 .loading-orb {
   width: 80px;
   height: 80px;
@@ -107,6 +110,7 @@
   animation: loadingBar 2s ease-in-out infinite;
 }
 
+/* Loading animation keyframes */
 @keyframes loadingPulse {
   0%,
   100% {
@@ -149,6 +153,7 @@
   }
 }
 
+/* Magic circles container for background decoration */
 .magic-circles {
   position: fixed;
   top: 0;
@@ -178,6 +183,7 @@
   animation-duration: 30s;
 }
 
+/* Main intro container with centered layout */
 .intro-container {
   position: relative;
   z-index: 10;
@@ -192,11 +198,13 @@
   transition: opacity 0.8s ease;
 }
 
+/* Logo container with fade-in animation */
 .logo-container {
   margin-bottom: 3rem;
   animation: fadeInDown 1.2s ease-out;
 }
 
+/* Interactive slime orb with complex layered effects */
 .slime-orb {
   width: 180px;
   height: 180px;
@@ -235,6 +243,7 @@
   animation: orbClick 0.6s ease-out;
 }
 
+/* Slime orb inner layers for depth effect */
 .slime-core {
   position: absolute;
   top: 50%;
@@ -267,6 +276,7 @@
   animation: innerPulse 3.5s ease-in-out infinite;
 }
 
+/* Slime shine effects for eye-like appearance */
 .slime-shine {
   position: absolute;
   top: 35%;
@@ -307,6 +317,7 @@
   animation-delay: 0.1s;
 }
 
+/* Floating particles within the slime orb */
 .slime-particles {
   position: absolute;
   top: 0;
@@ -340,6 +351,7 @@
   animation-delay: -2.5s;
 }
 
+/* Rotating aura effect around the slime orb */
 .slime-aura {
   position: absolute;
   top: -15px;
@@ -365,6 +377,7 @@
   opacity: 1;
 }
 
+/* Slime orb animation keyframes */
 @keyframes orbClick {
   0% {
     transform: scale(1);
@@ -448,6 +461,7 @@
   }
 }
 
+/* Main title with gradient shimmer effect */
 .title {
   font-family: "Cinzel", serif;
   font-size: 4.5rem;
@@ -486,6 +500,7 @@
   animation: underlineGlow 3s ease-in-out infinite;
 }
 
+/* Subtitle with floating animation */
 .subtitle {
   font-size: 1.6rem;
   color: rgba(232, 240, 255, 0.8);
@@ -494,6 +509,7 @@
   animation: subtitleFloat 4s ease-in-out infinite;
 }
 
+/* Title animation keyframes */
 @keyframes titleShimmer {
   to {
     background-position: 300% center;
@@ -522,6 +538,7 @@
   }
 }
 
+/* Lore section with animated text lines */
 .lore-section {
   max-width: 800px;
   margin: 0 auto 4rem;
@@ -532,6 +549,7 @@
   margin-bottom: 3rem;
 }
 
+/* Individual lore text lines with staggered animation */
 .lore-line {
   margin-bottom: 1.5rem;
   font-size: 1.2rem;
@@ -552,6 +570,7 @@
   transform: translateX(10px);
 }
 
+/* Statistics preview grid layout */
 .stats-preview {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -560,6 +579,7 @@
   animation: slideInFromBottom 1s ease-out 2s both;
 }
 
+/* Individual stat items with hover effects */
 .stat-item {
   text-align: center;
   padding: 1.5rem;
@@ -606,6 +626,7 @@
   font-weight: 600;
 }
 
+/* Button group container with flex layout */
 .button-group {
   display: flex;
   gap: 1.5rem;
@@ -619,6 +640,7 @@
   animation: buttonClick 0.3s ease-out;
 }
 
+/* Button click animation keyframes */
 @keyframes buttonClick {
   0% {
     transform: translateY(-4px) scale(1.02);
@@ -631,6 +653,7 @@
   }
 }
 
+/* Quick access circular buttons */
 .quick-access {
   display: flex;
   gap: 1rem;
@@ -638,6 +661,7 @@
   animation: fadeInUp 1s ease-out 2.2s both;
 }
 
+/* Individual quick access items with tooltips */
 .quick-item {
   display: flex;
   align-items: center;
@@ -689,6 +713,7 @@
   z-index: 1000;
 }
 
+/* Modal overlay with backdrop blur */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -711,6 +736,7 @@
   visibility: visible;
 }
 
+/* Modal content container with backdrop effects */
 .modal-content {
   background: linear-gradient(
     135deg,
@@ -784,6 +810,7 @@
   margin-top: 2rem;
 }
 
+/* Modal feature items with hover effects */
 .feature-item {
   display: flex;
   align-items: center;
@@ -803,12 +830,14 @@
   font-size: 1.5rem;
 }
 
+/* Hide performance-heavy elements on index page */
 .particles,
 .magic-circle,
 .starfield {
   display: none;
 }
 
+/* Custom scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -828,6 +857,7 @@
   background: linear-gradient(180deg, var(--accent-cyan), var(--slime-blue));
 }
 
+/* Base animation keyframes */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -872,7 +902,7 @@
 
 /* ========== MOBILE RESPONSIVE STYLES ========== */
 
-/* Base Mobile Styles (≤ 767px) */
+/* Base mobile styles for phones (≤ 767px) */
 @media (max-width: 767px) {
   .intro-container {
     padding: 1rem;
@@ -1014,7 +1044,7 @@
   }
 }
 
-/* Small Mobile Phones (≤ 479px) */
+/* Small mobile phones responsive breakpoint (≤ 479px) */
 @media (max-width: 479px) {
   .intro-container {
     padding: 0.75rem;
@@ -1060,7 +1090,7 @@
   }
 }
 
-/* Tablet Portrait (768px - 1023px) */
+/* Tablet portrait responsive breakpoint (768px - 1023px) */
 @media (min-width: 768px) and (max-width: 1023px) {
   .intro-container {
     padding: 1.5rem;
@@ -1093,7 +1123,7 @@
   }
 }
 
-/* Large Tablets and Small Laptops (1024px - 1279px) */
+/* Large tablets and small laptops responsive breakpoint (1024px - 1279px) */
 @media (min-width: 1024px) and (max-width: 1279px) {
   .title {
     font-size: 4rem;
@@ -1104,7 +1134,7 @@
   }
 }
 
-/* Footer Mobile Responsiveness */
+/* Footer mobile responsive adjustments */
 @media (max-width: 767px) {
   .main-footer {
     padding: 2rem 0 1rem;
@@ -1134,7 +1164,7 @@
   }
 }
 
-/* Landscape Mobile Orientation */
+/* Landscape mobile orientation optimizations */
 @media (max-width: 767px) and (orientation: landscape) {
   .intro-container {
     padding: 0.5rem;
@@ -1175,7 +1205,7 @@
   }
 }
 
-/* High DPI / Retina Display Optimizations */
+/* High DPI and retina display optimizations */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .slime-orb,
   .main-logo-icon svg {
@@ -1184,7 +1214,7 @@
   }
 }
 
-/* Performance optimizations for mobile */
+/* Performance optimizations for mobile devices */
 @media (max-width: 767px) {
   /* Hide performance-heavy elements on mobile */
   .magic-circles,
@@ -1224,7 +1254,7 @@
   }
 }
 
-/* Reduce motion for users who prefer it */
+/* Reduced motion accessibility preferences */
 @media (prefers-reduced-motion: reduce) {
   .slime-orb,
   .main-logo-icon svg,

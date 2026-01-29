@@ -2,23 +2,34 @@
 <html lang="en">
 
 <head>
+    <!-- Favicon configuration for browser tab icons -->
     <link rel="icon" type="image/png" href="assets/fav.png">
     <link rel="icon" type="image/x-icon" href="assets/fav.ico">
+
+    <!-- Essential meta tags for responsive design and character encoding -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skills Database - Jura Tempest Federation</title>
+
+    <!-- External font imports for enhanced typography -->
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Rajdhani:wght@400;500;600;700&display=swap"
         rel="stylesheet">
+
+    <!-- Icon libraries for UI elements -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <!-- Local stylesheet imports -->
     <link rel="stylesheet" href="css/shared.css">
     <link rel="stylesheet" href="css/skills.css">
+
+    <!-- JavaScript for visual effects loaded with defer for performance -->
     <script src="js/effects.js" defer></script>
 </head>
 
 <body>
-    <!-- Loading screen -->
+    <!-- Loading screen displayed during page initialization -->
     <div class="loading-screen" id="loading-screen">
         <div class="loading-orb">
             <div class="loading-inner"></div>
@@ -29,16 +40,19 @@
         </div>
     </div>
 
+    <!-- Background visual effects for enhanced user experience -->
     <div class="starfield" id="starfield"></div>
     <div class="magic-circle" style="top: 20%; left: 80%;"></div>
     <div class="particles" id="particles"></div>
 
-    <!-- Enhanced Navigation -->
+    <!-- Primary navigation bar with brand logo and menu items -->
     <nav class="main-nav" id="main-nav">
+        <!-- Brand logo and site title -->
         <a href="index.html" class="nav-brand">
             <div class="nav-brand-icon">
+                <!-- Animated SVG logo with slime character design -->
                 <svg width="64" height="64" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Slime body with gradient -->
+                    <!-- Gradient definitions for visual effects -->
                     <defs>
                         <radialGradient id="slimeGradient" cx="50%" cy="40%" r="60%">
                             <stop offset="0%" style="stop-color:#4dd4ff;stop-opacity:1" />
@@ -54,18 +68,18 @@
                         </filter>
                     </defs>
 
-                    <!-- Main slime body -->
+                    <!-- Main slime body with animation -->
                     <ellipse cx="16" cy="20" rx="12" ry="8" fill="url(#slimeGradient)" filter="url(#glow)">
                         <animateTransform attributeName="transform" type="scale" values="1,1;1.1,0.9;1,1" dur="2s"
                             repeatCount="indefinite" />
                     </ellipse>
 
-                    <!-- Slime highlight -->
+                    <!-- Highlight effect on slime body -->
                     <ellipse cx="13" cy="17" rx="3" ry="2" fill="#ffffff" opacity="0.6">
                         <animate attributeName="opacity" values="0.6;0.8;0.6" dur="2s" repeatCount="indefinite" />
                     </ellipse>
 
-                    <!-- Eyes -->
+                    <!-- Animated eyes with blinking effect -->
                     <circle cx="12" cy="18" r="1.5" fill="#0a0e27">
                         <animate attributeName="r" values="1.5;1.2;1.5" dur="3s" repeatCount="indefinite" />
                     </circle>
@@ -73,11 +87,11 @@
                         <animate attributeName="r" values="1.5;1.2;1.5" dur="3s" repeatCount="indefinite" />
                     </circle>
 
-                    <!-- Eye highlights -->
+                    <!-- Eye highlight reflections -->
                     <circle cx="12.5" cy="17.5" r="0.5" fill="#ffffff" opacity="0.8" />
                     <circle cx="20.5" cy="17.5" r="0.5" fill="#ffffff" opacity="0.8" />
 
-                    <!-- Floating particles around slime -->
+                    <!-- Floating particle effects around the slime -->
                     <circle cx="8" cy="12" r="1" fill="#4dd4ff" opacity="0.4">
                         <animateTransform attributeName="transform" type="translate" values="0,0;2,-2;0,0" dur="3s"
                             repeatCount="indefinite" />
@@ -98,6 +112,7 @@
             <span>Jura Tempest</span>
         </a>
 
+        <!-- Main navigation menu items -->
         <div class="nav-links">
             <a href="overview.html">
                 <span class="nav-icon">🏛️</span>
@@ -125,20 +140,24 @@
             </a>
         </div>
 
+        <!-- Mobile menu toggle button -->
         <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
             <span></span>
             <span></span>
             <span></span>
         </div>
 
+        <!-- Navigation progress indicator -->
         <div class="nav-progress" id="nav-progress"></div>
     </nav>
 
-    <!-- Mobile Navigation -->
+    <!-- Mobile navigation overlay for responsive design -->
     <div class="mobile-nav" id="mobile-nav">
+        <!-- Close button for mobile menu -->
         <button class="mobile-nav-close" onclick="toggleMobileMenu()">
             <span>✕</span>
         </button>
+        <!-- Mobile navigation menu items -->
         <a href="overview.html">
             <span class="nav-icon">🏛️</span>
             <span>Overview</span>
@@ -165,15 +184,20 @@
         </a>
     </div>
 
+    <!-- Main container for skills database content -->
     <div class="skills-container">
+        <!-- Page header with title and description -->
         <h1 class="page-title">Skills Database</h1>
         <p class="page-subtitle">Master the arts of magic, combat, and leadership</p>
 
+        <!-- Skills control panel with search and filtering options -->
         <div class="skills-controls">
+            <!-- Search input box for skill name filtering -->
             <div class="search-box">
                 <input type="text" id="search-input" placeholder="Search skills..." autocomplete="off" />
             </div>
 
+            <!-- Sort dropdown for organizing skill display order -->
             <div class="filter-group">
                 <label>Sort By:</label>
                 <select id="sort-select">
@@ -184,6 +208,7 @@
                 </select>
             </div>
 
+            <!-- Type filter dropdown for skill category filtering -->
             <div class="filter-group">
                 <label>Filter Type:</label>
                 <select id="type-filter">
@@ -196,6 +221,7 @@
                 </select>
             </div>
 
+            <!-- Difficulty filter dropdown for skill level filtering -->
             <div class="filter-group">
                 <label>Difficulty:</label>
                 <select id="difficulty-filter">
@@ -208,14 +234,17 @@
             </div>
         </div>
 
+        <!-- Skills grid container populated dynamically by JavaScript -->
         <div class="skills-grid" id="skills-grid">
-            <!-- Loading state -->
+            <!-- Loading state displayed while skills data is being fetched -->
             <div class="loading-state" style="grid-column: 1/-1; text-align: center; padding: 4rem;">
+                <!-- Animated loading spinner -->
                 <div class="loading-spinner"
                     style="width: 40px; height: 40px; border: 3px solid rgba(77, 212, 255, 0.3); border-top: 3px solid var(--primary-blue); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem;">
                 </div>
                 <h3>Loading Skills...</h3>
                 <p>Please wait while we gather the skills database</p>
+                <!-- Force load button for manual initialization -->
                 <button onclick="forceInitialize()"
                     style="margin-top: 1rem; padding: 0.5rem 1rem; background: var(--primary-blue); color: white; border: none; border-radius: 4px; cursor: pointer;">Force
                     Load</button>
@@ -223,11 +252,12 @@
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- Site footer with branding and developer information -->
     <footer class="main-footer"
         style="padding: 1.5rem 0 1rem; background: transparent; border-top: 1px solid rgba(77, 212, 255, 0.2);">
         <div class="footer-content"
             style="grid-template-columns: 1fr 1fr; text-align: left; gap: 2rem; align-items: center;">
+            <!-- Footer branding section -->
             <div class="footer-brand" style="align-items: flex-start;">
                 <div class="footer-brand-header">
                     <div class="footer-logo"></div>
@@ -238,35 +268,42 @@
                 </div>
             </div>
 
+            <!-- Footer information and credits section -->
             <div class="footer-info" style="text-align: right;">
+                <!-- Copyright and attribution information -->
                 <div class="footer-copyright">© 2025 Tensura Chronicles</div>
                 <div class="footer-version">Inspired by "That Time I Got Reincarnated as a Slime"</div>
 
-                <!-- Compact Developer Credit -->
+                <!-- Developer credit section with styling -->
                 <div
                     style="margin: 0.5rem 0; padding: 0.5rem; background: rgba(10, 14, 39, 0.3); border: 1px solid rgba(77, 212, 255, 0.3); border-radius: 6px; position: relative; overflow: hidden; backdrop-filter: blur(5px);">
+                    <!-- Animated glow effect for developer credit -->
                     <div
                         style="position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan)); animation: footerGlow 3s ease-in-out infinite;">
                     </div>
+                    <!-- Developer name and GitHub link -->
                     <div style="font-size: 0.85rem; color: var(--text-light);">
                         🧠 Brain + 💻 Keyboard =
                         <a href="https://github.com/Divyansh3105"
                             style="color: var(--accent-cyan); text-decoration: none; font-weight: bold;">Divyansh
                             Garg</a>
                     </div>
+                    <!-- Decorative stars -->
                     <div
                         style="font-size: 1rem; margin-top: 0.2rem; filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.4));">
                         ✨ ⭐ ✨
                     </div>
                 </div>
 
-                <!-- Social Links -->
+                <!-- Social media links section -->
                 <div class="footer-social" style="justify-content: flex-end; gap: 0.6rem; margin: 0.5rem 0;">
+                    <!-- GitHub repository link -->
                     <a href="https://github.com/Divyansh3105" class="social-link" title="GitHub Repository"
                         style="width: 35px; height: 35px;">
                         <i class="fab fa-github"
                             style="color:#fff; font-size:1.1rem; text-decoration:none; transition:color 0.3s;"></i>
                     </a>
+                    <!-- LinkedIn profile link -->
                     <a href="https://www.linkedin.com/in/divyanshgarg3105/" class="social-link" title="LinkedIn Profile"
                         style="width: 35px; height: 35px;">
                         <i class="fab fa-linkedin"
@@ -274,7 +311,7 @@
                     </a>
                 </div>
 
-                <!-- Final Message -->
+                <!-- Inspirational quote footer message -->
                 <div
                     style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.7; font-style: italic; margin-top: 0.5rem;">
                     "In unity, there is strength. In friendship, there is magic."
@@ -283,6 +320,7 @@
         </div>
     </footer>
 
+    <!-- JavaScript imports for page functionality -->
     <script src="js/character.js"></script>
     <script src="js/game-state-optimized.js"></script>
     <script src="js/skills.js"></script>

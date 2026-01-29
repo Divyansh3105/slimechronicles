@@ -1,3 +1,4 @@
+/* Main container for historical records page with centered layout and background effects */
 .historical-records-container {
   position: relative;
   z-index: 10;
@@ -10,6 +11,7 @@
   overflow-x: hidden;
 }
 
+/* Subtle background gradient overlay for atmospheric depth */
 .historical-records-container::before {
   content: "";
   position: fixed;
@@ -47,6 +49,7 @@
   }
 }
 
+/* Page title with gradient text and animated glow effects */
 .page-title {
   font-family: "Cinzel", serif;
   font-size: 3.5rem;
@@ -109,6 +112,7 @@
   }
 }
 
+/* Page subtitle with decorative sparkle elements */
 .page-subtitle {
   font-size: 1.1rem;
   color: var(--text-secondary);
@@ -153,12 +157,14 @@
   }
 }
 
+/* Help section with collapsible content and toggle button */
 .help-section {
   margin-bottom: 2rem;
   position: relative;
   z-index: 2;
 }
 
+/* Interactive help toggle button with hover effects */
 .help-toggle {
   display: flex;
   align-items: center;
@@ -231,6 +237,7 @@
   transform: scale(1.1) rotate(180deg);
 }
 
+/* Expandable help content with grid layout for help items */
 .help-content {
   max-height: 0;
   overflow: hidden;
@@ -331,6 +338,7 @@ kbd {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
+/* Records control panel with search and filtering functionality */
 .records-controls {
   background: linear-gradient(
     135deg,
@@ -352,10 +360,12 @@ kbd {
   z-index: 2;
 }
 
+/* Search input with icon and clear button functionality */
 .search-container {
   margin-bottom: 2rem;
 }
 
+/* Search input wrapper with animated icon */
 .search-input-wrapper {
   position: relative;
   max-width: 500px;
@@ -381,6 +391,7 @@ kbd {
   transform: translateY(-50%) scale(1.1);
 }
 
+/* Main search input field with glassmorphism design */
 #search-input {
   width: 100%;
   padding: 1.2rem 1.2rem 1.2rem 3.5rem;
@@ -420,6 +431,7 @@ kbd {
   font-style: italic;
 }
 
+/* Clear search button with hover animations */
 .clear-search {
   position: absolute;
   right: 1.2rem;
@@ -457,6 +469,7 @@ kbd {
   color: #ffffff;
 }
 
+/* Filter controls grid layout for category and sorting options */
 .filter-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -522,6 +535,7 @@ kbd {
   padding: 0.5rem;
 }
 
+/* Records statistics display with animated counters */
 .records-stats {
   display: flex;
   justify-content: center;
@@ -607,6 +621,7 @@ kbd {
   color: var(--text-light);
 }
 
+/* No results state with animated icon and helpful messaging */
 .no-results {
   text-align: center;
   padding: 5rem 2rem;
@@ -661,6 +676,7 @@ kbd {
   z-index: 2;
 }
 
+/* Individual record card with timeline dot and hover effects */
 .record-card {
   background: linear-gradient(
     135deg,
@@ -687,6 +703,7 @@ kbd {
   z-index: 2;
 }
 
+/* Timeline dot indicator with pulsing animation */
 .record-card::before {
   content: "";
   position: absolute;
@@ -754,6 +771,7 @@ kbd {
   border-left-color: var(--primary-blue);
 }
 
+/* Record icon container with gradient background and category badge */
 .record-icon-container {
   flex-shrink: 0;
   width: 80px;
@@ -825,6 +843,7 @@ kbd {
   transform: scale(1.1);
 }
 
+/* Record content area with title, description, and metadata */
 .record-content {
   flex: 1;
   text-align: left;
@@ -832,6 +851,7 @@ kbd {
   overflow: visible;
 }
 
+/* Record title with animated underline on hover */
 .record-title {
   font-family: "Cinzel", serif;
   font-size: 1.6rem;
@@ -881,6 +901,7 @@ kbd {
   transform: translateX(2px);
 }
 
+/* Record metadata section with volume, importance, and date badges */
 .record-meta {
   display: flex;
   align-items: center;
@@ -963,6 +984,7 @@ kbd {
   background: rgba(21, 27, 61, 0.6);
 }
 
+/* Expandable record details section with smooth animations */
 .record-details {
   display: grid;
   grid-template-rows: 0fr;
@@ -1044,6 +1066,7 @@ kbd {
   color: rgba(232, 240, 255, 0.9);
 }
 
+/* Expand/collapse button for record details */
 .record-expand-btn {
   display: flex;
   align-items: center;
@@ -1106,6 +1129,7 @@ kbd {
   color: var(--accent-gold);
 }
 
+/* Records grid layout with timeline line and staggered animations */
 .records-grid {
   position: relative;
   display: flex;
@@ -1117,6 +1141,7 @@ kbd {
   z-index: 2;
 }
 
+/* Vertical timeline line with gradient colors */
 .records-grid::before {
   content: "";
   position: absolute;
@@ -1141,6 +1166,7 @@ kbd {
     0 0 20px rgba(77, 212, 255, 0.1);
 }
 
+/* Screen reader only content for accessibility */
 .sr-only {
   position: absolute !important;
   width: 1px !important;
@@ -1153,6 +1179,7 @@ kbd {
   border: 0 !important;
 }
 
+/* Accessibility focus states for interactive elements */
 .record-card:focus-visible,
 .record-expand-btn:focus-visible,
 .help-toggle:focus-visible {
@@ -1161,6 +1188,7 @@ kbd {
   z-index: 10;
 }
 
+/* Staggered animation delays for record card entrance effects */
 .record-card:nth-child(1) {
   animation-delay: 0.05s;
 }
@@ -1192,6 +1220,7 @@ kbd {
   animation-delay: 0.5s;
 }
 
+/* Text selection styling with brand colors */
 ::selection {
   background: rgba(77, 212, 255, 0.3);
   color: var(--text-light);
@@ -1202,6 +1231,7 @@ kbd {
   color: var(--text-light);
 }
 
+/* Mobile-first responsive design for small screens */
 @media (max-width: 767px) {
   .historical-records-container {
     padding: 1.5rem 1rem 3rem 1rem;
@@ -1457,7 +1487,7 @@ kbd {
   }
 }
 
-/* ---------- Small Phones (≤ 479px) ---------- */
+/* Small phone optimizations for very narrow screens */
 @media (max-width: 479px) {
   .historical-records-container {
     padding: 1rem 0.75rem 2rem 0.75rem;
@@ -1546,7 +1576,7 @@ kbd {
   }
 }
 
-/* ---------- Tablets (≥ 768px) ---------- */
+/* Tablet layout adjustments for medium screens */
 @media (min-width: 768px) {
   .historical-records-container {
     padding: 2rem;
@@ -1590,7 +1620,7 @@ kbd {
   }
 }
 
-/* ---------- Laptops (≥ 1024px) ---------- */
+/* Laptop and desktop optimizations for larger screens */
 @media (min-width: 1024px) {
   .historical-records-container {
     max-width: 1200px;
@@ -1631,7 +1661,7 @@ kbd {
   }
 }
 
-/* ---------- Mobile Performance & UX ---------- */
+/* Mobile performance optimizations and touch interaction improvements */
 @media (max-width: 767px) {
   /* Disable heavy decorative effects */
   .magic-circle,
@@ -1732,7 +1762,7 @@ kbd {
   }
 }
 
-/* ---------- Reduced Motion ---------- */
+/* Accessibility support for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .record-card {
     animation: none !important;

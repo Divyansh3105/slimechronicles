@@ -1,4 +1,6 @@
+// Jura Tempest Federation statistics - Comprehensive federation data and metrics
 const JURA_TEMPEST_STATS = {
+  // Population breakdown by category
   population: {
     total: 480000,
     breakdown: {
@@ -8,6 +10,7 @@ const JURA_TEMPEST_STATS = {
       specialists: 20000
     }
   },
+  // Defense force composition and readiness
   defense: {
     totalPersonnel: 105000,
     composition: {
@@ -19,6 +22,7 @@ const JURA_TEMPEST_STATS = {
     classification: "Advanced Defense Force",
     readinessLevel: 98
   },
+  // Economic indicators and sector breakdown
   economy: {
     classification: "Advanced Economy",
     breakdown: {
@@ -30,6 +34,7 @@ const JURA_TEMPEST_STATS = {
     gdpEquivalent: "2.4T Gold",
     growthRate: 12.5
   },
+  // Technology development and innovation metrics
   technology: {
     level: "Highly Advanced",
     classification: "Leading Innovation Center",
@@ -43,19 +48,23 @@ const JURA_TEMPEST_STATS = {
   }
 };
 
+// Month abbreviations for date formatting
 const MONTHS = [
   "Jan", "Feb", "Mar", "Apr", "May", "Jun",
   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
 ];
 
+// Event log storage for activity tracking
 const eventLog = [];
 
+// Animate number transitions - Smooth number counting animation
 function animateNumber(el, from, to, duration = 700) {
   const start = performance.now();
 
+  // Animation frame function for smooth counting
   function tick(now) {
     const progress = Math.min((now - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
+    const eased = 1 - Math.pow(1 - progress, 3); // Cubic easing
     const value = Math.floor(from + (to - from) * eased);
     el.textContent = value.toLocaleString();
     if (progress < 1) requestAnimationFrame(tick);
@@ -63,6 +72,7 @@ function animateNumber(el, from, to, duration = 700) {
   requestAnimationFrame(tick);
 }
 
+// Update statistic display with animated number transition - Set new value with smooth counting animation
 function setStat(id, value) {
   const el = document.getElementById(id);
   if (!el) return;
@@ -70,6 +80,7 @@ function setStat(id, value) {
   animateNumber(el, current, value);
 }
 
+// Update main overview statistics and create detailed breakdowns - Main initialization function for overview page
 function updateOverview() {
   setStat("population-value", JURA_TEMPEST_STATS.population.total);
   setStat("military-value", JURA_TEMPEST_STATS.defense.totalPersonnel);
@@ -89,7 +100,7 @@ function updateOverview() {
     console.error("Technology element not found!");
   }
 
-
+  // Create detailed breakdown visualizations for each stat category
   try {
     createPopulationBreakdown();
     createDefenseBreakdown();
@@ -100,6 +111,7 @@ function updateOverview() {
   }
 }
 
+// Create population distribution visualization - Generate breakdown chart for population categories
 function createPopulationBreakdown() {
   const card = document.getElementById("population-card");
 
@@ -110,6 +122,7 @@ function createPopulationBreakdown() {
 
   const breakdown = JURA_TEMPEST_STATS.population.breakdown;
 
+  // Remove existing breakdown to prevent duplicates
   const existingBreakdown = card.querySelector('.stat-breakdown');
   if (existingBreakdown) {
     existingBreakdown.remove();
@@ -154,6 +167,7 @@ function createPopulationBreakdown() {
   card.appendChild(breakdownDiv);
 }
 
+// Create defense force structure visualization - Generate breakdown chart for military composition
 function createDefenseBreakdown() {
   const card = document.getElementById("military-card");
   if (!card) {
@@ -162,6 +176,7 @@ function createDefenseBreakdown() {
   }
 
   const defense = JURA_TEMPEST_STATS.defense;
+  // Remove existing breakdown to prevent duplicates
   const existingBreakdown = card.querySelector('.stat-breakdown');
   if (existingBreakdown) existingBreakdown.remove();
 
@@ -213,6 +228,7 @@ function createDefenseBreakdown() {
   card.appendChild(breakdownDiv);
 }
 
+// Create economic sector performance visualization - Generate breakdown chart for economy metrics
 function createEconomyBreakdown() {
   const card = document.getElementById("economy-card");
 
@@ -222,6 +238,7 @@ function createEconomyBreakdown() {
   }
 
   const economy = JURA_TEMPEST_STATS.economy;
+  // Remove existing breakdown to prevent duplicates
   const existingBreakdown = card.querySelector('.stat-breakdown');
   if (existingBreakdown) existingBreakdown.remove();
 
@@ -273,6 +290,7 @@ function createEconomyBreakdown() {
   card.appendChild(breakdownDiv);
 }
 
+// Create technology sector distribution visualization - Generate breakdown chart for tech categories
 function createTechnologyBreakdown() {
   const card = document.getElementById("technology-card");
 
@@ -282,6 +300,7 @@ function createTechnologyBreakdown() {
   }
 
   const technology = JURA_TEMPEST_STATS.technology;
+  // Remove existing breakdown to prevent duplicates
   const existingBreakdown = card.querySelector('.stat-breakdown');
   if (existingBreakdown) existingBreakdown.remove();
 
@@ -333,11 +352,13 @@ function createTechnologyBreakdown() {
   card.appendChild(breakdownDiv);
 }
 
+// Add new event to activity log - Insert event at beginning of log with timestamp
 function addEvent(icon, text) {
   eventLog.unshift({ icon, text, time: "Just now" });
-  if (eventLog.length > 8) eventLog.pop();
+  if (eventLog.length > 8) eventLog.pop(); // Maintain maximum of 8 events
 }
 
+// Render event log to DOM - Display recent events in activity feed
 function renderEventLog() {
   const list = document.getElementById("event-list");
   if (!list) return;
@@ -353,20 +374,22 @@ function renderEventLog() {
     )
     .join("");
 }
+// Initialize interactive elements with hover and click effects - Set up user interaction handlers
 function initInteractiveElements() {
   const supportsHover = window.matchMedia('(hover: hover)').matches;
 
-  // Enhanced stat card interactions
+  // Enhanced stat card interactions with staggered animations
   document.querySelectorAll('.stat-card').forEach((el, index) => {
-    // Add staggered animation
+    // Add staggered animation delay for visual appeal
     el.style.animationDelay = `${index * 0.1}s`;
 
+    // Add hover effects for devices that support hover
     if (supportsHover) {
       el.addEventListener('mouseenter', () => {
         if (window.SoundFeedback) {
           window.SoundFeedback.playEffect('hover');
         }
-        // Add subtle glow effect
+        // Add subtle glow effect on hover
         el.style.filter = 'drop-shadow(0 0 20px rgba(77, 212, 255, 0.3))';
       });
 
@@ -375,20 +398,20 @@ function initInteractiveElements() {
       });
     }
 
-    // Enhanced click interaction
-    el.addEventListener('click', () => {
+    // Enhanced click interaction with ripple effect and sound feedback
+    el.addEventListener('click', (event) => {
       if (window.SoundFeedback) {
         window.SoundFeedback.playEffect('click');
       }
 
-      // Create ripple effect
+      // Create ripple effect at click position
       createRippleEffect(el, event);
 
       // Trigger detailed view (placeholder for future functionality)
       showCardDetails(el.id);
     });
 
-    // Keyboard support
+    // Keyboard accessibility support for stat cards
     el.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -397,7 +420,7 @@ function initInteractiveElements() {
     });
   });
 
-  // Enhanced state card interactions
+  // Enhanced state card interactions with hover and click effects
   document.querySelectorAll('.state-card').forEach(el => {
     if (supportsHover) {
       el.addEventListener('mouseenter', () => {
@@ -407,7 +430,7 @@ function initInteractiveElements() {
       });
     }
 
-    el.addEventListener('click', () => {
+    el.addEventListener('click', (event) => {
       if (window.SoundFeedback) {
         window.SoundFeedback.playEffect('click');
       }
@@ -415,14 +438,14 @@ function initInteractiveElements() {
     });
   });
 
-  // Enhanced strength category interactions
+  // Enhanced strength category interactions with click feedback
   document.querySelectorAll('.strength-category').forEach(el => {
     el.addEventListener('click', () => {
       if (window.SoundFeedback) {
         window.SoundFeedback.playEffect('click');
       }
 
-      // Smooth scale animation
+      // Smooth scale animation for visual feedback
       el.style.transform = 'scale(0.98)';
       setTimeout(() => {
         el.style.transform = '';
@@ -430,7 +453,7 @@ function initInteractiveElements() {
     });
   });
 
-  // Enhanced badge interactions
+  // Enhanced badge interactions with hover and click effects
   document.querySelectorAll('.badge').forEach(badge => {
     if (supportsHover) {
       badge.addEventListener('mouseenter', () => {
@@ -449,7 +472,7 @@ function initInteractiveElements() {
       showBadgeInfo(badge);
     });
 
-    // Keyboard support
+    // Keyboard accessibility support for badges
     badge.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -458,7 +481,7 @@ function initInteractiveElements() {
     });
   });
 
-  // Enhanced number cards interactions
+  // Enhanced number cards interactions with hover and click effects
   document.querySelectorAll('.number-card').forEach(card => {
     if (supportsHover) {
       card.addEventListener('mouseenter', () => {
@@ -477,7 +500,7 @@ function initInteractiveElements() {
       showNumberCardDetails(card);
     });
 
-    // Keyboard support
+    // Keyboard accessibility support for number cards
     card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -486,7 +509,7 @@ function initInteractiveElements() {
     });
   });
 
-  // Enhanced federation emblem interaction
+  // Enhanced federation emblem interaction with click animation
   const federationEmblem = document.querySelector('.federation-emblem');
   if (federationEmblem) {
     federationEmblem.addEventListener('click', () => {
@@ -496,7 +519,7 @@ function initInteractiveElements() {
 
       const emblemCore = federationEmblem.querySelector('.emblem-core');
 
-      // Simple scale animation
+      // Simple scale animation for emblem interaction
       emblemCore.style.transform = 'scale(1.05)';
 
       setTimeout(() => {
@@ -504,7 +527,7 @@ function initInteractiveElements() {
       }, 200);
     });
 
-    // Keyboard support
+    // Keyboard accessibility support for federation emblem
     federationEmblem.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -514,7 +537,7 @@ function initInteractiveElements() {
   }
 }
 
-// New helper functions
+// Create visual ripple effect on element click - Generate expanding circle animation at click position
 function createRippleEffect(element, event) {
   const ripple = document.createElement('div');
   ripple.style.cssText = `
@@ -539,7 +562,7 @@ function createRippleEffect(element, event) {
   element.style.position = 'relative';
   element.appendChild(ripple);
 
-  // Add ripple animation keyframes if not exists
+  // Add ripple animation keyframes if not already present
   if (!document.querySelector('#ripple-styles')) {
     const style = document.createElement('style');
     style.id = 'ripple-styles';
@@ -554,17 +577,19 @@ function createRippleEffect(element, event) {
     document.head.appendChild(style);
   }
 
+  // Remove ripple element after animation completes
   setTimeout(() => {
     ripple.remove();
   }, 600);
 }
 
+// Show detailed view for stat card - Placeholder function for future detailed statistics modal
 function showCardDetails(cardId) {
   // Placeholder for detailed view functionality
   console.log(`Showing details for ${cardId}`);
 
   // Future: Could open a modal with detailed statistics
-  // For now, just add a subtle feedback
+  // For now, just add a subtle visual feedback
   const card = document.getElementById(cardId);
   if (card) {
     card.style.transform = 'scale(1.05)';
@@ -574,14 +599,15 @@ function showCardDetails(cardId) {
   }
 }
 
+// Show number card detailed information - Display additional metrics for number cards
 function showNumberCardDetails(card) {
   const category = card.querySelector('.number-category').textContent;
   console.log(`Number card details: ${category}`);
 
-  // Simplified visual feedback
+  // Simplified visual feedback with icon animation
   const icon = card.querySelector('.number-icon');
 
-  // Simple scale animation
+  // Simple scale animation for visual feedback
   icon.style.transform = 'scale(1.2)';
 
   setTimeout(() => {
@@ -589,34 +615,36 @@ function showNumberCardDetails(card) {
   }, 300);
 }
 
+// Show badge information tooltip - Display detailed information about achievement badges
 function showBadgeInfo(badge) {
   // Placeholder for badge information display
   const badgeText = badge.querySelector('span:last-child').textContent;
   console.log(`Badge info: ${badgeText}`);
 
   // Future: Could show tooltip or modal with detailed information
-  // For now, just add visual feedback
+  // For now, just add visual feedback with scale animation
   badge.style.transform = 'scale(1.1)';
   setTimeout(() => {
     badge.style.transform = '';
   }, 200);
 }
+// Initialize mobile-specific optimizations - Configure mobile device performance and behavior
 function initMobileOptimizations() {
-
+  // Detect mobile devices using user agent string
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
   if (isMobile) {
-
+    // Reduce animation duration for better mobile performance
     document.documentElement.style.setProperty('--animation-duration', '0.3s');
 
-
+    // Add mobile device class for CSS targeting
     document.body.classList.add('mobile-device');
 
-
+    // Enable passive touch event listeners for better scroll performance
     document.addEventListener('touchstart', function() {}, { passive: true });
     document.addEventListener('touchmove', function() {}, { passive: true });
 
-
+    // Set viewport height variable for mobile browsers with dynamic viewport
     const setVH = () => {
       const vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -627,13 +655,14 @@ function initMobileOptimizations() {
     window.addEventListener('orientationchange', setVH);
   }
 }
+// Initialize intersection observer for scroll animations - Set up viewport-based animation triggers
 function initIntersectionObserver() {
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('mobile-animate');
-          observer.unobserve(entry.target);
+          observer.unobserve(entry.target); // Stop observing once animated
         }
       });
     }, {
@@ -641,19 +670,20 @@ function initIntersectionObserver() {
       rootMargin: '50px'
     });
 
-
+    // Observe elements for scroll-triggered animations
     document.querySelectorAll('.stat-card, .state-card, .analytics-section').forEach(el => {
       observer.observe(el);
     });
   }
 }
 
+// DOM content loaded event handler - Initialize page components in optimized sequence
 document.addEventListener("DOMContentLoaded", () => {
-  // Enhanced loading sequence
+  // Enhanced loading sequence with smooth fade-in animation
   document.body.style.opacity = '0';
   document.body.style.transform = 'translateY(20px)';
 
-  // Preload critical resources
+  // Preload critical resources before showing content
   preloadCriticalResources();
 
   setTimeout(() => {
@@ -662,13 +692,13 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.transform = 'translateY(0)';
   }, 100);
 
-  // Initialize mobile optimizations first
+  // Initialize mobile optimizations first for better mobile experience
   initMobileOptimizations();
 
-  // Initialize mobile navigation
+  // Initialize mobile navigation system
   initMobileNavigation();
 
-  // Staggered initialization for better performance
+  // Staggered initialization for better performance and user experience
   setTimeout(() => {
     updateOverview();
   }, 200);
@@ -683,21 +713,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 800);
 });
 
-// New performance optimization functions
+// Preload critical resources for faster page rendering - Load essential assets before content display
 function preloadCriticalResources() {
-  // Preload federation image
+  // Preload federation background image for immediate display
   const img = new Image();
   img.src = 'assets/federation.jpg';
 
-  // Preload fonts if needed
+  // Preload custom fonts if font loading API is available
   if ('fonts' in document) {
     document.fonts.load('1rem Cinzel');
     document.fonts.load('1rem Rajdhani');
   }
 }
 
+// Initialize performance optimizations for various device capabilities - Configure animations and features based on device performance
 function initPerformanceOptimizations() {
-  // Throttle scroll events
+  // Throttle scroll events for better performance
   let scrollTimeout;
   window.addEventListener('scroll', () => {
     if (scrollTimeout) {
@@ -705,28 +736,29 @@ function initPerformanceOptimizations() {
     }
     scrollTimeout = setTimeout(() => {
       updateScrollProgress();
-    }, 16); // ~60fps
+    }, 16); // Target ~60fps for smooth scrolling
   }, { passive: true });
 
-  // Optimize animations for low-end devices
+  // Optimize animations for low-end devices based on CPU cores
   if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
     document.documentElement.style.setProperty('--animation-duration', '0.1s');
     // Disable complex animations on low-end devices
     document.documentElement.classList.add('reduced-animations');
   }
 
-  // Reduce motion for users who prefer it
+  // Respect user's motion preferences for accessibility
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.documentElement.style.setProperty('--animation-duration', '0.01s');
     document.documentElement.classList.add('reduced-animations');
   }
 
-  // Optimize for mobile devices
+  // Apply mobile-specific optimizations for touch devices
   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     document.documentElement.classList.add('mobile-optimized');
   }
 }
 
+// Update scroll progress indicator - Display reading progress in navigation bar
 function updateScrollProgress() {
   const scrolled = window.pageYOffset;
   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
@@ -735,20 +767,20 @@ function updateScrollProgress() {
   const progressBar = document.getElementById('nav-progress');
   if (progressBar) {
     progressBar.style.width = `${progress}%`;
-    progressBar.classList.toggle('visible', scrolled > 100);
+    progressBar.classList.toggle('visible', scrolled > 100); // Show after scrolling 100px
   }
 }
 
-// Enhanced error handling
+// Enhanced error handling for overview page - Log and handle JavaScript errors gracefully
 window.addEventListener('error', (e) => {
   console.error('Overview page error:', e.error);
   // Could implement user-friendly error reporting here
 });
 
-// Enhanced visibility change handling
+// Enhanced visibility change handling for performance optimization - Pause/resume animations based on tab visibility
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) {
-    // Pause animations when tab is not visible
+    // Pause animations when tab is not visible to save resources
     document.querySelectorAll('.stat-card, .emblem-core, .ring').forEach(el => {
       el.style.animationPlayState = 'paused';
     });
@@ -760,10 +792,11 @@ document.addEventListener('visibilitychange', () => {
   }
 });
 
-// Mobile Navigation Functions
+// Mobile Navigation Functions - Handle mobile menu interactions and scroll management
 let scrollPosition = 0;
 let touchStartY = 0;
 
+// Prevent touch scrolling when mobile menu is open - Block background scroll while preserving menu scroll
 function preventTouchMove(e) {
   // Allow scrolling within the mobile nav itself
   if (e.target.closest('.mobile-nav')) {
@@ -773,36 +806,39 @@ function preventTouchMove(e) {
   e.preventDefault();
 }
 
+// Disable page scrolling when mobile menu is active - Lock background scroll position
 function disableScroll() {
-  // Store current scroll position
+  // Store current scroll position for restoration later
   scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
 
   // Add CSS classes for scroll prevention
   document.body.classList.add('mobile-nav-active');
   document.documentElement.classList.add('mobile-nav-active');
 
-  // Apply styles to prevent scrolling
+  // Apply styles to prevent scrolling by fixing position
   document.body.style.top = `-${scrollPosition}px`;
 
-  // Prevent touch scrolling
+  // Prevent touch scrolling events
   document.addEventListener('touchmove', preventTouchMove, { passive: false });
 }
 
+// Enable page scrolling when mobile menu is closed - Restore normal scroll behavior
 function enableScroll() {
-  // Remove CSS classes
+  // Remove CSS classes that prevent scrolling
   document.body.classList.remove('mobile-nav-active');
   document.documentElement.classList.remove('mobile-nav-active');
 
-  // Remove inline styles
+  // Remove inline styles that fix position
   document.body.style.top = '';
 
-  // Remove touch event listener
+  // Remove touch event listener that prevents scrolling
   document.removeEventListener('touchmove', preventTouchMove);
 
-  // Restore scroll position
+  // Restore original scroll position
   window.scrollTo(0, scrollPosition);
 }
 
+// Toggle mobile menu open/closed state - Handle mobile navigation menu visibility
 function toggleMobileMenu() {
   const toggle = document.querySelector(".mobile-menu-toggle");
   const mobileNav = document.getElementById("mobile-nav");
@@ -815,19 +851,19 @@ function toggleMobileMenu() {
   const isActive = mobileNav.classList.contains("active");
 
   if (isActive) {
-    // Close menu
+    // Close menu and restore scroll
     mobileNav.classList.remove("active");
     toggle.classList.remove("active");
     enableScroll();
   } else {
-    // Open menu
+    // Open menu and disable background scroll
     mobileNav.classList.add("active");
     toggle.classList.add("active");
     disableScroll();
   }
 }
 
-// Close mobile menu when clicking on navigation links
+// Close mobile menu when clicking on navigation links - Auto-close menu after navigation
 function initMobileNavLinks() {
   document.querySelectorAll(".mobile-nav a").forEach((link) => {
     link.addEventListener("click", () => {
@@ -836,7 +872,7 @@ function initMobileNavLinks() {
   });
 }
 
-// Close mobile menu when clicking outside
+// Close mobile menu when clicking outside menu area - Handle outside click interactions
 function initMobileNavOutsideClick() {
   document.addEventListener("click", (e) => {
     const mobileNav = document.getElementById("mobile-nav");
@@ -844,6 +880,7 @@ function initMobileNavOutsideClick() {
 
     if (!mobileNav || !toggle) return;
 
+    // Close menu if clicking outside menu and toggle button
     if (mobileNav.classList.contains("active") &&
         !mobileNav.contains(e.target) &&
         !toggle.contains(e.target)) {
@@ -852,7 +889,7 @@ function initMobileNavOutsideClick() {
   });
 }
 
-// Close mobile menu on escape key
+// Close mobile menu on escape key press - Handle keyboard accessibility
 function initMobileNavKeyboard() {
   document.addEventListener("keydown", (e) => {
     const mobileNav = document.getElementById("mobile-nav");
@@ -862,12 +899,12 @@ function initMobileNavKeyboard() {
   });
 }
 
-// Handle orientation change and resize events
+// Handle orientation change and resize events for mobile menu - Maintain proper scroll lock during device rotation
 function initMobileNavResize() {
   window.addEventListener("resize", () => {
     const mobileNav = document.getElementById("mobile-nav");
     if (mobileNav && mobileNav.classList.contains("active")) {
-      // Recalculate scroll position on resize
+      // Recalculate scroll position on resize to maintain proper lock
       setTimeout(() => {
         if (mobileNav.classList.contains("active")) {
           disableScroll();
@@ -879,7 +916,7 @@ function initMobileNavResize() {
   window.addEventListener("orientationchange", () => {
     const mobileNav = document.getElementById("mobile-nav");
     if (mobileNav && mobileNav.classList.contains("active")) {
-      // Handle orientation change
+      // Handle orientation change with delay for proper viewport adjustment
       setTimeout(() => {
         if (mobileNav.classList.contains("active")) {
           disableScroll();
@@ -889,16 +926,16 @@ function initMobileNavResize() {
   });
 }
 
-// Handle page unload to ensure scroll is restored
+// Handle page unload to ensure scroll is restored - Clean up mobile navigation state on page exit
 function initMobileNavCleanup() {
   window.addEventListener('beforeunload', () => {
     const mobileNav = document.getElementById("mobile-nav");
     if (mobileNav && mobileNav.classList.contains("active")) {
-      enableScroll();
+      enableScroll(); // Ensure scroll is restored before page unload
     }
   });
 
-  // Handle visibility change (tab switching)
+  // Handle visibility change (tab switching) to close menu when tab becomes hidden
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
       const mobileNav = document.getElementById("mobile-nav");
@@ -910,7 +947,7 @@ function initMobileNavCleanup() {
   });
 }
 
-// Initialize mobile navigation
+// Initialize mobile navigation system - Set up all mobile navigation event handlers
 function initMobileNavigation() {
   initMobileNavLinks();
   initMobileNavOutsideClick();
@@ -919,7 +956,7 @@ function initMobileNavigation() {
   initMobileNavCleanup();
 }
 
-// Test function for mobile navigation
+// Test function for mobile navigation debugging - Diagnostic tool for mobile menu functionality
 function testMobileNav() {
   console.log("=== Mobile Navigation Test ===");
 
@@ -945,7 +982,7 @@ function testMobileNav() {
   console.log("Window width:", window.innerWidth);
   console.log("Should show mobile toggle:", window.innerWidth <= 1023);
 
-  // Test the toggle function
+  // Test the toggle function if elements exist
   if (toggle && mobileNav) {
     console.log("Testing toggle function...");
     toggleMobileMenu();
@@ -954,7 +991,7 @@ function testMobileNav() {
   console.log("=== End Test ===");
 }
 
-// Make functions globally available
+// Make functions globally available for external access - Export key functions to window object
 window.toggleMobileMenu = toggleMobileMenu;
 window.testMobileNav = testMobileNav;
 window.updateOverview = updateOverview;

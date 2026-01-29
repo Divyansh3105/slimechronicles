@@ -1,3 +1,4 @@
+/* Base HTML and body styling with scroll behavior */
 html,
 body {
   margin: 0;
@@ -17,6 +18,7 @@ body {
   min-height: 100vh;
 }
 
+/* Main content container with smooth scrolling */
 .main-content {
   overflow: visible;
   height: auto;
@@ -25,11 +27,13 @@ body {
   position: relative;
 }
 
+/* Scroll margin for navigation anchor links */
 .nation-grid,
 .state-summary {
   scroll-margin-top: 80px;
 }
 
+/* Logo and brand icon hover effects */
 .main-logo-icon,
 .nav-brand-icon {
   transition:
@@ -56,6 +60,7 @@ body {
   box-shadow: 0 0 15px var(--accent-gold);
 }
 
+/* Main content layout and positioning */
 .main-content {
   position: relative;
   z-index: 10;
@@ -65,6 +70,7 @@ body {
   margin: 0 auto;
 }
 
+/* Floating decorative orbs with animated positioning */
 .floating-orb {
   position: absolute;
   border-radius: 50%;
@@ -112,6 +118,7 @@ body {
   );
 }
 
+/* Hero welcome section with grid layout and backdrop effects */
 .hero-welcome {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -179,11 +186,13 @@ body {
   opacity: 0.2;
 }
 
+/* Welcome content text and styling */
 .welcome-content {
   z-index: 2;
   position: relative;
 }
 
+/* Main welcome title with gradient text effect */
 .welcome-title {
   font-family: "Cinzel", serif;
   font-size: 3.2rem;
@@ -229,12 +238,14 @@ body {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
+/* Welcome badges grid layout */
 .welcome-badges {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
 }
 
+/* Interactive badge components with hover effects */
 .badge {
   display: flex;
   align-items: center;
@@ -301,6 +312,7 @@ body {
   transform: scale(1.1);
 }
 
+/* Welcome visual section with federation emblem */
 .welcome-visual {
   display: flex;
   justify-content: center;
@@ -309,6 +321,7 @@ body {
   z-index: 2;
 }
 
+/* Federation emblem container with concentric rings */
 .federation-emblem {
   position: relative;
   width: 300px;
@@ -318,6 +331,7 @@ body {
   justify-content: center;
 }
 
+/* Central emblem core with glowing border */
 .emblem-core {
   width: 180px;
   height: 180px;
@@ -340,6 +354,7 @@ body {
   overflow: hidden;
 }
 
+/* Emblem image with glow animation */
 .emblem-image {
   width: 150px;
   height: 150px;
@@ -356,6 +371,7 @@ body {
   filter: brightness(1.2) contrast(1.2);
 }
 
+/* Glow animation keyframes for emblem image */
 @keyframes imageGlow {
   from {
     box-shadow: 0 0 15px rgba(77, 212, 255, 0.4);
@@ -365,6 +381,7 @@ body {
   }
 }
 
+/* Concentric rings around the emblem */
 .emblem-rings {
   position: absolute;
   width: 100%;
@@ -401,6 +418,7 @@ body {
   border-color: rgba(77, 212, 255, 0.5);
 }
 
+/* Section titles with underline decoration */
 .section-title {
   font-family: "Cinzel", serif;
   font-size: 2rem;
@@ -428,6 +446,7 @@ body {
   border-radius: 2px;
 }
 
+/* State summary grid layout */
 .state-summary {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -435,6 +454,7 @@ body {
   margin-bottom: 3rem;
 }
 
+/* State cards with backdrop blur and hover effects */
 .state-card {
   background: linear-gradient(
     135deg,
@@ -525,6 +545,7 @@ body {
   font-weight: 600;
 }
 
+/* Status indicator with pulsing animation */
 .status-indicator {
   width: 10px;
   height: 10px;
@@ -538,6 +559,7 @@ body {
   animation: statusPulse 2s ease-in-out infinite;
 }
 
+/* Status pulse animation keyframes */
 @keyframes statusPulse {
   0%,
   100% {
@@ -671,6 +693,7 @@ body {
   padding-left: 1.85rem;
 }
 
+/* Nation statistics grid layout */
 .nation-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -678,6 +701,7 @@ body {
   margin-bottom: 3rem;
 }
 
+/* Statistical cards with color variants and animations */
 .stat-card {
   background: linear-gradient(
     135deg,
@@ -898,6 +922,7 @@ body {
   color: rgba(232, 224, 25, 0.5);
 }
 
+/* Stat breakdown section with progress bars */
 .stat-breakdown {
   margin-top: 1.5rem;
   padding-top: 1.5rem;
@@ -951,6 +976,7 @@ body {
   position: relative;
 }
 
+/* Progress bar with shimmer animation */
 .breakdown-fill {
   height: 100%;
   background: linear-gradient(90deg, var(--slime-blue), var(--accent-cyan));
@@ -1020,6 +1046,7 @@ body {
   text-shadow: 0 0 8px rgba(255, 165, 0, 0.3);
 }
 
+/* Performance optimizations and accessibility */
 .stat-card {
   contain: layout style paint;
   will-change: transform;
@@ -1041,7 +1068,7 @@ body {
   transition: transform 0.2s ease;
 }
 
-/* Enhanced Chart Card */
+/* Enhanced chart card with gradient border */
 .chart-card {
   background: linear-gradient(
     135deg,
@@ -1085,7 +1112,7 @@ body {
   opacity: 0.6;
 }
 
-/* By the Numbers Section */
+/* By the numbers section with statistical highlights */
 .by-numbers-section {
   margin: 4rem 0;
   padding: 3rem;
@@ -1129,12 +1156,14 @@ body {
   text-shadow: 0 0 10px rgba(232, 224, 25, 0.3);
 }
 
+/* Numbers grid for statistical cards */
 .numbers-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
 }
 
+/* Number cards with category-specific styling */
 .number-card {
   background: linear-gradient(
     135deg,
@@ -1357,7 +1386,7 @@ body {
   contain: none;
 }
 
-/* Focus states for keyboard navigation */
+/* Focus states for keyboard navigation accessibility */
 .stat-card:focus,
 .state-card:focus,
 .badge:focus {
@@ -1367,7 +1396,7 @@ body {
 
 /* ========== UTILITY CLASSES FOR MOBILE ========== */
 
-/* Mobile-specific utility classes */
+/* Mobile-specific utility classes for responsive design */
 .mobile-stack {
   display: flex;
   flex-direction: column;
@@ -1396,6 +1425,7 @@ body {
   animation: mobileSlideUp 0.6s ease-out;
 }
 
+/* Mobile slide-up animation keyframes */
 @keyframes mobileSlideUp {
   from {
     opacity: 0;
@@ -1407,7 +1437,7 @@ body {
   }
 }
 
-/* Apply mobile utilities only on mobile */
+/* Apply mobile utilities only on mobile devices */
 @media (max-width: 767px) {
   .mobile-stack {
     display: flex;
@@ -1433,7 +1463,7 @@ body {
   }
 }
 
-/* Desktop utilities */
+/* Desktop-specific utility classes */
 @media (min-width: 768px) {
   .desktop-hide {
     display: none !important;
@@ -1451,7 +1481,7 @@ body {
 
 /* ========== MOBILE RESPONSIVE STYLES ========== */
 
-/* ---------- Mobile Phones (≤ 767px) ---------- */
+/* Mobile phones responsive breakpoint (≤ 767px) */
 @media (max-width: 767px) {
   .main-content {
     padding: 1.5rem 1rem;
@@ -1748,7 +1778,7 @@ body {
   }
 }
 
-/* ---------- Small Phones (≤ 479px) ---------- */
+/* Small phones responsive breakpoint (≤ 479px) */
 @media (max-width: 479px) {
   .main-content {
     padding: 1rem 0.75rem;
@@ -1838,7 +1868,7 @@ body {
   }
 }
 
-/* ---------- Tablets (≥ 768px) ---------- */
+/* Tablets responsive breakpoint (≥ 768px) */
 @media (min-width: 768px) {
   .main-content {
     padding: 2rem;
@@ -1867,7 +1897,7 @@ body {
   }
 }
 
-/* ---------- Laptops (≥ 1024px) ---------- */
+/* Laptops responsive breakpoint (≥ 1024px) */
 @media (min-width: 1024px) {
   .main-content {
     max-width: 1400px;
@@ -1884,14 +1914,14 @@ body {
   }
 }
 
-/* ---------- Large Screens (≥ 1280px) ---------- */
+/* Large screens responsive breakpoint (≥ 1280px) */
 @media (min-width: 1280px) {
   .main-content {
     max-width: 1600px;
   }
 }
 
-/* ---------- Touch and Interaction Improvements ---------- */
+/* Touch device interaction improvements */
 @media (max-width: 767px) {
   /* Improve touch targets */
   .stat-card,
@@ -1920,7 +1950,7 @@ body {
   }
 }
 
-/* ---------- Reduced Motion ---------- */
+/* Reduced motion accessibility preferences */
 @media (prefers-reduced-motion: reduce) {
   .stat-card,
   .state-card,

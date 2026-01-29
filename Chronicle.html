@@ -2,24 +2,34 @@
 <html lang="en">
 
 <head>
+    <!-- Favicon configuration for browser tab icons -->
     <link rel="icon" type="image/png" href="assets/fav.png">
     <link rel="icon" type="image/x-icon" href="assets/fav.ico">
 
+    <!-- Essential meta tags for responsive design and character encoding -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chronicle Timeline - Jura Tempest</title>
+
+    <!-- External font imports for enhanced typography -->
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Rajdhani:wght@400;500;600;700&display=swap"
         rel="stylesheet">
+
+    <!-- Icon libraries for UI elements -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <!-- Local stylesheet imports -->
     <link rel="stylesheet" href="css/shared.css">
     <link rel="stylesheet" href="css/Chronicle.css">
+
+    <!-- JavaScript for visual effects loaded with defer for performance -->
     <script src="js/effects.js" defer></script>
 </head>
 
 <body>
-    <!-- Loading screen -->
+    <!-- Loading screen displayed during page initialization -->
     <div class="loading-screen" id="loading-screen">
         <div class="loading-orb">
             <div class="loading-inner"></div>
@@ -30,19 +40,21 @@
         </div>
     </div>
 
-    <!-- Background Effects -->
+    <!-- Background visual effects for enhanced user experience -->
     <div class="starfield" id="starfield"></div>
     <div class="magic-circle" style="top: 20%; left: 80%; opacity: 0.3;"></div>
     <div class="magic-circle"
         style="top: 70%; left: 15%; animation-duration: 90s; animation-direction: reverse; opacity: 0.3;"></div>
     <div class="particles" id="particles"></div>
 
-    <!-- Navigation -->
+    <!-- Primary navigation bar with brand logo and menu items -->
     <nav class="main-nav" id="main-nav">
+        <!-- Brand logo and site title -->
         <a href="index.html" class="nav-brand">
             <div class="nav-brand-icon">
+                <!-- Animated SVG logo with slime character design -->
                 <svg width="64" height="64" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Slime body with gradient -->
+                    <!-- Gradient definitions for visual effects -->
                     <defs>
                         <radialGradient id="slimeGradient" cx="50%" cy="40%" r="60%">
                             <stop offset="0%" style="stop-color:#4dd4ff;stop-opacity:1" />
@@ -58,18 +70,18 @@
                         </filter>
                     </defs>
 
-                    <!-- Main slime body -->
+                    <!-- Main slime body with animation -->
                     <ellipse cx="16" cy="20" rx="12" ry="8" fill="url(#slimeGradient)" filter="url(#glow)">
                         <animateTransform attributeName="transform" type="scale" values="1,1;1.1,0.9;1,1" dur="2s"
                             repeatCount="indefinite" />
                     </ellipse>
 
-                    <!-- Slime highlight -->
+                    <!-- Highlight effect on slime body -->
                     <ellipse cx="13" cy="17" rx="3" ry="2" fill="#ffffff" opacity="0.6">
                         <animate attributeName="opacity" values="0.6;0.8;0.6" dur="2s" repeatCount="indefinite" />
                     </ellipse>
 
-                    <!-- Eyes -->
+                    <!-- Animated eyes with blinking effect -->
                     <circle cx="12" cy="18" r="1.5" fill="#0a0e27">
                         <animate attributeName="r" values="1.5;1.2;1.5" dur="3s" repeatCount="indefinite" />
                     </circle>
@@ -77,11 +89,11 @@
                         <animate attributeName="r" values="1.5;1.2;1.5" dur="3s" repeatCount="indefinite" />
                     </circle>
 
-                    <!-- Eye highlights -->
+                    <!-- Eye highlight reflections -->
                     <circle cx="12.5" cy="17.5" r="0.5" fill="#ffffff" opacity="0.8" />
                     <circle cx="20.5" cy="17.5" r="0.5" fill="#ffffff" opacity="0.8" />
 
-                    <!-- Floating particles around slime -->
+                    <!-- Floating particle effects around the slime -->
                     <circle cx="8" cy="12" r="1" fill="#4dd4ff" opacity="0.4">
                         <animateTransform attributeName="transform" type="translate" values="0,0;2,-2;0,0" dur="3s"
                             repeatCount="indefinite" />
@@ -102,6 +114,7 @@
             <span>Jura Tempest</span>
         </a>
 
+        <!-- Main navigation menu items -->
         <div class="nav-links">
             <a href="overview.html">
                 <span class="nav-icon">🏛️</span>
@@ -129,20 +142,24 @@
             </a>
         </div>
 
+        <!-- Mobile menu toggle button -->
         <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
             <span></span>
             <span></span>
             <span></span>
         </div>
 
+        <!-- Navigation progress indicator -->
         <div class="nav-progress" id="nav-progress"></div>
     </nav>
 
-    <!-- Mobile Navigation -->
+    <!-- Mobile navigation overlay for responsive design -->
     <div class="mobile-nav" id="mobile-nav">
+        <!-- Close button for mobile menu -->
         <button class="mobile-nav-close" onclick="toggleMobileMenu()">
             <span>✕</span>
         </button>
+        <!-- Mobile navigation menu items -->
         <a href="overview.html">
             <span class="nav-icon">🏛️</span>
             <span>Overview</span>
@@ -169,38 +186,40 @@
         </a>
     </div>
 
+    <!-- Main content area containing timeline and historical events -->
     <main class="main-content">
-        <!-- Page Header -->
+        <!-- Page header with title and description -->
         <div class="page-header">
             <h1 class="page-title">Chronicle of Tempest</h1>
             <p class="page-subtitle">A Historical Archive of the Jura Tempest Federation</p>
-
-
-
-
         </div>
 
-        <!-- Timeline Container -->
+        <!-- Interactive timeline container with chronological events -->
         <div class="timeline-container" style="display: block; visibility: visible;">
+            <!-- Central timeline line connecting all events -->
             <div class="timeline-line"></div>
 
-            <!-- Year 2013 - Founding Era -->
+            <!-- Year 2013 - Founding Era section -->
             <div class="timeline-year visible" data-era="founding"
                 style="display: block; opacity: 1; transform: translateY(0);">
+                <!-- Year marker with era designation -->
                 <div class="year-marker">
                     <div class="year-number">2013</div>
                     <div class="year-label">Founding Era</div>
                 </div>
 
-                <!-- Reincarnation Arc -->
+                <!-- Reincarnation Arc containing foundational events -->
                 <div class="timeline-arc" role="region" aria-labelledby="reincarnation-arc-title">
+                    <!-- Arc header with toggle functionality -->
                     <div class="arc-header" onclick="toggleArcSimple(this);" tabindex="0" role="button"
                         aria-expanded="false" aria-controls="reincarnation-arc-content">
                         <div class="arc-icon">🌟</div>
                         <div class="arc-title" id="reincarnation-arc-title">Reincarnation Arc</div>
                         <div class="arc-toggle">▼</div>
                     </div>
+                    <!-- Arc content with detailed events -->
                     <div class="arc-content" id="reincarnation-arc-content" aria-hidden="true">
+                        <!-- Individual timeline event - Satoru's reincarnation -->
                         <div class="timeline-event" onclick="toggleEvent(this)" data-importance="high">
                             <div class="event-header">
                                 <div class="event-icon">💫</div>
@@ -208,12 +227,14 @@
                                 <div class="event-date">Day 1</div>
                                 <div class="event-expand-hint">Click to expand</div>
                             </div>
+                            <!-- Detailed event information -->
                             <div class="event-content">
                                 <div class="event-description">
                                     Satoru Mikami, a 37-year-old corporate worker, dies and is reincarnated as a
                                     slime
                                     in the Great Jura Forest with unique abilities.
                                 </div>
+                                <!-- Event consequences and impact -->
                                 <div class="event-consequences">
                                     <h4>Consequences:</h4>
                                     <ul>
@@ -222,6 +243,7 @@
                                         <li>First contact with the sealed Storm Dragon Veldora</li>
                                     </ul>
                                 </div>
+                                <!-- Key characters involved in the event -->
                                 <div class="event-characters">
                                     <h4>Key Characters:</h4>
                                     <div class="character-links">
@@ -238,6 +260,7 @@
                             </div>
                         </div>
 
+                        <!-- Individual timeline event - Goblin village alliance -->
                         <div class="timeline-event" onclick="toggleEvent(this)" data-importance="high">
                             <div class="event-header">
                                 <div class="event-icon">🐺</div>
@@ -245,11 +268,13 @@
                                 <div class="event-date">Day 15</div>
                                 <div class="event-expand-hint">Click to expand</div>
                             </div>
+                            <!-- Detailed event information -->
                             <div class="event-content">
                                 <div class="event-description">
                                     Rimuru saves a goblin village from dire wolves and forms the first alliance,
                                     becoming their leader.
                                 </div>
+                                <!-- Event consequences and impact -->
                                 <div class="event-consequences">
                                     <h4>Consequences:</h4>
                                     <ul>
@@ -258,6 +283,7 @@
                                         <li>Establishment of Rimuru as a leader figure</li>
                                     </ul>
                                 </div>
+                                <!-- Key characters involved in the event -->
                                 <div class="event-characters">
                                     <h4>Key Characters:</h4>
                                     <div class="character-links">
@@ -277,22 +303,26 @@
                 </div>
             </div>
 
-            <!-- Year 2014 - Expansion Era -->
+            <!-- Year 2014 - Expansion Era section -->
             <div class="timeline-year visible" data-era="expansion"
                 style="display: block; opacity: 1; transform: translateY(0);">
+                <!-- Year marker with era designation -->
                 <div class="year-marker">
                     <div class="year-number">2014</div>
                     <div class="year-label">Expansion Era</div>
                 </div>
 
-                <!-- Orc Disaster Arc -->
+                <!-- Orc Disaster Arc containing expansion events -->
                 <div class="timeline-arc">
+                    <!-- Arc header with toggle functionality -->
                     <div class="arc-header" onclick="toggleArcSimple(this)">
                         <div class="arc-icon">🐗</div>
                         <div class="arc-title">Orc Disaster Arc</div>
                         <div class="arc-toggle">▼</div>
                     </div>
+                    <!-- Arc content with detailed events -->
                     <div class="arc-content">
+                        <!-- Individual timeline event - Orc Lord invasion -->
                         <div class="timeline-event" onclick="toggleEvent(this)" data-importance="high">
                             <div class="event-header">
                                 <div class="event-icon">⚔️</div>
@@ -300,11 +330,13 @@
                                 <div class="event-date">Spring</div>
                                 <div class="event-expand-hint">Click to expand</div>
                             </div>
+                            <!-- Detailed event information -->
                             <div class="event-content">
                                 <div class="event-description">
                                     The Orc Lord leads a massive army threatening the forest. Rimuru forms an alliance
                                     with the Lizardmen and Ogres to stop the invasion.
                                 </div>
+                                <!-- Event consequences and impact -->
                                 <div class="event-consequences">
                                     <h4>Consequences:</h4>
                                     <ul>
@@ -314,6 +346,7 @@
                                         <li>Integration of multiple monster races</li>
                                     </ul>
                                 </div>
+                                <!-- Key characters involved in the event -->
                                 <div class="event-characters">
                                     <h4>Key Characters:</h4>
                                     <div class="character-links">
@@ -337,22 +370,26 @@
                 </div>
             </div>
 
-            <!-- Year 2015 - Demon Lord Era -->
+            <!-- Year 2015 - Demon Lord Era section -->
             <div class="timeline-year visible" data-era="demon-lord"
                 style="display: block; opacity: 1; transform: translateY(0);">
+                <!-- Year marker with era designation -->
                 <div class="year-marker">
                     <div class="year-number">2015</div>
                     <div class="year-label">Demon Lord Era</div>
                 </div>
 
-                <!-- Falmuth Incident Arc -->
+                <!-- Falmuth Incident Arc containing transformation events -->
                 <div class="timeline-arc">
+                    <!-- Arc header with toggle functionality -->
                     <div class="arc-header" onclick="toggleArcSimple(this)">
                         <div class="arc-icon">👑</div>
                         <div class="arc-title">Falmuth Incident Arc</div>
                         <div class="arc-toggle">▼</div>
                     </div>
+                    <!-- Arc content with detailed events -->
                     <div class="arc-content">
+                        <!-- Individual timeline event - Tempest massacre -->
                         <div class="timeline-event" onclick="toggleEvent(this)" data-importance="high">
                             <div class="event-header">
                                 <div class="event-icon">💀</div>
@@ -360,11 +397,13 @@
                                 <div class="event-date">Late Summer</div>
                                 <div class="event-expand-hint">Click to expand</div>
                             </div>
+                            <!-- Detailed event information -->
                             <div class="event-content">
                                 <div class="event-description">
                                     The Kingdom of Falmuth attacks Tempest while Rimuru is away, resulting in the deaths
                                     of many citizens including Shion.
                                 </div>
+                                <!-- Event consequences and impact -->
                                 <div class="event-consequences">
                                     <h4>Consequences:</h4>
                                     <ul>
@@ -374,6 +413,7 @@
                                         <li>Global recognition of Tempest's power</li>
                                     </ul>
                                 </div>
+                                <!-- Key characters involved in the event -->
                                 <div class="event-characters">
                                     <h4>Key Characters:</h4>
                                     <div class="character-links">
@@ -390,6 +430,7 @@
                             </div>
                         </div>
 
+                        <!-- Individual timeline event - Demon Lord awakening -->
                         <div class="timeline-event" onclick="toggleEvent(this)" data-importance="high">
                             <div class="event-header">
                                 <div class="event-icon">🌟</div>
@@ -397,11 +438,13 @@
                                 <div class="event-date">Fall</div>
                                 <div class="event-expand-hint">Click to expand</div>
                             </div>
+                            <!-- Detailed event information -->
                             <div class="event-content">
                                 <div class="event-description">
                                     Rimuru evolves into a True Demon Lord through the Harvest Festival, gaining immense
                                     power and transforming Tempest forever.
                                 </div>
+                                <!-- Event consequences and impact -->
                                 <div class="event-consequences">
                                     <h4>Consequences:</h4>
                                     <ul>
@@ -411,6 +454,7 @@
                                         <li>Establishment of international relations</li>
                                     </ul>
                                 </div>
+                                <!-- Key characters involved in the event -->
                                 <div class="event-characters">
                                     <h4>Key Characters:</h4>
                                     <div class="character-links">
@@ -429,14 +473,17 @@
                     </div>
                 </div>
 
-                <!-- Walpurgis Arc -->
+                <!-- Walpurgis Arc containing diplomatic events -->
                 <div class="timeline-arc">
+                    <!-- Arc header with toggle functionality -->
                     <div class="arc-header" onclick="toggleArcSimple(this)">
                         <div class="arc-icon">🎭</div>
                         <div class="arc-title">Walpurgis Arc</div>
                         <div class="arc-toggle">▼</div>
                     </div>
+                    <!-- Arc content with detailed events -->
                     <div class="arc-content">
+                        <!-- Individual timeline event - First Walpurgis Council -->
                         <div class="timeline-event" onclick="toggleEvent(this)">
                             <div class="event-header">
                                 <div class="event-icon">🏛️</div>
@@ -444,11 +491,13 @@
                                 <div class="event-date">Winter</div>
                                 <div class="event-expand-hint">Click to expand</div>
                             </div>
+                            <!-- Detailed event information -->
                             <div class="event-content">
                                 <div class="event-description">
                                     Rimuru attends his first Walpurgis as a newly awakened Demon Lord, meeting the other
                                     members of the Octagram and establishing his position in the supernatural hierarchy.
                                 </div>
+                                <!-- Event consequences and impact -->
                                 <div class="event-consequences">
                                     <h4>Consequences:</h4>
                                     <ul>
@@ -458,6 +507,7 @@
                                         <li>Establishment of Tempest's international standing</li>
                                     </ul>
                                 </div>
+                                <!-- Key characters involved in the event -->
                                 <div class="event-characters">
                                     <h4>Key Characters:</h4>
                                     <div class="character-links">
@@ -484,19 +534,23 @@
             <!-- Year 2016 - Imperial Era -->
             <div class="timeline-year visible" data-era="imperial"
                 style="display: block; opacity: 1; transform: translateY(0);">
+                <!-- Year marker with era designation -->
                 <div class="year-marker">
                     <div class="year-number">2016</div>
                     <div class="year-label">Imperial Era</div>
                 </div>
 
-                <!-- Eastern Empire Arc -->
+                <!-- Eastern Empire Arc containing imperial conflict events -->
                 <div class="timeline-arc">
+                    <!-- Arc header with toggle functionality -->
                     <div class="arc-header" onclick="toggleArcSimple(this)">
                         <div class="arc-icon">🏰</div>
                         <div class="arc-title">Eastern Empire Arc</div>
                         <div class="arc-toggle">▼</div>
                     </div>
+                    <!-- Arc content with detailed imperial events -->
                     <div class="arc-content">
+                        <!-- Individual timeline event - Empire invasion -->
                         <div class="timeline-event" onclick="toggleEvent(this)">
                             <div class="event-header">
                                 <div class="event-icon">⚔️</div>
@@ -504,11 +558,13 @@
                                 <div class="event-date">Spring</div>
                                 <div class="event-expand-hint">Click to expand</div>
                             </div>
+                            <!-- Detailed event information -->
                             <div class="event-content">
                                 <div class="event-description">
                                     The Eastern Empire launches a massive invasion against Tempest, underestimating the
                                     power of the newly awakened Demon Lord and his evolved subordinates.
                                 </div>
+                                <!-- Event consequences and impact -->
                                 <div class="event-consequences">
                                     <h4>Consequences:</h4>
                                     <ul>
@@ -518,6 +574,7 @@
                                         <li>Establishment of Tempest as a superpower</li>
                                     </ul>
                                 </div>
+                                <!-- Key characters involved in the event -->
                                 <div class="event-characters">
                                     <h4>Key Characters:</h4>
                                     <div class="character-links">
@@ -534,6 +591,7 @@
                             </div>
                         </div>
 
+                        <!-- Individual timeline event - Imperial peace treaty -->
                         <div class="timeline-event" onclick="toggleEvent(this)">
                             <div class="event-header">
                                 <div class="event-icon">🤝</div>
@@ -541,11 +599,13 @@
                                 <div class="event-date">Summer</div>
                                 <div class="event-expand-hint">Click to expand</div>
                             </div>
+                            <!-- Detailed event information -->
                             <div class="event-content">
                                 <div class="event-description">
                                     Following the decisive defeat, the Eastern Empire negotiates a comprehensive peace
                                     treaty with Tempest, marking a new era of cooperation and mutual respect.
                                 </div>
+                                <!-- Event consequences and impact -->
                                 <div class="event-consequences">
                                     <h4>Consequences:</h4>
                                     <ul>
@@ -555,6 +615,7 @@
                                         <li>Beginning of technological exchange programs</li>
                                     </ul>
                                 </div>
+                                <!-- Key characters involved in the event -->
                                 <div class="event-characters">
                                     <h4>Key Characters:</h4>
                                     <div class="character-links">
@@ -570,22 +631,26 @@
                 </div>
             </div>
 
-            <!-- Year 2017 - Dragon Era -->
+            <!-- Year 2017 - Dragon Era section -->
             <div class="timeline-year visible" data-era="dragon"
                 style="display: block; opacity: 1; transform: translateY(0);">
+                <!-- Year marker with era designation -->
                 <div class="year-marker">
                     <div class="year-number">2017</div>
                     <div class="year-label">Dragon Era</div>
                 </div>
 
-                <!-- True Dragon Arc -->
+                <!-- True Dragon Arc containing dragon-related events -->
                 <div class="timeline-arc">
+                    <!-- Arc header with toggle functionality -->
                     <div class="arc-header" onclick="toggleArcSimple(this)">
                         <div class="arc-icon">🐉</div>
                         <div class="arc-title">True Dragon Arc</div>
                         <div class="arc-toggle">▼</div>
                     </div>
+                    <!-- Arc content with detailed dragon events -->
                     <div class="arc-content">
+                        <!-- Individual timeline event - Velzard's arrival -->
                         <div class="timeline-event" onclick="toggleEvent(this)">
                             <div class="event-header">
                                 <div class="event-icon">❄️</div>
@@ -593,11 +658,13 @@
                                 <div class="event-date">Early Spring</div>
                                 <div class="event-expand-hint">Click to expand</div>
                             </div>
+                            <!-- Detailed event information -->
                             <div class="event-content">
                                 <div class="event-description">
                                     Velzard, the Ice Dragon and Veldora's sister, arrives in Tempest to investigate her
                                     brother's freedom and assess the threat level of Rimuru Tempest.
                                 </div>
+                                <!-- Event consequences and impact -->
                                 <div class="event-consequences">
                                     <h4>Consequences:</h4>
                                     <ul>
@@ -607,6 +674,7 @@
                                         <li>Establishment of dragon-level diplomatic relations</li>
                                     </ul>
                                 </div>
+                                <!-- Key characters involved in the event -->
                                 <div class="event-characters">
                                     <h4>Key Characters:</h4>
                                     <div class="character-links">
@@ -623,6 +691,7 @@
                             </div>
                         </div>
 
+                        <!-- Individual timeline event - Velgrynd's investigation -->
                         <div class="timeline-event" onclick="toggleEvent(this)">
                             <div class="event-header">
                                 <div class="event-icon">🔥</div>
@@ -630,12 +699,14 @@
                                 <div class="event-date">Late Spring</div>
                                 <div class="event-expand-hint">Click to expand</div>
                             </div>
+                            <!-- Detailed event information -->
                             <div class="event-content">
                                 <div class="event-description">
                                     Velgrynd, the Scorch Dragon, conducts her own investigation into Tempest and
                                     Rimuru's capabilities, leading to unexpected revelations about parallel worlds and
                                     dimensional travel.
                                 </div>
+                                <!-- Event consequences and impact -->
                                 <div class="event-consequences">
                                     <h4>Consequences:</h4>
                                     <ul>
@@ -645,6 +716,7 @@
                                         <li>Expansion of Tempest's cosmic significance</li>
                                     </ul>
                                 </div>
+                                <!-- Key characters involved in the event -->
                                 <div class="event-characters">
                                     <h4>Key Characters:</h4>
                                     <div class="character-links">
@@ -663,14 +735,17 @@
                     </div>
                 </div>
 
-                <!-- Labyrinth Arc -->
+                <!-- Labyrinth Arc containing construction and development events -->
                 <div class="timeline-arc">
+                    <!-- Arc header with toggle functionality -->
                     <div class="arc-header" onclick="toggleArcSimple(this)">
                         <div class="arc-icon">🌀</div>
                         <div class="arc-title">Labyrinth Arc</div>
                         <div class="arc-toggle">▼</div>
                     </div>
+                    <!-- Arc content with detailed labyrinth events -->
                     <div class="arc-content">
+                        <!-- Individual timeline event - Great Labyrinth construction -->
                         <div class="timeline-event" onclick="toggleEvent(this)">
                             <div class="event-header">
                                 <div class="event-icon">🏗️</div>
@@ -678,11 +753,13 @@
                                 <div class="event-date">Summer</div>
                                 <div class="event-expand-hint">Click to expand</div>
                             </div>
+                            <!-- Detailed event information -->
                             <div class="event-content">
                                 <div class="event-description">
                                     Rimuru and Ramiris collaborate to construct the Great Labyrinth of Tempest, creating
                                     a massive dungeon system that serves as both defense mechanism and training ground.
                                 </div>
+                                <!-- Event consequences and impact -->
                                 <div class="event-consequences">
                                     <h4>Consequences:</h4>
                                     <ul>
@@ -692,6 +769,7 @@
                                         <li>Development of advanced magical research facilities</li>
                                     </ul>
                                 </div>
+                                <!-- Key characters involved in the event -->
                                 <div class="event-characters">
                                     <h4>Key Characters:</h4>
                                     <div class="character-links">
@@ -711,22 +789,26 @@
                 </div>
             </div>
 
-            <!-- Year 2018 - Cosmic Era -->
+            <!-- Year 2018 - Cosmic Era section -->
             <div class="timeline-year visible" data-era="cosmic"
                 style="display: block; opacity: 1; transform: translateY(0);">
+                <!-- Year marker with era designation -->
                 <div class="year-marker">
                     <div class="year-number">2018</div>
                     <div class="year-label">Cosmic Era</div>
                 </div>
 
-                <!-- Phantom King Arc -->
+                <!-- Phantom King Arc containing cosmic-level threat events -->
                 <div class="timeline-arc">
+                    <!-- Arc header with toggle functionality -->
                     <div class="arc-header" onclick="toggleArcSimple(this)">
                         <div class="arc-icon">👻</div>
                         <div class="arc-title">Phantom King Arc</div>
                         <div class="arc-toggle">▼</div>
                     </div>
+                    <!-- Arc content with detailed cosmic events -->
                     <div class="arc-content">
+                        <!-- Individual timeline event - Yuuki's revelation -->
                         <div class="timeline-event" onclick="toggleEvent(this)">
                             <div class="event-header">
                                 <div class="event-icon">🌌</div>
@@ -734,12 +816,14 @@
                                 <div class="event-date">Spring</div>
                                 <div class="event-expand-hint">Click to expand</div>
                             </div>
+                            <!-- Detailed event information -->
                             <div class="event-content">
                                 <div class="event-description">
                                     Yuuki Kagurazaka reveals his true nature and cosmic-level ambitions, threatening not
                                     just Tempest but the entire world's stability through his manipulation of
                                     space-time.
                                 </div>
+                                <!-- Event consequences and impact -->
                                 <div class="event-consequences">
                                     <h4>Consequences:</h4>
                                     <ul>
@@ -749,6 +833,7 @@
                                         <li>Rimuru's evolution toward cosmic-level abilities</li>
                                     </ul>
                                 </div>
+                                <!-- Key characters involved in the event -->
                                 <div class="event-characters">
                                     <h4>Key Characters:</h4>
                                     <div class="character-links">
@@ -765,6 +850,7 @@
                             </div>
                         </div>
 
+                        <!-- Individual timeline event - Ultimate Skill mastery -->
                         <div class="timeline-event" onclick="toggleEvent(this)">
                             <div class="event-header">
                                 <div class="event-icon">⭐</div>
@@ -772,11 +858,13 @@
                                 <div class="event-date">Summer</div>
                                 <div class="event-expand-hint">Click to expand</div>
                             </div>
+                            <!-- Detailed event information -->
                             <div class="event-content">
                                 <div class="event-description">
                                     Rimuru achieves mastery over multiple Ultimate Skills, transcending normal
                                     limitations and preparing for the final confrontation with cosmic-level threats.
                                 </div>
+                                <!-- Event consequences and impact -->
                                 <div class="event-consequences">
                                     <h4>Consequences:</h4>
                                     <ul>
@@ -786,6 +874,7 @@
                                         <li>Establishment as a multiversal guardian</li>
                                     </ul>
                                 </div>
+                                <!-- Key characters involved in the event -->
                                 <div class="event-characters">
                                     <h4>Key Characters:</h4>
                                     <div class="character-links">
@@ -806,23 +895,27 @@
             </div>
         </div>
 
-        <!-- Timeline Stats -->
+        <!-- Timeline statistics summary displaying key metrics -->
         <div class="timeline-stats">
+            <!-- Years chronicled statistic -->
             <div class="stat-card">
                 <div class="stat-icon">📅</div>
                 <div class="stat-value">6</div>
                 <div class="stat-label">Years Chronicled</div>
             </div>
+            <!-- Major story arcs statistic -->
             <div class="stat-card">
                 <div class="stat-icon">📖</div>
                 <div class="stat-value">8</div>
                 <div class="stat-label">Major Arcs</div>
             </div>
+            <!-- Pivotal events statistic -->
             <div class="stat-card">
                 <div class="stat-icon">⚡</div>
                 <div class="stat-value">16</div>
                 <div class="stat-label">Pivotal Events</div>
             </div>
+            <!-- Key characters statistic -->
             <div class="stat-card">
                 <div class="stat-icon">👥</div>
                 <div class="stat-value">20</div>
@@ -831,16 +924,17 @@
         </div>
     </main>
 
-    <!-- Timeline Progress Indicator -->
+    <!-- Timeline progress indicator showing scroll position -->
     <div class="timeline-progress">
         <div class="timeline-progress-bar" id="timeline-progress-bar"></div>
     </div>
 
-    <!-- Footer -->
+    <!-- Site footer with branding and developer information -->
     <footer class="main-footer"
         style="padding: 1.5rem 0 1rem; background: transparent; border-top: 1px solid rgba(77, 212, 255, 0.2);">
         <div class="footer-content"
             style="grid-template-columns: 1fr 1fr; text-align: left; gap: 2rem; align-items: center;">
+            <!-- Footer branding section -->
             <div class="footer-brand" style="align-items: flex-start;">
                 <div class="footer-brand-header">
                     <div class="footer-logo"></div>
@@ -851,35 +945,42 @@
                 </div>
             </div>
 
+            <!-- Footer information and credits section -->
             <div class="footer-info" style="text-align: right;">
+                <!-- Copyright and attribution information -->
                 <div class="footer-copyright">© 2025 Tensura Chronicles</div>
                 <div class="footer-version">Inspired by "That Time I Got Reincarnated as a Slime"</div>
 
-                <!-- Compact Developer Credit -->
+                <!-- Developer credit section with styling -->
                 <div
                     style="margin: 0.5rem 0; padding: 0.5rem; background: rgba(10, 14, 39, 0.3); border: 1px solid rgba(77, 212, 255, 0.3); border-radius: 6px; position: relative; overflow: hidden; backdrop-filter: blur(5px);">
+                    <!-- Animated glow effect for developer credit -->
                     <div
                         style="position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan)); animation: footerGlow 3s ease-in-out infinite;">
                     </div>
+                    <!-- Developer name and GitHub link -->
                     <div style="font-size: 0.85rem; color: var(--text-light);">
                         🧠 Brain + 💻 Keyboard =
                         <a href="https://github.com/Divyansh3105"
                             style="color: var(--accent-cyan); text-decoration: none; font-weight: bold;">Divyansh
                             Garg</a>
                     </div>
+                    <!-- Decorative stars -->
                     <div
                         style="font-size: 1rem; margin-top: 0.2rem; filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.4));">
                         ✨ ⭐ ✨
                     </div>
                 </div>
 
-                <!-- Social Links -->
+                <!-- Social media links section -->
                 <div class="footer-social" style="justify-content: flex-end; gap: 0.6rem; margin: 0.5rem 0;">
+                    <!-- GitHub repository link -->
                     <a href="https://github.com/Divyansh3105" class="social-link" title="GitHub Repository"
                         style="width: 35px; height: 35px;">
                         <i class="fab fa-github"
                             style="color:#fff; font-size:1.1rem; text-decoration:none; transition:color 0.3s;"></i>
                     </a>
+                    <!-- LinkedIn profile link -->
                     <a href="https://www.linkedin.com/in/divyanshgarg3105/" class="social-link" title="LinkedIn Profile"
                         style="width: 35px; height: 35px;">
                         <i class="fab fa-linkedin"
@@ -887,7 +988,7 @@
                     </a>
                 </div>
 
-                <!-- Final Message -->
+                <!-- Inspirational quote footer message -->
                 <div
                     style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.7; font-style: italic; margin-top: 0.5rem;">
                     "In unity, there is strength. In friendship, there is magic."
@@ -896,11 +997,12 @@
         </div>
     </footer>
 
-    <!-- Floating Action Button -->
+    <!-- Floating action button for quick navigation to top -->
     <button class="timeline-fab" id="timeline-fab" onclick="scrollToTop()" title="Back to Top">
         ⬆️
     </button>
 
+    <!-- JavaScript imports for page functionality -->
     <script src="js/character.js"></script>
     <script src="js/game-state-optimized.js"></script>
     <script src="js/Chronicle.js"></script>

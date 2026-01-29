@@ -2,24 +2,34 @@
 <html lang="en">
 
 <head>
+    <!-- Favicon configuration for browser tab icons -->
     <link rel="icon" type="image/png" href="assets/fav.png">
     <link rel="icon" type="image/x-icon" href="assets/fav.ico">
 
+    <!-- Essential meta tags for responsive design and character encoding -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Federation Overview - Jura Tempest</title>
+
+    <!-- External font imports for enhanced typography -->
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Rajdhani:wght@400;500;600;700&display=swap"
         rel="stylesheet">
+
+    <!-- Icon libraries for UI elements -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <!-- Local stylesheet imports -->
     <link rel="stylesheet" href="css/shared.css">
     <link rel="stylesheet" href="css/overview.css">
+
+    <!-- JavaScript for visual effects loaded with defer for performance -->
     <script src="js/effects.js" defer></script>
 </head>
 
 <body>
-    <!-- Loading screen -->
+    <!-- Loading screen displayed during page initialization -->
     <div class="loading-screen" id="loading-screen">
         <div class="loading-orb">
             <div class="loading-inner"></div>
@@ -30,18 +40,20 @@
         </div>
     </div>
 
-    <!-- Added starfield and magic circle effects -->
+    <!-- Background visual effects for enhanced user experience -->
     <div class="starfield" id="starfield"></div>
     <div class="magic-circle" style="top: 20%; left: 80%;"></div>
     <div class="magic-circle" style="top: 70%; left: 15%; animation-duration: 90s; animation-direction: reverse;"></div>
     <div class="particles" id="particles"></div>
 
-    <!-- Enhanced Navigation -->
+    <!-- Primary navigation bar with brand logo and menu items -->
     <nav class="main-nav" id="main-nav">
+        <!-- Brand logo and site title -->
         <a href="index.html" class="nav-brand">
             <div class="nav-brand-icon">
+                <!-- Animated SVG logo with slime character design -->
                 <svg width="64" height="64" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Slime body with gradient -->
+                    <!-- Gradient definitions for visual effects -->
                     <defs>
                         <radialGradient id="slimeGradient" cx="50%" cy="40%" r="60%">
                             <stop offset="0%" style="stop-color:#4dd4ff;stop-opacity:1" />
@@ -57,18 +69,18 @@
                         </filter>
                     </defs>
 
-                    <!-- Main slime body -->
+                    <!-- Main slime body with animation -->
                     <ellipse cx="16" cy="20" rx="12" ry="8" fill="url(#slimeGradient)" filter="url(#glow)">
                         <animateTransform attributeName="transform" type="scale" values="1,1;1.1,0.9;1,1" dur="2s"
                             repeatCount="indefinite" />
                     </ellipse>
 
-                    <!-- Slime highlight -->
+                    <!-- Highlight effect on slime body -->
                     <ellipse cx="13" cy="17" rx="3" ry="2" fill="#ffffff" opacity="0.6">
                         <animate attributeName="opacity" values="0.6;0.8;0.6" dur="2s" repeatCount="indefinite" />
                     </ellipse>
 
-                    <!-- Eyes -->
+                    <!-- Animated eyes with blinking effect -->
                     <circle cx="12" cy="18" r="1.5" fill="#0a0e27">
                         <animate attributeName="r" values="1.5;1.2;1.5" dur="3s" repeatCount="indefinite" />
                     </circle>
@@ -76,11 +88,11 @@
                         <animate attributeName="r" values="1.5;1.2;1.5" dur="3s" repeatCount="indefinite" />
                     </circle>
 
-                    <!-- Eye highlights -->
+                    <!-- Eye highlight reflections -->
                     <circle cx="12.5" cy="17.5" r="0.5" fill="#ffffff" opacity="0.8" />
                     <circle cx="20.5" cy="17.5" r="0.5" fill="#ffffff" opacity="0.8" />
 
-                    <!-- Floating particles around slime -->
+                    <!-- Floating particle effects around the slime -->
                     <circle cx="8" cy="12" r="1" fill="#4dd4ff" opacity="0.4">
                         <animateTransform attributeName="transform" type="translate" values="0,0;2,-2;0,0" dur="3s"
                             repeatCount="indefinite" />
@@ -101,6 +113,7 @@
             <span>Jura Tempest</span>
         </a>
 
+        <!-- Main navigation menu items -->
         <div class="nav-links">
             <a href="overview.html" class="active">
                 <span class="nav-icon">🏛️</span>
@@ -128,20 +141,24 @@
             </a>
         </div>
 
+        <!-- Mobile menu toggle button -->
         <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
             <span></span>
             <span></span>
             <span></span>
         </div>
 
+        <!-- Navigation progress indicator -->
         <div class="nav-progress" id="nav-progress"></div>
     </nav>
 
-    <!-- Mobile Navigation -->
+    <!-- Mobile navigation overlay for responsive design -->
     <div class="mobile-nav" id="mobile-nav">
+        <!-- Close button for mobile menu -->
         <button class="mobile-nav-close" onclick="toggleMobileMenu()">
             <span>✕</span>
         </button>
+        <!-- Mobile navigation menu items -->
         <a href="overview.html" class="active">
             <span class="nav-icon">🏛️</span>
             <span>Overview</span>
@@ -168,14 +185,16 @@
         </a>
     </div>
 
+    <!-- Main content area containing all page sections -->
     <main class="main-content">
-        <!-- Floating orbs for enhanced visual appeal -->
+        <!-- Decorative floating orbs for visual enhancement -->
         <div class="floating-orb"></div>
         <div class="floating-orb"></div>
         <div class="floating-orb"></div>
 
-        <!-- Hero Welcome Section -->
+        <!-- Hero section with federation introduction and branding -->
         <div class="hero-welcome">
+            <!-- Main welcome content with title and description -->
             <div class="welcome-content">
                 <h1 class="welcome-title">Jura Tempest Federation</h1>
                 <p class="welcome-description">
@@ -185,6 +204,7 @@
                     capabilities that have established
                     Tempest as a major continental power under the leadership of Demon Lord Rimuru Tempest.
                 </p>
+                <!-- Interactive badges highlighting key federation attributes -->
                 <div class="welcome-badges">
                     <div class="badge" tabindex="0" role="button" aria-label="Federal Republic Information">
                         <span class="badge-icon">🏛️</span>
@@ -204,11 +224,13 @@
                     </div>
                 </div>
             </div>
+            <!-- Visual element featuring federation emblem with animated rings -->
             <div class="welcome-visual">
                 <div class="federation-emblem" tabindex="0" role="button" aria-label="Federation Emblem">
                     <div class="emblem-core">
                         <img src="assets/federation.jpg" alt="Jura Tempest Federation" class="emblem-image">
                     </div>
+                    <!-- Animated concentric rings around the emblem -->
                     <div class="emblem-rings">
                         <div class="ring outer"></div>
                         <div class="ring middle"></div>
@@ -218,19 +240,23 @@
             </div>
         </div>
 
+        <!-- Section title for federation analysis -->
         <h2 class="section-title">Federation Analysis</h2>
 
-        <!-- Current State Summary -->
+        <!-- Federation status summary with current state and capabilities -->
         <div class="state-summary mobile-stack">
+            <!-- Primary status card showing current federation state -->
             <div class="state-card primary mobile-full-width">
                 <div class="state-header">
                     <h3 class="state-title">Current Federation Status</h3>
+                    <!-- Status indicator with visual feedback -->
                     <div class="state-status">
                         <div class="status-indicator stable"></div>
                         <span>Stable & Prosperous</span>
                     </div>
                 </div>
                 <div class="state-content">
+                    <!-- Detailed description of federation's current state -->
                     <p class="state-description">
                         The Jura Tempest Federation has established itself as a major continental power through
                         strategic
@@ -239,13 +265,14 @@
                         unprecedented
                         growth and stability in the region.
                     </p>
+                    <!-- Key highlights showcasing federation strengths -->
                     <div class="state-highlights mobile-stack">
                         <div class="highlight-item">
-                            <span class="highlight-icon">📈</span>
+                            <span class="highlight-icon">�</span>
                             <span>Economic Growth Leader</span>
                         </div>
                         <div class="highlight-item">
-                            <span class="highlight-icon">🛡️</span>
+                            <span class="highlight-icon">�️</span>
                             <span>Regional Security Provider</span>
                         </div>
                         <div class="highlight-item">
@@ -260,9 +287,11 @@
                 </div>
             </div>
 
+            <!-- Secondary card detailing key strengths and performance metrics -->
             <div class="state-card secondary mobile-full-width">
                 <div class="state-header">
                     <h3 class="state-title">Key Strengths & Capabilities</h3>
+                    <!-- Overall performance rating display -->
                     <div class="strength-rating">
                         <span class="rating-label">Overall Performance</span>
                         <div class="rating-display">
@@ -270,7 +299,9 @@
                         </div>
                     </div>
                 </div>
+                <!-- Detailed breakdown of strength categories -->
                 <div class="strength-areas">
+                    <!-- Governance and administration capabilities -->
                     <div class="strength-category">
                         <div class="strength-header">
                             <span class="strength-icon">🏛️</span>
@@ -280,15 +311,17 @@
                         <p class="strength-desc">Efficient democratic institutions with transparent processes and
                             citizen participation</p>
                     </div>
+                    <!-- Economic performance metrics -->
                     <div class="strength-category">
                         <div class="strength-header">
-                            <span class="strength-icon">💼</span>
+                            <span class="strength-icon">�</span>
                             <span class="strength-name">Economic Performance</span>
                             <span class="strength-score">Outstanding</span>
                         </div>
                         <p class="strength-desc">Robust economy with diversified sectors and sustainable growth patterns
                         </p>
                     </div>
+                    <!-- Research and development capabilities -->
                     <div class="strength-category">
                         <div class="strength-header">
                             <span class="strength-icon">🔬</span>
@@ -298,6 +331,7 @@
                         <p class="strength-desc">Advanced research facilities and innovation programs driving
                             technological progress</p>
                     </div>
+                    <!-- International relations and diplomacy -->
                     <div class="strength-category">
                         <div class="strength-header">
                             <span class="strength-icon">🌍</span>
@@ -311,7 +345,9 @@
             </div>
         </div>
 
+        <!-- Key statistics grid displaying federation metrics -->
         <div class="nation-grid mobile-animate">
+            <!-- Population statistics card -->
             <div class="stat-card gold mobile-full-width" id="population-card" tabindex="0" role="button"
                 aria-label="Population Statistics">
                 <div class="stat-header">
@@ -322,6 +358,7 @@
                 <div class="stat-subtext">Federation Citizens</div>
             </div>
 
+            <!-- Military and defense statistics card -->
             <div class="stat-card crimson mobile-full-width" id="military-card" tabindex="0" role="button"
                 aria-label="Defense Statistics">
                 <div class="stat-header">
@@ -332,6 +369,7 @@
                 <div class="stat-subtext">Security & Defense Forces</div>
             </div>
 
+            <!-- Economic classification and status card -->
             <div class="stat-card cyan mobile-full-width" id="economy-card" tabindex="0" role="button"
                 aria-label="Economic Statistics">
                 <div class="stat-header">
@@ -342,6 +380,7 @@
                 <div class="stat-subtext">High-income developed nation</div>
             </div>
 
+            <!-- Technology advancement index card -->
             <div class="stat-card purple mobile-full-width" id="technology-card" tabindex="0" role="button"
                 aria-label="Technology Statistics">
                 <div class="stat-header">
@@ -353,17 +392,20 @@
             </div>
         </div>
 
-        <!-- By the Numbers Section -->
+        <!-- Real-world impact statistics section -->
         <div class="by-numbers-section">
             <h2 class="section-title">By the Numbers</h2>
             <p class="section-subtitle">Real-world impact of "That Time I Got Reincarnated as a Slime"</p>
 
+            <!-- Statistics grid showing franchise performance metrics -->
             <div class="numbers-grid">
+                <!-- Anime series statistics card -->
                 <div class="number-card anime-card" tabindex="0" role="button" aria-label="Anime Statistics">
                     <div class="number-header">
                         <div class="number-icon">📺</div>
                         <div class="number-category">Anime Series</div>
                     </div>
+                    <!-- Anime performance metrics -->
                     <div class="number-stats">
                         <div class="stat-item">
                             <div class="stat-label">Episodes Aired</div>
@@ -383,11 +425,13 @@
                     </div>
                 </div>
 
+                <!-- Light novel publication statistics card -->
                 <div class="number-card novel-card" tabindex="0" role="button" aria-label="Light Novel Statistics">
                     <div class="number-header">
                         <div class="number-icon">📚</div>
                         <div class="number-category">Light Novel</div>
                     </div>
+                    <!-- Novel publication and sales metrics -->
                     <div class="number-stats">
                         <div class="stat-item">
                             <div class="stat-label">Copies Sold</div>
@@ -407,11 +451,13 @@
                     </div>
                 </div>
 
+                <!-- Revenue and commercial impact statistics card -->
                 <div class="number-card revenue-card" tabindex="0" role="button" aria-label="Revenue Statistics">
                     <div class="number-header">
                         <div class="number-icon">💰</div>
                         <div class="number-category">Revenue Impact</div>
                     </div>
+                    <!-- Commercial success and market reach metrics -->
                     <div class="number-stats">
                         <div class="stat-item">
                             <div class="stat-label">Revenue Generated</div>
@@ -434,10 +480,12 @@
         </div>
     </main>
 
+    <!-- Site footer with branding and developer information -->
     <footer class="main-footer"
         style="padding: 1.5rem 0 1rem; background: transparent; border-top: 1px solid rgba(77, 212, 255, 0.2);">
         <div class="footer-content"
             style="grid-template-columns: 1fr 1fr; text-align: left; gap: 2rem; align-items: center;">
+            <!-- Footer branding section -->
             <div class="footer-brand" style="align-items: flex-start;">
                 <div class="footer-brand-header">
                     <div class="footer-logo"></div>
@@ -448,35 +496,42 @@
                 </div>
             </div>
 
+            <!-- Footer information and credits section -->
             <div class="footer-info" style="text-align: right;">
+                <!-- Copyright and attribution information -->
                 <div class="footer-copyright">© 2025 Tensura Chronicles</div>
                 <div class="footer-version">Inspired by "That Time I Got Reincarnated as a Slime"</div>
 
-                <!-- Compact Developer Credit -->
+                <!-- Developer credit section with styling -->
                 <div
                     style="margin: 0.5rem 0; padding: 0.5rem; background: rgba(10, 14, 39, 0.3); border: 1px solid rgba(77, 212, 255, 0.3); border-radius: 6px; position: relative; overflow: hidden; backdrop-filter: blur(5px);">
+                    <!-- Animated glow effect for developer credit -->
                     <div
                         style="position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan)); animation: footerGlow 3s ease-in-out infinite;">
                     </div>
+                    <!-- Developer name and GitHub link -->
                     <div style="font-size: 0.85rem; color: var(--text-light);">
                         🧠 Brain + 💻 Keyboard =
                         <a href="https://github.com/Divyansh3105"
                             style="color: var(--accent-cyan); text-decoration: none; font-weight: bold;">Divyansh
                             Garg</a>
                     </div>
+                    <!-- Decorative stars -->
                     <div
                         style="font-size: 1rem; margin-top: 0.2rem; filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.4));">
                         ✨ ⭐ ✨
                     </div>
                 </div>
 
-                <!-- Social Links -->
+                <!-- Social media links section -->
                 <div class="footer-social" style="justify-content: flex-end; gap: 0.6rem; margin: 0.5rem 0;">
+                    <!-- GitHub repository link -->
                     <a href="https://github.com/Divyansh3105" class="social-link" title="GitHub Repository"
                         style="width: 35px; height: 35px;">
                         <i class="fab fa-github"
                             style="color:#fff; font-size:1.1rem; text-decoration:none; transition:color 0.3s;"></i>
                     </a>
+                    <!-- LinkedIn profile link -->
                     <a href="https://www.linkedin.com/in/divyanshgarg3105/" class="social-link" title="LinkedIn Profile"
                         style="width: 35px; height: 35px;">
                         <i class="fab fa-linkedin"
@@ -484,7 +539,7 @@
                     </a>
                 </div>
 
-                <!-- Final Message -->
+                <!-- Inspirational quote footer message -->
                 <div
                     style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.7; font-style: italic; margin-top: 0.5rem;">
                     "In unity, there is strength. In friendship, there is magic."
@@ -493,6 +548,7 @@
         </div>
     </footer>
 
+    <!-- JavaScript imports for page functionality -->
     <script src="js/character.js"></script>
     <script src="js/game-state-optimized.js"></script>
     <script src="js/overview.js"></script>

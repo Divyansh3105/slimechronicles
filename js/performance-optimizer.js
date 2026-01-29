@@ -1,15 +1,19 @@
 
+// Performance optimizer class - Detects device capabilities and applies optimizations
 class PerformanceOptimizer {
   constructor() {
+    // Detect device performance characteristics for optimization decisions
     this.isLowEndDevice = this.detectLowEndDevice();
     this.isMobile = window.innerWidth <= 768;
     this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    // Initialize performance optimizations based on device capabilities
     this.init();
   }
 
+  // Detect low-end device - Analyze device capabilities to determine performance level
   detectLowEndDevice() {
-
+    // Check various device performance indicators for comprehensive assessment
     const indicators = {
       lowMemory: navigator.deviceMemory && navigator.deviceMemory < 2,
       lowCores: navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4,
@@ -18,24 +22,28 @@ class PerformanceOptimizer {
       oldBrowser: !window.IntersectionObserver || !window.requestIdleCallback
     };
 
-
+    // Count number of low-end indicators present to determine device classification
     const lowEndCount = Object.values(indicators).filter(Boolean).length;
     return lowEndCount >= 2;
   }
 
+  // Initialize performance optimizations - Apply device-specific optimizations
   init() {
+    // Apply optimizations for low-end devices to improve performance
     if (this.isLowEndDevice) {
       this.applyLowEndOptimizations();
     }
 
+    // Apply reduced motion optimizations if user prefers accessibility settings
     if (this.prefersReducedMotion) {
       this.applyReducedMotionOptimizations();
     }
 
-
+    // Start monitoring performance metrics for dynamic optimization
     this.startPerformanceMonitoring();
   }
 
+  // Apply optimizations for low-end devices - Disable resource-intensive visual effects
   applyLowEndOptimizations() {
     const style = document.createElement('style');
     style.textContent = `
@@ -67,6 +75,7 @@ class PerformanceOptimizer {
     document.head.appendChild(style);
   }
 
+  // Apply reduced motion optimizations - Respect user accessibility preferences for motion
   applyReducedMotionOptimizations() {
     const style = document.createElement('style');
     style.textContent = `
@@ -85,6 +94,7 @@ class PerformanceOptimizer {
     document.head.appendChild(style);
   }
 
+  // Start performance monitoring - Monitor FPS and apply emergency optimizations if needed
   startPerformanceMonitoring() {
     if (!window.performance || !window.performance.now) return;
 
@@ -92,6 +102,7 @@ class PerformanceOptimizer {
     let lastTime = performance.now();
     let fps = 60;
 
+    // Measure frames per second to detect performance issues
     const measureFPS = () => {
       frameCount++;
       const currentTime = performance.now();
@@ -101,7 +112,7 @@ class PerformanceOptimizer {
         frameCount = 0;
         lastTime = currentTime;
 
-
+        // Apply emergency optimizations if FPS drops below acceptable threshold
         if (fps < 30 && !this.emergencyOptimizationsApplied) {
           this.applyEmergencyOptimizations();
         }
@@ -110,11 +121,13 @@ class PerformanceOptimizer {
       requestAnimationFrame(measureFPS);
     };
 
+    // Start monitoring after initial page load to avoid skewing results
     setTimeout(() => {
       requestAnimationFrame(measureFPS);
     }, 2000);
   }
 
+  // Apply emergency optimizations - Disable all animations and effects when performance is critically low
   applyEmergencyOptimizations() {
     this.emergencyOptimizationsApplied = true;
 
@@ -140,13 +153,13 @@ class PerformanceOptimizer {
     `;
     document.head.appendChild(style);
 
-
+    // Clean up particle systems to free memory and processing power
     if (window.particleSystem) {
       window.particleSystem.cleanup();
     }
   }
 
-
+  // Check if specific feature should be optimized - Determine optimization needs for individual features
   shouldOptimize(feature) {
     switch (feature) {
       case 'particles':
@@ -160,6 +173,7 @@ class PerformanceOptimizer {
     }
   }
 }
+// Initialize performance optimizer based on document ready state - Ensure DOM is ready before optimization
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     window.performanceOptimizer = new PerformanceOptimizer();
@@ -167,4 +181,6 @@ if (document.readyState === 'loading') {
 } else {
   window.performanceOptimizer = new PerformanceOptimizer();
 }
+
+// Make PerformanceOptimizer class globally available for external access
 window.PerformanceOptimizer = PerformanceOptimizer;

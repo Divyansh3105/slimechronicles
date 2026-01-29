@@ -1,68 +1,76 @@
-// Mobile Navigation Functions
+// Mobile Navigation Functions - Handle mobile menu toggle functionality
 function toggleMobileMenu() {
+  // Get mobile navigation elements from DOM
   const toggle = document.querySelector(".mobile-menu-toggle");
   const mobileNav = document.getElementById("mobile-nav");
   const mainNav = document.getElementById("main-nav");
 
+  // Validate required elements exist before proceeding
   if (!toggle || !mobileNav) {
     console.warn("Mobile navigation elements not found");
     return;
   }
 
+  // Check current state of mobile navigation menu
   const isActive = mobileNav.classList.contains("active");
 
   if (isActive) {
-    // Close menu
+    // Close menu - Remove active states and restore normal navigation
     mobileNav.classList.remove("active");
     toggle.classList.remove("active");
     document.body.classList.remove("mobile-nav-open");
 
-    // Re-enable main nav
+    // Re-enable main nav interaction when mobile menu closes
     if (mainNav) {
       mainNav.style.pointerEvents = "auto";
     }
   } else {
-    // Open menu
+    // Open menu - Add active states and disable main navigation
     mobileNav.classList.add("active");
     toggle.classList.add("active");
     document.body.classList.add("mobile-nav-open");
 
-    // Disable main nav interaction
+    // Disable main nav interaction to prevent conflicts
     if (mainNav) {
       mainNav.style.pointerEvents = "none";
     }
   }
 
-  // Haptic feedback on supported devices
+  // Provide haptic feedback on supported mobile devices
   if ("vibrate" in navigator) {
     navigator.vibrate(50);
   }
 
-  // Play sound effect if available
+  // Play sound effect if audio system is available
   if (window.playSound) {
     window.playSound("menu-toggle");
   }
 }
 
-// Initialize mobile navigation
+// Initialize mobile navigation - Set up event handlers and gesture support
 function initializeMobileNavigation() {
+  // Get mobile navigation elements for initialization
   const toggle = document.querySelector(".mobile-menu-toggle");
   const mobileNav = document.getElementById("mobile-nav");
 
+  // Exit early if required elements are missing
   if (!toggle || !mobileNav) return;
 
-  // Handle swipe gestures on mobile nav
+  // Handle swipe gestures on mobile nav - Initialize touch tracking variables
   let startY = 0;
   let currentY = 0;
 
+  // Track touch start position for swipe gesture detection
   mobileNav.addEventListener("touchstart", (e) => {
     startY = e.touches[0].clientY;
   });
 
+  // Update current touch position during swipe movement
   mobileNav.addEventListener("touchmove", (e) => {
     currentY = e.touches[0].clientY;
   });
 
+  // Process swipe gesture when touch ends and close menu if swiped up
   mobileNav.addEventListener("touchend", () => {
     const swipeDistance = startY - currentY;
 
@@ -72,14 +80,14 @@ function initializeMobileNavigation() {
     }
   });
 
-  // Close menu when clicking nav links
+  // Close menu when clicking nav links - Add event listeners to all mobile nav links
   document.querySelectorAll(".mobile-nav a").forEach((link) => {
     link.addEventListener("click", () => {
       toggleMobileMenu();
     });
   });
 
-  // Close menu when clicking outside
+  // Close menu when clicking outside - Detect clicks outside mobile nav area
   document.addEventListener("click", (e) => {
     if (mobileNav.classList.contains("active") &&
         !mobileNav.contains(e.target) &&
@@ -88,14 +96,14 @@ function initializeMobileNavigation() {
     }
   });
 
-  // Close menu with Escape key
+  // Close menu with Escape key - Handle keyboard accessibility
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && mobileNav && mobileNav.classList.contains("active")) {
       toggleMobileMenu();
     }
   });
 
-  // Handle visibility change (tab switching)
+  // Handle visibility change (tab switching) - Close menu when tab becomes hidden
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
       if (mobileNav && mobileNav.classList.contains("active")) {
@@ -105,7 +113,7 @@ function initializeMobileNavigation() {
     }
   });
 
-  // Handle resize events
+  // Handle resize events - Close mobile nav when switching to desktop view
   let isMobile = window.innerWidth <= 768;
   window.addEventListener("resize", () => {
     const newIsMobile = window.innerWidth <= 768;
@@ -117,22 +125,26 @@ function initializeMobileNavigation() {
   });
 }
 
-// Additional mobile-specific functions
+// Additional mobile-specific functions - Handle character sharing functionality
 function shareCharacter() {
+  // Get character ID from URL parameters for sharing
   const urlParams = new URLSearchParams(window.location.search);
   const characterId = urlParams.get("id");
 
+  // Validate character ID exists before attempting to share
   if (!characterId) {
     showNotification("No character selected to share");
     return;
   }
 
+  // Prepare share data with character information and current URL
   const shareData = {
     title: `${document.querySelector('.profile-name')?.textContent || 'Character'} - Jura Tempest Federation`,
     text: `Check out this character profile from the Jura Tempest Federation!`,
     url: window.location.href
   };
 
+  // Use native sharing API on supported mobile devices, fallback otherwise
   if (navigator.share && /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     navigator.share(shareData).catch((error) => {
       console.log("Error sharing:", error);
@@ -143,6 +155,7 @@ function shareCharacter() {
   }
 }
 
+// Fallback sharing method - Copy URL to clipboard when native sharing unavailable
 function fallbackShare() {
   if (navigator.clipboard) {
     navigator.clipboard.writeText(window.location.href).then(() => {
@@ -155,26 +168,31 @@ function fallbackShare() {
   }
 }
 
+// Character comparison feature placeholder - Future functionality
 function compareCharacter() {
   showNotification("Character comparison feature coming soon!");
 }
 
+// Profile download feature placeholder - Future functionality
 function downloadProfile() {
   showNotification("Profile download feature coming soon!");
 }
 
+// Theme toggle functionality - Cycle through available themes
 function toggleTheme() {
   const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
   const themes = ['dark', 'high-contrast', 'sepia'];
   const currentIndex = themes.indexOf(currentTheme);
   const nextTheme = themes[(currentIndex + 1) % themes.length];
 
+  // Apply new theme and save preference to localStorage
   document.documentElement.setAttribute('data-theme', nextTheme);
   localStorage.setItem('preferred-theme', nextTheme);
 
   showNotification(`Theme changed to ${nextTheme}`);
 }
 
+// Smooth scroll to top functionality - Enhanced scroll behavior
 function scrollToTop() {
   window.scrollTo({
     top: 0,
@@ -182,12 +200,15 @@ function scrollToTop() {
   });
 }
 
+// Floating action button menu toggle - Control FAB menu visibility
 function toggleFabMenu() {
   const fabMenu = document.getElementById("fab-menu");
   const fabMainIcon = document.getElementById("fab-main-icon");
 
+  // Exit early if required elements are missing
   if (!fabMenu || !fabMainIcon) return;
 
+  // Toggle FAB menu state and update icon accordingly
   const isActive = fabMenu.classList.contains("active");
 
   if (isActive) {
@@ -198,12 +219,13 @@ function toggleFabMenu() {
     fabMainIcon.textContent = "✕";
   }
 
+  // Provide haptic feedback on supported devices
   if ("vibrate" in navigator) {
     navigator.vibrate(30);
   }
 }
 
-// Make functions globally available
+// Make functions globally available - Export functions to window object for global access
 window.toggleMobileMenu = toggleMobileMenu;
 window.shareCharacter = shareCharacter;
 window.compareCharacter = compareCharacter;
@@ -212,8 +234,10 @@ window.toggleTheme = toggleTheme;
 window.scrollToTop = scrollToTop;
 window.toggleFabMenu = toggleFabMenu;
 
+// Character data loader class - Handles efficient loading and caching of character data
 class CharacterDataLoader {
   constructor() {
+    // Initialize data storage and caching properties
     this.basicCharacters = null;
     this.detailedCache = new Map();
     this.loadingPromises = new Map();
@@ -222,30 +246,38 @@ class CharacterDataLoader {
     this.cacheRequests = 0;
   }
 
+  // Load basic character data from JSON file with error handling
   async loadBasicCharacters() {
+    // Return cached data if already loaded
     if (this.basicCharacters) {
       return this.basicCharacters;
     }
 
     try {
+      // Fetch basic character data from JSON endpoint
       const response = await fetch("data/characters-basic.json");
 
+      // Validate HTTP response status
       if (!response.ok) {
         throw new Error(
           `HTTP error! status: ${response.status} - ${response.statusText}`,
         );
       }
 
+      // Parse JSON response data
       const data = await response.json();
 
+      // Validate data structure is array
       if (!Array.isArray(data)) {
         throw new Error("Character data is not an array");
       }
 
+      // Validate array contains data
       if (data.length === 0) {
         throw new Error("Character data array is empty");
       }
 
+      // Filter out invalid character entries
       const validatedData = data.filter((char) => {
         if (!char.id || !char.name || !char.race || !char.role) {
           console.warn("Invalid character data:", char);
@@ -254,45 +286,56 @@ class CharacterDataLoader {
         return true;
       });
 
+      // Cache validated data for future use
       this.basicCharacters = validatedData;
       return this.basicCharacters;
     } catch (error) {
       console.error("Failed to load basic character data:", error);
 
+      // Attempt to load fallback data on error
       const fallbackData = await this.getFallbackBasicData();
       this.basicCharacters = fallbackData;
       return this.basicCharacters;
     }
   }
 
+  // Load character details with caching - Fetch detailed character data with cache management
   async loadCharacterDetails(characterId) {
+    // Track cache request for performance metrics
     this.cacheRequests++;
 
+    // Return cached data if available to improve performance
     if (this.detailedCache.has(characterId)) {
       this.cacheHits++;
       return this.detailedCache.get(characterId);
     }
 
+    // Return existing loading promise if character is already being loaded
     if (this.loadingPromises.has(characterId)) {
       return this.loadingPromises.get(characterId);
     }
 
+    // Create new loading promise and cache it to prevent duplicate requests
     const loadingPromise = this.fetchCharacterDetails(characterId);
     this.loadingPromises.set(characterId, loadingPromise);
 
     try {
+      // Wait for character details to load and cache the result
       const details = await loadingPromise;
       this.detailedCache.set(characterId, details);
       this.loadingPromises.delete(characterId);
       return details;
     } catch (error) {
+      // Clean up loading promise on error and re-throw
       this.loadingPromises.delete(characterId);
       throw error;
     }
   }
 
+  // Fetch character details from API - Load individual character data from JSON file
   async fetchCharacterDetails(characterId) {
     try {
+      // Fetch character data from individual JSON file
       const response = await fetch(`data/characters/${characterId}.json`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -304,28 +347,36 @@ class CharacterDataLoader {
         error,
       );
 
+      // Fallback to basic character data if detailed data fails to load
       const basicChar = this.basicCharacters?.find((c) => c.id === characterId);
       return basicChar || null;
     }
   }
 
+  // Load character batch - Get a subset of characters for pagination
   async loadCharacterBatch(startIndex = 0, batchSize = this.batchSize) {
+    // Load basic characters first to ensure data is available
     const basicChars = await this.loadBasicCharacters();
     if (!basicChars) return [];
 
+    // Calculate end index and return slice of characters
     const endIndex = Math.min(startIndex + batchSize, basicChars.length);
     return basicChars.slice(startIndex, endIndex);
   }
 
+  // Get total character count - Return number of available characters
   async getCharacterCount() {
     const basicChars = await this.loadBasicCharacters();
     return basicChars ? basicChars.length : 0;
   }
 
+  // Search characters by query - Filter characters based on search term
   async searchCharacters(query) {
+    // Load basic characters for searching
     const basicChars = await this.loadBasicCharacters();
     if (!basicChars || !query) return basicChars || [];
 
+    // Convert query to lowercase for case-insensitive search
     const searchTerm = query.toLowerCase();
     return basicChars.filter(
       (char) =>
@@ -335,22 +386,28 @@ class CharacterDataLoader {
     );
   }
 
+  // Preload character details - Load multiple character details in parallel
   async preloadCharacterDetails(characterIds) {
+    // Create promises for all character IDs to load in parallel
     const promises = characterIds.map((id) => this.loadCharacterDetails(id));
     try {
+      // Wait for all promises to settle (some may fail)
       await Promise.allSettled(promises);
     } catch (error) {
       console.warn("Some character details failed to preload:", error);
     }
   }
 
+  // Clear all caches - Reset cached data and loading promises
   clearCache() {
     this.detailedCache.clear();
     this.loadingPromises.clear();
   }
 
+  // Get fallback basic data - Provide hardcoded fallback data when API fails
   async getFallbackBasicData() {
     try {
+      // Attempt to load from JSON file as fallback
       const response = await fetch("data/characters-basic.json");
       if (response.ok) {
         const data = await response.json();
@@ -360,6 +417,7 @@ class CharacterDataLoader {
       console.warn("Could not load from JSON file in fallback mode:", error);
     }
 
+    // Return hardcoded fallback data as last resort
     return [
       {
         id: "rimuru",
@@ -392,6 +450,7 @@ class CharacterDataLoader {
     ];
   }
 
+  // Get performance metrics - Return cache performance statistics
   getPerformanceMetrics() {
     return {
       basicDataLoaded: !!this.basicCharacters,
@@ -402,11 +461,14 @@ class CharacterDataLoader {
     };
   }
 
+  // Estimate memory usage - Calculate approximate memory consumption
   estimateMemoryUsage() {
     let size = 0;
+    // Calculate size of basic characters data
     if (this.basicCharacters) {
       size += JSON.stringify(this.basicCharacters).length;
     }
+    // Calculate size of cached detailed character data
     for (const [key, value] of this.detailedCache) {
       size += JSON.stringify(value).length;
     }
@@ -414,21 +476,26 @@ class CharacterDataLoader {
   }
 }
 
+// Create global character loader instance - Initialize character data loader for application use
 window.CharacterLoader = new CharacterDataLoader();
 
+// DOM content loaded event handler - Initialize page functionality when DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
-  // Initialize mobile navigation
+  // Initialize mobile navigation system
   initializeMobileNavigation();
 
-  // Load character profile after a short delay
+  // Load character profile after brief delay to ensure DOM is fully ready
   setTimeout(() => {
     loadCharacterProfile();
   }, 100);
 });
 
+// Show loading indicator - Display loading state while fetching character data
 function showLoadingIndicator() {
+  // Get profile content container element
   const content = document.getElementById("profile-content");
   if (content) {
+    // Replace content with loading indicator HTML
     content.innerHTML = `
       <div class="loading-indicator" style="text-align: center; padding: 3rem;">
         <div class="loading-spinner"></div>
@@ -439,14 +506,18 @@ function showLoadingIndicator() {
   }
 }
 
+// Hide loading indicator - Remove loading state display
 function hideLoadingIndicator() {
+  // Find and remove loading indicator element
   const loadingIndicator = document.querySelector(".loading-indicator");
   if (loadingIndicator) {
     loadingIndicator.remove();
   }
 }
 
+// Display error message - Show comprehensive error information to user
 function displayError(title, message, backLink = null) {
+  // Generate back link HTML if provided, otherwise show default actions
   const backLinkHtml = backLink
     ? `
     <div class="error-actions">
@@ -463,6 +534,7 @@ function displayError(title, message, backLink = null) {
     </div>
   `;
 
+  // Get profile content container and display error information
   const content = document.getElementById("profile-content");
   if (content) {
     content.innerHTML = `
@@ -488,13 +560,16 @@ function displayError(title, message, backLink = null) {
   }
 }
 
+// Render basic character profile - Display initial character information while loading details
 function renderBasicCharacterProfile(character) {
+  // Get profile content container element
   const content = document.getElementById("profile-content");
   if (!content) {
     console.error("profile-content element not found!");
     return;
   }
 
+  // Render basic character profile HTML with loading indicator for details
   content.innerHTML = `
     <div class="profile-header">
       <div class="profile-image-container">
@@ -516,13 +591,16 @@ function renderBasicCharacterProfile(character) {
   `;
 }
 
+// Render complete character profile - Display full character information with all tabs and sections
 function renderCharacterProfile(character) {
+  // Get profile content container element
   const content = document.getElementById("profile-content");
   if (!content) {
     console.error("profile-content element not found!");
     return;
   }
 
+  // Render comprehensive character profile with tabbed sections
   content.innerHTML = `
     <div class="profile-header">
       <div class="profile-image-container">
@@ -871,23 +949,31 @@ function renderCharacterProfile(character) {
   `;
 }
 
+// Setup tab switching functionality - Initialize tab navigation and interaction handlers
 function setupTabSwitching() {
+  // Get all profile tabs and tab sections for navigation setup
   const tabs = document.querySelectorAll(".profile-tab");
   const sections = document.querySelectorAll(".tab-section");
 
+  // Add click event listeners to each tab for switching functionality
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => {
+      // Remove active class from all tabs and sections
       tabs.forEach((t) => t.classList.remove("active"));
       sections.forEach((s) => s.classList.remove("active"));
 
+      // Add active class to clicked tab
       tab.classList.add("active");
 
+      // Get target tab identifier and activate corresponding section
       const targetTab = tab.getAttribute("data-tab");
       const targetSection = document.getElementById(`tab-${targetTab}`);
 
       if (targetSection) {
+        // Activate target section and scroll to it on mobile
         targetSection.classList.add("active");
 
+        // Smooth scroll to section on mobile devices
         if (window.innerWidth <= 768) {
           targetSection.scrollIntoView({
             behavior: "smooth",
@@ -896,22 +982,27 @@ function setupTabSwitching() {
         }
       }
 
+      // Provide haptic feedback on supported devices
       if ("vibrate" in navigator) {
         navigator.vibrate(50);
       }
 
+      // Play sound effect if audio system is available
       if (window.playSound) {
         window.playSound("tab-switch");
       }
     });
   });
 
+  // Add keyboard navigation support for tabs
   tabs.forEach((tab, index) => {
     tab.addEventListener("keydown", (e) => {
       if (e.key === "ArrowLeft" && index > 0) {
+        // Navigate to previous tab with left arrow key
         tabs[index - 1].focus();
         tabs[index - 1].click();
       } else if (e.key === "ArrowRight" && index < tabs.length - 1) {
+        // Navigate to next tab with right arrow key
         tabs[index + 1].focus();
         tabs[index + 1].click();
       }
@@ -919,32 +1010,43 @@ function setupTabSwitching() {
   });
 }
 
+// Apply character theme - Set character-specific colors and styling
 function applyCharacterTheme(colorScheme, characterId) {
+  // Exit early if no color scheme provided
   if (!colorScheme) return;
 
+  // Get document root and background elements for theming
   const root = document.documentElement;
   const background = document.getElementById("character-background");
 
+  // Apply character color scheme to CSS custom properties
   root.style.setProperty("--character-primary", colorScheme.primary);
   root.style.setProperty("--character-secondary", colorScheme.secondary);
   root.style.setProperty("--character-glow", colorScheme.glow);
 
+  // Apply character-specific background class if element exists
   if (background) {
     background.className = `character-background ${characterId}`;
   }
 
+  // Update page title with character name
   document.title = `${characterId.charAt(0).toUpperCase() + characterId.slice(1)} - Character Profile`;
 }
 
+// Create floating elements for character theme - Generate animated background particles
 function createFloatingElements(character) {
+  // Get container element for floating particles
   const container = document.getElementById("floating-elements");
   if (!container) return;
 
+  // Adjust particle count based on device type for performance
   const isMobile = window.innerWidth <= 768;
   const particleCount = isMobile ? 3 : 6;
 
+  // Clear existing particles before creating new ones
   container.innerHTML = "";
 
+  // Generate floating particles with random positioning and timing
   for (let i = 0; i < particleCount; i++) {
     const element = document.createElement("div");
     element.className = "floating-element";
@@ -956,7 +1058,9 @@ function createFloatingElements(character) {
   }
 }
 
+// Show notification message - Display temporary notification to user
 function showNotification(message) {
+  // Create notification element with styling
   const notification = document.createElement("div");
   notification.className = "notification";
   notification.textContent = message;
@@ -973,8 +1077,10 @@ function showNotification(message) {
     animation: slideInRight 0.3s ease-out;
   `;
 
+  // Add notification to DOM
   document.body.appendChild(notification);
 
+  // Auto-remove notification after 3 seconds with fade out animation
   setTimeout(() => {
     notification.style.animation = "slideOutRight 0.3s ease-out";
     setTimeout(() => {
@@ -983,9 +1089,13 @@ function showNotification(message) {
   }, 3000);
 }
 
+// Load character profile - Main function to load and display character data
 async function loadCharacterProfile() {
+  // Extract character ID from URL parameters
   const urlParams = new URLSearchParams(window.location.search);
   const characterId = urlParams.get("id");
+
+  // Validate character ID exists in URL
   if (!characterId) {
     displayError(
       "No Character Selected",
@@ -995,6 +1105,7 @@ async function loadCharacterProfile() {
     return;
   }
 
+  // Validate GameState is available for data loading
   if (!window.GameState) {
     console.error("GameState not found on window object");
     displayError(
@@ -1005,10 +1116,14 @@ async function loadCharacterProfile() {
   }
 
   try {
+    // Show loading indicator while fetching data
     showLoadingIndicator();
+
+    // Load basic character information first for quick display
     const basicCharacter =
       await window.GameState.getBasicCharacter(characterId);
 
+    // Handle case where character doesn't exist
     if (!basicCharacter) {
       displayError(
         "Character Not Found",
@@ -1018,19 +1133,24 @@ async function loadCharacterProfile() {
       return;
     }
 
+    // Apply character-specific theming and visual elements
     applyCharacterTheme(basicCharacter.colorScheme, characterId);
     createFloatingElements(basicCharacter);
     renderBasicCharacterProfile(basicCharacter);
 
+    // Load detailed character information asynchronously
     const detailedCharacter = await window.GameState.getCharacter(characterId);
 
+    // Render full character profile if detailed data is available
     if (detailedCharacter) {
       renderCharacterProfile(detailedCharacter);
     }
 
+    // Initialize tab navigation and hide loading indicator
     setupTabSwitching();
     hideLoadingIndicator();
 
+    // Show success notification to user
     showNotification(`${basicCharacter.name} profile loaded successfully!`);
   } catch (error) {
     console.error("Error loading character:", error);
@@ -1042,25 +1162,32 @@ async function loadCharacterProfile() {
   }
 }
 
+// Attempt error recovery - Try to recover from loading errors
 function attemptErrorRecovery() {
+  // Clear character cache to force fresh data load
   if (window.GameState) {
     window.GameState.clearCharacterCache();
   }
 
+  // Reset to first tab if tabs are available
   const firstTab = document.querySelector(".profile-tab");
   if (firstTab) {
     firstTab.click();
   }
 
+  // Notify user of recovery attempt
   showNotification("System recovered. Please try again.");
 }
 
+// Initialize page when DOM is ready - Set up character profile page functionality
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
-    // Initialize mobile navigation
+    // Initialize mobile navigation first
     initializeMobileNavigation();
 
+    // Set up enhanced tab navigation and mobile optimizations after delay
     setTimeout(() => {
+      // Add keyboard navigation support to profile tabs
       const tabs = document.querySelectorAll(".profile-tab");
       tabs.forEach((tab, index) => {
         tab.setAttribute("tabindex", "0");
@@ -1068,16 +1195,19 @@ if (document.readyState === "loading") {
           switch (e.key) {
             case "Enter":
             case " ":
+              // Activate tab on Enter or Space key
               e.preventDefault();
               tab.click();
               break;
             case "ArrowLeft":
+              // Navigate to previous tab with left arrow
               e.preventDefault();
               const prevTab = tabs[index - 1] || tabs[tabs.length - 1];
               prevTab.focus();
               prevTab.click();
               break;
             case "ArrowRight":
+              // Navigate to next tab with right arrow
               e.preventDefault();
               const nextTab = tabs[index + 1] || tabs[0];
               nextTab.focus();
@@ -1087,23 +1217,27 @@ if (document.readyState === "loading") {
         });
       });
 
-      // Add mobile-specific optimizations
+      // Add mobile-specific optimizations for better performance
       if (window.innerWidth <= 768) {
-        // Optimize for mobile performance
+        // Optimize for mobile performance by adding mobile class
         document.body.classList.add('mobile-device');
 
-        // Add touch event listeners for better mobile interaction
+        // Add touch event listeners for better mobile tab interaction
         const profileTabs = document.querySelector('.profile-tabs');
         if (profileTabs) {
           let isScrolling = false;
+
+          // Track touch start to detect scrolling vs tapping
           profileTabs.addEventListener('touchstart', () => {
             isScrolling = false;
           });
 
+          // Mark as scrolling if touch moves significantly
           profileTabs.addEventListener('touchmove', () => {
             isScrolling = true;
           });
 
+          // Handle tab activation only if not scrolling
           profileTabs.addEventListener('touchend', (e) => {
             if (!isScrolling && e.target.classList.contains('profile-tab')) {
               e.target.click();
@@ -1111,7 +1245,7 @@ if (document.readyState === "loading") {
           });
         }
 
-        // Optimize images for mobile
+        // Optimize images for mobile by enabling lazy loading
         const images = document.querySelectorAll('.profile-image');
         images.forEach(img => {
           img.loading = 'lazy';
@@ -1123,3 +1257,5 @@ if (document.readyState === "loading") {
   // Initialize immediately if DOM is already loaded
   initializeMobileNavigation();
 }
+
+// End of character.js - Character profile page functionality with mobile navigation and data loading

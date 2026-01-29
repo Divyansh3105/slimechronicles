@@ -1,41 +1,45 @@
-let currentFilter = "all";
-let searchTerm = "";
-let raceFilter = "";
-let powerFilter = "";
-let isMobile = window.innerWidth <= 768;
+// Global state variables for character filtering and display management
+let currentFilter = "all"; // Active filter category for character display
+let searchTerm = ""; // User input search query for character filtering
+let raceFilter = ""; // Selected race filter option
+let powerFilter = ""; // Selected power level filter option
+let isMobile = window.innerWidth <= 768; // Mobile viewport detection flag
 
-// Mobile Navigation Functions
+// Mobile navigation toggle functionality - handles menu state and scroll behavior
 function toggleMobileMenu() {
+  // Retrieve mobile navigation DOM elements
   const toggle = document.querySelector(".mobile-menu-toggle");
   const mobileNav = document.getElementById("mobile-nav");
   const body = document.body;
   const html = document.documentElement;
 
+  // Prevent execution if required DOM elements are missing
   if (!toggle || !mobileNav) return;
 
+  // Determine current mobile navigation state
   const isActive = mobileNav.classList.contains("active");
 
   if (isActive) {
-    // Close mobile nav
+    // Deactivate mobile navigation and restore normal scrolling
     mobileNav.classList.remove("active");
     toggle.classList.remove("active");
     body.classList.remove("mobile-nav-active");
     html.classList.remove("mobile-nav-active");
 
-    // Re-enable scrolling
+    // Restore document scrolling capabilities
     body.style.overflow = "";
     body.style.position = "";
     body.style.width = "";
     html.style.overflow = "";
     html.style.height = "";
   } else {
-    // Open mobile nav
+    // Activate mobile navigation and prevent background scrolling
     mobileNav.classList.add("active");
     toggle.classList.add("active");
     body.classList.add("mobile-nav-active");
     html.classList.add("mobile-nav-active");
 
-    // Disable scrolling
+    // Disable document scrolling to prevent background interaction
     body.style.overflow = "hidden";
     body.style.position = "fixed";
     body.style.width = "100%";
@@ -44,39 +48,42 @@ function toggleMobileMenu() {
   }
 }
 
+// Initialize mobile navigation event handlers and touch interactions
 function initializeMobileNav() {
   const toggle = document.querySelector(".mobile-menu-toggle");
   const mobileNav = document.getElementById("mobile-nav");
 
+  // Exit if required DOM elements are not available
   if (!toggle || !mobileNav) return;
 
-  // Add touch event handling for better mobile experience
+  // Touch event tracking variables for swipe gesture detection
   let touchStartY = 0;
   let touchEndY = 0;
 
-  // Handle swipe to close on mobile nav
+  // Capture initial touch position for swipe gesture calculation
   mobileNav.addEventListener('touchstart', (e) => {
     touchStartY = e.changedTouches[0].screenY;
   });
 
+  // Process swipe gesture and close menu if upward swipe detected
   mobileNav.addEventListener('touchend', (e) => {
     touchEndY = e.changedTouches[0].screenY;
     const swipeDistance = touchStartY - touchEndY;
 
-    // If swiped up significantly, close the menu
+    // Close menu on significant upward swipe gesture
     if (swipeDistance > 100) {
       toggleMobileMenu();
     }
   });
 
-  // Close mobile nav when clicking on links
+  // Auto-close mobile navigation when user clicks navigation links
   document.querySelectorAll(".mobile-nav a").forEach((link) => {
     link.addEventListener("click", () => {
       toggleMobileMenu();
     });
   });
 
-  // Close mobile nav when clicking outside
+  // Close mobile navigation when clicking outside the menu area
   document.addEventListener("click", (e) => {
     if (mobileNav.classList.contains("active") &&
         !mobileNav.contains(e.target) &&
@@ -85,52 +92,57 @@ function initializeMobileNav() {
     }
   });
 
-  // Close mobile nav on escape key
+  // Enable keyboard navigation - close menu on Escape key press
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && mobileNav && mobileNav.classList.contains("active")) {
       toggleMobileMenu();
     }
   });
 
-  // Handle visibility change (when tab becomes hidden/visible)
+  // Handle browser tab visibility changes - close menu when tab becomes hidden
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
       if (mobileNav && mobileNav.classList.contains("active")) {
-        // Close mobile nav when tab becomes hidden
+        // Auto-close mobile navigation when user switches tabs
         toggleMobileMenu();
       }
     }
   });
 
-  // Handle window resize
+  // Handle viewport resize events and update mobile state
   window.addEventListener("resize", () => {
     const newIsMobile = window.innerWidth <= 768;
     if (!newIsMobile && mobileNav.classList.contains("active")) {
-      // Close mobile nav when switching to desktop
+      // Close mobile navigation when switching to desktop viewport
       toggleMobileMenu();
     }
     isMobile = newIsMobile;
   });
 }
+// Update dashboard statistics by fetching and calculating character data
 async function updateStatistics() {
+  // Verify GameState availability before proceeding
   if (!window.GameState) {
     console.error("GameState not available for statistics");
     return;
   }
 
   try {
+    // Fetch total character count and update display element
     const totalCharacters = await window.GameState.getCharacterCount();
     const totalElement = document.getElementById("total-characters");
     if (totalElement) {
       totalElement.textContent = totalCharacters;
     }
 
+    // Retrieve all character data for statistical analysis
     const characters = await window.GameState.getAllCharacters();
     if (!characters) {
       console.error("No characters returned for statistics");
       return;
     }
 
+    // Calculate and display demon lord count based on role and power level
     const demonLords = characters.filter(
       (char) =>
         char.role.toLowerCase().includes("demon lord") ||
@@ -143,6 +155,7 @@ async function updateStatistics() {
       demonLordsElement.textContent = demonLords;
     }
 
+    // Calculate disaster-class character count based on power levels
     const disasters = characters.filter(
       (char) =>
         char.power === "Catastrophe+" ||
@@ -155,6 +168,7 @@ async function updateStatistics() {
       disastersElement.textContent = disasters;
     }
 
+    // Calculate unique race count for diversity statistics
     const uniqueRaces = [...new Set(characters.map((char) => char.race))]
       .length;
 
@@ -163,11 +177,13 @@ async function updateStatistics() {
       racesElement.textContent = uniqueRaces;
     }
 
+    // Generate power level distribution statistics
     const powerLevels = characters.reduce((acc, char) => {
       acc[char.power] = (acc[char.power] || 0) + 1;
       return acc;
     }, {});
 
+    // Update individual power level count displays
     Object.entries(powerLevels).forEach(([power, count]) => {
       const element = document.getElementById(
         power.toLowerCase().replace("+", "-plus"),
@@ -177,16 +193,19 @@ async function updateStatistics() {
       }
     });
 
+    // Populate filter dropdown options with available data
     populateFilterDropdowns(characters);
   } catch (error) {
     console.error("Error updating statistics:", error);
   }
 }
 
+// Populate filter dropdown menus with unique character data options
 function populateFilterDropdowns(characters) {
   const raceSelect = document.getElementById("race-filter");
   const powerSelect = document.getElementById("power-filter");
 
+  // Extract unique races and populate race filter dropdown
   const races = [...new Set(characters.map((char) => char.race))].sort();
   raceSelect.innerHTML = '<option value="">All Races</option>';
   races.forEach((race) => {
@@ -196,6 +215,7 @@ function populateFilterDropdowns(characters) {
     raceSelect.appendChild(option);
   });
 
+  // Extract unique power levels and populate power filter dropdown
   const powers = [...new Set(characters.map((char) => char.power))].sort();
   powerSelect.innerHTML = '<option value="">All Power Levels</option>';
   powers.forEach((power) => {
@@ -205,14 +225,17 @@ function populateFilterDropdowns(characters) {
     powerSelect.appendChild(option);
   });
 }
-let currentPage = 0;
-const charactersPerPage = 11;
-let allCharacters = [];
-let filteredCharacters = [];
+// Pagination and character display state management variables
+let currentPage = 0; // Current active page index for pagination
+const charactersPerPage = 11; // Number of characters displayed per page
+let allCharacters = []; // Complete character dataset from API
+let filteredCharacters = []; // Filtered character subset based on active filters
 
+// Main character rendering function - loads and displays character data
 async function renderCharacters() {
   const grid = document.getElementById("character-grid");
 
+  // Validate GameState availability for character data access
   if (!window.GameState) {
     console.error("GameState not available");
     grid.innerHTML =
@@ -220,6 +243,7 @@ async function renderCharacters() {
     return;
   }
 
+  // Validate CharacterLoader availability for character processing
   if (!window.CharacterLoader) {
     console.error("CharacterLoader not available");
     grid.innerHTML =
@@ -228,11 +252,14 @@ async function renderCharacters() {
   }
 
   try {
+    // Display loading state while fetching character data
     grid.innerHTML =
       '<div class="loading-characters">Loading characters...</div>';
 
+    // Fetch complete character dataset from GameState
     const characters = await window.GameState.getAllCharacters();
 
+    // Handle empty or invalid character data response
     if (!characters || characters.length === 0) {
       console.error("No characters returned from GameState.getAllCharacters()");
       grid.innerHTML =
@@ -240,6 +267,7 @@ async function renderCharacters() {
       return;
     }
 
+    // Store character data and trigger filter application
     allCharacters = characters;
     applyFiltersAndRender();
   } catch (error) {
@@ -248,28 +276,38 @@ async function renderCharacters() {
   }
 }
 
+// Apply active filters to character dataset and trigger page rendering
 function applyFiltersAndRender() {
+  // Filter characters based on search term, category filter, race, and power level
   filteredCharacters = allCharacters.filter((character) => {
+    // Check if character matches search term across name, race, and role
     const matchesSearch =
       character.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       character.race.toLowerCase().includes(searchTerm.toLowerCase()) ||
       character.role.toLowerCase().includes(searchTerm.toLowerCase());
 
+    // Apply category-based filtering logic
     const matchesFilter = filterCharacter(character, currentFilter);
+    // Apply race-specific filtering
     const matchesRace = !raceFilter || character.race === raceFilter;
+    // Apply power level filtering
     const matchesPower = !powerFilter || character.power === powerFilter;
 
+    // Character must match all active filter criteria
     return matchesSearch && matchesFilter && matchesRace && matchesPower;
   });
 
+  // Reset pagination to first page after filtering
   currentPage = 0;
   renderCurrentPage();
   setupPagination();
 }
 
+// Render current page of filtered characters with responsive grid layout
 function renderCurrentPage() {
   const grid = document.getElementById("character-grid");
 
+  // Display no results message when no characters match current filters
   if (filteredCharacters.length === 0) {
     grid.innerHTML = `
       <div class="no-results" style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: rgba(255, 255, 255, 0.7);">
@@ -284,6 +322,7 @@ function renderCurrentPage() {
     return;
   }
 
+  // Calculate character range for current page
   const startIndex = currentPage * charactersPerPage;
   const endIndex = Math.min(
     startIndex + charactersPerPage,
@@ -291,12 +330,15 @@ function renderCurrentPage() {
   );
   const pageCharacters = filteredCharacters.slice(startIndex, endIndex);
 
+  // Apply base grid styling
   grid.className = "character-grid";
 
+  // Apply special layout class for 11-character pages
   if (pageCharacters.length === 11) {
     grid.classList.add("eleven-cards");
   }
 
+  // Display loading state during character card generation
   grid.innerHTML = `
     <div class="loading-characters" style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--primary-blue);">
       <div style="font-size: 2rem; margin-bottom: 1rem;">⚡</div>
@@ -304,20 +346,25 @@ function renderCurrentPage() {
     </div>
   `;
 
+  // Render character cards with slight delay for smooth loading animation
   setTimeout(() => {
     if (pageCharacters.length === 11) {
+      // Special layout handling for 11-character pages (8+3 grid arrangement)
       const first8Cards = pageCharacters.slice(0, 8);
       const last3Cards = pageCharacters.slice(8, 11);
 
+      // Generate HTML for first 8 character cards
       const first8Html = first8Cards
         .map((character) => {
           try {
+            // Generate random stats for character display
             const stats = {
               atk: Math.floor(Math.random() * 50) + 50,
               def: Math.floor(Math.random() * 50) + 50,
               spd: Math.floor(Math.random() * 50) + 50,
             };
 
+            // Convert hex color values to RGB for CSS custom properties
             const hexToRgb = (hex) => {
               const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(
                 hex,
@@ -334,6 +381,7 @@ function renderCurrentPage() {
             const primaryRgb = hexToRgb(character.colorScheme.primary);
             const secondaryRgb = hexToRgb(character.colorScheme.secondary);
 
+            // Generate CSS custom properties for character theming
             const cssVars =
               primaryRgb && secondaryRgb
                 ? `
@@ -352,15 +400,18 @@ function renderCurrentPage() {
         })
         .join("");
 
+      // Generate HTML for last 3 character cards
       const last3Html = last3Cards
         .map((character) => {
           try {
+            // Generate random stats for character display
             const stats = {
               atk: Math.floor(Math.random() * 50) + 50,
               def: Math.floor(Math.random() * 50) + 50,
               spd: Math.floor(Math.random() * 50) + 50,
             };
 
+            // Convert hex color values to RGB for CSS custom properties
             const hexToRgb = (hex) => {
               const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(
                 hex,
@@ -377,6 +428,7 @@ function renderCurrentPage() {
             const primaryRgb = hexToRgb(character.colorScheme.primary);
             const secondaryRgb = hexToRgb(character.colorScheme.secondary);
 
+            // Generate CSS custom properties for character theming
             const cssVars =
               primaryRgb && secondaryRgb
                 ? `
@@ -395,20 +447,24 @@ function renderCurrentPage() {
         })
         .join("");
 
+      // Apply 8+3 grid layout structure
       grid.innerHTML = `
         <div class="first-eight-cards">${first8Html}</div>
         <div class="last-three-cards">${last3Html}</div>
       `;
     } else {
+      // Standard grid layout for non-11-character pages
       grid.innerHTML = pageCharacters
         .map((character) => {
           try {
+            // Generate random stats for character display
             const stats = {
               atk: Math.floor(Math.random() * 50) + 50,
               def: Math.floor(Math.random() * 50) + 50,
               spd: Math.floor(Math.random() * 50) + 50,
             };
 
+            // Convert hex color values to RGB for CSS custom properties
             const hexToRgb = (hex) => {
               const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(
                 hex,
@@ -425,6 +481,7 @@ function renderCurrentPage() {
             const primaryRgb = hexToRgb(character.colorScheme.primary);
             const secondaryRgb = hexToRgb(character.colorScheme.secondary);
 
+            // Generate CSS custom properties for character theming
             const cssVars =
               primaryRgb && secondaryRgb
                 ? `
@@ -444,11 +501,14 @@ function renderCurrentPage() {
         .join("");
     }
 
+    // Apply scroll animations to newly rendered character cards
     addScrollAnimations();
   }, 100);
 }
 
+// Generate HTML for individual character card with responsive design and theming
 function renderCompactCharacterCard(character, stats, cssVars) {
+  // Calculate character impact values for display
   const impact = generateCharacterImpact(character);
 
   return `
@@ -514,10 +574,12 @@ function renderCompactCharacterCard(character, stats, cssVars) {
     </div>
   `;
 }
+// Calculate character impact values based on power level, role, and specific character traits
 function generateCharacterImpact(character) {
   let military = 0;
   let economy = 0;
 
+  // Base impact calculation based on power level classification
   switch (character.power) {
     case "Catastrophe+":
     case "Catastrophe":
@@ -551,6 +613,7 @@ function generateCharacterImpact(character) {
 
   const role = character.role.toLowerCase();
 
+  // Apply military role bonuses for combat-oriented positions
   if (
     role.includes("commander") ||
     role.includes("general") ||
@@ -562,6 +625,7 @@ function generateCharacterImpact(character) {
     military += 10;
   }
 
+  // Apply economic role bonuses for administrative and trade positions
   if (
     role.includes("minister") ||
     role.includes("secretary") ||
@@ -573,6 +637,7 @@ function generateCharacterImpact(character) {
     economy += 15;
   }
 
+  // Apply leadership bonuses for high-ranking positions
   if (
     role.includes("leader") ||
     role.includes("founder") ||
@@ -585,6 +650,7 @@ function generateCharacterImpact(character) {
     economy += 12;
   }
 
+  // Character-specific impact overrides for major characters
   switch (character.id) {
     case "rimuru":
       military = 65;
@@ -620,6 +686,7 @@ function generateCharacterImpact(character) {
       break;
   }
 
+  // Apply maximum and minimum impact value constraints
   military = Math.min(military, 75);
   economy = Math.min(economy, 75);
 
@@ -629,21 +696,25 @@ function generateCharacterImpact(character) {
   return { military, economy };
 }
 
+// Setup pagination controls and navigation for character grid display
 function setupPagination() {
   const totalPages = Math.ceil(filteredCharacters.length / charactersPerPage);
   let paginationContainer = document.getElementById("pagination-controls");
 
+  // Create pagination container if it doesn't exist
   if (!paginationContainer) {
     paginationContainer = document.createElement("div");
     paginationContainer.id = "pagination-controls";
     paginationContainer.className = "pagination-controls";
 
+    // Insert pagination controls after character grid
     const grid = document.getElementById("character-grid");
     if (grid && grid.parentNode) {
       grid.parentNode.insertBefore(paginationContainer, grid.nextSibling);
     }
   }
 
+  // Hide pagination when only one page or no results
   if (totalPages <= 1) {
     paginationContainer.style.display = "none";
     return;
@@ -651,12 +722,14 @@ function setupPagination() {
 
   paginationContainer.style.display = "flex";
 
+  // Calculate character range display values
   const startCharacter = currentPage * charactersPerPage + 1;
   const endCharacter = Math.min(
     (currentPage + 1) * charactersPerPage,
     filteredCharacters.length,
   );
 
+  // Generate pagination control HTML with navigation buttons and page info
   paginationContainer.innerHTML = `
     <button class="pagination-btn" onclick="changePage(${currentPage - 1})" ${currentPage === 0 ? "disabled" : ""}>
       ← Previous
@@ -672,54 +745,66 @@ function setupPagination() {
   `;
 }
 
+// Handle pagination navigation with smooth transitions and scroll positioning
 function changePage(newPage) {
   const totalPages = Math.ceil(filteredCharacters.length / charactersPerPage);
 
+  // Validate page bounds before proceeding
   if (newPage < 0 || newPage >= totalPages) return;
 
   const grid = document.getElementById("character-grid");
+  // Apply loading state visual feedback during page transition
   grid.style.opacity = "0.5";
   grid.style.pointerEvents = "none";
 
+  // Execute page change with smooth transition delay
   setTimeout(() => {
     currentPage = newPage;
     renderCurrentPage();
     setupPagination();
 
+    // Restore grid interactivity after rendering
     grid.style.opacity = "1";
     grid.style.pointerEvents = "auto";
 
+    // Scroll to top of character grid for better user experience
     const codexContainer = document.querySelector(".codex-container");
     if (codexContainer) {
       codexContainer.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }, 150);
 }
+// Apply character filtering logic based on category selection
 function filterCharacter(character, filter) {
   switch (filter) {
     case "all":
       return true;
     case "demon-lord":
+      // Filter for demon lords based on role title or catastrophe-level power
       return (
         character.role.toLowerCase().includes("demon lord") ||
         character.power === "Catastrophe+" ||
         character.power === "Catastrophe"
       );
     case "disaster":
+      // Filter for disaster-class characters based on power level
       return (
         character.power === "Catastrophe+" || character.power === "Catastrophe"
       );
     case "named":
+      // Filter for named characters (excluding basic B-Rank and A-Rank)
       return character.power !== "B-Rank" && character.power !== "A-Rank";
     default:
       return true;
   }
 }
 
+// Initialize all filter event handlers and search functionality
 function initializeFilters() {
   const searchInput = document.getElementById("character-search");
   if (searchInput) {
     let searchTimeout;
+    // Debounced search input handler to prevent excessive filtering
     searchInput.addEventListener("input", (e) => {
       clearTimeout(searchTimeout);
       searchTimeout = setTimeout(() => {
@@ -729,16 +814,20 @@ function initializeFilters() {
     });
   }
 
+  // Setup category filter tab click handlers
   const filterTabs = document.querySelectorAll(".filter-tab");
   filterTabs.forEach((tab) => {
     tab.addEventListener("click", () => {
+      // Update active tab visual state
       filterTabs.forEach((t) => t.classList.remove("active"));
       tab.classList.add("active");
+      // Apply selected filter and re-render
       currentFilter = tab.dataset.filter;
       applyFiltersAndRender();
     });
   });
 
+  // Setup race filter dropdown change handler
   const raceSelect = document.getElementById("race-filter");
   const powerSelect = document.getElementById("power-filter");
 
@@ -749,6 +838,7 @@ function initializeFilters() {
     });
   }
 
+  // Setup power level filter dropdown change handler
   if (powerSelect) {
     powerSelect.addEventListener("change", (e) => {
       powerFilter = e.target.value;
@@ -756,55 +846,71 @@ function initializeFilters() {
     });
   }
 }
+// Reset all active filters and restore default display state
 function clearAllFilters() {
+  // Reset all filter state variables to default values
   searchTerm = "";
   currentFilter = "all";
   raceFilter = "";
   powerFilter = "";
 
+  // Clear all filter input field values
   document.getElementById("character-search").value = "";
   document.getElementById("race-filter").value = "";
   document.getElementById("power-filter").value = "";
 
+  // Reset filter tab visual states to default
   document.querySelectorAll(".filter-tab").forEach((tab) => {
     tab.classList.remove("active");
   });
   document.querySelector('[data-filter="all"]').classList.add("active");
 
+  // Re-render character grid with cleared filters
   applyFiltersAndRender();
 }
+// Navigate to character profile page with sound feedback and error handling
 function openCharacterProfile(characterId) {
   try {
+    // Play click sound effect if available
     if (window.SoundFeedback) {
       window.SoundFeedback.playEffect("click");
     }
 
+    // Navigate to character profile with slight delay for sound feedback
     setTimeout(() => {
       window.location.href = `character.html?id=${encodeURIComponent(characterId)}`;
     }, 150);
   } catch (error) {
     console.error("Error navigating to character profile:", error);
 
+    // Fallback navigation without sound feedback
     window.location.href = `character.html?id=${encodeURIComponent(characterId)}`;
   }
 }
 
+// Display character quick view modal with detailed information and stats
 async function openCharacterModal(characterId) {
+  // Verify GameState availability before proceeding
   if (!window.GameState) return;
 
   try {
+    // Fetch character data and locate specific character by ID
     const characters = await window.GameState.getAllCharacters();
     const character = characters.find((c) => c.id === characterId);
     if (!character) return;
 
+    // Generate character impact values for modal display
     const impact = generateCharacterImpact(character);
 
     const modal = document.getElementById("character-modal");
     const modalBody = document.getElementById("modal-body");
 
+    // Prepare character description with fallback text
     const description = character.lore || character.backstory || "A mysterious character with unknown origins and abilities.";
+    // Extract key abilities for display (limit to first 3)
     const abilities = character.skills ? character.skills.slice(0, 3).map(s => s.name) : ["Unknown Ability"];
 
+    // Generate comprehensive modal content HTML
     const modalContent = `
     <div class="modal-character-header">
       <div class="modal-character-image">
@@ -863,10 +969,12 @@ async function openCharacterModal(characterId) {
     </div>
   `;
 
+    // Inject content and display modal
     modalBody.innerHTML = modalContent;
     modal.style.display = "flex";
     modal.classList.add("active");
 
+    // Setup click-outside-to-close functionality
     modal.addEventListener("click", (e) => {
       if (e.target === modal) {
         modal.style.display = "none";
@@ -877,28 +985,35 @@ async function openCharacterModal(characterId) {
   }
 }
 
+// Close character modal dialog and hide from display
 function closeCharacterModal() {
   const modal = document.getElementById("character-modal");
   if (modal) {
     modal.style.display = "none";
   }
 }
+// Apply entrance animations to character cards with staggered timing
 function addScrollAnimations() {
   const cards = document.querySelectorAll(".character-card");
 
+  // Apply fade-in animation to each character card with progressive delay
   cards.forEach((card, index) => {
     card.style.opacity = "1";
     card.style.transform = "translateY(0)";
 
+    // Stagger animation timing for smooth sequential appearance
     card.style.animationDelay = `${index * 0.05}s`;
   });
 }
+// DOM content loaded event handler - initialize application components
 document.addEventListener("DOMContentLoaded", () => {
+  // Update mobile detection flag based on current viewport
   isMobile = window.innerWidth <= 768;
 
-  // Initialize mobile navigation
+  // Initialize mobile navigation functionality
   initializeMobileNav();
 
+  // Disable particle effects for performance optimization
   const particleContainer = document.getElementById("particles");
   const starfieldContainer = document.getElementById("starfield");
   if (particleContainer) {
@@ -908,8 +1023,10 @@ document.addEventListener("DOMContentLoaded", () => {
     starfieldContainer.style.display = "none";
   }
 
+  // Setup debug function for development and troubleshooting
   window.debugCharacters = async () => {
     try {
+      // Fetch data from multiple sources for comparison
       const response = await fetch("data/characters-basic.json");
       const jsonData = await response.json();
 
@@ -917,6 +1034,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const gameStateData = await window.GameState.getAllCharacters();
 
+      // Return data source comparison for debugging
       return {
         json: jsonData.length,
         loader: loaderData.length,
@@ -930,12 +1048,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // Initialize filter event handlers
   initializeFilters();
 
+  // Load and display initial statistics
   updateStatistics();
 
+  // Render initial character grid
   renderCharacters();
 
+  // Setup modal close button event handler
   const modal = document.getElementById("character-modal");
   const closeBtn = document.querySelector(".modal-close");
 
@@ -945,11 +1067,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Handle viewport resize events and update mobile state
   window.addEventListener("resize", () => {
     isMobile = window.innerWidth <= 768;
     renderCharacters();
   });
 });
+// Export functions to global window object for external access
 window.clearAllFilters = clearAllFilters;
 window.openCharacterProfile = openCharacterProfile;
 window.openCharacterModal = openCharacterModal;

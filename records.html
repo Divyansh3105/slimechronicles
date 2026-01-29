@@ -2,25 +2,35 @@
 <html lang="en">
 
 <head>
+    <!-- Favicon configuration for browser tab icons -->
     <link rel="icon" type="image/png" href="assets/fav.png">
     <link rel="icon" type="image/x-icon" href="assets/fav.ico">
 
+    <!-- Essential meta tags for responsive design and character encoding -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Historical Records</title>
+
+    <!-- External font imports for enhanced typography -->
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Rajdhani:wght@400;500;600;700&display=swap"
         rel="stylesheet">
+
+    <!-- Icon libraries for UI elements -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <!-- Local stylesheet imports -->
     <link rel="stylesheet" href="css/shared.css">
     <link rel="stylesheet" href="css/records.css">
+
+    <!-- JavaScript for visual effects and records functionality loaded with defer for performance -->
     <script src="js/effects.js" defer></script>
     <script src="js/records.js" defer></script>
 </head>
 
 <body>
-    <!-- Loading screen -->
+    <!-- Loading screen displayed during page initialization -->
     <div class="loading-screen" id="loading-screen">
         <div class="loading-orb">
             <div class="loading-inner"></div>
@@ -31,16 +41,18 @@
         </div>
     </div>
 
-    <!-- Added starfield effect -->
+    <!-- Background visual effects for enhanced user experience -->
     <div class="starfield" id="starfield"></div>
     <div class="particles" id="particles"></div>
 
-    <!-- Enhanced Navigation -->
+    <!-- Primary navigation bar with brand logo and menu items -->
     <nav class="main-nav" id="main-nav">
+        <!-- Brand logo and site title -->
         <a href="index.html" class="nav-brand">
             <div class="nav-brand-icon">
+                <!-- Animated SVG logo with slime character design -->
                 <svg width="64" height="64" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Slime body with gradient -->
+                    <!-- Gradient definitions for visual effects -->
                     <defs>
                         <radialGradient id="slimeGradient" cx="50%" cy="40%" r="60%">
                             <stop offset="0%" style="stop-color:#4dd4ff;stop-opacity:1" />
@@ -56,18 +68,18 @@
                         </filter>
                     </defs>
 
-                    <!-- Main slime body -->
+                    <!-- Main slime body with animation -->
                     <ellipse cx="16" cy="20" rx="12" ry="8" fill="url(#slimeGradient)" filter="url(#glow)">
                         <animateTransform attributeName="transform" type="scale" values="1,1;1.1,0.9;1,1" dur="2s"
                             repeatCount="indefinite" />
                     </ellipse>
 
-                    <!-- Slime highlight -->
+                    <!-- Highlight effect on slime body -->
                     <ellipse cx="13" cy="17" rx="3" ry="2" fill="#ffffff" opacity="0.6">
                         <animate attributeName="opacity" values="0.6;0.8;0.6" dur="2s" repeatCount="indefinite" />
                     </ellipse>
 
-                    <!-- Eyes -->
+                    <!-- Animated eyes with blinking effect -->
                     <circle cx="12" cy="18" r="1.5" fill="#0a0e27">
                         <animate attributeName="r" values="1.5;1.2;1.5" dur="3s" repeatCount="indefinite" />
                     </circle>
@@ -75,11 +87,11 @@
                         <animate attributeName="r" values="1.5;1.2;1.5" dur="3s" repeatCount="indefinite" />
                     </circle>
 
-                    <!-- Eye highlights -->
+                    <!-- Eye highlight reflections -->
                     <circle cx="12.5" cy="17.5" r="0.5" fill="#ffffff" opacity="0.8" />
                     <circle cx="20.5" cy="17.5" r="0.5" fill="#ffffff" opacity="0.8" />
 
-                    <!-- Floating particles around slime -->
+                    <!-- Floating particle effects around the slime -->
                     <circle cx="8" cy="12" r="1" fill="#4dd4ff" opacity="0.4">
                         <animateTransform attributeName="transform" type="translate" values="0,0;2,-2;0,0" dur="3s"
                             repeatCount="indefinite" />
@@ -100,6 +112,7 @@
             <span>Jura Tempest</span>
         </a>
 
+        <!-- Main navigation menu items -->
         <div class="nav-links">
             <a href="overview.html">
                 <span class="nav-icon">🏛️</span>
@@ -127,20 +140,24 @@
             </a>
         </div>
 
+        <!-- Mobile menu toggle button -->
         <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
             <span></span>
             <span></span>
             <span></span>
         </div>
 
+        <!-- Navigation progress indicator -->
         <div class="nav-progress" id="nav-progress"></div>
     </nav>
 
-    <!-- Mobile Navigation -->
+    <!-- Mobile navigation overlay for responsive design -->
     <div class="mobile-nav" id="mobile-nav">
+        <!-- Close button for mobile menu -->
         <button class="mobile-nav-close" onclick="toggleMobileMenu()">
             <span>✕</span>
         </button>
+        <!-- Mobile navigation menu items -->
         <a href="overview.html">
             <span class="nav-icon">🏛️</span>
             <span>Overview</span>
@@ -167,35 +184,46 @@
         </a>
     </div>
 
+    <!-- Main container for historical records content -->
     <div class="historical-records-container">
+        <!-- Page header with title and description -->
         <h1 class="page-title">Historical Records</h1>
         <p class="page-subtitle">A comprehensive chronicle of Rimuru's journey through the world of Tensura, documenting
             major events, relationships, and achievements from the light novel series.</p>
 
+        <!-- Help section with usage instructions and keyboard shortcuts -->
         <div class="help-section">
+            <!-- Toggle button for help content visibility -->
             <div class="help-toggle" onclick="toggleHelp()" aria-expanded="false" role="button" tabindex="0">
                 <span class="help-icon">❓</span>
                 <span>Help & Shortcuts</span>
             </div>
+            <!-- Collapsible help content with usage instructions -->
             <div class="help-content" id="help-content" aria-hidden="true">
+                <!-- Grid layout for help items -->
                 <div class="help-grid">
+                    <!-- Search functionality help -->
                     <div class="help-item">
-                        <strong>🔍 Search:</strong>
+                        <strong>� Search:</strong>
                         <p>Search through titles, descriptions, characters, and locations</p>
                     </div>
+                    <!-- Filtering functionality help -->
                     <div class="help-item">
                         <strong>🏷️ Filters:</strong>
                         <p>Filter by category (battles, diplomacy, etc.) or importance level</p>
                     </div>
+                    <!-- Sorting functionality help -->
                     <div class="help-item">
                         <strong>📊 Sorting:</strong>
                         <p>Sort chronologically, by importance, alphabetically, or by volume</p>
                     </div>
+                    <!-- Record details help -->
                     <div class="help-item">
                         <strong>📖 Details:</strong>
                         <p>Click any record to expand and see full details</p>
                     </div>
                 </div>
+                <!-- Keyboard shortcuts section -->
                 <div class="keyboard-shortcuts">
                     <h4>Keyboard Shortcuts:</h4>
                     <div class="shortcut-grid">
@@ -207,320 +235,465 @@
             </div>
         </div>
 
+        <!-- Records grid container populated dynamically by JavaScript -->
         <div class="records-grid" id="records-grid">
+            <!-- Loading state with test functionality -->
             <div style="text-align: center; padding: 20px; color: var(--text-light);">
                 Loading historical records...
                 <br><br>
+                <!-- Test button for JavaScript functionality -->
                 <button onclick="testFunction()" style="padding: 10px; margin: 10px;">Test JavaScript</button>
             </div>
         </div>
     </div>
 
-    <!-- Historical Records Data as HTML -->
+    <!-- Historical Records Data as HTML - Contains structured data for all major story events -->
     <div id="historical-records-data" style="display: none;">
 
+        <!-- Record: Rimuru's reincarnation - The foundational origin event -->
         <div class="record-data" data-id="reincarnation" data-icon="🌟" data-category="origin" data-volume="Volume 1"
             data-importance="critical" data-date="Day 1" data-location="Sealed Cave">
+            <!-- Event title for the reincarnation -->
             <div class="record-title">Reincarnated Soul</div>
+            <!-- Brief description of the reincarnation event -->
             <div class="record-description">Satoru Mikami dies and is reborn as a slime in a fantasy world, gaining
                 unique abilities and a new perspective on life.</div>
+            <!-- Key participants in this event -->
             <div class="record-participants">Rimuru Tempest</div>
+            <!-- Detailed explanation of the event's significance -->
             <div class="record-details">The beginning of an extraordinary journey from ordinary salaryman to legendary
                 being.</div>
         </div>
 
+        <!-- Record: First friendship with Veldora - Critical relationship establishment -->
         <div class="record-data" data-id="first_friend" data-icon="🐉" data-category="friendship" data-volume="Volume 1"
             data-importance="critical" data-date="Day 2" data-location="Sealed Cave">
+            <!-- Event title for meeting Veldora -->
             <div class="record-title">Dragon's Friend</div>
+            <!-- Description of the first encounter with Veldora -->
             <div class="record-description">First encounter with Veldora, the Storm Dragon, sealed for 300 years. A
                 friendship that would change both their destinies.</div>
+            <!-- Participants in this friendship formation -->
             <div class="record-participants">Rimuru Tempest, Veldora Tempest</div>
+            <!-- Details about the significance of this friendship -->
             <div class="record-details">Veldora shares knowledge of the world and becomes Rimuru's first true companion.
             </div>
         </div>
 
+        <!-- Record: Naming ceremony with Veldora - Spiritual bond creation -->
         <div class="record-data" data-id="naming_veldora" data-icon="📜" data-category="naming" data-volume="Volume 1"
             data-importance="critical" data-date="Day 3" data-location="Sealed Cave">
+            <!-- Event title for the naming ceremony -->
             <div class="record-title">Name Giver</div>
+            <!-- Description of the mutual naming process -->
             <div class="record-description">Rimuru gives Veldora the surname 'Tempest' and receives it in return,
                 forming a spiritual bond and family connection.</div>
+            <!-- Participants in the naming ceremony -->
             <div class="record-participants">Rimuru Tempest, Veldora Tempest</div>
+            <!-- Explanation of naming's magical significance -->
             <div class="record-details">The act of naming creates a deep magical bond and grants both parties increased
                 power.</div>
         </div>
 
+        <!-- Record: Goblin village protection - First heroic act -->
         <div class="record-data" data-id="goblin_village" data-icon="🏘️" data-category="heroic" data-volume="Volume 1"
             data-importance="major" data-date="Day 10" data-location="Goblin Village">
+            <!-- Event title for village protection -->
             <div class="record-title">Village Protector</div>
+            <!-- Description of saving the goblin village -->
             <div class="record-description">Rimuru saves a goblin village from direwolf attacks, beginning his role as a
                 protector and leader.</div>
+            <!-- Key participants in the village protection -->
             <div class="record-participants">Rimuru Tempest, Rigurd, Goblin Tribe</div>
+            <!-- Significance of this first leadership act -->
             <div class="record-details">First act of leadership that establishes Rimuru's reputation as a benevolent
                 ruler.</div>
         </div>
 
+        <!-- Record: Mass goblin naming - Population transformation event -->
         <div class="record-data" data-id="naming_goblins" data-icon="👥" data-category="naming" data-volume="Volume 1"
             data-importance="major" data-date="Day 12" data-location="Goblin Village">
+            <!-- Event title for mass naming -->
             <div class="record-title">Goblin Namer</div>
+            <!-- Description of the mass naming process -->
             <div class="record-description">Rimuru names all the goblins in the village, causing their evolution into
                 hobgoblins and strengthening their abilities.</div>
+            <!-- Participants in the mass naming event -->
             <div class="record-participants">Rimuru Tempest, Rigurd, Goblin Tribe</div>
+            <!-- Impact of the mass naming on the population -->
             <div class="record-details">Mass naming event that transforms the entire goblin population and establishes
                 naming as a key power.</div>
         </div>
 
+        <!-- Record: Rigurd's evolution - First subordinate transformation -->
         <div class="record-data" data-id="rigurd_evolution" data-icon="👑" data-category="evolution"
             data-volume="Volume 1" data-importance="major" data-date="Day 13" data-location="Goblin Village">
+            <!-- Event title for Rigurd's evolution -->
             <div class="record-title">Chief's Evolution</div>
+            <!-- Description of Rigurd's transformation -->
             <div class="record-description">Rigurd evolves into a Goblin King through Rimuru's naming, becoming the
                 first of many powerful subordinates.</div>
+            <!-- Participants in the evolution event -->
             <div class="record-participants">Rimuru Tempest, Rigurd</div>
+            <!-- Significance of this first major evolution -->
             <div class="record-details">Rigurd's transformation demonstrates the true power of Rimuru's naming ability.
             </div>
         </div>
 
+        <!-- Record: Dwarf kingdom diplomacy - First international relations -->
         <div class="record-data" data-id="dwarf_kingdom" data-icon="⚒️" data-category="diplomacy"
             data-volume="Volume 1-2" data-importance="major" data-date="Day 30" data-location="Dwargon">
+            <!-- Event title for diplomatic relations -->
             <div class="record-title">Dwarf Diplomat</div>
+            <!-- Description of establishing diplomatic ties -->
             <div class="record-description">Rimuru establishes diplomatic relations with the Armed Nation of Dwargon,
                 securing trade and alliance.</div>
+            <!-- Key diplomatic participants -->
             <div class="record-participants">Rimuru Tempest, King Gazel Dwargo, Kaijin</div>
+            <!-- Impact of this diplomatic success -->
             <div class="record-details">First major diplomatic success that opens trade routes and establishes Tempest's
                 legitimacy.</div>
         </div>
 
+        <!-- Record: Kaijin rescue mission - Gaining skilled craftsmen -->
         <div class="record-data" data-id="kaijin_rescue" data-icon="🔨" data-category="heroic" data-volume="Volume 2"
             data-importance="moderate" data-date="Day 32" data-location="Dwargon">
+            <!-- Event title for the rescue mission -->
             <div class="record-title">Blacksmith's Savior</div>
+            <!-- Description of saving Kaijin and his brothers -->
             <div class="record-description">Rimuru saves master blacksmith Kaijin and his brothers from imprisonment,
                 gaining skilled craftsmen for his nation.</div>
+            <!-- Participants in the rescue operation -->
             <div class="record-participants">Rimuru Tempest, Kaijin, Dwarf Brothers</div>
+            <!-- Benefits gained from the rescue mission -->
             <div class="record-details">Rescue mission that brings master craftsmanship to the growing Tempest nation.
             </div>
         </div>
 
+        <!-- Record: Shizu encounter - Inheriting human form and purpose -->
         <div class="record-data" data-id="shizu_encounter" data-icon="🔥" data-category="legacy" data-volume="Volume 2"
             data-importance="critical" data-date="Day 45" data-location="Forest of Jura">
+            <!-- Event title for meeting Shizu -->
             <div class="record-title">Flame Giant's Legacy</div>
+            <!-- Description of the encounter with Shizu -->
             <div class="record-description">Rimuru meets Shizu, the legendary hero, and inherits her will, appearance,
                 and mission to help summoned children.</div>
+            <!-- Participants in this pivotal meeting -->
             <div class="record-participants">Rimuru Tempest, Shizu</div>
+            <!-- Significance of inheriting Shizu's legacy -->
             <div class="record-details">Pivotal encounter that gives Rimuru human form and a deeper understanding of his
                 purpose.</div>
         </div>
 
+        <!-- Record: Orc Disaster resolution - Major military victory -->
         <div class="record-data" data-id="orc_disaster" data-icon="⚔️" data-category="battle" data-volume="Volume 2"
             data-importance="critical" data-date="Day 60" data-location="Jura Forest">
+            <!-- Event title for defeating the Orc Lord -->
             <div class="record-title">Orc Lord Slayer</div>
+            <!-- Description of the Orc Disaster battle -->
             <div class="record-description">Rimuru defeats the Orc Lord Geld, ending the Orc Disaster and integrating
                 the orc survivors into his nation.</div>
+            <!-- Military participants in the battle -->
             <div class="record-participants">Rimuru Tempest, Orc Lord Geld, Lizardmen, Goblin Army</div>
+            <!-- Strategic importance of this victory -->
             <div class="record-details">Major military victory that establishes Rimuru as a significant power in the
                 region.</div>
         </div>
 
-        <div class="record-data" data-id="freedom_academy" data-icon="🏫" data-category="education"
+        <!-- Record: Freedom Academy teaching - Educational mission -->
+        <div class="record-data" data-id="freedom_academy" data-icon="�" data-category="education"
             data-volume="Volume 3" data-importance="moderate" data-date="Day 90" data-location="Kingdom of Ingrassia">
+            <!-- Event title for teaching role -->
             <div class="record-title">Teacher Rimuru</div>
+            <!-- Description of the teaching mission -->
             <div class="record-description">Rimuru becomes a teacher at the Freedom Academy, fulfilling Shizu's wish and
                 helping summoned children.</div>
+            <!-- Participants in the educational mission -->
             <div class="record-participants">Rimuru Tempest, Summoned Children, Yuuki Kagurazaka</div>
+            <!-- Purpose and impact of the teaching role -->
             <div class="record-details">Educational mission that helps children control their powers and prevents their
                 early deaths.</div>
         </div>
 
+        <!-- Record: Summoned children rescue - Compassionate heroic act -->
         <div class="record-data" data-id="children_rescue" data-icon="👶" data-category="heroic" data-volume="Volume 3"
             data-importance="major" data-date="Day 95" data-location="Dwelling of Spirits">
+            <!-- Event title for saving the children -->
             <div class="record-title">Children's Savior</div>
+            <!-- Description of the rescue mission -->
             <div class="record-description">Rimuru successfully saves the summoned children from their cursed fate by
                 creating spirit masks.</div>
+            <!-- Participants in the rescue operation -->
             <div class="record-participants">Rimuru Tempest, Summoned Children, Ramiris</div>
+            <!-- Emotional and moral significance of the rescue -->
             <div class="record-details">Compassionate mission that saves innocent lives and fulfills Shizu's dying wish.
             </div>
         </div>
 
+        <!-- Record: Charybdis battle - Epic monster confrontation -->
         <div class="record-data" data-id="charybdis_battle" data-icon="🌊" data-category="battle" data-volume="Volume 3"
             data-importance="major" data-date="Day 120" data-location="Lake near Tempest">
+            <!-- Event title for the Charybdis battle -->
             <div class="record-title">Charybdis Conqueror</div>
+            <!-- Description of the legendary monster battle -->
             <div class="record-description">Rimuru and his allies defeat the legendary monster Charybdis, demonstrating
                 their growing military might.</div>
+            <!-- Allied forces in the battle -->
             <div class="record-participants">Rimuru Tempest, Milim Nava, Tempest Forces</div>
+            <!-- Military significance of defeating an ancient calamity -->
             <div class="record-details">Epic battle against an ancient calamity that showcases coordinated military
                 strategy.</div>
         </div>
 
+        <!-- Record: Milim friendship - Demon Lord alliance -->
         <div class="record-data" data-id="milim_friendship" data-icon="💖" data-category="friendship"
             data-volume="Volume 3" data-importance="critical" data-date="Day 115" data-location="Tempest">
+            <!-- Event title for befriending Milim -->
             <div class="record-title">Destroyer's Best Friend</div>
+            <!-- Description of forming friendship with Milim -->
             <div class="record-description">Rimuru befriends Milim Nava, one of the oldest and most powerful Demon
                 Lords, through food and genuine care.</div>
+            <!-- Participants in this unlikely friendship -->
             <div class="record-participants">Rimuru Tempest, Milim Nava</div>
+            <!-- Strategic value of befriending a Demon Lord -->
             <div class="record-details">Unlikely friendship with a Demon Lord that provides powerful protection and
                 alliance.</div>
         </div>
 
+        <!-- Record: True Demon Lord awakening - Ultimate transformation -->
         <div class="record-data" data-id="demon_lord_awakening" data-icon="💀" data-category="evolution"
             data-volume="Volume 5-6" data-importance="critical" data-date="Day 200" data-location="Tempest">
+            <!-- Event title for Demon Lord awakening -->
             <div class="record-title">Demon Lord Awakening</div>
+            <!-- Description of the awakening process -->
             <div class="record-description">Rimuru awakens as a True Demon Lord after the Falmuth incident, gaining
                 immense power and transforming his subordinates.</div>
+            <!-- Participants affected by the awakening -->
             <div class="record-participants">Rimuru Tempest, Tempest Citizens</div>
+            <!-- Significance of reaching the highest power tier -->
             <div class="record-details">Transformation event that elevates Rimuru to the highest tier of power in the
                 world.</div>
         </div>
 
-        <div class="record-data" data-id="harvest_festival" data-icon="🎃" data-category="evolution"
+        <!-- Record: Harvest Festival - Mass subordinate evolution -->
+        <div class="record-data" data-id="harvest_festival" data-icon="�" data-category="evolution"
             data-volume="Volume 6" data-importance="critical" data-date="Day 205" data-location="Tempest">
+            <!-- Event title for the Harvest Festival -->
             <div class="record-title">Harvest Festival</div>
+            <!-- Description of the mass evolution event -->
             <div class="record-description">Rimuru completes his Harvest Festival, evolving many of his subordinates
                 into Demon Lords and strengthening his nation.</div>
+            <!-- Key subordinates who evolved -->
             <div class="record-participants">Rimuru Tempest, Benimaru, Shion, Diablo, Souei</div>
+            <!-- Impact of creating multiple Demon Lord subordinates -->
             <div class="record-details">Mass evolution event that creates multiple Demon Lord-class subordinates.</div>
         </div>
 
+        <!-- Record: Primordial demon summoning - Acquiring ultimate servants -->
         <div class="record-data" data-id="primordial_summoning" data-icon="😈" data-category="summoning"
             data-volume="Volume 6" data-importance="critical" data-date="Day 210" data-location="Tempest">
+            <!-- Event title for summoning Primordials -->
             <div class="record-title">Primordial Summoner</div>
+            <!-- Description of summoning the most powerful demons -->
             <div class="record-description">Rimuru successfully summons and names three Primordial Demons: Diablo,
                 Testarossa, Ultima, and Carrera.</div>
+            <!-- The Primordial demons summoned -->
             <div class="record-participants">Rimuru Tempest, Diablo, Testarossa, Ultima, Carrera</div>
+            <!-- Military advantage gained from Primordial demons -->
             <div class="record-details">Acquisition of the most powerful demon subordinates, greatly expanding military
                 capability.</div>
         </div>
 
+        <!-- Record: First Walpurgis attendance - Political debut -->
         <div class="record-data" data-id="walpurgis_council" data-icon="🌙" data-category="politics"
             data-volume="Volume 6" data-importance="major" data-date="Day 220"
             data-location="Walpurgis Council Chamber">
+            <!-- Event title for Walpurgis attendance -->
             <div class="record-title">Walpurgis Attendee</div>
+            <!-- Description of first council attendance -->
             <div class="record-description">Rimuru attends his first Walpurgis Council as a newly awakened Demon Lord,
                 establishing his place among the elite.</div>
+            <!-- Participants at the council meeting -->
             <div class="record-participants">Rimuru Tempest, Demon Lords, Guy Crimson</div>
+            <!-- Political significance of council membership -->
             <div class="record-details">Political debut on the world stage as a recognized Demon Lord.</div>
         </div>
 
+        <!-- Record: Clayman's defeat - Establishing dominance -->
         <div class="record-data" data-id="clayman_defeat" data-icon="🎭" data-category="battle" data-volume="Volume 6"
             data-importance="major" data-date="Day 221" data-location="Walpurgis Council Chamber">
+            <!-- Event title for defeating Clayman -->
             <div class="record-title">Puppet Master's End</div>
+            <!-- Description of Clayman's defeat -->
             <div class="record-description">Rimuru defeats and kills Clayman at Walpurgis, exposing his schemes and
                 proving his strength to other Demon Lords.</div>
+            <!-- Participants in the confrontation -->
             <div class="record-participants">Rimuru Tempest, Clayman, Demon Lords</div>
+            <!-- Reputation impact of the victory -->
             <div class="record-details">Decisive victory that establishes Rimuru's reputation among the Demon Lords.
             </div>
         </div>
 
+        <!-- Record: Octagram membership - Elite council recognition -->
         <div class="record-data" data-id="octagram_member" data-icon="⭐" data-category="politics" data-volume="Volume 6"
             data-importance="major" data-date="Day 222" data-location="Walpurgis Council Chamber">
+            <!-- Event title for Octagram membership -->
             <div class="record-title">Octagram Member</div>
+            <!-- Description of official recognition -->
             <div class="record-description">Rimuru officially becomes a member of the Octagram, the council of the eight
                 most powerful Demon Lords.</div>
+            <!-- Fellow Octagram members -->
             <div class="record-participants">Rimuru Tempest, Octagram Members</div>
+            <!-- Significance of elite recognition -->
             <div class="record-details">Official recognition as one of the world's most powerful beings.</div>
         </div>
 
+        <!-- Record: Hinata duel - Saint confrontation -->
         <div class="record-data" data-id="hinata_duel" data-icon="⚔️" data-category="battle" data-volume="Volume 7"
             data-importance="major" data-date="Day 250" data-location="Holy Empire Ruberios">
+            <!-- Event title for the duel with Hinata -->
             <div class="record-title">Saint's Challenger</div>
+            <!-- Description of the combat and resolution -->
             <div class="record-description">Rimuru faces Hinata Sakaguchi in combat, eventually resolving their conflict
                 through understanding and mutual respect.</div>
+            <!-- Combatants in the duel -->
             <div class="record-participants">Rimuru Tempest, Hinata Sakaguchi</div>
+            <!-- Combat significance and skill demonstration -->
             <div class="record-details">Intense duel that tests Rimuru's combat abilities against a legendary saint.
             </div>
         </div>
 
+        <!-- Record: Eastern Empire diplomacy - Preventing major war -->
         <div class="record-data" data-id="eastern_empire" data-icon="🏛️" data-category="diplomacy"
             data-volume="Volume 8-9" data-importance="major" data-date="Day 300" data-location="Eastern Empire">
+            <!-- Event title for empire negotiations -->
             <div class="record-title">Empire Negotiator</div>
+            <!-- Description of diplomatic success -->
             <div class="record-description">Rimuru successfully negotiates with the Eastern Empire, preventing war and
                 establishing peaceful relations.</div>
+            <!-- Key diplomatic figures -->
             <div class="record-participants">Rimuru Tempest, Emperor Rudra, Eastern Empire Officials</div>
+            <!-- Strategic importance of preventing war -->
             <div class="record-details">High-stakes diplomacy that prevents a devastating war between major powers.
             </div>
         </div>
 
+        <!-- Record: Festival organization - Cultural diplomacy -->
         <div class="record-data" data-id="festival_organizer" data-icon="🎪" data-category="culture"
             data-volume="Volume 8" data-importance="moderate" data-date="Day 280" data-location="Tempest">
+            <!-- Event title for festival organization -->
             <div class="record-title">Festival Master</div>
+            <!-- Description of the grand festival -->
             <div class="record-description">Rimuru organizes the grand opening festival of Tempest, showcasing the
                 nation's culture and strengthening international relations.</div>
+            <!-- Festival participants and attendees -->
             <div class="record-participants">Rimuru Tempest, International Delegates, Tempest Citizens</div>
+            <!-- Cultural and diplomatic impact -->
             <div class="record-details">Cultural celebration that demonstrates Tempest's prosperity and diplomatic
                 openness.</div>
         </div>
 
+        <!-- Record: Ultimate Skill mastery - Peak magical achievement -->
         <div class="record-data" data-id="ultimate_skill" data-icon="🌟" data-category="power" data-volume="Volume 7-9"
             data-importance="critical" data-date="Day 270" data-location="Various">
+            <!-- Event title for Ultimate Skill acquisition -->
             <div class="record-title">Ultimate Skill User</div>
+            <!-- Description of reaching magical pinnacle -->
             <div class="record-description">Rimuru acquires and masters multiple Ultimate Skills, reaching the pinnacle
                 of magical ability.</div>
+            <!-- Primary skill user -->
             <div class="record-participants">Rimuru Tempest</div>
+            <!-- Significance of ultimate power achievement -->
             <div class="record-details">Achievement of the highest level of power, placing Rimuru among the world's
                 strongest beings.</div>
         </div>
 
+        <!-- Record: Dimensional travel - Transcendent ability -->
         <div class="record-data" data-id="world_traveler" data-icon="🌍" data-category="adventure"
             data-volume="Volume 9+" data-importance="major" data-date="Day 350" data-location="Multiple Dimensions">
+            <!-- Event title for world traveling ability -->
             <div class="record-title">World Traveler</div>
+            <!-- Description of dimensional travel capability -->
             <div class="record-description">Rimuru gains the ability to travel between different worlds and dimensions,
                 expanding his influence beyond a single reality.</div>
+            <!-- Participants in dimensional travel -->
             <div class="record-participants">Rimuru Tempest, Chloe O'Bell</div>
+            <!-- Transcendent nature of multi-dimensional influence -->
             <div class="record-details">Transcendent ability that allows influence across multiple realities and
                 timelines.</div>
         </div>
 
     </div>
 
-    <!-- Enhanced Footer -->
+    <!-- Enhanced footer section with branding and developer information -->
     <footer class="main-footer"
         style="padding: 1.5rem 0 1rem; background: transparent; border-top: 1px solid rgba(77, 212, 255, 0.2);">
+        <!-- Footer content container with two-column layout -->
         <div class="footer-content"
             style="grid-template-columns: 1fr 1fr; text-align: left; gap: 2rem; align-items: center;">
+            <!-- Left column: Brand information and logo -->
             <div class="footer-brand" style="align-items: flex-start;">
+                <!-- Brand header with logo and text -->
                 <div class="footer-brand-header">
+                    <!-- Footer logo placeholder -->
                     <div class="footer-logo"></div>
+                    <!-- Brand text container -->
                     <div>
+                        <!-- Main brand name -->
                         <div class="footer-brand-text">Jura Tempest Federation</div>
+                        <!-- Brand tagline -->
                         <div class="footer-tagline">Where bonds forge destiny</div>
                     </div>
                 </div>
             </div>
 
+            <!-- Right column: Copyright, version, and social information -->
             <div class="footer-info" style="text-align: right;">
+                <!-- Copyright notice -->
                 <div class="footer-copyright">© 2025 Tensura Chronicles</div>
+                <!-- Version and inspiration information -->
                 <div class="footer-version">Inspired by "That Time I Got Reincarnated as a Slime"</div>
 
-                <!-- Compact Developer Credit -->
+                <!-- Developer credit section with animated styling -->
                 <div
                     style="margin: 0.5rem 0; padding: 0.5rem; background: rgba(10, 14, 39, 0.3); border: 1px solid rgba(77, 212, 255, 0.3); border-radius: 6px; position: relative; overflow: hidden; backdrop-filter: blur(5px);">
+                    <!-- Animated glow effect bar -->
                     <div
                         style="position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan)); animation: footerGlow 3s ease-in-out infinite;">
                     </div>
+                    <!-- Developer credit text with GitHub link -->
                     <div style="font-size: 0.85rem; color: var(--text-light);">
                         🧠 Brain + 💻 Keyboard =
                         <a href="https://github.com/Divyansh3105"
                             style="color: var(--accent-cyan); text-decoration: none; font-weight: bold;">Divyansh
                             Garg</a>
                     </div>
+                    <!-- Decorative stars with glow effect -->
                     <div
                         style="font-size: 1rem; margin-top: 0.2rem; filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.4));">
                         ✨ ⭐ ✨
                     </div>
                 </div>
 
-                <!-- Social Links -->
+                <!-- Social media links section -->
                 <div class="footer-social" style="justify-content: flex-end; gap: 0.6rem; margin: 0.5rem 0;">
+                    <!-- GitHub profile link -->
                     <a href="https://github.com/Divyansh3105" class="social-link" title="GitHub Repository"
                         style="width: 35px; height: 35px;">
+                        <!-- GitHub icon -->
                         <i class="fab fa-github"
                             style="color:#fff; font-size:1.1rem; text-decoration:none; transition:color 0.3s;"></i>
                     </a>
+                    <!-- LinkedIn profile link -->
                     <a href="https://www.linkedin.com/in/divyanshgarg3105/" class="social-link" title="LinkedIn Profile"
                         style="width: 35px; height: 35px;">
+                        <!-- LinkedIn icon -->
                         <i class="fab fa-linkedin"
                             style="color:#fff; font-size:1.1rem; text-decoration:none; transition:color 0.3s;"></i>
                     </a>
                 </div>
 
-                <!-- Final Message -->
+                <!-- Inspirational quote footer message -->
                 <div
                     style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.7; font-style: italic; margin-top: 0.5rem;">
                     "In unity, there is strength. In friendship, there is magic."
@@ -529,9 +702,10 @@
         </div>
     </footer>
 
-    <script src="js/character.js"></script>
-    <script src="js/game-state-optimized.js"></script>
-    <script src="js/records.js?v=3"></script>
-</body>
+    <!-- JavaScript files for page functionality -->
+    <script src="js/character.js"></script> <!-- Character-related functionality -->
+    <script src="js/game-state-optimized.js"></script> <!-- Optimized game state management -->
+    <script src="js/records.js?v=3"></script> <!-- Historical records functionality with version cache busting -->
+</body> <!-- End of document body -->
 
-</html>
+</html> <!-- End of HTML document -->

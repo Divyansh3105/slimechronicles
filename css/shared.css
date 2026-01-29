@@ -1,8 +1,10 @@
+/* Global reset and box-sizing */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+/* CSS custom properties for consistent theming */
 :root {
   --primary-blue: #4dd4ff;
   --primary-dark: #0a0e27;
@@ -27,6 +29,7 @@
   --vh: 1vh;
 }
 
+/* Loading screen overlay with animated elements */
 .loading-screen {
   position: fixed;
   top: 0;
@@ -97,6 +100,7 @@
   animation: loadingBar 2s ease-in-out infinite;
 }
 
+/* Loading animation keyframes */
 @keyframes loadingPulse {
   0%,
   100% {
@@ -139,6 +143,7 @@
   }
 }
 
+/* Base HTML and body styling with scroll behavior */
 html,
 body {
   overflow-x: hidden;
@@ -156,6 +161,7 @@ body {
   scroll-behavior: smooth;
 }
 
+/* Main body styling with layered background effects */
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background:
@@ -192,6 +198,7 @@ body > * {
   pointer-events: auto;
 }
 
+/* Animated background particles and visual effects */
 .particles,
 .starfield,
 body::before {
@@ -201,6 +208,7 @@ body::before {
   z-index: 1;
 }
 
+/* Grid overlay pattern for background texture */
 body::before {
   content: "";
   position: fixed;
@@ -212,6 +220,7 @@ body::before {
   pointer-events: none;
   z-index: 2;
 }
+/* Floating particle container */
 .particles {
   position: fixed;
   top: 0;
@@ -223,6 +232,7 @@ body::before {
   will-change: transform;
   transform: translate3d(0, 0, 0);
 }
+/* Individual particle styling with color variants */
 .particle {
   position: absolute;
   width: 3px;
@@ -235,6 +245,7 @@ body::before {
   will-change: transform;
   transform: translate3d(0, 0, 0);
 }
+/* Starfield background container */
 .starfield {
   position: fixed;
   inset: 0;
@@ -270,6 +281,7 @@ body::before {
   box-shadow: 0 0 10px var(--glow-gold);
 }
 
+/* Rotating magic circle background decoration */
 .magic-circle {
   position: fixed;
   width: 600px;
@@ -294,6 +306,7 @@ body::before {
   inset: 50px;
   border-style: dashed;
 }
+/* Animation keyframes for visual effects */
 @keyframes twinkleOptimized {
   0%,
   100% {
@@ -458,6 +471,7 @@ body::before {
     transform: translateY(0);
   }
 }
+/* Main navigation bar with backdrop blur */
 .main-nav {
   position: fixed;
   top: 0;
@@ -504,6 +518,7 @@ body::before {
   );
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
+/* Navigation brand logo and text */
 .nav-brand {
   display: flex;
   align-items: center;
@@ -538,6 +553,7 @@ body::before {
   transform: scale(1.1);
   filter: drop-shadow(0 0 15px var(--glow-blue));
 }
+/* Desktop navigation links container */
 .nav-links {
   display: flex;
   gap: 0.5rem;
@@ -635,6 +651,7 @@ body::before {
     transform: translateY(-3px) rotate(5deg);
   }
 }
+/* Mobile menu toggle button */
 .mobile-menu-toggle {
   display: none;
   flex-direction: column;
@@ -691,7 +708,7 @@ body::before {
   background: var(--primary-blue);
 }
 
-/* Prevent scrolling when mobile nav is active */
+/* Prevent body scrolling when mobile nav is active */
 body.mobile-nav-active {
   overflow: hidden !important;
   position: fixed !important;
@@ -710,6 +727,7 @@ body.mobile-nav-active * {
   -webkit-overflow-scrolling: auto !important;
 }
 
+/* Full-screen mobile navigation overlay */
 .mobile-nav {
   position: fixed;
   top: 0;
@@ -974,6 +992,7 @@ body.mobile-nav-active * {
 .nav-progress.visible {
   opacity: 1;
 }
+/* Button styling variants for different use cases */
 .primary-button,
 .secondary-button,
 .tertiary-button {
@@ -1053,6 +1072,7 @@ body.mobile-nav-active * {
 .tertiary-button:hover .button-icon {
   transform: scale(1.2) rotate(5deg);
 }
+/* Specialized buttons for character cards */
 .view-profile-button,
 .view-details-button,
 .recruit-button {
@@ -1103,6 +1123,7 @@ body.mobile-nav-active * {
 .recruit-button:active {
   transform: translateY(-1px) scale(0.98);
 }
+/* Page title with gradient text effect */
 .page-title {
   font-size: 3rem;
   text-align: center;
@@ -1130,6 +1151,7 @@ body.mobile-nav-active * {
   }
 }
 
+/* Custom scrollbar styling for webkit browsers */
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
@@ -1188,11 +1210,13 @@ body.mobile-nav-active * {
   border-radius: 10px;
 }
 
+/* Firefox scrollbar styling */
 html {
   scrollbar-width: thin;
   scrollbar-color: rgba(77, 212, 255, 0.8) rgba(21, 27, 61, 0.6);
 }
 
+/* Main footer with gradient border and backdrop effects */
 .main-footer {
   background: linear-gradient(
     135deg,
@@ -1265,6 +1289,7 @@ html {
   pointer-events: none;
 }
 
+/* Footer content grid layout */
 .footer-content {
   max-width: 1400px;
   margin: 0 auto;
@@ -1275,6 +1300,7 @@ html {
   align-items: start;
 }
 
+/* Footer brand section with logo and text */
 .footer-brand {
   display: flex;
   flex-direction: column;
@@ -1289,6 +1315,7 @@ html {
   gap: 1rem;
 }
 
+/* Animated footer logo with glow effects */
 .footer-logo {
   width: 50px;
   height: 50px;
@@ -1432,6 +1459,7 @@ html {
   margin-top: 0.5rem;
 }
 
+/* Social media links with hover effects */
 .social-link {
   display: inline-flex;
   align-items: center;
@@ -1522,7 +1550,7 @@ html {
 
 /* ========== MOBILE RESPONSIVE STYLES ========== */
 
-/* Mobile Navigation */
+/* Mobile navigation breakpoints and responsive design */
 @media (max-width: 1023px) {
   .main-nav {
     padding: 1rem 1.5rem;
@@ -1537,6 +1565,7 @@ html {
   }
 }
 
+/* Tablet and small desktop adjustments */
 @media (max-width: 767px) {
   .main-nav {
     padding: 0.75rem 1rem;
@@ -1570,6 +1599,7 @@ html {
   }
 }
 
+/* Mobile phone optimizations */
 @media (max-width: 479px) {
   .main-nav {
     padding: 0.5rem 0.75rem;
@@ -1611,7 +1641,7 @@ html {
   }
 }
 
-/* Extra small screens */
+/* Extra small screen adjustments */
 @media (max-width: 360px) {
   .mobile-nav {
     padding-top: 3rem;
@@ -1640,7 +1670,7 @@ html {
   }
 }
 
-/* Button Responsive Styles */
+/* Button responsive styling adjustments */
 @media (max-width: 767px) {
   .primary-button,
   .secondary-button,
@@ -1666,7 +1696,7 @@ html {
   }
 }
 
-/* Footer Mobile Responsive */
+/* Footer responsive layout changes */
 @media (max-width: 1023px) {
   .footer-content {
     grid-template-columns: 1fr 1fr;
@@ -1737,7 +1767,7 @@ html {
   }
 }
 
-/* Page Title Responsive */
+/* Page title responsive font sizing */
 @media (max-width: 767px) {
   .page-title {
     font-size: 2.2rem;

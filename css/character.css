@@ -1,3 +1,4 @@
+/* ========== MAIN CONTAINER ========== */
 .character-profile-container {
   position: relative;
   z-index: 10;
@@ -9,6 +10,7 @@
   box-sizing: border-box;
 }
 
+/* ========== CHARACTER BACKGROUND ========== */
 .character-background {
   position: fixed;
   inset: 0;
@@ -42,6 +44,7 @@
   opacity: 0.4;
 }
 
+/* ========== PROFILE HEADER NAVIGATION ========== */
 .profile-header-nav {
   display: flex;
   justify-content: space-between;
@@ -146,6 +149,8 @@
   align-items: center;
   gap: 0.5rem;
 }
+
+/* ========== PROFILE TABS ========== */
 .profile-tabs {
   display: flex;
   gap: 0.5rem;
@@ -238,6 +243,7 @@
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
+/* ========== CHARACTER SUMMARY CARD ========== */
 .character-summary-card {
   background: linear-gradient(
     135deg,
@@ -428,6 +434,7 @@
   line-height: 1.4;
 }
 
+/* ========== PROFILE CONTENT ========== */
 .profile-content {
   background: rgba(21, 27, 61, 0.6);
   backdrop-filter: blur(10px);
@@ -440,6 +447,7 @@
   overflow-x: hidden;
 }
 
+/* ========== CHARACTER INFO GRID ========== */
 .character-details {
   display: flex;
   flex-direction: column;
@@ -672,6 +680,7 @@
   padding: 2rem;
 }
 
+/* ========== PROFILE HEADER ========== */
 .profile-header {
   text-align: center;
   margin-bottom: 3rem;
@@ -868,6 +877,7 @@
   }
 }
 
+/* ========== RECRUITED BADGE ========== */
 .recruited-badge {
   display: inline-flex;
   align-items: center;
@@ -935,6 +945,7 @@
   }
 }
 
+/* ========== TAB SECTIONS ========== */
 .tab-section {
   display: none;
 }
@@ -955,6 +966,7 @@
   }
 }
 
+/* ========== PROFILE SECTIONS ========== */
 .profile-section {
   margin-bottom: 2.5rem;
   padding: 2rem;
@@ -1009,6 +1021,7 @@
   margin-bottom: 1rem;
 }
 
+/* ========== SKILLS OVERVIEW ========== */
 .skills-overview {
   margin-bottom: 2rem;
 }
@@ -1198,6 +1211,7 @@
   font-weight: 600;
 }
 
+/* ========== FEDERATION IMPACT ========== */
 .federation-impact {
   background: linear-gradient(
     135deg,
@@ -1262,6 +1276,7 @@
   box-shadow: 0 0 10px var(--character-glow, var(--glow-blue));
 }
 
+/* ========== CHARACTER RATING ========== */
 .character-rating {
   margin-top: 2rem;
   padding: 1.5rem;
@@ -1345,6 +1360,7 @@
   color: rgba(232, 240, 255, 0.3);
 }
 
+/* ========== BATTLE STATS ========== */
 .battle-stats-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1610,6 +1626,7 @@
   margin-right: 0.5rem;
 }
 
+/* ========== EVOLUTION TIMELINE ========== */
 .evolution-timeline {
   grid-column: 1 / -1;
 }
@@ -1728,6 +1745,7 @@
   font-style: italic;
 }
 
+/* ========== COMPARISON MODAL ========== */
 .comparison-modal {
   position: fixed;
   top: 0;
@@ -1795,6 +1813,7 @@
   transform: scale(1.1);
 }
 
+/* ========== ANIMATIONS AND KEYFRAMES ========== */
 @keyframes modalFadeIn {
   from {
     opacity: 0;
@@ -1827,6 +1846,7 @@
   margin: 0 auto 1rem;
 }
 
+/* ========== ERROR HANDLING ========== */
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -1896,6 +1916,7 @@
   box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4);
 }
 
+/* ========== FLOATING ACTION MENU ========== */
 .floating-action-menu {
   position: fixed;
   bottom: 2rem;
@@ -1972,6 +1993,7 @@
   box-shadow: 0 4px 15px rgba(77, 212, 255, 0.4);
 }
 
+/* ========== CHARACTER SELECTOR ========== */
 .character-selector {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -2019,6 +2041,7 @@
   color: rgba(232, 240, 255, 0.9);
 }
 
+/* ========== SPECIALTIES AND WEAKNESSES ========== */
 .specialties-section {
   margin-top: 2rem;
   padding: 1.5rem;
@@ -2098,6 +2121,7 @@
   border-bottom: none;
 }
 
+/* ========== EVOLUTION FORMS ========== */
 .evolution-form {
   display: flex;
   align-items: flex-start;
@@ -2162,6 +2186,7 @@
   font-style: italic;
 }
 
+/* ========== STAT BOXES ========== */
 .stat-box {
   background: linear-gradient(
     135deg,
@@ -2244,6 +2269,7 @@
   animation: shimmer 2s ease-in-out infinite;
 }
 
+/* ========== QUOTES CONTAINER ========== */
 .quotes-container {
   display: flex;
   flex-direction: column;
@@ -2297,6 +2323,7 @@
   font-weight: 600;
 }
 
+/* ========== THEME VARIABLES ========== */
 [data-theme="dark"] {
   --primary-dark: #0a0e27;
   --primary-blue: #4dd4ff;
@@ -2327,6 +2354,7 @@
   --character-glow: rgba(212, 165, 116, 0.6);
 }
 
+/* ========== CUSTOM ANIMATIONS ========== */
 @keyframes slideInRight {
   from {
     transform: translateX(100%);
@@ -2415,6 +2443,7 @@
   animation: fadeInUp 0.6s ease-out forwards;
 }
 
+/* ========== ACCESSIBILITY AND FOCUS STATES ========== */
 .profile-tab:focus,
 .fab-main:focus,
 .fab-item:focus,
@@ -2438,6 +2467,7 @@
   display: none;
 }
 
+/* ========== LOADING AND SKELETON STATES ========== */
 .skeleton {
   background: linear-gradient(
     90deg,
@@ -2458,6 +2488,7 @@
   }
 }
 
+/* ========== TOOLTIPS ========== */
 [data-tooltip] {
   position: relative;
   cursor: help;
@@ -2491,6 +2522,7 @@
   z-index: 1000;
 }
 
+/* ========== ERROR DETAILS ========== */
 .error-details {
   margin: 1.5rem 0;
   text-align: left;
@@ -2531,6 +2563,7 @@
   color: var(--primary-blue);
 }
 
+/* ========== LOADING INDICATOR ========== */
 .loading-indicator {
   display: flex;
   flex-direction: column;
@@ -2551,6 +2584,7 @@
   margin-bottom: 1rem;
 }
 
+/* ========== TRANSITIONS AND EFFECTS ========== */
 .character-profile-container {
   transition: all 0.5s ease;
 }
@@ -2627,6 +2661,7 @@
   filter: none;
 }
 
+/* ========== MOBILE RESPONSIVE STYLES ========== */
 @media (max-width: 767px) {
   /* Main Container */
   .character-profile-container {
@@ -2996,7 +3031,7 @@
   }
 }
 
-/* ---------- Small Phones (≤ 479px) ---------- */
+/* ========== SMALL PHONE STYLES ========== */
 @media (max-width: 479px) {
   .character-profile-container {
     padding: 0.75rem;
@@ -3082,7 +3117,7 @@
   }
 }
 
-/* ---------- Tablets (≥ 768px) ---------- */
+/* ========== TABLET STYLES ========== */
 @media (min-width: 768px) {
   .character-profile-container {
     padding: 2rem;
@@ -3132,7 +3167,7 @@
   }
 }
 
-/* ---------- Laptops (≥ 1024px) ---------- */
+/* ========== LAPTOP STYLES ========== */
 @media (min-width: 1024px) {
   .character-profile-container {
     max-width: 1400px;
@@ -3164,7 +3199,7 @@
   }
 }
 
-/* ---------- Large Screens (≥ 1280px) ---------- */
+/* ========== LARGE SCREEN STYLES ========== */
 @media (min-width: 1280px) {
   .character-profile-container {
     max-width: 1600px;
@@ -3184,7 +3219,7 @@
   }
 }
 
-/* ---------- Mobile Performance & UX ---------- */
+/* ========== MOBILE PERFORMANCE & UX OPTIMIZATIONS ========== */
 @media (max-width: 767px) {
   /* Disable heavy background effects for better performance */
   .character-background::before,
@@ -3239,7 +3274,7 @@
   }
 }
 
-/* ---------- Reduced Motion ---------- */
+/* ========== REDUCED MOTION ACCESSIBILITY ========== */
 @media (prefers-reduced-motion: reduce) {
   .character-info-card,
   .character-stats-card,
@@ -3250,7 +3285,7 @@
   }
 }
 
-/* Mobile Navigation Styles */
+/* ========== MOBILE NAVIGATION ========== */
 .mobile-menu-toggle {
   display: none;
   flex-direction: column;
@@ -3437,7 +3472,7 @@ body.mobile-nav-open {
     right: 1rem;
   }
 }
-/* Mobile device specific optimizations */
+/* ========== MOBILE DEVICE OPTIMIZATIONS ========== */
 .mobile-device {
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -3456,7 +3491,7 @@ body.mobile-nav-open {
   scroll-snap-align: center;
 }
 
-/* Improve mobile scrolling performance */
+/* ========== MOBILE SCROLLING PERFORMANCE ========== */
 @media (max-width: 767px) {
   .profile-content,
   .profile-tabs,

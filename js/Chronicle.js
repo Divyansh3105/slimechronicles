@@ -1,23 +1,29 @@
+// Timeline management class - Handles timeline events, filtering, and search functionality
 class TimelineManager {
   constructor() {
+    // Initialize timeline state properties
     this.currentView = "detailed";
     this.currentSort = "chronological";
     this.searchTerm = "";
     this.events = [];
     this.originalOrder = [];
 
+    // Initialize timeline functionality
     this.init();
   }
 
+  // Initialize timeline manager - Set up caching, event listeners, and tooltips
   init() {
     this.cacheEvents();
     this.setupEventListeners();
     this.initializeTooltips();
   }
 
+  // Cache timeline events - Extract and process timeline events from DOM
   cacheEvents() {
     this.events = Array.from(document.querySelectorAll(".timeline-event")).map(
       (event) => {
+        // Extract text content from event elements
         const title = event.querySelector(".event-title")?.textContent || "";
         const description =
           event.querySelector(".event-description")?.textContent || "";
@@ -29,6 +35,7 @@ class TimelineManager {
         const date = event.querySelector(".event-date")?.textContent || "";
         const era = event.closest(".timeline-year")?.dataset.era || "";
 
+        // Return processed event data object
         return {
           element: event,
           title,
@@ -45,18 +52,22 @@ class TimelineManager {
       },
     );
 
+    // Store original order for reset functionality
     this.originalOrder = [...this.events];
   }
 
+  // Calculate event importance - Assign importance score based on content analysis
   calculateImportance(eventElement) {
     let score = 0;
 
+    // Extract event content for analysis
     const title = eventElement.querySelector(".event-title")?.textContent || "";
     const consequences = eventElement.querySelectorAll(
       ".event-consequences li",
     );
     const characters = eventElement.querySelectorAll(".character-link");
 
+    // Score based on important keywords in title
     const importantKeywords = [
       "awakening",
       "demon lord",
@@ -70,10 +81,13 @@ class TimelineManager {
       if (title.toLowerCase().includes(keyword)) score += 10;
     });
 
+    // Score based on number of consequences listed
     score += consequences.length * 5;
 
+    // Score based on number of characters involved
     score += characters.length * 3;
 
+    // Bonus points for specific high-importance characters
     if (title.includes("Rimuru")) score += 15;
     if (title.includes("True Dragon")) score += 12;
     if (title.includes("Walpurgis")) score += 10;
@@ -81,17 +95,20 @@ class TimelineManager {
     return score;
   }
 
+  // Calculate event impact - Determine event's impact level based on consequences
   calculateImpact(eventElement) {
     const consequences = eventElement.querySelectorAll(
       ".event-consequences li",
     );
     let impact = consequences.length * 2;
 
+    // Analyze consequence text for impact keywords
     const consequenceText =
       eventElement
         .querySelector(".event-consequences")
         ?.textContent.toLowerCase() || "";
 
+    // Add impact points based on scope keywords
     if (consequenceText.includes("global") || consequenceText.includes("world"))
       impact += 20;
     if (
@@ -113,7 +130,9 @@ class TimelineManager {
     return impact;
   }
 
+  // Set up event listeners - Initialize search input and keyboard shortcuts
   setupEventListeners() {
+    // Set up search input with debounced input handling
     const searchInput = document.getElementById("timeline-search");
     if (searchInput) {
       searchInput.addEventListener("input", (e) => {
@@ -122,6 +141,7 @@ class TimelineManager {
         this.updateSearchUI();
       });
 
+      // Handle Enter key press for immediate search
       searchInput.addEventListener("keypress", (e) => {
         if (e.key === "Enter") {
           this.searchTimeline();
@@ -129,6 +149,7 @@ class TimelineManager {
       });
     }
 
+    // Add keyboard shortcut for search focus (Ctrl+F)
     document.addEventListener("keydown", (e) => {
       if (e.ctrlKey && e.key === "f") {
         e.preventDefault();
@@ -137,6 +158,7 @@ class TimelineManager {
     });
   }
 
+  // Update search UI elements - Show/hide clear button based on search state
   updateSearchUI() {
     const clearBtn = document.querySelector(".clear-search-btn");
     if (clearBtn) {
@@ -144,12 +166,14 @@ class TimelineManager {
     }
   }
 
+  // Execute timeline search - Apply search filters and highlight results
   searchTimeline() {
     const searchInput = document.getElementById("timeline-search");
     if (searchInput) {
       this.searchTerm = searchInput.value.toLowerCase();
       this.applyFilters();
 
+      // Highlight and expand search results if search term exists
       if (this.searchTerm) {
         this.highlightSearchResults();
         this.expandSearchResults();
@@ -157,6 +181,7 @@ class TimelineManager {
     }
   }
 
+  // Clear search functionality - Reset search state and UI
   clearSearch() {
     const searchInput = document.getElementById("timeline-search");
     if (searchInput) {
@@ -822,3 +847,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+// End of Chronicle.js - Timeline management with search, filtering, and mobile navigation

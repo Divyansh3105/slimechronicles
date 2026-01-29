@@ -1,18 +1,23 @@
+// Configuration constants - Define timing, breakpoints, and performance settings
 const CONFIG = {
+  // Animation delay settings for different device types
   ANIMATION_DELAYS: {
     MOBILE: 0.03,
     DESKTOP: 0.05,
   },
+  // Responsive breakpoints for layout adjustments
   BREAKPOINTS: {
     MOBILE: 768,
     SMALL_MOBILE: 480,
   },
+  // Timeout values for debounced operations
   TIMEOUTS: {
     SEARCH_DEBOUNCE: 300,
     RESIZE_DEBOUNCE: 250,
   },
 };
 
+// Resize handling with debouncing - Prevent excessive resize event processing
 let resizeTimeout;
 function handleResize() {
   clearTimeout(resizeTimeout);
@@ -21,18 +26,25 @@ function handleResize() {
   }, CONFIG.TIMEOUTS.RESIZE_DEBOUNCE);
 }
 
+// Historical records storage - Array to hold all record data
 let HISTORICAL_RECORDS = [];
 
+// Load records from HTML data - Extract record information from DOM elements
 function loadRecordsFromHTML() {
+  // Query all record data elements from the page
   const recordElements = document.querySelectorAll(
     "#historical-records-data .record-data",
   );
+
+  // Transform DOM elements into structured data objects
   HISTORICAL_RECORDS = Array.from(recordElements).map((element) => {
+    // Parse participants list from comma-separated string
     const participants = element
       .querySelector(".record-participants")
       .textContent.split(", ")
       .map((p) => p.trim());
 
+    // Return structured record object with all properties
     return {
       id: element.dataset.id,
       icon: element.dataset.icon,
@@ -51,16 +63,20 @@ function loadRecordsFromHTML() {
   return HISTORICAL_RECORDS;
 }
 
+// Application state management - Centralized state object for filter and UI state
 const state = {
   currentFilter: "all",
   currentSort: "chronological",
   searchQuery: "",
   expandedRecord: null,
 };
+
+// State variables for backward compatibility - Legacy state management approach
 let currentFilter = state.currentFilter;
 let currentSort = state.currentSort;
 let searchQuery = state.searchQuery;
 let expandedRecord = state.expandedRecord;
+// Filter records by category or importance - Apply filtering logic to record collection
 function filterRecords(records, filter) {
   if (filter === "all") return records;
   return records.filter(
@@ -68,12 +84,14 @@ function filterRecords(records, filter) {
   );
 }
 
+// Sort records by specified criteria - Apply sorting logic based on user selection
 function sortRecords(records, sortType) {
   const sorted = [...records];
   switch (sortType) {
     case "chronological":
       return sorted;
     case "importance":
+      // Define importance hierarchy for sorting priority
       const importanceOrder = { critical: 0, major: 1, moderate: 2 };
       return sorted.sort(
         (a, b) => importanceOrder[a.importance] - importanceOrder[b.importance],
@@ -82,6 +100,7 @@ function sortRecords(records, sortType) {
       return sorted.sort((a, b) => a.title.localeCompare(b.title));
     case "volume":
       return sorted.sort((a, b) => {
+        // Extract volume numbers for numerical comparison
         const aVol = parseInt(a.volume.match(/\d+/)[0]);
         const bVol = parseInt(b.volume.match(/\d+/)[0]);
         return aVol - bVol;
@@ -91,6 +110,7 @@ function sortRecords(records, sortType) {
   }
 }
 
+// Search records by query string - Filter records based on text search across multiple fields
 function searchRecords(records, query) {
   if (!query) return records;
   const lowercaseQuery = query.toLowerCase();
@@ -106,6 +126,7 @@ function searchRecords(records, query) {
   );
 }
 
+// Get CSS color variable for importance level - Return appropriate color for visual importance indication
 function getImportanceColor(importance) {
   switch (importance) {
     case "critical":
@@ -119,6 +140,7 @@ function getImportanceColor(importance) {
   }
 }
 
+// Get emoji icon for importance level - Return appropriate emoji for visual importance indication
 function getImportanceIcon(importance) {
   switch (importance) {
     case "critical":
@@ -132,6 +154,7 @@ function getImportanceIcon(importance) {
   }
 }
 
+// Get emoji icon for record category - Return appropriate emoji for visual category identification
 function getCategoryIcon(category) {
   const icons = {
     origin: "🌟",
@@ -151,6 +174,7 @@ function getCategoryIcon(category) {
   };
   return icons[category] || "📜";
 }
+// Render records to DOM - Generate and display filtered, sorted, and searched records
 function renderRecords(records = HISTORICAL_RECORDS) {
   const grid = document.getElementById("records-grid");
 
@@ -159,10 +183,12 @@ function renderRecords(records = HISTORICAL_RECORDS) {
     return;
   }
 
+  // Apply all filtering, searching, and sorting operations
   let filteredRecords = filterRecords(records, currentFilter);
   filteredRecords = searchRecords(filteredRecords, searchQuery);
   filteredRecords = sortRecords(filteredRecords, currentSort);
 
+  // Display no results message if no records match criteria
   if (filteredRecords.length === 0) {
     grid.innerHTML = `
       <div class="no-results">
@@ -174,9 +200,11 @@ function renderRecords(records = HISTORICAL_RECORDS) {
     return;
   }
 
+  // Detect device type for responsive behavior
   const isMobile = window.innerWidth <= CONFIG.BREAKPOINTS.MOBILE;
   const isVerySmall = window.innerWidth <= CONFIG.BREAKPOINTS.SMALL_MOBILE;
 
+  // Generate HTML for each record card with dynamic styling and content
   grid.innerHTML = filteredRecords
     .map((record, index) => {
       const importanceColor = getImportanceColor(record.importance);
@@ -237,6 +265,7 @@ function renderRecords(records = HISTORICAL_RECORDS) {
     })
     .join("");
 
+  // Add mobile-specific touch interactions for better mobile experience
   if (isMobile) {
     document.querySelectorAll(".record-card").forEach((card, index) => {
       let touchStartY = 0;
@@ -244,6 +273,7 @@ function renderRecords(records = HISTORICAL_RECORDS) {
       let touchMoved = false;
       let touchStartTime = 0;
 
+      // Handle touch start with visual feedback
       card.addEventListener(
         "touchstart",
         function (e) {
@@ -257,6 +287,7 @@ function renderRecords(records = HISTORICAL_RECORDS) {
         { passive: true },
       );
 
+      // Track touch movement to distinguish from taps
       card.addEventListener(
         "touchmove",
         function (e) {
@@ -270,6 +301,7 @@ function renderRecords(records = HISTORICAL_RECORDS) {
         { passive: true },
       );
 
+      // Handle touch end and trigger expansion if it was a tap
       card.addEventListener(
         "touchend",
         function (e) {
@@ -289,6 +321,7 @@ function renderRecords(records = HISTORICAL_RECORDS) {
         { passive: false },
       );
 
+      // Add desktop click handler for non-mobile devices
       if (!isMobile) {
         card.addEventListener("click", function (e) {
           const recordId = this.dataset.recordId;
@@ -298,6 +331,7 @@ function renderRecords(records = HISTORICAL_RECORDS) {
         });
       }
 
+      // Add keyboard accessibility support for all devices
       card.addEventListener("keydown", function (e) {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
@@ -309,6 +343,7 @@ function renderRecords(records = HISTORICAL_RECORDS) {
       });
     });
   } else {
+    // Add desktop-specific event handlers for non-mobile devices
     document.querySelectorAll(".record-card").forEach((card) => {
       card.addEventListener("click", function (e) {
         const recordId = this.dataset.recordId;
@@ -317,6 +352,7 @@ function renderRecords(records = HISTORICAL_RECORDS) {
         }
       });
 
+      // Add keyboard accessibility support
       card.addEventListener("keydown", function (e) {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
@@ -329,6 +365,7 @@ function renderRecords(records = HISTORICAL_RECORDS) {
     });
   }
 
+  // Add sound feedback for all record card interactions
   document.querySelectorAll(".record-card").forEach((card) => {
     card.addEventListener("click", () => {
       if (
@@ -340,6 +377,7 @@ function renderRecords(records = HISTORICAL_RECORDS) {
     });
   });
 
+  // Update statistics display and announce to screen readers
   updateVisibleRecordsCount();
 
   if (filteredRecords.length > 0) {
@@ -347,6 +385,7 @@ function renderRecords(records = HISTORICAL_RECORDS) {
     announceToScreenReader(announcement);
   }
 }
+// Announce message to screen readers - Create accessible announcements for assistive technology
 function announceToScreenReader(message) {
   const announcement = document.createElement("div");
   announcement.setAttribute("aria-live", "polite");
@@ -361,11 +400,13 @@ function announceToScreenReader(message) {
 
   document.body.appendChild(announcement);
 
+  // Remove announcement element after screen reader has processed it
   setTimeout(() => {
     document.body.removeChild(announcement);
   }, 1000);
 }
 
+// Toggle record expansion state - Show or hide detailed information for a specific record
 function toggleRecordExpansion(recordId) {
   const recordCard = document.querySelector(`[data-record-id="${recordId}"]`);
   if (!recordCard) return;
@@ -380,6 +421,7 @@ function toggleRecordExpansion(recordId) {
   const isCurrentlyExpanded = detailsElement.classList.contains("expanded");
 
   if (isCurrentlyExpanded) {
+    // Collapse the current record
     expandedRecord = null;
     detailsElement.classList.remove("expanded");
     expandText.textContent = "Show More";
@@ -388,8 +430,10 @@ function toggleRecordExpansion(recordId) {
     detailsElement.setAttribute("aria-hidden", "true");
     expandBtn.classList.remove("expanded");
   } else {
+    // Expand the selected record and collapse any others
     expandedRecord = recordId;
 
+    // Collapse all other expanded records to maintain single expansion
     document
       .querySelectorAll(".record-details.expanded")
       .forEach((otherDetails) => {
@@ -408,6 +452,7 @@ function toggleRecordExpansion(recordId) {
         }
       });
 
+    // Expand the selected record
     detailsElement.classList.add("expanded");
     expandText.textContent = "Show Less";
     expandIcon.textContent = "▲";
@@ -416,6 +461,7 @@ function toggleRecordExpansion(recordId) {
     expandBtn.classList.add("expanded");
   }
 
+  // Play sound feedback if available
   if (
     window.SoundFeedback &&
     typeof window.SoundFeedback.playEffect === "function"
@@ -423,9 +469,11 @@ function toggleRecordExpansion(recordId) {
     window.SoundFeedback.playEffect("click");
   }
 
+  // Ensure page scrolling remains enabled
   document.body.style.overflow = "";
   document.documentElement.style.overflow = "";
 }
+// Create filter and search controls - Generate UI controls for filtering and searching records
 function createFilterControls() {
   const container = document.querySelector(".historical-records-container");
   if (!container) {
@@ -439,6 +487,7 @@ function createFilterControls() {
     return;
   }
 
+  // Generate comprehensive filter controls HTML with accessibility features
   const controlsHTML = `
     <div class="records-controls">
       <div class="search-container">
@@ -511,29 +560,34 @@ function createFilterControls() {
     </div>
   `;
 
+  // Insert controls into DOM with error handling
   try {
     titleElement.insertAdjacentHTML("afterend", controlsHTML);
   } catch (error) {
     console.error("Error creating filter controls:", error);
   }
 }
+// Handle search input with debouncing - Process search queries with delay to improve performance
 function handleSearch(query) {
   searchQuery = query;
 
+  // Clear existing timeout to prevent multiple rapid searches
   if (window.searchTimeout) {
     clearTimeout(window.searchTimeout);
   }
 
+  // Debounce search execution for better performance
   window.searchTimeout = setTimeout(() => {
     updateVisibleRecordsCount();
-
     renderRecords();
 
+    // Toggle clear button visibility based on query presence
     const clearBtn = document.querySelector(".clear-search");
     if (clearBtn) {
       clearBtn.style.display = query ? "block" : "none";
     }
 
+    // Provide accessibility feedback for mobile users
     if (window.innerWidth <= CONFIG.BREAKPOINTS.MOBILE) {
       const visibleCount = document.querySelectorAll(".record-card").length;
       if (query && visibleCount === 0) {
@@ -545,6 +599,7 @@ function handleSearch(query) {
   }, CONFIG.TIMEOUTS.SEARCH_DEBOUNCE);
 }
 
+// Clear search input and reset results - Reset search state and update display
 function clearSearch() {
   searchQuery = "";
   document.getElementById("search-input").value = "";
@@ -553,23 +608,27 @@ function clearSearch() {
   renderRecords();
 }
 
+// Handle category filter selection - Apply category-based filtering
 function handleCategoryFilter(category) {
   currentFilter = category;
   updateVisibleRecordsCount();
   renderRecords();
 }
 
+// Handle importance filter selection - Apply importance-based filtering
 function handleImportanceFilter(importance) {
   currentFilter = importance;
   updateVisibleRecordsCount();
   renderRecords();
 }
 
+// Handle sort option selection - Apply sorting to displayed records
 function handleSort(sortType) {
   currentSort = sortType;
   renderRecords();
 }
 
+// Update visible records count display - Calculate and display current filtered record count
 function updateVisibleRecordsCount() {
   let filteredRecords = filterRecords(HISTORICAL_RECORDS, currentFilter);
   filteredRecords = searchRecords(filteredRecords, searchQuery);
@@ -579,6 +638,7 @@ function updateVisibleRecordsCount() {
     visibleElement.textContent = filteredRecords.length;
   }
 }
+// Initialize historical records page - Main initialization function for records functionality
 function initializeHistoricalRecordsPage() {
   try {
     loadRecordsFromHTML();
@@ -586,6 +646,7 @@ function initializeHistoricalRecordsPage() {
     const container = document.querySelector(".historical-records-container");
     const grid = document.getElementById("records-grid");
 
+    // Validate required DOM elements exist
     if (!container) {
       throw new Error("Historical records container not found");
     }
@@ -594,6 +655,7 @@ function initializeHistoricalRecordsPage() {
       throw new Error("Records grid element not found");
     }
 
+    // Initialize all page components in sequence
     createFilterControls();
     renderRecords();
     addGlobalEventListeners();
@@ -601,6 +663,7 @@ function initializeHistoricalRecordsPage() {
   } catch (error) {
     console.error("Error initializing historical records page:", error);
 
+    // Display user-friendly error message
     const grid = document.getElementById("records-grid");
     if (grid) {
       grid.innerHTML = `
@@ -615,13 +678,16 @@ function initializeHistoricalRecordsPage() {
   }
 }
 
+// Add global event listeners - Set up page-wide keyboard shortcuts and event handlers
 function addGlobalEventListeners() {
   window.addEventListener("resize", handleResize);
   document.addEventListener("keydown", function (e) {
+    // Close expanded record on Escape key
     if (e.key === "Escape" && expandedRecord) {
       toggleRecordExpansion(expandedRecord);
     }
 
+    // Focus search input on Ctrl+F or Cmd+F
     if ((e.ctrlKey || e.metaKey) && e.key === "f") {
       e.preventDefault();
       const searchInput = document.getElementById("search-input");
@@ -631,6 +697,7 @@ function addGlobalEventListeners() {
       }
     }
 
+    // Reset all filters on Ctrl+R or Cmd+R
     if ((e.ctrlKey || e.metaKey) && e.key === "r") {
       e.preventDefault();
       resetAllFilters();
@@ -640,10 +707,12 @@ function addGlobalEventListeners() {
   ensureScrollingWorks();
 }
 
+// Ensure page scrolling functionality - Prevent scroll blocking and maintain proper overflow behavior
 function ensureScrollingWorks() {
   document.documentElement.style.overflow = "auto";
   document.body.style.overflow = "auto";
 
+  // Reset overflow properties on potential blocking elements
   const potentialBlockers = document.querySelectorAll(
     ".historical-records-container, .records-grid, .record-card, .record-details",
   );
@@ -652,6 +721,7 @@ function ensureScrollingWorks() {
     element.style.contain = "none";
   });
 
+  // Monitor DOM changes and maintain scroll functionality
   const observer = new MutationObserver(() => {
     setTimeout(() => {
       document.documentElement.style.overflow = "auto";
@@ -667,12 +737,14 @@ function ensureScrollingWorks() {
   });
 }
 
+// Reset all filters to default state - Clear all filtering, sorting, and search criteria
 function resetAllFilters() {
   currentFilter = "all";
   currentSort = "chronological";
   searchQuery = "";
   expandedRecord = null;
 
+  // Reset all UI controls to default values
   const searchInput = document.getElementById("search-input");
   const categoryFilter = document.getElementById("category-filter");
   const importanceFilter = document.getElementById("importance-filter");
@@ -685,11 +757,12 @@ function resetAllFilters() {
   if (sortSelect) sortSelect.value = "chronological";
   if (clearBtn) clearBtn.style.display = "none";
 
+  // Update display and announce to screen readers
   updateVisibleRecordsCount();
   renderRecords();
-
   announceToScreenReader("All filters have been reset");
 }
+// Initialize records page wrapper - Main entry point for records page initialization
 function initializeRecordsPage() {
   try {
     initializeHistoricalRecordsPage();
@@ -698,8 +771,11 @@ function initializeRecordsPage() {
   }
 }
 
+// DOM content loaded event handler - Initialize page when DOM is ready
 document.addEventListener("DOMContentLoaded", function () {
   const grid = document.getElementById("records-grid");
+
+  // Display loading message while initialization occurs
   if (grid) {
     grid.innerHTML = `
       <div style="text-align: center; padding: 40px; color: var(--text-light);">
@@ -715,9 +791,10 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   try {
-    // Initialize mobile menu functionality
+    // Initialize mobile menu functionality first
     initializeMobileMenu();
 
+    // Staggered initialization for better performance
     setTimeout(() => {
       initializeRecordsPage();
 
@@ -728,6 +805,7 @@ document.addEventListener("DOMContentLoaded", function () {
   } catch (error) {
     console.error("Error in initializeRecordsPage:", error);
 
+    // Display error message to user
     if (grid) {
       grid.innerHTML = `
         <div class="no-results">
@@ -741,11 +819,14 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+// Additional keyboard event handler - Duplicate handler for additional keyboard shortcuts
 document.addEventListener("keydown", function (e) {
+  // Close expanded record on Escape key
   if (e.key === "Escape" && expandedRecord) {
     toggleRecordExpansion(expandedRecord);
   }
 
+  // Focus search input on Ctrl+F or Cmd+F
   if ((e.ctrlKey || e.metaKey) && e.key === "f") {
     e.preventDefault();
     const searchInput = document.getElementById("search-input");
@@ -754,12 +835,14 @@ document.addEventListener("keydown", function (e) {
     }
   }
 
+  // Reset all filters on Ctrl+R or Cmd+R
   if ((e.ctrlKey || e.metaKey) && e.key === "r") {
     e.preventDefault();
     currentFilter = "all";
     currentSort = "chronological";
     searchQuery = "";
 
+    // Reset UI controls to default state
     const searchInput = document.getElementById("search-input");
     const categoryFilter = document.getElementById("category-filter");
     const importanceFilter = document.getElementById("importance-filter");
@@ -777,6 +860,7 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
+// Toggle help content visibility - Show or hide help information panel
 function toggleHelp() {
   const helpContent = document.getElementById("help-content");
   const helpToggle = document.querySelector(".help-toggle");
@@ -786,15 +870,18 @@ function toggleHelp() {
   const isExpanded = helpContent.classList.contains("expanded");
 
   if (isExpanded) {
+    // Collapse help content
     helpContent.classList.remove("expanded");
     helpToggle.classList.remove("active");
     helpToggle.setAttribute("aria-expanded", "false");
   } else {
+    // Expand help content
     helpContent.classList.add("expanded");
     helpToggle.classList.add("active");
     helpToggle.setAttribute("aria-expanded", "true");
   }
 
+  // Play sound feedback if available
   if (
     window.SoundFeedback &&
     typeof window.SoundFeedback.playEffect === "function"
@@ -803,6 +890,7 @@ function toggleHelp() {
   }
 }
 
+// Test function for debugging - Verify JavaScript functionality and render records
 function testFunction() {
   alert("JavaScript is working correctly!");
 
@@ -814,6 +902,7 @@ function testFunction() {
   }
 }
 
+// Export functions to global scope - Make functions available for external access and HTML event handlers
 window.handleSearch = handleSearch;
 window.clearSearch = clearSearch;
 window.handleCategoryFilter = handleCategoryFilter;
@@ -823,7 +912,7 @@ window.toggleRecordExpansion = toggleRecordExpansion;
 window.toggleHelp = toggleHelp;
 window.testFunction = testFunction;
 
-// Mobile Navigation Functions
+// Mobile Navigation Functions - Handle mobile menu interactions and scroll management
 function toggleMobileMenu() {
   const mobileNav = document.getElementById('mobile-nav');
   const mobileToggle = document.querySelector('.mobile-menu-toggle');
@@ -835,13 +924,13 @@ function toggleMobileMenu() {
   const isActive = mobileNav.classList.contains('active');
 
   if (isActive) {
-    // Close mobile menu
+    // Close mobile menu and restore normal scrolling
     mobileNav.classList.remove('active');
     mobileToggle.classList.remove('active');
     body.classList.remove('mobile-nav-active');
     html.classList.remove('mobile-nav-active');
 
-    // Re-enable scrolling
+    // Re-enable scrolling by clearing fixed positioning
     body.style.overflow = '';
     html.style.overflow = '';
     body.style.position = '';
@@ -849,22 +938,22 @@ function toggleMobileMenu() {
     body.style.top = '';
     html.style.height = '';
 
-    // Restore scroll position if saved
+    // Restore scroll position if previously saved
     if (window.scrollPosition !== undefined) {
       window.scrollTo(0, window.scrollPosition);
       delete window.scrollPosition;
     }
   } else {
-    // Save current scroll position
+    // Save current scroll position before opening menu
     window.scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
 
-    // Open mobile menu
+    // Open mobile menu and prevent background scrolling
     mobileNav.classList.add('active');
     mobileToggle.classList.add('active');
     body.classList.add('mobile-nav-active');
     html.classList.add('mobile-nav-active');
 
-    // Prevent scrolling
+    // Prevent scrolling by fixing body position
     body.style.overflow = 'hidden';
     html.style.overflow = 'hidden';
     body.style.position = 'fixed';
@@ -879,12 +968,12 @@ function toggleMobileMenu() {
   }
 }
 
-// Close mobile menu when clicking on a link
+// Close mobile menu when clicking on navigation links - Auto-close menu after navigation
 function closeMobileMenuOnLinkClick() {
   const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
   mobileNavLinks.forEach(link => {
     link.addEventListener('click', () => {
-      // Small delay to allow navigation to start
+      // Small delay to allow navigation to start before closing menu
       setTimeout(() => {
         toggleMobileMenu();
       }, 100);

@@ -1,3 +1,4 @@
+/* Main content container with centered layout and responsive padding */
 .main-content {
   max-width: 1200px;
   margin: 0 auto;
@@ -8,6 +9,7 @@
   visibility: visible;
 }
 
+/* Page header section with title and subtitle styling */
 .page-header {
   text-align: center;
   margin-bottom: 4rem;
@@ -16,6 +18,7 @@
   z-index: 10;
 }
 
+/* Main page title with gradient text and glow effects */
 .page-title {
   font-family: "Cinzel", serif;
   font-size: 3.5rem;
@@ -55,6 +58,7 @@
   z-index: 2;
 }
 
+/* Timeline container with vertical layout and central positioning */
 .timeline-container {
   position: relative;
   margin: 4rem 0;
@@ -63,6 +67,7 @@
   visibility: visible;
 }
 
+/* Central timeline line with gradient colors and glow effect */
 .timeline-line {
   position: absolute;
   left: 50%;
@@ -82,6 +87,7 @@
   z-index: 1;
 }
 
+/* Individual timeline year section with fade-in animation */
 .timeline-year {
   position: relative;
   margin-bottom: 6rem;
@@ -91,6 +97,7 @@
   z-index: 10;
 }
 
+/* Year marker badge with glassmorphism design */
 .year-marker {
   position: relative;
   left: 50%;
@@ -149,6 +156,7 @@
   white-space: nowrap;
 }
 
+/* Timeline arc container for grouping related events */
 .timeline-arc {
   background: linear-gradient(
     135deg,
@@ -182,6 +190,7 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
+/* Arc header with click interaction and expand/collapse functionality */
 .arc-header {
   display: flex;
   align-items: center;
@@ -208,6 +217,7 @@
   min-height: 60px;
 }
 
+/* Shimmer effect for arc header hover state */
 .arc-header::before {
   content: "";
   position: absolute;
@@ -224,6 +234,7 @@
   transition: left 0.6s;
 }
 
+/* Click hint tooltip for arc headers */
 .arc-header::after {
   content: "👆 Click to expand";
   position: absolute;
@@ -318,6 +329,7 @@
   content: "👆 Click to collapse";
 }
 
+/* Collapsible content area for timeline arcs */
 .arc-content {
   max-height: 0;
   overflow: hidden;
@@ -350,6 +362,7 @@
   overflow: hidden !important;
 }
 
+/* Individual timeline event with expandable content */
 .timeline-event {
   border-top: 1px solid rgba(77, 212, 255, 0.1);
   transition: all 0.3s ease;
@@ -389,6 +402,7 @@
   margin-bottom: 1rem;
 }
 
+/* Event header with icon, title, and date information */
 .event-header {
   display: flex;
   align-items: center;
@@ -486,6 +500,7 @@
   opacity: 1;
 }
 
+/* Expandable event content with detailed information */
 .event-content {
   max-height: 0;
   overflow: hidden;
@@ -504,6 +519,7 @@
     opacity 0.3s ease 0.1s;
 }
 
+/* Event description with highlighted styling */
 .event-description {
   font-size: 1.1rem;
   line-height: 1.7;
@@ -522,6 +538,7 @@
   backdrop-filter: blur(20px);
 }
 
+/* Event consequences and characters sections */
 .event-consequences,
 .event-characters {
   margin-bottom: 2rem;
@@ -581,6 +598,7 @@
   flex-wrap: wrap;
 }
 
+/* Character links with hover effects and profile images */
 .character-link {
   display: flex;
   align-items: center;
@@ -638,6 +656,7 @@
   border: 1px solid rgba(77, 212, 255, 0.3);
 }
 
+/* Timeline statistics grid showing event counts and metrics */
 .timeline-stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -647,6 +666,7 @@
   border-top: 1px solid rgba(77, 212, 255, 0.2);
 }
 
+/* Individual statistic card with icon and value */
 .stat-card {
   background: linear-gradient(
     135deg,
@@ -708,6 +728,7 @@
   letter-spacing: 1px;
 }
 
+/* Character tooltip for hover information */
 .character-tooltip {
   position: absolute;
   background: linear-gradient(
@@ -741,6 +762,7 @@
   opacity: 0.8;
 }
 
+/* Timeline progress bar at top of page */
 .timeline-progress {
   position: fixed;
   top: 0;
@@ -752,19 +774,7 @@
   backdrop-filter: blur(15px);
 }
 
-.timeline-progress-bar {
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    var(--primary-blue),
-    var(--accent-cyan),
-    var(--accent-gold)
-  );
-  width: 0%;
-  transition: width 0.3s ease;
-  box-shadow: 0 0 10px var(--glow-blue);
-}
-
+/* Floating action button for timeline navigation */
 .timeline-fab {
   position: fixed;
   bottom: 2rem;
@@ -795,6 +805,7 @@
   opacity: 0;
 }
 
+/* CSS keyframe animations for various UI effects */
 @keyframes scrollFloat {
   0%,
   100% {
@@ -859,6 +870,7 @@
   }
 }
 
+/* Staggered entrance animations for timeline elements */
 .timeline-year:nth-child(odd) .timeline-arc {
   animation: slideInFromLeft 0.8s ease-out;
 }
@@ -884,11 +896,13 @@
   animation: arcCollapse 0.4s cubic-bezier(0.4, 0.21);
 }
 
+/* Accessibility focus states for interactive elements */
 .timeline-event:focus {
   outline: 2px solid var(--primary-blue);
   outline-offset: 2px;
 }
 
+/* Layout fixes and positioning overrides for timeline elements */
 .year-marker {
   position: relative !important;
   left: auto !important;
@@ -913,6 +927,7 @@
   box-sizing: border-box !important;
 }
 
+/* Visibility and display overrides for timeline components */
 .timeline-container,
 .timeline-year,
 .timeline-arc,
@@ -952,6 +967,7 @@
   overflow: visible !important;
 }
 
+/* Text rendering optimizations for better typography */
 .year-number,
 .year-label,
 .arc-title,
@@ -1090,6 +1106,7 @@
   font-size: 2rem;
 }
 
+/* Loading state with spinner animation */
 .timeline-loading {
   display: flex;
   justify-content: center;
@@ -1117,6 +1134,7 @@
   }
 }
 
+/* Error state styling for timeline failures */
 .timeline-error {
   text-align: center;
   padding: 4rem 2rem;
@@ -1147,6 +1165,7 @@
   opacity: 0.8;
 }
 
+/* Performance optimizations using CSS containment */
 .timeline-year,
 .timeline-arc,
 .timeline-event {
@@ -1327,6 +1346,7 @@
   backdrop-filter: blur(15px);
 }
 
+/* Mobile-first responsive design for small screens */
 @media (max-width: 767px) {
   .main-content {
     padding: 1rem;
@@ -1559,7 +1579,7 @@
   }
 }
 
-/* ---------- Small Phones (≤ 479px) ---------- */
+/* Small phone optimizations for very narrow screens */
 @media (max-width: 479px) {
   .main-content {
     padding: 0.75rem;
@@ -1718,7 +1738,7 @@
   }
 }
 
-/* ---------- Tablets (≥ 768px) ---------- */
+/* Tablet layout adjustments for medium screens */
 @media (min-width: 768px) {
   .main-content {
     padding: 2rem;
@@ -1758,7 +1778,7 @@
   }
 }
 
-/* ---------- Laptops (≥ 1024px) ---------- */
+/* Laptop and desktop optimizations for larger screens */
 @media (min-width: 1024px) {
   .main-content {
     max-width: 1200px;
@@ -1786,7 +1806,7 @@
   }
 }
 
-/* ---------- Mobile Performance & UX ---------- */
+/* Mobile performance optimizations and touch interaction improvements */
 @media (max-width: 767px) {
   /* Disable heavy background effects on mobile */
   .magic-circle,
@@ -1856,7 +1876,7 @@
   }
 }
 
-/* ---------- Reduced Motion ---------- */
+/* Accessibility support for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .timeline-arc,
   .timeline-event,
@@ -1868,7 +1888,7 @@
   }
 }
 
-/* ---------- Mobile-specific improvements ---------- */
+/* Additional mobile-specific improvements for better UX */
 @media (max-width: 767px) {
   /* Improve text selection on mobile */
   .arc-title,
@@ -1961,7 +1981,7 @@
   }
 }
 
-/* ---------- High DPI displays ---------- */
+/* High DPI display optimizations for crisp images */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .character-link img {
     image-rendering: -webkit-optimize-contrast;
@@ -1969,11 +1989,10 @@
   }
 }
 
-/* ---------- Dark mode support ---------- */
+/* Dark mode color scheme adjustments */
 @media (prefers-color-scheme: dark) {
   :root {
     --text-light: #f0f8ff;
     --text-secondary: rgba(240, 248, 255, 0.8);
   }
 }
-/* End of Chronicle.css */

@@ -2,24 +2,70 @@
 <html lang="en">
 
 <head>
+    <!-- Favicon Configuration -->
     <link rel="icon" type="image/png" href="assets/fav.png">
     <link rel="icon" type="image/x-icon" href="assets/fav.ico">
 
+    <!-- Essential Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Explore the magical world of Jura Tempest Federation - an interactive web application inspired by That Time I Got Reincarnated as a Slime. Discover characters, skills, achievements, and the chronicles of Rimuru's kingdom where monsters and humans coexist in harmony.">
+    <meta name="keywords"
+        content="Divyansh Garg, Jura Tempest Federation, That Time I Got Reincarnated as a Slime, Tensura, Rimuru Tempest, anime, manga, light novel, characters, skills, interactive, web application, fantasy, slime, kingdom, federation, monsters, magic, demon lord, isekai, reincarnation, Veldora, Shion, Benimaru, Shuna, Diablo, Milim, character database, skill tree, anime fan site, otaku, Japanese animation, fantasy world, monster nation, tempest kingdom, great sage, unique skills, ultimate skills, demon lords, true dragons, primordial demons, goblin village, ogres, lizardmen, dwarves, elves, humans and monsters, coexistence, rimuru slime, blue slime, slime lord, anime characters, manga characters, light novel characters, anime database, character profiles, skill database, chronicle timeline, historical records, interactive anime site, fan project, web game, browser game, anime inspired, tensura wiki, slime isekai, fantasy kingdom simulation, anime character collection, skill system, achievement system, magical world, great forest of jura, eastern empire, western nations, council of demon lords, octagram, walpurgis, harvest festival, evolution, awakening, named monsters, subordinates, allies, friends, bonds, unity, strength, friendship, magic circles, particles effects, animated website, responsive design, mobile friendly">
     <title>Jura Tempest Federation</title>
+
+    <!-- Open Graph Meta Tags for Social Media Sharing -->
+    <meta property="og:title" content="Jura Tempest Federation - Interactive Tensura Web Experience">
+    <meta property="og:description"
+        content="Explore the magical world of Jura Tempest Federation in this interactive web application inspired by That Time I Got Reincarnated as a Slime. Discover characters, skills, achievements, and chronicles of Rimuru's kingdom.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://slimechronicles.netlify.app/">
+    <meta property="og:image" content="https://your-domain.com/assets/federation.jpg">
+    <meta property="og:image:alt"
+        content="Jura Tempest Federation - A magical kingdom where monsters and humans coexist">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Jura Tempest Federation">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jura Tempest Federation - Interactive Tensura Web Experience">
+    <meta name="twitter:description"
+        content="Explore the magical world of Jura Tempest Federation in this interactive web application inspired by That Time I Got Reincarnated as a Slime.">
+    <meta name="twitter:image" content="https://your-domain.com/assets/federation.jpg">
+    <meta name="twitter:image:alt"
+        content="Jura Tempest Federation - A magical kingdom where monsters and humans coexist">
+    <meta name="twitter:creator" content="@your_twitter_handle">
+    <meta name="twitter:site" content="@your_twitter_handle">
+
+    <!-- Additional Meta Tags for Better SEO -->
+    <meta name="author" content="Divyansh Garg">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#4dd4ff">
+    <meta name="msapplication-TileColor" content="#4dd4ff">
+    <meta name="application-name" content="Jura Tempest Federation">
+
+    <!-- External Font Libraries -->
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Rajdhani:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <!-- Local Stylesheets -->
     <link rel="stylesheet" href="css/shared.css">
     <link rel="stylesheet" href="css/index.css">
+
+    <!-- JavaScript Dependencies -->
     <script src="js/effects.js" defer></script>
 </head>
 
 <body>
-    <!-- Enhanced background effects -->
+    <!-- VISUAL EFFECTS & BACKGROUND ELEMENTS -->
     <div class="starfield" id="starfield"></div>
     <div class="particles" id="particles"></div>
     <div class="magic-circles">
@@ -39,18 +85,24 @@
         </div>
     </div>
 
+    <!-- MAIN CONTENT CONTAINER -->
+
     <div class="intro-container" id="intro-container">
+        <!-- LOGO AND BRANDING SECTION -->
+
         <div class="logo-container">
             <!-- Enhanced SVG slime logo -->
             <div class="main-logo-icon">
                 <svg width="180" height="180" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                     <!-- Slime body with gradient -->
                     <defs>
+                        <!-- Gradient definitions for slime appearance -->
                         <radialGradient id="mainSlimeGradient" cx="50%" cy="40%" r="60%">
                             <stop offset="0%" style="stop-color:#4dd4ff;stop-opacity:1" />
                             <stop offset="70%" style="stop-color:#2a9fd8;stop-opacity:1" />
                             <stop offset="100%" style="stop-color:#1a7fb8;stop-opacity:1" />
                         </radialGradient>
+                        <!-- Glow effect filter -->
                         <filter id="mainGlow">
                             <feGaussianBlur stdDeviation="3" result="coloredBlur" />
                             <feMerge>
@@ -60,18 +112,18 @@
                         </filter>
                     </defs>
 
-                    <!-- Main slime body -->
+                    <!-- Main slime body with animation -->
                     <ellipse cx="16" cy="20" rx="12" ry="8" fill="url(#mainSlimeGradient)" filter="url(#mainGlow)">
                         <animateTransform attributeName="transform" type="scale" values="1,1;1.1,0.9;1,1" dur="2s"
                             repeatCount="indefinite" />
                     </ellipse>
 
-                    <!-- Slime highlight -->
+                    <!-- Slime highlight for 3D effect -->
                     <ellipse cx="13" cy="17" rx="3" ry="2" fill="#ffffff" opacity="0.6">
                         <animate attributeName="opacity" values="0.6;0.8;0.6" dur="2s" repeatCount="indefinite" />
                     </ellipse>
 
-                    <!-- Eyes -->
+                    <!-- Rimuru's characteristic eyes -->
                     <circle cx="12" cy="18" r="1.5" fill="#0a0e27">
                         <animate attributeName="r" values="1.5;1.2;1.5" dur="3s" repeatCount="indefinite" />
                     </circle>
@@ -79,11 +131,11 @@
                         <animate attributeName="r" values="1.5;1.2;1.5" dur="3s" repeatCount="indefinite" />
                     </circle>
 
-                    <!-- Eye highlights -->
+                    <!-- Eye highlights for liveliness -->
                     <circle cx="12.5" cy="17.5" r="0.5" fill="#ffffff" opacity="0.8" />
                     <circle cx="20.5" cy="17.5" r="0.5" fill="#ffffff" opacity="0.8" />
 
-                    <!-- Floating particles around slime -->
+                    <!-- Floating magical particles around slime -->
                     <circle cx="8" cy="12" r="1" fill="#4dd4ff" opacity="0.4">
                         <animateTransform attributeName="transform" type="translate" values="0,0;2,-2;0,0" dur="3s"
                             repeatCount="indefinite" />
@@ -101,11 +153,13 @@
                     </circle>
                 </svg>
             </div>
+            <!-- Main title and subtitle -->
             <h1 class="title">Jura Tempest Federation</h1>
             <p class="subtitle">A Kingdom Born of Bonds and Magic</p>
         </div>
 
-        <!-- Enhanced lore section -->
+        <!-- LORE AND STATISTICS SECTION -->
+
         <div class="lore-section">
             <div class="lore-text">
                 <div class="lore-line" data-delay="0">In the heart of the Great Jura Forest, a new power rises...</div>
@@ -115,7 +169,6 @@
                     brighter tomorrow.</div>
             </div>
 
-            <!-- Stats preview -->
             <div class="stats-preview">
                 <div class="stat-item">
                     <div class="stat-icon">👥</div>
@@ -135,14 +188,18 @@
             </div>
         </div>
 
-        <!-- Enhanced button group -->
+        <!-- NAVIGATION BUTTONS SECTION -->
+
         <div class="button-group">
+            <!-- Primary navigation button - Main overview -->
             <button class="primary-button" onclick="enterFederation(event)" data-tooltip="Access the main overview">
                 <span class="button-glow"></span>
                 <span class="button-icon">🏛️</span>
                 <span class="button-text">Enter Federation</span>
                 <span class="button-particles"></span>
             </button>
+
+            <!-- Secondary navigation buttons -->
             <button class="secondary-button" onclick="openCodex(event)" data-tooltip="Browse character profiles">
                 <span class="button-glow"></span>
                 <span class="button-icon">📚</span>
@@ -173,6 +230,8 @@
         </div>
     </div>
 
+    <!-- MODAL COMPONENTS -->
+
     <!-- Info modal -->
     <div class="modal-overlay" id="info-modal">
         <div class="modal-content">
@@ -180,11 +239,15 @@
                 <h3>About Jura Tempest Federation</h3>
                 <button class="modal-close" onclick="closeModal()">&times;</button>
             </div>
+
+            <!-- Modal body content -->
             <div class="modal-body">
                 <p>An interactive web application inspired by the world of "That Time I Got Reincarnated as a Slime".
                 </p>
                 <p>Explore characters, view achievements, and discover the magical world of
                     Tempest.</p>
+
+                <!-- Feature highlights -->
                 <div class="modal-features">
                     <div class="feature-item">
                         <span class="feature-icon">🎮</span>
@@ -207,10 +270,14 @@
         </div>
     </div>
 
+    <!-- FOOTER SECTION -->
+
     <footer class="main-footer"
         style="padding: 1.5rem 0 1rem; background: transparent; border-top: 1px solid rgba(77, 212, 255, 0.2);">
         <div class="footer-content"
             style="grid-template-columns: 1fr 1fr; text-align: left; gap: 2rem; align-items: center;">
+
+            <!-- Left side: Brand information -->
             <div class="footer-brand" style="align-items: flex-start;">
                 <div class="footer-brand-header">
                     <div class="footer-logo"></div>
@@ -221,11 +288,12 @@
                 </div>
             </div>
 
+            <!-- Right side: Copyright and developer info -->
             <div class="footer-info" style="text-align: right;">
                 <div class="footer-copyright">© 2025 Tensura Chronicles</div>
                 <div class="footer-version">Inspired by "That Time I Got Reincarnated as a Slime"</div>
 
-                <!-- Compact Developer Credit -->
+                <!-- Developer credit section -->
                 <div
                     style="margin: 0.5rem 0; padding: 0.5rem; background: rgba(10, 14, 39, 0.3); border: 1px solid rgba(77, 212, 255, 0.3); border-radius: 6px; position: relative; overflow: hidden; backdrop-filter: blur(5px);">
                     <div
@@ -243,13 +311,15 @@
                     </div>
                 </div>
 
-                <!-- Social Links -->
+                <!-- Social media links -->
                 <div class="footer-social" style="justify-content: flex-end; gap: 0.6rem; margin: 0.5rem 0;">
+                    <!-- GitHub repository link -->
                     <a href="https://github.com/Divyansh3105" class="social-link" title="GitHub Repository"
                         style="width: 35px; height: 35px;">
                         <i class="fab fa-github"
                             style="color:#fff; font-size:1.1rem; text-decoration:none; transition:color 0.3s;"></i>
                     </a>
+                    <!-- LinkedIn profile link -->
                     <a href="https://www.linkedin.com/in/divyanshgarg3105/" class="social-link" title="LinkedIn Profile"
                         style="width: 35px; height: 35px;">
                         <i class="fab fa-linkedin"
@@ -257,7 +327,7 @@
                     </a>
                 </div>
 
-                <!-- Final Message -->
+                <!-- Inspirational quote -->
                 <div
                     style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.7; font-style: italic; margin-top: 0.5rem;">
                     "In unity, there is strength. In friendship, there is magic."
@@ -266,9 +336,15 @@
         </div>
     </footer>
 
+    <!-- JAVASCRIPT DEPENDENCIES -->
+
+    <!-- External JavaScript files -->
     <script src="js/character.js"></script>
     <script src="js/game-state-optimized.js"></script>
+
     <script>
+        // GLOBAL VARIABLES AND CONFIGURATION
+
         let soundEnabled = true;
 
         // Create SoundFeedback object to prevent errors
@@ -278,6 +354,8 @@
                 console.log('Sound effect:', effectType);
             }
         };
+
+        // APPLICATION INITIALIZATION
 
         function initializeApp() {
             const loadingScreen = document.getElementById('loading-screen');
@@ -292,6 +370,8 @@
                 }, 500);
             }, 2000);
         }
+
+        // ANIMATION FUNCTIONS
 
         function startAnimations() {
             const loreLines = document.querySelectorAll('.lore-line');
@@ -326,6 +406,7 @@
             });
         }
 
+        /** Add interactive hover and click effects to the slime logo */
         function addSlimeInteractivity() {
             const slimeOrb = document.querySelector('.main-logo-icon');
 
@@ -349,6 +430,12 @@
             }
         }
 
+        // NAVIGATION FUNCTIONS
+
+        /**
+         * Navigate to the main federation overview page
+         * @param {Event} event - Click event object
+         */
         function enterFederation(event) {
             console.log('Enter Federation button clicked');
             if (soundEnabled) SoundFeedback.playEffect('click');
@@ -358,6 +445,10 @@
             }, 300);
         }
 
+        /**
+         * Navigate to the character codex page
+         * @param {Event} event - Click event object
+         */
         function openCodex(event) {
             console.log('Open Codex button clicked');
             if (soundEnabled) SoundFeedback.playEffect('click');
@@ -367,6 +458,10 @@
             }, 300);
         }
 
+        /**
+         * Navigate to the skills database page
+         * @param {Event} event - Click event object
+         */
         function openSkills(event) {
             console.log('Open Skills button clicked');
             if (soundEnabled) SoundFeedback.playEffect('click');
@@ -376,7 +471,10 @@
             }, 300);
         }
 
-
+        /**
+         * Navigate to the chronicle timeline page
+         * @param {Event} event - Click event object
+         */
         function openTimeline(event) {
             console.log('Open Timeline button clicked');
             if (soundEnabled) SoundFeedback.playEffect('click');
@@ -386,22 +484,36 @@
             }, 300);
         }
 
+        /**
+         * Navigate to the historical records page
+         * @param {Event} event - Click event object
+         */
         function openHistoricalRecords(event) {
             console.log('Open Historical Records button clicked');
             if (soundEnabled) SoundFeedback.playEffect('click');
             window.location.href = 'records.html';
         }
 
+        // MODAL FUNCTIONS
+
+        // Show the information modal
         function showInfo() {
             if (soundEnabled) SoundFeedback.playEffect('click');
             document.getElementById('info-modal').classList.add('active');
         }
 
+        // Close any open modal
         function closeModal() {
             if (soundEnabled) SoundFeedback.playEffect('click');
             document.getElementById('info-modal').classList.remove('active');
         }
 
+        // UTILITY FUNCTIONS
+
+        /**
+         * Add visual click effect to buttons
+         * @param {HTMLElement} button - Button element to animate
+         */
         function addButtonEffect(button) {
             if (button) {
                 button.classList.add('clicked');
@@ -411,6 +523,9 @@
             }
         }
 
+        // EVENT LISTENERS
+
+        // Keyboard navigation shortcuts
         document.addEventListener('keydown', (e) => {
             if (e.altKey) return;
 
@@ -445,8 +560,10 @@
             }
         });
 
+        // Initialize application when DOM is fully loaded
         document.addEventListener('DOMContentLoaded', initializeApp);
 
+        // Close modal when clicking outside of it
         document.getElementById('info-modal').addEventListener('click', (e) => {
             if (e.target.classList.contains('modal-overlay')) {
                 closeModal();

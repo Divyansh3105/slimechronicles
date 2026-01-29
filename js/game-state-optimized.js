@@ -1,7 +1,10 @@
+// Optimized game state class - Manages character data and application state
 class OptimizedGameState {
   constructor() {
+    // Local storage key for persisting game state
     this.STATE_KEY = "juraTempestState"
 
+    // Default state structure with initial values
     this.defaultState = {
       population: 1000,
       military: 20,
@@ -13,6 +16,7 @@ class OptimizedGameState {
     }
   }
 
+  // Get character loader instance - Access to character data loading functionality
   getCharacterLoader() {
     if (!window.CharacterLoader) {
       console.error('CharacterLoader not available');
@@ -21,6 +25,7 @@ class OptimizedGameState {
     return window.CharacterLoader;
   }
 
+  // Load game state from localStorage - Retrieve saved state with fallback to defaults
   load() {
     try {
       const saved = localStorage.getItem(this.STATE_KEY)
@@ -34,6 +39,7 @@ class OptimizedGameState {
     return { ...this.defaultState }
   }
 
+  // Save game state to localStorage - Persist current state with timestamp
   save(state) {
     try {
       const stateToSave = {
@@ -48,16 +54,19 @@ class OptimizedGameState {
     }
   }
 
+  // Update game state with new values - Merge updates with current state and save
   update(updates) {
     const currentState = this.load()
     const newState = { ...currentState, ...updates }
     return this.save(newState)
   }
 
+  // Get current game state - Alias for load method for convenience
   get() {
     return this.load()
   }
 
+  // Load all characters from data source - Returns complete character list
   async getAllCharacters() {
     const loader = this.getCharacterLoader()
     if (!loader) {
@@ -68,6 +77,7 @@ class OptimizedGameState {
     return result
   }
 
+  // Load detailed character data by ID - Returns full character information
   async getCharacter(characterId) {
     const loader = this.getCharacterLoader()
     if (!loader) {
@@ -78,6 +88,7 @@ class OptimizedGameState {
     return result
   }
 
+  // Load basic character data by ID - Returns lightweight character information
   async getBasicCharacter(characterId) {
     const loader = this.getCharacterLoader()
     if (!loader) {
@@ -89,30 +100,35 @@ class OptimizedGameState {
     return result
   }
 
+  // Search characters by query string - Returns filtered character results
   async searchCharacters(query) {
     const loader = this.getCharacterLoader()
     if (!loader) return []
     return await loader.searchCharacters(query)
   }
 
+  // Load characters in batches for pagination - Returns subset of characters
   async getCharacterBatch(startIndex = 0, batchSize = 10) {
     const loader = this.getCharacterLoader()
     if (!loader) return []
     return await loader.loadCharacterBatch(startIndex, batchSize)
   }
 
+  // Get total number of available characters - Returns character count
   async getCharacterCount() {
     const loader = this.getCharacterLoader()
     if (!loader) return 0
     return await loader.getCharacterCount()
   }
 
+  // Preload character details for performance optimization - Cache multiple characters
   async preloadCharacters(characterIds) {
     const loader = this.getCharacterLoader()
     if (!loader) return
     return await loader.preloadCharacterDetails(characterIds)
   }
 
+  // Set custom name for a character - Store user-defined character names
   setCharacterCustomName(characterId, customName) {
     const state = this.load()
     const customNames = state.customCharacterNames || {}
@@ -126,15 +142,18 @@ class OptimizedGameState {
     return newState
   }
 
+  // Get custom name for a character - Retrieve user-defined character name
   getCharacterCustomName(characterId) {
     const state = this.load()
     return state.customCharacterNames?.[characterId] || null
   }
 
+  // Check and update achievements based on current state - Award achievements when conditions are met
   checkAchievements(state) {
     const achievements = [...(state.achievements || [])]
     let updated = false
 
+    // Define achievement conditions and their requirements
     const checks = [
       { id: "military_power", condition: state.military >= 70 },
       { id: "economic_boom", condition: state.economy >= 80 },
@@ -142,6 +161,7 @@ class OptimizedGameState {
       { id: "population_growth", condition: state.population >= 5000 },
     ]
 
+    // Check each achievement condition and award if not already earned
     checks.forEach((check) => {
       if (check.condition && !achievements.includes(check.id)) {
         achievements.push(check.id)
@@ -149,6 +169,7 @@ class OptimizedGameState {
       }
     })
 
+    // Save updated achievements if any were earned
     if (updated) {
       this.update({ achievements })
     }
@@ -156,6 +177,7 @@ class OptimizedGameState {
     return updated
   }
 
+  // Clear character data cache - Force reload of character data on next request
   clearCharacterCache() {
     const loader = this.getCharacterLoader()
     if (loader) {
@@ -163,6 +185,7 @@ class OptimizedGameState {
     }
   }
 
+  // Get performance statistics for debugging - Returns cache and loading metrics
   getPerformanceStats() {
     const loader = this.getCharacterLoader()
     if (!loader) {
@@ -179,5 +202,7 @@ class OptimizedGameState {
     }
   }
 }
+
+// Initialize global game state instances - Make OptimizedGameState available globally
 window.OptimizedGameState = new OptimizedGameState()
 window.GameState = window.OptimizedGameState
