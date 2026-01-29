@@ -450,7 +450,8 @@ class LoadingScreenManager {
   // Initialize loading screen manager and setup event handlers
   init() {
     if (!this.loadingScreen) {
-      console.warn("Loading screen element not found");
+      console.log("Loading screen element not found - skipping loading screen functionality");
+      this.isLoading = false;
       return;
     }
 
@@ -546,7 +547,11 @@ function cleanupParticles() {
 
 // Initialize loading screen manager for page load transitions
 const initLoadingScreen = () => {
-  window.loadingScreenManager = new LoadingScreenManager();
+  try {
+    window.loadingScreenManager = new LoadingScreenManager();
+  } catch (error) {
+    console.log("Loading screen initialization skipped:", error.message);
+  }
 };
 
 // Document ready state handling - Initialize effects based on current loading state

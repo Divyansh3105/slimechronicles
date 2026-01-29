@@ -135,11 +135,12 @@
   padding: 0.6rem 1.2rem;
   border-radius: 12px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .expand-btn:hover {
   background: rgba(77, 212, 255, 0.15);
+  transform: translateY(-1px);
 }
 
 /* Enhanced animations and transitions */
@@ -697,6 +698,30 @@
   font-weight: 600;
 }
 
+/* Modal links section styling */
+.modal-detail-section .faction-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.modal-detail-section .faction-link {
+  padding: 0.4rem 0.8rem;
+  border-radius: 14px;
+  background: rgba(77, 212, 255, 0.15);
+  border: 1px solid rgba(77, 212, 255, 0.3);
+  color: #4dd4ff;
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.modal-detail-section .faction-link:hover {
+  background: rgba(77, 212, 255, 0.3);
+  transform: translateY(-1px);
+}
+
 /* Mobile responsiveness for modal */
 @media (max-width: 768px) {
   .faction-modal .modal-content {
@@ -728,9 +753,32 @@
     grid-template-columns: 1fr;
   }
 }
-/* Hide faction details on cards since they're now modal-only */
+/* Hide faction details completely on cards - they should only appear in modal */
 .faction-details {
   display: none;
+}
+
+/* ===== Cross Links ===== */
+.faction-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.faction-link {
+  padding: 0.4rem 0.8rem;
+  border-radius: 14px;
+  background: rgba(77, 212, 255, 0.15);
+  border: 1px solid rgba(77, 212, 255, 0.3);
+  color: #4dd4ff;
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.faction-link:hover {
+  background: rgba(77, 212, 255, 0.3);
+  transform: translateY(-1px);
 }
 
 /* ===== Federation Impact ===== */

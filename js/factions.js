@@ -6,18 +6,32 @@ document.addEventListener("DOMContentLoaded", () => {
   const modal = document.getElementById("faction-modal");
   const modalBody = document.getElementById("modal-body");
 
+  // Check if required elements exist
+  if (!modal || !modalBody) {
+    console.warn("Modal elements not found, modal functionality disabled");
+    return;
+  }
+
   // Add modal functionality to expand buttons
   cards.forEach(card => {
-    card.querySelector(".expand-btn").addEventListener("click", () => {
-      openFactionModal(card);
-    });
+    const expandBtn = card.querySelector(".expand-btn");
+    if (expandBtn) {
+      expandBtn.addEventListener("click", () => {
+        openFactionModal(card);
+      });
+    }
   });
 
   // Function to open faction modal
   function openFactionModal(card) {
-    const factionName = card.querySelector("h2").textContent;
+    if (!modal || !modalBody) {
+      console.warn("Modal elements not available");
+      return;
+    }
+
+    const factionName = card.querySelector("h2")?.textContent || "Unknown Faction";
     const factionTag = card.querySelector(".faction-tag");
-    const factionSummary = card.querySelector(".faction-summary").textContent;
+    const factionSummary = card.querySelector(".faction-summary")?.textContent || "";
     const powerSnapshot = card.querySelector(".power-snapshot");
     const factionDetails = card.querySelector(".faction-details");
 
@@ -26,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="modal-faction-header">
         <div>
           <h1 class="modal-faction-title">${factionName}</h1>
-          <span class="modal-faction-tag ${factionTag.className}">${factionTag.textContent}</span>
+          ${factionTag ? `<span class="modal-faction-tag ${factionTag.className}">${factionTag.textContent}</span>` : ''}
         </div>
       </div>
 
@@ -43,9 +57,9 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
 
       powerItems.forEach(item => {
-        const label = item.querySelector("span").textContent;
+        const label = item.querySelector("span")?.textContent || "";
         const powerBar = item.querySelector(".power-bar div");
-        const powerValue = powerBar.style.getPropertyValue("--power") || "0";
+        const powerValue = powerBar?.style.getPropertyValue("--power") || "0";
 
         modalContent += `
           <div class="modal-power-item">
@@ -73,15 +87,26 @@ document.addEventListener("DOMContentLoaded", () => {
         modalContent += `<div class="modal-detail-sections">`;
 
         detailSections.forEach(section => {
-          const title = section.querySelector("h4").textContent;
-          const list = section.querySelector("ul").innerHTML;
+          const title = section.querySelector("h4")?.textContent || "";
+          const list = section.querySelector("ul");
+          const linksDiv = section.querySelector(".faction-links");
 
-          modalContent += `
-            <div class="modal-detail-section">
-              <h4>${title}</h4>
-              <ul>${list}</ul>
-            </div>
-          `;
+          if (title && (list || linksDiv)) {
+            modalContent += `
+              <div class="modal-detail-section">
+                <h4>${title}</h4>
+            `;
+
+            if (list) {
+              modalContent += `<ul>${list.innerHTML}</ul>`;
+            }
+
+            if (linksDiv) {
+              modalContent += `<div class="faction-links">${linksDiv.innerHTML}</div>`;
+            }
+
+            modalContent += `</div>`;
+          }
         });
 
         modalContent += `</div>`;
@@ -117,14 +142,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Enhanced filter functionality
   function filterFactions() {
-    const search = searchInput.value.toLowerCase();
-    const type = typeFilter.value;
+    const search = searchInput ? searchInput.value.toLowerCase() : "";
+    const type = typeFilter ? typeFilter.value : "all";
     const relation = relationFilter ? relationFilter.value : "all";
 
     cards.forEach(card => {
-      const name = card.querySelector("h2").textContent.toLowerCase();
-      const summary = card.querySelector(".faction-summary").textContent.toLowerCase();
-      const cardType = card.dataset.type;
+      const nameElement = card.querySelector("h2");
+      const summaryElement = card.querySelector(".faction-summary");
+
+      const name = nameElement ? nameElement.textContent.toLowerCase() : "";
+      const summary = summaryElement ? summaryElement.textContent.toLowerCase() : "";
+      const cardType = card.dataset.type || "";
       const cardRelation = card.dataset.relation || "unknown";
 
       const matchesSearch = name.includes(search) || summary.includes(search);
@@ -146,17 +174,36 @@ document.addEventListener("DOMContentLoaded", () => {
       counter = document.createElement("div");
       counter.id = "resultsCounter";
       counter.className = "results-counter";
-      document.querySelector(".factions-controls").appendChild(counter);
+      const controlsElement = document.querySelector(".factions-controls");
+      if (controlsElement) {
+        controlsElement.appendChild(counter);
+      }
     }
 
-    const typeText = typeFilter.value === "all" ? "factions" : `${typeFilter.value}s`;
-    const relationText = relationFilter && relationFilter.value !== "all" ? ` (${relationFilter.value})` : "";
+    const typeText = (typeFilter && typeFilter.value !== "all") ? `${typeFilter.value}s` : "factions";
+    const relationText = (relationFilter && relationFilter.value !== "all") ? ` (${relationFilter.value})` : "";
     counter.textContent = `Showing ${visible} of ${total} ${typeText}${relationText}`;
   }
 
   // Event listeners
-  searchInput.addEventListener("input", filterFactions);
-  typeFilter.addEventListener("change", filterFactions);
+  if (searchInput) {
+    searchInput.addEventListener("input", filterFactions);
+
+    // Add keyboard navigation and shortcuts
+    searchInput.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        searchInput.value = "";
+        if (typeFilter) typeFilter.value = "all";
+        if (relationFilter) relationFilter.value = "all";
+        filterFactions();
+      }
+    });
+  }
+
+  if (typeFilter) {
+    typeFilter.addEventListener("change", filterFactions);
+  }
+
   if (relationFilter) {
     relationFilter.addEventListener("change", filterFactions);
   }
@@ -164,26 +211,18 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize results counter
   updateResultsCount(cards.length, cards.length);
 
-  // Add keyboard navigation and shortcuts
-  searchInput.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      searchInput.value = "";
-      typeFilter.value = "all";
-      if (relationFilter) relationFilter.value = "all";
-      filterFactions();
-    }
-  });
-
   // Close modal when clicking outside
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      closeFactionModal();
-    }
-  });
+  if (modal) {
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        closeFactionModal();
+      }
+    });
+  }
 
   // Close modal with Escape key
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.classList.contains("active")) {
+    if (e.key === "Escape" && modal && modal.classList.contains("active")) {
       closeFactionModal();
     }
   });
@@ -192,6 +231,8 @@ document.addEventListener("DOMContentLoaded", () => {
 // Global function to close faction modal
 function closeFactionModal() {
   const modal = document.getElementById("faction-modal");
-  modal.classList.remove("active");
-  document.body.style.overflow = "auto";
+  if (modal) {
+    modal.classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
 }
