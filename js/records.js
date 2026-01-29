@@ -715,6 +715,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   try {
+    // Initialize mobile menu functionality
+    initializeMobileMenu();
+
     setTimeout(() => {
       initializeRecordsPage();
 
@@ -819,3 +822,137 @@ window.handleSort = handleSort;
 window.toggleRecordExpansion = toggleRecordExpansion;
 window.toggleHelp = toggleHelp;
 window.testFunction = testFunction;
+
+// Mobile Navigation Functions
+function toggleMobileMenu() {
+  const mobileNav = document.getElementById('mobile-nav');
+  const mobileToggle = document.querySelector('.mobile-menu-toggle');
+  const body = document.body;
+  const html = document.documentElement;
+
+  if (!mobileNav || !mobileToggle) return;
+
+  const isActive = mobileNav.classList.contains('active');
+
+  if (isActive) {
+    // Close mobile menu
+    mobileNav.classList.remove('active');
+    mobileToggle.classList.remove('active');
+    body.classList.remove('mobile-nav-active');
+    html.classList.remove('mobile-nav-active');
+
+    // Re-enable scrolling
+    body.style.overflow = '';
+    html.style.overflow = '';
+    body.style.position = '';
+    body.style.width = '';
+    body.style.top = '';
+    html.style.height = '';
+
+    // Restore scroll position if saved
+    if (window.scrollPosition !== undefined) {
+      window.scrollTo(0, window.scrollPosition);
+      delete window.scrollPosition;
+    }
+  } else {
+    // Save current scroll position
+    window.scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Open mobile menu
+    mobileNav.classList.add('active');
+    mobileToggle.classList.add('active');
+    body.classList.add('mobile-nav-active');
+    html.classList.add('mobile-nav-active');
+
+    // Prevent scrolling
+    body.style.overflow = 'hidden';
+    html.style.overflow = 'hidden';
+    body.style.position = 'fixed';
+    body.style.width = '100%';
+    body.style.top = `-${window.scrollPosition}px`;
+    html.style.height = '100%';
+  }
+
+  // Play sound effect if available
+  if (window.SoundFeedback && typeof window.SoundFeedback.playEffect === 'function') {
+    window.SoundFeedback.playEffect('click');
+  }
+}
+
+// Close mobile menu when clicking on a link
+function closeMobileMenuOnLinkClick() {
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      // Small delay to allow navigation to start
+      setTimeout(() => {
+        toggleMobileMenu();
+      }, 100);
+    });
+  });
+}
+
+// Initialize mobile menu functionality
+function initializeMobileMenu() {
+  closeMobileMenuOnLinkClick();
+
+  // Close mobile menu on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const mobileNav = document.getElementById('mobile-nav');
+      if (mobileNav && mobileNav.classList.contains('active')) {
+        toggleMobileMenu();
+      }
+    }
+  });
+
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', (e) => {
+    const mobileNav = document.getElementById('mobile-nav');
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+
+    if (mobileNav && mobileNav.classList.contains('active')) {
+      if (!mobileNav.contains(e.target) && !mobileToggle.contains(e.target)) {
+        toggleMobileMenu();
+      }
+    }
+  });
+
+  // Handle orientation change
+  window.addEventListener('orientationchange', () => {
+    const mobileNav = document.getElementById('mobile-nav');
+    if (mobileNav && mobileNav.classList.contains('active')) {
+      // Close menu on orientation change to prevent layout issues
+      setTimeout(() => {
+        toggleMobileMenu();
+      }, 100);
+    }
+  });
+
+  // Handle window resize
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      const mobileNav = document.getElementById('mobile-nav');
+      const mobileToggle = document.querySelector('.mobile-menu-toggle');
+
+      // Close mobile menu if screen becomes large enough
+      if (window.innerWidth > 768 && mobileNav && mobileNav.classList.contains('active')) {
+        toggleMobileMenu();
+      }
+
+      // Show/hide mobile toggle based on screen size
+      if (mobileToggle) {
+        if (window.innerWidth <= 768) {
+          mobileToggle.style.display = 'flex';
+        } else {
+          mobileToggle.style.display = 'none';
+        }
+      }
+    }, 250);
+  });
+}
+
+// Make functions globally available
+window.toggleMobileMenu = toggleMobileMenu;

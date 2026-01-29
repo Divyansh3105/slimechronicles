@@ -1201,3 +1201,564 @@ kbd {
   background: rgba(77, 212, 255, 0.3);
   color: var(--text-light);
 }
+
+@media (max-width: 767px) {
+  .historical-records-container {
+    padding: 1.5rem 1rem 3rem 1rem;
+    padding-top: 6rem; /* Account for fixed navbar */
+  }
+
+  /* Page Header */
+  .page-title {
+    font-size: 2.2rem;
+    line-height: 1.2;
+    margin: 1rem 0;
+  }
+
+  .page-subtitle {
+    font-size: 0.95rem;
+    padding: 0 1rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Help Section */
+  .help-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .help-toggle {
+    max-width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .help-content.expanded {
+    padding: 1.5rem;
+  }
+
+  .help-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .shortcut-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  /* Records Controls */
+  .records-controls {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .search-input-wrapper {
+    max-width: 100%;
+  }
+
+  #search-input {
+    font-size: 0.9rem;
+    padding: 1rem 1rem 1rem 3rem;
+  }
+
+  .filter-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .filter-group select {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .records-stats {
+    gap: 1.5rem;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .stat-item {
+    min-width: 100px;
+    padding: 0.8rem;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+  }
+
+  /* Records Grid */
+  .records-grid {
+    gap: 1.5rem;
+    max-width: 100%;
+  }
+
+  .records-grid::before {
+    left: 0.5rem;
+    width: 2px;
+  }
+
+  /* Record Cards */
+  .record-card {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    margin-left: 1rem;
+    border-radius: 12px;
+  }
+
+  .record-card::before {
+    left: -1rem;
+    width: 14px;
+    height: 14px;
+  }
+
+  .record-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .record-icon-container {
+    width: 60px;
+    height: 60px;
+    align-self: flex-start;
+  }
+
+  .record-icon {
+    font-size: 2rem;
+  }
+
+  .record-category-icon {
+    width: 24px;
+    height: 24px;
+    font-size: 1rem;
+    bottom: -2px;
+    right: -2px;
+  }
+
+  .record-content {
+    text-align: left;
+  }
+
+  .record-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .record-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .record-meta {
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  .record-volume,
+  .record-importance,
+  .record-date {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .record-expand-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+    margin-top: 1rem;
+  }
+
+  .record-details.expanded {
+    margin-top: 1.2rem;
+  }
+
+  .record-details > div,
+  .record-details .details-content > div {
+    padding: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .detail-label {
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .detail-value {
+    font-size: 0.9rem;
+  }
+
+  /* No Results */
+  .no-results {
+    padding: 3rem 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .no-results-icon {
+    font-size: 3.5rem;
+  }
+
+  .no-results h3 {
+    font-size: 1.5rem;
+  }
+
+  .no-results p {
+    font-size: 1rem;
+  }
+
+  /* Touch Improvements */
+  .record-card,
+  .record-expand-btn,
+  .help-toggle,
+  .clear-search,
+  .filter-group select,
+  #search-input {
+    touch-action: manipulation;
+  }
+
+  /* Disable hover effects on touch devices */
+  .record-card:hover {
+    transform: none;
+  }
+
+  .record-card:hover .record-title::after {
+    width: 0;
+  }
+
+  /* Improve touch targets */
+  .record-expand-btn {
+    min-height: 44px;
+  }
+
+  .clear-search {
+    width: 36px;
+    height: 36px;
+    right: 0.8rem;
+  }
+
+  /* Performance optimizations */
+  .magic-circle,
+  .particles,
+  .starfield,
+  .floating-element {
+    display: none !important;
+  }
+
+  /* Reduce animations */
+  .record-card {
+    animation: none;
+  }
+
+  .record-card::before {
+    animation: none;
+  }
+}
+
+/* ---------- Small Phones (≤ 479px) ---------- */
+@media (max-width: 479px) {
+  .historical-records-container {
+    padding: 1rem 0.75rem 2rem 0.75rem;
+    padding-top: 5.5rem;
+  }
+
+  .page-title {
+    font-size: 1.8rem;
+  }
+
+  .page-subtitle {
+    font-size: 0.9rem;
+    padding: 0 0.5rem;
+  }
+
+  .records-controls {
+    padding: 1rem;
+  }
+
+  .records-stats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .stat-item {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .record-card {
+    padding: 1rem;
+    margin-left: 0.5rem;
+  }
+
+  .record-card::before {
+    left: -0.5rem;
+    width: 12px;
+    height: 12px;
+  }
+
+  .records-grid::before {
+    left: 0.25rem;
+  }
+
+  .record-title {
+    font-size: 1.1rem;
+  }
+
+  .record-description {
+    font-size: 0.9rem;
+  }
+
+  .record-icon-container {
+    width: 50px;
+    height: 50px;
+  }
+
+  .record-icon {
+    font-size: 1.6rem;
+  }
+
+  .record-category-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ---------- Small Phones (≤ 479px) ---------- */
+@media (max-width: 479px) {
+  .records-page {
+    padding: 1rem 0.75rem;
+    padding-top: 5.5rem;
+  }
+
+  .records-title {
+    font-size: 1.8rem;
+  }
+
+  .record-card {
+    padding: 1rem;
+  }
+
+  .record-title {
+    font-size: 1rem;
+  }
+}
+
+/* ---------- Tablets (≥ 768px) ---------- */
+@media (min-width: 768px) {
+  .historical-records-container {
+    padding: 2rem;
+    padding-top: 7rem;
+  }
+
+  .page-title {
+    font-size: 3rem;
+  }
+
+  .page-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .records-controls {
+    padding: 2rem;
+  }
+
+  .filter-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .records-stats {
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  .record-card {
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  .record-icon-container {
+    width: 70px;
+    height: 70px;
+  }
+
+  .record-expand-btn {
+    width: auto;
+    align-self: flex-start;
+  }
+}
+
+/* ---------- Laptops (≥ 1024px) ---------- */
+@media (min-width: 1024px) {
+  .historical-records-container {
+    max-width: 1200px;
+    padding: 3rem;
+    padding-top: 7rem;
+  }
+
+  .page-title {
+    font-size: 3.5rem;
+  }
+
+  .records-controls {
+    padding: 2.5rem;
+  }
+
+  .record-card {
+    gap: 2rem;
+  }
+
+  .record-icon-container {
+    width: 80px;
+    height: 80px;
+  }
+
+  .record-icon {
+    font-size: 2.5rem;
+  }
+}
+
+/* ---------- Large Screens (≥ 1280px) ---------- */
+@media (min-width: 1280px) {
+  .historical-records-container {
+    max-width: 1400px;
+  }
+
+  .records-controls {
+    padding: 3rem;
+  }
+}
+
+/* ---------- Mobile Performance & UX ---------- */
+@media (max-width: 767px) {
+  /* Disable heavy decorative effects */
+  .magic-circle,
+  .particles,
+  .starfield,
+  .floating-element {
+    display: none !important;
+  }
+
+  /* Optimize scrolling performance */
+  body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  .historical-records-container {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  /* Disable hover transforms on touch */
+  .record-card:hover {
+    transform: none !important;
+  }
+
+  .record-card:hover .record-icon-container {
+    transform: none !important;
+  }
+
+  .record-card:hover .record-icon {
+    transform: none !important;
+  }
+
+  /* Improve touch interaction */
+  .record-card {
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(77, 212, 255, 0.1);
+  }
+
+  .record-expand-btn {
+    -webkit-tap-highlight-color: rgba(77, 212, 255, 0.2);
+  }
+
+  /* Ensure proper viewport handling */
+  .historical-records-container {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  /* Mobile-specific animations */
+  .record-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .record-card:active {
+    transform: scale(0.98);
+  }
+
+  /* Improve readability on small screens */
+  .record-title {
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  .record-description {
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  .detail-value {
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  /* Mobile navigation improvements */
+  .mobile-menu-toggle {
+    z-index: 1001;
+    position: relative;
+  }
+
+  .mobile-nav {
+    z-index: 1000;
+  }
+
+  /* Ensure mobile nav is above all content */
+  .mobile-nav.active {
+    z-index: 9999;
+  }
+
+  /* Prevent content from showing through mobile nav */
+  body.mobile-nav-active .historical-records-container {
+    visibility: hidden;
+  }
+
+  body.mobile-nav-active .main-nav {
+    z-index: 999;
+  }
+}
+
+/* ---------- Reduced Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .record-card {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .record-card::before {
+    animation: none !important;
+  }
+
+  .page-title {
+    animation: none !important;
+  }
+
+  .page-title::before {
+    animation: none !important;
+  }
+
+  .help-icon {
+    transition: none !important;
+  }
+
+  .loading-orb,
+  .loading-inner,
+  .loading-text,
+  .loading-bar {
+    animation: none !important;
+  }
+}
