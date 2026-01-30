@@ -1,0 +1,37 @@
+# Robots.txt for Jura Tempest Federation
+# https://slimechronicles.netlify.app/
+
+User-agent: *
+Allow: /
+
+# Allow all main pages
+Allow: /index.html
+Allow: /overview.html
+Allow: /codex.html
+Allow: /skills.html
+Allow: /Chronicle.html
+Allow: /records.html
+Allow: /factions.html
+Allow: /character.html
+
+# Allow assets and resources
+Allow: /assets/
+Allow: /css/
+Allow: /js/
+Allow: /data/
+
+# Disallow system files and directories
+Disallow: /.git/
+Disallow: /.vscode/
+Disallow: /desktop.ini
+Disallow: /*.json$
+
+# Allow search engines to access favicon
+Allow: /assets/fav.ico
+Allow: /assets/fav.png
+
+# Sitemap location
+Sitemap: https://slimechronicles.netlify.app/sitemap.xml
+
+# Crawl delay (optional - helps prevent server overload)
+Crawl-delay: 1
