@@ -1305,6 +1305,40 @@
   display: none;
 }
 
+/* ===== Dependency Indicators ===== */
+.dependency-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.dependency-grid span {
+  padding: 0.4rem 0.7rem;
+  font-size: 0.75rem;
+  border-radius: 10px;
+  background: rgba(77, 212, 255, 0.15);
+  border: 1px solid rgba(77, 212, 255, 0.3);
+  color: var(--text-light);
+  transition: all 0.3s ease;
+}
+
+.dependency-grid span:hover {
+  background: rgba(77, 212, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Mobile dependency grid adjustments */
+@media (max-width: 767px) {
+  .dependency-grid {
+    gap: 0.5rem;
+  }
+
+  .dependency-grid span {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.7rem;
+  }
+}
+
 /* ===== Cross Links ===== */
 .faction-links {
   display: flex;

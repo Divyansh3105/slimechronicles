@@ -6,6 +6,50 @@ document.addEventListener("DOMContentLoaded", () => {
   const modal = document.getElementById("faction-modal");
   const modalBody = document.getElementById("modal-body");
 
+  // Faction Dependencies Database
+  const factionDependencies = {
+    "Jura Tempest Federation": ["⚔ Military", "✨ Magic", "🔩 Technology", "🧠 Intelligence"],
+    "Armed Nation of Dwargon": ["⚔ Military", "🔩 Technology", "🌾 Agriculture"],
+    "Kingdom of Ingrassia": ["⚔ Military", "🌾 Agriculture", "🧠 Intelligence"],
+    "Holy Empire Ruberios": ["⚔ Military", "✨ Magic", "🧠 Intelligence"],
+    "Eastern Empire": ["⚔ Military", "🔩 Technology", "🧠 Intelligence", "🌾 Agriculture"],
+    "Kingdom of Blumund": ["🧠 Intelligence", "🌾 Agriculture"],
+    "Animal Kingdom Eurazania": ["⚔ Military", "🌾 Agriculture", "✨ Magic"],
+    "Kingdom of Farmenas": ["🌾 Agriculture", "🧠 Intelligence"],
+    "Octagram (Demon Lords)": ["⚔ Military", "✨ Magic", "🧠 Intelligence"],
+    "Free Guild": ["🧠 Intelligence", "🌾 Agriculture"],
+    "Four Nations Trade Alliance": ["🔩 Technology", "🌾 Agriculture", "🧠 Intelligence"],
+    "Western Holy Church": ["⚔ Military", "✨ Magic"],
+    "Cerberus": ["🧠 Intelligence", "🔩 Technology"],
+    "Kingdom of Falmuth (Fallen)": ["⚔ Military", "🌾 Agriculture"],
+    "Goblin Tribes": ["⚔ Military", "🌾 Agriculture"],
+    "Fanged Wolf Clan": ["⚔ Military", "✨ Magic"],
+    "Lizardmen Tribes": ["⚔ Military", "🌾 Agriculture"]
+  };
+
+  // Function to generate faction dependencies HTML
+  function generateFactionDependencies(factionName) {
+    const dependencies = factionDependencies[factionName];
+    if (!dependencies || dependencies.length === 0) return "";
+
+    let dependenciesHTML = `
+      <div class="modal-detail-section dependency-section">
+        <h4>Strategic Dependencies</h4>
+        <div class="dependency-grid">
+    `;
+
+    dependencies.forEach(dependency => {
+      dependenciesHTML += `<span>${dependency}</span>`;
+    });
+
+    dependenciesHTML += `
+        </div>
+      </div>
+    `;
+
+    return dependenciesHTML;
+  }
+
   // Faction Relations Database
   const factionRelations = {
     "Jura Tempest Federation": {
@@ -273,6 +317,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Add faction relations section (dynamically generated)
         modalContent += generateFactionRelations(factionName);
+
+        // Add faction dependencies section (dynamically generated)
+        modalContent += generateFactionDependencies(factionName);
 
         // Add other sections
         otherSections.forEach(section => {
