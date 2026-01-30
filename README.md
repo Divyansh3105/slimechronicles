@@ -5,6 +5,8 @@
 ![Tensura](https://img.shields.io/badge/Tensura-000000?style=for-the-badge&logo=readthedocs&logoColor=white)
 ![Characters](https://img.shields.io/badge/Characters-1D3557?style=for-the-badge&logoColor=white)
 ![Skills](https://img.shields.io/badge/Skills-4dd4ff?style=for-the-badge&logoColor=white)
+![Codex](https://img.shields.io/badge/Codex-6f42c1?style=for-the-badge&logoColor=white)
+![Factions](https://img.shields.io/badge/Factions-dc3545?style=for-the-badge&logoColor=white)
 ![Timeline](https://img.shields.io/badge/Timeline-00b4d8?style=for-the-badge&logoColor=white)
 ![Achievements](https://img.shields.io/badge/Achievements-FFD700?style=for-the-badge&logoColor=black)
 ![Interactive UI](https://img.shields.io/badge/Interactive_UI-212529?style=for-the-badge&logoColor=white)
@@ -17,7 +19,7 @@
 
 **A visually immersive Tensura codex and chronicle. Explore characters, skills, achievements, and the magical world of Tempest!**
 
-[🌐 Live Demo](#) • [📖 Documentation](#-features) • [🐛 Report Bug](https://github.com/Divyansh3105/slimechronicles/issues) • [✨ Request Feature](https://github.com/Divyansh3105/slimechronicles/issues)
+[🌐 Live Demo](https://slimechronicles.netlify.app/) • [📖 Documentation](#-features) • [🐛 Report Bug](https://github.com/Divyansh3105/slimechronicles/issues) • [✨ Request Feature](https://github.com/Divyansh3105/slimechronicles/issues)
 
 ![Jura Tempest Banner](assets/banner.png)
 
@@ -31,6 +33,8 @@ The **Jura Tempest Federation: Slime Chronicles** is a fan-made interactive code
 
 - 🧑‍🎤 **Character Profiles** – Explore detailed stats, lore, and relationships for all major Tempest characters
 - ⚡ **Skills System** – Browse unique abilities, prerequisites, and applications
+- 📚 **Interactive Codex** – Comprehensive database of knowledge, lore, and world-building elements
+- 🏛️ **Factions & Organizations** – Detailed information about various groups, alliances, and political entities
 - 🏆 **Achievements** – Track legendary feats and milestones
 - 📜 **Timeline & Records** – Follow Rimuru and the Federation through major events and battles
 - 🏛️ **Federation Overview** – Analytics on governance, economy, and technology
@@ -51,6 +55,8 @@ The **Jura Tempest Federation: Slime Chronicles** is a fan-made interactive code
 
 - 🧑‍🎤 **Character Database** – Search, filter, and sort by race, role, and more
 - ⚡ **Skills Explorer** – Prerequisites, applications, and unique abilities
+- 📚 **Codex System** – Comprehensive knowledge base with searchable entries
+- 🏛️ **Faction Management** – Explore relationships, alliances, and political dynamics
 - 🏆 **Achievements** – Track milestones and legendary feats
 - 📜 **Historical Records** – Chronicle Rimuru’s journey and Tempest’s rise
 
@@ -115,7 +121,10 @@ slimechronicles/
 ├── overview.html        # Federation analytics and stats
 ├── character.html       # Character profiles
 ├── skills.html          # Skills database
+├── codex.html           # Interactive knowledge base and lore
+├── factions.html        # Factions, organizations, and political entities
 ├── records.html         # Historical records and achievements
+├── Chronicle.html       # Timeline and chronological events
 ├── Chronicle.html        # Chronicle timeline
 ├── data/                # Character and event data (JSON)
 ├── js/                  # Application logic and effects
