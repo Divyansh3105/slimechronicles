@@ -236,3 +236,118 @@ function closeFactionModal() {
     document.body.style.overflow = "auto";
   }
 }
+
+// Mobile Navigation Functions - Handle mobile menu toggle functionality
+function toggleMobileMenu() {
+  console.log("toggleMobileMenu called"); // Debug logging for mobile menu activation
+
+  // Get mobile navigation elements from DOM
+  const toggle = document.querySelector(".mobile-menu-toggle");
+  const mobileNav = document.getElementById("mobile-nav");
+
+  if (!toggle || !mobileNav) {
+    console.warn("Mobile navigation elements not found");
+    return;
+  }
+
+  // Toggle active states for menu and button
+  toggle.classList.toggle("active");
+  mobileNav.classList.toggle("active");
+
+  // Manage body scroll behavior when menu is open
+  if (mobileNav.classList.contains("active")) {
+    document.body.style.overflow = "hidden"; // Prevent background scrolling
+    document.body.classList.add("mobile-nav-active");
+  } else {
+    document.body.style.overflow = "auto"; // Restore scrolling
+    document.body.classList.remove("mobile-nav-active");
+  }
+
+  // Add accessibility attributes for screen readers
+  const isOpen = mobileNav.classList.contains("active");
+  toggle.setAttribute("aria-expanded", isOpen);
+  mobileNav.setAttribute("aria-hidden", !isOpen);
+}
+
+// Initialize mobile navigation event listeners
+function initializeMobileNavigation() {
+  const toggle = document.querySelector(".mobile-menu-toggle");
+  const mobileNav = document.getElementById("mobile-nav");
+
+  if (!toggle || !mobileNav) {
+    console.warn("Mobile navigation elements not found during initialization");
+    return;
+  }
+
+  // Auto-close menu when navigation links are clicked
+  document.querySelectorAll(".mobile-nav a").forEach((link) => {
+    link.addEventListener("click", () => {
+      toggleMobileMenu(); // Auto-close menu after navigation
+    });
+  });
+
+  // Close menu when clicking outside of it
+  document.addEventListener("click", (e) => {
+    if (mobileNav.classList.contains("active") &&
+        !mobileNav.contains(e.target) &&
+        !toggle.contains(e.target)) {
+      toggleMobileMenu(); // Close menu on outside click
+    }
+  });
+
+  // Close menu with Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && mobileNav && mobileNav.classList.contains("active")) {
+      toggleMobileMenu(); // Close menu with keyboard shortcut
+    }
+  });
+
+  // Handle visibility change (tab switching)
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      if (mobileNav && mobileNav.classList.contains("active")) {
+        // Close mobile nav when tab becomes hidden
+        toggleMobileMenu(); // Prevent menu staying open in background
+      }
+    }
+  });
+
+  // Handle window resize - close mobile nav on desktop
+  let isMobile = window.innerWidth <= 768;
+  window.addEventListener("resize", () => {
+    const newIsMobile = window.innerWidth <= 768;
+    if (!newIsMobile && mobileNav.classList.contains("active")) {
+      // Close mobile nav when switching to desktop
+      toggleMobileMenu(); // Auto-close on desktop resize
+    }
+    isMobile = newIsMobile; // Update mobile state tracking
+  });
+
+  // Add touch gesture support for mobile menu
+  let touchStartY = 0;
+  let touchStartX = 0;
+
+  mobileNav.addEventListener("touchstart", (e) => {
+    touchStartY = e.touches[0].clientY;
+    touchStartX = e.touches[0].clientX;
+  });
+
+  mobileNav.addEventListener("touchend", (e) => {
+    const touchEndY = e.changedTouches[0].clientY;
+    const touchEndX = e.changedTouches[0].clientX;
+    const swipeDistance = touchStartY - touchEndY;
+    const horizontalDistance = Math.abs(touchStartX - touchEndX);
+
+    // If swiped up significantly and not too much horizontal movement, close the menu
+    if (swipeDistance > 100 && horizontalDistance < 50) {
+      toggleMobileMenu(); // Close menu on upward swipe gesture
+    }
+  });
+}
+
+// Initialize mobile navigation when DOM is loaded
+document.addEventListener("DOMContentLoaded", initializeMobileNavigation);
+
+// Make functions globally available for HTML onclick handlers
+window.toggleMobileMenu = toggleMobileMenu;
+window.closeFactionModal = closeFactionModal;
