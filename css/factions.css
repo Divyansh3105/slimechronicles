@@ -523,6 +523,137 @@
   }
 }
 
+/* ===== Mini Faction Timeline ===== */
+.mini-timeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.timeline-node {
+  padding: 0.6rem;
+  border-radius: 10px;
+  background: rgba(77, 212, 255, 0.1);
+  border: 1px solid rgba(77, 212, 255, 0.25);
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-light);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.timeline-node.active {
+  opacity: 1;
+  box-shadow: 0 0 10px rgba(77, 212, 255, 0.4);
+}
+
+.timeline-node.current {
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.3), rgba(255, 215, 0, 0.2));
+  border-color: rgba(255, 215, 0, 0.6);
+  opacity: 1;
+}
+
+.timeline-node span {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+  color: #4dd4ff;
+}
+
+.timeline-node small {
+  display: block;
+  font-size: 0.65rem;
+  color: rgba(232, 240, 255, 0.8);
+  line-height: 1.2;
+}
+
+.timeline-node:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(77, 212, 255, 0.3);
+}
+
+/* Mobile timeline adjustments */
+@media (max-width: 767px) {
+  .mini-timeline {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+
+  .timeline-node {
+    padding: 0.5rem;
+    font-size: 0.7rem;
+  }
+
+  .timeline-node small {
+    font-size: 0.6rem;
+  }
+}
+
+/* Modal-specific timeline styling */
+.modal-detail-section .mini-timeline {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.modal-detail-section.timeline-section {
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.4), rgba(10, 14, 39, 0.4));
+  border: 2px solid rgba(77, 212, 255, 0.4);
+  border-radius: 18px;
+  margin-bottom: 2rem;
+}
+
+.modal-detail-section.timeline-section h4 {
+  color: #ffd700;
+  text-align: center;
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.modal-detail-section .timeline-node {
+  background: rgba(77, 212, 255, 0.15);
+  border: 1px solid rgba(77, 212, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.modal-detail-section .timeline-node:hover {
+  background: rgba(77, 212, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(77, 212, 255, 0.4);
+}
+
+.modal-detail-section .timeline-node.active {
+  background: rgba(77, 212, 255, 0.2);
+  border-color: rgba(77, 212, 255, 0.5);
+  box-shadow: 0 0 15px rgba(77, 212, 255, 0.5);
+}
+
+.modal-detail-section .timeline-node.current {
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.4), rgba(255, 215, 0, 0.3));
+  border-color: rgba(255, 215, 0, 0.7);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+}
+
+/* Timeline animation in modal */
+.modal-detail-section .timeline-node {
+  animation: timelineSlideIn 0.4s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.modal-detail-section .timeline-node:nth-child(1) { animation-delay: 0.1s; }
+.modal-detail-section .timeline-node:nth-child(2) { animation-delay: 0.2s; }
+.modal-detail-section .timeline-node:nth-child(3) { animation-delay: 0.3s; }
+.modal-detail-section .timeline-node:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes timelineSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Loading animation for cards */
 .faction-card {
   animation: fadeInUp 0.6s ease forwards;
@@ -1110,6 +1241,27 @@
   .modal-detail-section .faction-link {
     font-size: 0.75rem;
     padding: 0.3rem 0.6rem;
+  }
+
+  /* Mobile timeline in modal */
+  .modal-detail-section .mini-timeline {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+    margin: 1rem 0;
+  }
+
+  .modal-detail-section .timeline-node {
+    padding: 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  .modal-detail-section .timeline-node span {
+    font-size: 0.75rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .modal-detail-section .timeline-node small {
+    font-size: 0.65rem;
   }
 }
 

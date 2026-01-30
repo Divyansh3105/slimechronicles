@@ -86,7 +86,31 @@ document.addEventListener("DOMContentLoaded", () => {
       if (detailSections.length > 0) {
         modalContent += `<div class="modal-detail-sections">`;
 
-        detailSections.forEach(section => {
+        // Prioritize timeline section to appear first
+        const timelineSection = Array.from(detailSections).find(section =>
+          section.classList.contains('timeline-section')
+        );
+        const otherSections = Array.from(detailSections).filter(section =>
+          !section.classList.contains('timeline-section')
+        );
+
+        // Add timeline section first if it exists
+        if (timelineSection) {
+          const title = timelineSection.querySelector("h4")?.textContent || "";
+          const timelineDiv = timelineSection.querySelector(".mini-timeline");
+
+          if (title && timelineDiv) {
+            modalContent += `
+              <div class="modal-detail-section timeline-section">
+                <h4>${title}</h4>
+                <div class="mini-timeline">${timelineDiv.innerHTML}</div>
+              </div>
+            `;
+          }
+        }
+
+        // Add other sections
+        otherSections.forEach(section => {
           const title = section.querySelector("h4")?.textContent || "";
           const list = section.querySelector("ul");
           const linksDiv = section.querySelector(".faction-links");
