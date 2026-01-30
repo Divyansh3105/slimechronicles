@@ -6,6 +6,168 @@ document.addEventListener("DOMContentLoaded", () => {
   const modal = document.getElementById("faction-modal");
   const modalBody = document.getElementById("modal-body");
 
+  // Faction Relations Database
+  const factionRelations = {
+    "Jura Tempest Federation": {
+      allied: ["Dwargon", "Blumund", "Ingrassia", "Farmenas"],
+      neutral: ["Ruberios", "Eurazania", "Octagram"],
+      hostile: ["Eastern Empire", "Western Holy Church"],
+      unknown: []
+    },
+    "Armed Nation of Dwargon": {
+      allied: ["Tempest", "Ingrassia", "Blumund"],
+      neutral: ["Ruberios", "Eastern Empire", "Free Guild"],
+      hostile: [],
+      unknown: []
+    },
+    "Kingdom of Ingrassia": {
+      allied: ["Tempest", "Dwargon", "Free Guild"],
+      neutral: ["Ruberios", "Blumund", "Eastern Empire"],
+      hostile: [],
+      unknown: []
+    },
+    "Holy Empire Ruberios": {
+      allied: ["Western Nations"],
+      neutral: ["Tempest", "Ingrassia", "Octagram"],
+      hostile: ["Eastern Empire", "Monster Nations"],
+      unknown: []
+    },
+    "Eastern Empire": {
+      allied: [],
+      neutral: ["Ruberios"],
+      hostile: ["Tempest", "Demon Lords", "Western Nations", "Monster Nations"],
+      unknown: ["Dwargon"]
+    },
+    "Kingdom of Blumund": {
+      allied: ["Tempest", "Ingrassia", "Free Guild"],
+      neutral: ["Dwargon", "Ruberios"],
+      hostile: [],
+      unknown: ["Eastern Empire"]
+    },
+    "Animal Kingdom Eurazania": {
+      allied: ["Octagram"],
+      neutral: ["Tempest", "Trade Partners", "Western Nations"],
+      hostile: [],
+      unknown: ["Eastern Empire"]
+    },
+    "Kingdom of Farmenas": {
+      allied: ["Tempest", "Blumund", "Dwargon"],
+      neutral: ["Ingrassia", "Ruberios"],
+      hostile: [],
+      unknown: ["Eastern Empire"]
+    },
+    "Octagram (Demon Lords)": {
+      allied: ["Monster Nations"],
+      neutral: ["All Nations", "Human Kingdoms", "Free Guild"],
+      hostile: ["Eastern Empire"],
+      unknown: []
+    },
+    "Free Guild": {
+      allied: ["Ingrassia"],
+      neutral: ["All Nations", "Tempest", "Blumund", "Dwargon", "Octagram"],
+      hostile: [],
+      unknown: []
+    },
+    "Four Nations Trade Alliance": {
+      allied: ["Member Nations"],
+      neutral: ["Ingrassia", "Free Guild", "Ruberios", "Octagram"],
+      hostile: [],
+      unknown: ["Eastern Empire"]
+    },
+    "Western Holy Church": {
+      allied: ["Ruberios", "Western Nations"],
+      neutral: ["Eastern Empire"],
+      hostile: ["Tempest", "Monster Nations", "Demon Lords"],
+      unknown: []
+    },
+    "Cerberus": {
+      allied: ["Eastern Empire"],
+      neutral: ["Criminal Networks"],
+      hostile: ["Tempest", "Freedom Association", "Free Guild"],
+      unknown: ["Western Nations"]
+    },
+    "Kingdom of Falmuth (Fallen)": {
+      allied: ["Western Nations"],
+      neutral: ["Ingrassia", "Free Guild"],
+      hostile: ["Tempest"],
+      unknown: ["Ruberios"]
+    },
+    "Goblin Tribes": {
+      allied: ["Tempest", "Wolf Clan", "Lizardmen", "Dwargon"],
+      neutral: ["Forest Races"],
+      hostile: ["Orc Clans"],
+      unknown: []
+    },
+    "Fanged Wolf Clan": {
+      allied: ["Tempest", "Goblin Tribes", "Lizardmen"],
+      neutral: ["Forest Races", "Dwargon"],
+      hostile: ["Orc Clans"],
+      unknown: []
+    },
+    "Lizardmen Tribes": {
+      allied: ["Tempest", "Goblin Tribes", "Wolf Clan"],
+      neutral: ["Forest Races", "Dwargon"],
+      hostile: ["Orc Clans"],
+      unknown: []
+    }
+  };
+
+  // Function to generate faction relations HTML
+  function generateFactionRelations(factionName) {
+    const relations = factionRelations[factionName];
+    if (!relations) return "";
+
+    let relationsHTML = `
+      <div class="modal-detail-section relations-section">
+        <h4>Faction Relations</h4>
+
+        <!-- Mini Legend for Modal -->
+        <div class="modal-relations-legend">
+          <div class="modal-legend-item">
+            <span class="relation allied">🤝 Allied</span>
+          </div>
+          <div class="modal-legend-item">
+            <span class="relation neutral">🤝 Neutral</span>
+          </div>
+          <div class="modal-legend-item">
+            <span class="relation hostile">⚔️ Hostile</span>
+          </div>
+          <div class="modal-legend-item">
+            <span class="relation unknown">❓ Unknown</span>
+          </div>
+        </div>
+
+        <div class="relation-pills">
+    `;
+
+    // Add allied relations
+    relations.allied.forEach(faction => {
+      relationsHTML += `<span class="relation allied" data-faction="${faction}" title="Allied: Close partnership with ${faction}">${faction}</span>`;
+    });
+
+    // Add neutral relations
+    relations.neutral.forEach(faction => {
+      relationsHTML += `<span class="relation neutral" data-faction="${faction}" title="Neutral: Diplomatic relations with ${faction}">${faction}</span>`;
+    });
+
+    // Add hostile relations
+    relations.hostile.forEach(faction => {
+      relationsHTML += `<span class="relation hostile" data-faction="${faction}" title="Hostile: Active conflict with ${faction}">${faction}</span>`;
+    });
+
+    // Add unknown relations
+    relations.unknown.forEach(faction => {
+      relationsHTML += `<span class="relation unknown" data-faction="${faction}" title="Unknown: Unclear relations with ${faction}">${faction}</span>`;
+    });
+
+    relationsHTML += `
+        </div>
+      </div>
+    `;
+
+    return relationsHTML;
+  }
+
   // Check if required elements exist
   if (!modal || !modalBody) {
     console.warn("Modal elements not found, modal functionality disabled");
@@ -91,7 +253,7 @@ document.addEventListener("DOMContentLoaded", () => {
           section.classList.contains('timeline-section')
         );
         const otherSections = Array.from(detailSections).filter(section =>
-          !section.classList.contains('timeline-section')
+          !section.classList.contains('timeline-section') && !section.classList.contains('relations-section')
         );
 
         // Add timeline section first if it exists
@@ -108,6 +270,9 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
           }
         }
+
+        // Add faction relations section (dynamically generated)
+        modalContent += generateFactionRelations(factionName);
 
         // Add other sections
         otherSections.forEach(section => {
@@ -148,11 +313,27 @@ document.addEventListener("DOMContentLoaded", () => {
           `;
         }
       }
+    } else {
+      // If no faction details exist, still add the relations section
+      modalContent += `<div class="modal-detail-sections">`;
+      modalContent += generateFactionRelations(factionName);
+      modalContent += `</div>`;
     }
 
     modalBody.innerHTML = modalContent;
     modal.classList.add("active");
     document.body.style.overflow = "hidden";
+
+    // Add click handlers for relation pills (future functionality)
+    const relationPills = modal.querySelectorAll(".relation[data-faction]");
+    relationPills.forEach(pill => {
+      pill.addEventListener("click", (e) => {
+        const targetFaction = e.target.dataset.faction;
+        console.log(`Clicked on relation: ${targetFaction}`);
+        // Future: Open modal for the clicked faction
+        findAndOpenFactionModal(targetFaction);
+      });
+    });
 
     // Animate power bars after modal opens
     setTimeout(() => {
@@ -162,6 +343,36 @@ document.addEventListener("DOMContentLoaded", () => {
         bar.style.width = `${power}%`;
       });
     }, 100);
+  }
+
+  // Function to find and open faction modal by name
+  function findAndOpenFactionModal(factionName) {
+    // Normalize faction names for matching
+    const normalizedTarget = factionName.toLowerCase();
+
+    // Find the faction card that matches
+    const targetCard = Array.from(cards).find(card => {
+      const cardName = card.querySelector("h2")?.textContent.toLowerCase() || "";
+      return cardName.includes(normalizedTarget) ||
+             normalizedTarget.includes(cardName.split(" ")[0]) ||
+             (normalizedTarget === "tempest" && cardName.includes("jura tempest")) ||
+             (normalizedTarget === "dwargon" && cardName.includes("dwargon")) ||
+             (normalizedTarget === "ruberios" && cardName.includes("ruberios")) ||
+             (normalizedTarget === "eastern empire" && cardName.includes("eastern empire"));
+    });
+
+    if (targetCard) {
+      // Close current modal first
+      closeFactionModal();
+
+      // Open new modal after a brief delay
+      setTimeout(() => {
+        openFactionModal(targetCard);
+      }, 300);
+    } else {
+      console.warn(`Faction not found: ${factionName}`);
+      // Could show a toast notification here
+    }
   }
 
   // Enhanced filter functionality

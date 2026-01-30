@@ -1354,3 +1354,163 @@
   position: absolute;
   left: 0;
 }
+
+/* ===== Faction Relations Pills ===== */
+.relation-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.relation {
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.relation:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.relation.allied {
+  background: rgba(144, 238, 144, 0.25);
+  color: #90ee90;
+  border-color: rgba(144, 238, 144, 0.4);
+}
+
+.relation.allied:hover {
+  background: rgba(144, 238, 144, 0.35);
+  box-shadow: 0 2px 8px rgba(144, 238, 144, 0.3);
+}
+
+.relation.neutral {
+  background: rgba(255, 215, 0, 0.25);
+  color: #ffd700;
+  border-color: rgba(255, 215, 0, 0.4);
+}
+
+.relation.neutral:hover {
+  background: rgba(255, 215, 0, 0.35);
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+}
+
+.relation.hostile {
+  background: rgba(255, 99, 71, 0.25);
+  color: #ff6347;
+  border-color: rgba(255, 99, 71, 0.4);
+}
+
+.relation.hostile:hover {
+  background: rgba(255, 99, 71, 0.35);
+  box-shadow: 0 2px 8px rgba(255, 99, 71, 0.3);
+}
+
+.relation.unknown {
+  background: rgba(128, 128, 128, 0.25);
+  color: #808080;
+  border-color: rgba(128, 128, 128, 0.4);
+}
+
+.relation.unknown:hover {
+  background: rgba(128, 128, 128, 0.35);
+  box-shadow: 0 2px 8px rgba(128, 128, 128, 0.3);
+}
+
+/* Relations section styling */
+.relations-section {
+  background: rgba(21, 27, 61, 0.2);
+  border: 1px solid rgba(77, 212, 255, 0.2);
+  border-radius: 12px;
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.relations-section h4 {
+  color: #4dd4ff;
+  font-family: "Cinzel", serif;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Modal Relations Legend */
+.modal-relations-legend {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+  padding: 0.8rem;
+  background: rgba(10, 14, 39, 0.4);
+  border-radius: 8px;
+  border: 1px solid rgba(77, 212, 255, 0.1);
+}
+
+.modal-legend-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.modal-legend-item small {
+  color: rgba(232, 240, 255, 0.7);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  font-weight: 500;
+}
+
+/* Mobile responsiveness for modal legend */
+@media (max-width: 767px) {
+  .modal-relations-legend {
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    padding: 0.6rem;
+  }
+
+  .modal-legend-item {
+    gap: 0.2rem;
+  }
+
+  .modal-legend-item small {
+    font-size: 0.6rem;
+  }
+
+  .modal-legend-item .relation {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.6rem;
+  }
+}
+
+/* Mobile responsiveness for relation pills */
+@media (max-width: 767px) {
+  .relation-pills {
+    gap: 0.4rem;
+    justify-content: center;
+  }
+
+  .relation {
+    padding: 0.25rem 0.6rem;
+    font-size: 0.65rem;
+  }
+
+  .relations-section {
+    padding: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .relations-section h4 {
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+  }
+}
