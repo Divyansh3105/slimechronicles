@@ -200,31 +200,6 @@ function scrollToTop() {
   });
 }
 
-// Floating action button menu toggle - Control FAB menu visibility
-function toggleFabMenu() {
-  const fabMenu = document.getElementById("fab-menu");
-  const fabMainIcon = document.getElementById("fab-main-icon");
-
-  // Exit early if required elements are missing
-  if (!fabMenu || !fabMainIcon) return;
-
-  // Toggle FAB menu state and update icon accordingly
-  const isActive = fabMenu.classList.contains("active");
-
-  if (isActive) {
-    fabMenu.classList.remove("active");
-    fabMainIcon.textContent = "⚡";
-  } else {
-    fabMenu.classList.add("active");
-    fabMainIcon.textContent = "✕";
-  }
-
-  // Provide haptic feedback on supported devices
-  if ("vibrate" in navigator) {
-    navigator.vibrate(30);
-  }
-}
-
 // Make functions globally available - Export functions to window object for global access
 window.toggleMobileMenu = toggleMobileMenu;
 window.shareCharacter = shareCharacter;
@@ -232,7 +207,6 @@ window.compareCharacter = compareCharacter;
 window.downloadProfile = downloadProfile;
 window.toggleTheme = toggleTheme;
 window.scrollToTop = scrollToTop;
-window.toggleFabMenu = toggleFabMenu;
 
 // Character data loader class - Handles efficient loading and caching of character data
 class CharacterDataLoader {
@@ -606,12 +580,42 @@ function renderCharacterProfile(character) {
       <div class="profile-image-container">
         <img src="${character.image}" alt="${character.name}" class="profile-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="profile-portrait-fallback" style="display: none;">${character.portrait}</div>
+        <div class="character-power-indicator">
+          <div class="power-ring"></div>
+          <div class="power-level">${character.power}</div>
+        </div>
       </div>
-      <h1 class="profile-name">${character.name}</h1>
+      <h1 class="profile-name" data-text="${character.name}">${character.name}</h1>
       <div class="character-details">
         <p class="profile-race">Species: ${character.race}</p>
         <p class="profile-role">Role: ${character.role}</p>
         <div class="profile-power">Classification: ${character.power}</div>
+      </div>
+      <div class="character-stats-preview">
+        ${character.impact ? `
+          <div class="stat-preview">
+            <div class="stat-preview-item">
+              <span class="stat-icon">👥</span>
+              <span class="stat-value">${character.impact.population || 0}</span>
+              <span class="stat-label">Population</span>
+            </div>
+            <div class="stat-preview-item">
+              <span class="stat-icon">⚔️</span>
+              <span class="stat-value">${character.impact.military || 0}</span>
+              <span class="stat-label">Military</span>
+            </div>
+            <div class="stat-preview-item">
+              <span class="stat-icon">💰</span>
+              <span class="stat-value">${character.impact.economy || 0}</span>
+              <span class="stat-label">Economy</span>
+            </div>
+            <div class="stat-preview-item">
+              <span class="stat-icon">✨</span>
+              <span class="stat-value">${character.impact.magic || 0}</span>
+              <span class="stat-label">Magic</span>
+            </div>
+          </div>
+        ` : ''}
       </div>
     </div>
 
@@ -711,7 +715,7 @@ function renderCharacterProfile(character) {
             ${character.skills
               .map(
                 (skill) => `
-              <div class="skill-card-detailed">
+              <div class="skill-card-detailed ${skill.type.toLowerCase()}">
                 <div class="skill-card-header">
                   <div class="skill-card-icon">${skill.icon}</div>
                   <div class="skill-card-info">
@@ -1259,3 +1263,128 @@ if (document.readyState === "loading") {
 }
 
 // End of character.js - Character profile page functionality with mobile navigation and data loading
+// Enhanced UI Features - Add interactive elements and improved user experience
+
+// Add interactive tooltips for stat preview items
+function addInteractiveTooltips() {
+  const statItems = document.querySelectorAll('.stat-preview-item');
+
+  statItems.forEach(item => {
+    const tooltip = document.createElement('div');
+    tooltip.className = 'interactive-tooltip';
+
+    const statLabel = item.querySelector('.stat-label').textContent;
+    const statValue = item.querySelector('.stat-value').textContent;
+
+    tooltip.innerHTML = `
+      <strong>${statLabel}</strong><br>
+      Current Level: ${statValue}<br>
+      <small>Click to view detailed breakdown</small>
+    `;
+
+    document.body.appendChild(tooltip);
+
+    item.addEventListener('mouseenter', (e) => {
+      const rect = item.getBoundingClientRect();
+      tooltip.style.left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2) + 'px';
+      tooltip.style.top = rect.top - tooltip.offsetHeight - 10 + 'px';
+      tooltip.classList.add('show');
+    });
+
+    item.addEventListener('mouseleave', () => {
+      tooltip.classList.remove('show');
+    });
+
+    item.addEventListener('click', () => {
+      showStatDetails(statLabel, statValue);
+    });
+  });
+}
+
+// Show detailed stat information in a modal
+function showStatDetails(statName, statValue) {
+  const modal = document.createElement('div');
+  modal.className = 'stat-detail-modal';
+  modal.innerHTML = `
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>${statName} Details</h3>
+        <button class="modal-close" onclick="this.closest('.stat-detail-modal').remove()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="stat-breakdown">
+          <div class="stat-circle">
+            <div class="stat-circle-inner">
+              <span class="stat-circle-value">${statValue}</span>
+              <span class="stat-circle-label">${statName}</span>
+            </div>
+          </div>
+          <div class="stat-description">
+            <p>This ${statName.toLowerCase()} metric represents the character's influence and contribution to the Jura Tempest Federation.</p>
+            <div class="stat-details">
+              <div class="detail-item">
+                <span class="detail-label">Current Level:</span>
+                <span class="detail-value">${statValue}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Growth Rate:</span>
+                <span class="detail-value">+${Math.floor(Math.random() * 10) + 1}% per month</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Federation Rank:</span>
+                <span class="detail-value">${parseInt(statValue) > 80 ? 'S-Class' : parseInt(statValue) > 60 ? 'A-Class' : parseInt(statValue) > 40 ? 'B-Class' : 'C-Class'}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  // Add click outside to close
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.remove();
+    }
+  });
+
+  // Add escape key to close
+  document.addEventListener('keydown', function escapeHandler(e) {
+    if (e.key === 'Escape') {
+      modal.remove();
+      document.removeEventListener('keydown', escapeHandler);
+    }
+  });
+}
+
+// Enhanced mobile performance optimizations
+function optimizeForMobile() {
+  if (window.innerWidth <= 768) {
+    // Reduce animation complexity on mobile
+    document.documentElement.style.setProperty('--animation-duration', '0.2s');
+
+    // Enable hardware acceleration for smooth scrolling
+    const scrollElements = document.querySelectorAll('.tab-section, .profile-content');
+    scrollElements.forEach(element => {
+      element.style.transform = 'translateZ(0)';
+      element.style.willChange = 'transform';
+    });
+
+    // Optimize image loading
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+      img.loading = 'lazy';
+      img.decoding = 'async';
+    });
+  }
+}
+
+// Initialize enhanced features when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    addInteractiveTooltips();
+    optimizeForMobile();
+  }, 1500);
+});
