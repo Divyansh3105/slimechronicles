@@ -220,6 +220,11 @@
                 <span class="button-icon">🧠</span>
                 <span class="button-text">Historical Records</span>
             </button>
+            <button class="tertiary-button" onclick="openFactions(event)" data-tooltip="Explore factions and alliances">
+                <span class="button-glow"></span>
+                <span class="button-icon">⚔️</span>
+                <span class="button-text">Factions</span>
+            </button>
         </div>
 
         <!-- Quick access menu -->
@@ -492,6 +497,19 @@
             console.log('Open Historical Records button clicked');
             if (soundEnabled) SoundFeedback.playEffect('click');
             window.location.href = 'records.html';
+        }
+
+        /**
+         * Navigate to the factions page
+         * @param {Event} event - Click event object
+         */
+        function openFactions(event) {
+            console.log('Open Factions button clicked');
+            if (soundEnabled) SoundFeedback.playEffect('click');
+            addButtonEffect(event.target);
+            setTimeout(() => {
+                window.location.href = 'factions.html';
+            }, 300);
         }
 
         // MODAL FUNCTIONS
