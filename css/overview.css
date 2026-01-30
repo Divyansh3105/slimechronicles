@@ -2071,3 +2071,102 @@ body {
     margin: 4rem auto;
   }
 }
+
+/* ================= KEY FIGURES AT A GLANCE ================= */
+
+.key-figures-section {
+  margin: 5rem auto;
+  max-width: 1200px;
+  text-align: center;
+  position: relative;
+  z-index: 5;
+}
+
+.key-figures-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.key-figure-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.8rem;
+  border-radius: 18px;
+  text-decoration: none;
+  color: var(--text-light);
+  background: linear-gradient(
+    135deg,
+    rgba(21, 27, 61, 0.85),
+    rgba(21, 27, 61, 0.6)
+  );
+  border: 2px solid rgba(77, 212, 255, 0.25);
+  backdrop-filter: blur(14px);
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.key-figure-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.08),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.key-figure-card:hover::before {
+  opacity: 1;
+}
+
+.key-figure-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  border-color: var(--primary-blue);
+}
+
+.figure-icon {
+  font-size: 2.8rem;
+  filter: drop-shadow(0 0 12px var(--glow-blue));
+}
+
+.figure-info h3 {
+  margin: 0;
+  font-family: "Cinzel", serif;
+  font-size: 1.2rem;
+  color: var(--primary-blue);
+}
+
+.figure-role {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+/* Role Accents */
+.key-figure-card.supreme {
+  border-color: rgba(255, 215, 0, 0.4);
+}
+
+.key-figure-card.military {
+  border-color: rgba(255, 87, 87, 0.4);
+}
+
+.key-figure-card.enforcement {
+  border-color: rgba(170, 85, 255, 0.4);
+}
+
+.key-figure-card.diplomacy {
+  border-color: rgba(0, 255, 136, 0.4);
+}
