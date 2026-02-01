@@ -7,7 +7,8 @@
 }
 
 /* Force scroll on mobile for factions page - apply globally */
-html, body {
+html,
+body {
   overflow-y: auto !important;
   overflow-x: hidden !important;
   height: 100%;

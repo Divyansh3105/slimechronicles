@@ -1,6 +1,7 @@
 /* Main content container with centered layout and responsive padding */
 /* Force scroll on mobile for chronicle page - apply globally */
-html, body {
+html,
+body {
   overflow-y: auto !important;
   overflow-x: hidden !important;
   height: 100%;
@@ -31,9 +32,10 @@ html, body {
 /* Optimize transitions for better performance */
 .arc-content,
 .event-content {
-  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 0.2s ease,
-              padding 0.2s ease;
+  transition:
+    max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.2s ease,
+    padding 0.2s ease;
 }
 
 /* Reduce paint complexity on mobile */
@@ -73,7 +75,11 @@ html, body {
   flex-direction: column;
   gap: 1.5rem;
   padding: 2rem;
-  background: linear-gradient(135deg, rgba(77, 212, 255, 0.15), rgba(0, 212, 255, 0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(77, 212, 255, 0.15),
+    rgba(0, 212, 255, 0.1)
+  );
   border: 2px solid rgba(77, 212, 255, 0.2);
   border-radius: 20px;
   backdrop-filter: blur(25px);
@@ -211,10 +217,6 @@ html, body {
   color: var(--text-light);
   padding: 0.5rem;
 }
-
-
-
-
 
 /* Main page title with gradient text and glow effects */
 .page-title {
@@ -1408,7 +1410,11 @@ html, body {
 
 /* Search highlighting and visual enhancements */
 .search-highlight {
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.4), rgba(255, 215, 0, 0.2));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 215, 0, 0.4),
+    rgba(255, 215, 0, 0.2)
+  );
   padding: 0.1rem 0.3rem;
   border-radius: 4px;
   font-weight: 600;
@@ -1418,11 +1424,20 @@ html, body {
 }
 
 @keyframes highlightPulse {
-  0%, 100% {
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.4), rgba(255, 215, 0, 0.2));
+  0%,
+  100% {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 215, 0, 0.4),
+      rgba(255, 215, 0, 0.2)
+    );
   }
   50% {
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.6), rgba(255, 215, 0, 0.4));
+    background: linear-gradient(
+      135deg,
+      rgba(255, 215, 0, 0.6),
+      rgba(255, 215, 0, 0.4)
+    );
   }
 }
 
@@ -1431,7 +1446,11 @@ html, body {
   text-align: center;
   padding: 4rem 2rem;
   color: var(--text-secondary);
-  background: linear-gradient(135deg, rgba(77, 212, 255, 0.08), rgba(77, 212, 255, 0.04));
+  background: linear-gradient(
+    135deg,
+    rgba(77, 212, 255, 0.08),
+    rgba(77, 212, 255, 0.04)
+  );
   border: 2px solid rgba(77, 212, 255, 0.15);
   border-radius: 20px;
   margin: 3rem 0;
@@ -1447,13 +1466,22 @@ html, body {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(77, 212, 255, 0.1), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(77, 212, 255, 0.1),
+    transparent
+  );
   animation: shimmer 3s ease-in-out infinite;
 }
 
 @keyframes shimmer {
-  0% { left: -100%; }
-  100% { left: 100%; }
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 .no-results-icon {
@@ -1464,8 +1492,13 @@ html, body {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .no-results-text {
@@ -1490,7 +1523,11 @@ html, body {
   align-items: center;
   padding: 4rem 2rem;
   color: var(--text-secondary);
-  background: linear-gradient(135deg, rgba(77, 212, 255, 0.05), rgba(77, 212, 255, 0.02));
+  background: linear-gradient(
+    135deg,
+    rgba(77, 212, 255, 0.05),
+    rgba(77, 212, 255, 0.02)
+  );
   border-radius: 20px;
   margin: 2rem 0;
 }
@@ -1562,7 +1599,10 @@ html, body {
 
 /* Enhanced mobile touch targets */
 @media (max-width: 767px) {
-  .view-btn, .expand-all-btn, .collapse-all-btn, .search-btn {
+  .view-btn,
+  .expand-all-btn,
+  .collapse-all-btn,
+  .search-btn {
     min-height: 44px;
     min-width: 44px;
   }
@@ -1760,10 +1800,6 @@ html, body {
   .filter-group {
     min-width: auto;
   }
-
-
-
-
 
   /* Timeline Container */
   .timeline-container {
@@ -2151,8 +2187,6 @@ html, body {
     flex-direction: row;
     justify-content: space-between;
   }
-
-
 
   /* Restore center line */
   .timeline-line {

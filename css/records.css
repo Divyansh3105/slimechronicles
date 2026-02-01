@@ -1,6 +1,7 @@
 /* Main container for historical records page with centered layout and background effects */
 /* Force scroll on mobile for records page - apply globally */
-html, body {
+html,
+body {
   overflow-y: auto !important;
   overflow-x: hidden !important;
   height: 100%;
@@ -1724,7 +1725,9 @@ kbd {
 
   /* Mobile-specific animations */
   .record-card {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
   }
 
   .record-card:active {
