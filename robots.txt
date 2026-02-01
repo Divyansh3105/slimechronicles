@@ -1,5 +1,6 @@
-# Robots.txt for Jura Tempest Federation
+# Robots.txt for Jura Tempest Federation: Slime Chronicles
 # https://slimechronicles.netlify.app/
+# Last updated: February 1, 2026
 
 User-agent: *
 Allow: /
@@ -20,15 +21,20 @@ Allow: /css/
 Allow: /js/
 Allow: /data/
 
+# Allow verification files
+Allow: /BingSiteAuth.xml
+Allow: /google70a70f7889930fd3.html
+
 # Disallow system files and directories
 Disallow: /.git/
 Disallow: /.vscode/
 Disallow: /desktop.ini
-Disallow: /*.json$
 
-# Allow search engines to access favicon
+# Allow search engines to access favicon and important assets
 Allow: /assets/fav.ico
 Allow: /assets/fav.png
+Allow: /assets/OG.png
+Allow: /assets/banner.png
 
 # Sitemap location
 Sitemap: https://slimechronicles.netlify.app/sitemap.xml

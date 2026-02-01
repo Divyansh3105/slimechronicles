@@ -125,7 +125,6 @@ slimechronicles/
 ├── factions.html        # Factions, organizations, and political entities
 ├── records.html         # Historical records and achievements
 ├── Chronicle.html       # Timeline and chronological events
-├── Chronicle.html        # Chronicle timeline
 ├── data/                # Character and event data (JSON)
 ├── js/                  # Application logic and effects
 ├── css/                 # Themed stylesheets
