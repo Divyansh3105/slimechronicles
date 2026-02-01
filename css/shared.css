@@ -216,6 +216,10 @@ h6 {
   --text-secondary: rgba(232, 240, 255, 0.8);
   --glow-blue: rgba(77, 212, 255, 0.6);
   --glow-gold: rgba(255, 215, 0, 0.6);
+  --glow-emerald: rgba(0, 255, 136, 0.6);
+  --glow-cyan: rgba(0, 212, 255, 0.6);
+  --glow-purple: rgba(170, 85, 255, 0.6);
+  --glow-crimson: rgba(255, 51, 102, 0.6);
   --accent-cyan: #00d4ff;
   --accent-cyan-glow: rgba(0, 212, 255, 0.6);
   --accent-crimson: #ff3366;
@@ -368,12 +372,17 @@ body {
   background:
     radial-gradient(
       circle at 25% 25%,
-      rgba(77, 212, 255, 0.1) 0%,
+      rgba(77, 212, 255, 0.12) 0%,
       transparent 50%
     ),
     radial-gradient(
       circle at 75% 75%,
       rgba(170, 85, 255, 0.08) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 50% 10%,
+      rgba(255, 215, 0, 0.05) 0%,
       transparent 50%
     ),
     linear-gradient(
@@ -383,10 +392,10 @@ body {
       var(--secondary-dark)
     ),
     url("../assets/bg.jpg");
-  background-attachment: scroll, scroll, scroll, fixed;
-  background-size: auto, auto, auto, cover;
-  background-position: center, center, center, center;
-  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-attachment: scroll, scroll, scroll, scroll, fixed;
+  background-size: auto, auto, auto, auto, cover;
+  background-position: center, center, center, center, center;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
   color: var(--text-light);
   min-height: 100vh;
   height: auto;
@@ -1204,26 +1213,35 @@ body.mobile-nav-active * {
   transition: all 0.3s ease;
   overflow: hidden;
   z-index: 1;
+  font-family: "Rajdhani", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(10px);
 }
+
 .primary-button {
   background: linear-gradient(135deg, var(--primary-blue), #2a9fd8);
   color: var(--primary-dark);
   box-shadow: 0 0 30px var(--glow-blue);
 }
+
 .primary-button:hover {
   transform: translateY(-3px);
   box-shadow: 0 5px 40px var(--glow-blue);
 }
+
 .secondary-button {
   background: rgba(77, 212, 255, 0.1);
   color: var(--primary-blue);
   border: 2px solid var(--primary-blue);
 }
+
 .secondary-button:hover {
   background: rgba(77, 212, 255, 0.2);
   transform: translateY(-3px);
   box-shadow: 0 5px 30px var(--glow-blue);
 }
+
 .tertiary-button {
   background: linear-gradient(
     135deg,
@@ -1233,6 +1251,7 @@ body.mobile-nav-active * {
   color: var(--accent-purple);
   border: 2px solid var(--accent-purple);
 }
+
 .tertiary-button:hover {
   background: linear-gradient(
     135deg,
@@ -1242,6 +1261,7 @@ body.mobile-nav-active * {
   transform: translateY(-4px) scale(1.02);
   box-shadow: 0 8px 25px rgba(170, 85, 255, 0.3);
 }
+
 .button-glow {
   position: absolute;
   top: 0;
@@ -1256,19 +1276,28 @@ body.mobile-nav-active * {
   );
   transition: left 0.5s;
 }
+
 .primary-button:hover .button-glow,
 .secondary-button:hover .button-glow,
 .tertiary-button:hover .button-glow {
   left: 100%;
 }
+
 .button-icon {
   font-size: 1.3rem;
   transition: transform 0.3s ease;
+  margin-right: 0.5rem;
 }
+
 .primary-button:hover .button-icon,
 .secondary-button:hover .button-icon,
 .tertiary-button:hover .button-icon {
   transform: scale(1.2) rotate(5deg);
+}
+
+.button-text {
+  position: relative;
+  z-index: 2;
 }
 /* Specialized buttons for character cards */
 .view-profile-button,

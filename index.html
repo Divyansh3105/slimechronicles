@@ -162,6 +162,7 @@
         <!-- LORE AND STATISTICS SECTION -->
 
         <div class="lore-section">
+            <!-- Enhanced lore text with better visual hierarchy -->
             <div class="lore-text">
                 <div class="lore-line" data-delay="0">In the heart of the Great Jura Forest, a new power rises...</div>
                 <div class="lore-line" data-delay="1">Where monsters and humans coexist in harmony, united under the
@@ -170,18 +171,19 @@
                     brighter tomorrow.</div>
             </div>
 
+            <!-- Enhanced statistics with better visual effects -->
             <div class="stats-preview">
-                <div class="stat-item">
+                <div class="stat-item" data-tooltip="Explore detailed character profiles">
                     <div class="stat-icon">👥</div>
                     <div class="stat-value" data-target="32">0</div>
                     <div class="stat-label">Characters</div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item" data-tooltip="Unlock achievements and milestones">
                     <div class="stat-icon">🏆</div>
                     <div class="stat-value" data-target="15">0</div>
                     <div class="stat-label">Achievements</div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item" data-tooltip="Discover unique abilities and powers">
                     <div class="stat-icon">⚔️</div>
                     <div class="stat-value" data-target="50">0</div>
                     <div class="stat-label">Skills</div>
@@ -192,40 +194,50 @@
         <!-- NAVIGATION BUTTONS SECTION -->
 
         <div class="button-group">
-            <!-- Primary navigation button - Main overview -->
-            <button class="primary-button" onclick="enterFederation(event)" data-tooltip="Access the main overview">
-                <span class="button-glow"></span>
-                <span class="button-icon">🏛️</span>
-                <span class="button-text">Enter Federation</span>
-                <span class="button-particles"></span>
-            </button>
+            <!-- Primary button row -->
+            <div class="primary-button-row">
+                <button class="primary-button" onclick="enterFederation(event)" data-tooltip="Access the main overview">
+                    <span class="button-glow"></span>
+                    <span class="button-icon">🏛️</span>
+                    <span class="button-text">Enter Federation</span>
+                    <span class="button-particles"></span>
+                </button>
+            </div>
 
-            <!-- Secondary navigation buttons -->
-            <button class="secondary-button" onclick="openCodex(event)" data-tooltip="Browse character profiles">
-                <span class="button-glow"></span>
-                <span class="button-icon">📚</span>
-                <span class="button-text">Character Codex</span>
-            </button>
-            <button class="tertiary-button" onclick="openSkills(event)" data-tooltip="Explore skills database">
-                <span class="button-glow"></span>
-                <span class="button-icon">✨</span>
-                <span class="button-text">Skills Database</span>
-            </button>
-            <button class="tertiary-button" onclick="openTimeline(event)" data-tooltip="Browse historical timeline">
-                <span class="button-glow"></span>
-                <span class="button-icon">📜</span>
-                <span class="button-text">Chronicle Timeline</span>
-            </button>
-            <button class="tertiary-button" onclick="openHistoricalRecords(event)" data-tooltip="Historical Records">
-                <span class="button-glow"></span>
-                <span class="button-icon">🧠</span>
-                <span class="button-text">Historical Records</span>
-            </button>
-            <button class="tertiary-button" onclick="openFactions(event)" data-tooltip="Explore factions and alliances">
-                <span class="button-glow"></span>
-                <span class="button-icon">⚔️</span>
-                <span class="button-text">Factions</span>
-            </button>
+            <!-- Secondary buttons row -->
+            <div class="secondary-buttons-row">
+                <button class="secondary-button" onclick="openCodex(event)" data-tooltip="Browse character profiles">
+                    <span class="button-glow"></span>
+                    <span class="button-icon">📚</span>
+                    <span class="button-text">Character Codex</span>
+                </button>
+                <button class="secondary-button" onclick="openSkills(event)" data-tooltip="Explore skills database">
+                    <span class="button-glow"></span>
+                    <span class="button-icon">✨</span>
+                    <span class="button-text">Skills Database</span>
+                </button>
+            </div>
+
+            <!-- Tertiary buttons row -->
+            <div class="tertiary-buttons-row">
+                <button class="tertiary-button" onclick="openTimeline(event)" data-tooltip="Browse historical timeline">
+                    <span class="button-glow"></span>
+                    <span class="button-icon">📜</span>
+                    <span class="button-text">Chronicle Timeline</span>
+                </button>
+                <button class="tertiary-button" onclick="openHistoricalRecords(event)"
+                    data-tooltip="Historical Records">
+                    <span class="button-glow"></span>
+                    <span class="button-icon">🧠</span>
+                    <span class="button-text">Historical Records</span>
+                </button>
+                <button class="tertiary-button" onclick="openFactions(event)"
+                    data-tooltip="Explore factions and alliances">
+                    <span class="button-glow"></span>
+                    <span class="button-icon">⚔️</span>
+                    <span class="button-text">Factions</span>
+                </button>
+            </div>
         </div>
 
         <!-- Quick access menu -->
@@ -392,6 +404,8 @@
             }, 1500);
 
             addSlimeInteractivity();
+            addStatItemInteractivity();
+            addButtonInteractivity();
         }
 
         function animateStats() {
@@ -399,16 +413,23 @@
             statValues.forEach(stat => {
                 const target = parseInt(stat.dataset.target);
                 let current = 0;
-                const increment = target / 50;
+                const increment = target / 60; // Smoother animation
+                const duration = 2000; // 2 seconds
+                const stepTime = duration / 60;
 
                 const timer = setInterval(() => {
                     current += increment;
                     if (current >= target) {
                         current = target;
                         clearInterval(timer);
+                        // Add completion effect
+                        stat.style.transform = 'scale(1.1)';
+                        setTimeout(() => {
+                            stat.style.transform = 'scale(1)';
+                        }, 200);
                     }
                     stat.textContent = Math.floor(current);
-                }, 30);
+                }, stepTime);
             });
         }
 
@@ -434,6 +455,77 @@
                     }, 600);
                 });
             }
+        }
+
+        /** Add interactivity to stat items */
+        function addStatItemInteractivity() {
+            const statItems = document.querySelectorAll('.stat-item');
+
+            statItems.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    if (soundEnabled) SoundFeedback.playEffect('hover');
+                });
+
+                item.addEventListener('click', () => {
+                    if (soundEnabled) SoundFeedback.playEffect('click');
+                    // Add click animation
+                    item.style.transform = 'translateY(-8px) scale(0.98)';
+                    setTimeout(() => {
+                        item.style.transform = '';
+                    }, 150);
+                });
+            });
+        }
+
+        /** Add enhanced button interactivity */
+        function addButtonInteractivity() {
+            const buttons = document.querySelectorAll('.primary-button, .secondary-button, .tertiary-button');
+
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', () => {
+                    if (soundEnabled) SoundFeedback.playEffect('hover');
+                });
+
+                // Add ripple effect on click
+                button.addEventListener('click', (e) => {
+                    const ripple = document.createElement('span');
+                    const rect = button.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+
+                    ripple.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${x}px;
+                        top: ${y}px;
+                        background: rgba(255, 255, 255, 0.3);
+                        border-radius: 50%;
+                        transform: scale(0);
+                        animation: ripple 0.6s ease-out;
+                        pointer-events: none;
+                    `;
+
+                    button.appendChild(ripple);
+
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+
+            // Add ripple animation keyframes
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes ripple {
+                    to {
+                        transform: scale(2);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
         }
 
         // NAVIGATION FUNCTIONS
