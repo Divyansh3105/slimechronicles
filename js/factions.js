@@ -8,23 +8,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Faction Dependencies Database
   const factionDependencies = {
-    "Jura Tempest Federation": ["⚔ Military", "✨ Magic", "🔩 Technology", "🧠 Intelligence"],
-    "Armed Nation of Dwargon": ["⚔ Military", "🔩 Technology", "🌾 Agriculture"],
+    "Jura Tempest Federation": [
+      "⚔ Military",
+      "✨ Magic",
+      "🔩 Technology",
+      "🧠 Intelligence",
+    ],
+    "Armed Nation of Dwargon": [
+      "⚔ Military",
+      "🔩 Technology",
+      "🌾 Agriculture",
+    ],
     "Kingdom of Ingrassia": ["⚔ Military", "🌾 Agriculture", "🧠 Intelligence"],
     "Holy Empire Ruberios": ["⚔ Military", "✨ Magic", "🧠 Intelligence"],
-    "Eastern Empire": ["⚔ Military", "🔩 Technology", "🧠 Intelligence", "🌾 Agriculture"],
+    "Eastern Empire": [
+      "⚔ Military",
+      "🔩 Technology",
+      "🧠 Intelligence",
+      "🌾 Agriculture",
+    ],
     "Kingdom of Blumund": ["🧠 Intelligence", "🌾 Agriculture"],
     "Animal Kingdom Eurazania": ["⚔ Military", "🌾 Agriculture", "✨ Magic"],
     "Kingdom of Farmenas": ["🌾 Agriculture", "🧠 Intelligence"],
     "Octagram (Demon Lords)": ["⚔ Military", "✨ Magic", "🧠 Intelligence"],
     "Free Guild": ["🧠 Intelligence", "🌾 Agriculture"],
-    "Four Nations Trade Alliance": ["🔩 Technology", "🌾 Agriculture", "🧠 Intelligence"],
+    "Four Nations Trade Alliance": [
+      "🔩 Technology",
+      "🌾 Agriculture",
+      "🧠 Intelligence",
+    ],
     "Western Holy Church": ["⚔ Military", "✨ Magic"],
-    "Cerberus": ["🧠 Intelligence", "🔩 Technology"],
+    Cerberus: ["🧠 Intelligence", "🔩 Technology"],
     "Kingdom of Falmuth (Fallen)": ["⚔ Military", "🌾 Agriculture"],
     "Goblin Tribes": ["⚔ Military", "🌾 Agriculture"],
     "Fanged Wolf Clan": ["⚔ Military", "✨ Magic"],
-    "Lizardmen Tribes": ["⚔ Military", "🌾 Agriculture"]
+    "Lizardmen Tribes": ["⚔ Military", "🌾 Agriculture"],
   };
 
   // Function to generate faction dependencies HTML
@@ -38,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="dependency-grid">
     `;
 
-    dependencies.forEach(dependency => {
+    dependencies.forEach((dependency) => {
       dependenciesHTML += `<span>${dependency}</span>`;
     });
 
@@ -56,104 +74,104 @@ document.addEventListener("DOMContentLoaded", () => {
       allied: ["Dwargon", "Blumund", "Ingrassia", "Farmenas"],
       neutral: ["Ruberios", "Eurazania", "Octagram"],
       hostile: ["Eastern Empire", "Western Holy Church"],
-      unknown: []
+      unknown: [],
     },
     "Armed Nation of Dwargon": {
       allied: ["Tempest", "Ingrassia", "Blumund"],
       neutral: ["Ruberios", "Eastern Empire", "Free Guild"],
       hostile: [],
-      unknown: []
+      unknown: [],
     },
     "Kingdom of Ingrassia": {
       allied: ["Tempest", "Dwargon", "Free Guild"],
       neutral: ["Ruberios", "Blumund", "Eastern Empire"],
       hostile: [],
-      unknown: []
+      unknown: [],
     },
     "Holy Empire Ruberios": {
       allied: ["Western Nations"],
       neutral: ["Tempest", "Ingrassia", "Octagram"],
       hostile: ["Eastern Empire", "Monster Nations"],
-      unknown: []
+      unknown: [],
     },
     "Eastern Empire": {
       allied: [],
       neutral: ["Ruberios"],
       hostile: ["Tempest", "Demon Lords", "Western Nations", "Monster Nations"],
-      unknown: ["Dwargon"]
+      unknown: ["Dwargon"],
     },
     "Kingdom of Blumund": {
       allied: ["Tempest", "Ingrassia", "Free Guild"],
       neutral: ["Dwargon", "Ruberios"],
       hostile: [],
-      unknown: ["Eastern Empire"]
+      unknown: ["Eastern Empire"],
     },
     "Animal Kingdom Eurazania": {
       allied: ["Octagram"],
       neutral: ["Tempest", "Trade Partners", "Western Nations"],
       hostile: [],
-      unknown: ["Eastern Empire"]
+      unknown: ["Eastern Empire"],
     },
     "Kingdom of Farmenas": {
       allied: ["Tempest", "Blumund", "Dwargon"],
       neutral: ["Ingrassia", "Ruberios"],
       hostile: [],
-      unknown: ["Eastern Empire"]
+      unknown: ["Eastern Empire"],
     },
     "Octagram (Demon Lords)": {
       allied: ["Monster Nations"],
       neutral: ["All Nations", "Human Kingdoms", "Free Guild"],
       hostile: ["Eastern Empire"],
-      unknown: []
+      unknown: [],
     },
     "Free Guild": {
       allied: ["Ingrassia"],
       neutral: ["All Nations", "Tempest", "Blumund", "Dwargon", "Octagram"],
       hostile: [],
-      unknown: []
+      unknown: [],
     },
     "Four Nations Trade Alliance": {
       allied: ["Member Nations"],
       neutral: ["Ingrassia", "Free Guild", "Ruberios", "Octagram"],
       hostile: [],
-      unknown: ["Eastern Empire"]
+      unknown: ["Eastern Empire"],
     },
     "Western Holy Church": {
       allied: ["Ruberios", "Western Nations"],
       neutral: ["Eastern Empire"],
       hostile: ["Tempest", "Monster Nations", "Demon Lords"],
-      unknown: []
+      unknown: [],
     },
-    "Cerberus": {
+    Cerberus: {
       allied: ["Eastern Empire"],
       neutral: ["Criminal Networks"],
       hostile: ["Tempest", "Freedom Association", "Free Guild"],
-      unknown: ["Western Nations"]
+      unknown: ["Western Nations"],
     },
     "Kingdom of Falmuth (Fallen)": {
       allied: ["Western Nations"],
       neutral: ["Ingrassia", "Free Guild"],
       hostile: ["Tempest"],
-      unknown: ["Ruberios"]
+      unknown: ["Ruberios"],
     },
     "Goblin Tribes": {
       allied: ["Tempest", "Wolf Clan", "Lizardmen", "Dwargon"],
       neutral: ["Forest Races"],
       hostile: ["Orc Clans"],
-      unknown: []
+      unknown: [],
     },
     "Fanged Wolf Clan": {
       allied: ["Tempest", "Goblin Tribes", "Lizardmen"],
       neutral: ["Forest Races", "Dwargon"],
       hostile: ["Orc Clans"],
-      unknown: []
+      unknown: [],
     },
     "Lizardmen Tribes": {
       allied: ["Tempest", "Goblin Tribes", "Wolf Clan"],
       neutral: ["Forest Races", "Dwargon"],
       hostile: ["Orc Clans"],
-      unknown: []
-    }
+      unknown: [],
+    },
   };
 
   // Function to generate faction relations HTML
@@ -185,22 +203,22 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
 
     // Add allied relations
-    relations.allied.forEach(faction => {
+    relations.allied.forEach((faction) => {
       relationsHTML += `<span class="relation allied" data-faction="${faction}" title="Allied: Close partnership with ${faction}">${faction}</span>`;
     });
 
     // Add neutral relations
-    relations.neutral.forEach(faction => {
+    relations.neutral.forEach((faction) => {
       relationsHTML += `<span class="relation neutral" data-faction="${faction}" title="Neutral: Diplomatic relations with ${faction}">${faction}</span>`;
     });
 
     // Add hostile relations
-    relations.hostile.forEach(faction => {
+    relations.hostile.forEach((faction) => {
       relationsHTML += `<span class="relation hostile" data-faction="${faction}" title="Hostile: Active conflict with ${faction}">${faction}</span>`;
     });
 
     // Add unknown relations
-    relations.unknown.forEach(faction => {
+    relations.unknown.forEach((faction) => {
       relationsHTML += `<span class="relation unknown" data-faction="${faction}" title="Unknown: Unclear relations with ${faction}">${faction}</span>`;
     });
 
@@ -219,7 +237,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Add modal functionality to expand buttons
-  cards.forEach(card => {
+  cards.forEach((card) => {
     const expandBtn = card.querySelector(".expand-btn");
     if (expandBtn) {
       expandBtn.addEventListener("click", () => {
@@ -235,9 +253,11 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const factionName = card.querySelector("h2")?.textContent || "Unknown Faction";
+    const factionName =
+      card.querySelector("h2")?.textContent || "Unknown Faction";
     const factionTag = card.querySelector(".faction-tag");
-    const factionSummary = card.querySelector(".faction-summary")?.textContent || "";
+    const factionSummary =
+      card.querySelector(".faction-summary")?.textContent || "";
     const powerSnapshot = card.querySelector(".power-snapshot");
     const factionDetails = card.querySelector(".faction-details");
 
@@ -246,7 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="modal-faction-header">
         <div>
           <h1 class="modal-faction-title">${factionName}</h1>
-          ${factionTag ? `<span class="modal-faction-tag ${factionTag.className}">${factionTag.textContent}</span>` : ''}
+          ${factionTag ? `<span class="modal-faction-tag ${factionTag.className}">${factionTag.textContent}</span>` : ""}
         </div>
       </div>
 
@@ -262,7 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="modal-power-grid">
       `;
 
-      powerItems.forEach(item => {
+      powerItems.forEach((item) => {
         const label = item.querySelector("span")?.textContent || "";
         const powerBar = item.querySelector(".power-bar div");
         const powerValue = powerBar?.style.getPropertyValue("--power") || "0";
@@ -293,11 +313,13 @@ document.addEventListener("DOMContentLoaded", () => {
         modalContent += `<div class="modal-detail-sections">`;
 
         // Prioritize timeline section to appear first
-        const timelineSection = Array.from(detailSections).find(section =>
-          section.classList.contains('timeline-section')
+        const timelineSection = Array.from(detailSections).find((section) =>
+          section.classList.contains("timeline-section"),
         );
-        const otherSections = Array.from(detailSections).filter(section =>
-          !section.classList.contains('timeline-section') && !section.classList.contains('relations-section')
+        const otherSections = Array.from(detailSections).filter(
+          (section) =>
+            !section.classList.contains("timeline-section") &&
+            !section.classList.contains("relations-section"),
         );
 
         // Add timeline section first if it exists
@@ -322,7 +344,7 @@ document.addEventListener("DOMContentLoaded", () => {
         modalContent += generateFactionDependencies(factionName);
 
         // Add other sections
-        otherSections.forEach(section => {
+        otherSections.forEach((section) => {
           const title = section.querySelector("h4")?.textContent || "";
           const list = section.querySelector("ul");
           const linksDiv = section.querySelector(".faction-links");
@@ -373,10 +395,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Add click handlers for relation pills (future functionality)
     const relationPills = modal.querySelectorAll(".relation[data-faction]");
-    relationPills.forEach(pill => {
+    relationPills.forEach((pill) => {
       pill.addEventListener("click", (e) => {
         const targetFaction = e.target.dataset.faction;
-        console.log(`Clicked on relation: ${targetFaction}`);
         // Future: Open modal for the clicked faction
         findAndOpenFactionModal(targetFaction);
       });
@@ -385,7 +406,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Animate power bars after modal opens
     setTimeout(() => {
       const modalPowerBars = modal.querySelectorAll(".modal-power-bar div");
-      modalPowerBars.forEach(bar => {
+      modalPowerBars.forEach((bar) => {
         const power = bar.style.getPropertyValue("--power");
         bar.style.width = `${power}%`;
       });
@@ -398,14 +419,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const normalizedTarget = factionName.toLowerCase();
 
     // Find the faction card that matches
-    const targetCard = Array.from(cards).find(card => {
-      const cardName = card.querySelector("h2")?.textContent.toLowerCase() || "";
-      return cardName.includes(normalizedTarget) ||
-             normalizedTarget.includes(cardName.split(" ")[0]) ||
-             (normalizedTarget === "tempest" && cardName.includes("jura tempest")) ||
-             (normalizedTarget === "dwargon" && cardName.includes("dwargon")) ||
-             (normalizedTarget === "ruberios" && cardName.includes("ruberios")) ||
-             (normalizedTarget === "eastern empire" && cardName.includes("eastern empire"));
+    const targetCard = Array.from(cards).find((card) => {
+      const cardName =
+        card.querySelector("h2")?.textContent.toLowerCase() || "";
+      return (
+        cardName.includes(normalizedTarget) ||
+        normalizedTarget.includes(cardName.split(" ")[0]) ||
+        (normalizedTarget === "tempest" && cardName.includes("jura tempest")) ||
+        (normalizedTarget === "dwargon" && cardName.includes("dwargon")) ||
+        (normalizedTarget === "ruberios" && cardName.includes("ruberios")) ||
+        (normalizedTarget === "eastern empire" &&
+          cardName.includes("eastern empire"))
+      );
     });
 
     if (targetCard) {
@@ -428,12 +453,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const type = typeFilter ? typeFilter.value : "all";
     const relation = relationFilter ? relationFilter.value : "all";
 
-    cards.forEach(card => {
+    cards.forEach((card) => {
       const nameElement = card.querySelector("h2");
       const summaryElement = card.querySelector(".faction-summary");
 
       const name = nameElement ? nameElement.textContent.toLowerCase() : "";
-      const summary = summaryElement ? summaryElement.textContent.toLowerCase() : "";
+      const summary = summaryElement
+        ? summaryElement.textContent.toLowerCase()
+        : "";
       const cardType = card.dataset.type || "";
       const cardRelation = card.dataset.relation || "unknown";
 
@@ -441,11 +468,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const matchesType = type === "all" || type === cardType;
       const matchesRelation = relation === "all" || relation === cardRelation;
 
-      card.style.display = matchesSearch && matchesType && matchesRelation ? "block" : "none";
+      card.style.display =
+        matchesSearch && matchesType && matchesRelation ? "block" : "none";
     });
 
     // Update results count
-    const visibleCards = Array.from(cards).filter(card => card.style.display !== "none");
+    const visibleCards = Array.from(cards).filter(
+      (card) => card.style.display !== "none",
+    );
     updateResultsCount(visibleCards.length, cards.length);
   }
 
@@ -462,8 +492,14 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    const typeText = (typeFilter && typeFilter.value !== "all") ? `${typeFilter.value}s` : "factions";
-    const relationText = (relationFilter && relationFilter.value !== "all") ? ` (${relationFilter.value})` : "";
+    const typeText =
+      typeFilter && typeFilter.value !== "all"
+        ? `${typeFilter.value}s`
+        : "factions";
+    const relationText =
+      relationFilter && relationFilter.value !== "all"
+        ? ` (${relationFilter.value})`
+        : "";
     counter.textContent = `Showing ${visible} of ${total} ${typeText}${relationText}`;
   }
 

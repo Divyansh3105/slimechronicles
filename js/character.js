@@ -11,15 +11,17 @@ function shareCharacter() {
 
   // Prepare share data with character information and current URL
   const shareData = {
-    title: `${document.querySelector('.profile-name')?.textContent || 'Character'} - Jura Tempest Federation`,
+    title: `${document.querySelector(".profile-name")?.textContent || "Character"} - Jura Tempest Federation`,
     text: `Check out this character profile from the Jura Tempest Federation!`,
-    url: window.location.href
+    url: window.location.href,
   };
 
   // Use native sharing API on supported mobile devices, fallback otherwise
-  if (navigator.share && (window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768)) {
+  if (
+    navigator.share &&
+    (window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768)
+  ) {
     navigator.share(shareData).catch((error) => {
-      console.log("Error sharing:", error);
       fallbackShare();
     });
   } else {
@@ -30,11 +32,14 @@ function shareCharacter() {
 // Fallback sharing method - Copy URL to clipboard when native sharing unavailable
 function fallbackShare() {
   if (navigator.clipboard) {
-    navigator.clipboard.writeText(window.location.href).then(() => {
-      window.showNotification("Character link copied to clipboard!");
-    }).catch(() => {
-      window.showNotification("Unable to copy link");
-    });
+    navigator.clipboard
+      .writeText(window.location.href)
+      .then(() => {
+        window.showNotification("Character link copied to clipboard!");
+      })
+      .catch(() => {
+        window.showNotification("Unable to copy link");
+      });
   } else {
     window.showNotification("Sharing not supported on this device");
   }
@@ -346,48 +351,52 @@ function setupTabNavigation() {
   });
 
   // Add mobile-specific optimizations for better performance
-  if (window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768) {
+  if (
+    window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768
+  ) {
     // Optimize for mobile performance by adding mobile class
-    document.body.classList.add('mobile-device');
+    document.body.classList.add("mobile-device");
 
     // Add touch event listeners for better mobile tab interaction
-    const profileTabs = document.querySelector('.profile-tabs');
+    const profileTabs = document.querySelector(".profile-tabs");
     if (profileTabs) {
       let isScrolling = false;
 
       // Track touch start to detect scrolling vs tapping
-      profileTabs.addEventListener('touchstart', () => {
+      profileTabs.addEventListener("touchstart", () => {
         isScrolling = false;
       });
 
       // Mark as scrolling if touch moves significantly
-      profileTabs.addEventListener('touchmove', () => {
+      profileTabs.addEventListener("touchmove", () => {
         isScrolling = true;
       });
 
       // Handle tab activation only if not scrolling
-      profileTabs.addEventListener('touchend', (e) => {
-        if (!isScrolling && e.target.classList.contains('profile-tab')) {
+      profileTabs.addEventListener("touchend", (e) => {
+        if (!isScrolling && e.target.classList.contains("profile-tab")) {
           e.target.click();
         }
       });
     }
 
     // Optimize images for mobile by enabling lazy loading
-    const images = document.querySelectorAll('.profile-image');
-    images.forEach(img => {
-      img.loading = 'lazy';
-      img.decoding = 'async';
+    const images = document.querySelectorAll(".profile-image");
+    images.forEach((img) => {
+      img.loading = "lazy";
+      img.decoding = "async";
     });
 
     // Apply mobile performance optimizations
-    document.documentElement.style.setProperty('--animation-duration', '0.2s');
+    document.documentElement.style.setProperty("--animation-duration", "0.2s");
 
     // Enable hardware acceleration for smooth scrolling
-    const scrollElements = document.querySelectorAll('.tab-section, .profile-content');
-    scrollElements.forEach(element => {
-      element.style.transform = 'translateZ(0)';
-      element.style.willChange = 'transform';
+    const scrollElements = document.querySelectorAll(
+      ".tab-section, .profile-content",
+    );
+    scrollElements.forEach((element) => {
+      element.style.transform = "translateZ(0)";
+      element.style.willChange = "transform";
     });
   }
 }
@@ -408,7 +417,9 @@ function renderBasicCharacterProfile(character) {
     return;
   }
 
-  content.innerHTML = generateProfileHeader(character) + `
+  content.innerHTML =
+    generateProfileHeader(character) +
+    `
     <div class="loading-details" style="text-align: center; padding: 2rem; opacity: 0.7;">
       <div class="loading-spinner"></div>
       <p>Loading detailed character information...</p>
@@ -423,19 +434,22 @@ function renderCharacterProfile(character) {
     return;
   }
 
-  content.innerHTML = generateProfileHeader(character, true) + generateProfileTabs(character);
+  content.innerHTML =
+    generateProfileHeader(character, true) + generateProfileTabs(character);
 }
 
 // Generate profile header HTML - Create character header section with image and basic info
 function generateProfileHeader(character, detailed = false) {
-  const powerIndicator = detailed ? `
+  const powerIndicator = detailed
+    ? `
     <div class="character-power-indicator">
       <div class="power-ring"></div>
       <div class="power-level">${character.power}</div>
     </div>
-  ` : '';
+  `
+    : "";
 
-  const nameAttributes = detailed ? `data-text="${character.name}"` : '';
+  const nameAttributes = detailed ? `data-text="${character.name}"` : "";
 
   return `
     <div class="profile-header">
@@ -520,12 +534,16 @@ function generateQuotesSection(character) {
   return `
     <h4>💬 Notable Quotes</h4>
     <div class="quotes-container">
-      ${character.quotes.map(quote => `
+      ${character.quotes
+        .map(
+          (quote) => `
         <div class="quote-item">
           <p class="quote-text">"${quote.text}"</p>
           <p class="quote-context">— ${quote.context}</p>
         </div>
-      `).join("")}
+      `,
+        )
+        .join("")}
     </div>
   `;
 }
@@ -537,7 +555,9 @@ function generateSkillsSection(character) {
 
   return `
     <div class="skills-grid">
-      ${character.skills.map(skill => `
+      ${character.skills
+        .map(
+          (skill) => `
         <div class="skill-card-detailed ${skill.type.toLowerCase()}">
           <div class="skill-card-header">
             <div class="skill-card-icon">${skill.icon}</div>
@@ -549,7 +569,9 @@ function generateSkillsSection(character) {
           <p class="skill-card-description">${skill.description}</p>
           <div class="skill-card-bonus">${skill.bonus}</div>
         </div>
-      `).join("")}
+      `,
+        )
+        .join("")}
     </div>
   `;
 }
@@ -561,7 +583,7 @@ function generateSpecialtiesSection(character) {
     <div class="specialties-section">
       <h4>🌟 Specialties</h4>
       <div class="specialties-list">
-        ${character.specialties.map(specialty => `<span class="specialty-badge">${specialty}</span>`).join("")}
+        ${character.specialties.map((specialty) => `<span class="specialty-badge">${specialty}</span>`).join("")}
       </div>
     </div>
   `;
@@ -574,7 +596,7 @@ function generateWeaknessesSection(character) {
     <div class="weaknesses-section">
       <h4>⚠️ Weaknesses</h4>
       <ul class="weaknesses-list">
-        ${character.weaknesses.map(weakness => `<li>${weakness}</li>`).join("")}
+        ${character.weaknesses.map((weakness) => `<li>${weakness}</li>`).join("")}
       </ul>
     </div>
   `;
@@ -592,11 +614,15 @@ function generateRelationshipsSection(character) {
       <div class="relationship-category">
         <h4 class="relationship-title allies">👥 Allies</h4>
         <div class="relationship-list">
-          ${character.relationships.allies.map(ally => `
+          ${character.relationships.allies
+            .map(
+              (ally) => `
             <div class="relationship-item ally">
               <span class="relationship-name">${ally}</span>
             </div>
-          `).join("")}
+          `,
+            )
+            .join("")}
         </div>
       </div>
     `);
@@ -607,11 +633,15 @@ function generateRelationshipsSection(character) {
       <div class="relationship-category">
         <h4 class="relationship-title rivals">⚔️ Rivals</h4>
         <div class="relationship-list">
-          ${character.relationships.rivals.map(rival => `
+          ${character.relationships.rivals
+            .map(
+              (rival) => `
             <div class="relationship-item rival">
               <span class="relationship-name">${rival}</span>
             </div>
-          `).join("")}
+          `,
+            )
+            .join("")}
         </div>
       </div>
     `);
@@ -622,17 +652,23 @@ function generateRelationshipsSection(character) {
       <div class="relationship-category">
         <h4 class="relationship-title mentors">🎓 Mentors</h4>
         <div class="relationship-list">
-          ${character.relationships.mentors.map(mentor => `
+          ${character.relationships.mentors
+            .map(
+              (mentor) => `
             <div class="relationship-item mentor">
               <span class="relationship-name">${mentor}</span>
             </div>
-          `).join("")}
+          `,
+            )
+            .join("")}
         </div>
       </div>
     `);
   }
 
-  return sections.length > 0 ? `<div class="relationships-grid">${sections.join("")}</div>` : "<p>Relationship data is being compiled and verified.</p>";
+  return sections.length > 0
+    ? `<div class="relationships-grid">${sections.join("")}</div>`
+    : "<p>Relationship data is being compiled and verified.</p>";
 }
 
 function generateAchievementsSection(character) {
@@ -641,7 +677,7 @@ function generateAchievementsSection(character) {
   return `
     <h4>🏆 Achievements</h4>
     <ul class="achievements-list">
-      ${character.achievements.map(achievement => `<li>${achievement}</li>`).join("")}
+      ${character.achievements.map((achievement) => `<li>${achievement}</li>`).join("")}
     </ul>
   `;
 }
@@ -652,7 +688,9 @@ function generateEvolutionSection(character) {
   return `
     <h4>🔄 Evolution Forms</h4>
     <div class="evolution-timeline">
-      ${character.evolution.map((form, index) => `
+      ${character.evolution
+        .map(
+          (form, index) => `
         <div class="evolution-form">
           <div class="evolution-order">${index + 1}</div>
           <div class="evolution-content">
@@ -661,7 +699,9 @@ function generateEvolutionSection(character) {
             <span class="evolution-trigger">Trigger: ${form.trigger}</span>
           </div>
         </div>
-      `).join("")}
+      `,
+        )
+        .join("")}
     </div>
   `;
 }
@@ -733,7 +773,11 @@ function setupTabSwitching() {
         targetSection.classList.add("active");
 
         // Smooth scroll to section on mobile devices
-        if (window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768) {
+        if (
+          window.isMobileDevice
+            ? window.isMobileDevice()
+            : window.innerWidth <= 768
+        ) {
           targetSection.scrollIntoView({
             behavior: "smooth",
             block: "start",
@@ -799,7 +843,9 @@ function createFloatingElements(character) {
   if (!container) return;
 
   // Adjust particle count based on device type for performance
-  const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
+  const isMobile = window.isMobileDevice
+    ? window.isMobileDevice()
+    : window.innerWidth <= 768;
   const particleCount = isMobile ? 3 : 6;
 
   // Clear existing particles before creating new ones
@@ -831,10 +877,10 @@ async function loadCharacterProfile() {
       "codex.html",
       {
         "Character ID": "None",
-        "GameState": !!window.GameState ? "Available" : "Missing",
-        "CharacterLoader": !!window.CharacterLoader ? "Available" : "Missing"
+        GameState: !!window.GameState ? "Available" : "Missing",
+        CharacterLoader: !!window.CharacterLoader ? "Available" : "Missing",
       },
-      true
+      true,
     );
     return;
   }
@@ -849,17 +895,21 @@ async function loadCharacterProfile() {
       null,
       {
         "Character ID": characterId,
-        "GameState": "Missing",
-        "CharacterLoader": !!window.CharacterLoader ? "Available" : "Missing"
+        GameState: "Missing",
+        CharacterLoader: !!window.CharacterLoader ? "Available" : "Missing",
       },
-      true
+      true,
     );
     return;
   }
 
   try {
     // Show loading indicator while fetching data
-    window.showLoadingIndicator("profile-content", "Loading Character Data...", "Please wait while we fetch the character information.");
+    window.showLoadingIndicator(
+      "profile-content",
+      "Loading Character Data...",
+      "Please wait while we fetch the character information.",
+    );
 
     // Load basic character information first for quick display
     const basicCharacter =
@@ -874,10 +924,10 @@ async function loadCharacterProfile() {
         "codex.html",
         {
           "Character ID": characterId,
-          "GameState": "Available",
-          "CharacterLoader": !!window.CharacterLoader ? "Available" : "Missing"
+          GameState: "Available",
+          CharacterLoader: !!window.CharacterLoader ? "Available" : "Missing",
         },
-        true
+        true,
       );
       return;
     }
@@ -900,7 +950,9 @@ async function loadCharacterProfile() {
     window.hideLoadingIndicator();
 
     // Show success notification to user
-    window.showNotification(`${basicCharacter.name} profile loaded successfully!`);
+    window.showNotification(
+      `${basicCharacter.name} profile loaded successfully!`,
+    );
   } catch (error) {
     console.error("Error loading character:", error);
     window.displayError(
@@ -910,11 +962,11 @@ async function loadCharacterProfile() {
       null,
       {
         "Character ID": characterId,
-        "Error": error.message,
-        "GameState": !!window.GameState ? "Available" : "Missing",
-        "CharacterLoader": !!window.CharacterLoader ? "Available" : "Missing"
+        Error: error.message,
+        GameState: !!window.GameState ? "Available" : "Missing",
+        CharacterLoader: !!window.CharacterLoader ? "Available" : "Missing",
       },
-      true
+      true,
     );
     window.hideLoadingIndicator();
   }

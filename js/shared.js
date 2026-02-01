@@ -814,8 +814,6 @@ class AudioManager {
 
     // Update initial state
     this.updateControlsState();
-
-    console.log("Audio controls created and added to page");
   }
 
   setupEventListeners() {
@@ -1127,7 +1125,6 @@ function initializeAudioManager() {
       audioManager = new AudioManager();
       // Update the global reference
       window.audioManager = audioManager;
-      console.log("Audio Manager initialized successfully");
     } catch (error) {
       console.warn("Failed to initialize Audio Manager:", error);
     }

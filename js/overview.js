@@ -7,8 +7,8 @@ const JURA_TEMPEST_STATS = {
       citizens: 320000,
       government: 105000,
       administrators: 35000,
-      specialists: 20000
-    }
+      specialists: 20000,
+    },
   },
   // Defense force composition and readiness
   defense: {
@@ -17,10 +17,10 @@ const JURA_TEMPEST_STATS = {
       leadership: 12,
       specialForces: 8500,
       regularForces: 85000,
-      reserves: 11500
+      reserves: 11500,
     },
     classification: "Advanced Defense Force",
-    readinessLevel: 98
+    readinessLevel: 98,
   },
   // Economic indicators and sector breakdown
   economy: {
@@ -29,10 +29,10 @@ const JURA_TEMPEST_STATS = {
       trade: 85,
       manufacturing: 92,
       infrastructure: 88,
-      innovation: 95
+      innovation: 95,
     },
     gdpEquivalent: "2.4T Gold",
-    growthRate: 12.5
+    growthRate: 12.5,
   },
   // Technology development and innovation metrics
   technology: {
@@ -42,16 +42,26 @@ const JURA_TEMPEST_STATS = {
       research: 45,
       development: 35,
       implementation: 15,
-      education: 5
+      education: 5,
     },
-    innovationIndex: 96
-  }
+    innovationIndex: 96,
+  },
 };
 
 // Month abbreviations for date formatting
 const MONTHS = [
-  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
 ];
 
 // Event log storage for activity tracking
@@ -113,13 +123,13 @@ function createPopulationBreakdown() {
   const breakdown = JURA_TEMPEST_STATS.population.breakdown;
 
   // Remove existing breakdown to prevent duplicates
-  const existingBreakdown = card.querySelector('.stat-breakdown');
+  const existingBreakdown = card.querySelector(".stat-breakdown");
   if (existingBreakdown) {
     existingBreakdown.remove();
   }
 
-  const breakdownDiv = document.createElement('div');
-  breakdownDiv.className = 'stat-breakdown';
+  const breakdownDiv = document.createElement("div");
+  breakdownDiv.className = "stat-breakdown";
   breakdownDiv.innerHTML = `
     <div class="breakdown-title">Population Distribution</div>
     <div class="breakdown-items">
@@ -127,28 +137,28 @@ function createPopulationBreakdown() {
         <span class="breakdown-label">Citizens</span>
         <span class="breakdown-value">${breakdown.citizens.toLocaleString()}</span>
         <div class="breakdown-bar">
-          <div class="breakdown-fill" style="width: ${(breakdown.citizens / JURA_TEMPEST_STATS.population.total * 100)}%"></div>
+          <div class="breakdown-fill" style="width: ${(breakdown.citizens / JURA_TEMPEST_STATS.population.total) * 100}%"></div>
         </div>
       </div>
       <div class="breakdown-item">
         <span class="breakdown-label">Government</span>
         <span class="breakdown-value">${breakdown.government.toLocaleString()}</span>
         <div class="breakdown-bar">
-          <div class="breakdown-fill" style="width: ${(breakdown.government / JURA_TEMPEST_STATS.population.total * 100)}%"></div>
+          <div class="breakdown-fill" style="width: ${(breakdown.government / JURA_TEMPEST_STATS.population.total) * 100}%"></div>
         </div>
       </div>
       <div class="breakdown-item">
         <span class="breakdown-label">Administrators</span>
         <span class="breakdown-value">${breakdown.administrators.toLocaleString()}</span>
         <div class="breakdown-bar">
-          <div class="breakdown-fill" style="width: ${(breakdown.administrators / JURA_TEMPEST_STATS.population.total * 100)}%"></div>
+          <div class="breakdown-fill" style="width: ${(breakdown.administrators / JURA_TEMPEST_STATS.population.total) * 100}%"></div>
         </div>
       </div>
       <div class="breakdown-item">
         <span class="breakdown-label">Specialists</span>
         <span class="breakdown-value">${breakdown.specialists.toLocaleString()}</span>
         <div class="breakdown-bar">
-          <div class="breakdown-fill" style="width: ${(breakdown.specialists / JURA_TEMPEST_STATS.population.total * 100)}%"></div>
+          <div class="breakdown-fill" style="width: ${(breakdown.specialists / JURA_TEMPEST_STATS.population.total) * 100}%"></div>
         </div>
       </div>
     </div>
@@ -167,11 +177,11 @@ function createDefenseBreakdown() {
 
   const defense = JURA_TEMPEST_STATS.defense;
   // Remove existing breakdown to prevent duplicates
-  const existingBreakdown = card.querySelector('.stat-breakdown');
+  const existingBreakdown = card.querySelector(".stat-breakdown");
   if (existingBreakdown) existingBreakdown.remove();
 
-  const breakdownDiv = document.createElement('div');
-  breakdownDiv.className = 'stat-breakdown';
+  const breakdownDiv = document.createElement("div");
+  breakdownDiv.className = "stat-breakdown";
   breakdownDiv.innerHTML = `
     <div class="breakdown-title">Defense Force Structure</div>
     <div class="breakdown-items">
@@ -186,21 +196,21 @@ function createDefenseBreakdown() {
         <span class="breakdown-label">Special Forces</span>
         <span class="breakdown-value">${defense.composition.specialForces.toLocaleString()}</span>
         <div class="breakdown-bar">
-          <div class="breakdown-fill" style="width: ${(defense.composition.specialForces / defense.totalPersonnel * 100)}%"></div>
+          <div class="breakdown-fill" style="width: ${(defense.composition.specialForces / defense.totalPersonnel) * 100}%"></div>
         </div>
       </div>
       <div class="breakdown-item">
         <span class="breakdown-label">Regular Forces</span>
         <span class="breakdown-value">${defense.composition.regularForces.toLocaleString()}</span>
         <div class="breakdown-bar">
-          <div class="breakdown-fill" style="width: ${(defense.composition.regularForces / defense.totalPersonnel * 100)}%"></div>
+          <div class="breakdown-fill" style="width: ${(defense.composition.regularForces / defense.totalPersonnel) * 100}%"></div>
         </div>
       </div>
       <div class="breakdown-item">
         <span class="breakdown-label">Reserves</span>
         <span class="breakdown-value">${defense.composition.reserves.toLocaleString()}</span>
         <div class="breakdown-bar">
-          <div class="breakdown-fill" style="width: ${(defense.composition.reserves / defense.totalPersonnel * 100)}%"></div>
+          <div class="breakdown-fill" style="width: ${(defense.composition.reserves / defense.totalPersonnel) * 100}%"></div>
         </div>
       </div>
     </div>
@@ -229,11 +239,11 @@ function createEconomyBreakdown() {
 
   const economy = JURA_TEMPEST_STATS.economy;
   // Remove existing breakdown to prevent duplicates
-  const existingBreakdown = card.querySelector('.stat-breakdown');
+  const existingBreakdown = card.querySelector(".stat-breakdown");
   if (existingBreakdown) existingBreakdown.remove();
 
-  const breakdownDiv = document.createElement('div');
-  breakdownDiv.className = 'stat-breakdown';
+  const breakdownDiv = document.createElement("div");
+  breakdownDiv.className = "stat-breakdown";
   breakdownDiv.innerHTML = `
     <div class="breakdown-title">Economic Sectors</div>
     <div class="breakdown-items">
@@ -291,11 +301,11 @@ function createTechnologyBreakdown() {
 
   const technology = JURA_TEMPEST_STATS.technology;
   // Remove existing breakdown to prevent duplicates
-  const existingBreakdown = card.querySelector('.stat-breakdown');
+  const existingBreakdown = card.querySelector(".stat-breakdown");
   if (existingBreakdown) existingBreakdown.remove();
 
-  const breakdownDiv = document.createElement('div');
-  breakdownDiv.className = 'stat-breakdown';
+  const breakdownDiv = document.createElement("div");
+  breakdownDiv.className = "stat-breakdown";
   breakdownDiv.innerHTML = `
     <div class="breakdown-title">Technology Sectors</div>
     <div class="breakdown-items">
@@ -366,32 +376,32 @@ function renderEventLog() {
 }
 // Initialize interactive elements with hover and click effects - Set up user interaction handlers
 function initInteractiveElements() {
-  const supportsHover = window.matchMedia('(hover: hover)').matches;
+  const supportsHover = window.matchMedia("(hover: hover)").matches;
 
   // Enhanced stat card interactions with staggered animations
-  document.querySelectorAll('.stat-card').forEach((el, index) => {
+  document.querySelectorAll(".stat-card").forEach((el, index) => {
     // Add staggered animation delay for visual appeal
     el.style.animationDelay = `${index * 0.1}s`;
 
     // Add hover effects for devices that support hover
     if (supportsHover) {
-      el.addEventListener('mouseenter', () => {
+      el.addEventListener("mouseenter", () => {
         if (window.SoundFeedback) {
-          window.SoundFeedback.playEffect('hover');
+          window.SoundFeedback.playEffect("hover");
         }
         // Add subtle glow effect on hover
-        el.style.filter = 'drop-shadow(0 0 20px rgba(77, 212, 255, 0.3))';
+        el.style.filter = "drop-shadow(0 0 20px rgba(77, 212, 255, 0.3))";
       });
 
-      el.addEventListener('mouseleave', () => {
-        el.style.filter = '';
+      el.addEventListener("mouseleave", () => {
+        el.style.filter = "";
       });
     }
 
     // Enhanced click interaction with ripple effect and sound feedback
-    el.addEventListener('click', (event) => {
+    el.addEventListener("click", (event) => {
       if (window.SoundFeedback) {
-        window.SoundFeedback.playEffect('click');
+        window.SoundFeedback.playEffect("click");
       }
 
       // Create ripple effect at click position using shared function
@@ -404,8 +414,8 @@ function initInteractiveElements() {
     });
 
     // Keyboard accessibility support for stat cards
-    el.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
+    el.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         el.click();
       }
@@ -413,18 +423,18 @@ function initInteractiveElements() {
   });
 
   // Enhanced state card interactions with hover and click effects
-  document.querySelectorAll('.state-card').forEach(el => {
+  document.querySelectorAll(".state-card").forEach((el) => {
     if (supportsHover) {
-      el.addEventListener('mouseenter', () => {
+      el.addEventListener("mouseenter", () => {
         if (window.SoundFeedback) {
-          window.SoundFeedback.playEffect('hover');
+          window.SoundFeedback.playEffect("hover");
         }
       });
     }
 
-    el.addEventListener('click', (event) => {
+    el.addEventListener("click", (event) => {
       if (window.SoundFeedback) {
-        window.SoundFeedback.playEffect('click');
+        window.SoundFeedback.playEffect("click");
       }
       if (window.createRippleEffect) {
         window.createRippleEffect(el, event);
@@ -433,33 +443,33 @@ function initInteractiveElements() {
   });
 
   // Enhanced strength category interactions with click feedback
-  document.querySelectorAll('.strength-category').forEach(el => {
-    el.addEventListener('click', () => {
+  document.querySelectorAll(".strength-category").forEach((el) => {
+    el.addEventListener("click", () => {
       if (window.SoundFeedback) {
-        window.SoundFeedback.playEffect('click');
+        window.SoundFeedback.playEffect("click");
       }
 
       // Smooth scale animation for visual feedback
-      el.style.transform = 'scale(0.98)';
+      el.style.transform = "scale(0.98)";
       setTimeout(() => {
-        el.style.transform = '';
+        el.style.transform = "";
       }, 150);
     });
   });
 
   // Enhanced badge interactions with hover and click effects
-  document.querySelectorAll('.badge').forEach(badge => {
+  document.querySelectorAll(".badge").forEach((badge) => {
     if (supportsHover) {
-      badge.addEventListener('mouseenter', () => {
+      badge.addEventListener("mouseenter", () => {
         if (window.SoundFeedback) {
-          window.SoundFeedback.playEffect('hover');
+          window.SoundFeedback.playEffect("hover");
         }
       });
     }
 
-    badge.addEventListener('click', (e) => {
+    badge.addEventListener("click", (e) => {
       if (window.SoundFeedback) {
-        window.SoundFeedback.playEffect('click');
+        window.SoundFeedback.playEffect("click");
       }
 
       if (window.createRippleEffect) {
@@ -469,8 +479,8 @@ function initInteractiveElements() {
     });
 
     // Keyboard accessibility support for badges
-    badge.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
+    badge.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         badge.click();
       }
@@ -478,18 +488,18 @@ function initInteractiveElements() {
   });
 
   // Enhanced number cards interactions with hover and click effects
-  document.querySelectorAll('.number-card').forEach(card => {
+  document.querySelectorAll(".number-card").forEach((card) => {
     if (supportsHover) {
-      card.addEventListener('mouseenter', () => {
+      card.addEventListener("mouseenter", () => {
         if (window.SoundFeedback) {
-          window.SoundFeedback.playEffect('hover');
+          window.SoundFeedback.playEffect("hover");
         }
       });
     }
 
-    card.addEventListener('click', (e) => {
+    card.addEventListener("click", (e) => {
       if (window.SoundFeedback) {
-        window.SoundFeedback.playEffect('click');
+        window.SoundFeedback.playEffect("click");
       }
 
       if (window.createRippleEffect) {
@@ -499,8 +509,8 @@ function initInteractiveElements() {
     });
 
     // Keyboard accessibility support for number cards
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         card.click();
       }
@@ -508,26 +518,26 @@ function initInteractiveElements() {
   });
 
   // Enhanced federation emblem interaction with click animation
-  const federationEmblem = document.querySelector('.federation-emblem');
+  const federationEmblem = document.querySelector(".federation-emblem");
   if (federationEmblem) {
-    federationEmblem.addEventListener('click', () => {
+    federationEmblem.addEventListener("click", () => {
       if (window.SoundFeedback) {
-        window.SoundFeedback.playEffect('click');
+        window.SoundFeedback.playEffect("click");
       }
 
-      const emblemCore = federationEmblem.querySelector('.emblem-core');
+      const emblemCore = federationEmblem.querySelector(".emblem-core");
 
       // Simple scale animation for emblem interaction
-      emblemCore.style.transform = 'scale(1.05)';
+      emblemCore.style.transform = "scale(1.05)";
 
       setTimeout(() => {
-        emblemCore.style.transform = '';
+        emblemCore.style.transform = "";
       }, 200);
     });
 
     // Keyboard accessibility support for federation emblem
-    federationEmblem.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
+    federationEmblem.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         federationEmblem.click();
       }
@@ -537,47 +547,36 @@ function initInteractiveElements() {
 
 // Show detailed view for stat card - Placeholder function for future detailed statistics modal
 function showCardDetails(cardId) {
-  // Placeholder for detailed view functionality
-  console.log(`Showing details for ${cardId}`);
-
-  // Future: Could open a modal with detailed statistics
-  // For now, just add a subtle visual feedback
   const card = document.getElementById(cardId);
   if (card) {
-    card.style.transform = 'scale(1.05)';
+    card.style.transform = "scale(1.05)";
     setTimeout(() => {
-      card.style.transform = '';
+      card.style.transform = "";
     }, 200);
   }
 }
 
 // Show number card detailed information - Display additional metrics for number cards
 function showNumberCardDetails(card) {
-  const category = card.querySelector('.number-category').textContent;
-  console.log(`Number card details: ${category}`);
-
+  const category = card.querySelector(".number-category").textContent;
   // Simplified visual feedback with icon animation
-  const icon = card.querySelector('.number-icon');
+  const icon = card.querySelector(".number-icon");
 
   // Simple scale animation for visual feedback
-  icon.style.transform = 'scale(1.2)';
+  icon.style.transform = "scale(1.2)";
 
   setTimeout(() => {
-    icon.style.transform = '';
+    icon.style.transform = "";
   }, 300);
 }
 
 // Show badge information tooltip - Display detailed information about achievement badges
 function showBadgeInfo(badge) {
   // Placeholder for badge information display
-  const badgeText = badge.querySelector('span:last-child').textContent;
-  console.log(`Badge info: ${badgeText}`);
-
-  // Future: Could show tooltip or modal with detailed information
-  // For now, just add visual feedback with scale animation
-  badge.style.transform = 'scale(1.1)';
+  const badgeText = badge.querySelector("span:last-child").textContent;
+  badge.style.transform = "scale(1.1)";
   setTimeout(() => {
-    badge.style.transform = '';
+    badge.style.transform = "";
   }, 200);
 }
 // Initialize mobile-specific optimizations - Configure mobile device performance and behavior
@@ -587,53 +586,58 @@ function initMobileOptimizations() {
 
   if (isMobile) {
     // Reduce animation duration for better mobile performance
-    document.documentElement.style.setProperty('--animation-duration', '0.3s');
+    document.documentElement.style.setProperty("--animation-duration", "0.3s");
 
     // Add mobile device class for CSS targeting
-    document.body.classList.add('mobile-device');
+    document.body.classList.add("mobile-device");
 
     // Enable passive touch event listeners for better scroll performance
-    document.addEventListener('touchstart', function() {}, { passive: true });
-    document.addEventListener('touchmove', function() {}, { passive: true });
+    document.addEventListener("touchstart", function () {}, { passive: true });
+    document.addEventListener("touchmove", function () {}, { passive: true });
 
     // Viewport height handling is already managed by shared.js
   }
 }
 // Initialize intersection observer for scroll animations - Set up viewport-based animation triggers
 function initIntersectionObserver() {
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('mobile-animate');
-          observer.unobserve(entry.target); // Stop observing once animated
-        }
-      });
-    }, {
-      threshold: 0.1,
-      rootMargin: '50px'
-    });
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("mobile-animate");
+            observer.unobserve(entry.target); // Stop observing once animated
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "50px",
+      },
+    );
 
     // Observe elements for scroll-triggered animations
-    document.querySelectorAll('.stat-card, .state-card, .analytics-section').forEach(el => {
-      observer.observe(el);
-    });
+    document
+      .querySelectorAll(".stat-card, .state-card, .analytics-section")
+      .forEach((el) => {
+        observer.observe(el);
+      });
   }
 }
 
 // DOM content loaded event handler - Initialize page components in optimized sequence
 document.addEventListener("DOMContentLoaded", () => {
   // Enhanced loading sequence with smooth fade-in animation
-  document.body.style.opacity = '0';
-  document.body.style.transform = 'translateY(20px)';
+  document.body.style.opacity = "0";
+  document.body.style.transform = "translateY(20px)";
 
   // Preload critical resources before showing content
   preloadCriticalResources();
 
   setTimeout(() => {
-    document.body.style.transition = 'all 0.6s ease-out';
-    document.body.style.opacity = '1';
-    document.body.transform = 'translateY(0)';
+    document.body.style.transition = "all 0.6s ease-out";
+    document.body.style.opacity = "1";
+    document.body.transform = "translateY(0)";
   }, 100);
 
   // Initialize mobile optimizations first for better mobile experience
@@ -658,40 +662,42 @@ document.addEventListener("DOMContentLoaded", () => {
 function preloadCriticalResources() {
   // Preload federation background image for immediate display
   const img = new Image();
-  img.src = 'assets/federation.jpg';
+  img.src = "assets/federation.jpg";
 
   // Preload custom fonts if font loading API is available
-  if ('fonts' in document) {
-    document.fonts.load('1rem Cinzel');
-    document.fonts.load('1rem Rajdhani');
+  if ("fonts" in document) {
+    document.fonts.load("1rem Cinzel");
+    document.fonts.load("1rem Rajdhani");
   }
 }
 
 // Initialize performance optimizations for various device capabilities - Configure animations and features based on device performance
 function initPerformanceOptimizations() {
   // Throttle scroll events for better performance using shared throttle function
-  const throttledScrollUpdate = window.throttle ? window.throttle(() => {
-    updateScrollProgress();
-  }, 16) : updateScrollProgress;
+  const throttledScrollUpdate = window.throttle
+    ? window.throttle(() => {
+        updateScrollProgress();
+      }, 16)
+    : updateScrollProgress;
 
-  window.addEventListener('scroll', throttledScrollUpdate, { passive: true });
+  window.addEventListener("scroll", throttledScrollUpdate, { passive: true });
 
   // Optimize animations for low-end devices based on CPU cores
   if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
-    document.documentElement.style.setProperty('--animation-duration', '0.1s');
+    document.documentElement.style.setProperty("--animation-duration", "0.1s");
     // Disable complex animations on low-end devices
-    document.documentElement.classList.add('reduced-animations');
+    document.documentElement.classList.add("reduced-animations");
   }
 
   // Respect user's motion preferences for accessibility
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.documentElement.style.setProperty('--animation-duration', '0.01s');
-    document.documentElement.classList.add('reduced-animations');
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    document.documentElement.style.setProperty("--animation-duration", "0.01s");
+    document.documentElement.classList.add("reduced-animations");
   }
 
   // Apply mobile-specific optimizations for touch devices using shared function
   if (window.isMobileDevice && window.isMobileDevice()) {
-    document.documentElement.classList.add('mobile-optimized');
+    document.documentElement.classList.add("mobile-optimized");
   }
 }
 
@@ -701,31 +707,35 @@ function updateScrollProgress() {
   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
   const progress = (scrolled / maxScroll) * 100;
 
-  const progressBar = document.getElementById('nav-progress');
+  const progressBar = document.getElementById("nav-progress");
   if (progressBar) {
     progressBar.style.width = `${progress}%`;
-    progressBar.classList.toggle('visible', scrolled > 100); // Show after scrolling 100px
+    progressBar.classList.toggle("visible", scrolled > 100); // Show after scrolling 100px
   }
 }
 
 // Enhanced error handling for overview page - Log and handle JavaScript errors gracefully
-window.addEventListener('error', (e) => {
-  console.error('Overview page error:', e.error);
+window.addEventListener("error", (e) => {
+  console.error("Overview page error:", e.error);
   // Could implement user-friendly error reporting here
 });
 
 // Enhanced visibility change handling for performance optimization - Pause/resume animations based on tab visibility
-document.addEventListener('visibilitychange', () => {
+document.addEventListener("visibilitychange", () => {
   if (document.hidden) {
     // Pause animations when tab is not visible to save resources
-    document.querySelectorAll('.stat-card, .emblem-core, .ring').forEach(el => {
-      el.style.animationPlayState = 'paused';
-    });
+    document
+      .querySelectorAll(".stat-card, .emblem-core, .ring")
+      .forEach((el) => {
+        el.style.animationPlayState = "paused";
+      });
   } else {
     // Resume animations when tab becomes visible
-    document.querySelectorAll('.stat-card, .emblem-core, .ring').forEach(el => {
-      el.style.animationPlayState = 'running';
-    });
+    document
+      .querySelectorAll(".stat-card, .emblem-core, .ring")
+      .forEach((el) => {
+        el.style.animationPlayState = "running";
+      });
   }
 });
 

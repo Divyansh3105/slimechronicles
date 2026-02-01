@@ -265,7 +265,9 @@ class ParticleSystem {
     let count = 15; // Base particle count for desktop devices
 
     // Reduce particle count for mobile devices to maintain performance
-    if (window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768) {
+    if (
+      window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768
+    ) {
       count = 8;
     }
 
@@ -450,7 +452,6 @@ class LoadingScreenManager {
   // Initialize loading screen manager and setup event handlers
   init() {
     if (!this.loadingScreen) {
-      console.log("Loading screen element not found - skipping loading screen functionality");
       this.isLoading = false;
       return;
     }

@@ -276,50 +276,6 @@
         </div>
     </div>
 
-    <!-- Mobile menu toggle button -->
-    <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-
-    <!-- Mobile navigation overlay for responsive design -->
-    <div class="mobile-nav" id="mobile-nav">
-        <!-- Close button for mobile menu -->
-        <button class="mobile-nav-close" onclick="toggleMobileMenu()">
-            <span>✕</span>
-        </button>
-        <!-- Mobile navigation menu items -->
-        <a href="index.html" class="active">
-            <span class="nav-icon">🏠</span>
-            <span>Home</span>
-        </a>
-        <a href="overview.html">
-            <span class="nav-icon">🏛️</span>
-            <span>Overview</span>
-        </a>
-        <a href="codex.html">
-            <span class="nav-icon">📚</span>
-            <span>Codex</span>
-        </a>
-        <a href="skills.html">
-            <span class="nav-icon">✨</span>
-            <span>Skills</span>
-        </a>
-        <a href="factions.html">
-            <span class="nav-icon">⚔️</span>
-            <span>Factions</span>
-        </a>
-        <a href="Chronicle.html">
-            <span class="nav-icon">📜</span>
-            <span>Chronicle</span>
-        </a>
-        <a href="records.html">
-            <span class="nav-icon">📜</span>
-            <span>Historical Records</span>
-        </a>
-    </div>
-
     <!-- FOOTER SECTION -->
 
     <footer class="main-footer"
@@ -487,7 +443,6 @@
          * @param {Event} event - Click event object
          */
         function enterFederation(event) {
-            console.log('Enter Federation button clicked');
             if (soundEnabled) SoundFeedback.playEffect('click');
             addButtonEffect(event.target);
             setTimeout(() => {
@@ -500,7 +455,6 @@
          * @param {Event} event - Click event object
          */
         function openCodex(event) {
-            console.log('Open Codex button clicked');
             if (soundEnabled) SoundFeedback.playEffect('click');
             addButtonEffect(event.target);
             setTimeout(() => {
@@ -513,7 +467,6 @@
          * @param {Event} event - Click event object
          */
         function openSkills(event) {
-            console.log('Open Skills button clicked');
             if (soundEnabled) SoundFeedback.playEffect('click');
             addButtonEffect(event.target);
             setTimeout(() => {
@@ -526,7 +479,6 @@
          * @param {Event} event - Click event object
          */
         function openTimeline(event) {
-            console.log('Open Timeline button clicked');
             if (soundEnabled) SoundFeedback.playEffect('click');
             addButtonEffect(event.target);
             setTimeout(() => {
@@ -539,7 +491,6 @@
          * @param {Event} event - Click event object
          */
         function openHistoricalRecords(event) {
-            console.log('Open Historical Records button clicked');
             if (soundEnabled) SoundFeedback.playEffect('click');
             window.location.href = 'records.html';
         }
@@ -549,7 +500,6 @@
          * @param {Event} event - Click event object
          */
         function openFactions(event) {
-            console.log('Open Factions button clicked');
             if (soundEnabled) SoundFeedback.playEffect('click');
             addButtonEffect(event.target);
             setTimeout(() => {

@@ -9,13 +9,13 @@
 
 /* Base cursor for all elements */
 * {
-  cursor: url("../assets/cursor.cur"), auto;
+  cursor: url("/assets/cursor.cur"), auto;
 }
 
 /* Default cursor for html and body */
 html,
 body {
-  cursor: url("../assets/cursor.cur"), auto !important;
+  cursor: url("/assets/cursor.cur"), auto !important;
   overflow-x: hidden;
   overflow-y: auto;
   height: 100%;
@@ -96,7 +96,7 @@ textarea,
 .text-input,
 .search-input,
 [contenteditable="true"] {
-  cursor: url("../assets/cursor.cur"), text !important;
+  cursor: url("/assets/cursor.cur"), text !important;
 }
 
 /* Button child elements inherit pointer cursor */
@@ -126,14 +126,14 @@ select:disabled,
 textarea:disabled,
 .disabled,
 [aria-disabled="true"] {
-  cursor: url("../assets/cursor.cur"), not-allowed !important;
+  cursor: url("/assets/cursor.cur"), not-allowed !important;
   opacity: 0.6;
 }
 
 /* Special cursor types */
 .resizable,
 textarea.resizable {
-  cursor: url("../assets/cursor.cur"), se-resize !important;
+  cursor: url("/assets/cursor.cur"), se-resize !important;
 }
 
 .draggable,
@@ -145,7 +145,7 @@ textarea.resizable {
 .loading *,
 body.loading,
 body.loading * {
-  cursor: url("../assets/cursor.cur"), wait !important;
+  cursor: url("/assets/cursor.cur"), wait !important;
 }
 
 .help,
@@ -168,11 +168,11 @@ h3,
 h4,
 h5,
 h6 {
-  cursor: url("../assets/cursor.cur"), auto !important;
+  cursor: url("/assets/cursor.cur"), auto !important;
 }
 
 /* Fallback for browsers that don't support custom cursors */
-@supports not (cursor: url("../assets/cursor.cur")) {
+@supports not (cursor: url("/assets/cursor.cur")) {
   * {
     cursor: auto;
   }
@@ -1992,15 +1992,15 @@ html {
 }
 
 *[style*="cursor: text"] {
-  cursor: url("../assets/cursor.cur"), text !important;
+  cursor: url("/assets/cursor.cur"), text !important;
 }
 
 *[style*="cursor: default"] {
-  cursor: url("../assets/cursor.cur"), auto !important;
+  cursor: url("/assets/cursor.cur"), auto !important;
 }
 
 *[style*="cursor: auto"] {
-  cursor: url("../assets/cursor.cur"), auto !important;
+  cursor: url("/assets/cursor.cur"), auto !important;
 }
 
 /* Ensure cursor works on dynamically added elements */
@@ -2256,13 +2256,13 @@ body.scrolled .audio-controls {
 
 /* Add a subtle glow effect to help identify custom cursor usage */
 body {
-  cursor: url("../assets/cursor.cur"), auto !important;
+  cursor: url("/assets/cursor.cur"), auto !important;
 }
 
 /* Ensure cursor paths are correct with multiple fallbacks */
 html {
   cursor:
-    url("../assets/cursor.cur"), url("./assets/cursor.cur"), auto !important;
+    url("/assets/cursor.cur"), url("/assets/cursor.cur"), auto !important;
 }
 
 /* Force cursor on all elements as last resort */
