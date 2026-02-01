@@ -1,4 +1,22 @@
 // Shared JavaScript functions - Common functionality used across multiple pages
+// Global scroll restore for mobile: ensures scrolling is enabled if stuck
+function restoreScrolling() {
+  document.body.classList.remove("mobile-nav-active", "mobile-nav-open");
+  document.documentElement.classList.remove("mobile-nav-active");
+  document.body.style.overflow = "";
+  document.body.style.position = "";
+  document.body.style.width = "";
+  document.body.style.height = "";
+  document.body.style.touchAction = "";
+  document.documentElement.style.overflow = "";
+  document.documentElement.style.height = "";
+}
+
+// Run on page load to fix stuck scroll
+window.addEventListener("DOMContentLoaded", restoreScrolling);
+
+// Optionally, expose for modals/menus to call after close
+window.restoreScrolling = restoreScrolling;
 // This file contains functions that are used in multiple JS files to reduce code duplication
 
 // Toggle mobile menu open/closed state and handle navigation visibility
@@ -70,7 +88,10 @@ function toggleMobileMenu() {
   }
 
   // Play sound feedback if available
-  if (window.SoundFeedback && typeof window.SoundFeedback.playEffect === "function") {
+  if (
+    window.SoundFeedback &&
+    typeof window.SoundFeedback.playEffect === "function"
+  ) {
     window.SoundFeedback.playEffect("click");
   }
 }
@@ -119,16 +140,22 @@ function initializeMobileNavigation() {
 
   // Close menu when clicking outside mobile nav area
   document.addEventListener("click", (e) => {
-    if (mobileNav.classList.contains("active") &&
-        !mobileNav.contains(e.target) &&
-        !toggle.contains(e.target)) {
+    if (
+      mobileNav.classList.contains("active") &&
+      !mobileNav.contains(e.target) &&
+      !toggle.contains(e.target)
+    ) {
       toggleMobileMenu();
     }
   });
 
   // Close menu with Escape key for keyboard accessibility
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && mobileNav && mobileNav.classList.contains("active")) {
+    if (
+      e.key === "Escape" &&
+      mobileNav &&
+      mobileNav.classList.contains("active")
+    ) {
       toggleMobileMenu();
     }
   });
@@ -153,24 +180,28 @@ function initializeMobileNavigation() {
   // Handle viewport height changes for mobile browser address bar
   const handleViewportHeight = () => {
     const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
   };
 
   // Set up viewport height handling
   handleViewportHeight();
-  window.addEventListener('resize', handleViewportHeight);
-  window.addEventListener('orientationchange', () => {
+  window.addEventListener("resize", handleViewportHeight);
+  window.addEventListener("orientationchange", () => {
     setTimeout(handleViewportHeight, 100);
   });
 
   // Prevent body scroll when menu is open
-  document.addEventListener('touchmove', (e) => {
-    if (mobileNav && mobileNav.classList.contains("active")) {
-      if (!mobileNav.contains(e.target)) {
-        e.preventDefault();
+  document.addEventListener(
+    "touchmove",
+    (e) => {
+      if (mobileNav && mobileNav.classList.contains("active")) {
+        if (!mobileNav.contains(e.target)) {
+          e.preventDefault();
+        }
       }
-    }
-  }, { passive: false });
+    },
+    { passive: false },
+  );
 }
 
 // Smooth scroll to top with enhanced behavior for mobile devices
@@ -183,13 +214,20 @@ function scrollToTop() {
   });
 
   // Play sound feedback if available
-  if (window.SoundFeedback && typeof window.SoundFeedback.playEffect === "function") {
+  if (
+    window.SoundFeedback &&
+    typeof window.SoundFeedback.playEffect === "function"
+  ) {
     window.SoundFeedback.playEffect("click");
   }
 }
 
 // Show loading indicator in specified container with customizable message
-function showLoadingIndicator(containerId = 'content', message = 'Loading...', description = 'Please wait while we fetch the information.') {
+function showLoadingIndicator(
+  containerId = "content",
+  message = "Loading...",
+  description = "Please wait while we fetch the information.",
+) {
   const content = document.getElementById(containerId);
   if (content) {
     content.innerHTML = `
@@ -211,8 +249,15 @@ function hideLoadingIndicator() {
 }
 
 // Display comprehensive error message with recovery options
-function displayError(title, message, containerId = 'content', backLink = null, additionalInfo = {}, showRecovery = false) {
-  let backLinkHtml = '';
+function displayError(
+  title,
+  message,
+  containerId = "content",
+  backLink = null,
+  additionalInfo = {},
+  showRecovery = false,
+) {
+  let backLinkHtml = "";
 
   if (backLink && showRecovery) {
     backLinkHtml = `
@@ -244,9 +289,12 @@ function displayError(title, message, containerId = 'content', backLink = null, 
   `;
   }
 
-  const techDetails = Object.keys(additionalInfo).length > 0
-    ? Object.entries(additionalInfo).map(([key, value]) => `<p><strong>${key}:</strong> ${value}</p>`).join('')
-    : `
+  const techDetails =
+    Object.keys(additionalInfo).length > 0
+      ? Object.entries(additionalInfo)
+          .map(([key, value]) => `<p><strong>${key}:</strong> ${value}</p>`)
+          .join("")
+      : `
       <p><strong>URL:</strong> ${window.location.href}</p>
       <p><strong>Timestamp:</strong> ${new Date().toISOString()}</p>
     `;
@@ -273,7 +321,7 @@ function displayError(title, message, containerId = 'content', backLink = null, 
 }
 
 // Display temporary notification message with customizable type and duration
-function showNotification(message, duration = 3000, type = 'info') {
+function showNotification(message, duration = 3000, type = "info") {
   const notification = document.createElement("div");
   notification.className = `notification notification-${type}`;
   notification.style.cssText = `
@@ -295,20 +343,20 @@ function showNotification(message, duration = 3000, type = 'info') {
   `;
 
   // Set type-specific colors
-  if (type === 'error') {
-    notification.style.background = 'var(--accent-crimson, #ff4757)';
-  } else if (type === 'success') {
-    notification.style.background = 'var(--accent-emerald, #2ed573)';
-  } else if (type === 'warning') {
-    notification.style.background = 'var(--accent-gold, #ffa502)';
+  if (type === "error") {
+    notification.style.background = "var(--accent-crimson, #ff4757)";
+  } else if (type === "success") {
+    notification.style.background = "var(--accent-emerald, #2ed573)";
+  } else if (type === "warning") {
+    notification.style.background = "var(--accent-gold, #ffa502)";
   }
 
   notification.textContent = message;
 
   // Add animation keyframes if not already present
-  if (!document.querySelector('#notification-styles')) {
-    const style = document.createElement('style');
-    style.id = 'notification-styles';
+  if (!document.querySelector("#notification-styles")) {
+    const style = document.createElement("style");
+    style.id = "notification-styles";
     style.textContent = `
       @keyframes slideInRight {
         from {
@@ -338,7 +386,7 @@ function showNotification(message, duration = 3000, type = 'info') {
 
   // Auto-remove notification after specified duration
   setTimeout(() => {
-    notification.style.animation = 'slideOutRight 0.3s ease-in';
+    notification.style.animation = "slideOutRight 0.3s ease-in";
     setTimeout(() => {
       if (notification.parentNode) {
         notification.parentNode.removeChild(notification);
@@ -347,8 +395,8 @@ function showNotification(message, duration = 3000, type = 'info') {
   }, duration);
 
   // Allow manual dismissal by clicking
-  notification.addEventListener('click', () => {
-    notification.style.animation = 'slideOutRight 0.3s ease-in';
+  notification.addEventListener("click", () => {
+    notification.style.animation = "slideOutRight 0.3s ease-in";
     setTimeout(() => {
       if (notification.parentNode) {
         notification.parentNode.removeChild(notification);
@@ -382,23 +430,24 @@ function announceToScreenReader(message) {
 
 // Cycle through available themes and save preference
 function toggleTheme() {
-  const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-  const themes = ['dark', 'high-contrast', 'sepia'];
+  const currentTheme =
+    document.documentElement.getAttribute("data-theme") || "dark";
+  const themes = ["dark", "high-contrast", "sepia"];
   const currentIndex = themes.indexOf(currentTheme);
   const nextTheme = themes[(currentIndex + 1) % themes.length];
 
   // Apply new theme and save preference to localStorage
-  document.documentElement.setAttribute('data-theme', nextTheme);
-  localStorage.setItem('preferred-theme', nextTheme);
+  document.documentElement.setAttribute("data-theme", nextTheme);
+  localStorage.setItem("preferred-theme", nextTheme);
 
-  showNotification(`Theme changed to ${nextTheme}`, 2000, 'success');
+  showNotification(`Theme changed to ${nextTheme}`, 2000, "success");
 }
 
 // Load saved theme preference from localStorage
 function loadThemePreference() {
-  const savedTheme = localStorage.getItem('preferred-theme');
+  const savedTheme = localStorage.getItem("preferred-theme");
   if (savedTheme) {
-    document.documentElement.setAttribute('data-theme', savedTheme);
+    document.documentElement.setAttribute("data-theme", savedTheme);
   }
 }
 
@@ -420,23 +469,30 @@ function debounce(func, wait, immediate) {
 // Limit function execution rate to prevent excessive calls
 function throttle(func, limit) {
   let inThrottle;
-  return function(...args) {
+  return function (...args) {
     if (!inThrottle) {
       func.apply(this, args);
       inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
+      setTimeout(() => (inThrottle = false), limit);
     }
   };
 }
 
 // Detect if device is mobile based on viewport and user agent
 function isMobileDevice() {
-  return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  return (
+    window.innerWidth <= 768 ||
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent,
+    )
+  );
 }
 
 // Safe mobile detection with fallback for when shared.js might not be loaded
 function safeMobileDetection() {
-  return window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
+  return window.isMobileDevice
+    ? window.isMobileDevice()
+    : window.innerWidth <= 768;
 }
 
 // Extract URL parameter value by name
@@ -482,7 +538,7 @@ function animateNumber(element, from, to, duration = 700) {
 
 // Create ripple effect animation on element click
 function createRippleEffect(element, event) {
-  const ripple = document.createElement('div');
+  const ripple = document.createElement("div");
   ripple.style.cssText = `
     position: absolute;
     border-radius: 50%;
@@ -498,17 +554,17 @@ function createRippleEffect(element, event) {
   const x = event ? event.clientX - rect.left : rect.width / 2;
   const y = event ? event.clientY - rect.top : rect.height / 2;
 
-  ripple.style.width = ripple.style.height = size + 'px';
-  ripple.style.left = (x - size / 2) + 'px';
-  ripple.style.top = (y - size / 2) + 'px';
+  ripple.style.width = ripple.style.height = size + "px";
+  ripple.style.left = x - size / 2 + "px";
+  ripple.style.top = y - size / 2 + "px";
 
-  element.style.position = 'relative';
+  element.style.position = "relative";
   element.appendChild(ripple);
 
   // Add ripple animation keyframes if not already present
-  if (!document.querySelector('#ripple-styles')) {
-    const style = document.createElement('style');
-    style.id = 'ripple-styles';
+  if (!document.querySelector("#ripple-styles")) {
+    const style = document.createElement("style");
+    style.id = "ripple-styles";
     style.textContent = `
       @keyframes ripple {
         to {
@@ -548,14 +604,14 @@ window.animateNumber = animateNumber;
 window.createRippleEffect = createRippleEffect;
 
 // Initialize shared functionality when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   loadThemePreference();
   initializeMobileNavigation();
   initializeAudioManager();
 });
 
 // Export for module systems if available
-if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== "undefined" && module.exports) {
   module.exports = {
     toggleMobileMenu,
     initializeMobileNavigation,
@@ -575,7 +631,7 @@ if (typeof module !== 'undefined' && module.exports) {
     hexToRgb,
     generateRandomStats,
     animateNumber,
-    createRippleEffect
+    createRippleEffect,
   };
 }
 // ========== CURSOR ENFORCEMENT ========== //
@@ -587,21 +643,36 @@ function enforceCursors() {
 
   // Set pointer cursor for interactive elements
   const interactiveSelectors = [
-    'a', 'button', 'input[type="button"]', 'input[type="submit"]', 'input[type="reset"]',
-    'select', '[role="button"]', '.clickable', '.primary-button', '.secondary-button',
-    '.tertiary-button', '.view-profile-button', '.view-details-button', '.recruit-button',
-    '.social-link', '.quick-item', '.modal-close', '.nav-brand', '.mobile-menu-toggle'
+    "a",
+    "button",
+    'input[type="button"]',
+    'input[type="submit"]',
+    'input[type="reset"]',
+    "select",
+    '[role="button"]',
+    ".clickable",
+    ".primary-button",
+    ".secondary-button",
+    ".tertiary-button",
+    ".view-profile-button",
+    ".view-details-button",
+    ".recruit-button",
+    ".social-link",
+    ".quick-item",
+    ".modal-close",
+    ".nav-brand",
+    ".mobile-menu-toggle",
   ];
 
-  interactiveSelectors.forEach(selector => {
+  interactiveSelectors.forEach((selector) => {
     const elements = document.querySelectorAll(selector);
-    elements.forEach(element => {
-      if (!element.disabled && !element.classList.contains('disabled')) {
+    elements.forEach((element) => {
+      if (!element.disabled && !element.classList.contains("disabled")) {
         element.style.cursor = "url('../assets/pointer.cur'), pointer";
 
         // Also set cursor for child elements
-        const children = element.querySelectorAll('*');
-        children.forEach(child => {
+        const children = element.querySelectorAll("*");
+        children.forEach((child) => {
           child.style.cursor = "url('../assets/pointer.cur'), pointer";
           child.style.pointerEvents = "none";
         });
@@ -611,20 +682,26 @@ function enforceCursors() {
 
   // Set text cursor for text inputs
   const textInputSelectors = [
-    'input[type="text"]', 'input[type="email"]', 'input[type="password"]',
-    'input[type="search"]', 'textarea', '[contenteditable="true"]'
+    'input[type="text"]',
+    'input[type="email"]',
+    'input[type="password"]',
+    'input[type="search"]',
+    "textarea",
+    '[contenteditable="true"]',
   ];
 
-  textInputSelectors.forEach(selector => {
+  textInputSelectors.forEach((selector) => {
     const elements = document.querySelectorAll(selector);
-    elements.forEach(element => {
+    elements.forEach((element) => {
       element.style.cursor = "url('../assets/cursor.cur'), text";
     });
   });
 
   // Set not-allowed cursor for disabled elements
-  const disabledElements = document.querySelectorAll('button:disabled, input:disabled, select:disabled, textarea:disabled, .disabled');
-  disabledElements.forEach(element => {
+  const disabledElements = document.querySelectorAll(
+    "button:disabled, input:disabled, select:disabled, textarea:disabled, .disabled",
+  );
+  disabledElements.forEach((element) => {
     element.style.cursor = "url('../assets/cursor.cur'), not-allowed";
   });
 }
@@ -633,7 +710,7 @@ function enforceCursors() {
 function observeCursorChanges() {
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
-      if (mutation.type === 'childList') {
+      if (mutation.type === "childList") {
         mutation.addedNodes.forEach((node) => {
           if (node.nodeType === Node.ELEMENT_NODE) {
             // Apply cursor styles to newly added elements
@@ -646,12 +723,12 @@ function observeCursorChanges() {
 
   observer.observe(document.body, {
     childList: true,
-    subtree: true
+    subtree: true,
   });
 }
 
 // Initialize cursor enforcement when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   enforceCursors();
   observeCursorChanges();
 
@@ -660,7 +737,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Re-enforce cursors when page becomes visible (handles tab switching)
-document.addEventListener('visibilitychange', () => {
+document.addEventListener("visibilitychange", () => {
   if (!document.hidden) {
     setTimeout(enforceCursors, 100);
   }
@@ -674,46 +751,46 @@ document.addEventListener('visibilitychange', () => {
  */
 
 class AudioManager {
-    constructor() {
-        this.audio = null;
-        this.isPlaying = false;
-        this.isMuted = false;
-        this.volume = 0.3; // Default volume (30%)
-        this.fadeInterval = null;
+  constructor() {
+    this.audio = null;
+    this.isPlaying = false;
+    this.isMuted = false;
+    this.volume = 0.3; // Default volume (30%)
+    this.fadeInterval = null;
 
-        this.init();
+    this.init();
+  }
+
+  init() {
+    // Create audio element
+    this.audio = new Audio("assets/theme.mp3");
+    this.audio.loop = true;
+    this.audio.volume = this.volume;
+    this.audio.preload = "auto";
+
+    // Load saved preferences
+    this.loadPreferences();
+
+    // Create audio controls
+    this.createAudioControls();
+
+    // Set up event listeners
+    this.setupEventListeners();
+
+    // Auto-play with user interaction detection
+    this.setupAutoPlay();
+  }
+
+  createAudioControls() {
+    // Check if controls already exist
+    if (document.querySelector(".audio-controls")) {
+      return;
     }
 
-    init() {
-        // Create audio element
-        this.audio = new Audio('assets/theme.mp3');
-        this.audio.loop = true;
-        this.audio.volume = this.volume;
-        this.audio.preload = 'auto';
-
-        // Load saved preferences
-        this.loadPreferences();
-
-        // Create audio controls
-        this.createAudioControls();
-
-        // Set up event listeners
-        this.setupEventListeners();
-
-        // Auto-play with user interaction detection
-        this.setupAutoPlay();
-    }
-
-    createAudioControls() {
-        // Check if controls already exist
-        if (document.querySelector('.audio-controls')) {
-            return;
-        }
-
-        // Create audio controls container
-        const audioControls = document.createElement('div');
-        audioControls.className = 'audio-controls';
-        audioControls.innerHTML = `
+    // Create audio controls container
+    const audioControls = document.createElement("div");
+    audioControls.className = "audio-controls";
+    audioControls.innerHTML = `
             <button class="audio-toggle" id="audioToggle" title="Toggle Background Music">
                 <i class="fas fa-music">🎵</i>
             </button>
@@ -726,335 +803,335 @@ class AudioManager {
             <div class="audio-loading" id="audioLoading"></div>
         `;
 
-        // Add to page
-        document.body.appendChild(audioControls);
+    // Add to page
+    document.body.appendChild(audioControls);
 
-        // Store references
-        this.toggleButton = document.getElementById('audioToggle');
-        this.volumeSlider = document.getElementById('volumeSlider');
-        this.volumeLevel = document.getElementById('volumeLevel');
-        this.loadingIndicator = document.getElementById('audioLoading');
+    // Store references
+    this.toggleButton = document.getElementById("audioToggle");
+    this.volumeSlider = document.getElementById("volumeSlider");
+    this.volumeLevel = document.getElementById("volumeLevel");
+    this.loadingIndicator = document.getElementById("audioLoading");
 
-        // Update initial state
-        this.updateControlsState();
+    // Update initial state
+    this.updateControlsState();
 
-        console.log('Audio controls created and added to page');
+    console.log("Audio controls created and added to page");
+  }
+
+  setupEventListeners() {
+    // Toggle button
+    this.toggleButton.addEventListener("click", () => {
+      this.toggle();
+    });
+
+    // Volume slider
+    this.volumeSlider.addEventListener("input", (e) => {
+      this.setVolume(e.target.value / 100);
+    });
+
+    // Audio events
+    this.audio.addEventListener("loadstart", () => {
+      this.showLoading(true);
+    });
+
+    this.audio.addEventListener("canplaythrough", () => {
+      this.showLoading(false);
+    });
+
+    this.audio.addEventListener("play", () => {
+      this.isPlaying = true;
+      this.updateControlsState();
+    });
+
+    this.audio.addEventListener("pause", () => {
+      this.isPlaying = false;
+      this.updateControlsState();
+    });
+
+    this.audio.addEventListener("error", (e) => {
+      console.warn("Audio playback error:", e);
+      this.showLoading(false);
+      this.isPlaying = false;
+      this.updateControlsState();
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener("keydown", (e) => {
+      // Ctrl/Cmd + M to toggle music
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "m") {
+        e.preventDefault();
+        this.toggle();
+      }
+    });
+
+    // Page visibility change
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden && this.isPlaying) {
+        this.fadeOut();
+      } else if (!document.hidden && this.isPlaying) {
+        this.fadeIn();
+      }
+    });
+
+    // Before page unload - save preferences
+    window.addEventListener("beforeunload", () => {
+      this.savePreferences();
+    });
+  }
+
+  setupAutoPlay() {
+    // Try to auto-play after user interaction
+    const startAudio = () => {
+      if (!this.isPlaying && !this.isMuted) {
+        this.play();
+      }
+      // Remove listeners after first interaction
+      document.removeEventListener("click", startAudio);
+      document.removeEventListener("keydown", startAudio);
+      document.removeEventListener("touchstart", startAudio);
+    };
+
+    // Wait for user interaction due to browser autoplay policies
+    document.addEventListener("click", startAudio);
+    document.addEventListener("keydown", startAudio);
+    document.addEventListener("touchstart", startAudio);
+
+    // Also try after a short delay
+    setTimeout(() => {
+      if (!this.isPlaying && !this.isMuted) {
+        this.play();
+      }
+    }, 1000);
+  }
+
+  async play() {
+    try {
+      this.showLoading(true);
+      await this.audio.play();
+      this.isPlaying = true;
+      this.showLoading(false);
+    } catch (error) {
+      console.warn("Could not play audio:", error);
+      this.showLoading(false);
+      this.isPlaying = false;
     }
+    this.updateControlsState();
+  }
 
-    setupEventListeners() {
-        // Toggle button
-        this.toggleButton.addEventListener('click', () => {
-            this.toggle();
-        });
+  pause() {
+    this.audio.pause();
+    this.isPlaying = false;
+    this.updateControlsState();
+  }
 
-        // Volume slider
-        this.volumeSlider.addEventListener('input', (e) => {
-            this.setVolume(e.target.value / 100);
-        });
-
-        // Audio events
-        this.audio.addEventListener('loadstart', () => {
-            this.showLoading(true);
-        });
-
-        this.audio.addEventListener('canplaythrough', () => {
-            this.showLoading(false);
-        });
-
-        this.audio.addEventListener('play', () => {
-            this.isPlaying = true;
-            this.updateControlsState();
-        });
-
-        this.audio.addEventListener('pause', () => {
-            this.isPlaying = false;
-            this.updateControlsState();
-        });
-
-        this.audio.addEventListener('error', (e) => {
-            console.warn('Audio playback error:', e);
-            this.showLoading(false);
-            this.isPlaying = false;
-            this.updateControlsState();
-        });
-
-        // Keyboard shortcuts
-        document.addEventListener('keydown', (e) => {
-            // Ctrl/Cmd + M to toggle music
-            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'm') {
-                e.preventDefault();
-                this.toggle();
-            }
-        });
-
-        // Page visibility change
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden && this.isPlaying) {
-                this.fadeOut();
-            } else if (!document.hidden && this.isPlaying) {
-                this.fadeIn();
-            }
-        });
-
-        // Before page unload - save preferences
-        window.addEventListener('beforeunload', () => {
-            this.savePreferences();
-        });
+  toggle() {
+    if (this.isPlaying) {
+      this.pause();
+    } else {
+      this.play();
     }
+  }
 
-    setupAutoPlay() {
-        // Try to auto-play after user interaction
-        const startAudio = () => {
-            if (!this.isPlaying && !this.isMuted) {
-                this.play();
-            }
-            // Remove listeners after first interaction
-            document.removeEventListener('click', startAudio);
-            document.removeEventListener('keydown', startAudio);
-            document.removeEventListener('touchstart', startAudio);
-        };
+  setVolume(volume) {
+    this.volume = Math.max(0, Math.min(1, volume));
+    this.audio.volume = this.volume;
+    this.volumeLevel.textContent = `${Math.round(this.volume * 100)}%`;
+    this.volumeSlider.value = this.volume * 100;
 
-        // Wait for user interaction due to browser autoplay policies
-        document.addEventListener('click', startAudio);
-        document.addEventListener('keydown', startAudio);
-        document.addEventListener('touchstart', startAudio);
+    // Update muted state based on volume
+    this.isMuted = this.volume === 0;
+    this.updateControlsState();
 
-        // Also try after a short delay
-        setTimeout(() => {
-            if (!this.isPlaying && !this.isMuted) {
-                this.play();
-            }
-        }, 1000);
+    // Save preference
+    this.savePreferences();
+  }
+
+  mute() {
+    this.previousVolume = this.volume;
+    this.setVolume(0);
+    this.isMuted = true;
+  }
+
+  unmute() {
+    const targetVolume = this.previousVolume || 0.3;
+    this.setVolume(targetVolume);
+    this.isMuted = false;
+  }
+
+  fadeIn(duration = 1000) {
+    if (this.fadeInterval) clearInterval(this.fadeInterval);
+
+    const targetVolume = this.volume;
+    const steps = 20;
+    const stepTime = duration / steps;
+    const volumeStep = targetVolume / steps;
+    let currentStep = 0;
+
+    this.audio.volume = 0;
+
+    this.fadeInterval = setInterval(() => {
+      currentStep++;
+      this.audio.volume = Math.min(volumeStep * currentStep, targetVolume);
+
+      if (currentStep >= steps) {
+        clearInterval(this.fadeInterval);
+        this.fadeInterval = null;
+      }
+    }, stepTime);
+  }
+
+  fadeOut(duration = 1000) {
+    if (this.fadeInterval) clearInterval(this.fadeInterval);
+
+    const startVolume = this.audio.volume;
+    const steps = 20;
+    const stepTime = duration / steps;
+    const volumeStep = startVolume / steps;
+    let currentStep = 0;
+
+    this.fadeInterval = setInterval(() => {
+      currentStep++;
+      this.audio.volume = Math.max(startVolume - volumeStep * currentStep, 0);
+
+      if (currentStep >= steps) {
+        clearInterval(this.fadeInterval);
+        this.fadeInterval = null;
+      }
+    }, stepTime);
+  }
+
+  updateControlsState() {
+    if (!this.toggleButton) return;
+
+    // Update toggle button
+    const icon = this.toggleButton.querySelector("i");
+
+    if (this.isPlaying) {
+      this.toggleButton.classList.add("playing");
+      this.toggleButton.classList.remove("muted");
+      if (icon) {
+        icon.className = "fas fa-music";
+        icon.textContent = "🎵";
+      }
+      this.toggleButton.title = "Pause Background Music";
+    } else if (this.isMuted || this.volume === 0) {
+      this.toggleButton.classList.add("muted");
+      this.toggleButton.classList.remove("playing");
+      if (icon) {
+        icon.className = "fas fa-volume-mute";
+        icon.textContent = "🔇";
+      }
+      this.toggleButton.title = "Unmute Background Music";
+    } else {
+      this.toggleButton.classList.remove("playing", "muted");
+      if (icon) {
+        icon.className = "fas fa-play";
+        icon.textContent = "▶️";
+      }
+      this.toggleButton.title = "Play Background Music";
     }
+  }
 
-    async play() {
-        try {
-            this.showLoading(true);
-            await this.audio.play();
-            this.isPlaying = true;
-            this.showLoading(false);
-        } catch (error) {
-            console.warn('Could not play audio:', error);
-            this.showLoading(false);
-            this.isPlaying = false;
-        }
-        this.updateControlsState();
+  showLoading(show) {
+    if (show) {
+      this.loadingIndicator.style.display = "block";
+    } else {
+      this.loadingIndicator.style.display = "none";
     }
+  }
 
-    pause() {
-        this.audio.pause();
-        this.isPlaying = false;
-        this.updateControlsState();
+  savePreferences() {
+    const preferences = {
+      volume: this.volume,
+      isMuted: this.isMuted,
+      isPlaying: this.isPlaying,
+    };
+
+    try {
+      localStorage.setItem("audioPreferences", JSON.stringify(preferences));
+    } catch (error) {
+      console.warn("Could not save audio preferences:", error);
     }
+  }
 
-    toggle() {
-        if (this.isPlaying) {
-            this.pause();
-        } else {
-            this.play();
-        }
-    }
+  loadPreferences() {
+    try {
+      const saved = localStorage.getItem("audioPreferences");
+      if (saved) {
+        const preferences = JSON.parse(saved);
+        this.volume = preferences.volume || 0.3;
+        this.isMuted = preferences.isMuted || false;
 
-    setVolume(volume) {
-        this.volume = Math.max(0, Math.min(1, volume));
+        // Apply volume
         this.audio.volume = this.volume;
-        this.volumeLevel.textContent = `${Math.round(this.volume * 100)}%`;
-        this.volumeSlider.value = this.volume * 100;
+      }
+    } catch (error) {
+      console.warn("Could not load audio preferences:", error);
+    }
+  }
 
-        // Update muted state based on volume
-        this.isMuted = this.volume === 0;
-        this.updateControlsState();
+  // Public methods for external control
+  getCurrentTime() {
+    return this.audio.currentTime;
+  }
 
-        // Save preference
-        this.savePreferences();
+  getDuration() {
+    return this.audio.duration;
+  }
+
+  setCurrentTime(time) {
+    this.audio.currentTime = time;
+  }
+
+  getVolume() {
+    return this.volume;
+  }
+
+  isCurrentlyPlaying() {
+    return this.isPlaying;
+  }
+
+  destroy() {
+    // Clean up
+    if (this.fadeInterval) {
+      clearInterval(this.fadeInterval);
     }
 
-    mute() {
-        this.previousVolume = this.volume;
-        this.setVolume(0);
-        this.isMuted = true;
+    if (this.audio) {
+      this.audio.pause();
+      this.audio.src = "";
     }
 
-    unmute() {
-        const targetVolume = this.previousVolume || 0.3;
-        this.setVolume(targetVolume);
-        this.isMuted = false;
+    // Remove controls
+    const controls = document.querySelector(".audio-controls");
+    if (controls) {
+      controls.remove();
     }
 
-    fadeIn(duration = 1000) {
-        if (this.fadeInterval) clearInterval(this.fadeInterval);
-
-        const targetVolume = this.volume;
-        const steps = 20;
-        const stepTime = duration / steps;
-        const volumeStep = targetVolume / steps;
-        let currentStep = 0;
-
-        this.audio.volume = 0;
-
-        this.fadeInterval = setInterval(() => {
-            currentStep++;
-            this.audio.volume = Math.min(volumeStep * currentStep, targetVolume);
-
-            if (currentStep >= steps) {
-                clearInterval(this.fadeInterval);
-                this.fadeInterval = null;
-            }
-        }, stepTime);
-    }
-
-    fadeOut(duration = 1000) {
-        if (this.fadeInterval) clearInterval(this.fadeInterval);
-
-        const startVolume = this.audio.volume;
-        const steps = 20;
-        const stepTime = duration / steps;
-        const volumeStep = startVolume / steps;
-        let currentStep = 0;
-
-        this.fadeInterval = setInterval(() => {
-            currentStep++;
-            this.audio.volume = Math.max(startVolume - (volumeStep * currentStep), 0);
-
-            if (currentStep >= steps) {
-                clearInterval(this.fadeInterval);
-                this.fadeInterval = null;
-            }
-        }, stepTime);
-    }
-
-    updateControlsState() {
-        if (!this.toggleButton) return;
-
-        // Update toggle button
-        const icon = this.toggleButton.querySelector('i');
-
-        if (this.isPlaying) {
-            this.toggleButton.classList.add('playing');
-            this.toggleButton.classList.remove('muted');
-            if (icon) {
-                icon.className = 'fas fa-music';
-                icon.textContent = '🎵';
-            }
-            this.toggleButton.title = 'Pause Background Music';
-        } else if (this.isMuted || this.volume === 0) {
-            this.toggleButton.classList.add('muted');
-            this.toggleButton.classList.remove('playing');
-            if (icon) {
-                icon.className = 'fas fa-volume-mute';
-                icon.textContent = '🔇';
-            }
-            this.toggleButton.title = 'Unmute Background Music';
-        } else {
-            this.toggleButton.classList.remove('playing', 'muted');
-            if (icon) {
-                icon.className = 'fas fa-play';
-                icon.textContent = '▶️';
-            }
-            this.toggleButton.title = 'Play Background Music';
-        }
-    }
-
-    showLoading(show) {
-        if (show) {
-            this.loadingIndicator.style.display = 'block';
-        } else {
-            this.loadingIndicator.style.display = 'none';
-        }
-    }
-
-    savePreferences() {
-        const preferences = {
-            volume: this.volume,
-            isMuted: this.isMuted,
-            isPlaying: this.isPlaying
-        };
-
-        try {
-            localStorage.setItem('audioPreferences', JSON.stringify(preferences));
-        } catch (error) {
-            console.warn('Could not save audio preferences:', error);
-        }
-    }
-
-    loadPreferences() {
-        try {
-            const saved = localStorage.getItem('audioPreferences');
-            if (saved) {
-                const preferences = JSON.parse(saved);
-                this.volume = preferences.volume || 0.3;
-                this.isMuted = preferences.isMuted || false;
-
-                // Apply volume
-                this.audio.volume = this.volume;
-            }
-        } catch (error) {
-            console.warn('Could not load audio preferences:', error);
-        }
-    }
-
-    // Public methods for external control
-    getCurrentTime() {
-        return this.audio.currentTime;
-    }
-
-    getDuration() {
-        return this.audio.duration;
-    }
-
-    setCurrentTime(time) {
-        this.audio.currentTime = time;
-    }
-
-    getVolume() {
-        return this.volume;
-    }
-
-    isCurrentlyPlaying() {
-        return this.isPlaying;
-    }
-
-    destroy() {
-        // Clean up
-        if (this.fadeInterval) {
-            clearInterval(this.fadeInterval);
-        }
-
-        if (this.audio) {
-            this.audio.pause();
-            this.audio.src = '';
-        }
-
-        // Remove controls
-        const controls = document.querySelector('.audio-controls');
-        if (controls) {
-            controls.remove();
-        }
-
-        // Save preferences before destroying
-        this.savePreferences();
-    }
+    // Save preferences before destroying
+    this.savePreferences();
+  }
 }
 
 // Initialize audio manager when DOM is loaded
 let audioManager = null;
 
 function initializeAudioManager() {
-    // Check if audio controls already exist to prevent duplicates
-    if (document.querySelector('.audio-controls')) {
-        return;
-    }
+  // Check if audio controls already exist to prevent duplicates
+  if (document.querySelector(".audio-controls")) {
+    return;
+  }
 
-    if (!audioManager) {
-        try {
-            audioManager = new AudioManager();
-            // Update the global reference
-            window.audioManager = audioManager;
-            console.log('Audio Manager initialized successfully');
-        } catch (error) {
-            console.warn('Failed to initialize Audio Manager:', error);
-        }
+  if (!audioManager) {
+    try {
+      audioManager = new AudioManager();
+      // Update the global reference
+      window.audioManager = audioManager;
+      console.log("Audio Manager initialized successfully");
+    } catch (error) {
+      console.warn("Failed to initialize Audio Manager:", error);
     }
+  }
 }
 
 // Make AudioManager available globally

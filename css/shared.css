@@ -13,8 +13,16 @@
 }
 
 /* Default cursor for html and body */
-html, body {
+html,
+body {
   cursor: url("../assets/cursor.cur"), auto !important;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100%;
+  min-height: 100vh;
+  position: relative;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Interactive elements - pointer cursor */
@@ -154,7 +162,12 @@ body.loading * {
 p:not(.clickable),
 span:not(.clickable):not(.button-icon):not(.button-text):not(.nav-icon),
 div:not(.clickable):not(.card):not([onclick]):not([role="button"]),
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   cursor: url("../assets/cursor.cur"), auto !important;
 }
 
@@ -164,18 +177,30 @@ h1, h2, h3, h4, h5, h6 {
     cursor: auto;
   }
 
-  a, button, input[type="button"], input[type="submit"], input[type="reset"],
-  select, [role="button"], .clickable {
+  a,
+  button,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  select,
+  [role="button"],
+  .clickable {
     cursor: pointer;
   }
 
-  input[type="text"], input[type="email"], input[type="password"],
-  textarea, [contenteditable="true"] {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  textarea,
+  [contenteditable="true"] {
     cursor: text;
   }
 
-  button:disabled, input:disabled, select:disabled,
-  textarea:disabled, .disabled {
+  button:disabled,
+  input:disabled,
+  select:disabled,
+  textarea:disabled,
+  .disabled {
     cursor: not-allowed;
   }
 }
@@ -886,16 +911,16 @@ body::before {
 
 /* Prevent body scrolling when mobile nav is active */
 body.mobile-nav-active {
-  overflow: hidden !important;
-  position: fixed !important;
-  width: 100% !important;
-  height: 100% !important;
-  touch-action: none !important;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
 }
 
 html.mobile-nav-active {
-  overflow: hidden !important;
-  height: 100% !important;
+  overflow: hidden;
+  height: 100%;
 }
 
 /* Prevent momentum scrolling on iOS */
@@ -1954,7 +1979,6 @@ html {
   }
 }
 
-
 /* ========== CURSOR STYLE OVERRIDES ========== */
 
 /* Override any inline cursor styles */
@@ -2167,7 +2191,8 @@ body.scrolled .audio-controls {
 }
 
 @keyframes audioPlaying {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -2236,12 +2261,14 @@ body {
 
 /* Ensure cursor paths are correct with multiple fallbacks */
 html {
-  cursor: url("../assets/cursor.cur"), url("./assets/cursor.cur"), auto !important;
+  cursor:
+    url("../assets/cursor.cur"), url("./assets/cursor.cur"), auto !important;
 }
 
-
 /* Force cursor on all elements as last resort */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   cursor: inherit !important;
 }
 
@@ -2252,7 +2279,10 @@ html * {
 }
 
 /* Override any CSS framework cursor styles */
-.btn, .button, .clickable, [onclick] {
+.btn,
+.button,
+.clickable,
+[onclick] {
   cursor: url("../assets/pointer.cur"), pointer !important;
 }
 
@@ -2262,18 +2292,22 @@ html * {
     cursor: url("../assets/cursor.cur"), auto !important;
   }
 
-  button, a, [role="button"] {
+  button,
+  a,
+  [role="button"] {
     cursor: url("../assets/pointer.cur"), pointer !important;
   }
 }
 
 /* WebKit specific cursor fixes */
-@media screen and (-webkit-min-device-pixel-ratio:0) {
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
   * {
     cursor: url("../assets/cursor.cur"), auto !important;
   }
 
-  button, a, [role="button"] {
+  button,
+  a,
+  [role="button"] {
     cursor: url("../assets/pointer.cur"), pointer !important;
   }
 }

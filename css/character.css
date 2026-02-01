@@ -1,4 +1,15 @@
 /* ========== MAIN CONTAINER ========== */
+/* Force scroll on mobile for character page */
+html,
+body {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  height: 100%;
+  min-height: 100vh;
+  position: relative;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+}
 .character-profile-container {
   position: relative;
   z-index: 10;
@@ -817,8 +828,13 @@
 }
 
 @keyframes headerGlow {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 /* ========== CHARACTER POWER INDICATOR ========== */
@@ -862,8 +878,12 @@
 }
 
 @keyframes powerRingRotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .profile-image-container {
@@ -916,8 +936,12 @@
 }
 
 @keyframes borderRotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .profile-image {
@@ -1016,8 +1040,13 @@
 }
 
 @keyframes textShimmer {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .profile-race,
@@ -3434,7 +3463,11 @@
   right: -100%;
   width: 280px;
   height: 100vh;
-  background: linear-gradient(135deg, rgba(21, 27, 61, 0.98), rgba(21, 27, 61, 0.95));
+  background: linear-gradient(
+    135deg,
+    rgba(21, 27, 61, 0.98),
+    rgba(21, 27, 61, 0.95)
+  );
   backdrop-filter: blur(20px);
   border-left: 2px solid var(--primary-blue);
   z-index: 1000;
@@ -3664,8 +3697,12 @@ body.mobile-nav-open {
 }
 
 @keyframes powerRingRotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .character-badge {
@@ -3673,7 +3710,11 @@ body.mobile-nav-open {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  background: linear-gradient(135deg, var(--character-primary, var(--primary-blue)), var(--character-secondary, #2a9fd8));
+  background: linear-gradient(
+    135deg,
+    var(--character-primary, var(--primary-blue)),
+    var(--character-secondary, #2a9fd8)
+  );
   border-radius: 20px;
   color: white;
   font-size: 0.9rem;
@@ -3683,8 +3724,13 @@ body.mobile-nav-open {
 }
 
 @keyframes badgePulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
 }
 
 .skill-mastery-indicator {
@@ -3699,7 +3745,11 @@ body.mobile-nav-open {
 
 .mastery-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--character-primary, var(--primary-blue)), var(--character-secondary, #2a9fd8));
+  background: linear-gradient(
+    90deg,
+    var(--character-primary, var(--primary-blue)),
+    var(--character-secondary, #2a9fd8)
+  );
   border-radius: 2px;
   transition: width 2s ease-out;
   position: relative;
@@ -3712,13 +3762,22 @@ body.mobile-nav-open {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
   animation: masteryShimmer 2s ease-in-out infinite;
 }
 
 @keyframes masteryShimmer {
-  0% { left: -100%; }
-  100% { left: 100%; }
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 /* ========== MOBILE ENHANCEMENTS ========== */

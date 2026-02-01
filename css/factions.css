@@ -6,6 +6,17 @@
   z-index: 10;
 }
 
+/* Force scroll on mobile for factions page - apply globally */
+html, body {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  height: 100%;
+  min-height: 100vh;
+  position: relative;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+}
+
 .page-header {
   text-align: center;
   margin-bottom: 3rem;
@@ -145,7 +156,9 @@
 
 /* Enhanced animations and transitions */
 .faction-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .faction-card:hover {
@@ -549,7 +562,11 @@
 }
 
 .timeline-node.current {
-  background: linear-gradient(135deg, rgba(77, 212, 255, 0.3), rgba(255, 215, 0, 0.2));
+  background: linear-gradient(
+    135deg,
+    rgba(77, 212, 255, 0.3),
+    rgba(255, 215, 0, 0.2)
+  );
   border-color: rgba(255, 215, 0, 0.6);
   opacity: 1;
 }
@@ -597,7 +614,11 @@
 }
 
 .modal-detail-section.timeline-section {
-  background: linear-gradient(135deg, rgba(21, 27, 61, 0.4), rgba(10, 14, 39, 0.4));
+  background: linear-gradient(
+    135deg,
+    rgba(21, 27, 61, 0.4),
+    rgba(10, 14, 39, 0.4)
+  );
   border: 2px solid rgba(77, 212, 255, 0.4);
   border-radius: 18px;
   margin-bottom: 2rem;
@@ -630,7 +651,11 @@
 }
 
 .modal-detail-section .timeline-node.current {
-  background: linear-gradient(135deg, rgba(77, 212, 255, 0.4), rgba(255, 215, 0, 0.3));
+  background: linear-gradient(
+    135deg,
+    rgba(77, 212, 255, 0.4),
+    rgba(255, 215, 0, 0.3)
+  );
   border-color: rgba(255, 215, 0, 0.7);
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
 }
@@ -642,10 +667,18 @@
   transform: translateY(20px);
 }
 
-.modal-detail-section .timeline-node:nth-child(1) { animation-delay: 0.1s; }
-.modal-detail-section .timeline-node:nth-child(2) { animation-delay: 0.2s; }
-.modal-detail-section .timeline-node:nth-child(3) { animation-delay: 0.3s; }
-.modal-detail-section .timeline-node:nth-child(4) { animation-delay: 0.4s; }
+.modal-detail-section .timeline-node:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.modal-detail-section .timeline-node:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.modal-detail-section .timeline-node:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.modal-detail-section .timeline-node:nth-child(4) {
+  animation-delay: 0.4s;
+}
 
 @keyframes timelineSlideIn {
   to {
@@ -661,12 +694,24 @@
   transform: translateY(30px);
 }
 
-.faction-card:nth-child(1) { animation-delay: 0.1s; }
-.faction-card:nth-child(2) { animation-delay: 0.2s; }
-.faction-card:nth-child(3) { animation-delay: 0.3s; }
-.faction-card:nth-child(4) { animation-delay: 0.4s; }
-.faction-card:nth-child(5) { animation-delay: 0.5s; }
-.faction-card:nth-child(6) { animation-delay: 0.6s; }
+.faction-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.faction-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.faction-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.faction-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.faction-card:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.faction-card:nth-child(6) {
+  animation-delay: 0.6s;
+}
 
 @keyframes fadeInUp {
   to {
@@ -749,20 +794,22 @@
 /* Improved faction card layout */
 .faction-card {
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; removed to allow page scroll on mobile */
 }
 
 .faction-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   right: 0;
   width: 3px;
   height: 100%;
-  background: linear-gradient(180deg,
+  background: linear-gradient(
+    180deg,
     rgba(77, 212, 255, 0.3) 0%,
     rgba(77, 212, 255, 0.1) 50%,
-    rgba(77, 212, 255, 0.3) 100%);
+    rgba(77, 212, 255, 0.3) 100%
+  );
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -856,7 +903,7 @@
   height: 8px;
   background: rgba(77, 212, 255, 0.15);
   border-radius: 10px;
-  overflow: hidden;
+  /* overflow: hidden; removed to allow page scroll on mobile */
 }
 
 .power-bar div {
@@ -903,7 +950,11 @@
 }
 
 /* Enhanced power bar for trade/economic factions */
-.faction-card[data-type="guild"] .power-snapshot .power-item:nth-child(2) .power-bar div {
+.faction-card[data-type="guild"]
+  .power-snapshot
+  .power-item:nth-child(2)
+  .power-bar
+  div {
   background: linear-gradient(90deg, #90ee90, #ffd700);
   box-shadow: 0 0 10px rgba(144, 238, 144, 0.6);
 }
@@ -945,7 +996,7 @@
   padding: 0;
   max-width: 900px;
   max-height: 85vh;
-  overflow: hidden;
+  /* overflow: hidden; removed to allow page scroll on mobile */
   position: relative;
   margin: 2rem 1rem 1rem 1rem;
   box-shadow:

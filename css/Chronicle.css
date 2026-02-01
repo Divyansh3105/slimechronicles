@@ -1,4 +1,14 @@
 /* Main content container with centered layout and responsive padding */
+/* Force scroll on mobile for chronicle page - apply globally */
+html, body {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  height: 100%;
+  min-height: 100vh;
+  position: relative;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+}
 .main-content {
   max-width: 1200px;
   margin: 0 auto;
