@@ -381,7 +381,7 @@ function initInteractiveElements() {
   // Enhanced stat card interactions with staggered animations
   document.querySelectorAll(".stat-card").forEach((el, index) => {
     // Add staggered animation delay for visual appeal
-    el.style.animationDelay = `${index * 0.1}s`;
+    el.style.animationDelay = `${index * 0.2}s`;
 
     // Add hover effects for devices that support hover
     if (supportsHover) {
@@ -390,7 +390,10 @@ function initInteractiveElements() {
           window.SoundFeedback.playEffect("hover");
         }
         // Add subtle glow effect on hover
-        el.style.filter = "drop-shadow(0 0 20px rgba(77, 212, 255, 0.3))";
+        el.style.filter = "drop-shadow(0 0 25px rgba(77, 212, 255, 0.4))";
+
+        // Add ripple effect on hover
+        createHoverRipple(el);
       });
 
       el.addEventListener("mouseleave", () => {
@@ -409,6 +412,12 @@ function initInteractiveElements() {
         window.createRippleEffect(el, event);
       }
 
+      // Add click animation
+      el.style.transform = "scale(0.98)";
+      setTimeout(() => {
+        el.style.transform = "";
+      }, 150);
+
       // Trigger detailed view (placeholder for future functionality)
       showCardDetails(el.id);
     });
@@ -422,6 +431,62 @@ function initInteractiveElements() {
     });
   });
 
+  // Enhanced pillar card interactions
+  document.querySelectorAll(".pillar-card").forEach((pillar, index) => {
+    pillar.style.animationDelay = `${index * 0.1}s`;
+
+    if (supportsHover) {
+      pillar.addEventListener("mouseenter", () => {
+        if (window.SoundFeedback) {
+          window.SoundFeedback.playEffect("hover");
+        }
+
+        // Add dynamic glow based on pillar type
+        const pillarType = pillar.getAttribute("data-pillar");
+        addPillarGlow(pillar, pillarType);
+      });
+
+      pillar.addEventListener("mouseleave", () => {
+        removePillarGlow(pillar);
+      });
+    }
+
+    pillar.addEventListener("click", (e) => {
+      if (window.SoundFeedback) {
+        window.SoundFeedback.playEffect("click");
+      }
+
+      // Add click feedback
+      pillar.style.transform = "scale(0.97)";
+      setTimeout(() => {
+        pillar.style.transform = "";
+      }, 200);
+    });
+  });
+
+  // Enhanced key figure card interactions
+  document.querySelectorAll(".key-figure-card").forEach((figure, index) => {
+    figure.style.animationDelay = `${index * 0.15}s`;
+
+    if (supportsHover) {
+      figure.addEventListener("mouseenter", () => {
+        if (window.SoundFeedback) {
+          window.SoundFeedback.playEffect("hover");
+        }
+
+        // Add role-specific glow
+        const roleClass = Array.from(figure.classList).find(cls =>
+          ['supreme', 'military', 'enforcement', 'diplomacy'].includes(cls)
+        );
+        addRoleGlow(figure, roleClass);
+      });
+
+      figure.addEventListener("mouseleave", () => {
+        removeRoleGlow(figure);
+      });
+    }
+  });
+
   // Enhanced state card interactions with hover and click effects
   document.querySelectorAll(".state-card").forEach((el) => {
     if (supportsHover) {
@@ -429,6 +494,13 @@ function initInteractiveElements() {
         if (window.SoundFeedback) {
           window.SoundFeedback.playEffect("hover");
         }
+
+        // Add breathing animation
+        el.style.animation = "cardBreathe 2s ease-in-out infinite";
+      });
+
+      el.addEventListener("mouseleave", () => {
+        el.style.animation = "";
       });
     }
 
@@ -442,28 +514,22 @@ function initInteractiveElements() {
     });
   });
 
-  // Enhanced strength category interactions with click feedback
-  document.querySelectorAll(".strength-category").forEach((el) => {
-    el.addEventListener("click", () => {
-      if (window.SoundFeedback) {
-        window.SoundFeedback.playEffect("click");
-      }
-
-      // Smooth scale animation for visual feedback
-      el.style.transform = "scale(0.98)";
-      setTimeout(() => {
-        el.style.transform = "";
-      }, 150);
-    });
-  });
-
   // Enhanced badge interactions with hover and click effects
-  document.querySelectorAll(".badge").forEach((badge) => {
+  document.querySelectorAll(".badge").forEach((badge, index) => {
+    badge.style.animationDelay = `${index * 0.1}s`;
+
     if (supportsHover) {
       badge.addEventListener("mouseenter", () => {
         if (window.SoundFeedback) {
           window.SoundFeedback.playEffect("hover");
         }
+
+        // Add magnetic effect
+        badge.style.transform = "translateY(-2px) scale(1.02)";
+      });
+
+      badge.addEventListener("mouseleave", () => {
+        badge.style.transform = "";
       });
     }
 
@@ -488,12 +554,21 @@ function initInteractiveElements() {
   });
 
   // Enhanced number cards interactions with hover and click effects
-  document.querySelectorAll(".number-card").forEach((card) => {
+  document.querySelectorAll(".number-card").forEach((card, index) => {
+    card.style.animationDelay = `${index * 0.2}s`;
+
     if (supportsHover) {
       card.addEventListener("mouseenter", () => {
         if (window.SoundFeedback) {
           window.SoundFeedback.playEffect("hover");
         }
+
+        // Add category-specific effects
+        addNumberCardEffect(card);
+      });
+
+      card.addEventListener("mouseleave", () => {
+        removeNumberCardEffect(card);
       });
     }
 
@@ -527,12 +602,14 @@ function initInteractiveElements() {
 
       const emblemCore = federationEmblem.querySelector(".emblem-core");
 
-      // Simple scale animation for emblem interaction
-      emblemCore.style.transform = "scale(1.05)";
+      // Enhanced scale animation for emblem interaction
+      emblemCore.style.transform = "scale(1.1) rotate(5deg)";
+      emblemCore.style.filter = "brightness(1.2) drop-shadow(0 0 30px var(--accent-gold))";
 
       setTimeout(() => {
         emblemCore.style.transform = "";
-      }, 200);
+        emblemCore.style.filter = "";
+      }, 300);
     });
 
     // Keyboard accessibility support for federation emblem
@@ -741,3 +818,113 @@ document.addEventListener("visibilitychange", () => {
 
 // Make functions globally available for external access - Export key functions to window object
 window.updateOverview = updateOverview;
+
+// Enhanced interaction helper functions
+function createHoverRipple(element) {
+  const ripple = document.createElement('div');
+  ripple.className = 'hover-ripple';
+  ripple.style.cssText = `
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(77, 212, 255, 0.3), transparent);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    animation: hoverRipple 0.6s ease-out;
+    z-index: 1;
+  `;
+
+  element.style.position = 'relative';
+  element.appendChild(ripple);
+
+  setTimeout(() => {
+    if (ripple.parentNode) {
+      ripple.parentNode.removeChild(ripple);
+    }
+  }, 600);
+}
+
+function addPillarGlow(pillar, pillarType) {
+  const glowColors = {
+    protection: 'rgba(77, 212, 255, 0.4)',
+    merit: 'rgba(255, 215, 0, 0.4)',
+    unity: 'rgba(0, 255, 136, 0.4)',
+    law: 'rgba(170, 85, 255, 0.4)',
+    growth: 'rgba(255, 51, 102, 0.4)'
+  };
+
+  const color = glowColors[pillarType] || 'rgba(77, 212, 255, 0.4)';
+  pillar.style.boxShadow = `0 0 30px ${color}, 0 20px 50px rgba(0, 0, 0, 0.3)`;
+}
+
+function removePillarGlow(pillar) {
+  pillar.style.boxShadow = '';
+}
+
+function addRoleGlow(figure, roleClass) {
+  const roleColors = {
+    supreme: 'rgba(255, 215, 0, 0.4)',
+    military: 'rgba(255, 87, 87, 0.4)',
+    enforcement: 'rgba(170, 85, 255, 0.4)',
+    diplomacy: 'rgba(0, 255, 136, 0.4)'
+  };
+
+  const color = roleColors[roleClass] || 'rgba(77, 212, 255, 0.4)';
+  figure.style.boxShadow = `0 0 25px ${color}, 0 25px 55px rgba(0, 0, 0, 0.5)`;
+}
+
+function removeRoleGlow(figure) {
+  figure.style.boxShadow = '';
+}
+
+function addNumberCardEffect(card) {
+  const cardType = card.classList.contains('anime-card') ? 'anime' :
+                   card.classList.contains('novel-card') ? 'novel' :
+                   card.classList.contains('revenue-card') ? 'revenue' : 'default';
+
+  const effects = {
+    anime: 'rgba(77, 212, 255, 0.3)',
+    novel: 'rgba(0, 255, 136, 0.3)',
+    revenue: 'rgba(255, 215, 0, 0.3)',
+    default: 'rgba(77, 212, 255, 0.3)'
+  };
+
+  const color = effects[cardType];
+  card.style.boxShadow = `0 0 30px ${color}, 0 20px 55px rgba(0, 0, 0, 0.35)`;
+  card.style.transform = 'translateY(-6px) scale(1.02)';
+}
+
+function removeNumberCardEffect(card) {
+  card.style.boxShadow = '';
+  card.style.transform = '';
+}
+
+// Add CSS animations dynamically
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes hoverRipple {
+    0% {
+      width: 0;
+      height: 0;
+      opacity: 1;
+    }
+    100% {
+      width: 200px;
+      height: 200px;
+      opacity: 0;
+    }
+  }
+
+  @keyframes cardBreathe {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.01);
+    }
+  }
+`;
+document.head.appendChild(style);

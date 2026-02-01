@@ -134,13 +134,12 @@ body {
     rgba(10, 14, 39, 0.9)
   );
   border: 1px solid rgba(77, 212, 255, 0.3);
-  backdrop-filter: blur(25px);
+  backdrop-filter: blur(15px);
   position: relative;
   overflow: hidden;
   box-shadow:
     0 20px 60px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 0 0 1px rgba(77, 212, 255, 0.1);
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
 }
 
@@ -148,8 +147,7 @@ body {
   transform: translateY(-2px);
   box-shadow:
     0 25px 70px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    0 0 0 1px rgba(77, 212, 255, 0.15);
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 .hero-welcome::before {
@@ -294,8 +292,7 @@ body {
   border-color: rgba(77, 212, 255, 0.5);
   box-shadow:
     0 12px 30px rgba(77, 212, 255, 0.2),
-    0 0 0 1px rgba(77, 212, 255, 0.1),
-    0 0 20px rgba(77, 212, 255, 0.1);
+    0 0 0 1px rgba(77, 212, 255, 0.1);
 }
 
 .badge:hover::before {
@@ -709,7 +706,7 @@ body {
     rgba(21, 27, 61, 0.6),
     rgba(77, 21, 22, 0.05)
   );
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(15px);
   border: 1px solid var(--border-subtle);
   border-radius: 24px;
   padding: 2.5rem;
@@ -2169,4 +2166,238 @@ body {
 
 .key-figure-card.diplomacy {
   border-color: rgba(0, 255, 136, 0.4);
+}
+
+/* ================= ENHANCED VISUAL EFFECTS ================= */
+
+/* Smooth scroll behavior for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced loading animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Enhanced shimmer effect */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Particle effect for enhanced visual appeal */
+.enhanced-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.enhanced-particles::before,
+.enhanced-particles::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--primary-blue);
+  border-radius: 50%;
+  animation: particleFloat 8s ease-in-out infinite;
+}
+
+.enhanced-particles::before {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.enhanced-particles::after {
+  top: 60%;
+  right: 15%;
+  animation-delay: 4s;
+  background: var(--accent-gold);
+}
+
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* Enhanced focus states for better accessibility */
+.stat-card:focus-visible,
+.pillar-card:focus-visible,
+.key-figure-card:focus-visible,
+.number-card:focus-visible,
+.badge:focus-visible {
+  outline: 3px solid var(--accent-cyan);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(77, 212, 255, 0.2);
+}
+
+/* Enhanced hover states with better transitions */
+.stat-card,
+.pillar-card,
+.key-figure-card,
+.number-card,
+.badge {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Improved text selection styling */
+::selection {
+  background: rgba(77, 212, 255, 0.3);
+  color: var(--text-light);
+}
+
+::-moz-selection {
+  background: rgba(77, 212, 255, 0.3);
+  color: var(--text-light);
+}
+
+/* Enhanced scrollbar styling for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(21, 27, 61, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--primary-blue),
+    var(--accent-cyan)
+  );
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    var(--accent-cyan),
+    var(--primary-blue)
+  );
+}
+
+/* Enhanced mobile touch feedback */
+@media (max-width: 767px) {
+  .stat-card:active,
+  .pillar-card:active,
+  .key-figure-card:active,
+  .number-card:active,
+  .badge:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .stat-card,
+  .pillar-card,
+  .key-figure-card,
+  .number-card,
+  .badge {
+    border-width: 3px;
+    border-color: var(--text-light);
+  }
+
+  .welcome-title,
+  .section-title,
+  .pillars-title {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  }
+}
+
+/* Print styles for better document printing */
+@media print {
+  .floating-orb,
+  .magic-circle,
+  .particles,
+  .starfield,
+  .enhanced-particles {
+    display: none !important;
+  }
+
+  .hero-welcome,
+  .stat-card,
+  .pillar-card,
+  .key-figure-card,
+  .number-card {
+    break-inside: avoid;
+    box-shadow: none !important;
+    border: 2px solid #333 !important;
+  }
+
+  .main-content {
+    padding: 1rem !important;
+  }
+}
+
+/* Enhanced dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-light: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.8);
+    --border-subtle: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Reduced data usage for slow connections */
+@media (prefers-reduced-data: reduce) {
+  .floating-orb,
+  .magic-circle,
+  .particles,
+  .enhanced-particles {
+    display: none !important;
+  }
+
+  .hero-welcome::before,
+  .stat-card::before,
+  .pillar-card::before {
+    display: none !important;
+  }
 }
