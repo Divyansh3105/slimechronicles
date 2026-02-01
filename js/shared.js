@@ -551,6 +551,7 @@ window.createRippleEffect = createRippleEffect;
 document.addEventListener('DOMContentLoaded', () => {
   loadThemePreference();
   initializeMobileNavigation();
+  initializeAudioManager();
 });
 
 // Export for module systems if available
@@ -664,3 +665,399 @@ document.addEventListener('visibilitychange', () => {
     setTimeout(enforceCursors, 100);
   }
 });
+
+// ========== AUDIO MANAGER ========== //
+
+/**
+ * Audio Manager - Background Music Controller
+ * Handles background music playback across all pages
+ */
+
+class AudioManager {
+    constructor() {
+        this.audio = null;
+        this.isPlaying = false;
+        this.isMuted = false;
+        this.volume = 0.3; // Default volume (30%)
+        this.fadeInterval = null;
+
+        this.init();
+    }
+
+    init() {
+        // Create audio element
+        this.audio = new Audio('assets/theme.mp3');
+        this.audio.loop = true;
+        this.audio.volume = this.volume;
+        this.audio.preload = 'auto';
+
+        // Load saved preferences
+        this.loadPreferences();
+
+        // Create audio controls
+        this.createAudioControls();
+
+        // Set up event listeners
+        this.setupEventListeners();
+
+        // Auto-play with user interaction detection
+        this.setupAutoPlay();
+    }
+
+    createAudioControls() {
+        // Check if controls already exist
+        if (document.querySelector('.audio-controls')) {
+            return;
+        }
+
+        // Create audio controls container
+        const audioControls = document.createElement('div');
+        audioControls.className = 'audio-controls';
+        audioControls.innerHTML = `
+            <button class="audio-toggle" id="audioToggle" title="Toggle Background Music">
+                <i class="fas fa-music">🎵</i>
+            </button>
+            <div class="volume-control">
+                <input type="range" class="volume-slider" id="volumeSlider"
+                       min="0" max="100" value="${this.volume * 100}"
+                       title="Volume Control">
+                <span class="volume-level" id="volumeLevel">${Math.round(this.volume * 100)}%</span>
+            </div>
+            <div class="audio-loading" id="audioLoading"></div>
+        `;
+
+        // Add to page
+        document.body.appendChild(audioControls);
+
+        // Store references
+        this.toggleButton = document.getElementById('audioToggle');
+        this.volumeSlider = document.getElementById('volumeSlider');
+        this.volumeLevel = document.getElementById('volumeLevel');
+        this.loadingIndicator = document.getElementById('audioLoading');
+
+        // Update initial state
+        this.updateControlsState();
+
+        console.log('Audio controls created and added to page');
+    }
+
+    setupEventListeners() {
+        // Toggle button
+        this.toggleButton.addEventListener('click', () => {
+            this.toggle();
+        });
+
+        // Volume slider
+        this.volumeSlider.addEventListener('input', (e) => {
+            this.setVolume(e.target.value / 100);
+        });
+
+        // Audio events
+        this.audio.addEventListener('loadstart', () => {
+            this.showLoading(true);
+        });
+
+        this.audio.addEventListener('canplaythrough', () => {
+            this.showLoading(false);
+        });
+
+        this.audio.addEventListener('play', () => {
+            this.isPlaying = true;
+            this.updateControlsState();
+        });
+
+        this.audio.addEventListener('pause', () => {
+            this.isPlaying = false;
+            this.updateControlsState();
+        });
+
+        this.audio.addEventListener('error', (e) => {
+            console.warn('Audio playback error:', e);
+            this.showLoading(false);
+            this.isPlaying = false;
+            this.updateControlsState();
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Ctrl/Cmd + M to toggle music
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'm') {
+                e.preventDefault();
+                this.toggle();
+            }
+        });
+
+        // Page visibility change
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden && this.isPlaying) {
+                this.fadeOut();
+            } else if (!document.hidden && this.isPlaying) {
+                this.fadeIn();
+            }
+        });
+
+        // Before page unload - save preferences
+        window.addEventListener('beforeunload', () => {
+            this.savePreferences();
+        });
+    }
+
+    setupAutoPlay() {
+        // Try to auto-play after user interaction
+        const startAudio = () => {
+            if (!this.isPlaying && !this.isMuted) {
+                this.play();
+            }
+            // Remove listeners after first interaction
+            document.removeEventListener('click', startAudio);
+            document.removeEventListener('keydown', startAudio);
+            document.removeEventListener('touchstart', startAudio);
+        };
+
+        // Wait for user interaction due to browser autoplay policies
+        document.addEventListener('click', startAudio);
+        document.addEventListener('keydown', startAudio);
+        document.addEventListener('touchstart', startAudio);
+
+        // Also try after a short delay
+        setTimeout(() => {
+            if (!this.isPlaying && !this.isMuted) {
+                this.play();
+            }
+        }, 1000);
+    }
+
+    async play() {
+        try {
+            this.showLoading(true);
+            await this.audio.play();
+            this.isPlaying = true;
+            this.showLoading(false);
+        } catch (error) {
+            console.warn('Could not play audio:', error);
+            this.showLoading(false);
+            this.isPlaying = false;
+        }
+        this.updateControlsState();
+    }
+
+    pause() {
+        this.audio.pause();
+        this.isPlaying = false;
+        this.updateControlsState();
+    }
+
+    toggle() {
+        if (this.isPlaying) {
+            this.pause();
+        } else {
+            this.play();
+        }
+    }
+
+    setVolume(volume) {
+        this.volume = Math.max(0, Math.min(1, volume));
+        this.audio.volume = this.volume;
+        this.volumeLevel.textContent = `${Math.round(this.volume * 100)}%`;
+        this.volumeSlider.value = this.volume * 100;
+
+        // Update muted state based on volume
+        this.isMuted = this.volume === 0;
+        this.updateControlsState();
+
+        // Save preference
+        this.savePreferences();
+    }
+
+    mute() {
+        this.previousVolume = this.volume;
+        this.setVolume(0);
+        this.isMuted = true;
+    }
+
+    unmute() {
+        const targetVolume = this.previousVolume || 0.3;
+        this.setVolume(targetVolume);
+        this.isMuted = false;
+    }
+
+    fadeIn(duration = 1000) {
+        if (this.fadeInterval) clearInterval(this.fadeInterval);
+
+        const targetVolume = this.volume;
+        const steps = 20;
+        const stepTime = duration / steps;
+        const volumeStep = targetVolume / steps;
+        let currentStep = 0;
+
+        this.audio.volume = 0;
+
+        this.fadeInterval = setInterval(() => {
+            currentStep++;
+            this.audio.volume = Math.min(volumeStep * currentStep, targetVolume);
+
+            if (currentStep >= steps) {
+                clearInterval(this.fadeInterval);
+                this.fadeInterval = null;
+            }
+        }, stepTime);
+    }
+
+    fadeOut(duration = 1000) {
+        if (this.fadeInterval) clearInterval(this.fadeInterval);
+
+        const startVolume = this.audio.volume;
+        const steps = 20;
+        const stepTime = duration / steps;
+        const volumeStep = startVolume / steps;
+        let currentStep = 0;
+
+        this.fadeInterval = setInterval(() => {
+            currentStep++;
+            this.audio.volume = Math.max(startVolume - (volumeStep * currentStep), 0);
+
+            if (currentStep >= steps) {
+                clearInterval(this.fadeInterval);
+                this.fadeInterval = null;
+            }
+        }, stepTime);
+    }
+
+    updateControlsState() {
+        if (!this.toggleButton) return;
+
+        // Update toggle button
+        const icon = this.toggleButton.querySelector('i');
+
+        if (this.isPlaying) {
+            this.toggleButton.classList.add('playing');
+            this.toggleButton.classList.remove('muted');
+            if (icon) {
+                icon.className = 'fas fa-music';
+                icon.textContent = '🎵';
+            }
+            this.toggleButton.title = 'Pause Background Music';
+        } else if (this.isMuted || this.volume === 0) {
+            this.toggleButton.classList.add('muted');
+            this.toggleButton.classList.remove('playing');
+            if (icon) {
+                icon.className = 'fas fa-volume-mute';
+                icon.textContent = '🔇';
+            }
+            this.toggleButton.title = 'Unmute Background Music';
+        } else {
+            this.toggleButton.classList.remove('playing', 'muted');
+            if (icon) {
+                icon.className = 'fas fa-play';
+                icon.textContent = '▶️';
+            }
+            this.toggleButton.title = 'Play Background Music';
+        }
+    }
+
+    showLoading(show) {
+        if (show) {
+            this.loadingIndicator.style.display = 'block';
+        } else {
+            this.loadingIndicator.style.display = 'none';
+        }
+    }
+
+    savePreferences() {
+        const preferences = {
+            volume: this.volume,
+            isMuted: this.isMuted,
+            isPlaying: this.isPlaying
+        };
+
+        try {
+            localStorage.setItem('audioPreferences', JSON.stringify(preferences));
+        } catch (error) {
+            console.warn('Could not save audio preferences:', error);
+        }
+    }
+
+    loadPreferences() {
+        try {
+            const saved = localStorage.getItem('audioPreferences');
+            if (saved) {
+                const preferences = JSON.parse(saved);
+                this.volume = preferences.volume || 0.3;
+                this.isMuted = preferences.isMuted || false;
+
+                // Apply volume
+                this.audio.volume = this.volume;
+            }
+        } catch (error) {
+            console.warn('Could not load audio preferences:', error);
+        }
+    }
+
+    // Public methods for external control
+    getCurrentTime() {
+        return this.audio.currentTime;
+    }
+
+    getDuration() {
+        return this.audio.duration;
+    }
+
+    setCurrentTime(time) {
+        this.audio.currentTime = time;
+    }
+
+    getVolume() {
+        return this.volume;
+    }
+
+    isCurrentlyPlaying() {
+        return this.isPlaying;
+    }
+
+    destroy() {
+        // Clean up
+        if (this.fadeInterval) {
+            clearInterval(this.fadeInterval);
+        }
+
+        if (this.audio) {
+            this.audio.pause();
+            this.audio.src = '';
+        }
+
+        // Remove controls
+        const controls = document.querySelector('.audio-controls');
+        if (controls) {
+            controls.remove();
+        }
+
+        // Save preferences before destroying
+        this.savePreferences();
+    }
+}
+
+// Initialize audio manager when DOM is loaded
+let audioManager = null;
+
+function initializeAudioManager() {
+    // Check if audio controls already exist to prevent duplicates
+    if (document.querySelector('.audio-controls')) {
+        return;
+    }
+
+    if (!audioManager) {
+        try {
+            audioManager = new AudioManager();
+            // Update the global reference
+            window.audioManager = audioManager;
+            console.log('Audio Manager initialized successfully');
+        } catch (error) {
+            console.warn('Failed to initialize Audio Manager:', error);
+        }
+    }
+}
+
+// Make AudioManager available globally
+window.AudioManager = AudioManager;
+window.audioManager = audioManager;
+window.initializeAudioManager = initializeAudioManager;

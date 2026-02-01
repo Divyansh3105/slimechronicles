@@ -1991,6 +1991,242 @@ html {
 .dynamic-content .clickable {
   cursor: url("../assets/pointer.cur"), pointer !important;
 }
+/* ========== AUDIO CONTROLS STYLING ========== */
+
+.audio-controls {
+  position: fixed;
+  top: 6rem;
+  right: 1rem;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 14, 39, 0.95),
+    rgba(21, 27, 61, 0.9)
+  );
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(77, 212, 255, 0.3);
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: audioControlsSlideIn 0.8s ease-out;
+}
+
+/* Hide audio controls when mobile nav is active */
+body.mobile-nav-active .audio-controls {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(100%);
+}
+
+/* Adjust audio controls when navbar is scrolled/compact */
+.main-nav.scrolled ~ .audio-controls,
+body.scrolled .audio-controls {
+  top: 4rem; /* Adjust for compact navbar */
+}
+
+.audio-controls:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(10, 14, 39, 0.98),
+    rgba(21, 27, 61, 0.95)
+  );
+  border-color: rgba(77, 212, 255, 0.5);
+  box-shadow: 0 6px 25px rgba(77, 212, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+/* Audio toggle button */
+.audio-toggle {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 1.2rem;
+  cursor: url("../assets/pointer.cur"), pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+}
+
+.audio-toggle:hover {
+  background: rgba(77, 212, 255, 0.1);
+  color: var(--primary-blue);
+  transform: scale(1.1);
+}
+
+.audio-toggle.playing {
+  color: var(--accent-gold);
+  animation: audioPlaying 2s ease-in-out infinite;
+}
+
+.audio-toggle.muted {
+  color: var(--accent-crimson);
+  opacity: 0.7;
+}
+
+/* Volume control slider */
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.audio-controls:hover .volume-control,
+.audio-controls.expanded .volume-control {
+  opacity: 1;
+  max-width: 120px;
+}
+
+.volume-slider {
+  width: 80px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  outline: none;
+  cursor: url("../assets/pointer.cur"), pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--primary-blue);
+  border-radius: 50%;
+  cursor: url("../assets/pointer.cur"), pointer;
+  box-shadow: 0 0 10px var(--glow-blue);
+  transition: all 0.3s ease;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+  background: var(--accent-cyan);
+  transform: scale(1.2);
+  box-shadow: 0 0 15px var(--glow-cyan);
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--primary-blue);
+  border-radius: 50%;
+  cursor: url("../assets/pointer.cur"), pointer;
+  border: none;
+  box-shadow: 0 0 10px var(--glow-blue);
+  transition: all 0.3s ease;
+}
+
+.volume-slider::-moz-range-thumb:hover {
+  background: var(--accent-cyan);
+  transform: scale(1.2);
+  box-shadow: 0 0 15px var(--glow-cyan);
+}
+
+/* Volume level indicator */
+.volume-level {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  min-width: 2rem;
+  text-align: center;
+}
+
+/* Audio loading indicator */
+.audio-loading {
+  display: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(77, 212, 255, 0.3);
+  border-top: 2px solid var(--primary-blue);
+  border-radius: 50%;
+  animation: audioLoadingSpin 1s linear infinite;
+}
+
+/* Animations */
+@keyframes audioControlsSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes audioPlaying {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes audioLoadingSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 767px) {
+  .audio-controls {
+    top: 4rem; /* Position below mobile navbar */
+    right: 1rem; /* Back to right edge since no overlap */
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    z-index: 999;
+  }
+
+  .audio-toggle {
+    font-size: 1.1rem;
+    min-width: 2.2rem;
+    min-height: 2.2rem;
+  }
+
+  .volume-control {
+    max-width: 100px;
+  }
+
+  .volume-slider {
+    width: 60px;
+  }
+}
+
+@media (max-width: 479px) {
+  .audio-controls {
+    top: 3.5rem; /* Adjust for smaller mobile navbar */
+    right: 0.5rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .audio-toggle {
+    font-size: 1rem;
+    min-width: 2rem;
+    min-height: 2rem;
+  }
+
+  .volume-control {
+    display: none; /* Hide volume control on very small screens */
+  }
+}
+
 /* ========== CURSOR DEBUGGING & TESTING ========== */
 
 /* Add a subtle glow effect to help identify custom cursor usage */
