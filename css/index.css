@@ -1,3 +1,31 @@
+/* ========== INDEX PAGE CURSOR FIXES ========== */
+
+/* Ensure all button child elements show pointer cursor on index page */
+.primary-button,
+.secondary-button,
+.tertiary-button {
+  cursor: url("../assets/pointer.cur"), pointer !important;
+}
+
+.primary-button *,
+.secondary-button *,
+.tertiary-button *,
+.button-glow,
+.button-icon,
+.button-text,
+.button-particles {
+  cursor: url("../assets/pointer.cur"), pointer !important;
+  pointer-events: none; /* Prevent child elements from blocking parent clicks */
+}
+
+/* Quick access items */
+.quick-item,
+.quick-item * {
+  cursor: url("../assets/pointer.cur"), pointer !important;
+}
+
+/* ========== ORIGINAL INDEX STYLES ========== */
+
 /* Loading screen overlay with animated elements */
 .loading-screen {
   position: fixed;

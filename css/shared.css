@@ -4,6 +4,182 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+/* ========== CURSOR STYLES - COMPREHENSIVE FIX ========== */
+
+/* Base cursor for all elements */
+* {
+  cursor: url("../assets/cursor.cur"), auto;
+}
+
+/* Default cursor for html and body */
+html, body {
+  cursor: url("../assets/cursor.cur"), auto !important;
+}
+
+/* Interactive elements - pointer cursor */
+a,
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+select,
+[role="button"],
+.clickable,
+.nav-brand,
+.nav-links a,
+.mobile-nav a,
+.mobile-menu-toggle,
+.mobile-nav-close,
+.primary-button,
+.secondary-button,
+.tertiary-button,
+.view-profile-button,
+.view-details-button,
+.recruit-button,
+.social-link,
+.quick-item,
+.modal-close,
+.btn,
+.button,
+.character-card,
+.skill-card,
+.faction-card,
+.record-card,
+.timeline-item,
+.search-suggestion,
+.filter-button,
+.sort-button,
+.tab-button,
+.close-button,
+.expand-button,
+.collapse-button,
+.toggle-button,
+.dropdown-toggle,
+.pagination-button,
+.nav-arrow,
+.carousel-button,
+.modal-trigger,
+.tooltip-trigger {
+  cursor: url("../assets/pointer.cur"), pointer !important;
+}
+
+/* Interactive elements on hover */
+a:hover,
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+select:hover,
+[role="button"]:hover,
+.clickable:hover {
+  cursor: url("../assets/pointer.cur"), pointer !important;
+}
+
+/* Text input elements */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="url"],
+input[type="tel"],
+input[type="number"],
+textarea,
+.text-input,
+.search-input,
+[contenteditable="true"] {
+  cursor: url("../assets/cursor.cur"), text !important;
+}
+
+/* Button child elements inherit pointer cursor */
+button *,
+.primary-button *,
+.secondary-button *,
+.tertiary-button *,
+.view-profile-button *,
+.view-details-button *,
+.recruit-button *,
+a *,
+[role="button"] *,
+.clickable *,
+.button-glow,
+.button-icon,
+.button-text,
+.button-particles,
+.nav-icon {
+  cursor: url("../assets/pointer.cur"), pointer !important;
+  pointer-events: none !important;
+}
+
+/* Disabled elements */
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled,
+.disabled,
+[aria-disabled="true"] {
+  cursor: url("../assets/cursor.cur"), not-allowed !important;
+  opacity: 0.6;
+}
+
+/* Special cursor types */
+.resizable,
+textarea.resizable {
+  cursor: url("../assets/cursor.cur"), se-resize !important;
+}
+
+.draggable,
+[draggable="true"] {
+  cursor: url("../assets/pointer.cur"), move !important;
+}
+
+.loading,
+.loading *,
+body.loading,
+body.loading * {
+  cursor: url("../assets/cursor.cur"), wait !important;
+}
+
+.help,
+[title]:not(button):not(a):not([role="button"]),
+.tooltip,
+.has-tooltip {
+  cursor: url("../assets/pointer.cur"), help !important;
+}
+
+/* Force default cursor for non-interactive elements */
+.no-cursor,
+.text-content,
+.static-content,
+p:not(.clickable),
+span:not(.clickable):not(.button-icon):not(.button-text):not(.nav-icon),
+div:not(.clickable):not(.card):not([onclick]):not([role="button"]),
+h1, h2, h3, h4, h5, h6 {
+  cursor: url("../assets/cursor.cur"), auto !important;
+}
+
+/* Fallback for browsers that don't support custom cursors */
+@supports not (cursor: url("../assets/cursor.cur")) {
+  * {
+    cursor: auto;
+  }
+
+  a, button, input[type="button"], input[type="submit"], input[type="reset"],
+  select, [role="button"], .clickable {
+    cursor: pointer;
+  }
+
+  input[type="text"], input[type="email"], input[type="password"],
+  textarea, [contenteditable="true"] {
+    cursor: text;
+  }
+
+  button:disabled, input:disabled, select:disabled,
+  textarea:disabled, .disabled {
+    cursor: not-allowed;
+  }
+}
+
 /* CSS custom properties for consistent theming */
 :root {
   --primary-blue: #4dd4ff;
@@ -530,7 +706,7 @@ body::before {
   text-shadow: 0 0 25px var(--glow-blue);
   text-decoration: none;
   transition: all 0.3s ease;
-  cursor: pointer;
+  cursor: url("../assets/pointer.cur"), pointer;
 }
 .nav-brand:hover {
   transform: scale(1.05);
@@ -656,7 +832,7 @@ body::before {
   display: none;
   flex-direction: column;
   gap: 4px;
-  cursor: pointer;
+  cursor: url("../assets/pointer.cur"), pointer;
   padding: 10px;
   border-radius: 12px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -849,7 +1025,7 @@ body.mobile-nav-active * {
   color: var(--text-light);
   font-size: 1.6rem;
   font-weight: bold;
-  cursor: pointer;
+  cursor: url("../assets/pointer.cur"), pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1002;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -1002,7 +1178,7 @@ body.mobile-nav-active * {
   font-weight: bold;
   border: none;
   border-radius: 12px;
-  cursor: pointer;
+  cursor: url("../assets/pointer.cur"), pointer;
   transition: all 0.3s ease;
   overflow: hidden;
   z-index: 1;
@@ -1082,7 +1258,7 @@ body.mobile-nav-active * {
   font-size: 0.9rem;
   font-weight: 600;
   border-radius: 12px;
-  cursor: pointer;
+  cursor: url("../assets/pointer.cur"), pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: "Rajdhani", sans-serif;
   text-transform: uppercase;
@@ -1376,65 +1552,6 @@ html {
 .footer-info {
   text-align: right;
   color: var(--text-secondary);
-  font-size: 0.85rem;
-}
-
-.footer-copyright {
-  margin-bottom: 0.5rem;
-}
-
-.footer-version {
-  opacity: 0.7;
-  font-style: italic;
-}
-
-.footer-social {
-  display: flex;
-  gap: 1rem;
-  justify-content: flex-end;
-  margin-top: 0.5rem;
-}
-
-.social-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  background: rgba(77, 212, 255, 0.1);
-  border: 1px solid rgba(77, 212, 255, 0.3);
-  border-radius: 50%;
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-.social-link:hover {
-  background: rgba(77, 212, 255, 0.2);
-  border-color: var(--accent-cyan);
-  color: var(--accent-cyan);
-  box-shadow: 0 0 15px rgba(77, 212, 255, 0.4);
-  transform: translateY(-2px) scale(1.1);
-}
-
-@keyframes footerPulse {
-  0%,
-  100% {
-    box-shadow: 0 0 20px var(--glow-blue);
-    transform: scale(1);
-  }
-  50% {
-    box-shadow:
-      0 0 30px var(--glow-blue),
-      0 0 40px rgba(77, 212, 255, 0.3);
-    transform: scale(1.05);
-  }
-}
-
-.footer-info {
-  text-align: right;
-  color: var(--text-secondary);
   font-size: 0.9rem;
   display: flex;
   flex-direction: column;
@@ -1666,8 +1783,6 @@ html {
     top: max(1rem, env(safe-area-inset-top, 1rem));
     right: max(1rem, env(safe-area-inset-right, 1rem));
   }
-}
-  }
 
   .mobile-nav a {
     width: 260px;
@@ -1836,5 +1951,93 @@ html {
   .page-subtitle {
     font-size: 1rem;
     margin-bottom: 1.5rem;
+  }
+}
+
+
+/* ========== CURSOR STYLE OVERRIDES ========== */
+
+/* Override any inline cursor styles */
+*[style*="cursor"] {
+  cursor: url("../assets/pointer.cur"), pointer !important;
+}
+
+/* Specific overrides for common inline styles */
+*[style*="cursor: pointer"] {
+  cursor: url("../assets/pointer.cur"), pointer !important;
+}
+
+*[style*="cursor: text"] {
+  cursor: url("../assets/cursor.cur"), text !important;
+}
+
+*[style*="cursor: default"] {
+  cursor: url("../assets/cursor.cur"), auto !important;
+}
+
+*[style*="cursor: auto"] {
+  cursor: url("../assets/cursor.cur"), auto !important;
+}
+
+/* Ensure cursor works on dynamically added elements */
+.dynamic-content,
+.dynamic-content * {
+  cursor: inherit !important;
+}
+
+.dynamic-content button,
+.dynamic-content a,
+.dynamic-content [role="button"],
+.dynamic-content .clickable {
+  cursor: url("../assets/pointer.cur"), pointer !important;
+}
+/* ========== CURSOR DEBUGGING & TESTING ========== */
+
+/* Add a subtle glow effect to help identify custom cursor usage */
+body {
+  cursor: url("../assets/cursor.cur"), auto !important;
+}
+
+/* Ensure cursor paths are correct with multiple fallbacks */
+html {
+  cursor: url("../assets/cursor.cur"), url("./assets/cursor.cur"), auto !important;
+}
+
+
+/* Force cursor on all elements as last resort */
+*, *::before, *::after {
+  cursor: inherit !important;
+}
+
+/* Specific cursor enforcement for problematic elements */
+body *,
+html * {
+  cursor: inherit !important;
+}
+
+/* Override any CSS framework cursor styles */
+.btn, .button, .clickable, [onclick] {
+  cursor: url("../assets/pointer.cur"), pointer !important;
+}
+
+/* Ensure cursor works in all browsers */
+@-moz-document url-prefix() {
+  * {
+    cursor: url("../assets/cursor.cur"), auto !important;
+  }
+
+  button, a, [role="button"] {
+    cursor: url("../assets/pointer.cur"), pointer !important;
+  }
+}
+
+/* WebKit specific cursor fixes */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  * {
+    cursor: url("../assets/cursor.cur"), auto !important;
+  }
+
+  button, a, [role="button"] {
+    cursor: url("../assets/pointer.cur"), pointer !important;
   }
 }

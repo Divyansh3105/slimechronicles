@@ -695,7 +695,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <div style="font-size: 2rem; margin-bottom: 1rem;">⏳</div>
         <div>Loading historical records...</div>
         <div style="margin-top: 1rem;">
-          <button onclick="testFunction()" style="padding: 10px 20px; margin: 10px; background: var(--primary-blue); color: white; border: none; border-radius: 8px; cursor: pointer;">Test JavaScript</button>
+          <button onclick="testFunction()" style="padding: 10px 20px; margin: 10px; background: var(--primary-blue); color: white; border: none; border-radius: 8px; cursor: url('../assets/pointer.cur'), pointer;">Test JavaScript</button>
         </div>
       </div>
     `;

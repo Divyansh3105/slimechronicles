@@ -577,3 +577,90 @@ if (typeof module !== 'undefined' && module.exports) {
     createRippleEffect
   };
 }
+// ========== CURSOR ENFORCEMENT ========== //
+
+// Function to enforce custom cursors on all elements
+function enforceCursors() {
+  // Set default cursor for body
+  document.body.style.cursor = "url('../assets/cursor.cur'), auto";
+
+  // Set pointer cursor for interactive elements
+  const interactiveSelectors = [
+    'a', 'button', 'input[type="button"]', 'input[type="submit"]', 'input[type="reset"]',
+    'select', '[role="button"]', '.clickable', '.primary-button', '.secondary-button',
+    '.tertiary-button', '.view-profile-button', '.view-details-button', '.recruit-button',
+    '.social-link', '.quick-item', '.modal-close', '.nav-brand', '.mobile-menu-toggle'
+  ];
+
+  interactiveSelectors.forEach(selector => {
+    const elements = document.querySelectorAll(selector);
+    elements.forEach(element => {
+      if (!element.disabled && !element.classList.contains('disabled')) {
+        element.style.cursor = "url('../assets/pointer.cur'), pointer";
+
+        // Also set cursor for child elements
+        const children = element.querySelectorAll('*');
+        children.forEach(child => {
+          child.style.cursor = "url('../assets/pointer.cur'), pointer";
+          child.style.pointerEvents = "none";
+        });
+      }
+    });
+  });
+
+  // Set text cursor for text inputs
+  const textInputSelectors = [
+    'input[type="text"]', 'input[type="email"]', 'input[type="password"]',
+    'input[type="search"]', 'textarea', '[contenteditable="true"]'
+  ];
+
+  textInputSelectors.forEach(selector => {
+    const elements = document.querySelectorAll(selector);
+    elements.forEach(element => {
+      element.style.cursor = "url('../assets/cursor.cur'), text";
+    });
+  });
+
+  // Set not-allowed cursor for disabled elements
+  const disabledElements = document.querySelectorAll('button:disabled, input:disabled, select:disabled, textarea:disabled, .disabled');
+  disabledElements.forEach(element => {
+    element.style.cursor = "url('../assets/cursor.cur'), not-allowed";
+  });
+}
+
+// Function to handle dynamically added elements
+function observeCursorChanges() {
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'childList') {
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            // Apply cursor styles to newly added elements
+            setTimeout(() => enforceCursors(), 10);
+          }
+        });
+      }
+    });
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+}
+
+// Initialize cursor enforcement when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  enforceCursors();
+  observeCursorChanges();
+
+  // Re-enforce cursors periodically to handle any overrides
+  setInterval(enforceCursors, 5000);
+});
+
+// Re-enforce cursors when page becomes visible (handles tab switching)
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) {
+    setTimeout(enforceCursors, 100);
+  }
+});

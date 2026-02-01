@@ -199,7 +199,7 @@ function renderCurrentPage() {
         <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
         <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">No characters found</h3>
         <p>Try adjusting your search criteria or filters</p>
-        <button onclick="clearAllFilters()" style="margin-top: 1rem; padding: 0.8rem 1.5rem; background: var(--primary-blue); color: white; border: none; border-radius: 8px; cursor: pointer;">
+        <button onclick="clearAllFilters()" style="margin-top: 1rem; padding: 0.8rem 1.5rem; background: var(--primary-blue); color: white; border: none; border-radius: 8px; cursor: url('../assets/pointer.cur'), pointer;">
           Clear All Filters
         </button>
       </div>
