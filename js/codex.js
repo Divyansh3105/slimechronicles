@@ -3,6 +3,7 @@ let currentFilter = "all"; // Active filter category for character display
 let searchTerm = ""; // User input search query for character filtering
 let raceFilter = ""; // Selected race filter option
 let powerFilter = ""; // Selected power level filter option
+let currentView = "grid"; // Current view mode: 'grid' or 'list'
 
 // Update dashboard statistics by fetching and calculating character data
 async function updateStatistics() {
@@ -192,14 +193,14 @@ function applyFiltersAndRender() {
 function renderCurrentPage() {
   const grid = document.getElementById("character-grid");
 
-  // Display no results message when no characters match current filters
+  // Display enhanced no results message when no characters match current filters
   if (filteredCharacters.length === 0) {
     grid.innerHTML = `
-      <div class="no-results" style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: rgba(255, 255, 255, 0.7);">
-        <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
-        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">No characters found</h3>
-        <p>Try adjusting your search criteria or filters</p>
-        <button onclick="clearAllFilters()" style="margin-top: 1rem; padding: 0.8rem 1.5rem; background: var(--primary-blue); color: white; border: none; border-radius: 8px; cursor: url('../assets/pointer.cur'), pointer;">
+      <div class="no-results" style="grid-column: 1 / -1;">
+        <div class="no-results-icon">🔍</div>
+        <h3>No characters found</h3>
+        <p>Try adjusting your search criteria or filters to discover more characters</p>
+        <button onclick="clearAllFilters()" style="margin-top: 1rem; padding: 1rem 2rem; background: var(--primary-blue); color: white; border: none; border-radius: 12px; cursor: url('../assets/pointer.cur'), pointer; font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
           Clear All Filters
         </button>
       </div>
@@ -215,25 +216,24 @@ function renderCurrentPage() {
   );
   const pageCharacters = filteredCharacters.slice(startIndex, endIndex);
 
-  // Apply base grid styling
-  grid.className = "character-grid";
+  // Apply base grid styling with view mode
+  grid.className = `character-grid ${currentView}-view`;
 
   // Apply special layout class for 11-character pages
-  if (pageCharacters.length === 11) {
+  if (pageCharacters.length === 11 && currentView === "grid") {
     grid.classList.add("eleven-cards");
   }
 
-  // Display loading state during character card generation
+  // Display enhanced loading state during character card generation
   grid.innerHTML = `
-    <div class="loading-characters" style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--primary-blue);">
-      <div style="font-size: 2rem; margin-bottom: 1rem;">⚡</div>
-      <p>Loading characters...</p>
+    <div class="loading-characters" style="grid-column: 1 / -1;">
+      <div class="loading-text">Loading characters...</div>
     </div>
   `;
 
   // Render character cards with slight delay for smooth loading animation
   setTimeout(() => {
-    if (pageCharacters.length === 11) {
+    if (pageCharacters.length === 11 && currentView === "grid") {
       // Special layout handling for 11-character pages (8+3 grid arrangement)
       const first8Cards = pageCharacters.slice(0, 8);
       const last3Cards = pageCharacters.slice(8, 11);
@@ -337,7 +337,7 @@ function renderCurrentPage() {
 
     // Apply scroll animations to newly rendered character cards
     addScrollAnimations();
-  }, 100);
+  }, 200);
 }
 
 // Generate HTML for individual character card with responsive design and theming
@@ -687,6 +687,31 @@ function initializeFilters() {
       applyFiltersAndRender();
     });
   }
+
+  // Setup view toggle functionality
+  const viewToggle = document.getElementById("view-toggle");
+  if (viewToggle) {
+    viewToggle.addEventListener("click", () => {
+      currentView = currentView === "grid" ? "list" : "grid";
+      updateViewToggleButton();
+      applyFiltersAndRender();
+    });
+  }
+}
+
+// Update view toggle button appearance and text
+function updateViewToggleButton() {
+  const viewToggle = document.getElementById("view-toggle");
+  const viewIcon = viewToggle.querySelector(".view-icon");
+  const viewText = viewToggle.querySelector(".view-text");
+
+  if (currentView === "grid") {
+    viewIcon.textContent = "⊞";
+    viewText.textContent = "Grid View";
+  } else {
+    viewIcon.textContent = "☰";
+    viewText.textContent = "List View";
+  }
 }
 
 // Reset all active filters and restore default display state
@@ -860,6 +885,43 @@ document.addEventListener("DOMContentLoaded", () => {
     starfieldContainer.style.display = "none";
   }
 
+  // Add interactive search focus effects
+  const searchInput = document.getElementById("character-search");
+  const searchContainer = document.querySelector(".search-container");
+
+  if (searchInput && searchContainer) {
+    searchInput.addEventListener("focus", () => {
+      searchContainer.classList.add("focused");
+    });
+
+    searchInput.addEventListener("blur", () => {
+      searchContainer.classList.remove("focused");
+    });
+  }
+
+  // Add stat card click animations
+  const statCards = document.querySelectorAll(".stat-card");
+  statCards.forEach(card => {
+    card.addEventListener("click", () => {
+      card.style.transform = "translateY(-8px) scale(1.1)";
+      setTimeout(() => {
+        card.style.transform = "";
+      }, 200);
+    });
+  });
+
+  // Add character card entrance animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.style.opacity = "1";
+          entry.target.style.transform = "translateY(0)";
+        }, index * 100);
+      }
+    });
+  }, { threshold: 0.1 });
+
   // Setup debug function for development and troubleshooting
   window.debugCharacters = async () => {
     try {
@@ -888,6 +950,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize filter event handlers
   initializeFilters();
 
+  // Initialize view toggle button
+  updateViewToggleButton();
+
   // Load and display initial statistics
   updateStatistics();
 
@@ -907,6 +972,20 @@ document.addEventListener("DOMContentLoaded", () => {
   // Handle viewport resize events and update mobile state
   window.addEventListener("resize", () => {
     renderCharacters();
+  });
+
+  // Add smooth scrolling for better UX
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
   });
 });
 // Export functions to global window object for external access
