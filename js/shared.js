@@ -9,7 +9,7 @@ function toggleMobileMenu() {
   const html = document.documentElement;
 
   if (!toggle || !mobileNav) {
-    console.warn("Mobile navigation elements not found");
+    // Silently return if mobile navigation elements are not present
     return;
   }
 
@@ -80,8 +80,10 @@ function initializeMobileNavigation() {
   const toggle = document.querySelector(".mobile-menu-toggle");
   const mobileNav = document.getElementById("mobile-nav");
 
+  // Check if this page has mobile navigation elements
   if (!toggle || !mobileNav) {
-    console.warn("Mobile navigation elements not found during initialization");
+    // Silently return if mobile navigation elements are not present
+    // This allows pages like index.html to work without mobile nav
     return;
   }
 
