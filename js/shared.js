@@ -1,4 +1,17 @@
 // Shared JavaScript functions - Common functionality used across multiple pages
+
+// Loading screen logic for all pages
+document.addEventListener("DOMContentLoaded", function () {
+  const loadingScreen = document.getElementById("loading-screen");
+  if (loadingScreen) {
+    // Fade out effect
+    loadingScreen.style.transition = "opacity 1s ease";
+    loadingScreen.style.opacity = "0";
+    setTimeout(() => {
+      loadingScreen.style.display = "none";
+    }, 500);
+  }
+});
 // Global scroll restore for mobile: ensures scrolling is enabled if stuck
 function restoreScrolling() {
   document.body.classList.remove("mobile-nav-active", "mobile-nav-open");
