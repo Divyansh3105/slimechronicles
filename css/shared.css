@@ -2261,8 +2261,7 @@ body {
 
 /* Ensure cursor paths are correct with multiple fallbacks */
 html {
-  cursor:
-    url("/assets/cursor.cur"), url("/assets/cursor.cur"), auto !important;
+  cursor: url("/assets/cursor.cur"), url("/assets/cursor.cur"), auto !important;
 }
 
 /* Force cursor on all elements as last resort */
