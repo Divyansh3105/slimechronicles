@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
@@ -10,37 +11,66 @@
         <lastmod>2026-02-01</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://slimechronicles.netlify.app/assets/banner.png</image:loc>
+            <image:title>Jura Tempest Federation Banner</image:title>
+            <image:caption>Welcome to the magical world of Jura Tempest Federation</image:caption>
+        </image:image>
     </url>
 
-    <!-- Main navigation pages - High priority -->
+    <!-- Federation Overview - High priority -->
     <url>
         <loc>https://slimechronicles.netlify.app/overview.html</loc>
         <lastmod>2026-02-01</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://slimechronicles.netlify.app/assets/overview.png</image:loc>
+            <image:title>Federation Overview Dashboard</image:title>
+            <image:caption>Comprehensive analytics and statistics of Jura Tempest Federation</image:caption>
+        </image:image>
     </url>
 
+    <!-- Interactive Codex - High priority -->
     <url>
         <loc>https://slimechronicles.netlify.app/codex.html</loc>
         <lastmod>2026-02-01</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://slimechronicles.netlify.app/assets/codex.png</image:loc>
+            <image:title>Interactive Codex</image:title>
+            <image:caption>Comprehensive knowledge base and character database</image:caption>
+        </image:image>
     </url>
 
+    <!-- Skills Database - High priority -->
     <url>
         <loc>https://slimechronicles.netlify.app/skills.html</loc>
         <lastmod>2026-02-01</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://slimechronicles.netlify.app/assets/skills.png</image:loc>
+            <image:title>Skills Database</image:title>
+            <image:caption>Explore unique abilities, prerequisites, and skill evolution paths</image:caption>
+        </image:image>
     </url>
 
+    <!-- Chronicle Timeline - High priority -->
     <url>
         <loc>https://slimechronicles.netlify.app/Chronicle.html</loc>
         <lastmod>2026-02-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://slimechronicles.netlify.app/assets/Chronical.png</image:loc>
+            <image:title>Chronicle Timeline</image:title>
+            <image:caption>Interactive timeline of major events and milestones</image:caption>
+        </image:image>
     </url>
 
+    <!-- Historical Records - Medium priority -->
     <url>
         <loc>https://slimechronicles.netlify.app/records.html</loc>
         <lastmod>2026-02-01</lastmod>
@@ -48,19 +78,48 @@
         <priority>0.7</priority>
     </url>
 
+    <!-- Factions & Organizations - Medium priority -->
     <url>
         <loc>https://slimechronicles.netlify.app/factions.html</loc>
         <lastmod>2026-02-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://slimechronicles.netlify.app/assets/federation.jpg</image:loc>
+            <image:title>Factions and Organizations</image:title>
+            <image:caption>Political landscape and diplomatic relationships</image:caption>
+        </image:image>
     </url>
 
-    <!-- Character detail page -->
+    <!-- Character Detail Page - Medium priority -->
     <url>
         <loc>https://slimechronicles.netlify.app/character.html</loc>
         <lastmod>2026-02-01</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
+    </url>
+
+    <!-- Important Assets -->
+    <url>
+        <loc>https://slimechronicles.netlify.app/assets/OG.png</loc>
+        <lastmod>2026-02-01</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+    <!-- Verification Files -->
+    <url>
+        <loc>https://slimechronicles.netlify.app/BingSiteAuth.xml</loc>
+        <lastmod>2026-02-01</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.1</priority>
+    </url>
+
+    <url>
+        <loc>https://slimechronicles.netlify.app/google70a70f7889930fd3.html</loc>
+        <lastmod>2026-02-01</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.1</priority>
     </url>
 
 </urlset>

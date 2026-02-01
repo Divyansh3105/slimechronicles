@@ -2,10 +2,11 @@
 # https://slimechronicles.netlify.app/
 # Last updated: February 1, 2026
 
+# Allow all search engines to crawl the site
 User-agent: *
 Allow: /
 
-# Allow all main pages
+# Explicitly allow all main application pages
 Allow: /index.html
 Allow: /overview.html
 Allow: /codex.html
@@ -15,29 +16,64 @@ Allow: /records.html
 Allow: /factions.html
 Allow: /character.html
 
-# Allow assets and resources
+# Allow access to essential directories and resources
 Allow: /assets/
 Allow: /css/
 Allow: /js/
 Allow: /data/
 
-# Allow verification files
+# Allow important assets for social media and SEO
+Allow: /assets/banner.png
+Allow: /assets/OG.png
+Allow: /assets/overview.png
+Allow: /assets/codex.png
+Allow: /assets/skills.png
+Allow: /assets/Chronical.png
+Allow: /assets/federation.jpg
+Allow: /assets/fav.ico
+Allow: /assets/fav.png
+
+# Allow search engine verification files
 Allow: /BingSiteAuth.xml
 Allow: /google70a70f7889930fd3.html
 
-# Disallow system files and directories
+# Disallow system and development files
 Disallow: /.git/
 Disallow: /.vscode/
 Disallow: /desktop.ini
+Disallow: /*.log
+Disallow: /node_modules/
+Disallow: /.env
+Disallow: /.gitignore
 
-# Allow search engines to access favicon and important assets
-Allow: /assets/fav.ico
-Allow: /assets/fav.png
-Allow: /assets/OG.png
-Allow: /assets/banner.png
+# Special rules for specific search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
 
-# Sitemap location
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# Block aggressive crawlers that might overload the server
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 10
+
+# Sitemap location for search engines
 Sitemap: https://slimechronicles.netlify.app/sitemap.xml
 
-# Crawl delay (optional - helps prevent server overload)
+# General crawl delay to prevent server overload
 Crawl-delay: 1
+
+# Cache directive for better performance
+# Request-rate: 1/10s
+
+# Host directive (optional, for some search engines)
+Host: https://slimechronicles.netlify.app
