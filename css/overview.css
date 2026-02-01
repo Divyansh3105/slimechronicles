@@ -65,7 +65,7 @@ body {
   position: relative;
   z-index: 10;
   padding: 2rem 3rem;
-  padding-top: 8rem;
+  padding-top: 2rem;
   max-width: 1600px;
   margin: 0 auto;
 }
@@ -1485,7 +1485,7 @@ body {
 @media (max-width: 767px) {
   .main-content {
     padding: 1.5rem 1rem;
-    padding-top: 6rem;
+    padding-top: 2rem;
   }
 
   /* Hero Welcome Section */
@@ -1782,7 +1782,7 @@ body {
 @media (max-width: 479px) {
   .main-content {
     padding: 1rem 0.75rem;
-    padding-top: 5.5rem;
+    padding-top: 1.5rem;
   }
 
   .hero-welcome {
@@ -1872,7 +1872,7 @@ body {
 @media (min-width: 768px) {
   .main-content {
     padding: 2rem;
-    padding-top: 7rem;
+    padding-top: 2rem;
   }
 
   .hero-welcome {
@@ -1902,7 +1902,7 @@ body {
   .main-content {
     max-width: 1400px;
     padding: 2rem 3rem;
-    padding-top: 8rem;
+    padding-top: 2rem;
   }
 
   .nation-grid {

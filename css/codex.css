@@ -2088,7 +2088,7 @@ body {
 @media (max-width: 767px) {
   .codex-container {
     padding: 1.5rem 1rem;
-    padding-top: 6rem; /* fixed nav offset */
+    padding-top: 2rem; /* Reduced since navbar is no longer fixed */
   }
 
   /* Page Header */
@@ -2365,7 +2365,7 @@ body {
 @media (max-width: 479px) {
   .codex-container {
     padding: 1rem 0.5rem;
-    padding-top: 5.5rem;
+    padding-top: 1.5rem;
   }
 
   .page-title {
@@ -2445,7 +2445,7 @@ body {
 @media (min-width: 768px) {
   .main-content.codex-page {
     padding: 2rem;
-    padding-top: 7rem;
+    padding-top: 2rem;
   }
 
   .page-title {

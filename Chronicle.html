@@ -48,6 +48,19 @@
         style="top: 70%; left: 15%; animation-duration: 90s; animation-direction: reverse; opacity: 0.3;"></div>
     <div class="particles" id="particles"></div>
 
+    <!-- Floating Timeline Progress Indicator -->
+    <div class="floating-timeline-progress" id="floating-timeline-progress">
+        <div class="progress-indicator-content">
+            <div class="current-era-info">
+                <div class="current-era-year" id="current-era-year">2013</div>
+                <div class="current-era-name" id="current-era-name">Founding Era</div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progress-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- Primary navigation bar with brand logo and menu items -->
     <nav class="main-nav" id="main-nav">
         <!-- Brand logo and site title -->
@@ -216,12 +229,13 @@
                     </div>
                     <button class="search-btn" onclick="window.timelineManager?.searchTimeline()" title="Search">
                         <i class="ri-search-2-line"></i>
+                        <span>Search</span>
                     </button>
                 </div>
 
                 <div class="filter-controls">
                     <div class="filter-group">
-                        <label for="era-filter">Era:</label>
+                        <label for="era-filter">Era Filter:</label>
                         <select id="era-filter" class="filter-select">
                             <option value="all">All Eras</option>
                             <option value="founding">Founding Era</option>
@@ -236,7 +250,7 @@
                     </div>
 
                     <div class="filter-group">
-                        <label for="importance-filter">Importance:</label>
+                        <label for="importance-filter">Impact Level:</label>
                         <select id="importance-filter" class="filter-select">
                             <option value="all">All Events</option>
                             <option value="high">High Impact</option>
@@ -244,14 +258,79 @@
                             <option value="low">Low Impact</option>
                         </select>
                     </div>
+                </div>
 
-
+                <!-- Enhanced control buttons -->
+                <div class="control-buttons">
+                    <button class="expand-all-btn" onclick="expandAllArcs()" title="Expand All Arcs">
+                        <i class="ri-add-circle-line"></i> Expand All
+                    </button>
+                    <button class="collapse-all-btn" onclick="collapseAllArcs()" title="Collapse All Arcs">
+                        <i class="ri-subtract-line"></i> Collapse All
+                    </button>
+                    <button class="view-btn active" data-view="detailed" title="Detailed View">
+                        <i class="ri-list-check-2"></i> Detailed
+                    </button>
+                    <button class="view-btn" data-view="compact" title="Compact View">
+                        <i class="ri-list-unordered"></i> Compact
+                    </button>
                 </div>
             </div>
         </div>
 
         <!-- Interactive timeline container with chronological events -->
         <div class="timeline-container" style="display: block; visibility: visible;">
+            <!-- Visual Timeline Progress Navigation -->
+            <div class="timeline-progress-nav" id="timeline-progress-nav">
+                <div class="progress-nav-header">
+                    <h3>Timeline Navigation</h3>
+                    <button class="progress-nav-toggle" onclick="toggleProgressNav()"
+                        title="Toggle Timeline Navigation">
+                        <i class="ri-timeline-view"></i>
+                    </button>
+                </div>
+                <div class="progress-nav-content">
+                    <div class="progress-nav-track">
+                        <div class="progress-nav-line"></div>
+                        <div class="progress-nav-markers">
+                            <div class="progress-marker" data-year="2013" data-era="founding">
+                                <div class="marker-dot"></div>
+                                <div class="marker-label">2013<br><span>Founding</span></div>
+                            </div>
+                            <div class="progress-marker" data-year="2014" data-era="expansion">
+                                <div class="marker-dot"></div>
+                                <div class="marker-label">2014<br><span>Expansion</span></div>
+                            </div>
+                            <div class="progress-marker" data-year="2015" data-era="demon-lord">
+                                <div class="marker-dot"></div>
+                                <div class="marker-label">2015<br><span>Demon Lord</span></div>
+                            </div>
+                            <div class="progress-marker" data-year="2016" data-era="imperial">
+                                <div class="marker-dot"></div>
+                                <div class="marker-label">2016<br><span>Imperial</span></div>
+                            </div>
+                            <div class="progress-marker" data-year="2017" data-era="dragon">
+                                <div class="marker-dot"></div>
+                                <div class="marker-label">2017<br><span>Dragon</span></div>
+                            </div>
+                            <div class="progress-marker" data-year="2018" data-era="cosmic">
+                                <div class="marker-dot"></div>
+                                <div class="marker-label">2018<br><span>Cosmic</span></div>
+                            </div>
+                            <div class="progress-marker" data-year="2019" data-era="transcendence">
+                                <div class="marker-dot"></div>
+                                <div class="marker-label">2019<br><span>Transcendence</span></div>
+                            </div>
+                            <div class="progress-marker" data-year="2020" data-era="final">
+                                <div class="marker-dot"></div>
+                                <div class="marker-label">2020<br><span>Final</span></div>
+                            </div>
+                        </div>
+                        <div class="progress-nav-indicator" id="progress-nav-indicator"></div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Central timeline line connecting all events -->
             <div class="timeline-line"></div>
 
@@ -1542,10 +1621,27 @@
         </div>
     </footer>
 
-    <!-- Floating action button for quick navigation to top -->
-    <button class="timeline-fab" id="timeline-fab" onclick="scrollToTop()" title="Back to Top">
-        ⬆️
-    </button>
+    <!-- Enhanced floating action button for quick navigation -->
+    <div class="timeline-fab-container">
+        <button class="timeline-fab" id="timeline-fab" onclick="scrollToTop()" title="Back to Top">
+            ⬆️
+        </button>
+        <button class="timeline-fab timeline-fab-help" id="timeline-fab-help" onclick="toggleKeyboardHints()"
+            title="Keyboard Shortcuts">
+            ⌨️
+        </button>
+    </div>
+
+    <!-- Keyboard shortcuts helper -->
+    <div class="keyboard-hints" id="keyboard-hints">
+        <h4>⌨️ Keyboard Shortcuts</h4>
+        <ul>
+            <li><span>Search</span> <kbd>/</kbd></li>
+            <li><span>Expand All</span> <kbd>Ctrl+E</kbd></li>
+            <li><span>Collapse All</span> <kbd>Ctrl+R</kbd></li>
+            <li><span>Clear Search</span> <kbd>Esc</kbd></li>
+        </ul>
+    </div>
 
     <!-- JavaScript imports for page functionality -->
     <script src="js/character.js" defer></script>

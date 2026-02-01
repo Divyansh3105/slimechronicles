@@ -674,10 +674,7 @@ body::before {
 }
 /* Main navigation bar with backdrop blur */
 .main-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: relative;
   z-index: 1000;
   display: flex;
   justify-content: space-between;
@@ -2018,8 +2015,8 @@ html {
 /* ========== AUDIO CONTROLS STYLING ========== */
 
 .audio-controls {
-  position: fixed;
-  top: 6rem;
+  position: absolute;
+  top: 1rem;
   right: 1rem;
   z-index: 999;
   display: flex;
@@ -2044,12 +2041,6 @@ body.mobile-nav-active .audio-controls {
   opacity: 0;
   pointer-events: none;
   transform: translateX(100%);
-}
-
-/* Adjust audio controls when navbar is scrolled/compact */
-.main-nav.scrolled ~ .audio-controls,
-body.scrolled .audio-controls {
-  top: 4rem; /* Adjust for compact navbar */
 }
 
 .audio-controls:hover {
@@ -2212,8 +2203,8 @@ body.scrolled .audio-controls {
 /* Mobile responsive adjustments */
 @media (max-width: 767px) {
   .audio-controls {
-    top: 4rem; /* Position below mobile navbar */
-    right: 1rem; /* Back to right edge since no overlap */
+    top: 1rem;
+    right: 1rem;
     padding: 0.4rem 0.8rem;
     font-size: 0.9rem;
     z-index: 999;
@@ -2236,7 +2227,7 @@ body.scrolled .audio-controls {
 
 @media (max-width: 479px) {
   .audio-controls {
-    top: 3.5rem; /* Adjust for smaller mobile navbar */
+    top: 1rem;
     right: 0.5rem;
     padding: 0.3rem 0.6rem;
   }

@@ -1246,7 +1246,7 @@ kbd {
 @media (max-width: 767px) {
   .historical-records-container {
     padding: 1.5rem 1rem 3rem 1rem;
-    padding-top: 6rem; /* Account for fixed navbar */
+    padding-top: 2rem; /* Reduced from 6rem since navbar is no longer fixed */
   }
 
   /* Page Header */
@@ -1502,7 +1502,7 @@ kbd {
 @media (max-width: 479px) {
   .historical-records-container {
     padding: 1rem 0.75rem 2rem 0.75rem;
-    padding-top: 5.5rem;
+    padding-top: 1.5rem;
   }
 
   .page-title {
@@ -1571,7 +1571,7 @@ kbd {
 @media (max-width: 479px) {
   .records-page {
     padding: 1rem 0.75rem;
-    padding-top: 5.5rem;
+    padding-top: 1.5rem;
   }
 
   .records-title {
@@ -1591,7 +1591,7 @@ kbd {
 @media (min-width: 768px) {
   .historical-records-container {
     padding: 2rem;
-    padding-top: 7rem;
+    padding-top: 2rem;
   }
 
   .page-title {
@@ -1636,7 +1636,7 @@ kbd {
   .historical-records-container {
     max-width: 1200px;
     padding: 3rem;
-    padding-top: 7rem;
+    padding-top: 2rem;
   }
 
   .page-title {

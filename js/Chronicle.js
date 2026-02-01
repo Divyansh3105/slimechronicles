@@ -9,6 +9,7 @@ class TimelineManager {
     this.currentImportanceFilter = "all";
     this.events = [];
     this.originalOrder = [];
+    this.isInitialized = false;
 
     // Initialize timeline functionality
     this.init();
@@ -21,6 +22,168 @@ class TimelineManager {
     this.initializeTooltips();
     this.updateStatistics();
     this.handleURLParameters();
+    this.initializeEnhancements();
+    this.isInitialized = true;
+  }
+
+  // Initialize UI enhancements
+  initializeEnhancements() {
+    this.addScrollAnimations();
+    this.addKeyboardShortcuts();
+    this.addProgressIndicator();
+    this.addSmoothScrolling();
+  }
+
+  // Add scroll-based animations
+  addScrollAnimations() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '50px'
+    });
+
+    document.querySelectorAll('.timeline-year, .timeline-arc').forEach(el => {
+      observer.observe(el);
+    });
+  }
+
+  // Add keyboard shortcuts
+  addKeyboardShortcuts() {
+    document.addEventListener('keydown', (e) => {
+      // Only handle shortcuts when not typing in inputs
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+
+      switch(e.key.toLowerCase()) {
+        case '/':
+          e.preventDefault();
+          document.getElementById('timeline-search')?.focus();
+          break;
+        case 'e':
+          if (e.ctrlKey || e.metaKey) {
+            e.preventDefault();
+            this.expandAllArcs();
+          }
+          break;
+        case 'r':
+          if (e.ctrlKey || e.metaKey) {
+            e.preventDefault();
+            this.collapseAllArcs();
+          }
+          break;
+        case 'escape':
+          this.clearSearch();
+          break;
+      }
+    });
+  }
+
+  // Add progress indicator
+  addProgressIndicator() {
+    const progressBar = document.getElementById('timeline-progress-bar');
+    if (!progressBar) return;
+
+    const updateProgress = () => {
+      const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      progressBar.style.width = Math.min(100, Math.max(0, scrollPercent)) + '%';
+    };
+
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  }
+
+  // Add smooth scrolling behavior
+  addSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  }
+
+  // Enhanced expand all arcs functionality
+  expandAllArcs() {
+    const arcs = document.querySelectorAll(".timeline-arc");
+    let delay = 0;
+
+    arcs.forEach((arc, index) => {
+      if (!arc.classList.contains("expanded")) {
+        setTimeout(() => {
+          const arcHeader = arc.querySelector(".arc-header");
+          if (arcHeader) {
+            window.toggleArcSimple(arcHeader);
+            // Add visual feedback
+            arc.style.transform = 'scale(1.02)';
+            setTimeout(() => {
+              arc.style.transform = '';
+            }, 200);
+          }
+        }, delay);
+        delay += 100; // Stagger the animations
+      }
+    });
+
+    // Show notification
+    this.showNotification('All arcs expanded', 'success');
+  }
+
+  // Enhanced collapse all arcs functionality
+  collapseAllArcs() {
+    const arcs = document.querySelectorAll(".timeline-arc");
+    let delay = 0;
+
+    arcs.forEach((arc, index) => {
+      if (arc.classList.contains("expanded")) {
+        setTimeout(() => {
+          const arcHeader = arc.querySelector(".arc-header");
+          if (arcHeader) {
+            window.toggleArcSimple(arcHeader);
+          }
+        }, delay);
+        delay += 50; // Faster collapse
+      }
+    });
+
+    // Show notification
+    this.showNotification('All arcs collapsed', 'info');
+  }
+
+  // Show notification system
+  showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `timeline-notification timeline-notification--${type}`;
+    notification.innerHTML = `
+      <div class="notification-content">
+        <i class="ri-information-line"></i>
+        <span>${message}</span>
+      </div>
+    `;
+
+    document.body.appendChild(notification);
+
+    // Animate in
+    requestAnimationFrame(() => {
+      notification.classList.add('show');
+    });
+
+    // Remove after delay
+    setTimeout(() => {
+      notification.classList.remove('show');
+      setTimeout(() => {
+        notification.remove();
+      }, 300);
+    }, 2000);
   }
 
   // Cache timeline events - Extract and process timeline events from DOM
@@ -640,28 +803,53 @@ window.toggleEvent = function (eventElement) {
     console.error("Error in toggleEvent:", error);
   }
 };
-// Expand all timeline arcs
+// Expand all timeline arcs with enhanced animations
 function expandAllArcs() {
+  if (window.timelineManager && window.timelineManager.isInitialized) {
+    window.timelineManager.expandAllArcs();
+    return;
+  }
+
   const arcs = document.querySelectorAll(".timeline-arc");
-  arcs.forEach(arc => {
+  let delay = 0;
+
+  arcs.forEach((arc, index) => {
     if (!arc.classList.contains("expanded")) {
-      const arcHeader = arc.querySelector(".arc-header");
-      if (arcHeader) {
-        window.toggleArcSimple(arcHeader);
-      }
+      setTimeout(() => {
+        const arcHeader = arc.querySelector(".arc-header");
+        if (arcHeader) {
+          window.toggleArcSimple(arcHeader);
+          // Add visual feedback
+          arc.style.transform = 'scale(1.02)';
+          setTimeout(() => {
+            arc.style.transform = '';
+          }, 200);
+        }
+      }, delay);
+      delay += 100; // Stagger the animations
     }
   });
 }
 
-// Collapse all timeline arcs
+// Collapse all timeline arcs with enhanced animations
 function collapseAllArcs() {
+  if (window.timelineManager && window.timelineManager.isInitialized) {
+    window.timelineManager.collapseAllArcs();
+    return;
+  }
+
   const arcs = document.querySelectorAll(".timeline-arc");
-  arcs.forEach(arc => {
+  let delay = 0;
+
+  arcs.forEach((arc, index) => {
     if (arc.classList.contains("expanded")) {
-      const arcHeader = arc.querySelector(".arc-header");
-      if (arcHeader) {
-        window.toggleArcSimple(arcHeader);
-      }
+      setTimeout(() => {
+        const arcHeader = arc.querySelector(".arc-header");
+        if (arcHeader) {
+          window.toggleArcSimple(arcHeader);
+        }
+      }, delay);
+      delay += 50; // Faster collapse
     }
   });
 }
@@ -796,9 +984,268 @@ document.addEventListener("keydown", (e) => {
     }
   }
 });
-// Export functions to global scope
-window.expandAllArcs = expandAllArcs;
-window.collapseAllArcs = collapseAllArcs;
+// Timeline progression and navigation functionality
+let timelineProgressionState = {
+  currentEra: 0,
+  isPlaying: false,
+  playInterval: null,
+  eras: ['founding', 'expansion', 'demon-lord', 'imperial', 'dragon', 'cosmic', 'transcendence', 'final']
+};
+
+// Toggle timeline progress navigation
+function toggleProgressNav() {
+  const nav = document.getElementById('timeline-progress-nav');
+  if (nav) {
+    nav.classList.toggle('collapsed');
+    const toggle = nav.querySelector('.progress-nav-toggle i');
+    if (toggle) {
+      toggle.className = nav.classList.contains('collapsed') ?
+        'ri-timeline-view' : 'ri-timeline-view';
+    }
+  }
+}
+
+// Navigate to specific year/era
+function navigateToEra(era, year) {
+  const targetYear = document.getElementById(`year-${year}`);
+  if (targetYear) {
+    targetYear.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+
+    // Update progress navigation
+    updateProgressNavigation(era);
+
+    // Expand the target year's arcs
+    setTimeout(() => {
+      const arcs = targetYear.querySelectorAll('.timeline-arc');
+      arcs.forEach(arc => {
+        if (!arc.classList.contains('expanded')) {
+          const arcHeader = arc.querySelector('.arc-header');
+          if (arcHeader) {
+            window.toggleArcSimple(arcHeader);
+          }
+        }
+      });
+    }, 500);
+  }
+}
+
+// Update progress navigation indicators
+function updateProgressNavigation(currentEra) {
+  const markers = document.querySelectorAll('.progress-marker');
+  const indicator = document.getElementById('progress-nav-indicator');
+  const floatingProgress = document.getElementById('floating-timeline-progress');
+  const currentEraYear = document.getElementById('current-era-year');
+  const currentEraName = document.getElementById('current-era-name');
+  const progressBarFill = document.getElementById('progress-bar-fill');
+
+  markers.forEach((marker, index) => {
+    const markerEra = marker.dataset.era;
+    marker.classList.remove('active', 'completed');
+
+    if (markerEra === currentEra) {
+      marker.classList.add('active');
+      if (indicator) {
+        const progress = ((index + 1) / markers.length) * 100;
+        indicator.style.width = `${progress}%`;
+      }
+
+      // Update floating progress indicator
+      if (floatingProgress && currentEraYear && currentEraName && progressBarFill) {
+        floatingProgress.classList.add('visible');
+        currentEraYear.textContent = marker.dataset.year;
+        currentEraName.textContent = getEraDisplayName(currentEra);
+        progressBarFill.style.width = `${((index + 1) / markers.length) * 100}%`;
+      }
+    } else if (timelineProgressionState.eras.indexOf(markerEra) < timelineProgressionState.eras.indexOf(currentEra)) {
+      marker.classList.add('completed');
+    }
+  });
+}
+
+// Get display name for era
+function getEraDisplayName(era) {
+  const eraNames = {
+    'founding': 'Founding Era',
+    'expansion': 'Expansion Era',
+    'demon-lord': 'Demon Lord Era',
+    'imperial': 'Imperial Era',
+    'dragon': 'Dragon Era',
+    'cosmic': 'Cosmic Era',
+    'transcendence': 'Transcendence Era',
+    'final': 'Final Era'
+  };
+  return eraNames[era] || era;
+}
+
+// Play timeline progression animation
+function playTimelineProgression() {
+  if (timelineProgressionState.isPlaying) {
+    stopTimelineProgression();
+    return;
+  }
+
+  timelineProgressionState.isPlaying = true;
+  timelineProgressionState.currentEra = 0;
+
+  const playBtn = document.querySelector('.progression-btn[onclick="playTimelineProgression()"]');
+  if (playBtn) {
+    playBtn.innerHTML = '<i class="ri-pause-fill"></i> Pause';
+  }
+
+  // Reset progression
+  resetTimelineProgression();
+
+  // Start progression animation
+  timelineProgressionState.playInterval = setInterval(() => {
+    if (timelineProgressionState.currentEra < timelineProgressionState.eras.length) {
+      const era = timelineProgressionState.eras[timelineProgressionState.currentEra];
+      const year = 2013 + timelineProgressionState.currentEra;
+
+      // Update progression fill
+      updateProgressionFill();
+
+      // Update era nodes
+      updateEraNodes();
+
+      // Navigate to era
+      navigateToEra(era, year);
+
+      timelineProgressionState.currentEra++;
+    } else {
+      stopTimelineProgression();
+    }
+  }, 3000); // 3 seconds per era
+}
+
+// Stop timeline progression
+function stopTimelineProgression() {
+  timelineProgressionState.isPlaying = false;
+
+  if (timelineProgressionState.playInterval) {
+    clearInterval(timelineProgressionState.playInterval);
+    timelineProgressionState.playInterval = null;
+  }
+
+  const playBtn = document.querySelector('.progression-btn[onclick="playTimelineProgression()"]');
+  if (playBtn) {
+    playBtn.innerHTML = '<i class="ri-play-fill"></i> Play Progression';
+  }
+}
+
+// Reset timeline progression
+function resetTimelineProgression() {
+  stopTimelineProgression();
+  timelineProgressionState.currentEra = 0;
+
+  // Reset progression fill
+  const progressionFill = document.getElementById('progression-fill');
+  if (progressionFill) {
+    progressionFill.style.width = '0%';
+  }
+
+  // Reset era nodes
+  const eraNodes = document.querySelectorAll('.era-node');
+  eraNodes.forEach(node => {
+    node.classList.remove('completed', 'current');
+  });
+
+  // Reset progress navigation
+  const markers = document.querySelectorAll('.progress-marker');
+  const indicator = document.getElementById('progress-nav-indicator');
+  const floatingProgress = document.getElementById('floating-timeline-progress');
+
+  markers.forEach(marker => {
+    marker.classList.remove('active', 'completed');
+  });
+
+  if (indicator) {
+    indicator.style.width = '0%';
+  }
+
+  if (floatingProgress) {
+    floatingProgress.classList.remove('visible');
+  }
+}
+
+// Update progression fill bar
+function updateProgressionFill() {
+  const progressionFill = document.getElementById('progression-fill');
+  if (progressionFill) {
+    const progress = (timelineProgressionState.currentEra / timelineProgressionState.eras.length) * 100;
+    progressionFill.style.width = `${progress}%`;
+  }
+}
+
+// Update era nodes visual state
+function updateEraNodes() {
+  const eraNodes = document.querySelectorAll('.era-node');
+
+  eraNodes.forEach((node, index) => {
+    node.classList.remove('completed', 'current');
+
+    if (index < timelineProgressionState.currentEra) {
+      node.classList.add('completed');
+    } else if (index === timelineProgressionState.currentEra) {
+      node.classList.add('current');
+    }
+  });
+}
+
+// Initialize timeline progression on scroll
+function initializeTimelineProgression() {
+  // Add click handlers to progress markers
+  const markers = document.querySelectorAll('.progress-marker');
+  markers.forEach(marker => {
+    marker.addEventListener('click', () => {
+      const era = marker.dataset.era;
+      const year = marker.dataset.year;
+      navigateToEra(era, year);
+    });
+  });
+
+  // Add click handlers to era nodes
+  const eraNodes = document.querySelectorAll('.era-node');
+  eraNodes.forEach(node => {
+    node.addEventListener('click', () => {
+      const era = node.dataset.era;
+      const year = node.dataset.year;
+      navigateToEra(era, year);
+    });
+  });
+
+  // Initialize scroll-based progression updates
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const yearElement = entry.target;
+        const era = yearElement.dataset.era;
+        if (era && !timelineProgressionState.isPlaying) {
+          updateProgressNavigation(era);
+
+          // Update progression state based on visible era
+          const eraIndex = timelineProgressionState.eras.indexOf(era);
+          if (eraIndex !== -1) {
+            timelineProgressionState.currentEra = eraIndex;
+            updateProgressionFill();
+            updateEraNodes();
+          }
+        }
+      }
+    });
+  }, {
+    threshold: 0.3,
+    rootMargin: '-100px 0px -100px 0px'
+  });
+
+  // Observe all timeline years
+  document.querySelectorAll('.timeline-year').forEach(year => {
+    observer.observe(year);
+  });
+}
+
 window.testArcExpansion = function () {
   const firstArc = document.querySelector(".timeline-arc");
   if (firstArc) {
@@ -822,6 +1269,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initialize timeline-specific functionality
     initializeArcs();
     window.timelineManager = new TimelineManager();
+
+    // Initialize timeline progression features
+    initializeTimelineProgression();
 
     // Initialize scroll elements cache
     initScrollElements();
@@ -877,3 +1327,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Start initialization
   initializeTimeline();
 });
+
+// Export timeline progression functions to global scope
+window.toggleProgressNav = toggleProgressNav;
+window.navigateToEra = navigateToEra;
+window.playTimelineProgression = playTimelineProgression;
+window.resetTimelineProgression = resetTimelineProgression;
