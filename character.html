@@ -49,6 +49,9 @@
     <div class="particles" id="particles"></div>
     <div class="floating-elements" id="floating-elements"></div>
 
+    <!-- Scroll progress indicator -->
+    <div class="scroll-indicator" id="scroll-indicator"></div>
+
     <!-- Primary navigation bar with brand logo and menu items -->
     <nav class="main-nav" id="main-nav">
         <!-- Brand logo and site title -->
@@ -203,15 +206,19 @@
             <div class="character-actions">
                 <button class="action-button" onclick="shareCharacter()" title="Share Character">
                     <span>🔗</span>
+                    <div class="action-tooltip">Share</div>
                 </button>
                 <button class="action-button" onclick="compareCharacter()" title="Compare with Others">
                     <span>⚖️</span>
-                </button>
-                <button class="action-button" onclick="toggleFavorite()" title="Add to Favorites" id="favorite-btn">
-                    <span>🤍</span>
+                    <div class="action-tooltip">Compare</div>
                 </button>
                 <button class="action-button" onclick="downloadProfile()" title="Download Profile">
                     <span>📥</span>
+                    <div class="action-tooltip">Download</div>
+                </button>
+                <button class="action-button" onclick="toggleFavorite()" title="Add to Favorites">
+                    <span id="favorite-icon">⭐</span>
+                    <div class="action-tooltip">Favorite</div>
                 </button>
             </div>
         </header>

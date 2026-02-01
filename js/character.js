@@ -55,61 +55,10 @@ function downloadProfile() {
   window.showNotification("Profile download feature coming soon!");
 }
 
-// Toggle favorite character functionality
-function toggleFavorite() {
-  const characterId = window.getURLParameter("id");
-  if (!characterId) return;
-
-  const favoriteBtn = document.getElementById("favorite-btn");
-  const heartIcon = favoriteBtn.querySelector("span");
-
-  // Get current favorites from localStorage
-  let favorites = JSON.parse(localStorage.getItem("favoriteCharacters") || "[]");
-
-  if (favorites.includes(characterId)) {
-    // Remove from favorites
-    favorites = favorites.filter(id => id !== characterId);
-    heartIcon.textContent = "🤍";
-    favoriteBtn.title = "Add to Favorites";
-    window.showNotification("Removed from favorites");
-  } else {
-    // Add to favorites
-    favorites.push(characterId);
-    heartIcon.textContent = "❤️";
-    favoriteBtn.title = "Remove from Favorites";
-    window.showNotification("Added to favorites!");
-
-    // Add favorite animation
-    favoriteBtn.style.animation = "favoriteAdded 0.6s ease-out";
-    setTimeout(() => {
-      favoriteBtn.style.animation = "";
-    }, 600);
-  }
-
-  // Save to localStorage
-  localStorage.setItem("favoriteCharacters", JSON.stringify(favorites));
-}
-
-// Initialize favorite button state
-function initializeFavoriteButton() {
-  const characterId = window.getURLParameter("id");
-  if (!characterId) return;
-
-  const favorites = JSON.parse(localStorage.getItem("favoriteCharacters") || "[]");
-  const favoriteBtn = document.getElementById("favorite-btn");
-  const heartIcon = favoriteBtn.querySelector("span");
-
-  if (favorites.includes(characterId)) {
-    heartIcon.textContent = "❤️";
-    favoriteBtn.title = "Remove from Favorites";
-  }
-}
-
 // Make functions globally available - Export functions to window object for global access
 window.shareCharacter = shareCharacter;
 window.compareCharacter = compareCharacter;
 window.downloadProfile = downloadProfile;
-window.toggleFavorite = toggleFavorite;
 
 // Character data loader class - Handles efficient loading and caching of character data
 class CharacterDataLoader {
@@ -358,9 +307,6 @@ window.CharacterLoader = new CharacterDataLoader();
 
 // Consolidated initialization function
 function initializeCharacterPage() {
-  // Initialize favorite button state
-  initializeFavoriteButton();
-
   // Load character profile after brief delay to ensure DOM is fully ready
   setTimeout(() => {
     loadCharacterProfile();
@@ -370,81 +316,11 @@ function initializeCharacterPage() {
   setTimeout(() => {
     setupTabNavigation();
   }, 1000);
-
-  // Add scroll-based animations
-  setupScrollAnimations();
-
-  // Add keyboard shortcuts
-  setupKeyboardShortcuts();
 }
 
-// Setup scroll-based animations for enhanced user experience
-function setupScrollAnimations() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.style.opacity = "1";
-          entry.target.style.transform = "translateY(0)";
-          entry.target.classList.add("animate-in");
-        }, index * 100);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  // Observe profile sections for scroll animations
-  const sections = document.querySelectorAll(".profile-section, .info-card, .skill-card-detailed");
-  sections.forEach(section => {
-    section.style.opacity = "0";
-    section.style.transform = "translateY(20px)";
-    section.style.transition = "all 0.6s ease-out";
-    observer.observe(section);
-  });
-}
-
-// Setup keyboard shortcuts for better accessibility
-function setupKeyboardShortcuts() {
-  document.addEventListener("keydown", (e) => {
-    // Only handle shortcuts when not typing in inputs
-    if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
-
-    switch (e.key) {
-      case "1":
-      case "2":
-      case "3":
-      case "4":
-      case "5":
-      case "6":
-        // Switch to tab by number
-        e.preventDefault();
-        const tabIndex = parseInt(e.key) - 1;
-        const tabs = document.querySelectorAll(".profile-tab");
-        if (tabs[tabIndex]) {
-          tabs[tabIndex].click();
-        }
-        break;
-      case "f":
-        // Toggle favorite with 'f' key
-        if (e.ctrlKey || e.metaKey) return; // Don't interfere with browser find
-        e.preventDefault();
-        toggleFavorite();
-        break;
-      case "s":
-        // Share with 's' key
-        if (e.ctrlKey || e.metaKey) return; // Don't interfere with browser save
-        e.preventDefault();
-        shareCharacter();
-        break;
-      case "Escape":
-        // Close any open modals
-        const modals = document.querySelectorAll(".comparison-modal");
-        modals.forEach(modal => modal.style.display = "none");
-        break;
-    }
-  });
-}
-  // Setup enhanced tab navigation - Initialize keyboard and touch navigation for profile tabs
+// Setup enhanced tab navigation - Initialize keyboard and touch navigation for profile tabs
 function setupTabNavigation() {
+  // Add keyboard navigation support to profile tabs
   const tabs = document.querySelectorAll(".profile-tab");
   tabs.forEach((tab, index) => {
     tab.setAttribute("tabindex", "0");
@@ -798,37 +674,411 @@ function generateRelationshipsSection(character) {
 function generateAchievementsSection(character) {
   if (!character.achievements || character.achievements.length === 0) return "";
 
+  // Categorize achievements by type
+  const categorizedAchievements = categorizeAchievements(character.achievements);
+  const totalAchievements = character.achievements.length;
+  const achievementRarity = getAchievementRarity(totalAchievements);
+
   return `
-    <h4>🏆 Achievements</h4>
-    <ul class="achievements-list">
-      ${character.achievements.map((achievement) => `<li>${achievement}</li>`).join("")}
-    </ul>
+    <div class="achievements-section">
+      <h4>🏆 Achievements & Accomplishments</h4>
+
+      <!-- Achievement Overview -->
+      <div class="achievement-overview">
+        <div class="achievement-stats">
+          <div class="achievement-stat">
+            <div class="stat-icon">🏅</div>
+            <div class="stat-content">
+              <span class="stat-number">${totalAchievements}</span>
+              <span class="stat-label">Total Achievements</span>
+            </div>
+          </div>
+          <div class="achievement-stat">
+            <div class="stat-icon">⭐</div>
+            <div class="stat-content">
+              <span class="stat-number">${achievementRarity.level}</span>
+              <span class="stat-label">${achievementRarity.title}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Achievement Categories -->
+      <div class="achievement-categories">
+        ${Object.entries(categorizedAchievements).map(([category, achievements]) => `
+          <div class="achievement-category" data-category="${category}">
+            <div class="category-header" onclick="toggleAchievementCategory('${category}')">
+              <div class="category-info">
+                <span class="category-icon">${getCategoryIcon(category)}</span>
+                <span class="category-title">${category}</span>
+                <span class="category-count">(${achievements.length})</span>
+              </div>
+              <div class="category-toggle">
+                <span class="toggle-icon">▼</span>
+              </div>
+            </div>
+
+            <div class="achievement-grid" id="achievements-${category}">
+              ${achievements.map((achievement, index) => `
+                <div class="achievement-card" onclick="showAchievementDetails('${category}', ${index})">
+                  <div class="achievement-card-header">
+                    <div class="achievement-icon">${getAchievementIcon(achievement)}</div>
+                    <div class="achievement-rarity ${getAchievementCardRarity(achievement)}"></div>
+                  </div>
+                  <div class="achievement-content">
+                    <h5 class="achievement-title">${getAchievementTitle(achievement)}</h5>
+                    <p class="achievement-description">${achievement}</p>
+                    <div class="achievement-meta">
+                      <span class="achievement-type">${category}</span>
+                      <span class="achievement-date">Unlocked</span>
+                    </div>
+                  </div>
+                  <div class="achievement-glow"></div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+
+      <!-- Achievement Showcase -->
+      <div class="achievement-showcase">
+        <h5>🌟 Featured Achievement</h5>
+        <div class="featured-achievement">
+          <div class="featured-icon">${getAchievementIcon(character.achievements[0])}</div>
+          <div class="featured-content">
+            <h6>${getAchievementTitle(character.achievements[0])}</h6>
+            <p>${character.achievements[0]}</p>
+            <div class="featured-stats">
+              <span class="featured-stat">
+                <span class="stat-icon">🎯</span>
+                <span>Primary Achievement</span>
+              </span>
+              <span class="featured-stat">
+                <span class="stat-icon">⚡</span>
+                <span>High Impact</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   `;
+}
+
+// Helper function to categorize achievements
+function categorizeAchievements(achievements) {
+  const categories = {
+    'Leadership': [],
+    'Combat': [],
+    'Evolution': [],
+    'Diplomatic': [],
+    'Magical': [],
+    'Personal': []
+  };
+
+  achievements.forEach(achievement => {
+    const achievementLower = achievement.toLowerCase();
+
+    if (achievementLower.includes('founded') || achievementLower.includes('established') ||
+        achievementLower.includes('led') || achievementLower.includes('chief') ||
+        achievementLower.includes('minister') || achievementLower.includes('ruled')) {
+      categories.Leadership.push(achievement);
+    } else if (achievementLower.includes('defeated') || achievementLower.includes('combat') ||
+               achievementLower.includes('mastered') && achievementLower.includes('technique') ||
+               achievementLower.includes('warrior') || achievementLower.includes('battle')) {
+      categories.Combat.push(achievement);
+    } else if (achievementLower.includes('evolved') || achievementLower.includes('became') ||
+               achievementLower.includes('transformed') || achievementLower.includes('demon lord')) {
+      categories.Evolution.push(achievement);
+    } else if (achievementLower.includes('united') || achievementLower.includes('alliance') ||
+               achievementLower.includes('bridged') || achievementLower.includes('diplomatic') ||
+               achievementLower.includes('trade')) {
+      categories.Diplomatic.push(achievement);
+    } else if (achievementLower.includes('magic') || achievementLower.includes('spell') ||
+               achievementLower.includes('storm') || achievementLower.includes('elemental')) {
+      categories.Magical.push(achievement);
+    } else {
+      categories.Personal.push(achievement);
+    }
+  });
+
+  // Remove empty categories
+  Object.keys(categories).forEach(key => {
+    if (categories[key].length === 0) {
+      delete categories[key];
+    }
+  });
+
+  return categories;
+}
+
+// Helper function to get achievement rarity
+function getAchievementRarity(count) {
+  if (count >= 8) return { level: 'Legendary', title: 'Achievement Master' };
+  if (count >= 6) return { level: 'Epic', title: 'High Achiever' };
+  if (count >= 4) return { level: 'Rare', title: 'Accomplished' };
+  return { level: 'Common', title: 'Rising Star' };
+}
+
+// Helper function to get category icon
+function getCategoryIcon(category) {
+  const icons = {
+    'Leadership': '👑',
+    'Combat': '⚔️',
+    'Evolution': '🔄',
+    'Diplomatic': '🤝',
+    'Magical': '✨',
+    'Personal': '🌟'
+  };
+  return icons[category] || '🏆';
+}
+
+// Helper function to get achievement icon
+function getAchievementIcon(achievement) {
+  const achievementLower = achievement.toLowerCase();
+
+  if (achievementLower.includes('founded') || achievementLower.includes('established')) return '🏛️';
+  if (achievementLower.includes('defeated') || achievementLower.includes('battle')) return '⚔️';
+  if (achievementLower.includes('evolved') || achievementLower.includes('became')) return '🔄';
+  if (achievementLower.includes('united') || achievementLower.includes('alliance')) return '🤝';
+  if (achievementLower.includes('magic') || achievementLower.includes('mastered')) return '✨';
+  if (achievementLower.includes('demon lord')) return '👹';
+  if (achievementLower.includes('hero')) return '🦸';
+  if (achievementLower.includes('named')) return '📝';
+
+  return '🏆';
+}
+
+// Helper function to get achievement title
+function getAchievementTitle(achievement) {
+  // Extract a shorter title from the achievement description
+  const words = achievement.split(' ');
+  if (words.length <= 4) return achievement;
+
+  // Try to find key action words
+  const keyWords = ['Founded', 'Became', 'Defeated', 'Mastered', 'United', 'Established', 'Created'];
+  for (const keyWord of keyWords) {
+    if (achievement.includes(keyWord)) {
+      const index = words.findIndex(word => word.includes(keyWord));
+      return words.slice(index, Math.min(index + 3, words.length)).join(' ');
+    }
+  }
+
+  return words.slice(0, 3).join(' ') + '...';
+}
+
+// Helper function to get achievement card rarity
+function getAchievementCardRarity(achievement) {
+  const achievementLower = achievement.toLowerCase();
+
+  if (achievementLower.includes('demon lord') || achievementLower.includes('true dragon') ||
+      achievementLower.includes('founded')) return 'legendary';
+  if (achievementLower.includes('defeated') || achievementLower.includes('mastered') ||
+      achievementLower.includes('evolved')) return 'epic';
+  if (achievementLower.includes('became') || achievementLower.includes('established')) return 'rare';
+
+  return 'common';
 }
 
 function generateEvolutionSection(character) {
   if (!character.evolution || character.evolution.length === 0) return "";
 
+  // Calculate evolution stats and progression
+  const totalForms = character.evolution.length;
+  const evolutionStats = {
+    totalEvolutions: totalForms,
+    powerGrowth: Math.round((totalForms - 1) * 25), // Estimated power growth percentage
+    timeSpan: "Unknown", // Could be calculated from data if available
+    complexity: totalForms > 4 ? "Legendary" : totalForms > 2 ? "Advanced" : "Basic"
+  };
+
   return `
-    <h4>🔄 Evolution Forms</h4>
-    <div class="evolution-timeline">
-      ${character.evolution
-        .map(
-          (form, index) => `
-        <div class="evolution-form">
-          <div class="evolution-order">${index + 1}</div>
-          <div class="evolution-content">
-            <h5>${form.form}</h5>
-            <p class="evolution-description">${form.description}</p>
-            <span class="evolution-trigger">Trigger: ${form.trigger}</span>
+    <div class="evolution-section">
+      <h4>🔄 Evolution Timeline</h4>
+
+      <!-- Evolution Overview Stats -->
+      <div class="evolution-overview">
+        <div class="evolution-stats">
+          <div class="evolution-stat">
+            <span class="evolution-stat-icon">📊</span>
+            <span>Total Forms: ${evolutionStats.totalEvolutions}</span>
+          </div>
+          <div class="evolution-stat">
+            <span class="evolution-stat-icon">⚡</span>
+            <span>Power Growth: +${evolutionStats.powerGrowth}%</span>
+          </div>
+          <div class="evolution-stat">
+            <span class="evolution-stat-icon">🏆</span>
+            <span>Complexity: ${evolutionStats.complexity}</span>
           </div>
         </div>
-      `,
-        )
-        .join("")}
+      </div>
+
+      <!-- Evolution Timeline -->
+      <div class="evolution-timeline">
+        ${character.evolution
+          .map(
+            (form, index) => `
+          <div class="evolution-form" onclick="toggleEvolutionDetails(${index})" data-evolution-index="${index}">
+            <div class="evolution-progress"></div>
+            <div class="evolution-order">${index + 1}</div>
+            <div class="evolution-content">
+              <h5>${form.form}</h5>
+              <p class="evolution-description">${form.description}</p>
+              <div class="evolution-trigger ${getTriggerTypeClass(form.trigger)}">
+                <span>Trigger: ${form.trigger}</span>
+              </div>
+
+              <!-- Additional Evolution Details (Initially Hidden) -->
+              <div class="evolution-details" id="evolution-details-${index}" style="display: none;">
+                <div class="evolution-abilities">
+                  <h6>🌟 Key Abilities Gained:</h6>
+                  <div class="ability-tags">
+                    ${generateEvolutionAbilities(form, index)}
+                  </div>
+                </div>
+
+                <div class="evolution-impact">
+                  <h6>📈 Impact on Character:</h6>
+                  <p>${generateEvolutionImpact(form, index)}</p>
+                </div>
+
+                ${form.powerLevel ? `
+                <div class="evolution-power-level">
+                  <h6>⚡ Power Level:</h6>
+                  <div class="power-level-bar">
+                    <div class="power-level-fill" style="width: ${Math.min(form.powerLevel || (index + 1) * 20, 100)}%"></div>
+                    <span class="power-level-text">${form.powerLevel || (index + 1) * 20}%</span>
+                  </div>
+                </div>
+                ` : ''}
+              </div>
+            </div>
+          </div>
+        `,
+          )
+          .join("")}
+      </div>
+
+      <!-- Evolution Summary -->
+      <div class="evolution-summary">
+        <h6>📋 Evolution Summary</h6>
+        <p>This character has undergone ${totalForms} major evolutionary transformations,
+        representing a ${evolutionStats.complexity.toLowerCase()} evolution path with significant power growth
+        and ability development throughout their journey.</p>
+      </div>
     </div>
   `;
 }
+
+// Helper function to generate evolution abilities based on form
+function generateEvolutionAbilities(form, index) {
+  const abilityMap = {
+    0: ["🧠 Basic Consciousness", "🔍 Observation"],
+    1: ["🌀 Unique Skills", "🎯 Predator Ability"],
+    2: ["👑 Leadership", "🗣️ Communication"],
+    3: ["⚔️ Combat Mastery", "🔥 Elemental Control"],
+    4: ["🌟 Ultimate Power", "🌍 Reality Manipulation"]
+  };
+
+  const abilities = abilityMap[index] || ["✨ Enhanced Abilities", "🔮 New Powers"];
+
+  return abilities.map(ability =>
+    `<span class="ability-tag">${ability}</span>`
+  ).join('');
+}
+
+// Helper function to generate evolution impact description
+function generateEvolutionImpact(form, index) {
+  const impactDescriptions = [
+    "Gained basic sentience and awareness of the world.",
+    "Acquired unique abilities that set the foundation for future growth.",
+    "Developed social connections and leadership qualities.",
+    "Achieved significant combat prowess and magical mastery.",
+    "Reached the pinnacle of power with reality-altering abilities."
+  ];
+
+  return impactDescriptions[index] || "Significant growth in power and abilities.";
+}
+
+// Helper function to determine trigger type and apply appropriate styling
+function getTriggerTypeClass(trigger) {
+  const triggerLower = trigger.toLowerCase();
+
+  if (triggerLower.includes('name') || triggerLower.includes('naming')) {
+    return 'trigger-naming';
+  } else if (triggerLower.includes('death') || triggerLower.includes('dying') || triggerLower.includes('stabbing')) {
+    return 'trigger-trauma';
+  } else if (triggerLower.includes('skill') || triggerLower.includes('mastery') || triggerLower.includes('ultimate')) {
+    return 'trigger-skill';
+  } else if (triggerLower.includes('harvest') || triggerLower.includes('festival') || triggerLower.includes('ritual')) {
+    return 'trigger-ritual';
+  } else if (triggerLower.includes('natural') || triggerLower.includes('reincarnation')) {
+    return 'trigger-natural';
+  }
+
+  return 'trigger-natural'; // Default fallback
+}
+
+// Function to toggle evolution details
+function toggleEvolutionDetails(index) {
+  const detailsElement = document.getElementById(`evolution-details-${index}`);
+  const evolutionForm = document.querySelector(`[data-evolution-index="${index}"]`);
+
+  if (detailsElement) {
+    const isVisible = detailsElement.style.display !== 'none';
+
+    // Hide all other details first
+    document.querySelectorAll('.evolution-details').forEach(detail => {
+      detail.style.display = 'none';
+    });
+
+    // Remove active class from all forms
+    document.querySelectorAll('.evolution-form').forEach(form => {
+      form.classList.remove('evolution-active');
+    });
+
+    if (!isVisible) {
+      // Show this detail with animation
+      detailsElement.style.display = 'block';
+      evolutionForm.classList.add('evolution-active');
+
+      // Animate in
+      setTimeout(() => {
+        detailsElement.style.opacity = '0';
+        detailsElement.style.transform = 'translateY(10px)';
+        detailsElement.style.transition = 'all 0.3s ease';
+
+        requestAnimationFrame(() => {
+          detailsElement.style.opacity = '1';
+          detailsElement.style.transform = 'translateY(0)';
+        });
+      }, 10);
+
+      // Scroll into view on mobile
+      if (window.innerWidth <= 768) {
+        evolutionForm.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }
+
+      // Haptic feedback
+      if ('vibrate' in navigator) {
+        navigator.vibrate(50);
+      }
+
+      // Show notification
+      if (window.showNotification) {
+        window.showNotification(`Viewing details for evolution stage ${index + 1}`, 'info');
+      }
+    }
+  }
+}
+
+// Make function globally available
+window.toggleEvolutionDetails = toggleEvolutionDetails;
 
 function generateImpactStatsSection(character) {
   if (!character.impact) return "";
@@ -1112,3 +1362,947 @@ function attemptErrorRecovery() {
   // Notify user of recovery attempt
   window.showNotification("System recovered. Please try again.");
 }
+// Enhanced UI functionality for character page
+
+// Toggle favorite status for character
+function toggleFavorite() {
+  const characterId = window.getURLParameter("id");
+  if (!characterId) return;
+
+  const favoriteIcon = document.getElementById("favorite-icon");
+  const favorites = JSON.parse(localStorage.getItem("favoriteCharacters") || "[]");
+
+  const isFavorited = favorites.includes(characterId);
+
+  if (isFavorited) {
+    // Remove from favorites
+    const index = favorites.indexOf(characterId);
+    favorites.splice(index, 1);
+    favoriteIcon.textContent = "⭐";
+    favoriteIcon.style.filter = "grayscale(100%)";
+    window.showNotification("Removed from favorites");
+  } else {
+    // Add to favorites
+    favorites.push(characterId);
+    favoriteIcon.textContent = "🌟";
+    favoriteIcon.style.filter = "none";
+    window.showNotification("Added to favorites!");
+  }
+
+  localStorage.setItem("favoriteCharacters", JSON.stringify(favorites));
+
+  // Add visual feedback
+  favoriteIcon.style.transform = "scale(1.3)";
+  setTimeout(() => {
+    favoriteIcon.style.transform = "scale(1)";
+  }, 200);
+}
+
+// Initialize favorite status on page load
+function initializeFavoriteStatus() {
+  const characterId = window.getURLParameter("id");
+  if (!characterId) return;
+
+  const favorites = JSON.parse(localStorage.getItem("favoriteCharacters") || "[]");
+  const favoriteIcon = document.getElementById("favorite-icon");
+
+  if (favorites.includes(characterId)) {
+    favoriteIcon.textContent = "🌟";
+    favoriteIcon.style.filter = "none";
+  } else {
+    favoriteIcon.textContent = "⭐";
+    favoriteIcon.style.filter = "grayscale(100%)";
+  }
+}
+
+// Floating Action Button functionality
+function initializeFloatingActionButton() {
+  const fabHTML = `
+    <div class="floating-action-menu" id="fab-menu">
+      <div class="fab-menu">
+        <button class="fab-item" onclick="scrollToTop()" title="Scroll to Top">↑</button>
+        <button class="fab-item" onclick="toggleTheme()" title="Toggle Theme">🎨</button>
+        <button class="fab-item" onclick="printProfile()" title="Print Profile">🖨️</button>
+      </div>
+      <button class="fab-main" onclick="toggleFabMenu()">+</button>
+    </div>
+  `;
+
+  document.body.insertAdjacentHTML('beforeend', fabHTML);
+}
+
+function toggleFabMenu() {
+  const fabMenu = document.getElementById('fab-menu');
+  fabMenu.classList.toggle('open');
+}
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  toggleFabMenu();
+}
+
+function toggleTheme() {
+  const body = document.body;
+  const currentTheme = body.dataset.theme || 'dark';
+  const themes = ['dark', 'high-contrast', 'sepia'];
+  const currentIndex = themes.indexOf(currentTheme);
+  const nextTheme = themes[(currentIndex + 1) % themes.length];
+
+  body.dataset.theme = nextTheme;
+  localStorage.setItem('characterTheme', nextTheme);
+  window.showNotification(`Theme changed to ${nextTheme}`);
+  toggleFabMenu();
+}
+
+function printProfile() {
+  window.print();
+  toggleFabMenu();
+}
+
+// Enhanced loading with progress indicator
+function showEnhancedLoading() {
+  const loadingHTML = `
+    <div class="enhanced-loading">
+      <div class="loading-character-icon">
+        <div class="slime-loader">
+          <div class="slime-body"></div>
+          <div class="slime-eyes">
+            <div class="eye left"></div>
+            <div class="eye right"></div>
+          </div>
+        </div>
+      </div>
+      <div class="loading-text">Loading Character Profile...</div>
+      <div class="loading-progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+      <div class="loading-tips">
+        <p id="loading-tip">Did you know? Characters can evolve through naming!</p>
+      </div>
+    </div>
+  `;
+
+  const content = document.getElementById('profile-content');
+  if (content) {
+    content.innerHTML = loadingHTML;
+    startLoadingTips();
+  }
+}
+
+function startLoadingTips() {
+  const tips = [
+    "Did you know? Characters can evolve through naming!",
+    "The Jura Tempest Federation welcomes all races!",
+    "Magic and technology coexist in this world!",
+    "Demon Lords aren't always evil in this universe!",
+    "Friendship and bonds are the strongest powers!"
+  ];
+
+  let currentTip = 0;
+  const tipElement = document.getElementById('loading-tip');
+
+  const tipInterval = setInterval(() => {
+    if (!tipElement) {
+      clearInterval(tipInterval);
+      return;
+    }
+
+    currentTip = (currentTip + 1) % tips.length;
+    tipElement.style.opacity = '0';
+
+    setTimeout(() => {
+      tipElement.textContent = tips[currentTip];
+      tipElement.style.opacity = '1';
+    }, 300);
+  }, 3000);
+}
+
+// Initialize all enhanced features
+function initializeEnhancedFeatures() {
+  initializeFavoriteStatus();
+  initializeFloatingActionButton();
+
+  // Load saved theme
+  const savedTheme = localStorage.getItem('characterTheme');
+  if (savedTheme) {
+    document.body.dataset.theme = savedTheme;
+  }
+
+  // Add keyboard shortcuts
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey || e.metaKey) {
+      switch(e.key) {
+        case 'f':
+          e.preventDefault();
+          toggleFavorite();
+          break;
+        case 'p':
+          e.preventDefault();
+          printProfile();
+          break;
+        case 't':
+          e.preventDefault();
+          toggleTheme();
+          break;
+      }
+    }
+  });
+}
+
+// Update the main initialization to include enhanced features
+const originalInitialize = initializeCharacterPage;
+initializeCharacterPage = function() {
+  originalInitialize();
+  setTimeout(() => {
+    initializeEnhancedFeatures();
+  }, 1000);
+};
+
+// Update the character profile rendering to include stats
+const originalRenderCharacterProfile = renderCharacterProfile;
+renderCharacterProfile = function(character) {
+  originalRenderCharacterProfile(character);
+};
+
+// Export functions for global access
+window.toggleFavorite = toggleFavorite;
+window.toggleFabMenu = toggleFabMenu;
+window.scrollToTop = scrollToTop;
+window.toggleTheme = toggleTheme;
+window.printProfile = printProfile;
+// Scroll progress indicator
+function initializeScrollProgress() {
+  const scrollIndicator = document.getElementById('scroll-indicator');
+  if (!scrollIndicator) return;
+
+  function updateScrollProgress() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollProgress = (scrollTop / scrollHeight) * 100;
+
+    scrollIndicator.style.transform = `scaleX(${scrollProgress / 100})`;
+  }
+
+  window.addEventListener('scroll', updateScrollProgress, { passive: true });
+  updateScrollProgress(); // Initial call
+}
+
+// Enhanced page transitions
+function addPageTransitions() {
+  // Add smooth scroll to all internal links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
+  // Add intersection observer for animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in');
+      }
+    });
+  }, observerOptions);
+
+  // Observe all major sections
+  document.querySelectorAll('.profile-section, .info-card, .skill-card-detailed').forEach(el => {
+    observer.observe(el);
+  });
+}
+
+// Performance monitoring
+function initializePerformanceMonitoring() {
+  if ('performance' in window) {
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const perfData = performance.getEntriesByType('navigation')[0];
+        const loadTime = perfData.loadEventEnd - perfData.loadEventStart;
+
+        if (loadTime > 3000) {
+          console.warn('Page load time is high:', loadTime + 'ms');
+        }
+
+        // Store performance metrics
+        const metrics = {
+          loadTime,
+          domContentLoaded: perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart,
+          timestamp: Date.now()
+        };
+
+        localStorage.setItem('characterPagePerformance', JSON.stringify(metrics));
+      }, 0);
+    });
+  }
+}
+
+// Enhanced error handling with user-friendly messages
+function setupEnhancedErrorHandling() {
+  window.addEventListener('error', (event) => {
+    console.error('Character page error:', event.error);
+
+    // Show user-friendly error message
+    const errorMessage = getErrorMessage(event.error);
+    window.showNotification(errorMessage, 'error');
+  });
+
+  window.addEventListener('unhandledrejection', (event) => {
+    console.error('Unhandled promise rejection:', event.reason);
+
+    const errorMessage = getErrorMessage(event.reason);
+    window.showNotification(errorMessage, 'error');
+  });
+}
+
+function getErrorMessage(error) {
+  if (error.message?.includes('fetch')) {
+    return 'Network error - please check your connection';
+  } else if (error.message?.includes('JSON')) {
+    return 'Data format error - please refresh the page';
+  } else {
+    return 'Something went wrong - please try again';
+  }
+}
+
+// Initialize all enhanced features on page load
+document.addEventListener('DOMContentLoaded', () => {
+  initializeScrollProgress();
+  addPageTransitions();
+  initializePerformanceMonitoring();
+  setupEnhancedErrorHandling();
+
+  // Add smooth scroll class to html
+  document.documentElement.classList.add('smooth-scroll');
+});
+
+// Lazy loading for images
+function initializeLazyLoading() {
+  if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.dataset.src;
+          img.classList.remove('lazy');
+          imageObserver.unobserve(img);
+        }
+      });
+    });
+
+    document.querySelectorAll('img[data-src]').forEach(img => {
+      imageObserver.observe(img);
+    });
+  }
+}
+
+// Call lazy loading initialization
+setTimeout(initializeLazyLoading, 1000);
+
+// Enhanced Evolution Form Features
+class EvolutionManager {
+  constructor() {
+    this.currentCharacter = null;
+    this.evolutionData = null;
+    this.comparisonMode = false;
+  }
+
+  // Initialize evolution features for a character
+  initializeEvolution(character) {
+    this.currentCharacter = character;
+    this.evolutionData = character.evolution || [];
+    this.setupEvolutionInteractions();
+    this.addEvolutionKeyboardNavigation();
+  }
+
+  // Setup interactive features for evolution forms
+  setupEvolutionInteractions() {
+    // Add double-click to expand all details
+    document.addEventListener('dblclick', (e) => {
+      if (e.target.closest('.evolution-form')) {
+        this.toggleAllEvolutionDetails();
+      }
+    });
+
+    // Add right-click context menu for evolution forms
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target.closest('.evolution-form')) {
+        e.preventDefault();
+        this.showEvolutionContextMenu(e);
+      }
+    });
+
+    // Add evolution comparison feature
+    this.addEvolutionComparison();
+  }
+
+  // Toggle all evolution details at once
+  toggleAllEvolutionDetails() {
+    const allDetails = document.querySelectorAll('.evolution-details');
+    const allForms = document.querySelectorAll('.evolution-form');
+
+    const anyVisible = Array.from(allDetails).some(detail =>
+      detail.style.display !== 'none'
+    );
+
+    allDetails.forEach((detail, index) => {
+      if (anyVisible) {
+        detail.style.display = 'none';
+        allForms[index]?.classList.remove('evolution-active');
+      } else {
+        detail.style.display = 'block';
+        allForms[index]?.classList.add('evolution-active');
+        this.animateDetailIn(detail);
+      }
+    });
+
+    const action = anyVisible ? 'collapsed' : 'expanded';
+    if (window.showNotification) {
+      window.showNotification(`All evolution details ${action}`, 'info');
+    }
+  }
+
+  // Animate detail section in
+  animateDetailIn(detail) {
+    detail.style.opacity = '0';
+    detail.style.transform = 'translateY(10px)';
+    detail.style.transition = 'all 0.3s ease';
+
+    requestAnimationFrame(() => {
+      detail.style.opacity = '1';
+      detail.style.transform = 'translateY(0)';
+    });
+  }
+
+  // Show context menu for evolution forms
+  showEvolutionContextMenu(event) {
+    const evolutionForm = event.target.closest('.evolution-form');
+    const evolutionIndex = evolutionForm?.dataset.evolutionIndex;
+
+    if (!evolutionIndex) return;
+
+    // Remove existing context menu
+    const existingMenu = document.querySelector('.evolution-context-menu');
+    if (existingMenu) {
+      existingMenu.remove();
+    }
+
+    // Create context menu
+    const contextMenu = document.createElement('div');
+    contextMenu.className = 'evolution-context-menu';
+    contextMenu.innerHTML = `
+      <div class="context-menu-item" onclick="evolutionManager.shareEvolution(${evolutionIndex})">
+        📤 Share Evolution
+      </div>
+      <div class="context-menu-item" onclick="evolutionManager.compareEvolution(${evolutionIndex})">
+        ⚖️ Compare Evolution
+      </div>
+      <div class="context-menu-item" onclick="evolutionManager.favoriteEvolution(${evolutionIndex})">
+        ⭐ Favorite Evolution
+      </div>
+      <div class="context-menu-item" onclick="evolutionManager.copyEvolutionInfo(${evolutionIndex})">
+        📋 Copy Info
+      </div>
+    `;
+
+    // Position and show context menu
+    contextMenu.style.position = 'fixed';
+    contextMenu.style.left = event.clientX + 'px';
+    contextMenu.style.top = event.clientY + 'px';
+    contextMenu.style.zIndex = '10000';
+
+    document.body.appendChild(contextMenu);
+
+    // Remove context menu when clicking elsewhere
+    setTimeout(() => {
+      document.addEventListener('click', () => {
+        contextMenu.remove();
+      }, { once: true });
+    }, 100);
+  }
+
+  // Add keyboard navigation for evolution forms
+  addEvolutionKeyboardNavigation() {
+    document.addEventListener('keydown', (e) => {
+      if (e.target.closest('.evolution-timeline')) {
+        const evolutionForms = document.querySelectorAll('.evolution-form');
+        const currentIndex = Array.from(evolutionForms).findIndex(form =>
+          form.classList.contains('evolution-active')
+        );
+
+        switch(e.key) {
+          case 'ArrowDown':
+            e.preventDefault();
+            this.navigateEvolution(currentIndex + 1, evolutionForms);
+            break;
+          case 'ArrowUp':
+            e.preventDefault();
+            this.navigateEvolution(currentIndex - 1, evolutionForms);
+            break;
+          case 'Enter':
+            e.preventDefault();
+            if (currentIndex >= 0) {
+              toggleEvolutionDetails(currentIndex);
+            }
+            break;
+          case 'Escape':
+            e.preventDefault();
+            this.closeAllEvolutionDetails();
+            break;
+        }
+      }
+    });
+  }
+
+  // Navigate between evolution forms
+  navigateEvolution(newIndex, evolutionForms) {
+    if (newIndex < 0) newIndex = evolutionForms.length - 1;
+    if (newIndex >= evolutionForms.length) newIndex = 0;
+
+    // Remove active class from all forms
+    evolutionForms.forEach(form => form.classList.remove('evolution-active'));
+
+    // Add active class to new form
+    evolutionForms[newIndex].classList.add('evolution-active');
+    evolutionForms[newIndex].scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
+
+    // Show details for the active form
+    toggleEvolutionDetails(newIndex);
+  }
+
+  // Close all evolution details
+  closeAllEvolutionDetails() {
+    document.querySelectorAll('.evolution-details').forEach(detail => {
+      detail.style.display = 'none';
+    });
+    document.querySelectorAll('.evolution-form').forEach(form => {
+      form.classList.remove('evolution-active');
+    });
+  }
+
+  // Share evolution information
+  shareEvolution(index) {
+    const evolution = this.evolutionData[index];
+    if (!evolution) return;
+
+    const shareText = `${this.currentCharacter.name} - Evolution ${index + 1}: ${evolution.form}\n${evolution.description}\nTrigger: ${evolution.trigger}`;
+
+    if (navigator.share) {
+      navigator.share({
+        title: `${evolution.form} Evolution`,
+        text: shareText,
+        url: window.location.href
+      });
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(shareText).then(() => {
+        if (window.showNotification) {
+          window.showNotification('Evolution info copied to clipboard!', 'success');
+        }
+      });
+    }
+  }
+
+  // Compare evolution with others
+  compareEvolution(index) {
+    this.comparisonMode = !this.comparisonMode;
+
+    if (this.comparisonMode) {
+      this.enableComparisonMode(index);
+    } else {
+      this.disableComparisonMode();
+    }
+  }
+
+  // Enable evolution comparison mode
+  enableComparisonMode(selectedIndex) {
+    const evolutionForms = document.querySelectorAll('.evolution-form');
+
+    evolutionForms.forEach((form, index) => {
+      if (index === selectedIndex) {
+        form.classList.add('evolution-selected');
+      } else {
+        form.classList.add('evolution-dimmed');
+      }
+    });
+
+    // Add comparison UI
+    this.showComparisonUI(selectedIndex);
+
+    if (window.showNotification) {
+      window.showNotification('Comparison mode enabled. Click another evolution to compare.', 'info');
+    }
+  }
+
+  // Disable evolution comparison mode
+  disableComparisonMode() {
+    document.querySelectorAll('.evolution-form').forEach(form => {
+      form.classList.remove('evolution-selected', 'evolution-dimmed');
+    });
+
+    const comparisonUI = document.querySelector('.evolution-comparison-ui');
+    if (comparisonUI) {
+      comparisonUI.remove();
+    }
+  }
+
+  // Show comparison UI
+  showComparisonUI(selectedIndex) {
+    const evolution = this.evolutionData[selectedIndex];
+    const comparisonUI = document.createElement('div');
+    comparisonUI.className = 'evolution-comparison-ui';
+    comparisonUI.innerHTML = `
+      <div class="comparison-header">
+        <h4>🔍 Comparing: ${evolution.form}</h4>
+        <button onclick="evolutionManager.disableComparisonMode()" class="close-comparison">✕</button>
+      </div>
+      <div class="comparison-stats">
+        <div class="comparison-stat">
+          <span>Evolution Stage:</span>
+          <span>${selectedIndex + 1} of ${this.evolutionData.length}</span>
+        </div>
+        <div class="comparison-stat">
+          <span>Trigger Type:</span>
+          <span>${this.getEvolutionTriggerType(evolution.trigger)}</span>
+        </div>
+      </div>
+    `;
+
+    document.querySelector('.evolution-timeline').appendChild(comparisonUI);
+  }
+
+  // Get evolution trigger type
+  getEvolutionTriggerType(trigger) {
+    if (trigger.toLowerCase().includes('name')) return 'Naming';
+    if (trigger.toLowerCase().includes('death')) return 'Trauma';
+    if (trigger.toLowerCase().includes('skill')) return 'Skill Mastery';
+    if (trigger.toLowerCase().includes('harvest')) return 'Ritual';
+    return 'Natural';
+  }
+
+  // Favorite evolution
+  favoriteEvolution(index) {
+    const characterId = window.getURLParameter?.("id");
+    if (!characterId) return;
+
+    const favoriteKey = `favoriteEvolutions_${characterId}`;
+    const favorites = JSON.parse(localStorage.getItem(favoriteKey) || '[]');
+
+    const isFavorited = favorites.includes(index);
+
+    if (isFavorited) {
+      const favIndex = favorites.indexOf(index);
+      favorites.splice(favIndex, 1);
+      if (window.showNotification) {
+        window.showNotification('Evolution removed from favorites', 'info');
+      }
+    } else {
+      favorites.push(index);
+      if (window.showNotification) {
+        window.showNotification('Evolution added to favorites!', 'success');
+      }
+    }
+
+    localStorage.setItem(favoriteKey, JSON.stringify(favorites));
+    this.updateFavoriteIndicators();
+  }
+
+  // Update favorite indicators
+  updateFavoriteIndicators() {
+    const characterId = window.getURLParameter?.("id");
+    if (!characterId) return;
+
+    const favoriteKey = `favoriteEvolutions_${characterId}`;
+    const favorites = JSON.parse(localStorage.getItem(favoriteKey) || '[]');
+
+    document.querySelectorAll('.evolution-form').forEach((form, index) => {
+      const indicator = form.querySelector('.favorite-indicator');
+      if (indicator) {
+        indicator.remove();
+      }
+
+      if (favorites.includes(index)) {
+        const newIndicator = document.createElement('div');
+        newIndicator.className = 'favorite-indicator';
+        newIndicator.innerHTML = '⭐';
+        form.appendChild(newIndicator);
+      }
+    });
+  }
+
+  // Copy evolution information
+  copyEvolutionInfo(index) {
+    const evolution = this.evolutionData[index];
+    if (!evolution) return;
+
+    const info = `Evolution ${index + 1}: ${evolution.form}\nDescription: ${evolution.description}\nTrigger: ${evolution.trigger}`;
+
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(info).then(() => {
+        if (window.showNotification) {
+          window.showNotification('Evolution info copied!', 'success');
+        }
+      });
+    }
+  }
+}
+
+// Create global evolution manager instance
+window.evolutionManager = new EvolutionManager();
+
+// Initialize evolution manager when character loads
+const originalLoadCharacterProfile = loadCharacterProfile;
+loadCharacterProfile = async function() {
+  await originalLoadCharacterProfile();
+
+  // Initialize evolution manager after character loads
+  setTimeout(() => {
+    const characterId = window.getURLParameter("id");
+    if (characterId && window.GameState) {
+      window.GameState.getCharacter(characterId).then(character => {
+        if (character && character.evolution) {
+          window.evolutionManager.initializeEvolution(character);
+        }
+      });
+    }
+  }, 1500);
+};
+// Achievement interaction functions
+function toggleAchievementCategory(category) {
+  const categoryElement = document.querySelector(`[data-category="${category}"]`);
+  const achievementGrid = document.getElementById(`achievements-${category}`);
+  const toggleIcon = categoryElement.querySelector('.toggle-icon');
+
+  if (achievementGrid.style.display === 'none' || !achievementGrid.style.display) {
+    // Show category
+    achievementGrid.style.display = 'grid';
+    toggleIcon.textContent = '▲';
+    categoryElement.classList.add('category-expanded');
+
+    // Animate cards in
+    const cards = achievementGrid.querySelectorAll('.achievement-card');
+    cards.forEach((card, index) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      setTimeout(() => {
+        card.style.transition = 'all 0.3s ease';
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+      }, index * 100);
+    });
+  } else {
+    // Hide category
+    achievementGrid.style.display = 'none';
+    toggleIcon.textContent = '▼';
+    categoryElement.classList.remove('category-expanded');
+  }
+
+  // Haptic feedback
+  if ('vibrate' in navigator) {
+    navigator.vibrate(50);
+  }
+}
+
+function showAchievementDetails(category, index) {
+  // Remove existing modal
+  const existingModal = document.querySelector('.achievement-modal');
+  if (existingModal) {
+    existingModal.remove();
+  }
+
+  // Get achievement data
+  const categoryElement = document.querySelector(`[data-category="${category}"]`);
+  const achievementCards = categoryElement.querySelectorAll('.achievement-card');
+  const clickedCard = achievementCards[index];
+  const achievementTitle = clickedCard.querySelector('.achievement-title').textContent;
+  const achievementDescription = clickedCard.querySelector('.achievement-description').textContent;
+  const achievementIcon = clickedCard.querySelector('.achievement-icon').textContent;
+  const achievementRarity = clickedCard.querySelector('.achievement-rarity').className.split(' ')[1];
+
+  // Create modal
+  const modal = document.createElement('div');
+  modal.className = 'achievement-modal';
+  modal.innerHTML = `
+    <div class="achievement-modal-content">
+      <div class="achievement-modal-header">
+        <div class="achievement-modal-icon ${achievementRarity}">${achievementIcon}</div>
+        <button class="achievement-modal-close" onclick="closeAchievementModal()">✕</button>
+      </div>
+      <div class="achievement-modal-body">
+        <h3 class="achievement-modal-title">${achievementTitle}</h3>
+        <p class="achievement-modal-description">${achievementDescription}</p>
+        <div class="achievement-modal-meta">
+          <div class="achievement-modal-stat">
+            <span class="stat-icon">🏷️</span>
+            <span>Category: ${category}</span>
+          </div>
+          <div class="achievement-modal-stat">
+            <span class="stat-icon">⭐</span>
+            <span>Rarity: ${achievementRarity.charAt(0).toUpperCase() + achievementRarity.slice(1)}</span>
+          </div>
+          <div class="achievement-modal-stat">
+            <span class="stat-icon">🎯</span>
+            <span>Impact: High</span>
+          </div>
+        </div>
+        <div class="achievement-modal-actions">
+          <button class="achievement-action-btn" onclick="shareAchievement('${achievementTitle}', '${achievementDescription}')">
+            📤 Share Achievement
+          </button>
+          <button class="achievement-action-btn" onclick="favoriteAchievement('${category}', ${index})">
+            ⭐ Add to Favorites
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="achievement-modal-backdrop" onclick="closeAchievementModal()"></div>
+  `;
+
+  document.body.appendChild(modal);
+
+  // Animate modal in
+  setTimeout(() => {
+    modal.classList.add('achievement-modal-show');
+  }, 10);
+
+  // Prevent body scroll
+  document.body.style.overflow = 'hidden';
+}
+
+function closeAchievementModal() {
+  const modal = document.querySelector('.achievement-modal');
+  if (modal) {
+    modal.classList.remove('achievement-modal-show');
+    setTimeout(() => {
+      modal.remove();
+      document.body.style.overflow = '';
+    }, 300);
+  }
+}
+
+function shareAchievement(title, description) {
+  const shareText = `🏆 Achievement Unlocked: ${title}\n${description}`;
+
+  if (navigator.share) {
+    navigator.share({
+      title: `Achievement: ${title}`,
+      text: shareText,
+      url: window.location.href
+    });
+  } else if (navigator.clipboard) {
+    navigator.clipboard.writeText(shareText).then(() => {
+      if (window.showNotification) {
+        window.showNotification('Achievement details copied to clipboard!', 'success');
+      }
+    });
+  }
+
+  closeAchievementModal();
+}
+
+function favoriteAchievement(category, index) {
+  const characterId = window.getURLParameter?.("id");
+  if (!characterId) return;
+
+  const favoriteKey = `favoriteAchievements_${characterId}`;
+  const favorites = JSON.parse(localStorage.getItem(favoriteKey) || '[]');
+  const achievementKey = `${category}_${index}`;
+
+  const isFavorited = favorites.includes(achievementKey);
+
+  if (isFavorited) {
+    const favIndex = favorites.indexOf(achievementKey);
+    favorites.splice(favIndex, 1);
+    if (window.showNotification) {
+      window.showNotification('Achievement removed from favorites', 'info');
+    }
+  } else {
+    favorites.push(achievementKey);
+    if (window.showNotification) {
+      window.showNotification('Achievement added to favorites!', 'success');
+    }
+  }
+
+  localStorage.setItem(favoriteKey, JSON.stringify(favorites));
+  updateAchievementFavoriteIndicators();
+  closeAchievementModal();
+}
+
+function updateAchievementFavoriteIndicators() {
+  const characterId = window.getURLParameter?.("id");
+  if (!characterId) return;
+
+  const favoriteKey = `favoriteAchievements_${characterId}`;
+  const favorites = JSON.parse(localStorage.getItem(favoriteKey) || '[]');
+
+  document.querySelectorAll('.achievement-card').forEach((card, globalIndex) => {
+    const category = card.closest('.achievement-category').dataset.category;
+    const localIndex = Array.from(card.parentElement.children).indexOf(card);
+    const achievementKey = `${category}_${localIndex}`;
+
+    // Remove existing favorite indicator
+    const existingIndicator = card.querySelector('.achievement-favorite');
+    if (existingIndicator) {
+      existingIndicator.remove();
+    }
+
+    // Add favorite indicator if favorited
+    if (favorites.includes(achievementKey)) {
+      const indicator = document.createElement('div');
+      indicator.className = 'achievement-favorite';
+      indicator.innerHTML = '⭐';
+      card.appendChild(indicator);
+    }
+  });
+}
+
+// Initialize achievement features when page loads
+function initializeAchievementFeatures() {
+  // Close modal on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeAchievementModal();
+    }
+  });
+
+  // Update favorite indicators
+  setTimeout(() => {
+    updateAchievementFavoriteIndicators();
+  }, 1000);
+
+  // Auto-expand first category
+  setTimeout(() => {
+    const firstCategory = document.querySelector('.achievement-category');
+    if (firstCategory) {
+      const categoryName = firstCategory.dataset.category;
+      toggleAchievementCategory(categoryName);
+    }
+  }, 1500);
+}
+
+// Make functions globally available
+window.toggleAchievementCategory = toggleAchievementCategory;
+window.showAchievementDetails = showAchievementDetails;
+window.closeAchievementModal = closeAchievementModal;
+window.shareAchievement = shareAchievement;
+window.favoriteAchievement = favoriteAchievement;
+
+// Initialize when character loads
+const originalInitializeEnhancedFeatures = initializeEnhancedFeatures;
+initializeEnhancedFeatures = function() {
+  originalInitializeEnhancedFeatures();
+  initializeAchievementFeatures();
+};
