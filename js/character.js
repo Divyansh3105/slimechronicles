@@ -55,10 +55,61 @@ function downloadProfile() {
   window.showNotification("Profile download feature coming soon!");
 }
 
+// Toggle favorite character functionality
+function toggleFavorite() {
+  const characterId = window.getURLParameter("id");
+  if (!characterId) return;
+
+  const favoriteBtn = document.getElementById("favorite-btn");
+  const heartIcon = favoriteBtn.querySelector("span");
+
+  // Get current favorites from localStorage
+  let favorites = JSON.parse(localStorage.getItem("favoriteCharacters") || "[]");
+
+  if (favorites.includes(characterId)) {
+    // Remove from favorites
+    favorites = favorites.filter(id => id !== characterId);
+    heartIcon.textContent = "🤍";
+    favoriteBtn.title = "Add to Favorites";
+    window.showNotification("Removed from favorites");
+  } else {
+    // Add to favorites
+    favorites.push(characterId);
+    heartIcon.textContent = "❤️";
+    favoriteBtn.title = "Remove from Favorites";
+    window.showNotification("Added to favorites!");
+
+    // Add favorite animation
+    favoriteBtn.style.animation = "favoriteAdded 0.6s ease-out";
+    setTimeout(() => {
+      favoriteBtn.style.animation = "";
+    }, 600);
+  }
+
+  // Save to localStorage
+  localStorage.setItem("favoriteCharacters", JSON.stringify(favorites));
+}
+
+// Initialize favorite button state
+function initializeFavoriteButton() {
+  const characterId = window.getURLParameter("id");
+  if (!characterId) return;
+
+  const favorites = JSON.parse(localStorage.getItem("favoriteCharacters") || "[]");
+  const favoriteBtn = document.getElementById("favorite-btn");
+  const heartIcon = favoriteBtn.querySelector("span");
+
+  if (favorites.includes(characterId)) {
+    heartIcon.textContent = "❤️";
+    favoriteBtn.title = "Remove from Favorites";
+  }
+}
+
 // Make functions globally available - Export functions to window object for global access
 window.shareCharacter = shareCharacter;
 window.compareCharacter = compareCharacter;
 window.downloadProfile = downloadProfile;
+window.toggleFavorite = toggleFavorite;
 
 // Character data loader class - Handles efficient loading and caching of character data
 class CharacterDataLoader {
@@ -307,6 +358,9 @@ window.CharacterLoader = new CharacterDataLoader();
 
 // Consolidated initialization function
 function initializeCharacterPage() {
+  // Initialize favorite button state
+  initializeFavoriteButton();
+
   // Load character profile after brief delay to ensure DOM is fully ready
   setTimeout(() => {
     loadCharacterProfile();
@@ -316,11 +370,81 @@ function initializeCharacterPage() {
   setTimeout(() => {
     setupTabNavigation();
   }, 1000);
+
+  // Add scroll-based animations
+  setupScrollAnimations();
+
+  // Add keyboard shortcuts
+  setupKeyboardShortcuts();
 }
 
-// Setup enhanced tab navigation - Initialize keyboard and touch navigation for profile tabs
+// Setup scroll-based animations for enhanced user experience
+function setupScrollAnimations() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.style.opacity = "1";
+          entry.target.style.transform = "translateY(0)";
+          entry.target.classList.add("animate-in");
+        }, index * 100);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  // Observe profile sections for scroll animations
+  const sections = document.querySelectorAll(".profile-section, .info-card, .skill-card-detailed");
+  sections.forEach(section => {
+    section.style.opacity = "0";
+    section.style.transform = "translateY(20px)";
+    section.style.transition = "all 0.6s ease-out";
+    observer.observe(section);
+  });
+}
+
+// Setup keyboard shortcuts for better accessibility
+function setupKeyboardShortcuts() {
+  document.addEventListener("keydown", (e) => {
+    // Only handle shortcuts when not typing in inputs
+    if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+
+    switch (e.key) {
+      case "1":
+      case "2":
+      case "3":
+      case "4":
+      case "5":
+      case "6":
+        // Switch to tab by number
+        e.preventDefault();
+        const tabIndex = parseInt(e.key) - 1;
+        const tabs = document.querySelectorAll(".profile-tab");
+        if (tabs[tabIndex]) {
+          tabs[tabIndex].click();
+        }
+        break;
+      case "f":
+        // Toggle favorite with 'f' key
+        if (e.ctrlKey || e.metaKey) return; // Don't interfere with browser find
+        e.preventDefault();
+        toggleFavorite();
+        break;
+      case "s":
+        // Share with 's' key
+        if (e.ctrlKey || e.metaKey) return; // Don't interfere with browser save
+        e.preventDefault();
+        shareCharacter();
+        break;
+      case "Escape":
+        // Close any open modals
+        const modals = document.querySelectorAll(".comparison-modal");
+        modals.forEach(modal => modal.style.display = "none");
+        break;
+    }
+  });
+}
+  // Setup enhanced tab navigation - Initialize keyboard and touch navigation for profile tabs
 function setupTabNavigation() {
-  // Add keyboard navigation support to profile tabs
   const tabs = document.querySelectorAll(".profile-tab");
   tabs.forEach((tab, index) => {
     tab.setAttribute("tabindex", "0");
