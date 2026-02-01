@@ -1,139 +1,11 @@
-// Mobile Navigation Functions - Handle mobile menu toggle functionality
-function toggleMobileMenu() {
-  // Get mobile navigation elements from DOM
-  const toggle = document.querySelector(".mobile-menu-toggle");
-  const mobileNav = document.getElementById("mobile-nav");
-  const mainNav = document.getElementById("main-nav");
-
-  // Validate required elements exist before proceeding
-  if (!toggle || !mobileNav) {
-    console.warn("Mobile navigation elements not found");
-    return;
-  }
-
-  // Check current state of mobile navigation menu
-  const isActive = mobileNav.classList.contains("active");
-
-  if (isActive) {
-    // Close menu - Remove active states and restore normal navigation
-    mobileNav.classList.remove("active");
-    toggle.classList.remove("active");
-    document.body.classList.remove("mobile-nav-open");
-
-    // Re-enable main nav interaction when mobile menu closes
-    if (mainNav) {
-      mainNav.style.pointerEvents = "auto";
-    }
-  } else {
-    // Open menu - Add active states and disable main navigation
-    mobileNav.classList.add("active");
-    toggle.classList.add("active");
-    document.body.classList.add("mobile-nav-open");
-
-    // Disable main nav interaction to prevent conflicts
-    if (mainNav) {
-      mainNav.style.pointerEvents = "none";
-    }
-  }
-
-  // Provide haptic feedback on supported mobile devices
-  if ("vibrate" in navigator) {
-    navigator.vibrate(50);
-  }
-
-  // Play sound effect if audio system is available
-  if (window.playSound) {
-    window.playSound("menu-toggle");
-  }
-}
-
-// Initialize mobile navigation - Set up event handlers and gesture support
-function initializeMobileNavigation() {
-  // Get mobile navigation elements for initialization
-  const toggle = document.querySelector(".mobile-menu-toggle");
-  const mobileNav = document.getElementById("mobile-nav");
-
-  // Exit early if required elements are missing
-  if (!toggle || !mobileNav) return;
-
-  // Handle swipe gestures on mobile nav - Initialize touch tracking variables
-  let startY = 0;
-  let currentY = 0;
-
-  // Track touch start position for swipe gesture detection
-  mobileNav.addEventListener("touchstart", (e) => {
-    startY = e.touches[0].clientY;
-  });
-
-  // Update current touch position during swipe movement
-  mobileNav.addEventListener("touchmove", (e) => {
-    currentY = e.touches[0].clientY;
-  });
-
-  // Process swipe gesture when touch ends and close menu if swiped up
-  mobileNav.addEventListener("touchend", () => {
-    const swipeDistance = startY - currentY;
-
-    // If swiped up significantly, close the menu
-    if (swipeDistance > 100) {
-      toggleMobileMenu();
-    }
-  });
-
-  // Close menu when clicking nav links - Add event listeners to all mobile nav links
-  document.querySelectorAll(".mobile-nav a").forEach((link) => {
-    link.addEventListener("click", () => {
-      toggleMobileMenu();
-    });
-  });
-
-  // Close menu when clicking outside - Detect clicks outside mobile nav area
-  document.addEventListener("click", (e) => {
-    if (mobileNav.classList.contains("active") &&
-        !mobileNav.contains(e.target) &&
-        !toggle.contains(e.target)) {
-      toggleMobileMenu();
-    }
-  });
-
-  // Close menu with Escape key - Handle keyboard accessibility
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && mobileNav && mobileNav.classList.contains("active")) {
-      toggleMobileMenu();
-    }
-  });
-
-  // Handle visibility change (tab switching) - Close menu when tab becomes hidden
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-      if (mobileNav && mobileNav.classList.contains("active")) {
-        // Close mobile nav when tab becomes hidden
-        toggleMobileMenu();
-      }
-    }
-  });
-
-  // Handle resize events - Close mobile nav when switching to desktop view
-  let isMobile = window.innerWidth <= 768;
-  window.addEventListener("resize", () => {
-    const newIsMobile = window.innerWidth <= 768;
-    if (!newIsMobile && mobileNav.classList.contains("active")) {
-      // Close mobile nav when switching to desktop
-      toggleMobileMenu();
-    }
-    isMobile = newIsMobile;
-  });
-}
-
 // Additional mobile-specific functions - Handle character sharing functionality
 function shareCharacter() {
   // Get character ID from URL parameters for sharing
-  const urlParams = new URLSearchParams(window.location.search);
-  const characterId = urlParams.get("id");
+  const characterId = window.getURLParameter("id");
 
   // Validate character ID exists before attempting to share
   if (!characterId) {
-    showNotification("No character selected to share");
+    window.showNotification("No character selected to share");
     return;
   }
 
@@ -145,7 +17,7 @@ function shareCharacter() {
   };
 
   // Use native sharing API on supported mobile devices, fallback otherwise
-  if (navigator.share && /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+  if (navigator.share && (window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768)) {
     navigator.share(shareData).catch((error) => {
       console.log("Error sharing:", error);
       fallbackShare();
@@ -159,54 +31,29 @@ function shareCharacter() {
 function fallbackShare() {
   if (navigator.clipboard) {
     navigator.clipboard.writeText(window.location.href).then(() => {
-      showNotification("Character link copied to clipboard!");
+      window.showNotification("Character link copied to clipboard!");
     }).catch(() => {
-      showNotification("Unable to copy link");
+      window.showNotification("Unable to copy link");
     });
   } else {
-    showNotification("Sharing not supported on this device");
+    window.showNotification("Sharing not supported on this device");
   }
 }
 
 // Character comparison feature placeholder - Future functionality
 function compareCharacter() {
-  showNotification("Character comparison feature coming soon!");
+  window.showNotification("Character comparison feature coming soon!");
 }
 
 // Profile download feature placeholder - Future functionality
 function downloadProfile() {
-  showNotification("Profile download feature coming soon!");
-}
-
-// Theme toggle functionality - Cycle through available themes
-function toggleTheme() {
-  const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-  const themes = ['dark', 'high-contrast', 'sepia'];
-  const currentIndex = themes.indexOf(currentTheme);
-  const nextTheme = themes[(currentIndex + 1) % themes.length];
-
-  // Apply new theme and save preference to localStorage
-  document.documentElement.setAttribute('data-theme', nextTheme);
-  localStorage.setItem('preferred-theme', nextTheme);
-
-  showNotification(`Theme changed to ${nextTheme}`);
-}
-
-// Smooth scroll to top functionality - Enhanced scroll behavior
-function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
+  window.showNotification("Profile download feature coming soon!");
 }
 
 // Make functions globally available - Export functions to window object for global access
-window.toggleMobileMenu = toggleMobileMenu;
 window.shareCharacter = shareCharacter;
 window.compareCharacter = compareCharacter;
 window.downloadProfile = downloadProfile;
-window.toggleTheme = toggleTheme;
-window.scrollToTop = scrollToTop;
 
 // Character data loader class - Handles efficient loading and caching of character data
 class CharacterDataLoader {
@@ -453,111 +300,115 @@ class CharacterDataLoader {
 // Create global character loader instance - Initialize character data loader for application use
 window.CharacterLoader = new CharacterDataLoader();
 
-// DOM content loaded event handler - Initialize page functionality when DOM is ready
-document.addEventListener("DOMContentLoaded", () => {
-  // Initialize mobile navigation system
-  initializeMobileNavigation();
-
+// Consolidated initialization function
+function initializeCharacterPage() {
   // Load character profile after brief delay to ensure DOM is fully ready
   setTimeout(() => {
     loadCharacterProfile();
   }, 100);
-});
 
-// Show loading indicator - Display loading state while fetching character data
-function showLoadingIndicator() {
-  // Get profile content container element
-  const content = document.getElementById("profile-content");
-  if (content) {
-    // Replace content with loading indicator HTML
-    content.innerHTML = `
-      <div class="loading-indicator" style="text-align: center; padding: 3rem;">
-        <div class="loading-spinner"></div>
-        <h3>Loading Character Data...</h3>
-        <p>Please wait while we fetch the character information.</p>
-      </div>
-    `;
+  // Set up enhanced tab navigation after delay
+  setTimeout(() => {
+    setupTabNavigation();
+  }, 1000);
+}
+
+// Setup enhanced tab navigation - Initialize keyboard and touch navigation for profile tabs
+function setupTabNavigation() {
+  // Add keyboard navigation support to profile tabs
+  const tabs = document.querySelectorAll(".profile-tab");
+  tabs.forEach((tab, index) => {
+    tab.setAttribute("tabindex", "0");
+    tab.addEventListener("keydown", (e) => {
+      switch (e.key) {
+        case "Enter":
+        case " ":
+          // Activate tab on Enter or Space key
+          e.preventDefault();
+          tab.click();
+          break;
+        case "ArrowLeft":
+          // Navigate to previous tab with left arrow
+          e.preventDefault();
+          const prevTab = tabs[index - 1] || tabs[tabs.length - 1];
+          prevTab.focus();
+          prevTab.click();
+          break;
+        case "ArrowRight":
+          // Navigate to next tab with right arrow
+          e.preventDefault();
+          const nextTab = tabs[index + 1] || tabs[0];
+          nextTab.focus();
+          nextTab.click();
+          break;
+      }
+    });
+  });
+
+  // Add mobile-specific optimizations for better performance
+  if (window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768) {
+    // Optimize for mobile performance by adding mobile class
+    document.body.classList.add('mobile-device');
+
+    // Add touch event listeners for better mobile tab interaction
+    const profileTabs = document.querySelector('.profile-tabs');
+    if (profileTabs) {
+      let isScrolling = false;
+
+      // Track touch start to detect scrolling vs tapping
+      profileTabs.addEventListener('touchstart', () => {
+        isScrolling = false;
+      });
+
+      // Mark as scrolling if touch moves significantly
+      profileTabs.addEventListener('touchmove', () => {
+        isScrolling = true;
+      });
+
+      // Handle tab activation only if not scrolling
+      profileTabs.addEventListener('touchend', (e) => {
+        if (!isScrolling && e.target.classList.contains('profile-tab')) {
+          e.target.click();
+        }
+      });
+    }
+
+    // Optimize images for mobile by enabling lazy loading
+    const images = document.querySelectorAll('.profile-image');
+    images.forEach(img => {
+      img.loading = 'lazy';
+      img.decoding = 'async';
+    });
+
+    // Apply mobile performance optimizations
+    document.documentElement.style.setProperty('--animation-duration', '0.2s');
+
+    // Enable hardware acceleration for smooth scrolling
+    const scrollElements = document.querySelectorAll('.tab-section, .profile-content');
+    scrollElements.forEach(element => {
+      element.style.transform = 'translateZ(0)';
+      element.style.willChange = 'transform';
+    });
   }
 }
 
-// Hide loading indicator - Remove loading state display
-function hideLoadingIndicator() {
-  // Find and remove loading indicator element
-  const loadingIndicator = document.querySelector(".loading-indicator");
-  if (loadingIndicator) {
-    loadingIndicator.remove();
-  }
+// Initialize page when DOM is ready - Set up character profile page functionality
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initializeCharacterPage);
+} else {
+  // Initialize immediately if DOM is already loaded
+  initializeCharacterPage();
 }
 
-// Display error message - Show comprehensive error information to user
-function displayError(title, message, backLink = null) {
-  // Generate back link HTML if provided, otherwise show default actions
-  const backLinkHtml = backLink
-    ? `
-    <div class="error-actions">
-      <a href="${backLink}" class="error-button">← Back to Codex</a>
-      <button onclick="location.reload()" class="error-button">🔄 Try Again</button>
-      <button onclick="attemptErrorRecovery()" class="error-button">🛠️ Auto-Fix</button>
-    </div>
-  `
-    : `
-    <div class="error-actions">
-      <button onclick="location.reload()" class="error-button">🔄 Try Again</button>
-      <button onclick="attemptErrorRecovery()" class="error-button">🛠️ Auto-Fix</button>
-      <a href="codex.html" class="error-button">📚 Browse Characters</a>
-    </div>
-  `;
-
-  // Get profile content container and display error information
-  const content = document.getElementById("profile-content");
-  if (content) {
-    content.innerHTML = `
-      <div class="error-container">
-        <div class="error-icon">⚠️</div>
-        <h2 class="error-title">${title}</h2>
-        <p class="error-message">${message}</p>
-        <div class="error-details">
-          <details>
-            <summary>🔍 Technical Details</summary>
-            <div class="tech-details">
-              <p><strong>URL:</strong> ${window.location.href}</p>
-              <p><strong>Character ID:</strong> ${new URLSearchParams(window.location.search).get("id") || "None"}</p>
-              <p><strong>GameState:</strong> ${!!window.GameState ? "Available" : "Missing"}</p>
-              <p><strong>CharacterLoader:</strong> ${!!window.CharacterLoader ? "Available" : "Missing"}</p>
-              <p><strong>Timestamp:</strong> ${new Date().toISOString()}</p>
-            </div>
-          </details>
-        </div>
-        ${backLinkHtml}
-      </div>
-    `;
-  }
-}
-
-// Render basic character profile - Display initial character information while loading details
+// Character profile rendering functions - Generate HTML content for character display
 function renderBasicCharacterProfile(character) {
-  // Get profile content container element
   const content = document.getElementById("profile-content");
   if (!content) {
     console.error("profile-content element not found!");
     return;
   }
 
-  // Render basic character profile HTML with loading indicator for details
-  content.innerHTML = `
-    <div class="profile-header">
-      <div class="profile-image-container">
-        <img src="${character.image}" alt="${character.name}" class="profile-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="profile-portrait-fallback" style="display: none;">${character.portrait}</div>
-      </div>
-      <h1 class="profile-name">${character.name}</h1>
-      <div class="character-details">
-        <p class="profile-race">Species: ${character.race}</p>
-        <p class="profile-role">Role: ${character.role}</p>
-        <div class="profile-power">Classification: ${character.power}</div>
-      </div>
-    </div>
-
+  content.innerHTML = generateProfileHeader(character) + `
     <div class="loading-details" style="text-align: center; padding: 2rem; opacity: 0.7;">
       <div class="loading-spinner"></div>
       <p>Loading detailed character information...</p>
@@ -565,389 +416,293 @@ function renderBasicCharacterProfile(character) {
   `;
 }
 
-// Render complete character profile - Display full character information with all tabs and sections
 function renderCharacterProfile(character) {
-  // Get profile content container element
   const content = document.getElementById("profile-content");
   if (!content) {
     console.error("profile-content element not found!");
     return;
   }
 
-  // Render comprehensive character profile with tabbed sections
-  content.innerHTML = `
+  content.innerHTML = generateProfileHeader(character, true) + generateProfileTabs(character);
+}
+
+// Generate profile header HTML - Create character header section with image and basic info
+function generateProfileHeader(character, detailed = false) {
+  const powerIndicator = detailed ? `
+    <div class="character-power-indicator">
+      <div class="power-ring"></div>
+      <div class="power-level">${character.power}</div>
+    </div>
+  ` : '';
+
+  const nameAttributes = detailed ? `data-text="${character.name}"` : '';
+
+  return `
     <div class="profile-header">
       <div class="profile-image-container">
         <img src="${character.image}" alt="${character.name}" class="profile-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="profile-portrait-fallback" style="display: none;">${character.portrait}</div>
-        <div class="character-power-indicator">
-          <div class="power-ring"></div>
-          <div class="power-level">${character.power}</div>
-        </div>
+        ${powerIndicator}
       </div>
-      <h1 class="profile-name" data-text="${character.name}">${character.name}</h1>
+      <h1 class="profile-name" ${nameAttributes}>${character.name}</h1>
       <div class="character-details">
         <p class="profile-race">Species: ${character.race}</p>
         <p class="profile-role">Role: ${character.role}</p>
         <div class="profile-power">Classification: ${character.power}</div>
       </div>
-      <div class="character-stats-preview">
-        ${character.impact ? `
-          <div class="stat-preview">
-            <div class="stat-preview-item">
-              <span class="stat-icon">👥</span>
-              <span class="stat-value">${character.impact.population || 0}</span>
-              <span class="stat-label">Population</span>
-            </div>
-            <div class="stat-preview-item">
-              <span class="stat-icon">⚔️</span>
-              <span class="stat-value">${character.impact.military || 0}</span>
-              <span class="stat-label">Military</span>
-            </div>
-            <div class="stat-preview-item">
-              <span class="stat-icon">💰</span>
-              <span class="stat-value">${character.impact.economy || 0}</span>
-              <span class="stat-label">Economy</span>
-            </div>
-            <div class="stat-preview-item">
-              <span class="stat-icon">✨</span>
-              <span class="stat-value">${character.impact.magic || 0}</span>
-              <span class="stat-label">Magic</span>
-            </div>
-          </div>
-        ` : ''}
-      </div>
     </div>
+  `;
+}
 
+// Generate profile tabs HTML - Create tabbed sections for detailed character information
+function generateProfileTabs(character) {
+  return `
     <div class="tab-section active" id="tab-overview">
       <div class="profile-section">
         <h3>📚 Character Overview</h3>
         ${character.lore ? `<p>${character.lore}</p>` : "<p>Character lore information is being compiled.</p>"}
-
-        ${
-          character.backstory
-            ? `
-          <h3>📖 Background</h3>
-          <p>${character.backstory}</p>
-        `
-            : ""
-        }
-
-        ${
-          character.personality
-            ? `
-          <h3>🎭 Personality</h3>
-          <p>${character.personality}</p>
-        `
-            : ""
-        }
+        ${character.backstory ? `<h3>📖 Background</h3><p>${character.backstory}</p>` : ""}
+        ${character.personality ? `<h3>🎭 Personality</h3><p>${character.personality}</p>` : ""}
       </div>
     </div>
 
     <div class="tab-section" id="tab-biography">
       <div class="profile-section">
         <h3>📜 Detailed Biography</h3>
-        ${
-          character.philosophy
-            ? `
-          <h4>🧠 Philosophy & Beliefs</h4>
-          <p>${character.philosophy}</p>
-        `
-            : ""
-        }
-
-        ${
-          character.leadershipStyle
-            ? `
-          <h4>👑 Leadership Style</h4>
-          <p>${character.leadershipStyle}</p>
-        `
-            : ""
-        }
-
-        ${
-          character.worldInfluence
-            ? `
-          <h4>🌍 World Influence</h4>
-          <p>${character.worldInfluence}</p>
-        `
-            : ""
-        }
-
-        ${
-          character.alternateScenario
-            ? `
-          <h4>⚠️ Alternate Scenario</h4>
-          <p>${character.alternateScenario}</p>
-        `
-            : ""
-        }
-
-        ${
-          character.quotes && character.quotes.length > 0
-            ? `
-          <h4>💬 Notable Quotes</h4>
-          <div class="quotes-container">
-            ${character.quotes
-              .map(
-                (quote) => `
-              <div class="quote-item">
-                <p class="quote-text">"${quote.text}"</p>
-                <p class="quote-context">— ${quote.context}</p>
-              </div>
-            `,
-              )
-              .join("")}
-          </div>
-        `
-            : "<p>Biographical details are being researched and documented.</p>"
-        }
+        ${character.philosophy ? `<h4>🧠 Philosophy & Beliefs</h4><p>${character.philosophy}</p>` : ""}
+        ${character.leadershipStyle ? `<h4>👑 Leadership Style</h4><p>${character.leadershipStyle}</p>` : ""}
+        ${character.worldInfluence ? `<h4>🌍 World Influence</h4><p>${character.worldInfluence}</p>` : ""}
+        ${character.alternateScenario ? `<h4>⚠️ Alternate Scenario</h4><p>${character.alternateScenario}</p>` : ""}
+        ${generateQuotesSection(character)}
       </div>
     </div>
 
     <div class="tab-section" id="tab-skills">
       <div class="profile-section">
         <h3>⚔️ Abilities & Skills</h3>
-        ${
-          character.skills && character.skills.length > 0
-            ? `
-          <div class="skills-grid">
-            ${character.skills
-              .map(
-                (skill) => `
-              <div class="skill-card-detailed ${skill.type.toLowerCase()}">
-                <div class="skill-card-header">
-                  <div class="skill-card-icon">${skill.icon}</div>
-                  <div class="skill-card-info">
-                    <h4 class="skill-card-name">${skill.name}</h4>
-                    <span class="skill-card-type">${skill.type}</span>
-                  </div>
-                </div>
-                <p class="skill-card-description">${skill.description}</p>
-                <div class="skill-card-bonus">${skill.bonus}</div>
-              </div>
-            `,
-              )
-              .join("")}
-          </div>
-        `
-            : "<p>Skill analysis and documentation in progress.</p>"
-        }
-
-        ${
-          character.specialties && character.specialties.length > 0
-            ? `
-          <div class="specialties-section">
-            <h4>🌟 Specialties</h4>
-            <div class="specialties-list">
-              ${character.specialties
-                .map(
-                  (specialty) => `
-                <span class="specialty-badge">${specialty}</span>
-              `,
-                )
-                .join("")}
-            </div>
-          </div>
-        `
-            : ""
-        }
-
-        ${
-          character.weaknesses && character.weaknesses.length > 0
-            ? `
-          <div class="weaknesses-section">
-            <h4>⚠️ Weaknesses</h4>
-            <ul class="weaknesses-list">
-              ${character.weaknesses
-                .map(
-                  (weakness) => `
-                <li>${weakness}</li>
-              `,
-                )
-                .join("")}
-            </ul>
-          </div>
-        `
-            : ""
-        }
+        ${generateSkillsSection(character)}
+        ${generateSpecialtiesSection(character)}
+        ${generateWeaknessesSection(character)}
       </div>
     </div>
 
     <div class="tab-section" id="tab-relationships">
       <div class="profile-section">
         <h3>🤝 Relationships</h3>
-        ${
-          character.relationships
-            ? `
-          <div class="relationships-grid">
-            ${
-              character.relationships.allies
-                ? `
-              <div class="relationship-category">
-                <h4 class="relationship-title allies">👥 Allies</h4>
-                <div class="relationship-list">
-                  ${character.relationships.allies
-                    .map(
-                      (ally) => `
-                    <div class="relationship-item ally">
-                      <span class="relationship-name">${ally}</span>
-                    </div>
-                  `,
-                    )
-                    .join("")}
-                </div>
-              </div>
-            `
-                : ""
-            }
-
-            ${
-              character.relationships.rivals
-                ? `
-              <div class="relationship-category">
-                <h4 class="relationship-title rivals">⚔️ Rivals</h4>
-                <div class="relationship-list">
-                  ${character.relationships.rivals
-                    .map(
-                      (rival) => `
-                    <div class="relationship-item rival">
-                      <span class="relationship-name">${rival}</span>
-                    </div>
-                  `,
-                    )
-                    .join("")}
-                </div>
-              </div>
-            `
-                : ""
-            }
-
-            ${
-              character.relationships.mentors
-                ? `
-              <div class="relationship-category">
-                <h4 class="relationship-title mentors">🎓 Mentors</h4>
-                <div class="relationship-list">
-                  ${character.relationships.mentors
-                    .map(
-                      (mentor) => `
-                    <div class="relationship-item mentor">
-                      <span class="relationship-name">${mentor}</span>
-                    </div>
-                  `,
-                    )
-                    .join("")}
-                </div>
-              </div>
-            `
-                : ""
-            }
-          </div>
-        `
-            : "<p>Relationship data is being compiled and verified.</p>"
-        }
+        ${generateRelationshipsSection(character)}
       </div>
     </div>
 
     <div class="tab-section" id="tab-worldbuilding">
       <div class="profile-section">
         <h3>🌍 Character Analysis</h3>
-        ${
-          character.achievements && character.achievements.length > 0
-            ? `
-          <h4>🏆 Achievements</h4>
-          <ul class="achievements-list">
-            ${character.achievements
-              .map(
-                (achievement) => `
-              <li>${achievement}</li>
-            `,
-              )
-              .join("")}
-          </ul>
-        `
-            : ""
-        }
-
-        ${
-          character.evolution && character.evolution.length > 0
-            ? `
-          <h4>🔄 Evolution Forms</h4>
-          <div class="evolution-timeline">
-            ${character.evolution
-              .map(
-                (form, index) => `
-              <div class="evolution-form">
-                <div class="evolution-order">${index + 1}</div>
-                <div class="evolution-content">
-                  <h5>${form.form}</h5>
-                  <p class="evolution-description">${form.description}</p>
-                  <span class="evolution-trigger">Trigger: ${form.trigger}</span>
-                </div>
-              </div>
-            `,
-              )
-              .join("")}
-          </div>
-        `
-            : ""
-        }
-
-        ${
-          character.impact
-            ? `
-          <h4>📊 Federation Impact Stats</h4>
-          <div class="impact-stats">
-            <div class="stat-box">
-              <div class="stat-icon">👥</div>
-              <div class="stat-label">Population Impact</div>
-              <div class="stat-value">${character.impact.population}%</div>
-              <div class="stat-bar-container">
-                <div class="stat-bar" style="--fill-width: ${character.impact.population}%"></div>
-              </div>
-            </div>
-            <div class="stat-box">
-              <div class="stat-icon">⚔️</div>
-              <div class="stat-label">Military Strength</div>
-              <div class="stat-value">${character.impact.military}%</div>
-              <div class="stat-bar-container">
-                <div class="stat-bar" style="--fill-width: ${character.impact.military}%"></div>
-              </div>
-            </div>
-            <div class="stat-box">
-              <div class="stat-icon">💰</div>
-              <div class="stat-label">Economy Growth</div>
-              <div class="stat-value">${character.impact.economy}%</div>
-              <div class="stat-bar-container">
-                <div class="stat-bar" style="--fill-width: ${character.impact.economy}%"></div>
-              </div>
-            </div>
-            <div class="stat-box">
-              <div class="stat-icon">✨</div>
-              <div class="stat-label">Magic Development</div>
-              <div class="stat-value">${character.impact.magic}%</div>
-              <div class="stat-bar-container">
-                <div class="stat-bar" style="--fill-width: ${character.impact.magic}%"></div>
-              </div>
-            </div>
-          </div>
-        `
-            : ""
-        }
+        ${generateAchievementsSection(character)}
+        ${generateEvolutionSection(character)}
+        ${generateImpactStatsSection(character)}
       </div>
     </div>
 
     <div class="tab-section" id="tab-cultural">
       <div class="profile-section">
         <h3>🏛️ Cultural Impact</h3>
-        ${
-          character.worldInfluence
-            ? `
-          <p>${character.worldInfluence}</p>
-        `
-            : "<p>Cultural impact analysis is being compiled.</p>"
-        }
+        ${character.worldInfluence ? `<p>${character.worldInfluence}</p>` : "<p>Cultural impact analysis is being compiled.</p>"}
+      </div>
+    </div>
+  `;
+}
+
+// Helper functions for generating specific sections
+function generateQuotesSection(character) {
+  if (!character.quotes || character.quotes.length === 0) {
+    return "<p>Biographical details are being researched and documented.</p>";
+  }
+
+  return `
+    <h4>💬 Notable Quotes</h4>
+    <div class="quotes-container">
+      ${character.quotes.map(quote => `
+        <div class="quote-item">
+          <p class="quote-text">"${quote.text}"</p>
+          <p class="quote-context">— ${quote.context}</p>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function generateSkillsSection(character) {
+  if (!character.skills || character.skills.length === 0) {
+    return "<p>Skill analysis and documentation in progress.</p>";
+  }
+
+  return `
+    <div class="skills-grid">
+      ${character.skills.map(skill => `
+        <div class="skill-card-detailed ${skill.type.toLowerCase()}">
+          <div class="skill-card-header">
+            <div class="skill-card-icon">${skill.icon}</div>
+            <div class="skill-card-info">
+              <h4 class="skill-card-name">${skill.name}</h4>
+              <span class="skill-card-type">${skill.type}</span>
+            </div>
+          </div>
+          <p class="skill-card-description">${skill.description}</p>
+          <div class="skill-card-bonus">${skill.bonus}</div>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function generateSpecialtiesSection(character) {
+  if (!character.specialties || character.specialties.length === 0) return "";
+
+  return `
+    <div class="specialties-section">
+      <h4>🌟 Specialties</h4>
+      <div class="specialties-list">
+        ${character.specialties.map(specialty => `<span class="specialty-badge">${specialty}</span>`).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function generateWeaknessesSection(character) {
+  if (!character.weaknesses || character.weaknesses.length === 0) return "";
+
+  return `
+    <div class="weaknesses-section">
+      <h4>⚠️ Weaknesses</h4>
+      <ul class="weaknesses-list">
+        ${character.weaknesses.map(weakness => `<li>${weakness}</li>`).join("")}
+      </ul>
+    </div>
+  `;
+}
+
+function generateRelationshipsSection(character) {
+  if (!character.relationships) {
+    return "<p>Relationship data is being compiled and verified.</p>";
+  }
+
+  const sections = [];
+
+  if (character.relationships.allies) {
+    sections.push(`
+      <div class="relationship-category">
+        <h4 class="relationship-title allies">👥 Allies</h4>
+        <div class="relationship-list">
+          ${character.relationships.allies.map(ally => `
+            <div class="relationship-item ally">
+              <span class="relationship-name">${ally}</span>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+    `);
+  }
+
+  if (character.relationships.rivals) {
+    sections.push(`
+      <div class="relationship-category">
+        <h4 class="relationship-title rivals">⚔️ Rivals</h4>
+        <div class="relationship-list">
+          ${character.relationships.rivals.map(rival => `
+            <div class="relationship-item rival">
+              <span class="relationship-name">${rival}</span>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+    `);
+  }
+
+  if (character.relationships.mentors) {
+    sections.push(`
+      <div class="relationship-category">
+        <h4 class="relationship-title mentors">🎓 Mentors</h4>
+        <div class="relationship-list">
+          ${character.relationships.mentors.map(mentor => `
+            <div class="relationship-item mentor">
+              <span class="relationship-name">${mentor}</span>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+    `);
+  }
+
+  return sections.length > 0 ? `<div class="relationships-grid">${sections.join("")}</div>` : "<p>Relationship data is being compiled and verified.</p>";
+}
+
+function generateAchievementsSection(character) {
+  if (!character.achievements || character.achievements.length === 0) return "";
+
+  return `
+    <h4>🏆 Achievements</h4>
+    <ul class="achievements-list">
+      ${character.achievements.map(achievement => `<li>${achievement}</li>`).join("")}
+    </ul>
+  `;
+}
+
+function generateEvolutionSection(character) {
+  if (!character.evolution || character.evolution.length === 0) return "";
+
+  return `
+    <h4>🔄 Evolution Forms</h4>
+    <div class="evolution-timeline">
+      ${character.evolution.map((form, index) => `
+        <div class="evolution-form">
+          <div class="evolution-order">${index + 1}</div>
+          <div class="evolution-content">
+            <h5>${form.form}</h5>
+            <p class="evolution-description">${form.description}</p>
+            <span class="evolution-trigger">Trigger: ${form.trigger}</span>
+          </div>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function generateImpactStatsSection(character) {
+  if (!character.impact) return "";
+
+  return `
+    <h4>📊 Federation Impact Stats</h4>
+    <div class="impact-stats">
+      <div class="stat-box">
+        <div class="stat-icon">👥</div>
+        <div class="stat-label">Population Impact</div>
+        <div class="stat-value">${character.impact.population}%</div>
+        <div class="stat-bar-container">
+          <div class="stat-bar" style="--fill-width: ${character.impact.population}%"></div>
+        </div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-icon">⚔️</div>
+        <div class="stat-label">Military Strength</div>
+        <div class="stat-value">${character.impact.military}%</div>
+        <div class="stat-bar-container">
+          <div class="stat-bar" style="--fill-width: ${character.impact.military}%"></div>
+        </div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-icon">💰</div>
+        <div class="stat-label">Economy Growth</div>
+        <div class="stat-value">${character.impact.economy}%</div>
+        <div class="stat-bar-container">
+          <div class="stat-bar" style="--fill-width: ${character.impact.economy}%"></div>
+        </div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-icon">✨</div>
+        <div class="stat-label">Magic Development</div>
+        <div class="stat-value">${character.impact.magic}%</div>
+        <div class="stat-bar-container">
+          <div class="stat-bar" style="--fill-width: ${character.impact.magic}%"></div>
+        </div>
       </div>
     </div>
   `;
@@ -978,7 +733,7 @@ function setupTabSwitching() {
         targetSection.classList.add("active");
 
         // Smooth scroll to section on mobile devices
-        if (window.innerWidth <= 768) {
+        if (window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768) {
           targetSection.scrollIntoView({
             behavior: "smooth",
             block: "start",
@@ -1044,7 +799,7 @@ function createFloatingElements(character) {
   if (!container) return;
 
   // Adjust particle count based on device type for performance
-  const isMobile = window.innerWidth <= 768;
+  const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
   const particleCount = isMobile ? 3 : 6;
 
   // Clear existing particles before creating new ones
@@ -1062,49 +817,24 @@ function createFloatingElements(character) {
   }
 }
 
-// Show notification message - Display temporary notification to user
-function showNotification(message) {
-  // Create notification element with styling
-  const notification = document.createElement("div");
-  notification.className = "notification";
-  notification.textContent = message;
-  notification.style.cssText = `
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
-    color: white;
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(77, 212, 255, 0.3);
-    z-index: 10000;
-    animation: slideInRight 0.3s ease-out;
-  `;
-
-  // Add notification to DOM
-  document.body.appendChild(notification);
-
-  // Auto-remove notification after 3 seconds with fade out animation
-  setTimeout(() => {
-    notification.style.animation = "slideOutRight 0.3s ease-out";
-    setTimeout(() => {
-      document.body.removeChild(notification);
-    }, 300);
-  }, 3000);
-}
-
 // Load character profile - Main function to load and display character data
 async function loadCharacterProfile() {
   // Extract character ID from URL parameters
-  const urlParams = new URLSearchParams(window.location.search);
-  const characterId = urlParams.get("id");
+  const characterId = window.getURLParameter("id");
 
   // Validate character ID exists in URL
   if (!characterId) {
-    displayError(
+    window.displayError(
       "No Character Selected",
       "Please select a character from the codex to view their profile.",
+      "profile-content",
       "codex.html",
+      {
+        "Character ID": "None",
+        "GameState": !!window.GameState ? "Available" : "Missing",
+        "CharacterLoader": !!window.CharacterLoader ? "Available" : "Missing"
+      },
+      true
     );
     return;
   }
@@ -1112,16 +842,24 @@ async function loadCharacterProfile() {
   // Validate GameState is available for data loading
   if (!window.GameState) {
     console.error("GameState not found on window object");
-    displayError(
+    window.displayError(
       "Loading Error",
       "Game state not loaded. Please refresh the page and try again.",
+      "profile-content",
+      null,
+      {
+        "Character ID": characterId,
+        "GameState": "Missing",
+        "CharacterLoader": !!window.CharacterLoader ? "Available" : "Missing"
+      },
+      true
     );
     return;
   }
 
   try {
     // Show loading indicator while fetching data
-    showLoadingIndicator();
+    window.showLoadingIndicator("profile-content", "Loading Character Data...", "Please wait while we fetch the character information.");
 
     // Load basic character information first for quick display
     const basicCharacter =
@@ -1129,10 +867,17 @@ async function loadCharacterProfile() {
 
     // Handle case where character doesn't exist
     if (!basicCharacter) {
-      displayError(
+      window.displayError(
         "Character Not Found",
         `Character "${characterId}" does not exist in our database.`,
+        "profile-content",
         "codex.html",
+        {
+          "Character ID": characterId,
+          "GameState": "Available",
+          "CharacterLoader": !!window.CharacterLoader ? "Available" : "Missing"
+        },
+        true
       );
       return;
     }
@@ -1152,17 +897,26 @@ async function loadCharacterProfile() {
 
     // Initialize tab navigation and hide loading indicator
     setupTabSwitching();
-    hideLoadingIndicator();
+    window.hideLoadingIndicator();
 
     // Show success notification to user
-    showNotification(`${basicCharacter.name} profile loaded successfully!`);
+    window.showNotification(`${basicCharacter.name} profile loaded successfully!`);
   } catch (error) {
     console.error("Error loading character:", error);
-    displayError(
+    window.displayError(
       "Loading Error",
       "Failed to load character data. Please check your connection and try again.",
+      "profile-content",
+      null,
+      {
+        "Character ID": characterId,
+        "Error": error.message,
+        "GameState": !!window.GameState ? "Available" : "Missing",
+        "CharacterLoader": !!window.CharacterLoader ? "Available" : "Missing"
+      },
+      true
     );
-    hideLoadingIndicator();
+    window.hideLoadingIndicator();
   }
 }
 
@@ -1180,211 +934,5 @@ function attemptErrorRecovery() {
   }
 
   // Notify user of recovery attempt
-  showNotification("System recovered. Please try again.");
+  window.showNotification("System recovered. Please try again.");
 }
-
-// Initialize page when DOM is ready - Set up character profile page functionality
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", () => {
-    // Initialize mobile navigation first
-    initializeMobileNavigation();
-
-    // Set up enhanced tab navigation and mobile optimizations after delay
-    setTimeout(() => {
-      // Add keyboard navigation support to profile tabs
-      const tabs = document.querySelectorAll(".profile-tab");
-      tabs.forEach((tab, index) => {
-        tab.setAttribute("tabindex", "0");
-        tab.addEventListener("keydown", (e) => {
-          switch (e.key) {
-            case "Enter":
-            case " ":
-              // Activate tab on Enter or Space key
-              e.preventDefault();
-              tab.click();
-              break;
-            case "ArrowLeft":
-              // Navigate to previous tab with left arrow
-              e.preventDefault();
-              const prevTab = tabs[index - 1] || tabs[tabs.length - 1];
-              prevTab.focus();
-              prevTab.click();
-              break;
-            case "ArrowRight":
-              // Navigate to next tab with right arrow
-              e.preventDefault();
-              const nextTab = tabs[index + 1] || tabs[0];
-              nextTab.focus();
-              nextTab.click();
-              break;
-          }
-        });
-      });
-
-      // Add mobile-specific optimizations for better performance
-      if (window.innerWidth <= 768) {
-        // Optimize for mobile performance by adding mobile class
-        document.body.classList.add('mobile-device');
-
-        // Add touch event listeners for better mobile tab interaction
-        const profileTabs = document.querySelector('.profile-tabs');
-        if (profileTabs) {
-          let isScrolling = false;
-
-          // Track touch start to detect scrolling vs tapping
-          profileTabs.addEventListener('touchstart', () => {
-            isScrolling = false;
-          });
-
-          // Mark as scrolling if touch moves significantly
-          profileTabs.addEventListener('touchmove', () => {
-            isScrolling = true;
-          });
-
-          // Handle tab activation only if not scrolling
-          profileTabs.addEventListener('touchend', (e) => {
-            if (!isScrolling && e.target.classList.contains('profile-tab')) {
-              e.target.click();
-            }
-          });
-        }
-
-        // Optimize images for mobile by enabling lazy loading
-        const images = document.querySelectorAll('.profile-image');
-        images.forEach(img => {
-          img.loading = 'lazy';
-        });
-      }
-    }, 1000);
-  });
-} else {
-  // Initialize immediately if DOM is already loaded
-  initializeMobileNavigation();
-}
-
-// End of character.js - Character profile page functionality with mobile navigation and data loading
-// Enhanced UI Features - Add interactive elements and improved user experience
-
-// Add interactive tooltips for stat preview items
-function addInteractiveTooltips() {
-  const statItems = document.querySelectorAll('.stat-preview-item');
-
-  statItems.forEach(item => {
-    const tooltip = document.createElement('div');
-    tooltip.className = 'interactive-tooltip';
-
-    const statLabel = item.querySelector('.stat-label').textContent;
-    const statValue = item.querySelector('.stat-value').textContent;
-
-    tooltip.innerHTML = `
-      <strong>${statLabel}</strong><br>
-      Current Level: ${statValue}<br>
-      <small>Click to view detailed breakdown</small>
-    `;
-
-    document.body.appendChild(tooltip);
-
-    item.addEventListener('mouseenter', (e) => {
-      const rect = item.getBoundingClientRect();
-      tooltip.style.left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2) + 'px';
-      tooltip.style.top = rect.top - tooltip.offsetHeight - 10 + 'px';
-      tooltip.classList.add('show');
-    });
-
-    item.addEventListener('mouseleave', () => {
-      tooltip.classList.remove('show');
-    });
-
-    item.addEventListener('click', () => {
-      showStatDetails(statLabel, statValue);
-    });
-  });
-}
-
-// Show detailed stat information in a modal
-function showStatDetails(statName, statValue) {
-  const modal = document.createElement('div');
-  modal.className = 'stat-detail-modal';
-  modal.innerHTML = `
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>${statName} Details</h3>
-        <button class="modal-close" onclick="this.closest('.stat-detail-modal').remove()">✕</button>
-      </div>
-      <div class="modal-body">
-        <div class="stat-breakdown">
-          <div class="stat-circle">
-            <div class="stat-circle-inner">
-              <span class="stat-circle-value">${statValue}</span>
-              <span class="stat-circle-label">${statName}</span>
-            </div>
-          </div>
-          <div class="stat-description">
-            <p>This ${statName.toLowerCase()} metric represents the character's influence and contribution to the Jura Tempest Federation.</p>
-            <div class="stat-details">
-              <div class="detail-item">
-                <span class="detail-label">Current Level:</span>
-                <span class="detail-value">${statValue}</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Growth Rate:</span>
-                <span class="detail-value">+${Math.floor(Math.random() * 10) + 1}% per month</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Federation Rank:</span>
-                <span class="detail-value">${parseInt(statValue) > 80 ? 'S-Class' : parseInt(statValue) > 60 ? 'A-Class' : parseInt(statValue) > 40 ? 'B-Class' : 'C-Class'}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-
-  document.body.appendChild(modal);
-
-  // Add click outside to close
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.remove();
-    }
-  });
-
-  // Add escape key to close
-  document.addEventListener('keydown', function escapeHandler(e) {
-    if (e.key === 'Escape') {
-      modal.remove();
-      document.removeEventListener('keydown', escapeHandler);
-    }
-  });
-}
-
-// Enhanced mobile performance optimizations
-function optimizeForMobile() {
-  if (window.innerWidth <= 768) {
-    // Reduce animation complexity on mobile
-    document.documentElement.style.setProperty('--animation-duration', '0.2s');
-
-    // Enable hardware acceleration for smooth scrolling
-    const scrollElements = document.querySelectorAll('.tab-section, .profile-content');
-    scrollElements.forEach(element => {
-      element.style.transform = 'translateZ(0)';
-      element.style.willChange = 'transform';
-    });
-
-    // Optimize image loading
-    const images = document.querySelectorAll('img');
-    images.forEach(img => {
-      img.loading = 'lazy';
-      img.decoding = 'async';
-    });
-  }
-}
-
-// Initialize enhanced features when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => {
-    addInteractiveTooltips();
-    optimizeForMobile();
-  }, 1500);
-});

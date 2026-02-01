@@ -866,68 +866,6 @@
   100% { transform: rotate(360deg); }
 }
 
-/* ========== CHARACTER STATS PREVIEW ========== */
-.character-stats-preview {
-  margin-top: 2rem;
-  padding: 1.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.6)
-  );
-  border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
-  border-radius: 16px;
-  backdrop-filter: blur(10px);
-}
-
-.stat-preview {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 1rem;
-}
-
-.stat-preview-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.6),
-    rgba(21, 27, 61, 0.4)
-  );
-  border: 1px solid var(--character-primary, rgba(77, 212, 255, 0.2));
-  border-radius: 12px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.stat-preview-item:hover {
-  transform: translateY(-3px);
-  border-color: var(--character-primary, var(--primary-blue));
-  box-shadow: 0 5px 20px var(--character-glow, rgba(77, 212, 255, 0.3));
-}
-
-.stat-preview-item .stat-icon {
-  font-size: 1.5rem;
-  filter: drop-shadow(0 0 8px var(--character-glow, var(--glow-blue)));
-}
-
-.stat-preview-item .stat-value {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--character-primary, var(--primary-blue));
-  text-shadow: 0 0 10px var(--character-glow, var(--glow-blue));
-}
-
-.stat-preview-item .stat-label {
-  font-size: 0.8rem;
-  color: rgba(232, 240, 255, 0.7);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
 .profile-image-container {
   position: relative;
   width: 300px;
@@ -3730,91 +3668,6 @@ body.mobile-nav-open {
   100% { transform: rotate(360deg); }
 }
 
-/* ========== CHARACTER STATS PREVIEW ========== */
-.character-stats-preview {
-  margin-top: 2rem;
-  padding: 1.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.6)
-  );
-  border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
-  border-radius: 16px;
-  backdrop-filter: blur(10px);
-}
-
-.stat-preview {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 1rem;
-}
-
-.stat-preview-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.6),
-    rgba(21, 27, 61, 0.4)
-  );
-  border: 1px solid var(--character-primary, rgba(77, 212, 255, 0.2));
-  border-radius: 12px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.stat-preview-item:hover {
-  transform: translateY(-3px);
-  border-color: var(--character-primary, var(--primary-blue));
-  box-shadow: 0 5px 20px var(--character-glow, rgba(77, 212, 255, 0.3));
-}
-
-.stat-preview-item .stat-icon {
-  font-size: 1.5rem;
-  filter: drop-shadow(0 0 8px var(--character-glow, var(--glow-blue)));
-}
-
-.stat-preview-item .stat-value {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--character-primary, var(--primary-blue));
-  text-shadow: 0 0 10px var(--character-glow, var(--glow-blue));
-}
-
-.stat-preview-item .stat-label {
-  font-size: 0.8rem;
-  color: rgba(232, 240, 255, 0.7);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* ========== ENHANCED INTERACTIVE ELEMENTS ========== */
-.interactive-tooltip {
-  position: absolute;
-  background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(21, 27, 61, 0.9));
-  border: 2px solid var(--character-primary, var(--primary-blue));
-  border-radius: 8px;
-  padding: 0.75rem 1rem;
-  color: var(--text-primary);
-  font-size: 0.85rem;
-  z-index: 1000;
-  pointer-events: none;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-}
-
-.interactive-tooltip.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .character-badge {
   display: inline-flex;
   align-items: center;
@@ -3884,32 +3737,6 @@ body.mobile-nav-open {
 
   .power-level {
     font-size: 0.6rem;
-  }
-
-  .character-stats-preview {
-    padding: 1rem;
-    margin-top: 1.5rem;
-  }
-
-  .stat-preview {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-  }
-
-  .stat-preview-item {
-    padding: 0.75rem;
-  }
-
-  .stat-preview-item .stat-icon {
-    font-size: 1.2rem;
-  }
-
-  .stat-preview-item .stat-value {
-    font-size: 1.2rem;
-  }
-
-  .stat-preview-item .stat-label {
-    font-size: 0.7rem;
   }
 }
 

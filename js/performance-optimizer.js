@@ -4,7 +4,7 @@ class PerformanceOptimizer {
   constructor() {
     // Detect device performance characteristics for optimization decisions
     this.isLowEndDevice = this.detectLowEndDevice();
-    this.isMobile = window.innerWidth <= 768;
+    this.isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
     this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // Initialize performance optimizations based on device capabilities

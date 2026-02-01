@@ -57,27 +57,17 @@ const MONTHS = [
 // Event log storage for activity tracking
 const eventLog = [];
 
-// Animate number transitions - Smooth number counting animation
-function animateNumber(el, from, to, duration = 700) {
-  const start = performance.now();
-
-  // Animation frame function for smooth counting
-  function tick(now) {
-    const progress = Math.min((now - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3); // Cubic easing
-    const value = Math.floor(from + (to - from) * eased);
-    el.textContent = value.toLocaleString();
-    if (progress < 1) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-}
-
 // Update statistic display with animated number transition - Set new value with smooth counting animation
 function setStat(id, value) {
   const el = document.getElementById(id);
   if (!el) return;
   const current = parseInt(el.textContent.replace(/,/g, "")) || 0;
-  animateNumber(el, current, value);
+  // Use shared animateNumber function
+  if (window.animateNumber) {
+    window.animateNumber(el, current, value);
+  } else {
+    el.textContent = value.toLocaleString();
+  }
 }
 
 // Update main overview statistics and create detailed breakdowns - Main initialization function for overview page
@@ -404,8 +394,10 @@ function initInteractiveElements() {
         window.SoundFeedback.playEffect('click');
       }
 
-      // Create ripple effect at click position
-      createRippleEffect(el, event);
+      // Create ripple effect at click position using shared function
+      if (window.createRippleEffect) {
+        window.createRippleEffect(el, event);
+      }
 
       // Trigger detailed view (placeholder for future functionality)
       showCardDetails(el.id);
@@ -434,7 +426,9 @@ function initInteractiveElements() {
       if (window.SoundFeedback) {
         window.SoundFeedback.playEffect('click');
       }
-      createRippleEffect(el, event);
+      if (window.createRippleEffect) {
+        window.createRippleEffect(el, event);
+      }
     });
   });
 
@@ -468,7 +462,9 @@ function initInteractiveElements() {
         window.SoundFeedback.playEffect('click');
       }
 
-      createRippleEffect(badge, e);
+      if (window.createRippleEffect) {
+        window.createRippleEffect(badge, e);
+      }
       showBadgeInfo(badge);
     });
 
@@ -496,7 +492,9 @@ function initInteractiveElements() {
         window.SoundFeedback.playEffect('click');
       }
 
-      createRippleEffect(card, e);
+      if (window.createRippleEffect) {
+        window.createRippleEffect(card, e);
+      }
       showNumberCardDetails(card);
     });
 
@@ -535,52 +533,6 @@ function initInteractiveElements() {
       }
     });
   }
-}
-
-// Create visual ripple effect on element click - Generate expanding circle animation at click position
-function createRippleEffect(element, event) {
-  const ripple = document.createElement('div');
-  ripple.style.cssText = `
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(77, 212, 255, 0.3);
-    transform: scale(0);
-    animation: ripple 0.6s linear;
-    pointer-events: none;
-    z-index: 100;
-  `;
-
-  const rect = element.getBoundingClientRect();
-  const size = Math.max(rect.width, rect.height);
-  const x = event ? event.clientX - rect.left : rect.width / 2;
-  const y = event ? event.clientY - rect.top : rect.height / 2;
-
-  ripple.style.width = ripple.style.height = size + 'px';
-  ripple.style.left = (x - size / 2) + 'px';
-  ripple.style.top = (y - size / 2) + 'px';
-
-  element.style.position = 'relative';
-  element.appendChild(ripple);
-
-  // Add ripple animation keyframes if not already present
-  if (!document.querySelector('#ripple-styles')) {
-    const style = document.createElement('style');
-    style.id = 'ripple-styles';
-    style.textContent = `
-      @keyframes ripple {
-        to {
-          transform: scale(4);
-          opacity: 0;
-        }
-      }
-    `;
-    document.head.appendChild(style);
-  }
-
-  // Remove ripple element after animation completes
-  setTimeout(() => {
-    ripple.remove();
-  }, 600);
 }
 
 // Show detailed view for stat card - Placeholder function for future detailed statistics modal
@@ -630,8 +582,8 @@ function showBadgeInfo(badge) {
 }
 // Initialize mobile-specific optimizations - Configure mobile device performance and behavior
 function initMobileOptimizations() {
-  // Detect mobile devices using user agent string
-  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  // Use shared mobile device detection function
+  const isMobile = window.isMobileDevice ? window.isMobileDevice() : false;
 
   if (isMobile) {
     // Reduce animation duration for better mobile performance
@@ -644,15 +596,7 @@ function initMobileOptimizations() {
     document.addEventListener('touchstart', function() {}, { passive: true });
     document.addEventListener('touchmove', function() {}, { passive: true });
 
-    // Set viewport height variable for mobile browsers with dynamic viewport
-    const setVH = () => {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-    };
-
-    setVH();
-    window.addEventListener('resize', setVH);
-    window.addEventListener('orientationchange', setVH);
+    // Viewport height handling is already managed by shared.js
   }
 }
 // Initialize intersection observer for scroll animations - Set up viewport-based animation triggers
@@ -695,9 +639,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize mobile optimizations first for better mobile experience
   initMobileOptimizations();
 
-  // Initialize mobile navigation system
-  initMobileNavigation();
-
   // Staggered initialization for better performance and user experience
   setTimeout(() => {
     updateOverview();
@@ -728,16 +669,12 @@ function preloadCriticalResources() {
 
 // Initialize performance optimizations for various device capabilities - Configure animations and features based on device performance
 function initPerformanceOptimizations() {
-  // Throttle scroll events for better performance
-  let scrollTimeout;
-  window.addEventListener('scroll', () => {
-    if (scrollTimeout) {
-      clearTimeout(scrollTimeout);
-    }
-    scrollTimeout = setTimeout(() => {
-      updateScrollProgress();
-    }, 16); // Target ~60fps for smooth scrolling
-  }, { passive: true });
+  // Throttle scroll events for better performance using shared throttle function
+  const throttledScrollUpdate = window.throttle ? window.throttle(() => {
+    updateScrollProgress();
+  }, 16) : updateScrollProgress;
+
+  window.addEventListener('scroll', throttledScrollUpdate, { passive: true });
 
   // Optimize animations for low-end devices based on CPU cores
   if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
@@ -752,8 +689,8 @@ function initPerformanceOptimizations() {
     document.documentElement.classList.add('reduced-animations');
   }
 
-  // Apply mobile-specific optimizations for touch devices
-  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+  // Apply mobile-specific optimizations for touch devices using shared function
+  if (window.isMobileDevice && window.isMobileDevice()) {
     document.documentElement.classList.add('mobile-optimized');
   }
 }
@@ -792,206 +729,5 @@ document.addEventListener('visibilitychange', () => {
   }
 });
 
-// Mobile Navigation Functions - Handle mobile menu interactions and scroll management
-let scrollPosition = 0;
-let touchStartY = 0;
-
-// Prevent touch scrolling when mobile menu is open - Block background scroll while preserving menu scroll
-function preventTouchMove(e) {
-  // Allow scrolling within the mobile nav itself
-  if (e.target.closest('.mobile-nav')) {
-    return;
-  }
-  // Prevent all other touch scrolling
-  e.preventDefault();
-}
-
-// Disable page scrolling when mobile menu is active - Lock background scroll position
-function disableScroll() {
-  // Store current scroll position for restoration later
-  scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-
-  // Add CSS classes for scroll prevention
-  document.body.classList.add('mobile-nav-active');
-  document.documentElement.classList.add('mobile-nav-active');
-
-  // Apply styles to prevent scrolling by fixing position
-  document.body.style.top = `-${scrollPosition}px`;
-
-  // Prevent touch scrolling events
-  document.addEventListener('touchmove', preventTouchMove, { passive: false });
-}
-
-// Enable page scrolling when mobile menu is closed - Restore normal scroll behavior
-function enableScroll() {
-  // Remove CSS classes that prevent scrolling
-  document.body.classList.remove('mobile-nav-active');
-  document.documentElement.classList.remove('mobile-nav-active');
-
-  // Remove inline styles that fix position
-  document.body.style.top = '';
-
-  // Remove touch event listener that prevents scrolling
-  document.removeEventListener('touchmove', preventTouchMove);
-
-  // Restore original scroll position
-  window.scrollTo(0, scrollPosition);
-}
-
-// Toggle mobile menu open/closed state - Handle mobile navigation menu visibility
-function toggleMobileMenu() {
-  const toggle = document.querySelector(".mobile-menu-toggle");
-  const mobileNav = document.getElementById("mobile-nav");
-
-  if (!toggle || !mobileNav) {
-    console.error("Mobile navigation elements not found");
-    return;
-  }
-
-  const isActive = mobileNav.classList.contains("active");
-
-  if (isActive) {
-    // Close menu and restore scroll
-    mobileNav.classList.remove("active");
-    toggle.classList.remove("active");
-    enableScroll();
-  } else {
-    // Open menu and disable background scroll
-    mobileNav.classList.add("active");
-    toggle.classList.add("active");
-    disableScroll();
-  }
-}
-
-// Close mobile menu when clicking on navigation links - Auto-close menu after navigation
-function initMobileNavLinks() {
-  document.querySelectorAll(".mobile-nav a").forEach((link) => {
-    link.addEventListener("click", () => {
-      toggleMobileMenu();
-    });
-  });
-}
-
-// Close mobile menu when clicking outside menu area - Handle outside click interactions
-function initMobileNavOutsideClick() {
-  document.addEventListener("click", (e) => {
-    const mobileNav = document.getElementById("mobile-nav");
-    const toggle = document.querySelector(".mobile-menu-toggle");
-
-    if (!mobileNav || !toggle) return;
-
-    // Close menu if clicking outside menu and toggle button
-    if (mobileNav.classList.contains("active") &&
-        !mobileNav.contains(e.target) &&
-        !toggle.contains(e.target)) {
-      toggleMobileMenu();
-    }
-  });
-}
-
-// Close mobile menu on escape key press - Handle keyboard accessibility
-function initMobileNavKeyboard() {
-  document.addEventListener("keydown", (e) => {
-    const mobileNav = document.getElementById("mobile-nav");
-    if (e.key === "Escape" && mobileNav && mobileNav.classList.contains("active")) {
-      toggleMobileMenu();
-    }
-  });
-}
-
-// Handle orientation change and resize events for mobile menu - Maintain proper scroll lock during device rotation
-function initMobileNavResize() {
-  window.addEventListener("resize", () => {
-    const mobileNav = document.getElementById("mobile-nav");
-    if (mobileNav && mobileNav.classList.contains("active")) {
-      // Recalculate scroll position on resize to maintain proper lock
-      setTimeout(() => {
-        if (mobileNav.classList.contains("active")) {
-          disableScroll();
-        }
-      }, 100);
-    }
-  });
-
-  window.addEventListener("orientationchange", () => {
-    const mobileNav = document.getElementById("mobile-nav");
-    if (mobileNav && mobileNav.classList.contains("active")) {
-      // Handle orientation change with delay for proper viewport adjustment
-      setTimeout(() => {
-        if (mobileNav.classList.contains("active")) {
-          disableScroll();
-        }
-      }, 500);
-    }
-  });
-}
-
-// Handle page unload to ensure scroll is restored - Clean up mobile navigation state on page exit
-function initMobileNavCleanup() {
-  window.addEventListener('beforeunload', () => {
-    const mobileNav = document.getElementById("mobile-nav");
-    if (mobileNav && mobileNav.classList.contains("active")) {
-      enableScroll(); // Ensure scroll is restored before page unload
-    }
-  });
-
-  // Handle visibility change (tab switching) to close menu when tab becomes hidden
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      const mobileNav = document.getElementById("mobile-nav");
-      if (mobileNav && mobileNav.classList.contains("active")) {
-        // Close mobile nav when tab becomes hidden
-        toggleMobileMenu();
-      }
-    }
-  });
-}
-
-// Initialize mobile navigation system - Set up all mobile navigation event handlers
-function initMobileNavigation() {
-  initMobileNavLinks();
-  initMobileNavOutsideClick();
-  initMobileNavKeyboard();
-  initMobileNavResize();
-  initMobileNavCleanup();
-}
-
-// Test function for mobile navigation debugging - Diagnostic tool for mobile menu functionality
-function testMobileNav() {
-  console.log("=== Mobile Navigation Test ===");
-
-  const toggle = document.querySelector(".mobile-menu-toggle");
-  const mobileNav = document.getElementById("mobile-nav");
-
-  console.log("Toggle element exists:", !!toggle);
-  console.log("Mobile nav element exists:", !!mobileNav);
-
-  if (toggle) {
-    console.log("Toggle display style:", window.getComputedStyle(toggle).display);
-    console.log("Toggle visibility:", window.getComputedStyle(toggle).visibility);
-    console.log("Toggle classes:", toggle.className);
-  }
-
-  if (mobileNav) {
-    console.log("Mobile nav display style:", window.getComputedStyle(mobileNav).display);
-    console.log("Mobile nav visibility:", window.getComputedStyle(mobileNav).visibility);
-    console.log("Mobile nav opacity:", window.getComputedStyle(mobileNav).opacity);
-    console.log("Mobile nav classes:", mobileNav.className);
-  }
-
-  console.log("Window width:", window.innerWidth);
-  console.log("Should show mobile toggle:", window.innerWidth <= 1023);
-
-  // Test the toggle function if elements exist
-  if (toggle && mobileNav) {
-    console.log("Testing toggle function...");
-    toggleMobileMenu();
-  }
-
-  console.log("=== End Test ===");
-}
-
 // Make functions globally available for external access - Export key functions to window object
-window.toggleMobileMenu = toggleMobileMenu;
-window.testMobileNav = testMobileNav;
 window.updateOverview = updateOverview;

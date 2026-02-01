@@ -265,7 +265,7 @@ class ParticleSystem {
     let count = 15; // Base particle count for desktop devices
 
     // Reduce particle count for mobile devices to maintain performance
-    if (window.innerWidth < 768) {
+    if (window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768) {
       count = 8;
     }
 

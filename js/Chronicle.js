@@ -302,6 +302,9 @@ class TimelineManager {
     const timelineYears = document.querySelectorAll(".timeline-year");
     let visibleCount = 0;
 
+    // Batch DOM operations to reduce reflows
+    const updates = [];
+
     timelineYears.forEach((year) => {
       const events = year.querySelectorAll(".timeline-event");
       let hasMatchingEvents = false;
@@ -309,7 +312,7 @@ class TimelineManager {
 
       // Check era filter
       if (this.currentEraFilter !== "all" && yearEra !== this.currentEraFilter) {
-        year.style.display = "none";
+        updates.push({ element: year, display: "none" });
         return;
       }
 
@@ -326,25 +329,42 @@ class TimelineManager {
 
             if (matchesSearch && matchesImportance) {
               hasMatchingEvents = true;
-              event.style.display = "block";
+              updates.push({ element: event, display: "block" });
             } else {
-              event.style.display = "none";
+              updates.push({ element: event, display: "none" });
             }
           }
         });
       }
 
       if (hasMatchingEvents) {
-        year.style.display = "block";
-        year.style.animation = "fadeInUp 0.5s ease-out";
+        updates.push({
+          element: year,
+          display: "block",
+          animation: "fadeInUp 0.5s ease-out"
+        });
         visibleCount++;
       } else {
-        year.style.display = "none";
+        updates.push({ element: year, display: "none" });
       }
     });
 
+    // Apply all DOM updates in a single batch
+    requestAnimationFrame(() => {
+      updates.forEach(update => {
+        update.element.style.display = update.display;
+        if (update.animation) {
+          update.element.style.animation = update.animation;
+        }
+      });
+    });
+
     this.showNoResultsMessage(visibleCount === 0);
-    this.updateStatistics();
+
+    // Defer statistics update to avoid blocking
+    requestAnimationFrame(() => {
+      this.updateStatistics();
+    });
   }
 
   updateView() {
@@ -375,8 +395,9 @@ class TimelineManager {
 
   // Handle URL parameters to automatically navigate to specific events or arcs
   handleURLParameters() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const eventParam = urlParams.get('event');
+    const eventParam = window.getURLParameter ?
+      window.getURLParameter('event') :
+      new URLSearchParams(window.location.search).get('event');
 
     if (eventParam) {
       // Map event parameters to arc titles for navigation
@@ -493,12 +514,22 @@ class TimelineManager {
             <div class="tooltip-hint">Click to view character details</div>
         `;
 
+    // Position tooltip using transform to avoid layout calculations
+    tooltip.style.cssText = `
+      position: absolute;
+      visibility: hidden;
+      transform: translate(-50%, -100%);
+    `;
+
     document.body.appendChild(tooltip);
 
-    const rect = element.getBoundingClientRect();
-    tooltip.style.left = `${rect.left + rect.width / 2}px`;
-    tooltip.style.top = `${rect.top - 10}px`;
-    tooltip.style.transform = "translate(-50%, -100%)";
+    // Use getBoundingClientRect only once and cache the result
+    requestAnimationFrame(() => {
+      const rect = element.getBoundingClientRect();
+      tooltip.style.left = `${rect.left + rect.width / 2}px`;
+      tooltip.style.top = `${rect.top - 10}px`;
+      tooltip.style.visibility = "visible";
+    });
 
     this.currentTooltip = tooltip;
   }
@@ -523,6 +554,7 @@ window.toggleArcSimple = function (arcHeader) {
 
     const isExpanded = arc.classList.toggle("expanded");
 
+    // Reset styles
     content.style.cssText = "";
     content.classList.remove("force-expanded", "force-collapsed");
 
@@ -530,8 +562,9 @@ window.toggleArcSimple = function (arcHeader) {
       content.classList.add("force-expanded");
       if (toggle) toggle.textContent = "▲";
 
+      // Use CSS transitions instead of measuring scrollHeight
       requestAnimationFrame(() => {
-        content.style.maxHeight = content.scrollHeight + "px";
+        content.style.maxHeight = "none";
         content.style.opacity = "1";
         content.style.overflow = "visible";
       });
@@ -539,9 +572,7 @@ window.toggleArcSimple = function (arcHeader) {
       content.classList.add("force-collapsed");
       if (toggle) toggle.textContent = "▼";
 
-      const currentHeight = content.scrollHeight;
-      content.style.maxHeight = currentHeight + "px";
-
+      // Use CSS transitions for collapse
       requestAnimationFrame(() => {
         content.style.maxHeight = "0px";
         content.style.opacity = "0";
@@ -549,6 +580,7 @@ window.toggleArcSimple = function (arcHeader) {
       });
     }
 
+    // Visual feedback
     arcHeader.style.backgroundColor = "rgba(77, 212, 255, 0.3)";
     setTimeout(() => {
       arcHeader.style.backgroundColor = "";
@@ -574,28 +606,29 @@ window.toggleEvent = function (eventElement) {
 
     const isExpanded = eventElement.classList.toggle("expanded");
 
+    // Reset styles
     content.style.cssText = "";
 
     if (isExpanded) {
       if (expandHint) expandHint.textContent = "Click to collapse";
 
+      // Use CSS transitions instead of measuring scrollHeight
       requestAnimationFrame(() => {
-        content.style.maxHeight = content.scrollHeight + "px";
+        content.style.maxHeight = "none";
         content.style.opacity = "1";
         content.style.padding = "0 2rem 2rem 2rem";
       });
     } else {
       if (expandHint) expandHint.textContent = "Click to expand";
 
-      const currentHeight = content.scrollHeight;
-      content.style.maxHeight = currentHeight + "px";
-
+      // Use CSS transitions for collapse
       requestAnimationFrame(() => {
         content.style.maxHeight = "0px";
         content.style.opacity = "0";
         content.style.padding = "0 2rem";
       });
     }
+
     if (
       typeof soundEnabled !== "undefined" &&
       soundEnabled &&
@@ -607,166 +640,6 @@ window.toggleEvent = function (eventElement) {
     console.error("Error in toggleEvent:", error);
   }
 };
-// Mobile Navigation Functions
-function toggleMobileMenu() {
-  const toggle = document.querySelector(".mobile-menu-toggle");
-  const mobileNav = document.getElementById("mobile-nav");
-  const body = document.body;
-  const html = document.documentElement;
-
-  if (!toggle || !mobileNav) return;
-
-  const isActive = toggle.classList.contains("active");
-
-  if (isActive) {
-    // Close menu
-    toggle.classList.remove("active");
-    mobileNav.classList.remove("active");
-    body.classList.remove("mobile-nav-active");
-    html.classList.remove("mobile-nav-active");
-    body.style.overflow = "";
-    body.style.position = "";
-    body.style.width = "";
-    body.style.height = "";
-    body.style.touchAction = "";
-  } else {
-    // Open menu
-    toggle.classList.add("active");
-    mobileNav.classList.add("active");
-    body.classList.add("mobile-nav-active");
-    html.classList.add("mobile-nav-active");
-    body.style.overflow = "hidden";
-    body.style.position = "fixed";
-    body.style.width = "100%";
-    body.style.height = "100%";
-    body.style.touchAction = "none";
-  }
-
-  // Play sound effect if available
-  if (typeof soundEnabled !== "undefined" && soundEnabled && window.SoundFeedback) {
-    window.SoundFeedback.playEffect("click");
-  }
-}
-
-// Close mobile menu when clicking on nav links
-function closeMobileMenuOnNavClick() {
-  const mobileNavLinks = document.querySelectorAll(".mobile-nav a");
-
-  mobileNavLinks.forEach(link => {
-    link.addEventListener("click", () => {
-      const toggle = document.querySelector(".mobile-menu-toggle");
-      const mobileNav = document.getElementById("mobile-nav");
-
-      if (toggle && toggle.classList.contains("active")) {
-        toggleMobileMenu();
-      }
-    });
-  });
-}
-
-// Handle mobile menu close on escape key
-function handleMobileMenuEscape(e) {
-  if (e.key === "Escape") {
-    const mobileNav = document.getElementById("mobile-nav");
-    if (mobileNav && mobileNav.classList.contains("active")) {
-      toggleMobileMenu();
-    }
-  }
-}
-
-// Handle mobile menu close on outside click
-function handleMobileMenuOutsideClick(e) {
-  const mobileNav = document.getElementById("mobile-nav");
-  const toggle = document.querySelector(".mobile-menu-toggle");
-
-  if (mobileNav && mobileNav.classList.contains("active")) {
-    // Check if click is outside the mobile nav and not on the toggle button
-    if (!mobileNav.contains(e.target) && !toggle.contains(e.target)) {
-      toggleMobileMenu();
-    }
-  }
-}
-
-// Prevent scrolling when mobile menu is open
-function preventScrollWhenMenuOpen() {
-  const mobileNav = document.getElementById("mobile-nav");
-
-  if (mobileNav && mobileNav.classList.contains("active")) {
-    return false;
-  }
-  return true;
-}
-
-// Handle viewport height changes (mobile browser address bar)
-function handleViewportHeight() {
-  const vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-}
-
-// Initialize mobile navigation
-function initializeMobileNavigation() {
-  // Set up viewport height
-  handleViewportHeight();
-  window.addEventListener('resize', handleViewportHeight);
-  window.addEventListener('orientationchange', () => {
-    setTimeout(handleViewportHeight, 100);
-  });
-
-  // Set up event listeners
-  document.addEventListener("keydown", handleMobileMenuEscape);
-  document.addEventListener("click", handleMobileMenuOutsideClick);
-
-  // Close menu on nav link clicks
-  closeMobileMenuOnNavClick();
-
-  // Prevent body scroll when menu is open
-  document.addEventListener('touchmove', (e) => {
-    const mobileNav = document.getElementById("mobile-nav");
-    if (mobileNav && mobileNav.classList.contains("active")) {
-      if (!mobileNav.contains(e.target)) {
-        e.preventDefault();
-      }
-    }
-  }, { passive: false });
-
-  // Handle swipe to close on mobile
-  let touchStartY = 0;
-  let touchStartX = 0;
-
-  document.addEventListener('touchstart', (e) => {
-    touchStartY = e.touches[0].clientY;
-    touchStartX = e.touches[0].clientX;
-  });
-
-  document.addEventListener('touchend', (e) => {
-    const mobileNav = document.getElementById("mobile-nav");
-    if (!mobileNav || !mobileNav.classList.contains("active")) return;
-
-    const touchEndY = e.changedTouches[0].clientY;
-    const touchEndX = e.changedTouches[0].clientX;
-    const deltaY = touchStartY - touchEndY;
-    const deltaX = touchStartX - touchEndX;
-
-    // Swipe up to close (deltaY > 50 means swipe up)
-    if (deltaY > 50 && Math.abs(deltaX) < 100) {
-      toggleMobileMenu();
-    }
-  });
-}
-// Enhanced scroll to top with smooth behavior
-function scrollToTop() {
-  const isMobile = window.innerWidth <= 767;
-
-  window.scrollTo({
-    top: 0,
-    behavior: isMobile ? "auto" : "smooth", // Use auto on mobile for better performance
-  });
-
-  if (typeof soundEnabled !== "undefined" && soundEnabled && window.SoundFeedback) {
-    window.SoundFeedback.playEffect("click");
-  }
-}
-
 // Expand all timeline arcs
 function expandAllArcs() {
   const arcs = document.querySelectorAll(".timeline-arc");
@@ -822,210 +695,185 @@ function initializeArcs() {
     }
   });
 }
-// Enhanced scroll handling with mobile optimizations
-let scrollTimeout;
+// Timeline-specific scroll handling with performance optimization
 let ticking = false;
+let cachedScrollHeight = null;
+let cachedInnerHeight = null;
 
-function updateScrollElements() {
-  const nav = document.getElementById("main-nav");
-  const progress = document.getElementById("nav-progress");
-  const timelineProgress = document.getElementById("timeline-progress-bar");
-  const fab = document.getElementById("timeline-fab");
+// Cache DOM elements to avoid repeated queries
+const scrollElements = {
+  timelineProgress: null,
+  fab: null,
+  initialized: false
+};
 
-  if (nav) {
-    if (window.scrollY > 50) {
-      nav.classList.add("scrolled");
-    } else {
-      nav.classList.remove("scrolled");
-    }
+function initScrollElements() {
+  if (!scrollElements.initialized) {
+    scrollElements.timelineProgress = document.getElementById("timeline-progress-bar");
+    scrollElements.fab = document.getElementById("timeline-fab");
+    scrollElements.initialized = true;
+  }
+}
+
+function updateTimelineScrollElements() {
+  // Cache viewport dimensions to avoid repeated calculations
+  if (!cachedScrollHeight || !cachedInnerHeight) {
+    cachedScrollHeight = document.documentElement.scrollHeight;
+    cachedInnerHeight = window.innerHeight;
   }
 
-  const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+  const scrollPercent = (window.scrollY / (cachedScrollHeight - cachedInnerHeight)) * 100;
 
-  if (progress) {
-    progress.style.width = scrollPercent + "%";
-    progress.classList.toggle("visible", scrollPercent > 0);
+  // Batch DOM updates
+  if (scrollElements.timelineProgress) {
+    scrollElements.timelineProgress.style.width = scrollPercent + "%";
   }
 
-  if (timelineProgress) {
-    timelineProgress.style.width = scrollPercent + "%";
-  }
-
-  if (fab) {
-    fab.classList.toggle("hidden", window.scrollY < 300);
+  if (scrollElements.fab) {
+    scrollElements.fab.classList.toggle("hidden", window.scrollY < 300);
   }
 
   ticking = false;
 }
 
-function requestScrollUpdate() {
+function requestTimelineScrollUpdate() {
   if (!ticking) {
-    requestAnimationFrame(updateScrollElements);
+    requestAnimationFrame(updateTimelineScrollElements);
     ticking = true;
   }
 }
 
-window.addEventListener("scroll", requestScrollUpdate, { passive: true });
-// Enhanced keyboard navigation with mobile considerations
+// Use throttle function from shared.js with initialization check
+const throttledScrollUpdate = (() => {
+  let initialized = false;
+  let throttledFn = null;
+
+  return function() {
+    if (!initialized) {
+      if (window.throttle) {
+        throttledFn = window.throttle(() => {
+          cachedScrollHeight = document.documentElement.scrollHeight;
+          cachedInnerHeight = window.innerHeight;
+          requestTimelineScrollUpdate();
+        }, 16);
+        initialized = true;
+      } else {
+        // Fallback throttle implementation
+        let lastTime = 0;
+        throttledFn = () => {
+          const now = Date.now();
+          if (now - lastTime >= 16) { // ~60fps
+            lastTime = now;
+            cachedScrollHeight = document.documentElement.scrollHeight;
+            cachedInnerHeight = window.innerHeight;
+            requestTimelineScrollUpdate();
+          }
+        };
+        initialized = true;
+      }
+    }
+
+    if (throttledFn) {
+      throttledFn();
+    }
+  };
+})();
+
+window.addEventListener("scroll", throttledScrollUpdate, { passive: true });
+// Timeline-specific keyboard shortcuts
 document.addEventListener("keydown", (e) => {
-  // Alt + number shortcuts for navigation
-  if (e.altKey) {
-    switch (e.key) {
-      case "1":
+  // Timeline-specific shortcuts
+  if (e.ctrlKey || e.metaKey) {
+    switch (e.key.toLowerCase()) {
+      case 'e':
         e.preventDefault();
-        window.location.href = "overview.html";
+        expandAllArcs();
         break;
-      case "2":
+      case 'r':
         e.preventDefault();
-        window.location.href = "codex.html";
+        collapseAllArcs();
         break;
-      case "3":
-        e.preventDefault();
-        window.location.href = "skills.html";
-        break;
-      case "4":
-        e.preventDefault();
-        window.location.href = "Chronicle.html";
-        break;
-      case "5":
-        e.preventDefault();
-        window.location.href = "records.html";
-        break;
-      case "h":
-        e.preventDefault();
-        window.location.href = "index.html";
-        break;
-    }
-  }
-
-  // Handle escape key for mobile menu
-  if (e.key === "Escape") {
-    const mobileNav = document.getElementById("mobile-nav");
-    if (mobileNav && mobileNav.classList.contains("active")) {
-      toggleMobileMenu();
-    }
-  }
-
-  // Handle space bar for scroll (desktop only)
-  if (e.key === " " && !e.target.matches('input, textarea, select')) {
-    const isMobile = window.innerWidth <= 767;
-    if (!isMobile) {
-      e.preventDefault();
-      window.scrollBy(0, window.innerHeight * 0.8);
     }
   }
 });
 // Export functions to global scope
-window.toggleMobileMenu = toggleMobileMenu;
-window.scrollToTop = scrollToTop;
-window.initializeMobileNavigation = initializeMobileNavigation;
 window.expandAllArcs = expandAllArcs;
 window.collapseAllArcs = collapseAllArcs;
 window.testArcExpansion = function () {
   const firstArc = document.querySelector(".timeline-arc");
   if (firstArc) {
     const arcHeader = firstArc.querySelector(".arc-header");
-    const arcContent = firstArc.querySelector(".arc-content");
-
-    if (arcContent) {
-      const computedStyles = window.getComputedStyle(arcContent);
-    }
 
     if (arcHeader) {
       window.toggleArcSimple(arcHeader);
     }
   }
 };
-// Enhanced DOMContentLoaded with mobile optimizations
+// Timeline-specific DOMContentLoaded initialization
 document.addEventListener("DOMContentLoaded", () => {
-  // Initialize core functionality
-  initializeArcs();
-  initializeMobileNavigation();
-  window.timelineManager = new TimelineManager();
-
-  // Set body padding for fixed navbar
-  const isMobile = window.innerWidth <= 767;
-  document.body.style.paddingTop = isMobile ? "70px" : "80px";
-
-  // Ensure timeline visibility
-  const timelineContainer = document.querySelector(".timeline-container");
-  const timelineYears = document.querySelectorAll(".timeline-year");
-
-  if (timelineContainer) {
-    timelineContainer.style.display = "block";
-    timelineContainer.style.visibility = "visible";
-  }
-
-  timelineYears.forEach((year, index) => {
-    year.style.display = "block";
-    year.style.opacity = "1";
-    year.style.transform = "translateY(0)";
-  });
-
-  // Handle mobile nav link clicks
-  document.querySelectorAll(".mobile-nav a").forEach((link) => {
-    link.addEventListener("click", () => {
-      toggleMobileMenu();
-    });
-  });
-
-  // Optimize for mobile performance
-  if (isMobile) {
-    // Disable heavy animations on mobile
-    document.body.classList.add("mobile-optimized");
-
-    // Reduce animation complexity
-    const style = document.createElement('style');
-    style.textContent = `
-      .mobile-optimized * {
-        animation-duration: 0.2s !important;
-        transition-duration: 0.2s !important;
-      }
-      .mobile-optimized .magic-circle,
-      .mobile-optimized .particles,
-      .mobile-optimized .starfield {
-        display: none !important;
-      }
-    `;
-    document.head.appendChild(style);
-  }
-
-  // Handle orientation changes
-  window.addEventListener('orientationchange', () => {
-    setTimeout(() => {
-      // Recalculate viewport height
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-
-      // Close mobile menu if open
-      const mobileNav = document.getElementById("mobile-nav");
-      if (mobileNav && mobileNav.classList.contains("active")) {
-        toggleMobileMenu();
-      }
-    }, 100);
-  });
-
-  // Add touch event handling for better mobile interaction
-  let touchStartTime = 0;
-
-  document.addEventListener('touchstart', (e) => {
-    touchStartTime = Date.now();
-  });
-
-  document.addEventListener('touchend', (e) => {
-    const touchDuration = Date.now() - touchStartTime;
-
-    // If it's a quick tap (less than 200ms), treat as click
-    if (touchDuration < 200) {
-      const target = e.target.closest('.arc-header, .event-header');
-      if (target) {
-        // Add visual feedback for touch
-        target.style.backgroundColor = 'rgba(77, 212, 255, 0.3)';
-        setTimeout(() => {
-          target.style.backgroundColor = '';
-        }, 150);
-      }
+  // Wait for shared.js functions to be available
+  const initializeTimeline = () => {
+    if (!window.isMobileDevice || !window.debounce || !window.throttle || !window.getURLParameter) {
+      // If shared.js functions aren't ready, wait a bit more
+      setTimeout(initializeTimeline, 50);
+      return;
     }
-  });
+
+    // Initialize timeline-specific functionality
+    initializeArcs();
+    window.timelineManager = new TimelineManager();
+
+    // Initialize scroll elements cache
+    initScrollElements();
+
+    // Timeline-specific mobile optimizations
+    const isMobile = window.isMobileDevice();
+    if (isMobile) {
+      // Disable heavy timeline animations on mobile
+      document.body.classList.add("timeline-mobile-optimized");
+
+      // Reduce timeline animation complexity
+      const style = document.createElement('style');
+      style.textContent = `
+        .timeline-mobile-optimized .timeline-event {
+          animation-duration: 0.2s !important;
+          transition-duration: 0.2s !important;
+        }
+        .timeline-mobile-optimized .magic-circle,
+        .timeline-mobile-optimized .particles,
+        .timeline-mobile-optimized .starfield {
+          display: none !important;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    // Timeline-specific touch handling with debouncing
+    let touchStartTime = 0;
+    const debouncedTouchFeedback = window.debounce((target) => {
+      target.style.backgroundColor = 'rgba(77, 212, 255, 0.3)';
+      setTimeout(() => {
+        target.style.backgroundColor = '';
+      }, 150);
+    }, 10);
+
+    document.addEventListener('touchstart', (e) => {
+      touchStartTime = Date.now();
+    });
+
+    document.addEventListener('touchend', (e) => {
+      const touchDuration = Date.now() - touchStartTime;
+
+      // Quick tap feedback for timeline elements
+      if (touchDuration < 200) {
+        const target = e.target.closest('.arc-header, .event-header');
+        if (target) {
+          debouncedTouchFeedback(target);
+        }
+      }
+    });
+  };
+
+  // Start initialization
+  initializeTimeline();
 });
-// End of Chronicle.js - Timeline management with search, filtering, and mobile navigation

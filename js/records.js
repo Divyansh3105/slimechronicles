@@ -1,30 +1,7 @@
-// Configuration constants - Define timing, breakpoints, and performance settings
-const CONFIG = {
-  // Animation delay settings for different device types
-  ANIMATION_DELAYS: {
-    MOBILE: 0.03,
-    DESKTOP: 0.05,
-  },
-  // Responsive breakpoints for layout adjustments
-  BREAKPOINTS: {
-    MOBILE: 768,
-    SMALL_MOBILE: 480,
-  },
-  // Timeout values for debounced operations
-  TIMEOUTS: {
-    SEARCH_DEBOUNCE: 300,
-    RESIZE_DEBOUNCE: 250,
-  },
-};
-
 // Resize handling with debouncing - Prevent excessive resize event processing
-let resizeTimeout;
-function handleResize() {
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(() => {
-    renderRecords();
-  }, CONFIG.TIMEOUTS.RESIZE_DEBOUNCE);
-}
+const handleResize = window.debounce(() => {
+  renderRecords();
+}, 250);
 
 // Historical records storage - Array to hold all record data
 let HISTORICAL_RECORDS = [];
@@ -71,7 +48,7 @@ const state = {
   expandedRecord: null,
 };
 
-// State variables for backward compatibility - Legacy state management approach
+// State accessors for backward compatibility
 let currentFilter = state.currentFilter;
 let currentSort = state.currentSort;
 let searchQuery = state.searchQuery;
@@ -201,8 +178,7 @@ function renderRecords(records = HISTORICAL_RECORDS) {
   }
 
   // Detect device type for responsive behavior
-  const isMobile = window.innerWidth <= CONFIG.BREAKPOINTS.MOBILE;
-  const isVerySmall = window.innerWidth <= CONFIG.BREAKPOINTS.SMALL_MOBILE;
+  const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
 
   // Generate HTML for each record card with dynamic styling and content
   grid.innerHTML = filteredRecords
@@ -265,9 +241,12 @@ function renderRecords(records = HISTORICAL_RECORDS) {
     })
     .join("");
 
-  // Add mobile-specific touch interactions for better mobile experience
-  if (isMobile) {
-    document.querySelectorAll(".record-card").forEach((card, index) => {
+  // Add event handlers for all record cards
+  document.querySelectorAll(".record-card").forEach((card, index) => {
+    const recordId = card.dataset.recordId;
+
+    if (isMobile) {
+      // Mobile-specific touch interactions
       let touchStartY = 0;
       let touchStartX = 0;
       let touchMoved = false;
@@ -311,7 +290,6 @@ function renderRecords(records = HISTORICAL_RECORDS) {
           }, 100);
 
           if (!touchMoved && touchDuration < 500) {
-            const recordId = this.dataset.recordId;
             if (recordId) {
               e.preventDefault();
               toggleRecordExpansion(recordId);
@@ -320,53 +298,26 @@ function renderRecords(records = HISTORICAL_RECORDS) {
         },
         { passive: false },
       );
-
-      // Add desktop click handler for non-mobile devices
-      if (!isMobile) {
-        card.addEventListener("click", function (e) {
-          const recordId = this.dataset.recordId;
-          if (recordId) {
-            toggleRecordExpansion(recordId);
-          }
-        });
-      }
-
-      // Add keyboard accessibility support for all devices
-      card.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          const recordId = this.dataset.recordId;
-          if (recordId) {
-            toggleRecordExpansion(recordId);
-          }
-        }
-      });
-    });
-  } else {
-    // Add desktop-specific event handlers for non-mobile devices
-    document.querySelectorAll(".record-card").forEach((card) => {
+    } else {
+      // Desktop click handler
       card.addEventListener("click", function (e) {
-        const recordId = this.dataset.recordId;
         if (recordId) {
           toggleRecordExpansion(recordId);
         }
       });
+    }
 
-      // Add keyboard accessibility support
-      card.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          const recordId = this.dataset.recordId;
-          if (recordId) {
-            toggleRecordExpansion(recordId);
-          }
+    // Keyboard accessibility support for all devices
+    card.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        if (recordId) {
+          toggleRecordExpansion(recordId);
         }
-      });
+      }
     });
-  }
 
-  // Add sound feedback for all record card interactions
-  document.querySelectorAll(".record-card").forEach((card) => {
+    // Sound feedback for all interactions
     card.addEventListener("click", () => {
       if (
         window.SoundFeedback &&
@@ -382,28 +333,8 @@ function renderRecords(records = HISTORICAL_RECORDS) {
 
   if (filteredRecords.length > 0) {
     const announcement = `${filteredRecords.length} historical records displayed`;
-    announceToScreenReader(announcement);
+    window.announceToScreenReader(announcement);
   }
-}
-// Announce message to screen readers - Create accessible announcements for assistive technology
-function announceToScreenReader(message) {
-  const announcement = document.createElement("div");
-  announcement.setAttribute("aria-live", "polite");
-  announcement.setAttribute("aria-atomic", "true");
-  announcement.className = "sr-only";
-  announcement.style.position = "absolute";
-  announcement.style.left = "-10000px";
-  announcement.style.width = "1px";
-  announcement.style.height = "1px";
-  announcement.style.overflow = "hidden";
-  announcement.textContent = message;
-
-  document.body.appendChild(announcement);
-
-  // Remove announcement element after screen reader has processed it
-  setTimeout(() => {
-    document.body.removeChild(announcement);
-  }, 1000);
 }
 
 // Toggle record expansion state - Show or hide detailed information for a specific record
@@ -568,36 +499,27 @@ function createFilterControls() {
   }
 }
 // Handle search input with debouncing - Process search queries with delay to improve performance
-function handleSearch(query) {
+const handleSearch = window.debounce((query) => {
   searchQuery = query;
+  updateVisibleRecordsCount();
+  renderRecords();
 
-  // Clear existing timeout to prevent multiple rapid searches
-  if (window.searchTimeout) {
-    clearTimeout(window.searchTimeout);
+  // Toggle clear button visibility based on query presence
+  const clearBtn = document.querySelector(".clear-search");
+  if (clearBtn) {
+    clearBtn.style.display = query ? "block" : "none";
   }
 
-  // Debounce search execution for better performance
-  window.searchTimeout = setTimeout(() => {
-    updateVisibleRecordsCount();
-    renderRecords();
-
-    // Toggle clear button visibility based on query presence
-    const clearBtn = document.querySelector(".clear-search");
-    if (clearBtn) {
-      clearBtn.style.display = query ? "block" : "none";
+  // Provide accessibility feedback for mobile users
+  if (window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768) {
+    const visibleCount = document.querySelectorAll(".record-card").length;
+    if (query && visibleCount === 0) {
+      window.announceToScreenReader("No records found for your search");
+    } else if (query && visibleCount > 0) {
+      window.announceToScreenReader(`${visibleCount} records found`);
     }
-
-    // Provide accessibility feedback for mobile users
-    if (window.innerWidth <= CONFIG.BREAKPOINTS.MOBILE) {
-      const visibleCount = document.querySelectorAll(".record-card").length;
-      if (query && visibleCount === 0) {
-        announceToScreenReader("No records found for your search");
-      } else if (query && visibleCount > 0) {
-        announceToScreenReader(`${visibleCount} records found`);
-      }
-    }
-  }, CONFIG.TIMEOUTS.SEARCH_DEBOUNCE);
-}
+  }
+}, 300);
 
 // Clear search input and reset results - Reset search state and update display
 function clearSearch() {
@@ -760,17 +682,8 @@ function resetAllFilters() {
   // Update display and announce to screen readers
   updateVisibleRecordsCount();
   renderRecords();
-  announceToScreenReader("All filters have been reset");
+  window.announceToScreenReader("All filters have been reset");
 }
-// Initialize records page wrapper - Main entry point for records page initialization
-function initializeRecordsPage() {
-  try {
-    initializeHistoricalRecordsPage();
-  } catch (error) {
-    console.error("Error in initializeRecordsPage:", error);
-  }
-}
-
 // DOM content loaded event handler - Initialize page when DOM is ready
 document.addEventListener("DOMContentLoaded", function () {
   const grid = document.getElementById("records-grid");
@@ -791,19 +704,16 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   try {
-    // Initialize mobile menu functionality first
-    initializeMobileMenu();
-
     // Staggered initialization for better performance
     setTimeout(() => {
-      initializeRecordsPage();
+      initializeHistoricalRecordsPage();
 
       setTimeout(() => {
         ensureScrollingWorks();
       }, 500);
     }, 100);
   } catch (error) {
-    console.error("Error in initializeRecordsPage:", error);
+    console.error("Error initializing records page:", error);
 
     // Display error message to user
     if (grid) {
@@ -816,47 +726,6 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
       `;
     }
-  }
-});
-
-// Additional keyboard event handler - Duplicate handler for additional keyboard shortcuts
-document.addEventListener("keydown", function (e) {
-  // Close expanded record on Escape key
-  if (e.key === "Escape" && expandedRecord) {
-    toggleRecordExpansion(expandedRecord);
-  }
-
-  // Focus search input on Ctrl+F or Cmd+F
-  if ((e.ctrlKey || e.metaKey) && e.key === "f") {
-    e.preventDefault();
-    const searchInput = document.getElementById("search-input");
-    if (searchInput) {
-      searchInput.focus();
-    }
-  }
-
-  // Reset all filters on Ctrl+R or Cmd+R
-  if ((e.ctrlKey || e.metaKey) && e.key === "r") {
-    e.preventDefault();
-    currentFilter = "all";
-    currentSort = "chronological";
-    searchQuery = "";
-
-    // Reset UI controls to default state
-    const searchInput = document.getElementById("search-input");
-    const categoryFilter = document.getElementById("category-filter");
-    const importanceFilter = document.getElementById("importance-filter");
-    const sortSelect = document.getElementById("sort-select");
-    const clearBtn = document.querySelector(".clear-search");
-
-    if (searchInput) searchInput.value = "";
-    if (categoryFilter) categoryFilter.value = "all";
-    if (importanceFilter) importanceFilter.value = "all";
-    if (sortSelect) sortSelect.value = "chronological";
-    if (clearBtn) clearBtn.style.display = "none";
-
-    updateVisibleRecordsCount();
-    renderRecords();
   }
 });
 
@@ -911,137 +780,3 @@ window.handleSort = handleSort;
 window.toggleRecordExpansion = toggleRecordExpansion;
 window.toggleHelp = toggleHelp;
 window.testFunction = testFunction;
-
-// Mobile Navigation Functions - Handle mobile menu interactions and scroll management
-function toggleMobileMenu() {
-  const mobileNav = document.getElementById('mobile-nav');
-  const mobileToggle = document.querySelector('.mobile-menu-toggle');
-  const body = document.body;
-  const html = document.documentElement;
-
-  if (!mobileNav || !mobileToggle) return;
-
-  const isActive = mobileNav.classList.contains('active');
-
-  if (isActive) {
-    // Close mobile menu and restore normal scrolling
-    mobileNav.classList.remove('active');
-    mobileToggle.classList.remove('active');
-    body.classList.remove('mobile-nav-active');
-    html.classList.remove('mobile-nav-active');
-
-    // Re-enable scrolling by clearing fixed positioning
-    body.style.overflow = '';
-    html.style.overflow = '';
-    body.style.position = '';
-    body.style.width = '';
-    body.style.top = '';
-    html.style.height = '';
-
-    // Restore scroll position if previously saved
-    if (window.scrollPosition !== undefined) {
-      window.scrollTo(0, window.scrollPosition);
-      delete window.scrollPosition;
-    }
-  } else {
-    // Save current scroll position before opening menu
-    window.scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-
-    // Open mobile menu and prevent background scrolling
-    mobileNav.classList.add('active');
-    mobileToggle.classList.add('active');
-    body.classList.add('mobile-nav-active');
-    html.classList.add('mobile-nav-active');
-
-    // Prevent scrolling by fixing body position
-    body.style.overflow = 'hidden';
-    html.style.overflow = 'hidden';
-    body.style.position = 'fixed';
-    body.style.width = '100%';
-    body.style.top = `-${window.scrollPosition}px`;
-    html.style.height = '100%';
-  }
-
-  // Play sound effect if available
-  if (window.SoundFeedback && typeof window.SoundFeedback.playEffect === 'function') {
-    window.SoundFeedback.playEffect('click');
-  }
-}
-
-// Close mobile menu when clicking on navigation links - Auto-close menu after navigation
-function closeMobileMenuOnLinkClick() {
-  const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
-  mobileNavLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      // Small delay to allow navigation to start before closing menu
-      setTimeout(() => {
-        toggleMobileMenu();
-      }, 100);
-    });
-  });
-}
-
-// Initialize mobile menu functionality
-function initializeMobileMenu() {
-  closeMobileMenuOnLinkClick();
-
-  // Close mobile menu on escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      const mobileNav = document.getElementById('mobile-nav');
-      if (mobileNav && mobileNav.classList.contains('active')) {
-        toggleMobileMenu();
-      }
-    }
-  });
-
-  // Close mobile menu when clicking outside
-  document.addEventListener('click', (e) => {
-    const mobileNav = document.getElementById('mobile-nav');
-    const mobileToggle = document.querySelector('.mobile-menu-toggle');
-
-    if (mobileNav && mobileNav.classList.contains('active')) {
-      if (!mobileNav.contains(e.target) && !mobileToggle.contains(e.target)) {
-        toggleMobileMenu();
-      }
-    }
-  });
-
-  // Handle orientation change
-  window.addEventListener('orientationchange', () => {
-    const mobileNav = document.getElementById('mobile-nav');
-    if (mobileNav && mobileNav.classList.contains('active')) {
-      // Close menu on orientation change to prevent layout issues
-      setTimeout(() => {
-        toggleMobileMenu();
-      }, 100);
-    }
-  });
-
-  // Handle window resize
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      const mobileNav = document.getElementById('mobile-nav');
-      const mobileToggle = document.querySelector('.mobile-menu-toggle');
-
-      // Close mobile menu if screen becomes large enough
-      if (window.innerWidth > 768 && mobileNav && mobileNav.classList.contains('active')) {
-        toggleMobileMenu();
-      }
-
-      // Show/hide mobile toggle based on screen size
-      if (mobileToggle) {
-        if (window.innerWidth <= 768) {
-          mobileToggle.style.display = 'flex';
-        } else {
-          mobileToggle.style.display = 'none';
-        }
-      }
-    }, 250);
-  });
-}
-
-// Make functions globally available
-window.toggleMobileMenu = toggleMobileMenu;

@@ -3,122 +3,7 @@ let currentFilter = "all"; // Active filter category for character display
 let searchTerm = ""; // User input search query for character filtering
 let raceFilter = ""; // Selected race filter option
 let powerFilter = ""; // Selected power level filter option
-let isMobile = window.innerWidth <= 768; // Mobile viewport detection flag
 
-// Mobile navigation toggle functionality - handles menu state and scroll behavior
-function toggleMobileMenu() {
-  // Retrieve mobile navigation DOM elements
-  const toggle = document.querySelector(".mobile-menu-toggle");
-  const mobileNav = document.getElementById("mobile-nav");
-  const body = document.body;
-  const html = document.documentElement;
-
-  // Prevent execution if required DOM elements are missing
-  if (!toggle || !mobileNav) return;
-
-  // Determine current mobile navigation state
-  const isActive = mobileNav.classList.contains("active");
-
-  if (isActive) {
-    // Deactivate mobile navigation and restore normal scrolling
-    mobileNav.classList.remove("active");
-    toggle.classList.remove("active");
-    body.classList.remove("mobile-nav-active");
-    html.classList.remove("mobile-nav-active");
-
-    // Restore document scrolling capabilities
-    body.style.overflow = "";
-    body.style.position = "";
-    body.style.width = "";
-    html.style.overflow = "";
-    html.style.height = "";
-  } else {
-    // Activate mobile navigation and prevent background scrolling
-    mobileNav.classList.add("active");
-    toggle.classList.add("active");
-    body.classList.add("mobile-nav-active");
-    html.classList.add("mobile-nav-active");
-
-    // Disable document scrolling to prevent background interaction
-    body.style.overflow = "hidden";
-    body.style.position = "fixed";
-    body.style.width = "100%";
-    html.style.overflow = "hidden";
-    html.style.height = "100%";
-  }
-}
-
-// Initialize mobile navigation event handlers and touch interactions
-function initializeMobileNav() {
-  const toggle = document.querySelector(".mobile-menu-toggle");
-  const mobileNav = document.getElementById("mobile-nav");
-
-  // Exit if required DOM elements are not available
-  if (!toggle || !mobileNav) return;
-
-  // Touch event tracking variables for swipe gesture detection
-  let touchStartY = 0;
-  let touchEndY = 0;
-
-  // Capture initial touch position for swipe gesture calculation
-  mobileNav.addEventListener('touchstart', (e) => {
-    touchStartY = e.changedTouches[0].screenY;
-  });
-
-  // Process swipe gesture and close menu if upward swipe detected
-  mobileNav.addEventListener('touchend', (e) => {
-    touchEndY = e.changedTouches[0].screenY;
-    const swipeDistance = touchStartY - touchEndY;
-
-    // Close menu on significant upward swipe gesture
-    if (swipeDistance > 100) {
-      toggleMobileMenu();
-    }
-  });
-
-  // Auto-close mobile navigation when user clicks navigation links
-  document.querySelectorAll(".mobile-nav a").forEach((link) => {
-    link.addEventListener("click", () => {
-      toggleMobileMenu();
-    });
-  });
-
-  // Close mobile navigation when clicking outside the menu area
-  document.addEventListener("click", (e) => {
-    if (mobileNav.classList.contains("active") &&
-        !mobileNav.contains(e.target) &&
-        !toggle.contains(e.target)) {
-      toggleMobileMenu();
-    }
-  });
-
-  // Enable keyboard navigation - close menu on Escape key press
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && mobileNav && mobileNav.classList.contains("active")) {
-      toggleMobileMenu();
-    }
-  });
-
-  // Handle browser tab visibility changes - close menu when tab becomes hidden
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-      if (mobileNav && mobileNav.classList.contains("active")) {
-        // Auto-close mobile navigation when user switches tabs
-        toggleMobileMenu();
-      }
-    }
-  });
-
-  // Handle viewport resize events and update mobile state
-  window.addEventListener("resize", () => {
-    const newIsMobile = window.innerWidth <= 768;
-    if (!newIsMobile && mobileNav.classList.contains("active")) {
-      // Close mobile navigation when switching to desktop viewport
-      toggleMobileMenu();
-    }
-    isMobile = newIsMobile;
-  });
-}
 // Update dashboard statistics by fetching and calculating character data
 async function updateStatistics() {
   // Verify GameState availability before proceeding
@@ -357,29 +242,12 @@ function renderCurrentPage() {
       const first8Html = first8Cards
         .map((character) => {
           try {
-            // Generate random stats for character display
-            const stats = {
-              atk: Math.floor(Math.random() * 50) + 50,
-              def: Math.floor(Math.random() * 50) + 50,
-              spd: Math.floor(Math.random() * 50) + 50,
-            };
+            // Generate random stats for character display using shared function
+            const stats = window.generateRandomStats();
 
-            // Convert hex color values to RGB for CSS custom properties
-            const hexToRgb = (hex) => {
-              const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(
-                hex,
-              );
-              return result
-                ? {
-                    r: parseInt(result[1], 16),
-                    g: parseInt(result[2], 16),
-                    b: parseInt(result[3], 16),
-                  }
-                : null;
-            };
-
-            const primaryRgb = hexToRgb(character.colorScheme.primary);
-            const secondaryRgb = hexToRgb(character.colorScheme.secondary);
+            // Convert hex color values to RGB for CSS custom properties using shared function
+            const primaryRgb = window.hexToRgb(character.colorScheme.primary);
+            const secondaryRgb = window.hexToRgb(character.colorScheme.secondary);
 
             // Generate CSS custom properties for character theming
             const cssVars =
@@ -404,29 +272,12 @@ function renderCurrentPage() {
       const last3Html = last3Cards
         .map((character) => {
           try {
-            // Generate random stats for character display
-            const stats = {
-              atk: Math.floor(Math.random() * 50) + 50,
-              def: Math.floor(Math.random() * 50) + 50,
-              spd: Math.floor(Math.random() * 50) + 50,
-            };
+            // Generate random stats for character display using shared function
+            const stats = window.generateRandomStats();
 
-            // Convert hex color values to RGB for CSS custom properties
-            const hexToRgb = (hex) => {
-              const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(
-                hex,
-              );
-              return result
-                ? {
-                    r: parseInt(result[1], 16),
-                    g: parseInt(result[2], 16),
-                    b: parseInt(result[3], 16),
-                  }
-                : null;
-            };
-
-            const primaryRgb = hexToRgb(character.colorScheme.primary);
-            const secondaryRgb = hexToRgb(character.colorScheme.secondary);
+            // Convert hex color values to RGB for CSS custom properties using shared function
+            const primaryRgb = window.hexToRgb(character.colorScheme.primary);
+            const secondaryRgb = window.hexToRgb(character.colorScheme.secondary);
 
             // Generate CSS custom properties for character theming
             const cssVars =
@@ -457,29 +308,12 @@ function renderCurrentPage() {
       grid.innerHTML = pageCharacters
         .map((character) => {
           try {
-            // Generate random stats for character display
-            const stats = {
-              atk: Math.floor(Math.random() * 50) + 50,
-              def: Math.floor(Math.random() * 50) + 50,
-              spd: Math.floor(Math.random() * 50) + 50,
-            };
+            // Generate random stats for character display using shared function
+            const stats = window.generateRandomStats();
 
-            // Convert hex color values to RGB for CSS custom properties
-            const hexToRgb = (hex) => {
-              const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(
-                hex,
-              );
-              return result
-                ? {
-                    r: parseInt(result[1], 16),
-                    g: parseInt(result[2], 16),
-                    b: parseInt(result[3], 16),
-                  }
-                : null;
-            };
-
-            const primaryRgb = hexToRgb(character.colorScheme.primary);
-            const secondaryRgb = hexToRgb(character.colorScheme.secondary);
+            // Convert hex color values to RGB for CSS custom properties using shared function
+            const primaryRgb = window.hexToRgb(character.colorScheme.primary);
+            const secondaryRgb = window.hexToRgb(character.colorScheme.secondary);
 
             // Generate CSS custom properties for character theming
             const cssVars =
@@ -510,6 +344,7 @@ function renderCurrentPage() {
 function renderCompactCharacterCard(character, stats, cssVars) {
   // Calculate character impact values for display
   const impact = generateCharacterImpact(character);
+  const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
 
   return `
     <div class="character-card character-themed ${character.id === "diablo" ? "dark-theme" : ""}"
@@ -803,15 +638,22 @@ function filterCharacter(character, filter) {
 function initializeFilters() {
   const searchInput = document.getElementById("character-search");
   if (searchInput) {
-    let searchTimeout;
-    // Debounced search input handler to prevent excessive filtering
-    searchInput.addEventListener("input", (e) => {
-      clearTimeout(searchTimeout);
-      searchTimeout = setTimeout(() => {
-        searchTerm = e.target.value;
-        applyFiltersAndRender();
-      }, 300);
-    });
+    // Use shared debounce function for search input
+    const debouncedSearch = window.debounce ? window.debounce((e) => {
+      searchTerm = e.target.value;
+      applyFiltersAndRender();
+    }, 300) : (() => {
+      let timeout;
+      return (e) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          searchTerm = e.target.value;
+          applyFiltersAndRender();
+        }, 300);
+      };
+    })();
+
+    searchInput.addEventListener("input", debouncedSearch);
   }
 
   // Setup category filter tab click handlers
@@ -846,6 +688,7 @@ function initializeFilters() {
     });
   }
 }
+
 // Reset all active filters and restore default display state
 function clearAllFilters() {
   // Reset all filter state variables to default values
@@ -1007,12 +850,6 @@ function addScrollAnimations() {
 }
 // DOM content loaded event handler - initialize application components
 document.addEventListener("DOMContentLoaded", () => {
-  // Update mobile detection flag based on current viewport
-  isMobile = window.innerWidth <= 768;
-
-  // Initialize mobile navigation functionality
-  initializeMobileNav();
-
   // Disable particle effects for performance optimization
   const particleContainer = document.getElementById("particles");
   const starfieldContainer = document.getElementById("starfield");
@@ -1069,7 +906,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Handle viewport resize events and update mobile state
   window.addEventListener("resize", () => {
-    isMobile = window.innerWidth <= 768;
     renderCharacters();
   });
 });
@@ -1079,4 +915,3 @@ window.openCharacterProfile = openCharacterProfile;
 window.openCharacterModal = openCharacterModal;
 window.closeCharacterModal = closeCharacterModal;
 window.changePage = changePage;
-window.toggleMobileMenu = toggleMobileMenu;

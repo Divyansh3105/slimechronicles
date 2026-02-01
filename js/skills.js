@@ -1,131 +1,3 @@
-// Mobile Navigation Functions - Handle mobile menu toggle and user interactions
-function toggleMobileMenu() {
-  console.log("toggleMobileMenu called"); // Debug logging for mobile menu activation
-
-  // Get mobile navigation elements from DOM
-  const toggle = document.querySelector(".mobile-menu-toggle");
-  const mobileNav = document.getElementById("mobile-nav");
-  const body = document.body;
-  const html = document.documentElement;
-
-  // Validate required elements exist before proceeding
-  if (!toggle || !mobileNav) {
-    console.error("Mobile menu elements not found");
-    return;
-  }
-
-  // Check current state of mobile navigation menu
-  const isActive = mobileNav.classList.contains("active");
-
-  if (isActive) {
-    // Close menu - Remove active states and restore scrolling
-    mobileNav.classList.remove("active");
-    toggle.classList.remove("active");
-    body.classList.remove("mobile-nav-active");
-    html.classList.remove("mobile-nav-active");
-
-    // Re-enable scrolling by clearing overflow restrictions
-    body.style.overflow = "";
-    body.style.position = "";
-    body.style.width = "";
-    body.style.height = "";
-
-    console.log("Mobile menu closed");
-  } else {
-    // Open menu - Add active states and prevent scrolling
-    mobileNav.classList.add("active");
-    toggle.classList.add("active");
-    body.classList.add("mobile-nav-active");
-    html.classList.add("mobile-nav-active");
-
-    // Prevent scrolling by setting overflow and position styles
-    body.style.overflow = "hidden";
-    body.style.position = "fixed";
-    body.style.width = "100%";
-    body.style.height = "100%";
-
-    console.log("Mobile menu opened");
-  }
-}
-
-// Initialize mobile navigation with event listeners and gesture support
-function initializeMobileNav() {
-  const toggle = document.querySelector(".mobile-menu-toggle"); // Get mobile menu toggle button
-  const mobileNav = document.getElementById("mobile-nav"); // Get mobile navigation container
-
-  if (!toggle || !mobileNav) {
-    console.warn("Mobile navigation elements not found"); // Log warning if elements missing
-    return;
-  }
-
-  // Add swipe gesture support for mobile devices
-  let startY = 0; // Track initial touch Y position
-  let startX = 0; // Track initial touch X position
-
-  mobileNav.addEventListener("touchstart", (e) => {
-    startY = e.touches[0].clientY; // Record initial Y coordinate for swipe detection
-    startX = e.touches[0].clientX; // Record initial X coordinate for swipe detection
-  });
-
-  mobileNav.addEventListener("touchend", (e) => {
-    const endY = e.changedTouches[0].clientY; // Get final Y coordinate
-    const endX = e.changedTouches[0].clientX; // Get final X coordinate
-    const swipeDistance = startY - endY; // Calculate vertical swipe distance
-    const horizontalDistance = Math.abs(startX - endX); // Calculate horizontal movement
-
-    // If swiped up significantly and not too much horizontal movement, close the menu
-    if (swipeDistance > 100 && horizontalDistance < 50) {
-      toggleMobileMenu(); // Close menu on upward swipe gesture
-    }
-  });
-
-  // Close menu when clicking on links for better UX
-  document.querySelectorAll(".mobile-nav a").forEach((link) => {
-    link.addEventListener("click", () => {
-      toggleMobileMenu(); // Auto-close menu after navigation
-    });
-  });
-
-  // Close menu when clicking outside the navigation area
-  document.addEventListener("click", (e) => {
-    if (mobileNav.classList.contains("active") &&
-        !mobileNav.contains(e.target) &&
-        !toggle.contains(e.target)) {
-      toggleMobileMenu(); // Close menu on outside click
-    }
-  });
-
-  // Close menu with Escape key for accessibility
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && mobileNav && mobileNav.classList.contains("active")) {
-      toggleMobileMenu(); // Close menu with keyboard shortcut
-    }
-  });
-
-  // Handle visibility change (when tab becomes hidden/visible)
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-      if (mobileNav && mobileNav.classList.contains("active")) {
-        // Close mobile nav when tab becomes hidden
-        toggleMobileMenu(); // Prevent menu staying open in background
-      }
-    }
-  });
-
-  // Handle responsive behavior for screen size changes
-  let isMobile = window.innerWidth <= 768; // Track current mobile state
-  window.addEventListener("resize", () => {
-    const newIsMobile = window.innerWidth <= 768; // Check new mobile state
-    if (!newIsMobile && mobileNav.classList.contains("active")) {
-      // Close mobile nav when switching to desktop
-      toggleMobileMenu(); // Auto-close on desktop resize
-    }
-    isMobile = newIsMobile; // Update mobile state tracking
-  });
-
-  console.log("Mobile navigation initialized");
-}
-
 // Skills functionality starts here - Main skills data processing and management
 
 // Get all skills from character data - Aggregate skills from all characters
@@ -170,17 +42,9 @@ async function getAllSkills() {
     let processedCount = 0;
     let errorCount = 0;
 
-    // Log processing start for debugging
-    console.log(`Processing ${basicCharacters.length} characters...`);
-
     // Process each character to extract skills data
     for (let i = 0; i < basicCharacters.length; i++) {
       const basicChar = basicCharacters[i];
-
-      // Update progress every 5 characters for performance monitoring
-      if (i % 5 === 0) {
-        console.log(`Processing character ${i + 1}/${basicCharacters.length}: ${basicChar.name}`);
-      }
 
       try {
         // Fetch detailed character data from JSON file
@@ -237,15 +101,6 @@ async function getAllSkills() {
         errorCount++;
         // Continue processing other characters instead of failing completely
       }
-    }
-
-    // Log processing results for debugging
-    console.log(`Processed ${processedCount} characters, ${errorCount} errors`);
-
-    // Only show error if we couldn't load any characters at all
-    if (processedCount === 0 && errorCount > 0) {
-      console.error("Failed to load any character data");
-      return [];
     }
 
     // Convert skills map to array and return
@@ -643,9 +498,6 @@ function updateResultsCount() {
 // Initialize the skills page with all required functionality
 async function initializeSkillsPage() {
   try {
-    // Initialize mobile navigation first
-    initializeMobileNav(); // Set up mobile menu functionality
-
     if (!window.GameState) {
       console.error("GameState not loaded"); // Log error if GameState missing
       const grid = document.getElementById("skills-grid");
@@ -701,11 +553,9 @@ async function initializeSkillsPage() {
     }
 
     if (searchInput) {
-      let searchTimeout; // Debounce timer for search input
-      searchInput.addEventListener("input", () => {
-        clearTimeout(searchTimeout); // Clear previous timeout
-        searchTimeout = setTimeout(applyFilters, 300); // Debounce search input
-      });
+      // Use shared debounce function for search input
+      const debouncedSearch = window.debounce ? window.debounce(applyFilters, 300) : applyFilters;
+      searchInput.addEventListener("input", debouncedSearch);
     }
 
     applyFilters(); // Apply initial filters and render skills
@@ -883,7 +733,6 @@ document.addEventListener("keydown", (e) => {
 
 // Force initialization function for the Force Load button
 function forceInitialize() {
-  console.log("Force initializing skills page..."); // Log force initialization
   const grid = document.getElementById("skills-grid");
   if (grid) {
     grid.innerHTML = `
@@ -906,7 +755,6 @@ function forceInitialize() {
 }
 
 // Make functions globally available for HTML onclick handlers
-window.toggleMobileMenu = toggleMobileMenu;
 window.filterByPath = filterByPath;
 window.viewCharacter = viewCharacter;
 window.openSkillDetail = openSkillDetail;

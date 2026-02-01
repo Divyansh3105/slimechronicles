@@ -9,6 +9,32 @@
   visibility: visible;
 }
 
+/* Performance optimizations for timeline animations */
+.timeline-arc,
+.timeline-event,
+.arc-content,
+.event-content {
+  will-change: transform, opacity, max-height;
+  transform: translateZ(0); /* Force hardware acceleration */
+}
+
+/* Optimize transitions for better performance */
+.arc-content,
+.event-content {
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.2s ease,
+              padding 0.2s ease;
+}
+
+/* Reduce paint complexity on mobile */
+@media (max-width: 768px) {
+  .timeline-mobile-optimized .timeline-arc,
+  .timeline-mobile-optimized .timeline-event {
+    transform: none;
+    will-change: auto;
+  }
+}
+
 /* Ensure main navigation uses shared styles - no overrides */
 .main-nav {
   /* Ensure proper z-index above timeline elements */
