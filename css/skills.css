@@ -26,6 +26,7 @@ body {
   touch-action: pan-y;
   -webkit-overflow-scrolling: touch;
 }
+
 .skills-container {
   position: relative;
   z-index: 10;
@@ -36,28 +37,341 @@ body {
   animation: fadeInUp 0.8s ease-out;
 }
 
-/* Control panel for search and filtering functionality with glassmorphism design */
-.skills-controls {
+/* Enhanced page header with animated background */
+.page-header {
+  position: relative;
+  text-align: center;
+  padding: 3rem 0;
+  margin-bottom: 3rem;
+  overflow: hidden;
+}
+
+.header-background {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.floating-orb {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(77, 212, 255, 0.3), transparent);
+  filter: blur(1px);
+  animation: floatOrb 6s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 80px;
+  height: 80px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.orb-2 {
+  width: 60px;
+  height: 60px;
+  top: 60%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.orb-3 {
+  width: 100px;
+  height: 100px;
+  top: 40%;
+  left: 80%;
+  animation-delay: 4s;
+}
+
+@keyframes floatOrb {
+  0%, 100% { transform: translateY(0px) scale(1); opacity: 0.6; }
+  50% { transform: translateY(-20px) scale(1.1); opacity: 0.8; }
+}
+
+/* Enhanced page title with 3D text effect */
+.page-title {
+  font-family: "Cinzel", serif;
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  position: relative;
   display: flex;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+  justify-content: center;
+  gap: 1rem;
   flex-wrap: wrap;
+}
+
+.title-word {
+  position: relative;
+  background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(77, 212, 255, 0.4);
+  animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+.title-word::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.3), rgba(0, 255, 255, 0.3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transform: translate(2px, 2px);
+  z-index: -1;
+  filter: blur(1px);
+}
+
+@keyframes titleGlow {
+  0% { text-shadow: 0 0 30px rgba(77, 212, 255, 0.4); }
+  100% { text-shadow: 0 0 40px rgba(77, 212, 255, 0.6), 0 0 60px rgba(0, 255, 255, 0.3); }
+}
+
+/* Enhanced page subtitle */
+.page-subtitle {
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  opacity: 0.9;
+}
+
+/* Header statistics bubbles */
+.header-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.stat-bubble {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  padding: 1.5rem;
   background: linear-gradient(
     135deg,
     rgba(21, 27, 61, 0.8),
     rgba(21, 27, 61, 0.4)
   );
-  backdrop-filter: blur(15px);
-  border: 1px solid var(--border-subtle);
-  border-radius: 16px;
-  padding: 2rem;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(77, 212, 255, 0.3);
+  border-radius: 20px;
+  min-width: 120px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.stat-bubble::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.stat-bubble:hover {
+  transform: translateY(-5px) scale(1.05);
+  border-color: var(--primary-blue);
+  box-shadow: 0 10px 30px rgba(77, 212, 255, 0.3);
+}
+
+.stat-bubble:hover::before {
+  opacity: 1;
+}
+
+.stat-number {
+  font-family: "Cinzel", serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 15px rgba(77, 212, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+.stat-bubble:hover .stat-number {
+  transform: scale(1.1);
+  color: var(--accent-cyan);
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Enhanced control panel with improved glassmorphism and better layout */
+.skills-controls {
+  background: linear-gradient(
+    135deg,
+    rgba(21, 27, 61, 0.9),
+    rgba(21, 27, 61, 0.6)
+  );
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(77, 212, 255, 0.2);
+  border-radius: 20px;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
   position: relative;
   overflow: hidden;
   animation: slideInFromTop 0.6s ease-out 0.2s both;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Decorative gradient border for controls panel */
+/* Search section with chips */
+.search-section {
+  margin-bottom: 2rem;
+}
+
+.search-box {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.search-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(21, 27, 61, 0.95),
+    rgba(21, 27, 61, 0.8)
+  );
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(77, 212, 255, 0.2);
+  border-radius: 12px;
+  margin-top: 0.5rem;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 100;
+  display: none;
+}
+
+.search-suggestion {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(77, 212, 255, 0.1);
+}
+
+.search-suggestion:hover {
+  background: rgba(77, 212, 255, 0.1);
+}
+
+.search-suggestion:last-child {
+  border-bottom: none;
+}
+
+/* Filter chips */
+.search-filters {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(
+    135deg,
+    rgba(232, 240, 255, 0.08),
+    rgba(232, 240, 255, 0.03)
+  );
+  border: 1px solid rgba(77, 212, 255, 0.2);
+  border-radius: 25px;
+  color: var(--text-secondary);
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-chip::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(77, 212, 255, 0.2),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+
+.filter-chip:hover,
+.filter-chip.active {
+  background: linear-gradient(
+    135deg,
+    rgba(77, 212, 255, 0.2),
+    rgba(77, 212, 255, 0.1)
+  );
+  border-color: var(--primary-blue);
+  color: var(--primary-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(77, 212, 255, 0.3);
+}
+
+.filter-chip:hover::before,
+.filter-chip.active::before {
+  transform: translateX(100%);
+}
+
+.chip-icon {
+  font-size: 1rem;
+}
+
+.chip-text {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Controls row layout */
+.controls-row {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.quick-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 300px;
+}
+
+.advanced-filters {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Enhanced decorative elements */
 .skills-controls::before {
   content: "";
   position: absolute;
@@ -70,12 +384,13 @@ body {
     transparent,
     var(--primary-blue),
     var(--accent-purple),
+    var(--accent-cyan),
     transparent
   );
-  opacity: 0.7;
+  opacity: 0.8;
+  animation: shimmerBorder 3s ease-in-out infinite;
 }
 
-/* Subtle background glow effects for controls panel */
 .skills-controls::after {
   content: "";
   position: absolute;
@@ -83,72 +398,420 @@ body {
   background:
     radial-gradient(
       circle at 20% 80%,
-      rgba(77, 212, 255, 0.03),
+      rgba(77, 212, 255, 0.05),
       transparent 50%
     ),
     radial-gradient(
       circle at 80% 20%,
-      rgba(170, 85, 255, 0.03),
+      rgba(170, 85, 255, 0.05),
       transparent 50%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(0, 255, 255, 0.03),
+      transparent 70%
     );
   pointer-events: none;
 }
 
-/* Search input container with icon positioning */
+@keyframes shimmerBorder {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+/* Quick actions toolbar */
+.quick-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-right: 1rem;
+  padding-right: 1rem;
+  border-right: 1px solid rgba(77, 212, 255, 0.2);
+}
+
+.quick-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(
+    135deg,
+    rgba(77, 212, 255, 0.15),
+    rgba(77, 212, 255, 0.08)
+  );
+  border: 1px solid rgba(77, 212, 255, 0.3);
+  border-radius: 12px;
+  color: var(--primary-blue);
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  min-height: 44px;
+}
+
+.quick-action-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+
+.quick-action-btn:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(77, 212, 255, 0.25),
+    rgba(77, 212, 255, 0.15)
+  );
+  border-color: var(--primary-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(77, 212, 255, 0.3);
+}
+
+.quick-action-btn:hover::before {
+  transform: translateX(100%);
+}
+
+.quick-action-btn:active {
+  transform: translateY(0);
+}
+
+.btn-icon {
+  font-size: 1.1rem;
+}
+
+.btn-text {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Skill rarity indicator */
+.skill-rarity {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 2;
+}
+
+.skill-rarity.common {
+  background: linear-gradient(135deg, rgba(160, 170, 197, 0.2), rgba(160, 170, 197, 0.1));
+  border: 1px solid rgba(160, 170, 197, 0.3);
+  color: var(--text-muted);
+}
+
+.skill-rarity.uncommon {
+  background: linear-gradient(135deg, rgba(2, 213, 54, 0.2), rgba(2, 213, 54, 0.1));
+  border: 1px solid rgba(2, 213, 54, 0.3);
+  color: var(--accent-emerald);
+}
+
+.skill-rarity.rare {
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.2), rgba(77, 212, 255, 0.1));
+  border: 1px solid rgba(77, 212, 255, 0.3);
+  color: var(--primary-blue);
+}
+
+.skill-rarity.epic {
+  background: linear-gradient(135deg, rgba(170, 85, 255, 0.2), rgba(170, 85, 255, 0.1));
+  border: 1px solid rgba(170, 85, 255, 0.3);
+  color: var(--accent-purple);
+}
+
+.skill-rarity.legendary {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  color: var(--accent-gold);
+}
+
+/* Skill mastery indicator */
+.skill-mastery-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mastery-circle {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    var(--primary-blue) 0deg,
+    var(--primary-blue) calc(var(--progress) * 3.6deg),
+    rgba(77, 212, 255, 0.2) calc(var(--progress) * 3.6deg),
+    rgba(77, 212, 255, 0.2) 360deg
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mastery-circle::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background: var(--secondary-dark);
+}
+
+.mastery-text {
+  position: relative;
+  z-index: 1;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+}
+
+/* Enhanced skill meta information */
+.skill-meta {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  background: linear-gradient(
+    135deg,
+    rgba(232, 240, 255, 0.05),
+    rgba(232, 240, 255, 0.02)
+  );
+  border: 1px solid rgba(77, 212, 255, 0.1);
+  border-radius: 12px;
+}
+
+.skill-difficulty,
+.skill-learning-time {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.difficulty-icon,
+.time-icon {
+  font-size: 1rem;
+}
+
+/* More characters indicator */
+.more-characters {
+  padding: 0.4rem 0.8rem;
+  background: linear-gradient(
+    135deg,
+    rgba(77, 212, 255, 0.15),
+    rgba(77, 212, 255, 0.08)
+  );
+  border: 1px solid rgba(77, 212, 255, 0.2);
+  border-radius: 16px;
+  font-size: 0.75rem;
+  color: var(--primary-blue);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.more-characters:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(77, 212, 255, 0.25),
+    rgba(77, 212, 255, 0.15)
+  );
+  transform: translateY(-1px);
+}
+
+/* Floating Action Button */
+.floating-action-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 8px 25px rgba(77, 212, 255, 0.4),
+    0 0 0 0 rgba(77, 212, 255, 0.3);
+  animation: fabPulse 2s ease-in-out infinite;
+}
+
+.floating-action-btn:hover {
+  transform: scale(1.1);
+  box-shadow:
+    0 12px 35px rgba(77, 212, 255, 0.5),
+    0 0 0 10px rgba(77, 212, 255, 0.1);
+}
+
+.fab-icon {
+  font-size: 1.5rem;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.floating-action-btn.active .fab-icon {
+  transform: rotate(45deg);
+}
+
+.fab-menu {
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.floating-action-btn.active .fab-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.fab-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(
+    135deg,
+    rgba(21, 27, 61, 0.95),
+    rgba(21, 27, 61, 0.8)
+  );
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(77, 212, 255, 0.2);
+  border-radius: 25px;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  min-width: 120px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.fab-option:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(77, 212, 255, 0.2),
+    rgba(77, 212, 255, 0.1)
+  );
+  border-color: var(--primary-blue);
+  transform: translateX(-5px);
+}
+
+.fab-option-icon {
+  font-size: 1.1rem;
+}
+
+.fab-option-text {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+@keyframes fabPulse {
+  0%, 100% {
+    box-shadow:
+      0 8px 25px rgba(77, 212, 255, 0.4),
+      0 0 0 0 rgba(77, 212, 255, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 8px 25px rgba(77, 212, 255, 0.4),
+      0 0 0 15px rgba(77, 212, 255, 0.1);
+  }
+}
+
+/* Enhanced search input with better visual feedback */
 .search-box {
   flex: 1;
-  min-width: 280px;
+  min-width: 300px;
   position: relative;
 }
 
-/* Search icon positioned inside input field */
+/* Improved search icon with animation */
 .search-box::before {
   content: "🔍";
   position: absolute;
-  left: 1rem;
+  left: 1.2rem;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: var(--text-muted);
   pointer-events: none;
   z-index: 1;
+  transition: all 0.3s ease;
 }
 
-/* Styled search input with glassmorphism effect */
+.search-box:focus-within::before {
+  color: var(--primary-blue);
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Enhanced search input styling */
 .search-box input {
   width: 100%;
-  padding: 1rem 1rem 1rem 3rem;
+  padding: 1.2rem 1.2rem 1.2rem 3.5rem;
   background: linear-gradient(
     135deg,
-    rgba(232, 240, 255, 0.08),
-    rgba(232, 240, 255, 0.03)
+    rgba(232, 240, 255, 0.1),
+    rgba(232, 240, 255, 0.05)
   );
-  border: 1px solid var(--border-subtle);
-  border-radius: 12px;
+  border: 2px solid var(--border-subtle);
+  border-radius: 16px;
   color: var(--text-light);
   font-family: "Rajdhani", sans-serif;
   font-size: 1rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .search-box input:focus {
   outline: none;
   border-color: var(--primary-blue);
-  box-shadow: 0 0 25px rgba(77, 212, 255, 0.4);
+  box-shadow:
+    0 0 30px rgba(77, 212, 255, 0.4),
+    0 8px 25px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.12),
-    rgba(255, 255, 255, 0.06)
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0.08)
   );
   transform: translateY(-2px);
 }
 
 .search-box input::placeholder {
-  color: rgba(163, 164, 37, 0.5);
+  color: rgba(160, 170, 197, 0.6);
+  font-style: italic;
 }
 
-/* Filter dropdown group with label and select styling */
+/* Enhanced filter dropdown styling with better visual hierarchy */
 .filter-group {
   display: flex;
   align-items: center;
@@ -156,46 +819,65 @@ body {
   position: relative;
 }
 
-/* Filter labels with uppercase styling */
+/* Improved filter labels */
 .filter-group label {
   font-size: 0.9rem;
-  color: var(--text-muted);
-  font-weight: 600;
+  color: var(--text-secondary);
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
+  position: relative;
 }
 
-/* Custom styled select dropdown with arrow icon */
+.filter-group label::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-blue);
+  transition: width 0.3s ease;
+}
+
+.filter-group:hover label::after {
+  width: 100%;
+}
+
+/* Enhanced select dropdown with improved styling */
 .filter-group select {
-  padding: 1rem 1.25rem;
+  padding: 1.2rem 1.5rem;
   background: linear-gradient(
     135deg,
-    rgba(232, 240, 255, 0.08),
-    rgba(232, 240, 255, 0.03)
+    rgba(232, 240, 255, 0.1),
+    rgba(232, 240, 255, 0.05)
   );
-  border: 1px solid var(--border-subtle);
-  border-radius: 12px;
+  border: 2px solid var(--border-subtle);
+  border-radius: 16px;
   color: var(--text-light);
   font-family: "Rajdhani", sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  min-width: 140px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 160px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e8f0ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234dd4ff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
   background-repeat: no-repeat;
-  background-position: right 1rem center;
-  background-size: 1rem;
-  padding-right: 3rem;
+  background-position: right 1.2rem center;
+  background-size: 1.2rem;
+  padding-right: 3.5rem;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .filter-group select option {
   background: var(--secondary-dark);
   color: var(--text-light);
-  padding: 0.75rem;
+  padding: 1rem;
   font-weight: 600;
   border: none;
 }
@@ -203,11 +885,14 @@ body {
 .filter-group select:focus {
   outline: none;
   border-color: var(--primary-blue);
-  box-shadow: 0 0 20px rgba(77, 212, 255, 0.3);
+  box-shadow:
+    0 0 25px rgba(77, 212, 255, 0.4),
+    0 8px 20px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
   background: linear-gradient(
     135deg,
-    rgba(232, 240, 255, 0.12),
-    rgba(232, 240, 255, 0.06)
+    rgba(232, 240, 255, 0.15),
+    rgba(232, 240, 255, 0.08)
   );
   transform: translateY(-2px);
 }
@@ -216,29 +901,33 @@ body {
   border-color: var(--accent-cyan);
   background: linear-gradient(
     135deg,
-    rgba(232, 240, 255, 0.1),
-    rgba(232, 240, 255, 0.05)
+    rgba(232, 240, 255, 0.12),
+    rgba(232, 240, 255, 0.06)
   );
+  transform: translateY(-1px);
 }
 
-/* Statistics panel displaying skill counts and metrics */
+/* Enhanced statistics panel with improved visual design */
 .skills-stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.5rem;
-  margin-bottom: 2rem;
-  padding: 2rem;
+  margin-bottom: 2.5rem;
+  padding: 2.5rem;
   background: linear-gradient(
     135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.4)
+    rgba(21, 27, 61, 0.9),
+    rgba(21, 27, 61, 0.6)
   );
-  backdrop-filter: blur(15px);
-  border: 1px solid var(--border-subtle);
-  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(77, 212, 255, 0.2);
+  border-radius: 20px;
   position: relative;
   overflow: hidden;
   animation: slideInFromTop 0.6s ease-out 0.1s both;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .skills-stats::before {
@@ -253,9 +942,11 @@ body {
     transparent,
     var(--accent-emerald),
     var(--primary-blue),
+    var(--accent-purple),
     transparent
   );
-  opacity: 0.7;
+  opacity: 0.8;
+  animation: shimmerBorder 3s ease-in-out infinite;
 }
 
 .skills-stats::after {
@@ -263,29 +954,30 @@ body {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 30% 70%, rgba(2, 213, 54, 0.03), transparent 50%),
-    radial-gradient(
-      circle at 70% 30%,
-      rgba(77, 212, 255, 0.03),
-      transparent 50%
-    );
+    radial-gradient(circle at 30% 70%, rgba(2, 213, 54, 0.04), transparent 50%),
+    radial-gradient(circle at 70% 30%, rgba(77, 212, 255, 0.04), transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(170, 85, 255, 0.03), transparent 70%);
   pointer-events: none;
 }
 
-/* Individual statistic item with hover effects */
+/* Enhanced individual statistic items */
 .stat-item {
   text-align: center;
-  padding: 1rem;
+  padding: 1.5rem;
   background: linear-gradient(
     135deg,
-    rgba(232, 240, 255, 0.05),
-    rgba(232, 240, 255, 0.02)
+    rgba(232, 240, 255, 0.08),
+    rgba(232, 240, 255, 0.03)
   );
-  border: 1px solid var(--border-subtle);
-  border-radius: 12px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(77, 212, 255, 0.15);
+  border-radius: 16px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .stat-item::before {
@@ -294,13 +986,16 @@ body {
   inset: 0;
   background: linear-gradient(135deg, rgba(77, 212, 255, 0.1), transparent);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s ease;
 }
 
 .stat-item:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px) scale(1.02);
   border-color: var(--primary-blue);
-  box-shadow: 0 8px 25px rgba(77, 212, 255, 0.2);
+  box-shadow:
+    0 12px 30px rgba(77, 212, 255, 0.25),
+    0 0 0 1px rgba(77, 212, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .stat-item:hover::before {
@@ -309,26 +1004,28 @@ body {
 
 .stat-value {
   font-family: "Cinzel", serif;
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 700;
   color: var(--primary-blue);
-  margin-bottom: 0.5rem;
-  text-shadow: 0 0 15px rgba(77, 212, 255, 0.4);
-  transition: all 0.3s ease;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 0 20px rgba(77, 212, 255, 0.5);
+  transition: all 0.4s ease;
+  position: relative;
 }
 
 .stat-item:hover .stat-value {
-  transform: scale(1.1);
-  text-shadow: 0 0 20px rgba(77, 212, 255, 0.6);
+  transform: scale(1.15);
+  text-shadow: 0 0 25px rgba(77, 212, 255, 0.7);
+  color: var(--accent-cyan);
 }
 
 .stat-label {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 600;
-  transition: color 0.3s ease;
+  letter-spacing: 1.2px;
+  font-weight: 700;
+  transition: color 0.4s ease;
 }
 
 .stat-item:hover .stat-label {
@@ -354,51 +1051,68 @@ body {
   animation: fadeInUp 0.4s ease-out 0.3s both;
 }
 
-/* Learning paths section for skill progression guidance */
+/* Enhanced learning paths section with modern card design */
 .skills-learning-path {
-  margin-bottom: 2rem;
-  padding: 2rem;
+  margin-bottom: 2.5rem;
+  padding: 2.5rem;
   background: linear-gradient(
     135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.4)
+    rgba(21, 27, 61, 0.9),
+    rgba(21, 27, 61, 0.6)
   );
-  backdrop-filter: blur(15px);
-  border: 1px solid var(--border-subtle);
-  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(77, 212, 255, 0.2);
+  border-radius: 20px;
   position: relative;
   overflow: hidden;
   animation: slideInFromTop 0.6s ease-out 0.15s both;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .learning-path-title {
   font-family: "Cinzel", serif;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: var(--primary-blue);
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
   text-align: center;
-  text-shadow: 0 0 15px rgba(77, 212, 255, 0.3);
+  text-shadow: 0 0 20px rgba(77, 212, 255, 0.4);
+}
+
+.learning-path-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 2rem;
+  font-style: italic;
 }
 
 .learning-paths {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
 }
 
 .learning-path-item {
-  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
   background: linear-gradient(
     135deg,
-    rgba(232, 240, 255, 0.05),
-    rgba(232, 240, 255, 0.02)
+    rgba(232, 240, 255, 0.08),
+    rgba(232, 240, 255, 0.03)
   );
-  border: 1px solid var(--border-subtle);
-  border-radius: 12px;
+  border: 1px solid rgba(77, 212, 255, 0.15);
+  border-radius: 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .learning-path-item::before {
@@ -407,64 +1121,157 @@ body {
   inset: 0;
   background: linear-gradient(135deg, rgba(77, 212, 255, 0.1), transparent);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s ease;
 }
 
 .learning-path-item:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px) scale(1.02);
   border-color: var(--primary-blue);
-  box-shadow: 0 4px 15px rgba(77, 212, 255, 0.2);
+  box-shadow:
+    0 8px 25px rgba(77, 212, 255, 0.2),
+    0 0 0 1px rgba(77, 212, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .learning-path-item:hover::before {
   opacity: 1;
 }
 
+.path-icon {
+  font-size: 2.5rem;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(
+    circle,
+    rgba(77, 212, 255, 0.3),
+    rgba(77, 212, 255, 0.1)
+  );
+  border-radius: 16px;
+  flex-shrink: 0;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 12px rgba(77, 212, 255, 0.2);
+}
+
+.learning-path-item:hover .path-icon {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 6px 16px rgba(77, 212, 255, 0.3);
+}
+
+.path-content {
+  flex: 1;
+}
+
 .path-name {
   font-weight: 700;
   color: var(--primary-blue);
   margin-bottom: 0.5rem;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.learning-path-item:hover .path-name {
+  color: var(--accent-cyan);
 }
 
 .path-description {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--text-muted);
   line-height: 1.4;
+  margin-bottom: 0.5rem;
 }
 
 .path-skills-count {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: var(--accent-cyan);
-  margin-top: 0.5rem;
   font-weight: 600;
 }
 
-/* Main grid layout for skill cards with responsive columns */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  animation: staggerIn 0.8s ease-out 0.4s both;
+.path-difficulty {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+  opacity: 0.8;
 }
 
-/* Individual skill card with glassmorphism design and hover effects */
+.path-arrow {
+  font-size: 1.5rem;
+  color: var(--primary-blue);
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+
+.learning-path-item:hover .path-arrow {
+  transform: translateX(4px);
+  opacity: 1;
+  color: var(--accent-cyan);
+}
+
+/* Enhanced main grid layout with list view support */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 2.5rem;
+  animation: staggerIn 0.8s ease-out 0.4s both;
+  transition: all 0.4s ease;
+}
+
+.skills-grid.list-view {
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.skills-grid.list-view .skill-card {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  max-height: 200px;
+}
+
+.skills-grid.list-view .skill-header {
+  flex: 0 0 auto;
+  margin-right: 2rem;
+  margin-bottom: 0;
+}
+
+.skills-grid.list-view .skill-description {
+  flex: 1;
+  margin-bottom: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.skills-grid.list-view .skill-characters,
+.skills-grid.list-view .skill-prerequisites,
+.skills-grid.list-view .skill-applications,
+.skills-grid.list-view .skill-meta {
+  display: none;
+}
+
+/* Enhanced skill card with modern glassmorphism and improved interactions */
 .skill-card {
   background: linear-gradient(
     135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.4)
+    rgba(21, 27, 61, 0.9),
+    rgba(21, 27, 61, 0.6)
   );
-  backdrop-filter: blur(15px);
-  border: 1px solid var(--border-subtle);
-  border-radius: 20px;
-  padding: 2rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(77, 212, 255, 0.2);
+  border-radius: 24px;
+  padding: 2.5rem;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   animation: slideIn 0.4s ease-out both;
   position: relative;
   overflow: hidden;
   cursor: pointer;
   contain: layout style paint;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .skill-card::before {
@@ -478,10 +1285,11 @@ body {
     90deg,
     transparent,
     var(--primary-blue),
+    var(--accent-cyan),
     transparent
   );
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.5s ease;
 }
 
 .skill-card::after {
@@ -490,19 +1298,20 @@ body {
   inset: 0;
   background: radial-gradient(
     circle at 50% 50%,
-    rgba(77, 212, 255, 0.05),
+    rgba(77, 212, 255, 0.06),
     transparent 70%
   );
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.5s ease;
 }
 
 .skill-card:hover {
-  transform: translateY(-8px) scale(1.02);
+  transform: translateY(-12px) scale(1.03);
   border-color: var(--primary-blue);
   box-shadow:
-    0 20px 40px rgba(77, 212, 255, 0.2),
-    0 0 0 1px rgba(77, 212, 255, 0.1);
+    0 25px 50px rgba(77, 212, 255, 0.25),
+    0 0 0 1px rgba(77, 212, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .skill-card:hover::before,
@@ -653,39 +1462,63 @@ body {
   );
 }
 
-/* Skill card header containing icon and basic information */
+/* Enhanced skill card header with better visual hierarchy */
 .skill-header {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
-  margin-bottom: 1.5rem;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
   position: relative;
 }
 
-/* Skill icon with glow effect and hover animations */
+/* Enhanced skill icon with improved animations and effects */
 .skill-icon {
-  font-size: 2.5rem;
-  width: 60px;
-  height: 60px;
+  font-size: 3rem;
+  width: 70px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: radial-gradient(
     circle,
-    rgba(77, 212, 255, 0.3),
-    rgba(77, 212, 255, 0.1)
+    rgba(77, 212, 255, 0.4),
+    rgba(77, 212, 255, 0.15)
   );
-  border-radius: 16px;
+  border-radius: 20px;
   flex-shrink: 0;
-  transition: all 0.4s ease;
-  box-shadow: 0 4px 12px rgba(77, 212, 255, 0.2);
-  filter: drop-shadow(0 0 10px var(--glow-blue));
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 6px 16px rgba(77, 212, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  filter: drop-shadow(0 0 15px rgba(77, 212, 255, 0.4));
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-icon::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
 }
 
 .skill-card:hover .skill-icon {
-  transform: scale(1.1) rotate(5deg);
-  box-shadow: 0 6px 16px rgba(77, 212, 255, 0.3);
-  filter: drop-shadow(0 0 15px var(--glow-blue));
+  transform: scale(1.15) rotate(8deg);
+  box-shadow:
+    0 8px 20px rgba(77, 212, 255, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  filter: drop-shadow(0 0 20px rgba(77, 212, 255, 0.6));
+}
+
+.skill-card:hover .skill-icon::before {
+  transform: translateX(100%);
 }
 
 .skill-info {
@@ -694,38 +1527,60 @@ body {
 
 .skill-name {
   font-family: "Cinzel", serif;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--primary-blue);
-  margin-bottom: 0.5rem;
-  text-shadow: 0 0 15px rgba(77, 212, 255, 0.3);
-  transition: all 0.3s ease;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 0 20px rgba(77, 212, 255, 0.4);
+  transition: all 0.4s ease;
+  line-height: 1.2;
 }
 
 .skill-card:hover .skill-name {
-  transform: translateX(4px);
-  text-shadow: 0 0 20px rgba(77, 212, 255, 0.5);
+  transform: translateX(6px);
+  text-shadow: 0 0 25px rgba(77, 212, 255, 0.6);
+  color: var(--accent-cyan);
 }
 
 .skill-type {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.8px;
   font-weight: 700;
   display: inline-block;
-  padding: 0.3rem 0.8rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
+  padding: 0.4rem 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-type::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(77, 212, 255, 0.2),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
 }
 
 .skill-card:hover .skill-type {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
   border-color: var(--primary-blue);
   color: var(--primary-blue);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+}
+
+.skill-card:hover .skill-type::before {
+  transform: translateX(100%);
 }
 
 /* Category badges with color-coded styling for skill types */
@@ -1482,26 +2337,121 @@ body {
     margin-top: 80px; /* Account for fixed navbar */
   }
 
+  /* Enhanced header for mobile */
+  .page-header {
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+  }
+
+  .floating-orb {
+    display: none; /* Hide floating orbs on mobile for performance */
+  }
+
   .page-title {
-    font-size: 2.1rem;
+    font-size: 2.5rem;
     line-height: 1.15;
     text-align: center;
     margin-bottom: 0.5rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .title-word::before {
+    display: none; /* Disable 3D effect on mobile */
   }
 
   .page-subtitle {
     font-size: 0.9rem;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     opacity: 0.85;
+  }
+
+  .header-stats {
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .stat-bubble {
+    padding: 1rem;
+    min-width: 100px;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
   }
 
   /* Controls */
   .skills-controls {
-    flex-direction: column;
-    gap: 1rem;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
+  }
+
+  .search-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .search-box {
+    margin-bottom: 1rem;
+  }
+
+  .search-filters {
+    gap: 0.5rem;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+
+  .filter-chip {
+    flex-shrink: 0;
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .chip-text {
+    display: none;
+  }
+
+  .chip-icon {
+    font-size: 1.1rem;
+  }
+
+  .controls-row {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .quick-actions {
+    width: 100%;
+    justify-content: space-between;
+    min-width: auto;
+    gap: 0.5rem;
+  }
+
+  .quick-action-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 0.75rem 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .btn-text {
+    display: none;
+  }
+
+  .btn-icon {
+    font-size: 1.2rem;
+  }
+
+  .advanced-filters {
+    width: 100%;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   .search-box {
@@ -1604,6 +2554,13 @@ body {
     border-radius: 16px;
   }
 
+  .skill-rarity {
+    top: 0.75rem;
+    right: 0.75rem;
+    font-size: 0.65rem;
+    padding: 0.25rem 0.6rem;
+  }
+
   .skill-header {
     gap: 0.875rem;
     margin-bottom: 1rem;
@@ -1613,6 +2570,15 @@ body {
     font-size: 2rem;
     width: 50px;
     height: 50px;
+  }
+
+  .mastery-circle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .mastery-text {
+    font-size: 0.6rem;
   }
 
   .skill-name {
@@ -1628,6 +2594,17 @@ body {
     font-size: 0.9rem;
     line-height: 1.5;
     margin-bottom: 1rem;
+  }
+
+  .skill-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .skill-difficulty,
+  .skill-learning-time {
+    font-size: 0.75rem;
   }
 
   /* Category Badge */
@@ -1949,6 +2926,32 @@ body {
 
 /* Mobile performance optimizations and touch interaction improvements */
 @media (max-width: 767px) {
+  /* Floating Action Button on mobile */
+  .floating-action-btn {
+    bottom: 1rem;
+    right: 1rem;
+    width: 50px;
+    height: 50px;
+  }
+
+  .fab-icon {
+    font-size: 1.3rem;
+  }
+
+  .fab-menu {
+    bottom: 60px;
+    right: -10px;
+  }
+
+  .fab-option {
+    padding: 0.6rem 0.8rem;
+    min-width: 100px;
+  }
+
+  .fab-option-text {
+    font-size: 0.8rem;
+  }
+
   /* Disable heavy background effects for better performance */
   .magic-circle,
   .particles,

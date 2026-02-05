@@ -196,51 +196,133 @@
 
     <!-- Main container for skills database content -->
     <div class="skills-container">
-        <!-- Page header with title and description -->
-        <h1 class="page-title">Skills Database</h1>
-        <p class="page-subtitle">Master the arts of magic, combat, and leadership</p>
+        <!-- Enhanced page header with animated elements -->
+        <div class="page-header">
+            <div class="header-background">
+                <div class="floating-orb orb-1"></div>
+                <div class="floating-orb orb-2"></div>
+                <div class="floating-orb orb-3"></div>
+            </div>
+            <h1 class="page-title">
+                <span class="title-word" data-text="Skills">Skills</span>
+                <span class="title-word" data-text="Database">Database</span>
+            </h1>
+            <p class="page-subtitle">Master the arts of magic, combat, and leadership</p>
+            <div class="header-stats">
+                <div class="stat-bubble" id="total-skills-bubble">
+                    <span class="stat-number">0</span>
+                    <span class="stat-label">Total Skills</span>
+                </div>
+                <div class="stat-bubble" id="active-practitioners-bubble">
+                    <span class="stat-number">0</span>
+                    <span class="stat-label">Active Practitioners</span>
+                </div>
+                <div class="stat-bubble" id="skill-categories-bubble">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Categories</span>
+                </div>
+            </div>
+        </div>
 
-        <!-- Skills control panel with search and filtering options -->
+        <!-- Enhanced skills control panel with advanced filtering -->
         <div class="skills-controls">
-            <!-- Search input box for skill name filtering -->
-            <div class="search-box">
-                <input type="text" id="search-input" placeholder="Search skills..." autocomplete="off" />
+            <!-- Advanced search section -->
+            <div class="search-section">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Search skills, characters, or descriptions..."
+                        autocomplete="off" />
+                    <div class="search-suggestions" id="search-suggestions"></div>
+                </div>
+                <div class="search-filters">
+                    <button class="filter-chip active" data-filter="all" onclick="setQuickFilter('all')">
+                        <span class="chip-icon">🔍</span>
+                        <span class="chip-text">All</span>
+                    </button>
+                    <button class="filter-chip" data-filter="combat" onclick="setQuickFilter('combat')">
+                        <span class="chip-icon">⚔️</span>
+                        <span class="chip-text">Combat</span>
+                    </button>
+                    <button class="filter-chip" data-filter="magic" onclick="setQuickFilter('magic')">
+                        <span class="chip-icon">✨</span>
+                        <span class="chip-text">Magic</span>
+                    </button>
+                    <button class="filter-chip" data-filter="support" onclick="setQuickFilter('support')">
+                        <span class="chip-icon">🛡️</span>
+                        <span class="chip-text">Support</span>
+                    </button>
+                    <button class="filter-chip" data-filter="leadership" onclick="setQuickFilter('leadership')">
+                        <span class="chip-icon">👑</span>
+                        <span class="chip-text">Leadership</span>
+                    </button>
+                    <button class="filter-chip" data-filter="crafting" onclick="setQuickFilter('crafting')">
+                        <span class="chip-icon">🔨</span>
+                        <span class="chip-text">Crafting</span>
+                    </button>
+                </div>
             </div>
 
-            <!-- Sort dropdown for organizing skill display order -->
-            <div class="filter-group">
-                <label>Sort By:</label>
-                <select id="sort-select">
-                    <option value="name">Name</option>
-                    <option value="type">Type</option>
-                    <option value="characters">Most Used</option>
-                    <option value="difficulty">Difficulty</option>
-                </select>
-            </div>
+            <!-- Advanced controls row -->
+            <div class="controls-row">
+                <!-- Quick actions toolbar -->
+                <div class="quick-actions">
+                    <button class="quick-action-btn" onclick="showAllSkills()" title="Show All Skills">
+                        <span class="btn-icon">🔍</span>
+                        <span class="btn-text">All</span>
+                    </button>
+                    <button class="quick-action-btn" onclick="showFavoriteSkills()" title="Show Favorite Skills">
+                        <span class="btn-icon">⭐</span>
+                        <span class="btn-text">Favorites</span>
+                    </button>
+                    <button class="quick-action-btn" onclick="showRandomSkill()" title="Random Skill">
+                        <span class="btn-icon">🎲</span>
+                        <span class="btn-text">Random</span>
+                    </button>
+                    <button class="quick-action-btn" onclick="toggleGridView()" title="Toggle View" id="view-toggle">
+                        <span class="btn-icon">⊞</span>
+                        <span class="btn-text">Grid</span>
+                    </button>
+                </div>
 
-            <!-- Type filter dropdown for skill category filtering -->
-            <div class="filter-group">
-                <label>Filter Type:</label>
-                <select id="type-filter">
-                    <option value="all">All Types</option>
-                    <option value="combat">Combat</option>
-                    <option value="magic">Magic</option>
-                    <option value="support">Support</option>
-                    <option value="leadership">Leadership</option>
-                    <option value="crafting">Crafting</option>
-                </select>
-            </div>
+                <!-- Advanced filter dropdowns -->
+                <div class="advanced-filters">
+                    <!-- Sort dropdown -->
+                    <div class="filter-group">
+                        <label>Sort By:</label>
+                        <select id="sort-select">
+                            <option value="name">Name</option>
+                            <option value="type">Type</option>
+                            <option value="characters">Most Used</option>
+                            <option value="difficulty">Difficulty</option>
+                            <option value="rarity">Rarity</option>
+                            <option value="mastery">Mastery Level</option>
+                        </select>
+                    </div>
 
-            <!-- Difficulty filter dropdown for skill level filtering -->
-            <div class="filter-group">
-                <label>Difficulty:</label>
-                <select id="difficulty-filter">
-                    <option value="all">All Levels</option>
-                    <option value="Beginner">Beginner</option>
-                    <option value="Intermediate">Intermediate</option>
-                    <option value="Advanced">Advanced</option>
-                    <option value="Expert">Expert</option>
-                </select>
+                    <!-- Difficulty filter -->
+                    <div class="filter-group">
+                        <label>Difficulty:</label>
+                        <select id="difficulty-filter">
+                            <option value="all">All Levels</option>
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Advanced">Advanced</option>
+                            <option value="Expert">Expert</option>
+                        </select>
+                    </div>
+
+                    <!-- Rarity filter -->
+                    <div class="filter-group">
+                        <label>Rarity:</label>
+                        <select id="rarity-filter">
+                            <option value="all">All Rarities</option>
+                            <option value="Common">Common</option>
+                            <option value="Uncommon">Uncommon</option>
+                            <option value="Rare">Rare</option>
+                            <option value="Epic">Epic</option>
+                            <option value="Legendary">Legendary</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -258,6 +340,48 @@
                 <button onclick="forceInitialize()"
                     style="margin-top: 1rem; padding: 0.5rem 1rem; background: var(--primary-blue); color: white; border: none; border-radius: 4px; cursor: pointer;">Force
                     Load</button>
+            </div>
+        </div>
+
+        <!-- Floating Action Button -->
+        <div class="floating-action-btn" id="fab" onclick="toggleFabMenu()">
+            <span class="fab-icon">⚡</span>
+            <div class="fab-menu" id="fab-menu">
+                <div class="fab-option" onclick="scrollToTop()" title="Scroll to Top">
+                    <span class="fab-option-icon">⬆️</span>
+                    <span class="fab-option-text">Top</span>
+                </div>
+                <div class="fab-option" onclick="showAllSkills()" title="Show All Skills">
+                    <span class="fab-option-icon">🔍</span>
+                    <span class="fab-option-text">All</span>
+                </div>
+                <div class="fab-option" onclick="showRandomSkill()" title="Random Skill">
+                    <span class="fab-option-icon">🎲</span>
+                    <span class="fab-option-text">Random</span>
+                </div>
+                <div class="fab-option" onclick="toggleDarkMode()" title="Toggle Theme">
+                    <span class="fab-option-icon">🌙</span>
+                    <span class="fab-option-text">Theme</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skill Comparison Modal -->
+        <div class="skill-comparison-modal" id="comparison-modal">
+            <div class="comparison-content">
+                <div class="comparison-header">
+                    <h2>Skill Comparison</h2>
+                    <button class="close-comparison" onclick="closeComparison()">✕</button>
+                </div>
+                <div class="comparison-body">
+                    <div class="comparison-skills" id="comparison-skills">
+                        <!-- Comparison skills will be populated here -->
+                    </div>
+                    <div class="comparison-actions">
+                        <button class="comparison-btn" onclick="clearComparison()">Clear All</button>
+                        <button class="comparison-btn primary" onclick="exportComparison()">Export</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
