@@ -65,23 +65,107 @@
     {
       "name": "Hercules Strength",
       "type": "Combat",
-      "description": "Supernatural physical strength beyond normal limits",
-      "bonus": "+18 Military",
+      "description": "Supernatural physical strength that can shatter mountains and level fortresses",
+      "bonus": "+25 Combat",
       "icon": "💪"
     },
     {
       "name": "Ultra-Speed Regeneration",
       "type": "Support",
-      "description": "Rapidly recovers from any injury",
-      "bonus": "+12 Population",
+      "description": "Rapidly recovers from any injury, even fatal wounds, within moments",
+      "bonus": "+20 Endurance",
       "icon": "💚"
     },
     {
       "name": "Master Chef",
       "type": "Crafting",
-      "description": "Reality-altering cooking abilities",
-      "bonus": "+5 Economy",
+      "description": "Reality-altering cooking abilities that can change the fundamental properties of ingredients",
+      "bonus": "+8 Crafting",
       "icon": "🍳"
+    },
+    {
+      "name": "Sword Mastery",
+      "type": "Combat",
+      "description": "Legendary skill with bladed weapons, capable of cutting through any material",
+      "bonus": "+24 Weapon Skill",
+      "icon": "⚔️"
+    },
+    {
+      "name": "Berserker Mode",
+      "type": "Combat",
+      "description": "Enters a rage state that dramatically increases all combat abilities",
+      "bonus": "+22 Fury",
+      "icon": "😤"
+    },
+    {
+      "name": "Bodyguard Instinct",
+      "type": "Support",
+      "description": "Supernatural awareness of threats to protected individuals",
+      "bonus": "+18 Protection",
+      "icon": "🛡️"
+    },
+    {
+      "name": "Intimidating Presence",
+      "type": "Combat",
+      "description": "Natural aura that can paralyze enemies with fear before combat begins",
+      "bonus": "+16 Intimidation",
+      "icon": "👹"
+    },
+    {
+      "name": "Administrative Excellence",
+      "type": "Leadership",
+      "description": "Perfect organizational skills for managing complex schedules and tasks",
+      "bonus": "+19 Administration",
+      "icon": "📋"
+    },
+    {
+      "name": "Loyalty Aura",
+      "type": "Leadership",
+      "description": "Inspires absolute devotion and loyalty in subordinates through example",
+      "bonus": "+17 Leadership",
+      "icon": "💖"
+    },
+    {
+      "name": "Battle Frenzy",
+      "type": "Combat",
+      "description": "Combat effectiveness increases exponentially as battle intensity rises",
+      "bonus": "+21 Battle Rage",
+      "icon": "🔥"
+    },
+    {
+      "name": "Perfect Guard",
+      "type": "Combat",
+      "description": "Ability to intercept and block any attack directed at protected targets",
+      "bonus": "+23 Defense",
+      "icon": "🛡️"
+    },
+    {
+      "name": "Oni Transformation",
+      "type": "Combat",
+      "description": "Can temporarily assume true Oni form for maximum combat effectiveness",
+      "bonus": "+26 Transformation",
+      "icon": "👺"
+    },
+    {
+      "name": "Weapon Creation",
+      "type": "Crafting",
+      "description": "Ability to forge weapons of exceptional quality and supernatural sharpness",
+      "bonus": "+15 Smithing",
+      "icon": "🔨"
+    },
+    {
+      "name": "Tactical Awareness",
+      "type": "Support",
+      "description": "Instinctive understanding of battlefield conditions and optimal positioning",
+      "bonus": "+14 Tactics",
+      "icon": "🎯"
+    },
+    {
+      "name": "Unbreakable Will",
+      "type": "Support",
+      "description": "Mental fortitude that cannot be shaken by any form of manipulation or fear",
+      "bonus": "+20 Mental Resistance",
+      "icon": "🧠"
     }
   ],
   "impact": {

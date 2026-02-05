@@ -550,28 +550,165 @@ function generateQuotesSection(character) {
 
 function generateSkillsSection(character) {
   if (!character.skills || character.skills.length === 0) {
-    return "<p>Skill analysis and documentation in progress.</p>";
+    return `
+      <div class="skills-empty-state">
+        <div class="empty-state-icon">⚔️</div>
+        <h4>Skills & Abilities</h4>
+        <p>Skill analysis and documentation in progress.</p>
+        <div class="empty-state-animation">
+          <div class="loading-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    `;
   }
 
+  // Categorize skills by type
+  const skillsByType = character.skills.reduce((acc, skill) => {
+    const type = skill.type || 'General';
+    if (!acc[type]) acc[type] = [];
+    acc[type].push(skill);
+    return acc;
+  }, {});
+
+  // Calculate skill statistics
+  const totalSkills = character.skills.length;
+  const skillTypes = Object.keys(skillsByType).length;
+  const averageBonus = character.skills.reduce((sum, skill) => {
+    const bonus = parseInt(skill.bonus?.match(/\d+/)?.[0] || 0);
+    return sum + bonus;
+  }, 0) / totalSkills;
+
   return `
-    <div class="skills-grid">
-      ${character.skills
-        .map(
-          (skill) => `
-        <div class="skill-card-detailed ${skill.type.toLowerCase()}">
-          <div class="skill-card-header">
-            <div class="skill-card-icon">${skill.icon}</div>
-            <div class="skill-card-info">
-              <h4 class="skill-card-name">${skill.name}</h4>
-              <span class="skill-card-type">${skill.type}</span>
+    <!-- Skills Overview Dashboard -->
+    <div class="skills-overview-dashboard">
+      <div class="skills-stats-grid">
+        <div class="skill-stat-card">
+          <div class="stat-icon">🎯</div>
+          <div class="stat-content">
+            <span class="stat-number">${totalSkills}</span>
+            <span class="stat-label">Total Skills</span>
+          </div>
+        </div>
+        <div class="skill-stat-card">
+          <div class="stat-icon">📊</div>
+          <div class="stat-content">
+            <span class="stat-number">${skillTypes}</span>
+            <span class="stat-label">Categories</span>
+          </div>
+        </div>
+        <div class="skill-stat-card">
+          <div class="stat-icon">⚡</div>
+          <div class="stat-content">
+            <span class="stat-number">${Math.round(averageBonus)}</span>
+            <span class="stat-label">Avg Bonus</span>
+          </div>
+        </div>
+        <div class="skill-stat-card">
+          <div class="stat-icon">🏆</div>
+          <div class="stat-content">
+            <span class="stat-number">${getSkillMastery(character.skills)}</span>
+            <span class="stat-label">Mastery</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills Categories -->
+    <div class="skills-categories">
+      ${Object.entries(skillsByType).map(([type, skills]) => `
+        <div class="skill-category" data-category="${type.toLowerCase()}">
+          <div class="category-header" onclick="toggleSkillCategory('${type.toLowerCase()}')">
+            <div class="category-info">
+              <span class="category-icon">${getSkillTypeIcon(type)}</span>
+              <h4 class="category-title">${type} Skills</h4>
+              <span class="category-count">(${skills.length})</span>
+            </div>
+            <div class="category-toggle">
+              <span class="toggle-icon">▼</span>
             </div>
           </div>
-          <p class="skill-card-description">${skill.description}</p>
-          <div class="skill-card-bonus">${skill.bonus}</div>
+
+          <div class="skills-grid" id="skills-${type.toLowerCase()}">
+            ${skills.map((skill, index) => `
+              <div class="skill-card-enhanced ${skill.type.toLowerCase()}" data-skill-index="${index}">
+                <div class="skill-card-glow"></div>
+                <div class="skill-card-header">
+                  <div class="skill-card-icon-container">
+                    <div class="skill-card-icon">${skill.icon}</div>
+                    <div class="skill-rarity ${getSkillRarity(skill)}"></div>
+                  </div>
+                  <div class="skill-card-info">
+                    <h4 class="skill-card-name">${skill.name}</h4>
+                    <span class="skill-card-type">${skill.type}</span>
+                  </div>
+                  <div class="skill-card-actions">
+                    <button class="skill-action-btn" onclick="showSkillDetails('${skill.name}')" title="View Details">
+                      <span>📋</span>
+                    </button>
+                    <button class="skill-action-btn" onclick="compareSkill('${skill.name}')" title="Compare">
+                      <span>⚖️</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="skill-card-body">
+                  <p class="skill-card-description">${skill.description}</p>
+
+                  <div class="skill-card-stats">
+                    <div class="skill-bonus-display">
+                      <span class="bonus-label">Bonus:</span>
+                      <span class="bonus-value">${skill.bonus}</span>
+                    </div>
+                    <div class="skill-power-meter">
+                      <div class="power-meter-label">Power Level</div>
+                      <div class="power-meter-bar">
+                        <div class="power-meter-fill" style="width: ${getSkillPowerLevel(skill)}%"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="skill-card-footer">
+                  <div class="skill-tags">
+                    <span class="skill-tag ${skill.type.toLowerCase()}">${skill.type}</span>
+                    <span class="skill-tag rarity-${getSkillRarity(skill)}">${getSkillRarity(skill)}</span>
+                  </div>
+                  <div class="skill-mastery-indicator">
+                    <div class="mastery-stars">
+                      ${generateMasteryStars(skill)}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
         </div>
-      `,
-        )
-        .join("")}
+      `).join('')}
+    </div>
+
+    <!-- Skill Synergies Section -->
+    <div class="skill-synergies-section">
+      <h4>🔗 Skill Synergies</h4>
+      <div class="synergy-grid">
+        ${generateSkillSynergies(character.skills)}
+      </div>
+    </div>
+
+    <!-- Skills Modal for detailed view -->
+    <div id="skill-details-modal" class="skill-modal" style="display: none;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="modal-skill-name"></h3>
+          <button class="modal-close" onclick="closeSkillModal()">&times;</button>
+        </div>
+        <div class="modal-body" id="modal-skill-content">
+          <!-- Skill details will be populated here -->
+        </div>
+      </div>
     </div>
   `;
 }
@@ -588,6 +725,170 @@ function generateSpecialtiesSection(character) {
     </div>
   `;
 }
+
+// Helper functions for enhanced skills section
+function getSkillTypeIcon(type) {
+  const icons = {
+    'Combat': '⚔️',
+    'Magic': '🔮',
+    'Support': '🛡️',
+    'Leadership': '👑',
+    'Crafting': '🔨',
+    'General': '⭐'
+  };
+  return icons[type] || '⭐';
+}
+
+function getSkillRarity(skill) {
+  const bonus = parseInt(skill.bonus?.match(/\d+/)?.[0] || 0);
+  if (bonus >= 25) return 'legendary';
+  if (bonus >= 20) return 'epic';
+  if (bonus >= 15) return 'rare';
+  if (bonus >= 10) return 'uncommon';
+  return 'common';
+}
+
+function getSkillPowerLevel(skill) {
+  const bonus = parseInt(skill.bonus?.match(/\d+/)?.[0] || 0);
+  return Math.min((bonus / 30) * 100, 100);
+}
+
+function getSkillMastery(skills) {
+  const totalBonus = skills.reduce((sum, skill) => {
+    return sum + parseInt(skill.bonus?.match(/\d+/)?.[0] || 0);
+  }, 0);
+
+  if (totalBonus >= 100) return 'Master';
+  if (totalBonus >= 75) return 'Expert';
+  if (totalBonus >= 50) return 'Advanced';
+  if (totalBonus >= 25) return 'Intermediate';
+  return 'Novice';
+}
+
+function generateMasteryStars(skill) {
+  const bonus = parseInt(skill.bonus?.match(/\d+/)?.[0] || 0);
+  const stars = Math.min(Math.floor(bonus / 5), 5);
+  return '★'.repeat(stars) + '☆'.repeat(5 - stars);
+}
+
+function generateSkillSynergies(skills) {
+  if (skills.length < 2) return '<p>Not enough skills to show synergies.</p>';
+
+  const synergies = [];
+  for (let i = 0; i < skills.length - 1; i++) {
+    for (let j = i + 1; j < skills.length; j++) {
+      const skill1 = skills[i];
+      const skill2 = skills[j];
+
+      // Check for type synergies
+      if (skill1.type === skill2.type) {
+        synergies.push({
+          skill1: skill1.name,
+          skill2: skill2.name,
+          type: 'Type Synergy',
+          description: `${skill1.type} skills work together for enhanced effectiveness`,
+          icon: '🔗'
+        });
+      }
+
+      // Check for complementary skills
+      if ((skill1.type === 'Combat' && skill2.type === 'Magic') ||
+          (skill1.type === 'Magic' && skill2.type === 'Support')) {
+        synergies.push({
+          skill1: skill1.name,
+          skill2: skill2.name,
+          type: 'Complementary',
+          description: `${skill1.type} and ${skill2.type} create powerful combinations`,
+          icon: '⚡'
+        });
+      }
+    }
+  }
+
+  if (synergies.length === 0) {
+    return '<p>No notable synergies detected between current skills.</p>';
+  }
+
+  return synergies.slice(0, 3).map(synergy => `
+    <div class="synergy-card">
+      <div class="synergy-icon">${synergy.icon}</div>
+      <div class="synergy-content">
+        <h5>${synergy.skill1} + ${synergy.skill2}</h5>
+        <span class="synergy-type">${synergy.type}</span>
+        <p>${synergy.description}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Skill interaction functions
+function toggleSkillCategory(category) {
+  const categoryElement = document.querySelector(`[data-category="${category}"]`);
+  const skillsGrid = document.getElementById(`skills-${category}`);
+  const toggleIcon = categoryElement.querySelector('.toggle-icon');
+
+  if (skillsGrid.style.display === 'none' || !skillsGrid.style.display) {
+    skillsGrid.style.display = 'grid';
+    toggleIcon.textContent = '▲';
+    categoryElement.classList.add('expanded');
+  } else {
+    skillsGrid.style.display = 'none';
+    toggleIcon.textContent = '▼';
+    categoryElement.classList.remove('expanded');
+  }
+}
+
+function showSkillDetails(skillName) {
+  // This would show detailed skill information in a modal
+  window.showNotification(`Detailed view for ${skillName} coming soon!`);
+}
+
+function compareSkill(skillName) {
+  // This would allow comparing skills
+  window.showNotification(`Skill comparison for ${skillName} coming soon!`);
+}
+
+function closeSkillModal() {
+  const modal = document.getElementById('skill-details-modal');
+  if (modal) {
+    modal.style.display = 'none';
+  }
+}
+
+// Initialize skills section interactions
+function initializeSkillsSection() {
+  // Initialize power meter animations
+  setTimeout(() => {
+    const powerMeters = document.querySelectorAll('.power-meter-fill');
+    powerMeters.forEach(meter => {
+      const targetWidth = meter.style.width;
+      meter.style.setProperty('--target-width', targetWidth);
+      meter.classList.add('animate-fill');
+    });
+  }, 1000);
+
+  // Add click outside modal to close
+  const modal = document.getElementById('skill-details-modal');
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeSkillModal();
+      }
+    });
+  }
+
+  // Add keyboard navigation for skills
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeSkillModal();
+    }
+  });
+}
+
+// Add to the initialization
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(initializeSkillsSection, 1500);
+});
 
 function generateWeaknessesSection(character) {
   if (!character.weaknesses || character.weaknesses.length === 0) return "";
@@ -672,7 +973,17 @@ function generateRelationshipsSection(character) {
 }
 
 function generateAchievementsSection(character) {
-  if (!character.achievements || character.achievements.length === 0) return "";
+  if (!character.achievements || character.achievements.length === 0) {
+    return `
+      <div class="achievements-section">
+        <h4>🏆 Achievements & Accomplishments</h4>
+        <div class="no-achievements-message">
+          <div class="no-achievements-icon">🎯</div>
+          <p>Achievement data is being compiled and will be available soon.</p>
+        </div>
+      </div>
+    `;
+  }
 
   // Categorize achievements by type
   const categorizedAchievements = categorizeAchievements(character.achievements);
@@ -700,6 +1011,13 @@ function generateAchievementsSection(character) {
               <span class="stat-label">${achievementRarity.title}</span>
             </div>
           </div>
+          <div class="achievement-stat">
+            <div class="stat-icon">📊</div>
+            <div class="stat-content">
+              <span class="stat-number">${Object.keys(categorizedAchievements).length}</span>
+              <span class="stat-label">Categories</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -720,7 +1038,7 @@ function generateAchievementsSection(character) {
 
             <div class="achievement-grid" id="achievements-${category}">
               ${achievements.map((achievement, index) => `
-                <div class="achievement-card" onclick="showAchievementDetails('${category}', ${index})">
+                <div class="achievement-card" data-achievement-index="${index}">
                   <div class="achievement-card-header">
                     <div class="achievement-icon">${getAchievementIcon(achievement)}</div>
                     <div class="achievement-rarity ${getAchievementCardRarity(achievement)}"></div>
@@ -757,6 +1075,10 @@ function generateAchievementsSection(character) {
               <span class="featured-stat">
                 <span class="stat-icon">⚡</span>
                 <span>High Impact</span>
+              </span>
+              <span class="featured-stat">
+                <span class="stat-icon">🏆</span>
+                <span>${getAchievementCardRarity(character.achievements[0]).charAt(0).toUpperCase() + getAchievementCardRarity(character.achievements[0]).slice(1)} Rarity</span>
               </span>
             </div>
           </div>
@@ -843,9 +1165,11 @@ function getAchievementIcon(achievement) {
   if (achievementLower.includes('evolved') || achievementLower.includes('became')) return '🔄';
   if (achievementLower.includes('united') || achievementLower.includes('alliance')) return '🤝';
   if (achievementLower.includes('magic') || achievementLower.includes('mastered')) return '✨';
-  if (achievementLower.includes('demon lord')) return '👹';
+  if (achievementLower.includes('demon lord') || achievementLower.includes('true dragon')) return '👑';
   if (achievementLower.includes('hero')) return '🦸';
   if (achievementLower.includes('named')) return '📝';
+  if (achievementLower.includes('trade') || achievementLower.includes('economy')) return '💰';
+  if (achievementLower.includes('peace') || achievementLower.includes('diplomatic')) return '🕊️';
 
   return '🏆';
 }
@@ -1558,10 +1882,15 @@ initializeCharacterPage = function() {
   }, 1000);
 };
 
-// Update the character profile rendering to include stats
+// Update the character profile rendering
 const originalRenderCharacterProfile = renderCharacterProfile;
 renderCharacterProfile = function(character) {
   originalRenderCharacterProfile(character);
+
+  // Initialize achievement features after rendering
+  setTimeout(() => {
+    updateAchievementFavoriteIndicators();
+  }, 500);
 };
 
 // Export functions for global access
@@ -1745,6 +2074,97 @@ class EvolutionManager {
 
     // Add evolution comparison feature
     this.addEvolutionComparison();
+  }
+
+  // Add evolution comparison functionality
+  addEvolutionComparison() {
+    // Initialize comparison mode state
+    this.comparisonMode = false;
+    this.selectedEvolutions = [];
+
+    // Add comparison event listeners
+    document.addEventListener('click', (e) => {
+      if (this.comparisonMode && e.target.closest('.evolution-form')) {
+        const evolutionForm = e.target.closest('.evolution-form');
+        const evolutionIndex = parseInt(evolutionForm.dataset.evolutionIndex);
+        this.toggleEvolutionSelection(evolutionIndex);
+      }
+    });
+  }
+
+  // Toggle evolution selection for comparison
+  toggleEvolutionSelection(index) {
+    const evolutionForm = document.querySelector(`[data-evolution-index="${index}"]`);
+    if (!evolutionForm) return;
+
+    if (this.selectedEvolutions.includes(index)) {
+      // Remove from selection
+      this.selectedEvolutions = this.selectedEvolutions.filter(i => i !== index);
+      evolutionForm.classList.remove('evolution-selected');
+    } else {
+      // Add to selection (max 2 for comparison)
+      if (this.selectedEvolutions.length < 2) {
+        this.selectedEvolutions.push(index);
+        evolutionForm.classList.add('evolution-selected');
+      }
+    }
+
+    // Show comparison if 2 evolutions selected
+    if (this.selectedEvolutions.length === 2) {
+      this.showEvolutionComparison();
+    }
+  }
+
+  // Show evolution comparison
+  showEvolutionComparison() {
+    if (this.selectedEvolutions.length !== 2) return;
+
+    const [index1, index2] = this.selectedEvolutions;
+    const evolution1 = this.evolutionData[index1];
+    const evolution2 = this.evolutionData[index2];
+
+    if (!evolution1 || !evolution2) return;
+
+    // Create comparison modal
+    const modal = document.createElement('div');
+    modal.className = 'evolution-comparison-modal';
+    modal.innerHTML = `
+      <div class="comparison-content">
+        <div class="comparison-header">
+          <h3>Evolution Comparison</h3>
+          <button class="close-comparison" onclick="evolutionManager.closeEvolutionComparison()">&times;</button>
+        </div>
+        <div class="comparison-body">
+          <div class="evolution-compare-item">
+            <h4>${evolution1.form}</h4>
+            <p><strong>Description:</strong> ${evolution1.description}</p>
+            <p><strong>Trigger:</strong> ${evolution1.trigger}</p>
+          </div>
+          <div class="comparison-divider">VS</div>
+          <div class="evolution-compare-item">
+            <h4>${evolution2.form}</h4>
+            <p><strong>Description:</strong> ${evolution2.description}</p>
+            <p><strong>Trigger:</strong> ${evolution2.trigger}</p>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    // Auto-close after 10 seconds
+    setTimeout(() => {
+      this.closeEvolutionComparison();
+    }, 10000);
+  }
+
+  // Close evolution comparison
+  closeEvolutionComparison() {
+    const modal = document.querySelector('.evolution-comparison-modal');
+    if (modal) {
+      modal.remove();
+    }
+    this.disableComparisonMode();
   }
 
   // Toggle all evolution details at once

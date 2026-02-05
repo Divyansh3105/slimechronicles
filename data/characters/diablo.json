@@ -66,23 +66,107 @@
     {
       "name": "Temptation World",
       "type": "Magic",
-      "description": "Creates an illusory realm of absolute control",
+      "description": "Creates an illusory realm of absolute control where reality bends to the caster's will",
       "bonus": "+30 Magic",
       "icon": "🌀"
     },
     {
       "name": "Death Streak",
       "type": "Combat",
-      "description": "Instant death magic for multiple targets",
-      "bonus": "+25 Military",
+      "description": "Instant death magic capable of eliminating multiple targets simultaneously",
+      "bonus": "+28 Combat",
       "icon": "💀"
     },
     {
       "name": "Perfect Butler",
       "type": "Support",
-      "description": "Handles all administrative tasks flawlessly",
-      "bonus": "+15 Economy",
+      "description": "Handles all administrative tasks with supernatural efficiency and flawless execution",
+      "bonus": "+20 Administration",
       "icon": "🎩"
+    },
+    {
+      "name": "Shadow Movement",
+      "type": "Combat",
+      "description": "Instantaneous travel through shadows and darkness, undetectable by most beings",
+      "bonus": "+22 Stealth",
+      "icon": "🌑"
+    },
+    {
+      "name": "Demonic Aura",
+      "type": "Combat",
+      "description": "Overwhelming presence that can paralyze enemies with fear or inspire allies",
+      "bonus": "+24 Intimidation",
+      "icon": "👹"
+    },
+    {
+      "name": "Nuclear Magic",
+      "type": "Magic",
+      "description": "Devastating magical attacks with explosive force capable of leveling cities",
+      "bonus": "+26 Destruction",
+      "icon": "💥"
+    },
+    {
+      "name": "Diplomatic Mastery",
+      "type": "Leadership",
+      "description": "Perfect negotiation skills combined with subtle intimidation for optimal results",
+      "bonus": "+25 Diplomacy",
+      "icon": "📜"
+    },
+    {
+      "name": "Information Network",
+      "type": "Support",
+      "description": "Vast intelligence gathering system spanning multiple dimensions and realms",
+      "bonus": "+18 Intelligence",
+      "icon": "🕸️"
+    },
+    {
+      "name": "Demon Summoning",
+      "type": "Magic",
+      "description": "Ability to summon and command lesser demons for various tasks and combat",
+      "bonus": "+20 Summoning",
+      "icon": "👺"
+    },
+    {
+      "name": "Reality Manipulation",
+      "type": "Magic",
+      "description": "Limited ability to alter the fundamental laws of reality within a localized area",
+      "bonus": "+32 Reality",
+      "icon": "🎭"
+    },
+    {
+      "name": "Perfect Memory",
+      "type": "Support",
+      "description": "Absolute recall of all experiences and information, never forgetting any detail",
+      "bonus": "+16 Memory",
+      "icon": "🧠"
+    },
+    {
+      "name": "Loyalty Inspiration",
+      "type": "Leadership",
+      "description": "Natural ability to inspire absolute devotion and loyalty in subordinates",
+      "bonus": "+22 Leadership",
+      "icon": "👑"
+    },
+    {
+      "name": "Void Magic",
+      "type": "Magic",
+      "description": "Manipulation of nothingness itself, capable of erasing things from existence",
+      "bonus": "+29 Void",
+      "icon": "⚫"
+    },
+    {
+      "name": "Multitasking Mastery",
+      "type": "Support",
+      "description": "Ability to handle countless tasks simultaneously without any loss in quality",
+      "bonus": "+19 Efficiency",
+      "icon": "⚙️"
+    },
+    {
+      "name": "Threat Assessment",
+      "type": "Support",
+      "description": "Instant evaluation of danger levels and optimal response strategies",
+      "bonus": "+17 Analysis",
+      "icon": "🎯"
     }
   ],
   "impact": {

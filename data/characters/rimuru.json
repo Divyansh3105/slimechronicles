@@ -75,23 +75,107 @@
     {
       "name": "Predator",
       "type": "Combat",
-      "description": "Absorbs targets and analyzes their abilities",
-      "bonus": "+20 All Stats",
+      "description": "Absorbs targets and analyzes their abilities, allowing complete understanding and replication of consumed powers",
+      "bonus": "+25 Combat",
       "icon": "🐺"
     },
     {
       "name": "Great Sage",
       "type": "Magic",
-      "description": "Ultimate intelligence support system",
-      "bonus": "+25 Magic",
+      "description": "Ultimate intelligence support system providing analytical capabilities and magical knowledge",
+      "bonus": "+30 Magic",
       "icon": "🧠"
     },
     {
       "name": "Storm Magic",
       "type": "Magic",
-      "description": "Mastery over wind and lightning elements",
-      "bonus": "+15 Military",
+      "description": "Mastery over wind and lightning elements, capable of devastating area attacks",
+      "bonus": "+20 Magic",
       "icon": "⚡"
+    },
+    {
+      "name": "Water Magic",
+      "type": "Magic",
+      "description": "Complete control over water in all its forms, from healing to destructive torrents",
+      "bonus": "+18 Magic",
+      "icon": "💧"
+    },
+    {
+      "name": "Spatial Magic",
+      "type": "Magic",
+      "description": "Manipulation of space itself, enabling teleportation and dimensional storage",
+      "bonus": "+22 Magic",
+      "icon": "🌀"
+    },
+    {
+      "name": "Regeneration",
+      "type": "Support",
+      "description": "Rapid healing and restoration of physical form, nearly instantaneous recovery",
+      "bonus": "+15 Defense",
+      "icon": "💚"
+    },
+    {
+      "name": "Shape Shifting",
+      "type": "Support",
+      "description": "Perfect mimicry of any observed form, including abilities and characteristics",
+      "bonus": "+12 Versatility",
+      "icon": "🎭"
+    },
+    {
+      "name": "Diplomatic Immunity",
+      "type": "Leadership",
+      "description": "Natural charisma and negotiation skills that can resolve conflicts peacefully",
+      "bonus": "+25 Diplomacy",
+      "icon": "🤝"
+    },
+    {
+      "name": "Monster Taming",
+      "type": "Leadership",
+      "description": "Ability to form bonds with and command various monster species",
+      "bonus": "+20 Leadership",
+      "icon": "🐉"
+    },
+    {
+      "name": "Nation Building",
+      "type": "Leadership",
+      "description": "Strategic planning and management skills for governing large populations",
+      "bonus": "+28 Administration",
+      "icon": "🏛️"
+    },
+    {
+      "name": "Parallel Processing",
+      "type": "Support",
+      "description": "Ability to think and act on multiple tasks simultaneously with perfect coordination",
+      "bonus": "+16 Efficiency",
+      "icon": "⚙️"
+    },
+    {
+      "name": "Magic Sense",
+      "type": "Support",
+      "description": "Enhanced perception allowing detection of magical auras and hidden presences",
+      "bonus": "+14 Perception",
+      "icon": "👁️"
+    },
+    {
+      "name": "Barrier Creation",
+      "type": "Support",
+      "description": "Generation of protective magical barriers with various properties and strengths",
+      "bonus": "+18 Defense",
+      "icon": "🛡️"
+    },
+    {
+      "name": "Soul Manipulation",
+      "type": "Magic",
+      "description": "Advanced ability to interact with and influence souls and spiritual energy",
+      "bonus": "+26 Spiritual",
+      "icon": "✨"
+    },
+    {
+      "name": "Time Manipulation",
+      "type": "Magic",
+      "description": "Limited control over temporal flow, allowing acceleration or deceleration of time",
+      "bonus": "+24 Temporal",
+      "icon": "⏰"
     }
   ],
   "impact": {
