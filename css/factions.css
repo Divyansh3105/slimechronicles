@@ -4,6 +4,16 @@
   padding: 7rem 2rem 4rem;
   position: relative;
   z-index: 10;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Force scroll on mobile for factions page - apply globally */
@@ -21,21 +31,64 @@ body {
 .page-header {
   text-align: center;
   margin-bottom: 3rem;
+  position: relative;
+  animation: fadeInDown 0.6s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .page-title {
   font-family: "Cinzel", serif;
   font-size: 3.2rem;
-  background: linear-gradient(135deg, #4dd4ff, #ffd700);
+  background: linear-gradient(135deg, #4dd4ff, #ffd700, #ff6b9d);
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: gradientShift 4s ease infinite;
+  text-shadow: 0 0 30px rgba(77, 212, 255, 0.3);
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.page-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #4dd4ff, transparent);
+  border-radius: 2px;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .page-subtitle {
-  color: rgba(232, 240, 255, 0.8);
+  color: rgba(232, 240, 255, 0.85);
   max-width: 700px;
   margin: 1rem auto 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  animation: fadeIn 0.8s ease-out 0.3s both;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .factions-controls {
@@ -45,6 +98,18 @@ body {
   margin-bottom: 3rem;
   flex-wrap: wrap;
   align-items: center;
+  animation: slideDown 0.5s ease-out 0.2s both;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .factions-controls input,
@@ -52,23 +117,47 @@ body {
   padding: 0.8rem 1.2rem;
   border-radius: 12px;
   border: 1px solid rgba(77, 212, 255, 0.3);
-  background: rgba(21, 27, 61, 0.6);
+  background: rgba(21, 27, 61, 0.8);
+  backdrop-filter: blur(10px);
   color: #e8f0ff;
   font-family: "Rajdhani", sans-serif;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.factions-controls input::placeholder {
+  color: rgba(232, 240, 255, 0.5);
+  font-style: italic;
 }
 
 .factions-controls input:focus,
 .factions-controls select:focus {
   outline: none;
-  border-color: rgba(77, 212, 255, 0.6);
+  border-color: rgba(77, 212, 255, 0.8);
+  box-shadow: 0 0 20px rgba(77, 212, 255, 0.4), 0 4px 15px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
 }
 
 .results-counter {
-  color: rgba(232, 240, 255, 0.7);
+  color: rgba(232, 240, 255, 0.8);
   font-size: 0.9rem;
   font-family: "Rajdhani", sans-serif;
   margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  background: rgba(77, 212, 255, 0.1);
+  border-radius: 20px;
+  border: 1px solid rgba(77, 212, 255, 0.2);
+  backdrop-filter: blur(5px);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(77, 212, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(77, 212, 255, 0.4);
+  }
 }
 
 .factions-grid {
@@ -80,18 +169,45 @@ body {
 .faction-card {
   background: linear-gradient(
     135deg,
-    rgba(21, 27, 61, 0.85),
-    rgba(10, 14, 39, 0.85)
+    rgba(21, 27, 61, 0.9),
+    rgba(10, 14, 39, 0.9)
   );
   border: 2px solid rgba(77, 212, 255, 0.3);
-  border-radius: 18px;
+  border-radius: 20px;
   padding: 1.8rem;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s ease;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: visible;
+  backdrop-filter: blur(10px);
+}
+
+.faction-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(77, 212, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.faction-card:hover::before {
+  left: 100%;
+}
+
+.faction-card > * {
+  position: relative;
+  z-index: 1;
 }
 
 .faction-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 60px rgba(77, 212, 255, 0.2), 0 0 0 1px rgba(77, 212, 255, 0.3) inset;
+  border-color: rgba(77, 212, 255, 0.6);
 }
 
 .faction-header {
@@ -103,20 +219,66 @@ body {
 .faction-header h2 {
   font-family: "Cinzel", serif;
   font-size: 1.5rem;
-  color: #4dd4ff;
+  background: linear-gradient(135deg, #4dd4ff, #ffd700);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(77, 212, 255, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  word-wrap: break-word;
+}
+
+.faction-card:hover .faction-header h2 {
+  transform: translateX(5px);
+  filter: brightness(1.2);
 }
 
 .faction-tag {
-  padding: 0.3rem 0.8rem;
+  padding: 0.4rem 1rem;
   border-radius: 20px;
   font-size: 0.75rem;
   font-weight: bold;
   text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.faction-tag::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+  z-index: 0;
+}
+
+.faction-card:hover .faction-tag::before {
+  width: 100%;
+  height: 100%;
 }
 
 .faction-tag.nation {
   background: rgba(77, 212, 255, 0.2);
   color: #4dd4ff;
+  position: relative;
+  z-index: 1;
+}
+
+.faction-tag.nation::before {
+  z-index: -1;
 }
 
 .faction-tag.council {
@@ -141,18 +303,47 @@ body {
 }
 
 .expand-btn {
-  background: none;
-  border: 1px solid rgba(77, 212, 255, 0.4);
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.1), rgba(77, 212, 255, 0.05));
+  border: 2px solid rgba(77, 212, 255, 0.4);
   color: #4dd4ff;
-  padding: 0.6rem 1.2rem;
+  padding: 0.7rem 1.5rem;
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.expand-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(77, 212, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease;
+}
+
+.expand-btn:hover::before {
+  width: 300px;
+  height: 300px;
 }
 
 .expand-btn:hover {
-  background: rgba(77, 212, 255, 0.15);
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.25), rgba(77, 212, 255, 0.15));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(77, 212, 255, 0.3);
+  border-color: rgba(77, 212, 255, 0.8);
+}
+
+.expand-btn:active {
+  transform: translateY(0);
 }
 
 /* Enhanced animations and transitions */
@@ -242,18 +433,22 @@ body {
     align-items: flex-start;
     gap: 0.75rem;
     margin-bottom: 1rem;
+    flex-wrap: nowrap;
   }
 
   .faction-header h2 {
     font-size: 1.4rem;
     line-height: 1.3;
     margin: 0;
+    width: 100%;
+    word-break: break-word;
   }
 
   .faction-tag {
     padding: 0.4rem 0.9rem;
     font-size: 0.7rem;
     border-radius: 15px;
+    align-self: flex-start;
   }
 
   .faction-summary {
@@ -555,11 +750,29 @@ body {
   color: var(--text-light);
   opacity: 0.7;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.timeline-node::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(77, 212, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.timeline-node:hover::before {
+  left: 100%;
 }
 
 .timeline-node.active {
   opacity: 1;
-  box-shadow: 0 0 10px rgba(77, 212, 255, 0.4);
+  box-shadow: 0 0 15px rgba(77, 212, 255, 0.5);
+  background: rgba(77, 212, 255, 0.15);
 }
 
 .timeline-node.current {
@@ -570,6 +783,16 @@ body {
   );
   border-color: rgba(255, 215, 0, 0.6);
   opacity: 1;
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+  }
 }
 
 .timeline-node span {
@@ -904,16 +1127,39 @@ body {
   height: 8px;
   background: rgba(77, 212, 255, 0.15);
   border-radius: 10px;
-  /* overflow: hidden; removed to allow page scroll on mobile */
+  overflow: hidden;
+  position: relative;
 }
 
 .power-bar div {
   height: 100%;
   width: calc(var(--power) * 1%);
   background: linear-gradient(90deg, #4dd4ff, #ffd700);
-  box-shadow: 0 0 8px rgba(77, 212, 255, 0.6);
+  box-shadow: 0 0 12px rgba(77, 212, 255, 0.6);
   border-radius: 10px;
-  transition: width 0.8s ease-in-out;
+  transition: width 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.power-bar div::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 /* Enhanced power bar animations */
@@ -997,7 +1243,7 @@ body {
   padding: 0;
   max-width: 900px;
   max-height: 85vh;
-  /* overflow: hidden; removed to allow page scroll on mobile */
+  overflow: hidden;
   position: relative;
   margin: 2rem 1rem 1rem 1rem;
   box-shadow:
@@ -1022,27 +1268,33 @@ body {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 87, 87, 0.15);
+  border: 2px solid rgba(255, 87, 87, 0.3);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 1.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   z-index: 1020;
   backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .faction-modal .modal-close:hover {
-  background: rgba(255, 87, 87, 0.2);
+  background: rgba(255, 87, 87, 0.3);
   border-color: #ff5757;
   color: #ff5757;
-  transform: rotate(90deg) scale(1.1);
+  transform: rotate(90deg) scale(1.15);
+  box-shadow: 0 6px 20px rgba(255, 87, 87, 0.4);
+}
+
+.faction-modal .modal-close:active {
+  transform: rotate(90deg) scale(1.05);
 }
 
 .faction-modal .modal-body {
@@ -1142,8 +1394,30 @@ body {
   height: 100%;
   background: linear-gradient(90deg, #4dd4ff, #ffd700);
   border-radius: 10px;
-  transition: width 1s ease-in-out;
-  box-shadow: 0 0 10px rgba(77, 212, 255, 0.6);
+  transition: width 1s cubic-bezier(0.65, 0, 0.35, 1);
+  box-shadow: 0 0 15px rgba(77, 212, 255, 0.6);
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-power-bar div::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  animation: shimmer 2.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 /* Modal detail sections */
@@ -1154,10 +1428,18 @@ body {
 }
 
 .modal-detail-section {
-  background: rgba(21, 27, 61, 0.3);
-  border: 1px solid rgba(77, 212, 255, 0.2);
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.4), rgba(10, 14, 39, 0.4));
+  border: 1px solid rgba(77, 212, 255, 0.25);
   border-radius: 15px;
   padding: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.modal-detail-section:hover {
+  border-color: rgba(77, 212, 255, 0.4);
+  box-shadow: 0 6px 20px rgba(77, 212, 255, 0.15);
+  transform: translateY(-2px);
 }
 
 .modal-detail-section h4 {
@@ -1353,8 +1635,12 @@ body {
   }
 }
 /* Hide faction details completely on cards - they should only appear in modal */
+.faction-card .faction-details {
+  display: none !important;
+}
+
 .faction-details {
-  display: none;
+  display: none !important;
 }
 
 /* ===== Dependency Indicators ===== */
@@ -1372,11 +1658,30 @@ body {
   border: 1px solid rgba(77, 212, 255, 0.3);
   color: var(--text-light);
   transition: all 0.3s ease;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.dependency-grid span::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(77, 212, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.dependency-grid span:hover::before {
+  left: 100%;
 }
 
 .dependency-grid span:hover {
   background: rgba(77, 212, 255, 0.25);
-  transform: translateY(-1px);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(77, 212, 255, 0.3);
 }
 
 /* Mobile dependency grid adjustments */
@@ -1459,11 +1764,31 @@ body {
   transition: all 0.3s ease;
   cursor: pointer;
   border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.relation::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.relation:hover::before {
+  width: 150px;
+  height: 150px;
 }
 
 .relation:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .relation.allied {
@@ -1598,5 +1923,698 @@ body {
   .relations-section h4 {
     font-size: 1rem;
     margin-bottom: 0.6rem;
+  }
+}
+
+/* ===== Enhanced Faction Card Hover Stats ===== */
+.faction-card {
+  position: relative;
+}
+
+.faction-card::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #4dd4ff, #ffd700, #ff6b9d, #4dd4ff);
+  background-size: 300% 300%;
+  border-radius: 20px;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+  animation: gradientRotate 4s ease infinite;
+}
+
+.faction-card:hover::after {
+  opacity: 0.3;
+}
+
+@keyframes gradientRotate {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ===== Enhanced Faction Links ===== */
+.faction-link {
+  padding: 0.5rem 1rem;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.15), rgba(77, 212, 255, 0.05));
+  border: 1px solid rgba(77, 212, 255, 0.3);
+  color: #4dd4ff;
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.faction-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(77, 212, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.faction-link:hover::before {
+  left: 100%;
+}
+
+.faction-link:hover {
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.3), rgba(77, 212, 255, 0.15));
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 15px rgba(77, 212, 255, 0.3);
+  border-color: rgba(77, 212, 255, 0.6);
+}
+
+/* ===== Power Item Enhanced Styling ===== */
+.power-item span {
+  font-weight: 600;
+  color: rgba(232, 240, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.8rem;
+}
+
+/* ===== Faction Summary Enhanced ===== */
+.faction-summary {
+  margin: 1rem 0;
+  color: rgba(232, 240, 255, 0.9);
+  line-height: 1.7;
+  font-size: 0.95rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== Enhanced Modal Animations ===== */
+.faction-modal.active {
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-faction-title {
+  position: relative;
+  display: inline-block;
+}
+
+.modal-faction-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #4dd4ff, #ffd700, transparent);
+  animation: titleUnderline 2s ease-in-out infinite;
+}
+
+@keyframes titleUnderline {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scaleX(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+/* ===== Scrollbar Styling for Modal ===== */
+.faction-modal .modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.faction-modal .modal-body::-webkit-scrollbar-track {
+  background: rgba(10, 14, 39, 0.5);
+  border-radius: 10px;
+}
+
+.faction-modal .modal-body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #4dd4ff, #ffd700);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.faction-modal .modal-body::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ffd700, #4dd4ff);
+}
+
+/* ===== Enhanced Impact Section ===== */
+.impact-section ul li {
+  padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.impact-section ul li:hover {
+  background: rgba(77, 212, 255, 0.05);
+  transform: translateX(5px);
+}
+
+.impact-positive {
+  border-left: 3px solid #90ee90;
+}
+
+.impact-negative {
+  border-left: 3px solid #ff6347;
+}
+
+.impact-neutral {
+  border-left: 3px solid #ffd700;
+}
+
+/* ===== Enhanced Controls Background ===== */
+.factions-controls {
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.4), rgba(10, 14, 39, 0.4));
+  padding: 1.5rem;
+  border-radius: 15px;
+  border: 1px solid rgba(77, 212, 255, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== Grid Stagger Animation ===== */
+.factions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.faction-card:nth-child(1) { animation-delay: 0.1s; }
+.faction-card:nth-child(2) { animation-delay: 0.15s; }
+.faction-card:nth-child(3) { animation-delay: 0.2s; }
+.faction-card:nth-child(4) { animation-delay: 0.25s; }
+.faction-card:nth-child(5) { animation-delay: 0.3s; }
+.faction-card:nth-child(6) { animation-delay: 0.35s; }
+.faction-card:nth-child(7) { animation-delay: 0.4s; }
+.faction-card:nth-child(8) { animation-delay: 0.45s; }
+.faction-card:nth-child(9) { animation-delay: 0.5s; }
+.faction-card:nth-child(10) { animation-delay: 0.55s; }
+
+/* ===== Enhanced Detail Section Headers ===== */
+.detail-section h4,
+.modal-detail-section h4 {
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.detail-section h4::after,
+.modal-detail-section h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ffd700, transparent);
+  border-radius: 2px;
+}
+
+/* ===== Faction Type Specific Enhancements ===== */
+.faction-card[data-type="nation"]:hover {
+  border-color: rgba(77, 212, 255, 0.7);
+}
+
+.faction-card[data-type="council"]:hover {
+  border-color: rgba(255, 215, 0, 0.7);
+}
+
+.faction-card[data-type="military"]:hover {
+  border-color: rgba(255, 99, 71, 0.7);
+}
+
+.faction-card[data-type="guild"]:hover {
+  border-color: rgba(144, 238, 144, 0.7);
+}
+
+.faction-card[data-type="race"]:hover {
+  border-color: rgba(186, 85, 211, 0.7);
+}
+
+/* ===== Loading State Enhancement ===== */
+.faction-card.loading {
+  opacity: 0.5;
+  pointer-events: none;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* ===== No Results Message ===== */
+.no-results {
+  text-align: center;
+  padding: 3rem;
+  color: rgba(232, 240, 255, 0.6);
+  font-size: 1.2rem;
+  font-family: "Cinzel", serif;
+}
+
+.no-results::before {
+  content: '🔍';
+  display: block;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+/* ===== Scroll to Top Button ===== */
+.scroll-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.9), rgba(77, 212, 255, 0.7));
+  border: 2px solid rgba(77, 212, 255, 0.5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  box-shadow: 0 4px 15px rgba(77, 212, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-to-top:hover {
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 6px 20px rgba(77, 212, 255, 0.5);
+  background: linear-gradient(135deg, rgba(77, 212, 255, 1), rgba(77, 212, 255, 0.9));
+}
+
+.scroll-to-top::before {
+  content: '↑';
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* ===== Enhanced Modal Content Animation ===== */
+.modal-detail-sections {
+  animation: fadeInStagger 0.6s ease-out;
+}
+
+@keyframes fadeInStagger {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-detail-section:nth-child(1) { animation-delay: 0.1s; }
+.modal-detail-section:nth-child(2) { animation-delay: 0.15s; }
+.modal-detail-section:nth-child(3) { animation-delay: 0.2s; }
+.modal-detail-section:nth-child(4) { animation-delay: 0.25s; }
+.modal-detail-section:nth-child(5) { animation-delay: 0.3s; }
+.modal-detail-section:nth-child(6) { animation-delay: 0.35s; }
+
+/* ===== Enhanced Power Snapshot ===== */
+.power-snapshot {
+  margin: 1.2rem 0;
+  display: grid;
+  gap: 0.6rem;
+  padding: 1rem;
+  background: rgba(10, 14, 39, 0.3);
+  border-radius: 12px;
+  border: 1px solid rgba(77, 212, 255, 0.15);
+}
+
+/* ===== Faction Card Relation Border Glow ===== */
+.faction-card[data-relation="allied"] {
+  border-left: 4px solid #90ee90;
+  box-shadow: -4px 0 15px rgba(144, 238, 144, 0.2);
+}
+
+.faction-card[data-relation="hostile"] {
+  border-left: 4px solid #ff6347;
+  box-shadow: -4px 0 15px rgba(255, 99, 71, 0.2);
+}
+
+.faction-card[data-relation="neutral"] {
+  border-left: 4px solid #ffd700;
+  box-shadow: -4px 0 15px rgba(255, 215, 0, 0.2);
+}
+
+.faction-card[data-relation="unknown"] {
+  border-left: 4px solid #808080;
+  box-shadow: -4px 0 15px rgba(128, 128, 128, 0.2);
+}
+
+/* ===== Enhanced Modal Power Snapshot ===== */
+.modal-power-snapshot {
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.5), rgba(10, 14, 39, 0.5));
+  border: 2px solid rgba(77, 212, 255, 0.3);
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.modal-power-snapshot h3 {
+  color: #ffd700;
+  font-family: "Cinzel", serif;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.4rem;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+  letter-spacing: 1px;
+}
+
+/* ===== Enhanced Faction Header ===== */
+.faction-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid rgba(77, 212, 255, 0.15);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ===== Search Input Enhancement ===== */
+.factions-controls input[type="text"] {
+  min-width: 250px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%234dd4ff" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: 12px center;
+  padding-left: 2.5rem;
+}
+
+/* ===== Select Dropdown Enhancement ===== */
+.factions-controls select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="%234dd4ff" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: calc(100% - 12px) center;
+  padding-right: 2.5rem;
+}
+
+/* ===== Improved Faction Summary ===== */
+.faction-summary {
+  position: relative;
+  padding-left: 1rem;
+  border-left: 3px solid rgba(77, 212, 255, 0.3);
+}
+
+/* ===== Enhanced Timeline Section ===== */
+.timeline-section {
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.5), rgba(10, 14, 39, 0.5));
+  border: 2px solid rgba(77, 212, 255, 0.3);
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.timeline-section h4 {
+  text-align: center;
+  margin-bottom: 1.2rem;
+  font-size: 1.2rem;
+}
+
+/* ===== Responsive Enhancements ===== */
+@media (max-width: 767px) {
+  .scroll-to-top {
+    bottom: 1rem;
+    right: 1rem;
+    width: 45px;
+    height: 45px;
+  }
+
+  .scroll-to-top::before {
+    font-size: 1.3rem;
+  }
+}
+
+/* ===== Active Filter Indicators ===== */
+.factions-controls select:not([value="all"]),
+.factions-controls input:not(:placeholder-shown) {
+  border-color: rgba(255, 215, 0, 0.6);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.factions-controls select:not([value="all"])::after,
+.factions-controls input:not(:placeholder-shown)::after {
+  content: '✓';
+  position: absolute;
+  right: 10px;
+  color: #ffd700;
+}
+
+/* ===== Clear Filters Button ===== */
+.clear-filters-btn {
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 99, 71, 0.4);
+  background: linear-gradient(135deg, rgba(255, 99, 71, 0.1), rgba(255, 99, 71, 0.05));
+  color: #ff6347;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  display: none;
+}
+
+.clear-filters-btn.visible {
+  display: block;
+}
+
+.clear-filters-btn:hover {
+  background: linear-gradient(135deg, rgba(255, 99, 71, 0.25), rgba(255, 99, 71, 0.15));
+  border-color: rgba(255, 99, 71, 0.8);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 99, 71, 0.3);
+}
+
+.clear-filters-btn:active {
+  transform: translateY(0);
+}
+
+/* ===== Faction Type Icons - Removed to prevent text overlap ===== */
+
+/* ===== Enhanced Faction Card States ===== */
+.faction-card.filtered-out {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+}
+
+.faction-card.filtered-in {
+  opacity: 1;
+  transform: scale(1);
+  animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ===== Enhanced Modal Header ===== */
+.modal-faction-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(77, 212, 255, 0.3);
+  position: relative;
+}
+
+.modal-faction-header::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #4dd4ff, #ffd700, transparent);
+  animation: headerGlow 3s ease-in-out infinite;
+}
+
+@keyframes headerGlow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ===== Tooltip for Power Stats ===== */
+.power-item {
+  position: relative;
+  cursor: help;
+}
+
+.power-item::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-5px);
+  background: rgba(10, 14, 39, 0.95);
+  color: #e8f0ff;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  border: 1px solid rgba(77, 212, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+
+.power-item:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-10px);
+}
+
+/* ===== Enhanced Faction Links ===== */
+.faction-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.links-section {
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.05), rgba(10, 14, 39, 0.3));
+  border: 1px solid rgba(77, 212, 255, 0.2);
+  border-radius: 12px;
+  padding: 1.2rem;
+}
+
+/* ===== Faction Card Quick Actions ===== */
+.faction-card-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(77, 212, 255, 0.15);
+}
+
+.quick-action-btn {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(77, 212, 255, 0.3);
+  background: rgba(77, 212, 255, 0.05);
+  color: #4dd4ff;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.quick-action-btn:hover {
+  background: rgba(77, 212, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(77, 212, 255, 0.2);
+}
+
+/* ===== Enhanced Page Transitions ===== */
+@keyframes pageLoad {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.factions-container {
+  animation: pageLoad 0.6s ease-out;
+}
+
+/* ===== Improved Mobile Touch Feedback ===== */
+@media (max-width: 767px) {
+  .faction-card:active {
+    transform: scale(0.98);
+  }
+
+  .expand-btn:active {
+    transform: scale(0.95);
+  }
+
+  .relation:active {
+    transform: scale(0.95);
+  }
+}
+
+/* ===== Print Styles ===== */
+@media print {
+  .factions-controls,
+  .scroll-to-top,
+  .expand-btn,
+  .main-nav,
+  .mobile-nav,
+  .starfield,
+  .particles {
+    display: none !important;
+  }
+
+  .faction-card {
+    page-break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+
+  .faction-details {
+    display: block !important;
   }
 }
