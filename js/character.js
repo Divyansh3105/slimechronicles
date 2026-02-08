@@ -307,15 +307,15 @@ window.CharacterLoader = new CharacterDataLoader();
 
 // Consolidated initialization function
 function initializeCharacterPage() {
-  // Load character profile after brief delay to ensure DOM is fully ready
-  setTimeout(() => {
+  // Use requestAnimationFrame for better performance
+  requestAnimationFrame(() => {
     loadCharacterProfile();
-  }, 100);
 
-  // Set up enhanced tab navigation after delay
-  setTimeout(() => {
-    setupTabNavigation();
-  }, 1000);
+    // Set up enhanced tab navigation after profile loads
+    requestAnimationFrame(() => {
+      setupTabNavigation();
+    });
+  });
 }
 
 // Setup enhanced tab navigation - Initialize keyboard and touch navigation for profile tabs
@@ -365,12 +365,12 @@ function setupTabNavigation() {
       // Track touch start to detect scrolling vs tapping
       profileTabs.addEventListener("touchstart", () => {
         isScrolling = false;
-      });
+      }, { passive: true });
 
       // Mark as scrolling if touch moves significantly
       profileTabs.addEventListener("touchmove", () => {
         isScrolling = true;
-      });
+      }, { passive: true });
 
       // Handle tab activation only if not scrolling
       profileTabs.addEventListener("touchend", (e) => {
@@ -863,15 +863,15 @@ function closeSkillModal() {
 
 // Initialize skills section interactions
 function initializeSkillsSection() {
-  // Initialize power meter animations
-  setTimeout(() => {
+  // Use requestAnimationFrame for better performance
+  requestAnimationFrame(() => {
     const powerMeters = document.querySelectorAll('.power-meter-fill');
     powerMeters.forEach(meter => {
       const targetWidth = meter.style.width;
       meter.style.setProperty('--target-width', targetWidth);
       meter.classList.add('animate-fill');
     });
-  }, 1000);
+  });
 
   // Add click outside modal to close
   const modal = document.getElementById('skill-details-modal');
@@ -891,9 +891,13 @@ function initializeSkillsSection() {
   });
 }
 
-// Add to the initialization
+// Add to the initialization - use requestIdleCallback for non-critical work
 document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(initializeSkillsSection, 1500);
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(() => initializeSkillsSection(), { timeout: 2000 });
+  } else {
+    requestAnimationFrame(initializeSkillsSection);
+  }
 });
 
 function generateWeaknessesSection(character) {
@@ -910,72 +914,318 @@ function generateWeaknessesSection(character) {
 }
 
 function generateRelationshipsSection(character) {
+  console.log('=== generateRelationshipsSection called ===');
+  console.log('Character:', character.name);
+  console.log('Relationships:', character.relationships);
+
   if (!character.relationships) {
-    return "<p>Relationship data is being compiled and verified.</p>";
+    return `
+      <div class="relationships-empty-state">
+        <div class="empty-state-icon">🤝</div>
+        <h4>Relationships & Connections</h4>
+        <p>Relationship data is being compiled and verified.</p>
+      </div>
+    `;
   }
 
-  const sections = [];
+  const allRelationships = [
+    ...(character.relationships.allies || []).map(name => ({ name, type: 'ally', icon: '👥', color: 'emerald' })),
+    ...(character.relationships.rivals || []).map(name => ({ name, type: 'rival', icon: '⚔️', color: 'crimson' })),
+    ...(character.relationships.mentors || []).map(name => ({ name, type: 'mentor', icon: '🎓', color: 'gold' })),
+    ...(character.relationships.subordinates || []).map(name => ({ name, type: 'subordinate', icon: '👤', color: 'blue' })),
+    ...(character.relationships.friends || []).map(name => ({ name, type: 'friend', icon: '💙', color: 'cyan' }))
+  ];
 
-  if (character.relationships.allies) {
-    sections.push(`
-      <div class="relationship-category">
-        <h4 class="relationship-title allies">👥 Allies</h4>
-        <div class="relationship-list">
-          ${character.relationships.allies
-            .map(
-              (ally) => `
-            <div class="relationship-item ally">
-              <span class="relationship-name">${ally}</span>
-            </div>
-          `,
-            )
-            .join("")}
+  const totalRelationships = allRelationships.length;
+
+  console.log('Total relationships:', totalRelationships);
+  console.log('Allies:', character.relationships.allies);
+  console.log('Rivals:', character.relationships.rivals);
+  console.log('Mentors:', character.relationships.mentors);
+
+  const alliesHTML = generateRelationshipCategory(character.relationships.allies, 'Allies', 'ally', '👥', 'emerald', 'Trusted companions and partners in battle');
+  const rivalsHTML = generateRelationshipCategory(character.relationships.rivals, 'Rivals', 'rival', '⚔️', 'crimson', 'Adversaries and competitive opponents');
+  const mentorsHTML = generateRelationshipCategory(character.relationships.mentors, 'Mentors', 'mentor', '🎓', 'gold', 'Teachers and guides who shaped their path');
+  const subordinatesHTML = generateRelationshipCategory(character.relationships.subordinates, 'Subordinates', 'subordinate', '👤', 'blue', 'Those who serve under their leadership');
+  const friendsHTML = generateRelationshipCategory(character.relationships.friends, 'Friends', 'friend', '💙', 'cyan', 'Close personal connections and confidants');
+
+  console.log('Allies HTML length:', alliesHTML.length);
+  console.log('Rivals HTML length:', rivalsHTML.length);
+  console.log('Mentors HTML length:', mentorsHTML.length);
+
+  return `
+    <!-- Relationships Overview Dashboard -->
+    <div class="relationships-overview-dashboard">
+      <div class="relationships-stats-grid">
+        <div class="relationship-stat-card">
+          <div class="stat-icon">🤝</div>
+          <div class="stat-content">
+            <span class="stat-number">${totalRelationships}</span>
+            <span class="stat-label">Total Connections</span>
+          </div>
+        </div>
+        <div class="relationship-stat-card">
+          <div class="stat-icon">👥</div>
+          <div class="stat-content">
+            <span class="stat-number">${character.relationships.allies?.length || 0}</span>
+            <span class="stat-label">Allies</span>
+          </div>
+        </div>
+        <div class="relationship-stat-card">
+          <div class="stat-icon">⚔️</div>
+          <div class="stat-content">
+            <span class="stat-number">${character.relationships.rivals?.length || 0}</span>
+            <span class="stat-label">Rivals</span>
+          </div>
+        </div>
+        <div class="relationship-stat-card">
+          <div class="stat-icon">🎓</div>
+          <div class="stat-content">
+            <span class="stat-number">${character.relationships.mentors?.length || 0}</span>
+            <span class="stat-label">Mentors</span>
+          </div>
         </div>
       </div>
-    `);
-  }
+    </div>
 
-  if (character.relationships.rivals) {
-    sections.push(`
-      <div class="relationship-category">
-        <h4 class="relationship-title rivals">⚔️ Rivals</h4>
-        <div class="relationship-list">
-          ${character.relationships.rivals
-            .map(
-              (rival) => `
-            <div class="relationship-item rival">
-              <span class="relationship-name">${rival}</span>
+    <!-- Relationship Network Visualization -->
+    <div class="relationship-network-container">
+      <h4>🕸️ Relationship Network</h4>
+      <div class="relationship-network">
+        <div class="network-center">
+          <div class="center-character">
+            <div class="character-avatar-large">
+              <img src="${character.image}" alt="${character.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="avatar-fallback" style="display: none;">${character.portrait}</div>
             </div>
-          `,
-            )
-            .join("")}
+            <span class="center-name">${character.name}</span>
+          </div>
+        </div>
+        <div class="network-connections">
+          ${allRelationships.slice(0, 8).map((rel, index) => `
+            <div class="network-node ${rel.type}" style="--node-index: ${index}; --total-nodes: ${Math.min(allRelationships.length, 8)};">
+              <div class="connection-line"></div>
+              <div class="node-character" onclick="navigateToCharacter('${getCharacterId(rel.name)}')">
+                <div class="character-avatar-small">
+                  <img src="${getCharacterImage(rel.name)}" alt="${rel.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                  <div class="avatar-fallback-small" style="display: none;">${rel.icon}</div>
+                </div>
+                <span class="node-name">${rel.name}</span>
+                <span class="node-type">${rel.type}</span>
+              </div>
+            </div>
+          `).join('')}
         </div>
       </div>
-    `);
+    </div>
+
+    <!-- Enhanced Relationships Grid -->
+    <div class="relationships-categories-enhanced">
+      ${alliesHTML}
+      ${rivalsHTML}
+      ${mentorsHTML}
+      ${subordinatesHTML}
+      ${friendsHTML}
+    </div>
+
+    <!-- Relationship Insights -->
+    <div class="relationship-insights">
+      <h4>💡 Relationship Insights</h4>
+      <div class="insights-grid">
+        ${generateRelationshipInsights(character)}
+      </div>
+    </div>
+  `;
+}
+
+function generateRelationshipCategory(relationships, title, type, icon, color, description) {
+  if (!relationships || relationships.length === 0) {
+    console.log(`No relationships for ${title}`);
+    return '';
   }
 
-  if (character.relationships.mentors) {
-    sections.push(`
-      <div class="relationship-category">
-        <h4 class="relationship-title mentors">🎓 Mentors</h4>
-        <div class="relationship-list">
-          ${character.relationships.mentors
-            .map(
-              (mentor) => `
-            <div class="relationship-item mentor">
-              <span class="relationship-name">${mentor}</span>
+  console.log(`Generating ${title} with ${relationships.length} relationships:`, relationships);
+
+  const cardsHTML = relationships.map((name, index) => {
+    const cleanName = name.replace(/\s*\(.*?\)\s*/g, '').trim();
+    console.log(`Generating card for: ${name} (clean: ${cleanName})`);
+
+    return `
+      <div class="relationship-card-enhanced ${type}" data-relationship="${cleanName}" style="animation-delay: ${index * 0.1}s;">
+        <div class="card-glow-effect"></div>
+        <div class="card-header-enhanced">
+          <div class="character-avatar-medium">
+            <img src="${getCharacterImage(cleanName)}"
+                 alt="${cleanName}"
+                 onload="console.log('Image loaded:', this.src);"
+                 onerror="console.log('Image failed:', this.src); this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                 style="display: block; width: 100%; height: 100%; object-fit: cover;">
+            <div class="avatar-fallback-medium" style="display: none;">${icon}</div>
+            <div class="relationship-badge ${type}">${icon}</div>
+          </div>
+          <div class="card-info">
+            <h5 class="relationship-character-name">${cleanName}</h5>
+            <span class="relationship-type-label ${color}">${type.charAt(0).toUpperCase() + type.slice(1)}</span>
+          </div>
+        </div>
+        <div class="card-body-enhanced">
+          <div class="relationship-strength">
+            <span class="strength-label">Bond Strength</span>
+            <div class="strength-bar">
+              <div class="strength-fill ${type}" style="width: ${getRelationshipStrength(type)}%"></div>
             </div>
-          `,
-            )
-            .join("")}
+            <span class="strength-value">${getRelationshipStrength(type)}%</span>
+          </div>
+          <p class="relationship-description">${getRelationshipDescription(cleanName, type)}</p>
+        </div>
+        <div class="card-footer-enhanced">
+          <button class="relationship-action-btn" onclick="navigateToCharacter('${getCharacterId(cleanName)}')" title="View Profile">
+            <span>👤</span> View Profile
+          </button>
+          <button class="relationship-action-btn" onclick="showRelationshipDetails('${cleanName}')" title="Details">
+            <span>📋</span> Details
+          </button>
         </div>
       </div>
-    `);
+    `;
+  }).join('');
+
+  return `
+    <div class="relationship-category-enhanced ${type}">
+      <div class="category-header-enhanced">
+        <div class="category-icon-large">${icon}</div>
+        <div class="category-info-enhanced">
+          <h4 class="category-title-enhanced ${color}">${title}</h4>
+          <p class="category-description">${description}</p>
+          <span class="category-count-badge">${relationships.length} ${relationships.length === 1 ? 'connection' : 'connections'}</span>
+        </div>
+      </div>
+      <div class="relationship-cards-grid">
+        ${cardsHTML}
+      </div>
+    </div>
+  `;
+}
+
+function generateRelationshipInsights(character) {
+  const insights = [];
+  const rels = character.relationships;
+
+  if (rels.allies && rels.allies.length > 3) {
+    insights.push({
+      icon: '🌟',
+      title: 'Strong Alliance Network',
+      description: `${character.name} has built a powerful network of ${rels.allies.length} allies, demonstrating exceptional diplomatic skills.`,
+      color: 'emerald'
+    });
   }
 
-  return sections.length > 0
-    ? `<div class="relationships-grid">${sections.join("")}</div>`
-    : "<p>Relationship data is being compiled and verified.</p>";
+  if (rels.rivals && rels.rivals.length > 0) {
+    insights.push({
+      icon: '⚡',
+      title: 'Competitive Spirit',
+      description: `Maintains ${rels.rivals.length} rivalries that push them to constantly improve and evolve.`,
+      color: 'crimson'
+    });
+  }
+
+  if (rels.mentors && rels.mentors.length > 0) {
+    insights.push({
+      icon: '📚',
+      title: 'Continuous Learning',
+      description: `Guided by ${rels.mentors.length} mentor${rels.mentors.length > 1 ? 's' : ''}, showing humility and dedication to growth.`,
+      color: 'gold'
+    });
+  }
+
+  const totalConnections = (rels.allies?.length || 0) + (rels.rivals?.length || 0) +
+                          (rels.mentors?.length || 0) + (rels.subordinates?.length || 0) +
+                          (rels.friends?.length || 0);
+
+  if (totalConnections > 10) {
+    insights.push({
+      icon: '🕸️',
+      title: 'Influential Figure',
+      description: `With ${totalConnections} documented relationships, ${character.name} is a central figure in the world's power structure.`,
+      color: 'blue'
+    });
+  }
+
+  if (insights.length === 0) {
+    insights.push({
+      icon: '🔍',
+      title: 'Mysterious Connections',
+      description: 'Relationship patterns are still being analyzed and documented.',
+      color: 'cyan'
+    });
+  }
+
+  return insights.map(insight => `
+    <div class="insight-card ${insight.color}">
+      <div class="insight-icon">${insight.icon}</div>
+      <div class="insight-content">
+        <h5>${insight.title}</h5>
+        <p>${insight.description}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function getRelationshipStrength(type) {
+  const strengths = {
+    'ally': 85,
+    'rival': 70,
+    'mentor': 90,
+    'subordinate': 75,
+    'friend': 95
+  };
+  return strengths[type] || 50;
+}
+
+function getRelationshipDescription(name, type) {
+  const descriptions = {
+    'ally': `A trusted ally who fights alongside in times of need.`,
+    'rival': `A formidable rival who pushes boundaries through competition.`,
+    'mentor': `A wise mentor who provides guidance and knowledge.`,
+    'subordinate': `A loyal subordinate who serves with dedication.`,
+    'friend': `A close friend who shares a deep personal bond.`
+  };
+  return descriptions[type] || 'A significant connection in their journey.';
+}
+
+function getCharacterId(name) {
+  // Handle special cases
+  const specialCases = {
+    'Hinata Sakaguchi': 'hinata',
+    'Yuuki Kagurazaka': 'yuuki',
+    'Great Sage': 'rimuru', // Great Sage is part of Rimuru
+    'Souei (friendly rivalry)': 'souei'
+  };
+
+  if (specialCases[name]) {
+    return specialCases[name];
+  }
+
+  return name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+}
+
+function getCharacterImage(name) {
+  // Clean up the name for special cases
+  const cleanName = name.replace(/\s*\(.*?\)\s*/g, '').trim();
+
+  const imagePath = `assets/characters/${cleanName}.png`;
+  console.log(`Getting image for "${name}" -> "${cleanName}" -> "${imagePath}"`);
+
+  // Try exact match first
+  return imagePath;
+}
+
+function navigateToCharacter(characterId) {
+  window.location.href = `character.html?id=${characterId}`;
+}
+
+function showRelationshipDetails(name) {
+  window.showNotification(`Detailed relationship analysis for ${name} coming soon!`);
 }
 
 function generateAchievementsSection(character) {

@@ -129,7 +129,7 @@ function initializeMobileNavigation() {
   mobileNav.addEventListener("touchstart", (e) => {
     startY = e.touches[0].clientY;
     startX = e.touches[0].clientX;
-  });
+  }, { passive: true });
 
   // Process swipe gesture when touch ends and close menu if swiped up
   mobileNav.addEventListener("touchend", (e) => {
@@ -649,89 +649,135 @@ if (typeof module !== "undefined" && module.exports) {
 }
 // ========== CURSOR ENFORCEMENT ========== //
 
-// Function to enforce custom cursors on all elements
-function enforceCursors() {
-  // Set default cursor for body
-  document.body.style.cursor = "url('../assets/cursor.cur'), auto";
+// Optimized cursor enforcement with batching and caching
+let cursorEnforcementPending = false;
+let cursorStyleSheet = null;
 
-  // Set pointer cursor for interactive elements
-  const interactiveSelectors = [
-    "a",
-    "button",
-    'input[type="button"]',
-    'input[type="submit"]',
-    'input[type="reset"]',
-    "select",
-    '[role="button"]',
-    ".clickable",
-    ".primary-button",
-    ".secondary-button",
-    ".tertiary-button",
-    ".view-profile-button",
-    ".view-details-button",
-    ".recruit-button",
-    ".social-link",
-    ".quick-item",
-    ".modal-close",
-    ".nav-brand",
-    ".mobile-menu-toggle",
-  ];
+// Create a style sheet for cursor rules to avoid forced reflows
+function initializeCursorStyles() {
+  if (cursorStyleSheet) return;
 
-  interactiveSelectors.forEach((selector) => {
-    const elements = document.querySelectorAll(selector);
-    elements.forEach((element) => {
-      if (!element.disabled && !element.classList.contains("disabled")) {
-        element.style.cursor = "url('../assets/pointer.cur'), pointer";
+  const style = document.createElement('style');
+  style.id = 'cursor-enforcement-styles';
+  style.textContent = `
+    /* Default cursor */
+    body {
+      cursor: url('../assets/cursor.cur'), auto !important;
+    }
 
-        // Also set cursor for child elements
-        const children = element.querySelectorAll("*");
-        children.forEach((child) => {
-          child.style.cursor = "url('../assets/pointer.cur'), pointer";
-          child.style.pointerEvents = "none";
-        });
-      }
-    });
-  });
+    /* Interactive elements */
+    a, button,
+    input[type="button"],
+    input[type="submit"],
+    input[type="reset"],
+    select,
+    [role="button"],
+    .clickable,
+    .primary-button,
+    .secondary-button,
+    .tertiary-button,
+    .view-profile-button,
+    .view-details-button,
+    .recruit-button,
+    .social-link,
+    .quick-item,
+    .modal-close,
+    .nav-brand,
+    .mobile-menu-toggle {
+      cursor: url('../assets/pointer.cur'), pointer !important;
+    }
 
-  // Set text cursor for text inputs
-  const textInputSelectors = [
-    'input[type="text"]',
-    'input[type="email"]',
-    'input[type="password"]',
-    'input[type="search"]',
-    "textarea",
-    '[contenteditable="true"]',
-  ];
+    /* Child elements of interactive elements */
+    a *, button *,
+    input[type="button"] *,
+    input[type="submit"] *,
+    input[type="reset"] *,
+    select *,
+    [role="button"] *,
+    .clickable *,
+    .primary-button *,
+    .secondary-button *,
+    .tertiary-button *,
+    .view-profile-button *,
+    .view-details-button *,
+    .recruit-button *,
+    .social-link *,
+    .quick-item *,
+    .modal-close *,
+    .nav-brand *,
+    .mobile-menu-toggle * {
+      cursor: url('../assets/pointer.cur'), pointer !important;
+      pointer-events: none;
+    }
 
-  textInputSelectors.forEach((selector) => {
-    const elements = document.querySelectorAll(selector);
-    elements.forEach((element) => {
-      element.style.cursor = "url('../assets/cursor.cur'), text";
-    });
-  });
+    /* Text inputs */
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="search"],
+    textarea,
+    [contenteditable="true"] {
+      cursor: url('../assets/cursor.cur'), text !important;
+    }
 
-  // Set not-allowed cursor for disabled elements
-  const disabledElements = document.querySelectorAll(
-    "button:disabled, input:disabled, select:disabled, textarea:disabled, .disabled",
-  );
-  disabledElements.forEach((element) => {
-    element.style.cursor = "url('../assets/cursor.cur'), not-allowed";
+    /* Disabled elements */
+    button:disabled,
+    input:disabled,
+    select:disabled,
+    textarea:disabled,
+    .disabled {
+      cursor: url('../assets/cursor.cur'), not-allowed !important;
+    }
+  `;
+
+  document.head.appendChild(style);
+  cursorStyleSheet = style;
+}
+
+// Lightweight function to apply cursors only to new elements
+function enforceCursorsOnElement(element) {
+  if (!element || element.nodeType !== Node.ELEMENT_NODE) return;
+
+  // Use CSS classes instead of inline styles for better performance
+  if (element.matches('a, button, input[type="button"], input[type="submit"], input[type="reset"], select, [role="button"], .clickable, .primary-button, .secondary-button, .tertiary-button, .view-profile-button, .view-details-button, .recruit-button, .social-link, .quick-item, .modal-close, .nav-brand, .mobile-menu-toggle')) {
+    element.classList.add('cursor-pointer');
+  } else if (element.matches('input[type="text"], input[type="email"], input[type="password"], input[type="search"], textarea, [contenteditable="true"]')) {
+    element.classList.add('cursor-text');
+  } else if (element.matches('button:disabled, input:disabled, select:disabled, textarea:disabled, .disabled')) {
+    element.classList.add('cursor-not-allowed');
+  }
+}
+
+// Debounced cursor enforcement for batch updates
+function scheduleCursorEnforcement() {
+  if (cursorEnforcementPending) return;
+
+  cursorEnforcementPending = true;
+  requestAnimationFrame(() => {
+    cursorEnforcementPending = false;
   });
 }
 
-// Function to handle dynamically added elements
+// Optimized mutation observer with throttling
 function observeCursorChanges() {
+  let mutationTimeout;
+
   const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      if (mutation.type === "childList") {
-        mutation.addedNodes.forEach((node) => {
-          if (node.nodeType === Node.ELEMENT_NODE) {
-            // Apply cursor styles to newly added elements
-            setTimeout(() => enforceCursors(), 10);
-          }
-        });
-      }
-    });
+    // Throttle mutations to avoid excessive processing
+    clearTimeout(mutationTimeout);
+    mutationTimeout = setTimeout(() => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === "childList") {
+          mutation.addedNodes.forEach((node) => {
+            if (node.nodeType === Node.ELEMENT_NODE) {
+              enforceCursorsOnElement(node);
+              // Also check children
+              node.querySelectorAll('a, button, input, select, textarea, [role="button"]').forEach(enforceCursorsOnElement);
+            }
+          });
+        }
+      });
+    }, 50); // Batch mutations within 50ms
   });
 
   observer.observe(document.body, {
@@ -742,17 +788,16 @@ function observeCursorChanges() {
 
 // Initialize cursor enforcement when DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
-  enforceCursors();
+  initializeCursorStyles();
   observeCursorChanges();
 
-  // Re-enforce cursors periodically to handle any overrides
-  setInterval(enforceCursors, 5000);
+  // No need for periodic enforcement with CSS-based approach
 });
 
-// Re-enforce cursors when page becomes visible (handles tab switching)
+// Re-initialize on visibility change (lightweight check)
 document.addEventListener("visibilitychange", () => {
-  if (!document.hidden) {
-    setTimeout(enforceCursors, 100);
+  if (!document.hidden && !cursorStyleSheet) {
+    initializeCursorStyles();
   }
 });
 
