@@ -827,14 +827,20 @@ function toggleSkillCategory(category) {
   const skillsGrid = document.getElementById(`skills-${category}`);
   const toggleIcon = categoryElement.querySelector('.toggle-icon');
 
-  if (skillsGrid.style.display === 'none' || !skillsGrid.style.display) {
-    skillsGrid.style.display = 'grid';
-    toggleIcon.textContent = '▲';
-    categoryElement.classList.add('expanded');
-  } else {
+  // Check the actual computed display state
+  const computedDisplay = window.getComputedStyle(skillsGrid).display;
+  const isVisible = computedDisplay !== 'none';
+
+  if (isVisible) {
+    // Currently visible, so hide it
     skillsGrid.style.display = 'none';
     toggleIcon.textContent = '▼';
     categoryElement.classList.remove('expanded');
+  } else {
+    // Currently hidden, so show it
+    skillsGrid.style.display = 'grid';
+    toggleIcon.textContent = '▲';
+    categoryElement.classList.add('expanded');
   }
 }
 
