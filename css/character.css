@@ -4534,6 +4534,540 @@ body {
   font-weight: 600;
 }
 
+/* ========== ENHANCED BIOGRAPHY SECTION ========== */
+.biography-section-enhanced {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.biography-header {
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
+  border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.biography-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--character-primary, var(--primary-blue)), transparent);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.biography-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.biography-icon {
+  font-size: 2.5rem;
+  filter: drop-shadow(0 0 15px var(--character-glow, var(--glow-blue)));
+  animation: float 3s ease-in-out infinite;
+}
+
+.biography-title {
+  font-family: 'Cinzel', serif;
+  font-size: 2rem;
+  color: var(--character-primary, var(--primary-blue));
+  text-shadow: 0 0 20px var(--character-glow, var(--glow-blue));
+  margin: 0;
+}
+
+.biography-subtitle {
+  color: rgba(232, 240, 255, 0.7);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Biography Grid */
+.biography-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 2rem;
+}
+
+.biography-card {
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
+  border: 2px solid rgba(77, 212, 255, 0.3);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.biography-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, var(--character-glow, rgba(77, 212, 255, 0.15)), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.biography-card:hover::before {
+  opacity: 1;
+}
+
+.biography-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  border-color: var(--character-primary, var(--primary-blue));
+  box-shadow: 0 20px 60px var(--character-glow, rgba(77, 212, 255, 0.4));
+}
+
+.card-header-bio {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(77, 212, 255, 0.2);
+}
+
+.card-icon-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  filter: drop-shadow(0 0 10px var(--character-glow, var(--glow-blue)));
+  z-index: 2;
+  position: relative;
+}
+
+.icon-glow {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, var(--character-primary, rgba(77, 212, 255, 0.3)), transparent);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.card-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  color: var(--character-primary, var(--primary-blue));
+  margin: 0;
+  text-shadow: 0 0 10px var(--character-glow, rgba(77, 212, 255, 0.3));
+}
+
+.card-content-bio {
+  position: relative;
+}
+
+.card-text {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(232, 240, 255, 0.9);
+  text-align: justify;
+  position: relative;
+  z-index: 1;
+}
+
+.card-decoration {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, var(--character-primary, rgba(77, 212, 255, 0.1)), transparent);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Specific card styles */
+.philosophy-card {
+  border-color: rgba(138, 43, 226, 0.3);
+}
+
+.philosophy-card:hover {
+  border-color: #8a2be2;
+  box-shadow: 0 20px 60px rgba(138, 43, 226, 0.4);
+}
+
+.leadership-card {
+  border-color: rgba(255, 215, 0, 0.3);
+}
+
+.leadership-card:hover {
+  border-color: #ffd700;
+  box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4);
+}
+
+.influence-card {
+  border-color: rgba(0, 255, 136, 0.3);
+}
+
+.influence-card:hover {
+  border-color: #00ff88;
+  box-shadow: 0 20px 60px rgba(0, 255, 136, 0.4);
+}
+
+.alternate-card {
+  border-color: rgba(255, 51, 102, 0.3);
+}
+
+.alternate-card:hover {
+  border-color: #ff3366;
+  box-shadow: 0 20px 60px rgba(255, 51, 102, 0.4);
+}
+
+/* Enhanced Quotes Section */
+.quotes-section-enhanced {
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
+  border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
+  border-radius: 20px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.quotes-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(77, 212, 255, 0.2);
+}
+
+.quotes-icon {
+  font-size: 2rem;
+  filter: drop-shadow(0 0 10px var(--character-glow, var(--glow-blue)));
+}
+
+.quotes-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  color: var(--character-primary, var(--primary-blue));
+  margin: 0;
+  flex: 1;
+}
+
+.quotes-count {
+  background: linear-gradient(135deg, var(--character-primary, rgba(77, 212, 255, 0.2)), transparent);
+  border: 1px solid var(--character-primary, rgba(77, 212, 255, 0.4));
+  border-radius: 20px;
+  padding: 0.4rem 1rem;
+  color: var(--character-primary, var(--primary-blue));
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.quotes-carousel {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 1rem 0.5rem;
+  margin: 0 -0.5rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.quotes-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.quote-card-enhanced {
+  flex: 0 0 calc(100% - 2rem);
+  min-width: calc(100% - 2rem);
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(21, 27, 61, 0.8));
+  border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
+  position: relative;
+  scroll-snap-align: center;
+  transition: all 0.4s ease;
+}
+
+.quote-card-enhanced:hover {
+  transform: scale(1.02);
+  border-color: var(--character-primary, var(--primary-blue));
+  box-shadow: 0 15px 50px var(--character-glow, rgba(77, 212, 255, 0.4));
+}
+
+.quote-decoration-left,
+.quote-decoration-right {
+  position: absolute;
+  font-size: 6rem;
+  font-family: 'Cinzel', serif;
+  color: var(--character-primary, rgba(77, 212, 255, 0.15));
+  line-height: 1;
+  pointer-events: none;
+}
+
+.quote-decoration-left {
+  top: 1rem;
+  left: 1rem;
+}
+
+.quote-decoration-right {
+  bottom: 1rem;
+  right: 1rem;
+}
+
+.quote-content-enhanced {
+  position: relative;
+  z-index: 1;
+}
+
+.quote-text-enhanced {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  color: rgba(232, 240, 255, 0.95);
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.quote-divider {
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--character-primary, var(--primary-blue)), transparent);
+  margin: 1.5rem auto;
+  border-radius: 2px;
+}
+
+.quote-context-enhanced {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: rgba(232, 240, 255, 0.7);
+}
+
+.context-label {
+  font-weight: 600;
+  color: var(--character-primary, var(--primary-blue));
+}
+
+.context-text {
+  font-style: italic;
+}
+
+.quote-number {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--character-primary, rgba(77, 212, 255, 0.3)), transparent);
+  border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.5));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--character-primary, var(--primary-blue));
+}
+
+/* Quotes Navigation */
+.quotes-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(77, 212, 255, 0.2);
+}
+
+.quote-nav-btn {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.2), rgba(77, 212, 255, 0.1));
+  border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.4));
+  border-radius: 50%;
+  color: var(--character-primary, var(--primary-blue));
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quote-nav-btn:hover {
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.3), rgba(77, 212, 255, 0.2));
+  transform: scale(1.1);
+  box-shadow: 0 5px 20px var(--character-glow, rgba(77, 212, 255, 0.4));
+}
+
+.quote-nav-btn:active {
+  transform: scale(0.95);
+}
+
+.quote-indicators {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.quote-indicator {
+  width: 12px;
+  height: 12px;
+  background: rgba(77, 212, 255, 0.2);
+  border: 2px solid rgba(77, 212, 255, 0.4);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.quote-indicator:hover {
+  background: rgba(77, 212, 255, 0.4);
+  transform: scale(1.2);
+}
+
+.quote-indicator.active {
+  background: var(--character-primary, var(--primary-blue));
+  border-color: var(--character-primary, var(--primary-blue));
+  box-shadow: 0 0 15px var(--character-glow, var(--glow-blue));
+  transform: scale(1.3);
+}
+
+/* Character Essence */
+.character-essence {
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
+  border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.4));
+  border-radius: 20px;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.character-essence::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--character-primary, var(--primary-blue)), transparent);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.essence-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.essence-icon {
+  font-size: 2rem;
+  filter: drop-shadow(0 0 15px var(--character-glow, var(--glow-blue)));
+  animation: float 3s ease-in-out infinite;
+}
+
+.essence-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  color: var(--character-primary, var(--primary-blue));
+  margin: 0;
+  text-shadow: 0 0 15px var(--character-glow, rgba(77, 212, 255, 0.3));
+}
+
+.essence-content {
+  position: relative;
+}
+
+.essence-text {
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: rgba(232, 240, 255, 0.95);
+  text-align: center;
+  font-style: italic;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.05), transparent);
+  border-radius: 15px;
+  border-left: 4px solid var(--character-primary, var(--primary-blue));
+}
+
+/* Biography Empty State */
+.biography-empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
+  border: 2px dashed rgba(77, 212, 255, 0.3);
+  border-radius: 20px;
+}
+
+.biography-empty-state .empty-state-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 0 15px var(--glow-blue));
+  animation: float 3s ease-in-out infinite;
+}
+
+.biography-empty-state h3 {
+  font-family: 'Cinzel', serif;
+  color: var(--primary-blue);
+  margin-bottom: 1rem;
+}
+
+.biography-empty-state p {
+  color: rgba(232, 240, 255, 0.7);
+  font-size: 1.05rem;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
 /* ========== THEME VARIABLES ========== */
 [data-theme="dark"] {
   --primary-dark: #0a0e27;
@@ -5312,6 +5846,171 @@ body {
   .character-avatar-large {
     width: 80px;
     height: 80px;
+  }
+
+  /* Biography Section Mobile Responsive */
+  .biography-section-enhanced {
+    gap: 1.5rem;
+  }
+
+  .biography-header {
+    padding: 1.5rem 1rem;
+  }
+
+  .biography-title {
+    font-size: 1.5rem;
+  }
+
+  .biography-icon {
+    font-size: 2rem;
+  }
+
+  .biography-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .biography-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .biography-card {
+    padding: 1.5rem;
+  }
+
+  .biography-card:hover {
+    transform: translateY(-5px) scale(1.01);
+  }
+
+  .card-icon {
+    font-size: 2rem;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+  }
+
+  .card-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    text-align: left;
+  }
+
+  /* Quotes Section Mobile */
+  .quotes-section-enhanced {
+    padding: 1.5rem 1rem;
+  }
+
+  .quotes-header {
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .quotes-title {
+    font-size: 1.3rem;
+    width: 100%;
+  }
+
+  .quotes-count {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.8rem;
+  }
+
+  .quotes-carousel {
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
+  .quote-card-enhanced {
+    flex: 0 0 calc(100% - 1rem);
+    min-width: calc(100% - 1rem);
+    padding: 2rem 1.5rem;
+  }
+
+  .quote-decoration-left,
+  .quote-decoration-right {
+    font-size: 4rem;
+  }
+
+  .quote-decoration-left {
+    top: 0.5rem;
+    left: 0.5rem;
+  }
+
+  .quote-decoration-right {
+    bottom: 0.5rem;
+    right: 0.5rem;
+  }
+
+  .quote-text-enhanced {
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+
+  .quote-context-enhanced {
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 0.9rem;
+  }
+
+  .quote-number {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+    top: 0.8rem;
+    right: 1rem;
+  }
+
+  .quotes-navigation {
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+  }
+
+  .quote-nav-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
+  }
+
+  .quote-indicators {
+    gap: 0.6rem;
+  }
+
+  .quote-indicator {
+    width: 10px;
+    height: 10px;
+  }
+
+  /* Character Essence Mobile */
+  .character-essence {
+    padding: 1.5rem;
+  }
+
+  .essence-title {
+    font-size: 1.3rem;
+  }
+
+  .essence-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    padding: 1rem;
+  }
+
+  .biography-empty-state {
+    padding: 3rem 1.5rem;
+  }
+
+  .biography-empty-state .empty-state-icon {
+    font-size: 3rem;
+  }
+
+  .biography-empty-state h3 {
+    font-size: 1.3rem;
+  }
+
+  .biography-empty-state p {
+    font-size: 0.95rem;
   }
 
   .character-avatar-small {

@@ -481,14 +481,7 @@ function generateProfileTabs(character) {
     </div>
 
     <div class="tab-section" id="tab-biography">
-      <div class="profile-section">
-        <h3>📜 Detailed Biography</h3>
-        ${character.philosophy ? `<h4>🧠 Philosophy & Beliefs</h4><p>${character.philosophy}</p>` : ""}
-        ${character.leadershipStyle ? `<h4>👑 Leadership Style</h4><p>${character.leadershipStyle}</p>` : ""}
-        ${character.worldInfluence ? `<h4>🌍 World Influence</h4><p>${character.worldInfluence}</p>` : ""}
-        ${character.alternateScenario ? `<h4>⚠️ Alternate Scenario</h4><p>${character.alternateScenario}</p>` : ""}
-        ${generateQuotesSection(character)}
-      </div>
+      ${generateBiographySection(character)}
     </div>
 
     <div class="tab-section" id="tab-skills">
@@ -547,6 +540,261 @@ function generateQuotesSection(character) {
     </div>
   `;
 }
+
+// Generate enhanced biography section with improved UI
+function generateBiographySection(character) {
+  const hasContent = character.philosophy || character.leadershipStyle ||
+                     character.worldInfluence || character.alternateScenario ||
+                     (character.quotes && character.quotes.length > 0);
+
+  if (!hasContent) {
+    return `
+      <div class="profile-section">
+        <div class="biography-empty-state">
+          <div class="empty-state-icon">📜</div>
+          <h3>Detailed Biography</h3>
+          <p>Biographical information is being compiled and will be available soon.</p>
+        </div>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="profile-section biography-section-enhanced">
+      <!-- Biography Header -->
+      <div class="biography-header">
+        <div class="biography-title-container">
+          <span class="biography-icon">📜</span>
+          <h3 class="biography-title">Detailed Biography</h3>
+        </div>
+        <p class="biography-subtitle">Explore the depths of ${character.name}'s character, beliefs, and impact on the world</p>
+      </div>
+
+      <!-- Biography Grid Layout -->
+      <div class="biography-grid">
+        ${character.philosophy ? `
+          <div class="biography-card philosophy-card">
+            <div class="card-header-bio">
+              <div class="card-icon-container">
+                <span class="card-icon">🧠</span>
+                <div class="icon-glow"></div>
+              </div>
+              <h4 class="card-title">Philosophy & Beliefs</h4>
+            </div>
+            <div class="card-content-bio">
+              <p class="card-text">${character.philosophy}</p>
+              <div class="card-decoration"></div>
+            </div>
+          </div>
+        ` : ''}
+
+        ${character.leadershipStyle ? `
+          <div class="biography-card leadership-card">
+            <div class="card-header-bio">
+              <div class="card-icon-container">
+                <span class="card-icon">👑</span>
+                <div class="icon-glow"></div>
+              </div>
+              <h4 class="card-title">Leadership Style</h4>
+            </div>
+            <div class="card-content-bio">
+              <p class="card-text">${character.leadershipStyle}</p>
+              <div class="card-decoration"></div>
+            </div>
+          </div>
+        ` : ''}
+
+        ${character.worldInfluence ? `
+          <div class="biography-card influence-card">
+            <div class="card-header-bio">
+              <div class="card-icon-container">
+                <span class="card-icon">🌍</span>
+                <div class="icon-glow"></div>
+              </div>
+              <h4 class="card-title">World Influence</h4>
+            </div>
+            <div class="card-content-bio">
+              <p class="card-text">${character.worldInfluence}</p>
+              <div class="card-decoration"></div>
+            </div>
+          </div>
+        ` : ''}
+
+        ${character.alternateScenario ? `
+          <div class="biography-card alternate-card">
+            <div class="card-header-bio">
+              <div class="card-icon-container">
+                <span class="card-icon">⚠️</span>
+                <div class="icon-glow"></div>
+              </div>
+              <h4 class="card-title">Alternate Scenario</h4>
+            </div>
+            <div class="card-content-bio">
+              <p class="card-text">${character.alternateScenario}</p>
+              <div class="card-decoration"></div>
+            </div>
+          </div>
+        ` : ''}
+      </div>
+
+      <!-- Quotes Section Enhanced -->
+      ${character.quotes && character.quotes.length > 0 ? `
+        <div class="quotes-section-enhanced">
+          <div class="quotes-header">
+            <span class="quotes-icon">💬</span>
+            <h4 class="quotes-title">Notable Quotes</h4>
+            <div class="quotes-count">${character.quotes.length} ${character.quotes.length === 1 ? 'Quote' : 'Quotes'}</div>
+          </div>
+          <div class="quotes-carousel">
+            ${character.quotes.map((quote, index) => `
+              <div class="quote-card-enhanced" data-quote-index="${index}">
+                <div class="quote-decoration-left">❝</div>
+                <div class="quote-decoration-right">❞</div>
+                <div class="quote-content-enhanced">
+                  <p class="quote-text-enhanced">${quote.text}</p>
+                  <div class="quote-divider"></div>
+                  <p class="quote-context-enhanced">
+                    <span class="context-label">Context:</span>
+                    <span class="context-text">${quote.context}</span>
+                  </p>
+                </div>
+                <div class="quote-number">${index + 1}</div>
+              </div>
+            `).join('')}
+          </div>
+          ${character.quotes.length > 1 ? `
+            <div class="quotes-navigation">
+              <button class="quote-nav-btn" onclick="scrollQuotes('left')" aria-label="Previous quote">
+                <span>←</span>
+              </button>
+              <div class="quote-indicators">
+                ${character.quotes.map((_, index) => `
+                  <span class="quote-indicator ${index === 0 ? 'active' : ''}" data-index="${index}" onclick="scrollToQuote(${index})"></span>
+                `).join('')}
+              </div>
+              <button class="quote-nav-btn" onclick="scrollQuotes('right')" aria-label="Next quote">
+                <span>→</span>
+              </button>
+            </div>
+          ` : ''}
+        </div>
+      ` : ''}
+
+      <!-- Character Essence Summary -->
+      <div class="character-essence">
+        <div class="essence-header">
+          <span class="essence-icon">✨</span>
+          <h4 class="essence-title">Character Essence</h4>
+        </div>
+        <div class="essence-content">
+          <p class="essence-text">
+            ${generateCharacterEssence(character)}
+          </p>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// Generate character essence summary
+function generateCharacterEssence(character) {
+  const essenceParts = [];
+
+  if (character.philosophy) {
+    essenceParts.push(`Guided by a philosophy of ${character.philosophy.split('.')[0].toLowerCase()}`);
+  }
+
+  if (character.leadershipStyle) {
+    const style = character.leadershipStyle.split('-')[0].trim().toLowerCase();
+    essenceParts.push(`leads with a ${style} approach`);
+  }
+
+  if (character.worldInfluence) {
+    essenceParts.push(`leaving an indelible mark on the world`);
+  }
+
+  if (essenceParts.length === 0) {
+    return `${character.name} stands as a unique figure in the world, with a story still unfolding and a legacy yet to be fully written.`;
+  }
+
+  return `${character.name} ${essenceParts.join(', ')}, embodying the values and principles that define their journey.`;
+}
+
+// Quote carousel navigation functions
+function scrollQuotes(direction) {
+  const carousel = document.querySelector('.quotes-carousel');
+  if (!carousel) return;
+
+  const scrollAmount = carousel.offsetWidth * 0.9;
+  const currentScroll = carousel.scrollLeft;
+
+  if (direction === 'left') {
+    carousel.scrollTo({
+      left: currentScroll - scrollAmount,
+      behavior: 'smooth'
+    });
+  } else {
+    carousel.scrollTo({
+      left: currentScroll + scrollAmount,
+      behavior: 'smooth'
+    });
+  }
+
+  // Update indicators after scroll
+  setTimeout(updateQuoteIndicators, 300);
+}
+
+function scrollToQuote(index) {
+  const carousel = document.querySelector('.quotes-carousel');
+  if (!carousel) return;
+
+  const quoteCards = carousel.querySelectorAll('.quote-card-enhanced');
+  if (quoteCards[index]) {
+    quoteCards[index].scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center'
+    });
+  }
+
+  // Update indicators
+  setTimeout(updateQuoteIndicators, 300);
+}
+
+function updateQuoteIndicators() {
+  const carousel = document.querySelector('.quotes-carousel');
+  if (!carousel) return;
+
+  const indicators = document.querySelectorAll('.quote-indicator');
+  const quoteCards = carousel.querySelectorAll('.quote-card-enhanced');
+
+  let activeIndex = 0;
+  let minDistance = Infinity;
+
+  quoteCards.forEach((card, index) => {
+    const rect = card.getBoundingClientRect();
+    const carouselRect = carousel.getBoundingClientRect();
+    const distance = Math.abs(rect.left - carouselRect.left);
+
+    if (distance < minDistance) {
+      minDistance = distance;
+      activeIndex = index;
+    }
+  });
+
+  indicators.forEach((indicator, index) => {
+    if (index === activeIndex) {
+      indicator.classList.add('active');
+    } else {
+      indicator.classList.remove('active');
+    }
+  });
+}
+
+// Make functions globally available
+window.scrollQuotes = scrollQuotes;
+window.scrollToQuote = scrollToQuote;
+window.updateQuoteIndicators = updateQuoteIndicators;
 
 function generateSkillsSection(character) {
   if (!character.skills || character.skills.length === 0) {
