@@ -1583,6 +1583,424 @@ body {
   font-size: 1rem;
 }
 
+/* ========== CULTURAL IMPACT SECTION ========== */
+
+/* Cultural Impact Header */
+.cultural-impact-header {
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
+  border: 3px solid var(--character-primary, rgba(77, 212, 255, 0.5));
+  border-radius: 24px;
+  padding: 3rem;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), 0 0 60px var(--character-glow, rgba(77, 212, 255, 0.2));
+}
+
+.cultural-impact-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--character-primary, var(--primary-blue)), transparent);
+  animation: headerGlow 3s ease-in-out infinite;
+}
+
+.cultural-header-content {
+  margin-bottom: 2rem;
+}
+
+.cultural-main-title {
+  font-family: "Cinzel", serif;
+  font-size: 2.5rem;
+  color: var(--character-primary, var(--primary-blue));
+  margin-bottom: 1rem;
+  text-shadow: 0 0 20px var(--character-glow, var(--glow-blue));
+}
+
+.cultural-subtitle {
+  font-size: 1.1rem;
+  color: rgba(232, 240, 255, 0.8);
+  font-style: italic;
+}
+
+.cultural-impact-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.impact-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.impact-stat-icon {
+  font-size: 2.5rem;
+  filter: drop-shadow(0 0 15px var(--character-glow, var(--glow-blue)));
+}
+
+.impact-stat-label {
+  font-size: 0.9rem;
+  color: rgba(232, 240, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+/* Cultural Sections */
+.cultural-section {
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
+  border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
+  border-radius: 20px;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+}
+
+.cultural-section:hover {
+  border-color: var(--character-primary, var(--primary-blue));
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+}
+
+.section-header-cultural {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(77, 212, 255, 0.2);
+}
+
+.section-icon-large {
+  font-size: 3.5rem;
+  filter: drop-shadow(0 0 20px var(--character-glow, var(--glow-blue)));
+  flex-shrink: 0;
+}
+
+.section-title-content h3 {
+  font-family: "Cinzel", serif;
+  font-size: 1.8rem;
+  color: var(--character-primary, var(--primary-blue));
+  margin-bottom: 0.5rem;
+}
+
+.section-description {
+  color: rgba(232, 240, 255, 0.7);
+  font-size: 1rem;
+  font-style: italic;
+}
+
+/* World Influence Section */
+.influence-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.influence-text-box {
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
+  border-left: 4px solid var(--character-primary, var(--primary-blue));
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.influence-main-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: rgba(232, 240, 255, 0.9);
+}
+
+.influence-highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.influence-highlight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.7), rgba(21, 27, 61, 0.5));
+  border: 1px solid rgba(77, 212, 255, 0.2);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.influence-highlight-item:hover {
+  border-color: var(--character-primary, var(--primary-blue));
+  transform: translateX(5px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.highlight-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 10px var(--character-glow, var(--glow-blue)));
+}
+
+.highlight-text {
+  color: rgba(232, 240, 255, 0.85);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Philosophy Section */
+.philosophy-content {
+  padding: 1rem 0;
+}
+
+.philosophy-quote-box {
+  position: relative;
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
+  border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
+  border-radius: 15px;
+  padding: 3rem 2.5rem;
+  text-align: center;
+}
+
+.quote-mark {
+  font-family: "Cinzel", serif;
+  font-size: 4rem;
+  color: var(--character-primary, var(--primary-blue));
+  opacity: 0.3;
+  position: absolute;
+  top: 1rem;
+  left: 1.5rem;
+  line-height: 1;
+}
+
+.quote-mark.closing {
+  top: auto;
+  bottom: 1rem;
+  left: auto;
+  right: 1.5rem;
+  transform: rotate(180deg);
+}
+
+.philosophy-text {
+  font-size: 1.2rem;
+  line-height: 1.9;
+  color: rgba(232, 240, 255, 0.95);
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+}
+
+/* Leadership Section */
+.leadership-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.leadership-text-box {
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
+  border-left: 4px solid var(--accent-gold);
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.leadership-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: rgba(232, 240, 255, 0.9);
+}
+
+.leadership-traits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.leadership-trait-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
+  border: 2px solid rgba(255, 215, 0, 0.2);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.leadership-trait-card:hover {
+  border-color: var(--accent-gold);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.2);
+}
+
+.trait-icon {
+  font-size: 2.5rem;
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+  flex-shrink: 0;
+}
+
+.trait-content h4 {
+  font-family: "Cinzel", serif;
+  color: var(--accent-gold);
+  margin-bottom: 0.3rem;
+  font-size: 1.1rem;
+}
+
+.trait-description {
+  color: rgba(232, 240, 255, 0.7);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Alternate Scenario Section */
+.alternate-scenario-content {
+  padding: 1rem 0;
+}
+
+.scenario-comparison {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.scenario-box {
+  padding: 2rem;
+  border-radius: 15px;
+  border: 2px solid;
+  transition: all 0.3s ease;
+}
+
+.current-timeline {
+  background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 255, 136, 0.05));
+  border-color: rgba(0, 255, 136, 0.3);
+}
+
+.current-timeline:hover {
+  border-color: var(--accent-emerald);
+  box-shadow: 0 8px 25px rgba(0, 255, 136, 0.2);
+  transform: scale(1.02);
+}
+
+.alternate-timeline {
+  background: linear-gradient(135deg, rgba(255, 51, 102, 0.1), rgba(255, 51, 102, 0.05));
+  border-color: rgba(255, 51, 102, 0.3);
+}
+
+.alternate-timeline:hover {
+  border-color: var(--accent-crimson);
+  box-shadow: 0 8px 25px rgba(255, 51, 102, 0.2);
+  transform: scale(1.02);
+}
+
+.scenario-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-family: "Cinzel", serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.current-timeline .scenario-label {
+  color: var(--accent-emerald);
+}
+
+.alternate-timeline .scenario-label {
+  color: var(--accent-crimson);
+}
+
+.scenario-icon {
+  font-size: 1.5rem;
+}
+
+.scenario-text {
+  color: rgba(232, 240, 255, 0.9);
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+.scenario-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.divider-icon {
+  font-size: 2.5rem;
+  color: var(--character-primary, var(--primary-blue));
+  filter: drop-shadow(0 0 15px var(--character-glow, var(--glow-blue)));
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Legacy Summary */
+.legacy-summary-section {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05));
+  border: 3px solid rgba(255, 215, 0, 0.4);
+}
+
+.legacy-summary-section:hover {
+  border-color: var(--accent-gold);
+  box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
+}
+
+.legacy-summary-box {
+  text-align: center;
+  padding: 1rem;
+}
+
+.legacy-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+}
+
+.legacy-summary-box h3 {
+  font-family: "Cinzel", serif;
+  font-size: 2rem;
+  color: var(--accent-gold);
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+.legacy-summary-text {
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: rgba(232, 240, 255, 0.9);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Cultural Empty State */
+.cultural-empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.cultural-empty-state .empty-state-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 20px var(--character-glow, var(--glow-blue)));
+}
+
+.cultural-empty-state h4 {
+  font-family: "Cinzel", serif;
+  color: var(--character-primary, var(--primary-blue));
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.cultural-empty-state p {
+  color: rgba(232, 240, 255, 0.7);
+  font-size: 1rem;
+}
+
 /* ========== PROFILE HEADER ========== */
 .profile-header {
   text-align: center;
@@ -7166,6 +7584,76 @@ body {
 
   .relationship-action-btn {
     width: 100%;
+  }
+
+  /* Cultural Impact Responsive */
+  .cultural-main-title {
+    font-size: 1.8rem;
+  }
+
+  .cultural-subtitle {
+    font-size: 1rem;
+  }
+
+  .cultural-impact-stats {
+    gap: 1.5rem;
+  }
+
+  .impact-stat-icon {
+    font-size: 2rem;
+  }
+
+  .section-header-cultural {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .section-icon-large {
+    font-size: 2.5rem;
+  }
+
+  .section-title-content h3 {
+    font-size: 1.5rem;
+  }
+
+  .influence-highlights {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .leadership-traits {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .scenario-comparison {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .scenario-divider {
+    transform: rotate(90deg);
+  }
+
+  .legacy-summary-box h3 {
+    font-size: 1.5rem;
+  }
+
+  .legacy-summary-text {
+    font-size: 1rem;
+  }
+
+  .cultural-section {
+    padding: 1.5rem;
+  }
+
+  .philosophy-quote-box {
+    padding: 2rem 1.5rem;
+  }
+
+  .quote-mark {
+    font-size: 3rem;
   }
 
   /* Achievements Grid */

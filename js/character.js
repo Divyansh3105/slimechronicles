@@ -505,12 +505,191 @@ function generateProfileTabs(character) {
     </div>
 
     <div class="tab-section" id="tab-cultural">
-      <div class="profile-section">
-        <h3>🏛️ Cultural Impact</h3>
-        ${character.worldInfluence ? `<p>${character.worldInfluence}</p>` : "<p>Cultural impact analysis is being compiled.</p>"}
+      ${generateCulturalImpactSection(character)}
+    </div>
+  `;
+}
+
+function generateCulturalImpactSection(character) {
+  if (!character.worldInfluence && !character.alternateScenario && !character.philosophy && !character.leadershipStyle) {
+    return `
+      <div class="cultural-empty-state">
+        <div class="empty-state-icon">🏛️</div>
+        <h4>Cultural Impact Analysis</h4>
+        <p>Cultural impact data is being compiled and analyzed.</p>
+      </div>
+    `;
+  }
+
+  return `
+    <!-- Cultural Impact Header -->
+    <div class="cultural-impact-header">
+      <div class="cultural-header-content">
+        <h2 class="cultural-main-title">🏛️ Cultural Impact & Legacy</h2>
+        <p class="cultural-subtitle">How ${character.name} shaped the world and influenced history</p>
+      </div>
+      <div class="cultural-impact-stats">
+        <div class="impact-stat-item">
+          <span class="impact-stat-icon">🌍</span>
+          <span class="impact-stat-label">World Influence</span>
+        </div>
+        <div class="impact-stat-item">
+          <span class="impact-stat-icon">📜</span>
+          <span class="impact-stat-label">Historical Legacy</span>
+        </div>
+        <div class="impact-stat-item">
+          <span class="impact-stat-icon">⚖️</span>
+          <span class="impact-stat-label">Societal Change</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- World Influence Section -->
+    ${character.worldInfluence ? `
+      <div class="cultural-section world-influence-section">
+        <div class="section-header-cultural">
+          <div class="section-icon-large">🌍</div>
+          <div class="section-title-content">
+            <h3>World Influence</h3>
+            <p class="section-description">The lasting impact on society and civilization</p>
+          </div>
+        </div>
+        <div class="influence-content">
+          <div class="influence-text-box">
+            <p class="influence-main-text">${character.worldInfluence}</p>
+          </div>
+          <div class="influence-highlights">
+            ${generateInfluenceHighlights(character.worldInfluence)}
+          </div>
+        </div>
+      </div>
+    ` : ''}
+
+    <!-- Philosophy & Beliefs Section -->
+    ${character.philosophy ? `
+      <div class="cultural-section philosophy-section">
+        <div class="section-header-cultural">
+          <div class="section-icon-large">💭</div>
+          <div class="section-title-content">
+            <h3>Philosophy & Core Beliefs</h3>
+            <p class="section-description">The principles that guide their actions</p>
+          </div>
+        </div>
+        <div class="philosophy-content">
+          <div class="philosophy-quote-box">
+            <div class="quote-mark">"</div>
+            <p class="philosophy-text">${character.philosophy}</p>
+            <div class="quote-mark closing">"</div>
+          </div>
+        </div>
+      </div>
+    ` : ''}
+
+    <!-- Leadership Style Section -->
+    ${character.leadershipStyle ? `
+      <div class="cultural-section leadership-section">
+        <div class="section-header-cultural">
+          <div class="section-icon-large">👑</div>
+          <div class="section-title-content">
+            <h3>Leadership Approach</h3>
+            <p class="section-description">How they lead and inspire others</p>
+          </div>
+        </div>
+        <div class="leadership-content">
+          <div class="leadership-text-box">
+            <p class="leadership-text">${character.leadershipStyle}</p>
+          </div>
+          <div class="leadership-traits">
+            ${generateLeadershipTraits(character.leadershipStyle)}
+          </div>
+        </div>
+      </div>
+    ` : ''}
+
+    <!-- Alternate Scenario Section -->
+    ${character.alternateScenario ? `
+      <div class="cultural-section alternate-scenario-section">
+        <div class="section-header-cultural">
+          <div class="section-icon-large">⚠️</div>
+          <div class="section-title-content">
+            <h3>Alternate Timeline</h3>
+            <p class="section-description">What would happen without their influence</p>
+          </div>
+        </div>
+        <div class="alternate-scenario-content">
+          <div class="scenario-comparison">
+            <div class="scenario-box current-timeline">
+              <div class="scenario-label">
+                <span class="scenario-icon">✨</span>
+                <span>Current Reality</span>
+              </div>
+              <p class="scenario-text">With ${character.name}'s influence, the world has been transformed for the better.</p>
+            </div>
+            <div class="scenario-divider">
+              <span class="divider-icon">⚡</span>
+            </div>
+            <div class="scenario-box alternate-timeline">
+              <div class="scenario-label">
+                <span class="scenario-icon">🌑</span>
+                <span>Without Their Influence</span>
+              </div>
+              <p class="scenario-text">${character.alternateScenario}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    ` : ''}
+
+    <!-- Legacy Summary -->
+    <div class="cultural-section legacy-summary-section">
+      <div class="legacy-summary-box">
+        <div class="legacy-icon">🏆</div>
+        <h3>Historical Significance</h3>
+        <p class="legacy-summary-text">
+          ${character.name} stands as a pivotal figure whose actions and beliefs have fundamentally
+          reshaped the world. Their legacy continues to influence future generations, serving as
+          a testament to the power of ${character.philosophy ? 'principled leadership' : 'determination'}
+          and ${character.worldInfluence ? 'transformative vision' : 'unwavering commitment'}.
+        </p>
       </div>
     </div>
   `;
+}
+
+function generateInfluenceHighlights(worldInfluence) {
+  // Extract key points from the world influence text
+  const sentences = worldInfluence.split('.').filter(s => s.trim().length > 0);
+  const highlights = sentences.slice(0, 4).map((sentence, index) => {
+    const icons = ['🌟', '🔮', '⚡', '💫'];
+    return `
+      <div class="influence-highlight-item">
+        <span class="highlight-icon">${icons[index % icons.length]}</span>
+        <p class="highlight-text">${sentence.trim()}.</p>
+      </div>
+    `;
+  }).join('');
+
+  return highlights || '<p class="no-highlights">Key influences are being analyzed.</p>';
+}
+
+function generateLeadershipTraits(leadershipStyle) {
+  // Extract leadership traits from the text
+  const traits = [
+    { icon: '🎯', label: 'Strategic', description: 'Plans with foresight and precision' },
+    { icon: '🤝', label: 'Collaborative', description: 'Works together with others' },
+    { icon: '💪', label: 'Empowering', description: 'Enables others to succeed' },
+    { icon: '❤️', label: 'Compassionate', description: 'Leads with empathy and care' }
+  ];
+
+  return traits.map(trait => `
+    <div class="leadership-trait-card">
+      <div class="trait-icon">${trait.icon}</div>
+      <div class="trait-content">
+        <h4 class="trait-label">${trait.label}</h4>
+        <p class="trait-description">${trait.description}</p>
+      </div>
+    </div>
+  `).join('');
 }
 
 // Helper functions for generating specific sections
