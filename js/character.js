@@ -1468,6 +1468,18 @@ function setupTabSwitching() {
       // Add active class to clicked tab
       tab.classList.add("active");
 
+      // Scroll the active tab into view on mobile
+      if (window.innerWidth <= 768) {
+        // Small delay to ensure DOM is ready
+        requestAnimationFrame(() => {
+          tab.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "center"
+          });
+        });
+      }
+
       // Get target tab identifier and activate corresponding section
       const targetTab = tab.getAttribute("data-tab");
       const targetSection = document.getElementById(`tab-${targetTab}`);
@@ -1515,6 +1527,30 @@ function setupTabSwitching() {
       }
     });
   });
+
+  // Ensure first tab is visible on mobile on page load
+  if (tabs.length > 0 && window.innerWidth <= 768) {
+    setTimeout(() => {
+      const activeTab = document.querySelector(".profile-tab.active") || tabs[0];
+      activeTab.scrollIntoView({
+        behavior: "auto",
+        block: "nearest",
+        inline: "start"
+      });
+    }, 100);
+
+    // Hide scroll hint after user scrolls
+    const tabsContainer = document.querySelector(".profile-tabs");
+    if (tabsContainer) {
+      let scrolled = false;
+      tabsContainer.addEventListener("scroll", () => {
+        if (!scrolled) {
+          scrolled = true;
+          tabsContainer.style.setProperty("--scroll-hint-opacity", "0");
+        }
+      }, { once: true });
+    }
+  }
 }
 
 // Apply character theme - Set character-specific colors and styling
