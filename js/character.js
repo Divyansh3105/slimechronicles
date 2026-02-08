@@ -472,12 +472,7 @@ function generateProfileHeader(character, detailed = false) {
 function generateProfileTabs(character) {
   return `
     <div class="tab-section active" id="tab-overview">
-      <div class="profile-section">
-        <h3>📚 Character Overview</h3>
-        ${character.lore ? `<p>${character.lore}</p>` : "<p>Character lore information is being compiled.</p>"}
-        ${character.backstory ? `<h3>📖 Background</h3><p>${character.backstory}</p>` : ""}
-        ${character.personality ? `<h3>🎭 Personality</h3><p>${character.personality}</p>` : ""}
-      </div>
+      ${generateOverviewSection(character)}
     </div>
 
     <div class="tab-section" id="tab-biography">
@@ -540,6 +535,314 @@ function generateQuotesSection(character) {
     </div>
   `;
 }
+
+// Generate enhanced overview section with improved UI
+function generateOverviewSection(character) {
+  const hasContent = character.lore || character.backstory || character.personality;
+
+  if (!hasContent) {
+    return `
+      <div class="profile-section">
+        <div class="overview-empty-state">
+          <div class="empty-state-icon">📚</div>
+          <h3>Character Overview</h3>
+          <p>Character information is being compiled and will be available soon.</p>
+        </div>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="profile-section overview-section-enhanced">
+      <!-- Overview Hero Section -->
+      <div class="overview-hero">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-icon">⭐</span>
+            <span class="badge-text">Character Profile</span>
+          </div>
+          <h2 class="hero-title">${character.name}</h2>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="stat-icon">🏆</span>
+              <div class="stat-info">
+                <span class="stat-label">Classification</span>
+                <span class="stat-value">${character.power}</span>
+              </div>
+            </div>
+            <div class="hero-stat">
+              <span class="stat-icon">👤</span>
+              <div class="stat-info">
+                <span class="stat-label">Species</span>
+                <span class="stat-value">${character.race}</span>
+              </div>
+            </div>
+            <div class="hero-stat">
+              <span class="stat-icon">💼</span>
+              <div class="stat-info">
+                <span class="stat-label">Role</span>
+                <span class="stat-value">${character.role}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-decoration">
+          <div class="decoration-circle"></div>
+          <div class="decoration-circle"></div>
+          <div class="decoration-circle"></div>
+        </div>
+      </div>
+
+      <!-- Quick Info Cards -->
+      <div class="quick-info-section">
+        <div class="section-header-overview">
+          <span class="section-icon">📋</span>
+          <h3 class="section-title">Quick Information</h3>
+        </div>
+        <div class="quick-info-grid">
+          ${character.specialties && character.specialties.length > 0 ? `
+            <div class="quick-info-card specialties-card">
+              <div class="card-icon-wrapper">
+                <span class="card-icon-large">🌟</span>
+              </div>
+              <h4 class="card-title-overview">Specialties</h4>
+              <div class="specialties-tags">
+                ${character.specialties.map(specialty => `
+                  <span class="specialty-tag-overview">${specialty}</span>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+
+          ${character.achievements && character.achievements.length > 0 ? `
+            <div class="quick-info-card achievements-card">
+              <div class="card-icon-wrapper">
+                <span class="card-icon-large">🏆</span>
+              </div>
+              <h4 class="card-title-overview">Key Achievements</h4>
+              <div class="achievements-count">
+                <span class="count-number">${character.achievements.length}</span>
+                <span class="count-label">Major Accomplishments</span>
+              </div>
+              <div class="achievements-preview">
+                ${character.achievements.slice(0, 3).map(achievement => `
+                  <div class="achievement-preview-item">
+                    <span class="achievement-bullet">✓</span>
+                    <span class="achievement-text">${achievement}</span>
+                  </div>
+                `).join('')}
+                ${character.achievements.length > 3 ? `
+                  <div class="achievement-more">+${character.achievements.length - 3} more</div>
+                ` : ''}
+              </div>
+            </div>
+          ` : ''}
+
+          ${character.relationships ? `
+            <div class="quick-info-card relationships-card">
+              <div class="card-icon-wrapper">
+                <span class="card-icon-large">🤝</span>
+              </div>
+              <h4 class="card-title-overview">Connections</h4>
+              <div class="relationships-summary">
+                ${character.relationships.allies ? `
+                  <div class="relationship-summary-item">
+                    <span class="relationship-icon allies">💚</span>
+                    <span class="relationship-count">${character.relationships.allies.length}</span>
+                    <span class="relationship-label">Allies</span>
+                  </div>
+                ` : ''}
+                ${character.relationships.rivals ? `
+                  <div class="relationship-summary-item">
+                    <span class="relationship-icon rivals">⚔️</span>
+                    <span class="relationship-count">${character.relationships.rivals.length}</span>
+                    <span class="relationship-label">Rivals</span>
+                  </div>
+                ` : ''}
+                ${character.relationships.mentors ? `
+                  <div class="relationship-summary-item">
+                    <span class="relationship-icon mentors">📚</span>
+                    <span class="relationship-count">${character.relationships.mentors.length}</span>
+                    <span class="relationship-label">Mentors</span>
+                  </div>
+                ` : ''}
+              </div>
+            </div>
+          ` : ''}
+        </div>
+      </div>
+
+      <!-- Main Content Sections -->
+      <div class="overview-content-grid">
+        ${character.lore ? `
+          <div class="overview-content-card lore-card">
+            <div class="content-card-header">
+              <div class="header-icon-container">
+                <span class="header-icon">📚</span>
+                <div class="icon-pulse"></div>
+              </div>
+              <div class="header-text">
+                <h3 class="content-card-title">Character Lore</h3>
+                <p class="content-card-subtitle">The foundation of their story</p>
+              </div>
+            </div>
+            <div class="content-card-body">
+              <div class="lore-text-container">
+                <div class="decorative-quote-start">❝</div>
+                <p class="content-text">${character.lore}</p>
+                <div class="decorative-quote-end">❞</div>
+              </div>
+            </div>
+          </div>
+        ` : ''}
+
+        ${character.backstory ? `
+          <div class="overview-content-card backstory-card">
+            <div class="content-card-header">
+              <div class="header-icon-container">
+                <span class="header-icon">📖</span>
+                <div class="icon-pulse"></div>
+              </div>
+              <div class="header-text">
+                <h3 class="content-card-title">Background</h3>
+                <p class="content-card-subtitle">Their journey begins</p>
+              </div>
+            </div>
+            <div class="content-card-body">
+              <p class="content-text">${character.backstory}</p>
+              <div class="content-decoration"></div>
+            </div>
+          </div>
+        ` : ''}
+
+        ${character.personality ? `
+          <div class="overview-content-card personality-card">
+            <div class="content-card-header">
+              <div class="header-icon-container">
+                <span class="header-icon">🎭</span>
+                <div class="icon-pulse"></div>
+              </div>
+              <div class="header-text">
+                <h3 class="content-card-title">Personality</h3>
+                <p class="content-card-subtitle">What defines them</p>
+              </div>
+            </div>
+            <div class="content-card-body">
+              <p class="content-text">${character.personality}</p>
+              <div class="personality-traits">
+                ${extractPersonalityTraits(character.personality).map(trait => `
+                  <span class="trait-badge">${trait}</span>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        ` : ''}
+      </div>
+
+      <!-- Character Highlights -->
+      ${(character.weaknesses && character.weaknesses.length > 0) || (character.specialties && character.specialties.length > 0) ? `
+        <div class="character-highlights">
+          <div class="section-header-overview">
+            <span class="section-icon">💎</span>
+            <h3 class="section-title">Character Highlights</h3>
+          </div>
+          <div class="highlights-grid">
+            ${character.specialties && character.specialties.length > 0 ? `
+              <div class="highlight-card strengths-highlight">
+                <div class="highlight-header">
+                  <span class="highlight-icon">💪</span>
+                  <h4 class="highlight-title">Strengths</h4>
+                </div>
+                <div class="highlight-list">
+                  ${character.specialties.map(specialty => `
+                    <div class="highlight-item strength-item">
+                      <span class="item-marker">▸</span>
+                      <span class="item-text">${specialty}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            ` : ''}
+
+            ${character.weaknesses && character.weaknesses.length > 0 ? `
+              <div class="highlight-card weaknesses-highlight">
+                <div class="highlight-header">
+                  <span class="highlight-icon">⚠️</span>
+                  <h4 class="highlight-title">Weaknesses</h4>
+                </div>
+                <div class="highlight-list">
+                  ${character.weaknesses.map(weakness => `
+                    <div class="highlight-item weakness-item">
+                      <span class="item-marker">▸</span>
+                      <span class="item-text">${weakness}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            ` : ''}
+          </div>
+        </div>
+      ` : ''}
+
+      <!-- Call to Action -->
+      <div class="overview-cta">
+        <div class="cta-content">
+          <h4 class="cta-title">Explore More About ${character.name}</h4>
+          <p class="cta-text">Discover their abilities, relationships, and impact on the world</p>
+        </div>
+        <div class="cta-buttons">
+          <button class="cta-button primary" onclick="switchToTab('biography')">
+            <span class="button-icon">📜</span>
+            <span class="button-text">View Biography</span>
+          </button>
+          <button class="cta-button secondary" onclick="switchToTab('skills')">
+            <span class="button-icon">⚔️</span>
+            <span class="button-text">View Abilities</span>
+          </button>
+          <button class="cta-button secondary" onclick="switchToTab('relationships')">
+            <span class="button-icon">🤝</span>
+            <span class="button-text">View Relations</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// Helper function to extract personality traits
+function extractPersonalityTraits(personalityText) {
+  if (!personalityText) return [];
+
+  // Extract key traits from personality description
+  const traits = [];
+  const text = personalityText.toLowerCase();
+
+  if (text.includes('kind') || text.includes('compassion')) traits.push('Compassionate');
+  if (text.includes('strategic') || text.includes('tactical')) traits.push('Strategic');
+  if (text.includes('protective')) traits.push('Protective');
+  if (text.includes('diplomatic')) traits.push('Diplomatic');
+  if (text.includes('wise') || text.includes('wisdom')) traits.push('Wise');
+  if (text.includes('brave') || text.includes('courageous')) traits.push('Brave');
+  if (text.includes('loyal')) traits.push('Loyal');
+  if (text.includes('intelligent')) traits.push('Intelligent');
+
+  return traits.slice(0, 5); // Limit to 5 traits
+}
+
+// Function to switch tabs programmatically
+function switchToTab(tabName) {
+  const tabs = document.querySelectorAll('.profile-tab');
+  const sections = document.querySelectorAll('.tab-section');
+
+  tabs.forEach(tab => {
+    if (tab.dataset.tab === tabName) {
+      tab.click();
+    }
+  });
+}
+
+// Make function globally available
+window.switchToTab = switchToTab;
 
 // Generate enhanced biography section with improved UI
 function generateBiographySection(character) {
