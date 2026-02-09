@@ -202,22 +202,26 @@
             <!-- Statistics overview cards displaying character metrics -->
             <div class="codex-stats">
                 <!-- Total character count display -->
-                <div class="stat-card">
+                <div class="stat-card" title="Total characters in the codex">
+                    <div class="stat-icon">👥</div>
                     <div class="stat-number" id="total-characters">0</div>
                     <div class="stat-label">Total Characters</div>
                 </div>
                 <!-- Demon lords count display -->
-                <div class="stat-card">
+                <div class="stat-card" title="Powerful demon lords">
+                    <div class="stat-icon">👑</div>
                     <div class="stat-number" id="demon-lords-count">0</div>
                     <div class="stat-label">Demon Lords</div>
                 </div>
                 <!-- Disasters count display -->
-                <div class="stat-card">
+                <div class="stat-card" title="Catastrophe-class beings">
+                    <div class="stat-icon">⚡</div>
                     <div class="stat-number" id="disasters-count">0</div>
                     <div class="stat-label">Disasters</div>
                 </div>
                 <!-- Unique races count display -->
-                <div class="stat-card">
+                <div class="stat-card" title="Diverse races in the federation">
+                    <div class="stat-icon">🌍</div>
                     <div class="stat-number" id="races-count">0</div>
                     <div class="stat-label">Unique Races</div>
                 </div>
@@ -254,11 +258,7 @@
                     <select id="power-filter" class="filter-select">
                         <option value="">All Power Levels</option>
                     </select>
-                    <!-- View toggle button -->
-                    <button class="view-toggle-btn" id="view-toggle" title="Toggle Grid/List View">
-                        <span class="view-icon">⊞</span>
-                        <span class="view-text">Grid View</span>
-                    </button>
+
                     <!-- Clear all filters button -->
                     <button class="clear-filters-btn" onclick="clearAllFilters()">Clear Filters</button>
                 </div>

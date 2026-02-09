@@ -3,7 +3,6 @@ let currentFilter = "all"; // Active filter category for character display
 let searchTerm = ""; // User input search query for character filtering
 let raceFilter = ""; // Selected race filter option
 let powerFilter = ""; // Selected power level filter option
-let currentView = "grid"; // Current view mode: 'grid' or 'list'
 
 // Update dashboard statistics by fetching and calculating character data
 async function updateStatistics() {
@@ -216,8 +215,8 @@ function renderCurrentPage() {
   );
   const pageCharacters = filteredCharacters.slice(startIndex, endIndex);
 
-  // Apply base grid styling with view mode
-  grid.className = `character-grid ${currentView}-view`;
+  // Apply base grid styling
+  grid.className = "character-grid";
 
   // Display enhanced loading state during character card generation
   grid.innerHTML = `
@@ -610,31 +609,6 @@ function initializeFilters() {
       applyFiltersAndRender();
     });
   }
-
-  // Setup view toggle functionality
-  const viewToggle = document.getElementById("view-toggle");
-  if (viewToggle) {
-    viewToggle.addEventListener("click", () => {
-      currentView = currentView === "grid" ? "list" : "grid";
-      updateViewToggleButton();
-      applyFiltersAndRender();
-    });
-  }
-}
-
-// Update view toggle button appearance and text
-function updateViewToggleButton() {
-  const viewToggle = document.getElementById("view-toggle");
-  const viewIcon = viewToggle.querySelector(".view-icon");
-  const viewText = viewToggle.querySelector(".view-text");
-
-  if (currentView === "grid") {
-    viewIcon.textContent = "⊞";
-    viewText.textContent = "Grid View";
-  } else {
-    viewIcon.textContent = "☰";
-    viewText.textContent = "List View";
-  }
 }
 
 // Reset all active filters and restore default display state
@@ -872,9 +846,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initialize filter event handlers
   initializeFilters();
-
-  // Initialize view toggle button
-  updateViewToggleButton();
 
   // Load and display initial statistics
   updateStatistics();
