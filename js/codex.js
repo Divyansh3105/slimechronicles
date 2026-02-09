@@ -113,7 +113,7 @@ function populateFilterDropdowns(characters) {
 }
 // Pagination and character display state management variables
 let currentPage = 0; // Current active page index for pagination
-const charactersPerPage = 11; // Number of characters displayed per page
+const charactersPerPage = 12; // Number of characters displayed per page
 let allCharacters = []; // Complete character dataset from API
 let filteredCharacters = []; // Filtered character subset based on active filters
 
@@ -219,11 +219,6 @@ function renderCurrentPage() {
   // Apply base grid styling with view mode
   grid.className = `character-grid ${currentView}-view`;
 
-  // Apply special layout class for 11-character pages
-  if (pageCharacters.length === 11 && currentView === "grid") {
-    grid.classList.add("eleven-cards");
-  }
-
   // Display enhanced loading state during character card generation
   grid.innerHTML = `
     <div class="loading-characters" style="grid-column: 1 / -1;">
@@ -233,107 +228,35 @@ function renderCurrentPage() {
 
   // Render character cards with slight delay for smooth loading animation
   setTimeout(() => {
-    if (pageCharacters.length === 11 && currentView === "grid") {
-      // Special layout handling for 11-character pages (8+3 grid arrangement)
-      const first8Cards = pageCharacters.slice(0, 8);
-      const last3Cards = pageCharacters.slice(8, 11);
+    // Standard grid layout for all pages
+    grid.innerHTML = pageCharacters
+      .map((character) => {
+        try {
+          // Generate random stats for character display using shared function
+          const stats = window.generateRandomStats();
 
-      // Generate HTML for first 8 character cards
-      const first8Html = first8Cards
-        .map((character) => {
-          try {
-            // Generate random stats for character display using shared function
-            const stats = window.generateRandomStats();
+          // Convert hex color values to RGB for CSS custom properties using shared function
+          const primaryRgb = window.hexToRgb(character.colorScheme.primary);
+          const secondaryRgb = window.hexToRgb(character.colorScheme.secondary);
 
-            // Convert hex color values to RGB for CSS custom properties using shared function
-            const primaryRgb = window.hexToRgb(character.colorScheme.primary);
-            const secondaryRgb = window.hexToRgb(character.colorScheme.secondary);
-
-            // Generate CSS custom properties for character theming
-            const cssVars =
-              primaryRgb && secondaryRgb
-                ? `
+          // Generate CSS custom properties for character theming
+          const cssVars =
+            primaryRgb && secondaryRgb
+              ? `
             --character-primary: ${character.colorScheme.primary};
             --character-secondary: ${character.colorScheme.secondary};
             --character-primary-rgb: ${primaryRgb.r}, ${primaryRgb.g}, ${primaryRgb.b};
             --character-secondary-rgb: ${secondaryRgb.r}, ${secondaryRgb.g}, ${secondaryRgb.b};
           `
-                : "";
+              : "";
 
-            return renderCompactCharacterCard(character, stats, cssVars);
-          } catch (error) {
-            console.error(`Error rendering character ${character.id}:`, error);
-            return `<div class="character-card error">Error loading ${character.name}</div>`;
-          }
-        })
-        .join("");
-
-      // Generate HTML for last 3 character cards
-      const last3Html = last3Cards
-        .map((character) => {
-          try {
-            // Generate random stats for character display using shared function
-            const stats = window.generateRandomStats();
-
-            // Convert hex color values to RGB for CSS custom properties using shared function
-            const primaryRgb = window.hexToRgb(character.colorScheme.primary);
-            const secondaryRgb = window.hexToRgb(character.colorScheme.secondary);
-
-            // Generate CSS custom properties for character theming
-            const cssVars =
-              primaryRgb && secondaryRgb
-                ? `
-            --character-primary: ${character.colorScheme.primary};
-            --character-secondary: ${character.colorScheme.secondary};
-            --character-primary-rgb: ${primaryRgb.r}, ${primaryRgb.g}, ${primaryRgb.b};
-            --character-secondary-rgb: ${secondaryRgb.r}, ${secondaryRgb.g}, ${secondaryRgb.b};
-          `
-                : "";
-
-            return renderCompactCharacterCard(character, stats, cssVars);
-          } catch (error) {
-            console.error(`Error rendering character ${character.id}:`, error);
-            return `<div class="character-card error">Error loading ${character.name}</div>`;
-          }
-        })
-        .join("");
-
-      // Apply 8+3 grid layout structure
-      grid.innerHTML = `
-        <div class="first-eight-cards">${first8Html}</div>
-        <div class="last-three-cards">${last3Html}</div>
-      `;
-    } else {
-      // Standard grid layout for non-11-character pages
-      grid.innerHTML = pageCharacters
-        .map((character) => {
-          try {
-            // Generate random stats for character display using shared function
-            const stats = window.generateRandomStats();
-
-            // Convert hex color values to RGB for CSS custom properties using shared function
-            const primaryRgb = window.hexToRgb(character.colorScheme.primary);
-            const secondaryRgb = window.hexToRgb(character.colorScheme.secondary);
-
-            // Generate CSS custom properties for character theming
-            const cssVars =
-              primaryRgb && secondaryRgb
-                ? `
-              --character-primary: ${character.colorScheme.primary};
-              --character-secondary: ${character.colorScheme.secondary};
-              --character-primary-rgb: ${primaryRgb.r}, ${primaryRgb.g}, ${primaryRgb.b};
-              --character-secondary-rgb: ${secondaryRgb.r}, ${secondaryRgb.g}, ${secondaryRgb.b};
-            `
-                : "";
-
-            return renderCompactCharacterCard(character, stats, cssVars);
-          } catch (error) {
-            console.error(`Error rendering character ${character.id}:`, error);
-            return `<div class="character-card error">Error loading ${character.name}</div>`;
-          }
-        })
-        .join("");
-    }
+          return renderCompactCharacterCard(character, stats, cssVars);
+        } catch (error) {
+          console.error(`Error rendering character ${character.id}:`, error);
+          return `<div class="character-card error">Error loading ${character.name}</div>`;
+        }
+      })
+      .join("");
 
     // Apply scroll animations to newly rendered character cards
     addScrollAnimations();
