@@ -513,29 +513,29 @@ document.addEventListener("DOMContentLoaded", () => {
     counter.textContent = `Showing ${visible} of ${total} ${typeText}${relationText}`;
 
     // Add animation when count changes
-    counter.style.animation = 'none';
+    counter.style.animation = "none";
     setTimeout(() => {
-      counter.style.animation = 'pulse 2s ease-in-out infinite';
+      counter.style.animation = "pulse 2s ease-in-out infinite";
     }, 10);
   }
 
   // Show/hide no results message
   function showNoResultsMessage(visibleCount) {
-    const grid = document.querySelector('.factions-grid');
-    let noResultsMsg = document.getElementById('noResultsMessage');
+    const grid = document.querySelector(".factions-grid");
+    let noResultsMsg = document.getElementById("noResultsMessage");
 
     if (visibleCount === 0) {
       if (!noResultsMsg) {
-        noResultsMsg = document.createElement('div');
-        noResultsMsg.id = 'noResultsMessage';
-        noResultsMsg.className = 'no-results';
-        noResultsMsg.textContent = 'No factions match your search criteria';
+        noResultsMsg = document.createElement("div");
+        noResultsMsg.id = "noResultsMessage";
+        noResultsMsg.className = "no-results";
+        noResultsMsg.textContent = "No factions match your search criteria";
         grid.appendChild(noResultsMsg);
       }
-      noResultsMsg.style.display = 'block';
+      noResultsMsg.style.display = "block";
     } else {
       if (noResultsMsg) {
-        noResultsMsg.style.display = 'none';
+        noResultsMsg.style.display = "none";
       }
     }
   }
@@ -598,37 +598,37 @@ window.closeFactionModal = closeFactionModal;
 // Scroll to Top Button Functionality
 document.addEventListener("DOMContentLoaded", () => {
   // Create scroll to top button
-  const scrollBtn = document.createElement('div');
-  scrollBtn.className = 'scroll-to-top';
-  scrollBtn.setAttribute('aria-label', 'Scroll to top');
-  scrollBtn.setAttribute('role', 'button');
-  scrollBtn.setAttribute('tabindex', '0');
+  const scrollBtn = document.createElement("div");
+  scrollBtn.className = "scroll-to-top";
+  scrollBtn.setAttribute("aria-label", "Scroll to top");
+  scrollBtn.setAttribute("role", "button");
+  scrollBtn.setAttribute("tabindex", "0");
   document.body.appendChild(scrollBtn);
 
   // Show/hide scroll button based on scroll position
-  window.addEventListener('scroll', () => {
+  window.addEventListener("scroll", () => {
     if (window.pageYOffset > 300) {
-      scrollBtn.classList.add('visible');
+      scrollBtn.classList.add("visible");
     } else {
-      scrollBtn.classList.remove('visible');
+      scrollBtn.classList.remove("visible");
     }
   });
 
   // Scroll to top on click
-  scrollBtn.addEventListener('click', () => {
+  scrollBtn.addEventListener("click", () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   });
 
   // Keyboard accessibility
-  scrollBtn.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
+  scrollBtn.addEventListener("keypress", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       window.scrollTo({
         top: 0,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   });
@@ -637,67 +637,70 @@ document.addEventListener("DOMContentLoaded", () => {
 // Enhanced card animations on scroll
 const observerOptions = {
   threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
+  rootMargin: "0px 0px -50px 0px",
 };
 
 const cardObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
+      entry.target.style.opacity = "1";
+      entry.target.style.transform = "translateY(0)";
     }
   });
 }, observerOptions);
 
 // Observe all faction cards
-document.addEventListener('DOMContentLoaded', () => {
-  const factionCards = document.querySelectorAll('.faction-card');
-  factionCards.forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(30px)';
-    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+document.addEventListener("DOMContentLoaded", () => {
+  const factionCards = document.querySelectorAll(".faction-card");
+  factionCards.forEach((card) => {
+    card.style.opacity = "0";
+    card.style.transform = "translateY(30px)";
+    card.style.transition = "opacity 0.6s ease, transform 0.6s ease";
     cardObserver.observe(card);
   });
 });
 
 // Add smooth reveal animation for power bars when cards become visible
-const powerBarObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const powerBars = entry.target.querySelectorAll('.power-bar div');
-      powerBars.forEach((bar, index) => {
-        setTimeout(() => {
-          const power = bar.style.getPropertyValue('--power');
-          bar.style.width = `${power}%`;
-        }, index * 100);
-      });
-      powerBarObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.5 });
+const powerBarObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const powerBars = entry.target.querySelectorAll(".power-bar div");
+        powerBars.forEach((bar, index) => {
+          setTimeout(() => {
+            const power = bar.style.getPropertyValue("--power");
+            bar.style.width = `${power}%`;
+          }, index * 100);
+        });
+        powerBarObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.5 },
+);
 
-document.addEventListener('DOMContentLoaded', () => {
-  const factionCards = document.querySelectorAll('.faction-card');
-  factionCards.forEach(card => {
+document.addEventListener("DOMContentLoaded", () => {
+  const factionCards = document.querySelectorAll(".faction-card");
+  factionCards.forEach((card) => {
     // Reset power bars to 0 width initially
-    const powerBars = card.querySelectorAll('.power-bar div');
-    powerBars.forEach(bar => {
-      bar.style.width = '0';
+    const powerBars = card.querySelectorAll(".power-bar div");
+    powerBars.forEach((bar) => {
+      bar.style.width = "0";
     });
     powerBarObserver.observe(card);
   });
 });
 
 // Add keyboard navigation for faction cards
-document.addEventListener('DOMContentLoaded', () => {
-  const cards = document.querySelectorAll('.faction-card');
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll(".faction-card");
 
   cards.forEach((card, index) => {
-    card.setAttribute('tabindex', '0');
+    card.setAttribute("tabindex", "0");
 
-    card.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        const expandBtn = card.querySelector('.expand-btn');
+    card.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        const expandBtn = card.querySelector(".expand-btn");
         if (expandBtn) {
           expandBtn.click();
         }
@@ -707,9 +710,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Enhanced modal close with escape key (already exists but enhanced)
-document.addEventListener('keydown', (e) => {
-  const modal = document.getElementById('faction-modal');
-  if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+document.addEventListener("keydown", (e) => {
+  const modal = document.getElementById("faction-modal");
+  if (e.key === "Escape" && modal && modal.classList.contains("active")) {
     closeFactionModal();
   }
 });
@@ -717,10 +720,10 @@ document.addEventListener('keydown', (e) => {
 // Add loading state to cards during filter
 let filterTimeout;
 function filterFactionsWithLoading() {
-  const cards = document.querySelectorAll('.faction-card');
+  const cards = document.querySelectorAll(".faction-card");
 
   // Add loading state
-  cards.forEach(card => card.classList.add('loading'));
+  cards.forEach((card) => card.classList.add("loading"));
 
   // Clear previous timeout
   clearTimeout(filterTimeout);
@@ -728,7 +731,7 @@ function filterFactionsWithLoading() {
   // Filter after brief delay for smooth UX
   filterTimeout = setTimeout(() => {
     filterFactions();
-    cards.forEach(card => card.classList.remove('loading'));
+    cards.forEach((card) => card.classList.remove("loading"));
   }, 150);
 }
 
@@ -743,10 +746,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const controlsElement = document.querySelector(".factions-controls");
 
   // Create clear filters button
-  const clearBtn = document.createElement('button');
-  clearBtn.className = 'clear-filters-btn';
-  clearBtn.textContent = '✕ Clear Filters';
-  clearBtn.setAttribute('aria-label', 'Clear all filters');
+  const clearBtn = document.createElement("button");
+  clearBtn.className = "clear-filters-btn";
+  clearBtn.textContent = "✕ Clear Filters";
+  clearBtn.setAttribute("aria-label", "Clear all filters");
 
   if (controlsElement) {
     controlsElement.appendChild(clearBtn);
@@ -754,47 +757,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Function to check if any filters are active
   function checkActiveFilters() {
-    const hasSearch = searchInput && searchInput.value.trim() !== '';
-    const hasTypeFilter = typeFilter && typeFilter.value !== 'all';
-    const hasRelationFilter = relationFilter && relationFilter.value !== 'all';
+    const hasSearch = searchInput && searchInput.value.trim() !== "";
+    const hasTypeFilter = typeFilter && typeFilter.value !== "all";
+    const hasRelationFilter = relationFilter && relationFilter.value !== "all";
 
     if (hasSearch || hasTypeFilter || hasRelationFilter) {
-      clearBtn.classList.add('visible');
+      clearBtn.classList.add("visible");
     } else {
-      clearBtn.classList.remove('visible');
+      clearBtn.classList.remove("visible");
     }
   }
 
   // Clear all filters
-  clearBtn.addEventListener('click', () => {
-    if (searchInput) searchInput.value = '';
-    if (typeFilter) typeFilter.value = 'all';
-    if (relationFilter) relationFilter.value = 'all';
+  clearBtn.addEventListener("click", () => {
+    if (searchInput) searchInput.value = "";
+    if (typeFilter) typeFilter.value = "all";
+    if (relationFilter) relationFilter.value = "all";
 
     // Trigger filter update
-    if (typeof filterFactions === 'function') {
+    if (typeof filterFactions === "function") {
       filterFactions();
     }
 
     // Hide clear button
-    clearBtn.classList.remove('visible');
+    clearBtn.classList.remove("visible");
 
     // Add feedback animation
-    clearBtn.style.animation = 'none';
+    clearBtn.style.animation = "none";
     setTimeout(() => {
-      clearBtn.style.animation = '';
+      clearBtn.style.animation = "";
     }, 10);
   });
 
   // Monitor filter changes
   if (searchInput) {
-    searchInput.addEventListener('input', checkActiveFilters);
+    searchInput.addEventListener("input", checkActiveFilters);
   }
   if (typeFilter) {
-    typeFilter.addEventListener('change', checkActiveFilters);
+    typeFilter.addEventListener("change", checkActiveFilters);
   }
   if (relationFilter) {
-    relationFilter.addEventListener('change', checkActiveFilters);
+    relationFilter.addEventListener("change", checkActiveFilters);
   }
 
   // Initial check
@@ -803,91 +806,94 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Add tooltips to power items
 document.addEventListener("DOMContentLoaded", () => {
-  const powerItems = document.querySelectorAll('.power-item');
+  const powerItems = document.querySelectorAll(".power-item");
 
   const tooltips = {
-    'Military': 'Combat strength and army size',
-    'Influence': 'Political power and diplomatic reach',
-    'Magic': 'Magical capabilities and research',
-    'Territory': 'Land area and resource control'
+    Military: "Combat strength and army size",
+    Influence: "Political power and diplomatic reach",
+    Magic: "Magical capabilities and research",
+    Territory: "Land area and resource control",
   };
 
-  powerItems.forEach(item => {
-    const label = item.querySelector('span')?.textContent.trim();
+  powerItems.forEach((item) => {
+    const label = item.querySelector("span")?.textContent.trim();
     if (label && tooltips[label]) {
-      item.setAttribute('data-tooltip', tooltips[label]);
-      item.setAttribute('title', tooltips[label]);
+      item.setAttribute("data-tooltip", tooltips[label]);
+      item.setAttribute("title", tooltips[label]);
     }
   });
 });
 
 // Enhanced filter animation
 function filterFactionsEnhanced() {
-  const cards = document.querySelectorAll('.faction-card');
-  const search = document.getElementById('searchInput')?.value.toLowerCase() || '';
-  const type = document.getElementById('typeFilter')?.value || 'all';
-  const relation = document.getElementById('relationFilter')?.value || 'all';
+  const cards = document.querySelectorAll(".faction-card");
+  const search =
+    document.getElementById("searchInput")?.value.toLowerCase() || "";
+  const type = document.getElementById("typeFilter")?.value || "all";
+  const relation = document.getElementById("relationFilter")?.value || "all";
 
   let visibleCount = 0;
 
   cards.forEach((card, index) => {
-    const nameElement = card.querySelector('h2');
-    const summaryElement = card.querySelector('.faction-summary');
+    const nameElement = card.querySelector("h2");
+    const summaryElement = card.querySelector(".faction-summary");
 
-    const name = nameElement ? nameElement.textContent.toLowerCase() : '';
-    const summary = summaryElement ? summaryElement.textContent.toLowerCase() : '';
-    const cardType = card.dataset.type || '';
-    const cardRelation = card.dataset.relation || 'unknown';
+    const name = nameElement ? nameElement.textContent.toLowerCase() : "";
+    const summary = summaryElement
+      ? summaryElement.textContent.toLowerCase()
+      : "";
+    const cardType = card.dataset.type || "";
+    const cardRelation = card.dataset.relation || "unknown";
 
     const matchesSearch = name.includes(search) || summary.includes(search);
-    const matchesType = type === 'all' || type === cardType;
-    const matchesRelation = relation === 'all' || relation === cardRelation;
+    const matchesType = type === "all" || type === cardType;
+    const matchesRelation = relation === "all" || relation === cardRelation;
 
     const isVisible = matchesSearch && matchesType && matchesRelation;
 
     if (isVisible) {
-      card.classList.remove('filtered-out');
-      card.classList.add('filtered-in');
-      card.style.display = 'block';
+      card.classList.remove("filtered-out");
+      card.classList.add("filtered-in");
+      card.style.display = "block";
       card.style.animationDelay = `${index * 0.05}s`;
       visibleCount++;
     } else {
-      card.classList.add('filtered-out');
-      card.classList.remove('filtered-in');
+      card.classList.add("filtered-out");
+      card.classList.remove("filtered-in");
       setTimeout(() => {
-        if (card.classList.contains('filtered-out')) {
-          card.style.display = 'none';
+        if (card.classList.contains("filtered-out")) {
+          card.style.display = "none";
         }
       }, 300);
     }
   });
 
   // Update results count
-  if (typeof updateResultsCount === 'function') {
+  if (typeof updateResultsCount === "function") {
     updateResultsCount(visibleCount, cards.length);
   }
 
   // Show/hide no results message
-  if (typeof showNoResultsMessage === 'function') {
+  if (typeof showNoResultsMessage === "function") {
     showNoResultsMessage(visibleCount);
   }
 }
 
 // Replace the original filterFactions with enhanced version
-if (typeof filterFactions !== 'undefined') {
+if (typeof filterFactions !== "undefined") {
   window.filterFactions = filterFactionsEnhanced;
 }
 
 // Add smooth scroll behavior for internal links
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
       e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
+      const target = document.querySelector(this.getAttribute("href"));
       if (target) {
         target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
+          behavior: "smooth",
+          block: "start",
         });
       }
     });
@@ -896,13 +902,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Add visual feedback for card interactions
 document.addEventListener("DOMContentLoaded", () => {
-  const cards = document.querySelectorAll('.faction-card');
+  const cards = document.querySelectorAll(".faction-card");
 
-  cards.forEach(card => {
+  cards.forEach((card) => {
     // Add ripple effect on click
-    card.addEventListener('click', function(e) {
-      const ripple = document.createElement('div');
-      ripple.className = 'ripple-effect';
+    card.addEventListener("click", function (e) {
+      const ripple = document.createElement("div");
+      ripple.className = "ripple-effect";
       ripple.style.cssText = `
         position: absolute;
         border-radius: 50%;
@@ -917,10 +923,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
 
-      ripple.style.left = x + 'px';
-      ripple.style.top = y + 'px';
+      ripple.style.left = x + "px";
+      ripple.style.top = y + "px";
 
-      card.style.position = 'relative';
+      card.style.position = "relative";
       card.appendChild(ripple);
 
       setTimeout(() => ripple.remove(), 600);
@@ -929,7 +935,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Add CSS for ripple effect
-const style = document.createElement('style');
+const style = document.createElement("style");
 style.textContent = `
   @keyframes ripple {
     from {
@@ -944,4 +950,322 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-console.log('✨ Factions page UI enhancements loaded successfully!');
+console.log("✨ Factions page UI enhancements loaded successfully!");
+
+// ===== ENHANCED UI IMPROVEMENTS =====
+
+// Add smooth entrance animations for cards
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll(".faction-card");
+
+  cards.forEach((card, index) => {
+    card.style.animationDelay = `${index * 0.08}s`;
+  });
+});
+
+// Enhanced filter with smooth transitions
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.getElementById("searchInput");
+  const typeFilter = document.getElementById("typeFilter");
+  const relationFilter = document.getElementById("relationFilter");
+
+  // Add debounce to search for better performance
+  let searchTimeout;
+  if (searchInput) {
+    searchInput.addEventListener("input", () => {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => {
+        if (typeof filterFactions === "function") {
+          filterFactions();
+        }
+      }, 300);
+    });
+  }
+});
+
+// Add particle effect on card hover
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll(".faction-card");
+
+  cards.forEach((card) => {
+    card.addEventListener("mouseenter", function (e) {
+      createParticles(this);
+    });
+  });
+
+  function createParticles(card) {
+    const particleCount = 5;
+
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement("div");
+      particle.className = "hover-particle";
+      particle.style.cssText = `
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(77, 212, 255, 0.8);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 100;
+      `;
+
+      const rect = card.getBoundingClientRect();
+      const x = Math.random() * rect.width;
+      const y = Math.random() * rect.height;
+
+      particle.style.left = x + "px";
+      particle.style.top = y + "px";
+
+      card.style.position = "relative";
+      card.appendChild(particle);
+
+      // Animate particle
+      particle.animate(
+        [
+          {
+            transform: "translate(0, 0) scale(1)",
+            opacity: 1,
+          },
+          {
+            transform: `translate(${(Math.random() - 0.5) * 50}px, ${-50 - Math.random() * 30}px) scale(0)`,
+            opacity: 0,
+          },
+        ],
+        {
+          duration: 1000 + Math.random() * 500,
+          easing: "cubic-bezier(0, 0.5, 0.5, 1)",
+        },
+      );
+
+      setTimeout(() => particle.remove(), 1500);
+    }
+  }
+});
+
+// Enhanced modal animations
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("faction-modal");
+
+  if (modal) {
+    // Add stagger animation to modal sections
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (
+          mutation.type === "childList" &&
+          modal.classList.contains("active")
+        ) {
+          const sections = modal.querySelectorAll(".modal-detail-section");
+          sections.forEach((section, index) => {
+            section.style.animation = "none";
+            setTimeout(() => {
+              section.style.animation = `fadeInUp 0.5s ease-out ${index * 0.08}s forwards`;
+            }, 10);
+          });
+        }
+      });
+    });
+
+    observer.observe(modal, { childList: true, subtree: true });
+  }
+});
+
+// Add keyboard shortcuts
+document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("keydown", (e) => {
+    // Ctrl/Cmd + K to focus search
+    if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+      e.preventDefault();
+      const searchInput = document.getElementById("searchInput");
+      if (searchInput) {
+        searchInput.focus();
+        searchInput.select();
+      }
+    }
+
+    // Ctrl/Cmd + Shift + C to clear filters
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === "C") {
+      e.preventDefault();
+      const clearBtn = document.querySelector(".clear-filters-btn");
+      if (clearBtn && clearBtn.classList.contains("visible")) {
+        clearBtn.click();
+      }
+    }
+  });
+});
+
+// Enhanced scroll animations
+document.addEventListener("DOMContentLoaded", () => {
+  const observerOptions = {
+    threshold: 0.15,
+    rootMargin: "0px 0px -100px 0px",
+  };
+
+  const fadeInObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "translateY(0)";
+        fadeInObserver.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Observe faction cards
+  const cards = document.querySelectorAll(".faction-card");
+  cards.forEach((card) => {
+    card.style.opacity = "0";
+    card.style.transform = "translateY(40px)";
+    card.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+    fadeInObserver.observe(card);
+  });
+});
+
+// Add tooltip for power bars
+document.addEventListener("DOMContentLoaded", () => {
+  const powerItems = document.querySelectorAll(".power-item");
+
+  const tooltipTexts = {
+    Military: "Combat strength, army size, and military technology",
+    Influence: "Political power, diplomatic reach, and international standing",
+    Magic: "Magical capabilities, research, and supernatural forces",
+    Territory: "Land area, resource control, and geographical advantage",
+  };
+
+  powerItems.forEach((item) => {
+    const label = item.querySelector("span")?.textContent.trim();
+    if (label && tooltipTexts[label]) {
+      item.setAttribute("title", tooltipTexts[label]);
+      item.style.cursor = "help";
+    }
+  });
+});
+
+// Enhanced card interaction feedback
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll(".faction-card");
+
+  cards.forEach((card) => {
+    // Add subtle tilt effect on mouse move
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateX = (y - centerY) / 30;
+      const rotateY = (centerX - x) / 30;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-12px) scale(1.03)`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "";
+    });
+  });
+});
+
+// Add loading state to modal
+document.addEventListener("DOMContentLoaded", () => {
+  const originalOpenModal = window.openFactionModal;
+
+  if (typeof originalOpenModal === "function") {
+    window.openFactionModal = function (card) {
+      const modal = document.getElementById("faction-modal");
+      if (modal) {
+        modal.classList.add("loading");
+      }
+
+      setTimeout(() => {
+        originalOpenModal(card);
+        if (modal) {
+          modal.classList.remove("loading");
+        }
+      }, 100);
+    };
+  }
+});
+
+// Enhanced power bar animations
+document.addEventListener("DOMContentLoaded", () => {
+  const animatePowerBars = (container) => {
+    const powerBars = container.querySelectorAll(".power-bar div");
+    powerBars.forEach((bar, index) => {
+      bar.style.width = "0";
+      setTimeout(
+        () => {
+          const power = bar.style.getPropertyValue("--power");
+          bar.style.width = `${power}%`;
+        },
+        100 + index * 100,
+      );
+    });
+  };
+
+  // Animate power bars when cards become visible
+  const cardObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animatePowerBars(entry.target);
+          cardObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.5 },
+  );
+
+  const cards = document.querySelectorAll(".faction-card");
+  cards.forEach((card) => cardObserver.observe(card));
+});
+
+// Add smooth scroll behavior
+document.addEventListener("DOMContentLoaded", () => {
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute("href"));
+      if (target) {
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    });
+  });
+});
+
+// Add visual feedback for active filters
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.getElementById("searchInput");
+  const typeFilter = document.getElementById("typeFilter");
+  const relationFilter = document.getElementById("relationFilter");
+
+  const updateFilterVisuals = () => {
+    [searchInput, typeFilter, relationFilter].forEach((element) => {
+      if (!element) return;
+
+      const isActive =
+        element.value && element.value !== "all" && element.value.trim() !== "";
+
+      if (isActive) {
+        element.style.borderColor = "rgba(255, 215, 0, 0.8)";
+        element.style.boxShadow = "0 0 20px rgba(255, 215, 0, 0.4)";
+      } else {
+        element.style.borderColor = "";
+        element.style.boxShadow = "";
+      }
+    });
+  };
+
+  if (searchInput) searchInput.addEventListener("input", updateFilterVisuals);
+  if (typeFilter) typeFilter.addEventListener("change", updateFilterVisuals);
+  if (relationFilter)
+    relationFilter.addEventListener("change", updateFilterVisuals);
+});
+
+console.log("✨ Enhanced UI improvements loaded successfully!");
+
+// ===== END OF ENHANCED UI IMPROVEMENTS =====

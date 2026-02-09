@@ -236,9 +236,21 @@ body {
   opacity: 0;
   transition: opacity 0.8s ease;
   background:
-    radial-gradient(circle at 20% 80%, rgba(77, 212, 255, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(170, 85, 255, 0.04) 0%, transparent 50%);
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(77, 212, 255, 0.05) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(255, 215, 0, 0.03) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(170, 85, 255, 0.04) 0%,
+      transparent 50%
+    );
 }
 
 /* Logo container with fade-in animation */
@@ -256,7 +268,11 @@ body {
   transform: translateX(-50%);
   width: 200px;
   height: 200px;
-  background: radial-gradient(circle, rgba(77, 212, 255, 0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(77, 212, 255, 0.1) 0%,
+    transparent 70%
+  );
   border-radius: 50%;
   z-index: -1;
   animation: logoAura 4s ease-in-out infinite;
@@ -786,7 +802,7 @@ body {
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-top: 2rem;
-  animation: slideInFromBottom 1s ease-out 2s both;
+  animation: fadeInUp 1s ease-out 2s both;
   position: relative;
   z-index: 2;
 }
@@ -936,8 +952,16 @@ body {
   width: 200%;
   height: 200%;
   background:
-    radial-gradient(circle at 30% 30%, rgba(77, 212, 255, 0.06) 0%, transparent 50%),
-    radial-gradient(circle at 70% 70%, rgba(255, 215, 0, 0.04) 0%, transparent 50%);
+    radial-gradient(
+      circle at 30% 30%,
+      rgba(77, 212, 255, 0.06) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 70% 70%,
+      rgba(255, 215, 0, 0.04) 0%,
+      transparent 50%
+    );
   animation: buttonGroupBg 20s ease-in-out infinite;
   pointer-events: none;
   z-index: -1;
@@ -1005,6 +1029,17 @@ body {
 
   .tertiary-buttons-row {
     max-width: 1000px;
+  }
+}
+
+/* Large tablets and small laptops responsive breakpoint (1024px - 1279px) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .title {
+    font-size: 4rem;
+  }
+
+  .button-group {
+    gap: 1.25rem;
   }
 }
 
@@ -1335,7 +1370,12 @@ body {
   content: "";
   position: absolute;
   inset: -2px;
-  background: linear-gradient(45deg, var(--primary-blue), var(--accent-cyan), var(--accent-gold));
+  background: linear-gradient(
+    45deg,
+    var(--primary-blue),
+    var(--accent-cyan),
+    var(--accent-gold)
+  );
   border-radius: 50%;
   z-index: -1;
   opacity: 0;
@@ -1376,7 +1416,11 @@ body {
   bottom: -45px;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(135deg, rgba(21, 27, 61, 0.98), rgba(21, 27, 61, 0.95));
+  background: linear-gradient(
+    135deg,
+    rgba(21, 27, 61, 0.98),
+    rgba(21, 27, 61, 0.95)
+  );
   color: var(--text-light);
   padding: 0.75rem 1rem;
   border-radius: 8px;
@@ -1504,7 +1548,11 @@ body {
 }
 
 .modal-close {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   font-size: 1.8rem;
@@ -1522,7 +1570,11 @@ body {
 
 .modal-close:hover {
   color: var(--accent-crimson);
-  background: linear-gradient(135deg, rgba(255, 51, 102, 0.2), rgba(255, 51, 102, 0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 51, 102, 0.2),
+    rgba(255, 51, 102, 0.1)
+  );
   border-color: var(--accent-crimson);
   transform: scale(1.1) rotate(90deg);
   box-shadow: 0 0 20px rgba(255, 51, 102, 0.3);
@@ -1552,7 +1604,11 @@ body {
   align-items: center;
   gap: 1rem;
   padding: 1.5rem;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.04)
+  );
   border: 1px solid rgba(77, 212, 255, 0.2);
   border-radius: 16px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1582,7 +1638,11 @@ body {
 }
 
 .feature-item:hover {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.08));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.08)
+  );
   transform: translateY(-3px) scale(1.02);
   border-color: var(--primary-blue);
   box-shadow: 0 8px 25px rgba(77, 212, 255, 0.2);
@@ -1679,17 +1739,6 @@ body {
   }
 }
 
-@keyframes slideInFromBottom {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* ========== MOBILE RESPONSIVE STYLES ========== */
 
 /* Base mobile styles for phones (≤ 767px) */
@@ -1774,20 +1823,14 @@ body {
     padding: 1.5rem;
     margin-bottom: 2rem;
     gap: 1.5rem;
-    max-width: none;
   }
 
   .primary-button-row,
   .secondary-buttons-row,
   .tertiary-buttons-row {
     width: 100%;
-  }
-
-  .secondary-buttons-row,
-  .tertiary-buttons-row {
     grid-template-columns: 1fr;
     gap: 1rem;
-    max-width: none;
     margin: 0;
   }
 
@@ -1798,7 +1841,6 @@ body {
     min-height: 56px;
     touch-action: manipulation;
     min-width: auto;
-    max-width: none;
   }
 
   .secondary-button,
@@ -1907,20 +1949,12 @@ body {
   .button-group {
     padding: 1rem;
     gap: 1rem;
-    max-width: none;
-  }
-
-  .secondary-buttons-row,
-  .tertiary-buttons-row {
-    max-width: none;
-    margin: 0;
   }
 
   .primary-button {
     padding: 1.2rem 1.5rem;
     font-size: 1.1rem;
     min-height: 52px;
-    max-width: none;
   }
 
   .secondary-button,
@@ -1942,13 +1976,11 @@ body {
 
   /* Smaller logo for very small screens but still reasonable size */
   .main-logo-icon {
-    transform: scale(
-      0.9
-    ); /* Reduced from 1.0 but still larger than the old 0.6 */
+    transform: scale(0.9);
   }
 
   .slime-orb {
-    width: 160px; /* Increased from 120px */
+    width: 160px;
     height: 160px;
   }
 }
@@ -2002,17 +2034,6 @@ body {
   }
 }
 
-/* Large tablets and small laptops responsive breakpoint (1024px - 1279px) */
-@media (min-width: 1024px) and (max-width: 1279px) {
-  .title {
-    font-size: 4rem;
-  }
-
-  .button-group {
-    gap: 1.25rem;
-  }
-}
-
 /* Footer mobile responsive adjustments */
 @media (max-width: 767px) {
   .main-footer {
@@ -2054,9 +2075,7 @@ body {
   }
 
   .main-logo-icon {
-    transform: scale(
-      0.85
-    ); /* Slightly smaller for landscape but still good size */
+    transform: scale(0.85);
   }
 
   .title {
