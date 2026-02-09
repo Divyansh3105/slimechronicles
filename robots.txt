@@ -1,6 +1,6 @@
 # Robots.txt for Jura Tempest Federation: Slime Chronicles
 # https://slimechronicles.netlify.app/
-# Last updated: February 1, 2026
+# Last updated: February 9, 2026
 
 # Allow all search engines to crawl the site
 User-agent: *
@@ -33,6 +33,9 @@ Allow: /assets/federation.jpg
 Allow: /assets/fav.ico
 Allow: /assets/fav.png
 
+# Allow character images for rich snippets
+Allow: /assets/characters/
+
 # Allow search engine verification files
 Allow: /BingSiteAuth.xml
 Allow: /google70a70f7889930fd3.html
@@ -45,6 +48,7 @@ Disallow: /*.log
 Disallow: /node_modules/
 Disallow: /.env
 Disallow: /.gitignore
+Disallow: /.kiro/
 
 # Special rules for specific search engines
 User-agent: Googlebot
@@ -59,6 +63,10 @@ User-agent: Slurp
 Allow: /
 Crawl-delay: 2
 
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
 # Block aggressive crawlers that might overload the server
 User-agent: AhrefsBot
 Crawl-delay: 10
@@ -66,14 +74,14 @@ Crawl-delay: 10
 User-agent: MJ12bot
 Crawl-delay: 10
 
+User-agent: SemrushBot
+Crawl-delay: 10
+
 # Sitemap location for search engines
 Sitemap: https://slimechronicles.netlify.app/sitemap.xml
 
 # General crawl delay to prevent server overload
 Crawl-delay: 1
-
-# Cache directive for better performance
-# Request-rate: 1/10s
 
 # Host directive (optional, for some search engines)
 Host: https://slimechronicles.netlify.app

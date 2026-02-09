@@ -1,4 +1,4 @@
-# 🧬 Jura Tempest Federation: Slime Chronicles
+﻿# 🧬 Jura Tempest Federation: Slime Chronicles
 
 <div align="center">
 
@@ -50,16 +50,18 @@ The **Jura Tempest Federation: Slime Chronicles** is a comprehensive fan-made in
 - 🌌 **Animated Starfields & Magic Circles** – Dynamic backgrounds for immersive experience
 - 🖼️ **Character Art & Codex** – Visual profiles with lore and stats
 - 📊 **Timeline Visualization** – Major events, battles, and achievements
-- 🎨 **Thematic UI** – Lore-rich, modern, and responsive design
+- 🎨 **Thematic UI** – Lore-rich, modern, and responsive design with recent UI improvements
+- 🎯 **Enhanced User Experience** – Improved navigation, search functionality, and visual feedback
 
 ### 🛡️ Data & Gameplay
 
-- 🧑‍🎤 **Character Database** – Search, filter, and sort by race, role, and more
-- ⚡ **Skills Explorer** – Prerequisites, applications, and unique abilities
-- 📚 **Codex System** – Comprehensive knowledge base with searchable entries
+- 🧑‍🎤 **Character Database** – Search, filter, and sort by race, role, and more with enhanced UI
+- ⚡ **Skills Explorer** – Prerequisites, applications, and unique abilities with improved layout
+- 📚 **Codex System** – Comprehensive knowledge base with searchable entries and refined interface
 - 🏛️ **Faction Management** – Explore relationships, alliances, and political dynamics
 - 🏆 **Achievements** – Track milestones and legendary feats
-- 📜 **Historical Records** – Chronicle Rimuru’s journey and Tempest’s rise
+- 📜 **Historical Records** – Chronicle Rimuru's journey with enhanced filtering, sorting, and expandable details
+- 📖 **Chronicle Timeline** – Interactive timeline with improved visual presentation
 
 ### 🖥️ Technical Excellence & Performance
 
@@ -187,9 +189,9 @@ slimechronicles/
 
 ![Skills Database](assets/skills.png)
 
-### 🔹 Chronical View
+### 🔹 Chronicle Timeline
 
-![Chronical View](assets/Chronical.png)
+![Chronicle View](assets/Chronical.png)
 
 </div>
 
@@ -256,6 +258,7 @@ This project was developed as a **portfolio showcase** to demonstrate:
 ## 🌟 Future Enhancements & Roadmap
 
 ### 🔮 Planned Features
+
 - 🧙‍♂️ **Enhanced Interactivity** – More dynamic lore visualizations and character relationship maps
 - 🗺️ **World Map Integration** – Interactive geographical exploration with location-based content
 - 🏅 **User Progression System** – Personal achievement tracking and customizable experience
@@ -274,6 +277,7 @@ This project was developed as a **portfolio showcase** to demonstrate:
 We welcome contributions from fellow Tensura fans and developers! Here's how you can help improve the project:
 
 ### 🛠️ Ways to Contribute
+
 - **Bug Reports** – Found an issue? Report it on our [GitHub Issues](https://github.com/Divyansh3105/slimechronicles/issues)
 - **Feature Requests** – Have ideas for new features? Share them with us!
 - **Code Contributions** – Fork the repo, make improvements, and submit a pull request
@@ -281,6 +285,7 @@ We welcome contributions from fellow Tensura fans and developers! Here's how you
 - **UI/UX Improvements** – Suggest design enhancements or accessibility improvements
 
 ### 📋 Contribution Guidelines
+
 1. Fork the repository and create a feature branch
 2. Follow existing code style and conventions
 3. Test your changes across different browsers and devices
@@ -288,6 +293,7 @@ We welcome contributions from fellow Tensura fans and developers! Here's how you
 5. Submit a detailed pull request with description of changes
 
 ### 🎯 Priority Areas
+
 - Character data expansion and accuracy
 - Performance optimization
 - Accessibility improvements
