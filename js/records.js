@@ -178,7 +178,9 @@ function renderRecords(records = HISTORICAL_RECORDS) {
   }
 
   // Detect device type for responsive behavior
-  const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
+  const isMobile = window.isMobileDevice
+    ? window.isMobileDevice()
+    : window.innerWidth <= 768;
 
   // Generate HTML for each record card with dynamic styling and content
   grid.innerHTML = filteredRecords
@@ -352,7 +354,7 @@ function toggleRecordExpansion(recordId) {
   const isCurrentlyExpanded = detailsElement.classList.contains("expanded");
 
   if (isCurrentlyExpanded) {
-    // Collapse the current record
+    // Collapse the current record with smooth animation
     expandedRecord = null;
     detailsElement.classList.remove("expanded");
     expandText.textContent = "Show More";
@@ -360,6 +362,12 @@ function toggleRecordExpansion(recordId) {
     expandBtn.setAttribute("aria-label", "Show more details");
     detailsElement.setAttribute("aria-hidden", "true");
     expandBtn.classList.remove("expanded");
+
+    // Add subtle bounce effect
+    recordCard.style.animation = "cardBounce 0.4s ease";
+    setTimeout(() => {
+      recordCard.style.animation = "";
+    }, 400);
   } else {
     // Expand the selected record and collapse any others
     expandedRecord = recordId;
@@ -383,13 +391,24 @@ function toggleRecordExpansion(recordId) {
         }
       });
 
-    // Expand the selected record
+    // Expand the selected record with smooth animation
     detailsElement.classList.add("expanded");
     expandText.textContent = "Show Less";
     expandIcon.textContent = "▲";
     expandBtn.setAttribute("aria-label", "Show less details");
     detailsElement.setAttribute("aria-hidden", "false");
     expandBtn.classList.add("expanded");
+
+    // Add subtle pulse effect
+    recordCard.style.animation = "cardPulse 0.5s ease";
+    setTimeout(() => {
+      recordCard.style.animation = "";
+    }, 500);
+
+    // Smooth scroll to expanded card
+    setTimeout(() => {
+      recordCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }, 100);
   }
 
   // Play sound feedback if available
@@ -511,7 +530,9 @@ const handleSearch = window.debounce((query) => {
   }
 
   // Provide accessibility feedback for mobile users
-  if (window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768) {
+  if (
+    window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768
+  ) {
     const visibleCount = document.querySelectorAll(".record-card").length;
     if (query && visibleCount === 0) {
       window.announceToScreenReader("No records found for your search");
