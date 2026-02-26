@@ -2045,7 +2045,7 @@ html {
 
 .audio-controls {
   position: absolute;
-  top: 1rem;
+  top: 6.5rem;
   right: 1rem;
   z-index: 999;
   display: flex;
@@ -2232,7 +2232,7 @@ body.mobile-nav-active .audio-controls {
 /* Mobile responsive adjustments */
 @media (max-width: 767px) {
   .audio-controls {
-    top: 1rem;
+    top: 4.5rem; /* Moved down below mobile navbar (from 1rem) */
     right: 1rem;
     padding: 0.4rem 0.8rem;
     font-size: 0.9rem;
@@ -2256,7 +2256,7 @@ body.mobile-nav-active .audio-controls {
 
 @media (max-width: 479px) {
   .audio-controls {
-    top: 1rem;
+    top: 4rem; /* Moved down below small mobile navbar (from 1rem) */
     right: 0.5rem;
     padding: 0.3rem 0.6rem;
   }
