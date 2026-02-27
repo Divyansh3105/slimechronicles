@@ -8,7 +8,7 @@
     <!-- Homepage - Highest priority -->
     <url>
         <loc>https://slimechronicles.netlify.app/</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
         <image:image>
@@ -21,7 +21,7 @@
     <!-- Federation Overview - High priority -->
     <url>
         <loc>https://slimechronicles.netlify.app/overview.html</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
         <image:image>
@@ -34,7 +34,7 @@
     <!-- Interactive Codex - High priority -->
     <url>
         <loc>https://slimechronicles.netlify.app/codex.html</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
         <image:image>
@@ -47,7 +47,7 @@
     <!-- Skills Database - High priority -->
     <url>
         <loc>https://slimechronicles.netlify.app/skills.html</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -60,7 +60,7 @@
     <!-- Chronicle Timeline - High priority -->
     <url>
         <loc>https://slimechronicles.netlify.app/chronicle.html</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -70,10 +70,10 @@
         </image:image>
     </url>
 
-    <!-- Historical Records - High priority (recently updated) -->
+    <!-- Historical Records - High priority -->
     <url>
         <loc>https://slimechronicles.netlify.app/records.html</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -86,7 +86,7 @@
     <!-- Factions & Organizations - Medium priority -->
     <url>
         <loc>https://slimechronicles.netlify.app/factions.html</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
         <image:image>
@@ -99,20 +99,20 @@
     <!-- Character Detail Page - Medium priority -->
     <url>
         <loc>https://slimechronicles.netlify.app/character.html</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
         <image:image>
             <image:loc>https://slimechronicles.netlify.app/assets/characters/Rimuru.png</image:loc>
             <image:title>Character Profiles</image:title>
-            <image:caption>Detailed character information with improved Cultural Impact section</image:caption>
+            <image:caption>Detailed character information with stats, lore, relationships, and evolution paths</image:caption>
         </image:image>
     </url>
 
     <!-- Important Assets -->
     <url>
         <loc>https://slimechronicles.netlify.app/assets/OG.png</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-27</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>

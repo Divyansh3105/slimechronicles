@@ -52,6 +52,8 @@ The **Jura Tempest Federation: Slime Chronicles** is a comprehensive fan-made in
 - 📊 **Timeline Visualization** – Major events, battles, and achievements
 - 🎨 **Thematic UI** – Lore-rich, modern, and responsive design with recent UI improvements
 - 🎯 **Enhanced User Experience** – Improved navigation, search functionality, and visual feedback
+- 🎵 **Ambient Soundtrack** – Immersive background theme music (`theme.mp3`) that plays across the site
+- 🖱️ **Custom Cursors** – Hand-crafted cursor and pointer assets for a fully themed interface
 
 ### 🛡️ Data & Gameplay
 
@@ -156,19 +158,30 @@ The **Jura Tempest Federation: Slime Chronicles** is a comprehensive fan-made in
 
 ```
 slimechronicles/
-├── index.html           # Main landing page
-├── overview.html        # Federation analytics and stats
-├── character.html       # Character profiles
-├── skills.html          # Skills database
-├── codex.html           # Interactive knowledge base and lore
-├── factions.html        # Factions, organizations, and political entities
-├── records.html         # Historical records and achievements
-├── chronicle.html       # Timeline and chronological events
-├── data/                # Character and event data (JSON)
-├── js/                  # Application logic and effects
-├── css/                 # Themed stylesheets
-├── assets/              # Images and icons
-└── README.md            # Project documentation
+├── index.html                      # Main landing page
+├── overview.html                   # Federation analytics and stats
+├── character.html                  # Character profiles
+├── skills.html                     # Skills database
+├── codex.html                      # Interactive knowledge base and lore
+├── factions.html                   # Factions, organizations, and political entities
+├── records.html                    # Historical records and achievements
+├── chronicle.html                  # Timeline and chronological events
+├── data/                           # Character and event data (JSON)
+│   └── characters/                 # Individual character JSON files
+├── js/                             # Application logic and effects
+├── css/                            # Themed stylesheets
+├── assets/                         # Images, icons, audio, and cursor assets
+│   ├── characters/                 # Character artwork
+│   ├── banner.png                  # Site banner
+│   ├── OG.png                      # Open Graph / social preview image
+│   ├── theme.mp3                   # Ambient background soundtrack
+│   ├── cursor.cur / pointer.cur    # Custom cursor assets
+│   └── fav.ico / fav.png           # Favicon assets
+├── sitemap.xml                     # XML sitemap for search engines
+├── robots.txt                      # Crawler directives
+├── BingSiteAuth.xml                # Bing Webmaster Tools verification
+├── google70a70f7889930fd3.html     # Google Search Console verification
+└── README.md                       # Project documentation
 ```
 
 ---
