@@ -37,8 +37,8 @@
     <meta name="twitter:image" content="https://slimechronicles.netlify.app/assets/OG.png">
     <meta name="twitter:image:alt"
         content="Jura Tempest Federation - A magical kingdom where monsters and humans coexist">
-    <meta name="twitter:creator" content="@your_twitter_handle">
-    <meta name="twitter:site" content="@your_twitter_handle">
+    <meta name="twitter:creator" content="https://x.com/Divyansh_3105">
+    <meta name="twitter:site" content="https://x.com/Divyansh_3105">
 
     <!-- Additional Meta Tags for Better SEO -->
     <meta name="author" content="Divyansh Garg">
@@ -64,6 +64,45 @@
 </head>
 
 <body>
+    <!-- NO-JS FALLBACK: Shown only when JavaScript is disabled -->
+    <noscript>
+        <div
+            style="min-height:100vh;background:#0a0e27;color:#cce6ff;font-family:Georgia,serif;display:flex;align-items:center;justify-content:center;padding:2rem;box-sizing:border-box;">
+            <div
+                style="max-width:600px;text-align:center;border:1px solid #4dd4ff44;border-radius:16px;padding:2.5rem;background:rgba(77,212,255,0.05);">
+                <div style="font-size:3rem;margin-bottom:1rem;">🌀</div>
+                <h1 style="color:#4dd4ff;font-size:1.8rem;margin:0 0 0.5rem;">Jura Tempest Federation</h1>
+                <p style="color:#aac8e8;margin:0 0 1.5rem;font-size:0.95rem;">This site requires JavaScript to run its
+                    interactive experience. Please enable JavaScript in your browser settings and reload the page.</p>
+                <p style="color:#7a9fc0;font-size:0.85rem;margin:0 0 1.5rem;">You can still navigate to the main
+                    sections below:</p>
+                <nav style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;">
+                    <a href="index.html"
+                        style="color:#4dd4ff;text-decoration:none;border:1px solid #4dd4ff66;border-radius:8px;padding:0.45rem 1rem;font-size:0.9rem;">🏠
+                        Home</a>
+                    <a href="overview.html"
+                        style="color:#4dd4ff;text-decoration:none;border:1px solid #4dd4ff66;border-radius:8px;padding:0.45rem 1rem;font-size:0.9rem;">🏛️
+                        Overview</a>
+                    <a href="codex.html"
+                        style="color:#4dd4ff;text-decoration:none;border:1px solid #4dd4ff66;border-radius:8px;padding:0.45rem 1rem;font-size:0.9rem;">📚
+                        Character Codex</a>
+                    <a href="skills.html"
+                        style="color:#4dd4ff;text-decoration:none;border:1px solid #4dd4ff66;border-radius:8px;padding:0.45rem 1rem;font-size:0.9rem;">✨
+                        Skills Database</a>
+                    <a href="factions.html"
+                        style="color:#4dd4ff;text-decoration:none;border:1px solid #4dd4ff66;border-radius:8px;padding:0.45rem 1rem;font-size:0.9rem;">⚔️
+                        Factions</a>
+                    <a href="chronicle.html"
+                        style="color:#4dd4ff;text-decoration:none;border:1px solid #4dd4ff66;border-radius:8px;padding:0.45rem 1rem;font-size:0.9rem;">📜
+                        Chronicle</a>
+                    <a href="records.html"
+                        style="color:#4dd4ff;text-decoration:none;border:1px solid #4dd4ff66;border-radius:8px;padding:0.45rem 1rem;font-size:0.9rem;">🧠
+                        Records</a>
+                </nav>
+            </div>
+        </div>
+    </noscript>
+
     <!-- VISUAL EFFECTS & BACKGROUND ELEMENTS -->
     <div class="starfield" id="starfield"></div>
     <div class="particles" id="particles"></div>
@@ -243,6 +282,9 @@
             <div class="quick-item" onclick="showInfo()" data-tooltip="About this project">
                 <span class="quick-icon">ℹ️</span>
             </div>
+            <div class="quick-item" onclick="showSettings()" data-tooltip="Settings & Accessibility">
+                <span class="quick-icon">⚙️</span>
+            </div>
         </div>
     </div>
 
@@ -286,15 +328,55 @@
         </div>
     </div>
 
+    <!-- Settings modal -->
+    <div class="modal-overlay" id="settings-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Settings & Accessibility</h3>
+                <button class="modal-close" onclick="closeSettingsModal()">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <p>Customize your experience in the Jura Tempest Federation.</p>
+
+                <div class="settings-group" style="margin-top: 20px; text-align: left;">
+                    <div
+                        style="margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
+                        <span><span class="feature-icon">🎵</span> Sound Effects</span>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-sound" checked onchange="toggleSoundSetting(this)">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <div
+                        style="margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
+                        <span><span class="feature-icon">✨</span> Background Particles</span>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-particles" checked
+                                onchange="toggleParticlesSetting(this)">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <div
+                        style="margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
+                        <span><span class="feature-icon">🎨</span> Gamified Theme</span>
+                        <button class="secondary-button" style="padding: 5px 15px; font-size: 0.9rem;"
+                            onclick="toggleTheme()">Change</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- FOOTER SECTION -->
 
-    <footer class="main-footer"
-        style="padding: 1.5rem 0 1rem; background: transparent; border-top: 1px solid rgba(77, 212, 255, 0.2);">
-        <div class="footer-content"
-            style="grid-template-columns: 1fr 1fr; text-align: left; gap: 2rem; align-items: center;">
+    <footer class="main-footer">
+        <div class="footer-content" style="display: grid;">
 
             <!-- Left side: Brand information -->
-            <div class="footer-brand" style="align-items: flex-start;">
+            <div class="footer-brand" style="display: flex; flex-direction: column;">
                 <div class="footer-brand-header">
                     <div class="footer-logo"></div>
                     <div>
@@ -305,47 +387,35 @@
             </div>
 
             <!-- Right side: Copyright and developer info -->
-            <div class="footer-info" style="text-align: right;">
+            <div class="footer-info">
                 <div class="footer-copyright">© 2025 Tensura Chronicles</div>
                 <div class="footer-version">Inspired by "That Time I Got Reincarnated as a Slime"</div>
 
                 <!-- Developer credit section -->
-                <div
-                    style="margin: 0.5rem 0; padding: 0.5rem; background: rgba(10, 14, 39, 0.3); border: 1px solid rgba(77, 212, 255, 0.3); border-radius: 6px; position: relative; overflow: hidden; backdrop-filter: blur(5px);">
-                    <div
-                        style="position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan)); animation: footerGlow 3s ease-in-out infinite;">
-                    </div>
-                    <div style="font-size: 0.85rem; color: var(--text-light);">
+                <div class="footer-dev-card">
+                    <div class="footer-dev-card-accent"></div>
+                    <div class="footer-dev-label">
                         🧠 Brain + 💻 Keyboard =
-                        <a href="https://github.com/Divyansh3105"
-                            style="color: var(--accent-cyan); text-decoration: none; font-weight: bold;">Divyansh
-                            Garg</a>
+                        <a href="https://github.com/Divyansh3105">Divyansh Garg</a>
                     </div>
-                    <div
-                        style="font-size: 1rem; margin-top: 0.2rem; filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.4));">
-                        ✨ ⭐ ✨
-                    </div>
+                    <div class="footer-dev-stars">✨ ⭐ ✨</div>
                 </div>
 
                 <!-- Social media links -->
-                <div class="footer-social" style="justify-content: flex-end; gap: 0.6rem; margin: 0.5rem 0;">
+                <div class="footer-social" style="display: flex;">
                     <!-- GitHub repository link -->
-                    <a href="https://github.com/Divyansh3105" class="social-link" title="GitHub Repository"
-                        style="width: 35px; height: 35px;">
-                        <i class="fab fa-github"
-                            style="color:#fff; font-size:1.1rem; text-decoration:none; transition:color 0.3s;"></i>
+                    <a href="https://github.com/Divyansh3105" class="social-link" title="GitHub Repository">
+                        <i class="fab fa-github"></i>
                     </a>
                     <!-- LinkedIn profile link -->
-                    <a href="https://www.linkedin.com/in/divyanshgarg3105/" class="social-link" title="LinkedIn Profile"
-                        style="width: 35px; height: 35px;">
-                        <i class="fab fa-linkedin"
-                            style="color:#fff; font-size:1.1rem; text-decoration:none; transition:color 0.3s;"></i>
+                    <a href="https://www.linkedin.com/in/divyanshgarg3105/" class="social-link"
+                        title="LinkedIn Profile">
+                        <i class="fab fa-linkedin"></i>
                     </a>
                 </div>
 
                 <!-- Inspirational quote -->
-                <div
-                    style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.7; font-style: italic; margin-top: 0.5rem;">
+                <div class="footer-quote">
                     "In unity, there is strength. In friendship, there is magic."
                 </div>
             </div>
@@ -355,7 +425,6 @@
     <!-- JAVASCRIPT DEPENDENCIES -->
 
     <!-- External JavaScript files -->
-    <script src="js/character.js"></script>
     <script src="js/game-state-optimized.js"></script>
 
     <script>
@@ -513,17 +582,7 @@
                 });
             });
 
-            // Add ripple animation keyframes
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes ripple {
-                    to {
-                        transform: scale(2);
-                        opacity: 0;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
+            // @keyframes ripple is defined in shared.css
         }
 
         // NAVIGATION FUNCTIONS
@@ -572,7 +631,7 @@
             if (soundEnabled) SoundFeedback.playEffect('click');
             addButtonEffect(event.target);
             setTimeout(() => {
-                window.location.href = 'Chronicle.html';
+                window.location.href = 'chronicle.html';
             }, 300);
         }
 
@@ -611,6 +670,52 @@
             document.getElementById('info-modal').classList.remove('active');
         }
 
+        // Show the settings modal
+        function showSettings() {
+            if (soundEnabled) SoundFeedback.playEffect('click');
+
+            // Sync current state
+            const particlesCheckbox = document.getElementById('toggle-particles');
+            if (window.animatedBG && particlesCheckbox) {
+                particlesCheckbox.checked = window.animatedBG.options.enableAnimation;
+            }
+            const soundCheckbox = document.getElementById('toggle-sound');
+            if (soundCheckbox) {
+                soundCheckbox.checked = soundEnabled;
+            }
+
+            document.getElementById('settings-modal').classList.add('active');
+        }
+
+        function closeSettingsModal() {
+            if (soundEnabled) SoundFeedback.playEffect('click');
+            document.getElementById('settings-modal').classList.remove('active');
+        }
+
+        function toggleSoundSetting(checkbox) {
+            soundEnabled = checkbox.checked;
+            if (soundEnabled) SoundFeedback.playEffect('click');
+            localStorage.setItem('sound-enabled', soundEnabled);
+        }
+
+        function toggleParticlesSetting(checkbox) {
+            if (soundEnabled) SoundFeedback.playEffect('click');
+            if (checkbox.checked) {
+                if (window.animatedBG) {
+                    window.animatedBG.enableAnimation();
+                } else {
+                    createParticles();
+                }
+            } else {
+                if (window.animatedBG) {
+                    window.animatedBG.disableAnimation();
+                } else {
+                    cleanupParticles();
+                }
+            }
+            localStorage.setItem('particles-enabled', checkbox.checked);
+        }
+
         // UTILITY FUNCTIONS
 
         /**
@@ -644,10 +749,6 @@
                 case 's':
                     e.preventDefault();
                     openSkills();
-                    break;
-                case 'g':
-                    e.preventDefault();
-                    openGreatSage();
                     break;
                 case 't':
                     e.preventDefault();

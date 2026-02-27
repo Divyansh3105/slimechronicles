@@ -231,8 +231,8 @@ function renderCurrentPage() {
     grid.innerHTML = pageCharacters
       .map((character) => {
         try {
-          // Generate random stats for character display using shared function
-          const stats = window.generateRandomStats();
+          // Generate stable display stats seeded by character id (same values on every render)
+          const stats = window.generateRandomStats(character.id);
 
           // Convert hex color values to RGB for CSS custom properties using shared function
           const primaryRgb = window.hexToRgb(character.colorScheme.primary);
@@ -266,7 +266,9 @@ function renderCurrentPage() {
 function renderCompactCharacterCard(character, stats, cssVars) {
   // Calculate character impact values for display
   const impact = generateCharacterImpact(character);
-  const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
+  const isMobile = window.isMobileDevice
+    ? window.isMobileDevice()
+    : window.innerWidth <= 768;
 
   return `
     <div class="character-card character-themed ${character.id === "diablo" ? "dark-theme" : ""}"
@@ -278,7 +280,7 @@ function renderCompactCharacterCard(character, stats, cssVars) {
               ${character.power}
           </div>
           <div class="character-status-badge">
-              ${isMobile ? character.role.split(' ').slice(0, 2).join(' ') : character.role}
+              ${isMobile ? character.role.split(" ").slice(0, 2).join(" ") : character.role}
           </div>
 
           <div class="character-image-wrapper">
@@ -294,7 +296,7 @@ function renderCompactCharacterCard(character, stats, cssVars) {
 
             <div class="character-race-role">
                 <span class="character-race">${character.race}</span>
-                <span class="character-role">${isMobile ? character.role.split(' ').slice(0, 2).join(' ') : character.role}</span>
+                <span class="character-role">${isMobile ? character.role.split(" ").slice(0, 2).join(" ") : character.role}</span>
             </div>
 
             <div class="character-stats">
@@ -561,19 +563,21 @@ function initializeFilters() {
   const searchInput = document.getElementById("character-search");
   if (searchInput) {
     // Use shared debounce function for search input
-    const debouncedSearch = window.debounce ? window.debounce((e) => {
-      searchTerm = e.target.value;
-      applyFiltersAndRender();
-    }, 300) : (() => {
-      let timeout;
-      return (e) => {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => {
+    const debouncedSearch = window.debounce
+      ? window.debounce((e) => {
           searchTerm = e.target.value;
           applyFiltersAndRender();
-        }, 300);
-      };
-    })();
+        }, 300)
+      : (() => {
+          let timeout;
+          return (e) => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+              searchTerm = e.target.value;
+              applyFiltersAndRender();
+            }, 300);
+          };
+        })();
 
     searchInput.addEventListener("input", debouncedSearch);
   }
@@ -671,9 +675,14 @@ async function openCharacterModal(characterId) {
     const modalBody = document.getElementById("modal-body");
 
     // Prepare character description with fallback text
-    const description = character.lore || character.backstory || "A mysterious character with unknown origins and abilities.";
+    const description =
+      character.lore ||
+      character.backstory ||
+      "A mysterious character with unknown origins and abilities.";
     // Extract key abilities for display (limit to first 3)
-    const abilities = character.skills ? character.skills.slice(0, 3).map(s => s.name) : ["Unknown Ability"];
+    const abilities = character.skills
+      ? character.skills.slice(0, 3).map((s) => s.name)
+      : ["Unknown Ability"];
 
     // Generate comprehensive modal content HTML
     const modalContent = `
@@ -798,7 +807,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Add stat card click animations
   const statCards = document.querySelectorAll(".stat-card");
-  statCards.forEach(card => {
+  statCards.forEach((card) => {
     card.addEventListener("click", () => {
       card.style.transform = "translateY(-8px) scale(1.1)";
       setTimeout(() => {
@@ -808,16 +817,19 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Add character card entrance animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.style.opacity = "1";
-          entry.target.style.transform = "translateY(0)";
-        }, index * 100);
-      }
-    });
-  }, { threshold: 0.1 });
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }, index * 100);
+        }
+      });
+    },
+    { threshold: 0.1 },
+  );
 
   // Setup debug function for development and troubleshooting
   window.debugCharacters = async () => {
@@ -869,14 +881,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Add smooth scrolling for better UX
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
       e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
+      const target = document.querySelector(this.getAttribute("href"));
       if (target) {
         target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
+          behavior: "smooth",
+          block: "start",
         });
       }
     });

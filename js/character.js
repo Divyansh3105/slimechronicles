@@ -363,14 +363,22 @@ function setupTabNavigation() {
       let isScrolling = false;
 
       // Track touch start to detect scrolling vs tapping
-      profileTabs.addEventListener("touchstart", () => {
-        isScrolling = false;
-      }, { passive: true });
+      profileTabs.addEventListener(
+        "touchstart",
+        () => {
+          isScrolling = false;
+        },
+        { passive: true },
+      );
 
       // Mark as scrolling if touch moves significantly
-      profileTabs.addEventListener("touchmove", () => {
-        isScrolling = true;
-      }, { passive: true });
+      profileTabs.addEventListener(
+        "touchmove",
+        () => {
+          isScrolling = true;
+        },
+        { passive: true },
+      );
 
       // Handle tab activation only if not scrolling
       profileTabs.addEventListener("touchend", (e) => {
@@ -511,7 +519,12 @@ function generateProfileTabs(character) {
 }
 
 function generateCulturalImpactSection(character) {
-  if (!character.worldInfluence && !character.alternateScenario && !character.philosophy && !character.leadershipStyle) {
+  if (
+    !character.worldInfluence &&
+    !character.alternateScenario &&
+    !character.philosophy &&
+    !character.leadershipStyle
+  ) {
     return `
       <div class="cultural-empty-state">
         <div class="empty-state-icon">🏛️</div>
@@ -545,7 +558,9 @@ function generateCulturalImpactSection(character) {
     </div>
 
     <!-- World Influence Section -->
-    ${character.worldInfluence ? `
+    ${
+      character.worldInfluence
+        ? `
       <div class="cultural-section world-influence-section">
         <div class="section-header-cultural">
           <div class="section-icon-large">🌍</div>
@@ -563,10 +578,14 @@ function generateCulturalImpactSection(character) {
           </div>
         </div>
       </div>
-    ` : ''}
+    `
+        : ""
+    }
 
     <!-- Philosophy & Beliefs Section -->
-    ${character.philosophy ? `
+    ${
+      character.philosophy
+        ? `
       <div class="cultural-section philosophy-section">
         <div class="section-header-cultural">
           <div class="section-icon-large">💭</div>
@@ -583,10 +602,14 @@ function generateCulturalImpactSection(character) {
           </div>
         </div>
       </div>
-    ` : ''}
+    `
+        : ""
+    }
 
     <!-- Leadership Style Section -->
-    ${character.leadershipStyle ? `
+    ${
+      character.leadershipStyle
+        ? `
       <div class="cultural-section leadership-section">
         <div class="section-header-cultural">
           <div class="section-icon-large">👑</div>
@@ -604,10 +627,14 @@ function generateCulturalImpactSection(character) {
           </div>
         </div>
       </div>
-    ` : ''}
+    `
+        : ""
+    }
 
     <!-- Alternate Scenario Section -->
-    ${character.alternateScenario ? `
+    ${
+      character.alternateScenario
+        ? `
       <div class="cultural-section alternate-scenario-section">
         <div class="section-header-cultural">
           <div class="section-icon-large">⚠️</div>
@@ -638,7 +665,9 @@ function generateCulturalImpactSection(character) {
           </div>
         </div>
       </div>
-    ` : ''}
+    `
+        : ""
+    }
 
     <!-- Legacy Summary -->
     <div class="cultural-section legacy-summary-section">
@@ -648,8 +677,8 @@ function generateCulturalImpactSection(character) {
         <p class="legacy-summary-text">
           ${character.name} stands as a pivotal figure whose actions and beliefs have fundamentally
           reshaped the world. Their legacy continues to influence future generations, serving as
-          a testament to the power of ${character.philosophy ? 'principled leadership' : 'determination'}
-          and ${character.worldInfluence ? 'transformative vision' : 'unwavering commitment'}.
+          a testament to the power of ${character.philosophy ? "principled leadership" : "determination"}
+          and ${character.worldInfluence ? "transformative vision" : "unwavering commitment"}.
         </p>
       </div>
     </div>
@@ -658,30 +687,56 @@ function generateCulturalImpactSection(character) {
 
 function generateInfluenceHighlights(worldInfluence) {
   // Extract key points from the world influence text
-  const sentences = worldInfluence.split('.').filter(s => s.trim().length > 0);
-  const highlights = sentences.slice(0, 4).map((sentence, index) => {
-    const icons = ['🌟', '🔮', '⚡', '💫'];
-    return `
+  const sentences = worldInfluence
+    .split(".")
+    .filter((s) => s.trim().length > 0);
+  const highlights = sentences
+    .slice(0, 4)
+    .map((sentence, index) => {
+      const icons = ["🌟", "🔮", "⚡", "💫"];
+      return `
       <div class="influence-highlight-item">
         <span class="highlight-icon">${icons[index % icons.length]}</span>
         <p class="highlight-text">${sentence.trim()}.</p>
       </div>
     `;
-  }).join('');
+    })
+    .join("");
 
-  return highlights || '<p class="no-highlights">Key influences are being analyzed.</p>';
+  return (
+    highlights ||
+    '<p class="no-highlights">Key influences are being analyzed.</p>'
+  );
 }
 
 function generateLeadershipTraits(leadershipStyle) {
   // Extract leadership traits from the text
   const traits = [
-    { icon: '🎯', label: 'Strategic', description: 'Plans with foresight and precision' },
-    { icon: '🤝', label: 'Collaborative', description: 'Works together with others' },
-    { icon: '💪', label: 'Empowering', description: 'Enables others to succeed' },
-    { icon: '❤️', label: 'Compassionate', description: 'Leads with empathy and care' }
+    {
+      icon: "🎯",
+      label: "Strategic",
+      description: "Plans with foresight and precision",
+    },
+    {
+      icon: "🤝",
+      label: "Collaborative",
+      description: "Works together with others",
+    },
+    {
+      icon: "💪",
+      label: "Empowering",
+      description: "Enables others to succeed",
+    },
+    {
+      icon: "❤️",
+      label: "Compassionate",
+      description: "Leads with empathy and care",
+    },
   ];
 
-  return traits.map(trait => `
+  return traits
+    .map(
+      (trait) => `
     <div class="leadership-trait-card">
       <div class="trait-icon">${trait.icon}</div>
       <div class="trait-content">
@@ -689,7 +744,9 @@ function generateLeadershipTraits(leadershipStyle) {
         <p class="trait-description">${trait.description}</p>
       </div>
     </div>
-  `).join('');
+  `,
+    )
+    .join("");
 }
 
 // Helper functions for generating specific sections
@@ -717,7 +774,8 @@ function generateQuotesSection(character) {
 
 // Generate enhanced overview section with improved UI
 function generateOverviewSection(character) {
-  const hasContent = character.lore || character.backstory || character.personality;
+  const hasContent =
+    character.lore || character.backstory || character.personality;
 
   if (!hasContent) {
     return `
@@ -779,21 +837,31 @@ function generateOverviewSection(character) {
           <h3 class="section-title">Quick Information</h3>
         </div>
         <div class="quick-info-grid">
-          ${character.specialties && character.specialties.length > 0 ? `
+          ${
+            character.specialties && character.specialties.length > 0
+              ? `
             <div class="quick-info-card specialties-card">
               <div class="card-icon-wrapper">
                 <span class="card-icon-large">🌟</span>
               </div>
               <h4 class="card-title-overview">Specialties</h4>
               <div class="specialties-tags">
-                ${character.specialties.map(specialty => `
+                ${character.specialties
+                  .map(
+                    (specialty) => `
                   <span class="specialty-tag-overview">${specialty}</span>
-                `).join('')}
+                `,
+                  )
+                  .join("")}
               </div>
             </div>
-          ` : ''}
+          `
+              : ""
+          }
 
-          ${character.achievements && character.achievements.length > 0 ? `
+          ${
+            character.achievements && character.achievements.length > 0
+              ? `
             <div class="quick-info-card achievements-card">
               <div class="card-icon-wrapper">
                 <span class="card-icon-large">🏆</span>
@@ -804,56 +872,85 @@ function generateOverviewSection(character) {
                 <span class="count-label">Major Accomplishments</span>
               </div>
               <div class="achievements-preview">
-                ${character.achievements.slice(0, 3).map(achievement => `
+                ${character.achievements
+                  .slice(0, 3)
+                  .map(
+                    (achievement) => `
                   <div class="achievement-preview-item">
                     <span class="achievement-bullet">✓</span>
                     <span class="achievement-text">${achievement}</span>
                   </div>
-                `).join('')}
-                ${character.achievements.length > 3 ? `
+                `,
+                  )
+                  .join("")}
+                ${
+                  character.achievements.length > 3
+                    ? `
                   <div class="achievement-more">+${character.achievements.length - 3} more</div>
-                ` : ''}
+                `
+                    : ""
+                }
               </div>
             </div>
-          ` : ''}
+          `
+              : ""
+          }
 
-          ${character.relationships ? `
+          ${
+            character.relationships
+              ? `
             <div class="quick-info-card relationships-card">
               <div class="card-icon-wrapper">
                 <span class="card-icon-large">🤝</span>
               </div>
               <h4 class="card-title-overview">Connections</h4>
               <div class="relationships-summary">
-                ${character.relationships.allies ? `
+                ${
+                  character.relationships.allies
+                    ? `
                   <div class="relationship-summary-item">
                     <span class="relationship-icon allies">💚</span>
                     <span class="relationship-count">${character.relationships.allies.length}</span>
                     <span class="relationship-label">Allies</span>
                   </div>
-                ` : ''}
-                ${character.relationships.rivals ? `
+                `
+                    : ""
+                }
+                ${
+                  character.relationships.rivals
+                    ? `
                   <div class="relationship-summary-item">
                     <span class="relationship-icon rivals">⚔️</span>
                     <span class="relationship-count">${character.relationships.rivals.length}</span>
                     <span class="relationship-label">Rivals</span>
                   </div>
-                ` : ''}
-                ${character.relationships.mentors ? `
+                `
+                    : ""
+                }
+                ${
+                  character.relationships.mentors
+                    ? `
                   <div class="relationship-summary-item">
                     <span class="relationship-icon mentors">📚</span>
                     <span class="relationship-count">${character.relationships.mentors.length}</span>
                     <span class="relationship-label">Mentors</span>
                   </div>
-                ` : ''}
+                `
+                    : ""
+                }
               </div>
             </div>
-          ` : ''}
+          `
+              : ""
+          }
         </div>
       </div>
 
       <!-- Main Content Sections -->
       <div class="overview-content-grid">
-        ${character.lore ? `
+        ${
+          character.lore
+            ? `
           <div class="overview-content-card lore-card">
             <div class="content-card-header">
               <div class="header-icon-container">
@@ -873,9 +970,13 @@ function generateOverviewSection(character) {
               </div>
             </div>
           </div>
-        ` : ''}
+        `
+            : ""
+        }
 
-        ${character.backstory ? `
+        ${
+          character.backstory
+            ? `
           <div class="overview-content-card backstory-card">
             <div class="content-card-header">
               <div class="header-icon-container">
@@ -892,9 +993,13 @@ function generateOverviewSection(character) {
               <div class="content-decoration"></div>
             </div>
           </div>
-        ` : ''}
+        `
+            : ""
+        }
 
-        ${character.personality ? `
+        ${
+          character.personality
+            ? `
           <div class="overview-content-card personality-card">
             <div class="content-card-header">
               <div class="header-icon-container">
@@ -909,59 +1014,86 @@ function generateOverviewSection(character) {
             <div class="content-card-body">
               <p class="content-text">${character.personality}</p>
               <div class="personality-traits">
-                ${extractPersonalityTraits(character.personality).map(trait => `
+                ${extractPersonalityTraits(character.personality)
+                  .map(
+                    (trait) => `
                   <span class="trait-badge">${trait}</span>
-                `).join('')}
+                `,
+                  )
+                  .join("")}
               </div>
             </div>
           </div>
-        ` : ''}
+        `
+            : ""
+        }
       </div>
 
       <!-- Character Highlights -->
-      ${(character.weaknesses && character.weaknesses.length > 0) || (character.specialties && character.specialties.length > 0) ? `
+      ${
+        (character.weaknesses && character.weaknesses.length > 0) ||
+        (character.specialties && character.specialties.length > 0)
+          ? `
         <div class="character-highlights">
           <div class="section-header-overview">
             <span class="section-icon">💎</span>
             <h3 class="section-title">Character Highlights</h3>
           </div>
           <div class="highlights-grid">
-            ${character.specialties && character.specialties.length > 0 ? `
+            ${
+              character.specialties && character.specialties.length > 0
+                ? `
               <div class="highlight-card strengths-highlight">
                 <div class="highlight-header">
                   <span class="highlight-icon">💪</span>
                   <h4 class="highlight-title">Strengths</h4>
                 </div>
                 <div class="highlight-list">
-                  ${character.specialties.map(specialty => `
+                  ${character.specialties
+                    .map(
+                      (specialty) => `
                     <div class="highlight-item strength-item">
                       <span class="item-marker">▸</span>
                       <span class="item-text">${specialty}</span>
                     </div>
-                  `).join('')}
+                  `,
+                    )
+                    .join("")}
                 </div>
               </div>
-            ` : ''}
+            `
+                : ""
+            }
 
-            ${character.weaknesses && character.weaknesses.length > 0 ? `
+            ${
+              character.weaknesses && character.weaknesses.length > 0
+                ? `
               <div class="highlight-card weaknesses-highlight">
                 <div class="highlight-header">
                   <span class="highlight-icon">⚠️</span>
                   <h4 class="highlight-title">Weaknesses</h4>
                 </div>
                 <div class="highlight-list">
-                  ${character.weaknesses.map(weakness => `
+                  ${character.weaknesses
+                    .map(
+                      (weakness) => `
                     <div class="highlight-item weakness-item">
                       <span class="item-marker">▸</span>
                       <span class="item-text">${weakness}</span>
                     </div>
-                  `).join('')}
+                  `,
+                    )
+                    .join("")}
                 </div>
               </div>
-            ` : ''}
+            `
+                : ""
+            }
           </div>
         </div>
-      ` : ''}
+      `
+          : ""
+      }
 
       <!-- Call to Action -->
       <div class="overview-cta">
@@ -996,24 +1128,27 @@ function extractPersonalityTraits(personalityText) {
   const traits = [];
   const text = personalityText.toLowerCase();
 
-  if (text.includes('kind') || text.includes('compassion')) traits.push('Compassionate');
-  if (text.includes('strategic') || text.includes('tactical')) traits.push('Strategic');
-  if (text.includes('protective')) traits.push('Protective');
-  if (text.includes('diplomatic')) traits.push('Diplomatic');
-  if (text.includes('wise') || text.includes('wisdom')) traits.push('Wise');
-  if (text.includes('brave') || text.includes('courageous')) traits.push('Brave');
-  if (text.includes('loyal')) traits.push('Loyal');
-  if (text.includes('intelligent')) traits.push('Intelligent');
+  if (text.includes("kind") || text.includes("compassion"))
+    traits.push("Compassionate");
+  if (text.includes("strategic") || text.includes("tactical"))
+    traits.push("Strategic");
+  if (text.includes("protective")) traits.push("Protective");
+  if (text.includes("diplomatic")) traits.push("Diplomatic");
+  if (text.includes("wise") || text.includes("wisdom")) traits.push("Wise");
+  if (text.includes("brave") || text.includes("courageous"))
+    traits.push("Brave");
+  if (text.includes("loyal")) traits.push("Loyal");
+  if (text.includes("intelligent")) traits.push("Intelligent");
 
   return traits.slice(0, 5); // Limit to 5 traits
 }
 
 // Function to switch tabs programmatically
 function switchToTab(tabName) {
-  const tabs = document.querySelectorAll('.profile-tab');
-  const sections = document.querySelectorAll('.tab-section');
+  const tabs = document.querySelectorAll(".profile-tab");
+  const sections = document.querySelectorAll(".tab-section");
 
-  tabs.forEach(tab => {
+  tabs.forEach((tab) => {
     if (tab.dataset.tab === tabName) {
       tab.click();
     }
@@ -1025,9 +1160,12 @@ window.switchToTab = switchToTab;
 
 // Generate enhanced biography section with improved UI
 function generateBiographySection(character) {
-  const hasContent = character.philosophy || character.leadershipStyle ||
-                     character.worldInfluence || character.alternateScenario ||
-                     (character.quotes && character.quotes.length > 0);
+  const hasContent =
+    character.philosophy ||
+    character.leadershipStyle ||
+    character.worldInfluence ||
+    character.alternateScenario ||
+    (character.quotes && character.quotes.length > 0);
 
   if (!hasContent) {
     return `
@@ -1054,7 +1192,9 @@ function generateBiographySection(character) {
 
       <!-- Biography Grid Layout -->
       <div class="biography-grid">
-        ${character.philosophy ? `
+        ${
+          character.philosophy
+            ? `
           <div class="biography-card philosophy-card">
             <div class="card-header-bio">
               <div class="card-icon-container">
@@ -1068,9 +1208,13 @@ function generateBiographySection(character) {
               <div class="card-decoration"></div>
             </div>
           </div>
-        ` : ''}
+        `
+            : ""
+        }
 
-        ${character.leadershipStyle ? `
+        ${
+          character.leadershipStyle
+            ? `
           <div class="biography-card leadership-card">
             <div class="card-header-bio">
               <div class="card-icon-container">
@@ -1084,9 +1228,13 @@ function generateBiographySection(character) {
               <div class="card-decoration"></div>
             </div>
           </div>
-        ` : ''}
+        `
+            : ""
+        }
 
-        ${character.worldInfluence ? `
+        ${
+          character.worldInfluence
+            ? `
           <div class="biography-card influence-card">
             <div class="card-header-bio">
               <div class="card-icon-container">
@@ -1100,9 +1248,13 @@ function generateBiographySection(character) {
               <div class="card-decoration"></div>
             </div>
           </div>
-        ` : ''}
+        `
+            : ""
+        }
 
-        ${character.alternateScenario ? `
+        ${
+          character.alternateScenario
+            ? `
           <div class="biography-card alternate-card">
             <div class="card-header-bio">
               <div class="card-icon-container">
@@ -1116,19 +1268,25 @@ function generateBiographySection(character) {
               <div class="card-decoration"></div>
             </div>
           </div>
-        ` : ''}
+        `
+            : ""
+        }
       </div>
 
       <!-- Quotes Section Enhanced -->
-      ${character.quotes && character.quotes.length > 0 ? `
+      ${
+        character.quotes && character.quotes.length > 0
+          ? `
         <div class="quotes-section-enhanced">
           <div class="quotes-header">
             <span class="quotes-icon">💬</span>
             <h4 class="quotes-title">Notable Quotes</h4>
-            <div class="quotes-count">${character.quotes.length} ${character.quotes.length === 1 ? 'Quote' : 'Quotes'}</div>
+            <div class="quotes-count">${character.quotes.length} ${character.quotes.length === 1 ? "Quote" : "Quotes"}</div>
           </div>
           <div class="quotes-carousel">
-            ${character.quotes.map((quote, index) => `
+            ${character.quotes
+              .map(
+                (quote, index) => `
               <div class="quote-card-enhanced" data-quote-index="${index}">
                 <div class="quote-decoration-left">❝</div>
                 <div class="quote-decoration-right">❞</div>
@@ -1142,25 +1300,37 @@ function generateBiographySection(character) {
                 </div>
                 <div class="quote-number">${index + 1}</div>
               </div>
-            `).join('')}
+            `,
+              )
+              .join("")}
           </div>
-          ${character.quotes.length > 1 ? `
+          ${
+            character.quotes.length > 1
+              ? `
             <div class="quotes-navigation">
               <button class="quote-nav-btn" onclick="scrollQuotes('left')" aria-label="Previous quote">
                 <span>←</span>
               </button>
               <div class="quote-indicators">
-                ${character.quotes.map((_, index) => `
-                  <span class="quote-indicator ${index === 0 ? 'active' : ''}" data-index="${index}" onclick="scrollToQuote(${index})"></span>
-                `).join('')}
+                ${character.quotes
+                  .map(
+                    (_, index) => `
+                  <span class="quote-indicator ${index === 0 ? "active" : ""}" data-index="${index}" onclick="scrollToQuote(${index})"></span>
+                `,
+                  )
+                  .join("")}
               </div>
               <button class="quote-nav-btn" onclick="scrollQuotes('right')" aria-label="Next quote">
                 <span>→</span>
               </button>
             </div>
-          ` : ''}
+          `
+              : ""
+          }
         </div>
-      ` : ''}
+      `
+          : ""
+      }
 
       <!-- Character Essence Summary -->
       <div class="character-essence">
@@ -1183,11 +1353,13 @@ function generateCharacterEssence(character) {
   const essenceParts = [];
 
   if (character.philosophy) {
-    essenceParts.push(`Guided by a philosophy of ${character.philosophy.split('.')[0].toLowerCase()}`);
+    essenceParts.push(
+      `Guided by a philosophy of ${character.philosophy.split(".")[0].toLowerCase()}`,
+    );
   }
 
   if (character.leadershipStyle) {
-    const style = character.leadershipStyle.split('-')[0].trim().toLowerCase();
+    const style = character.leadershipStyle.split("-")[0].trim().toLowerCase();
     essenceParts.push(`leads with a ${style} approach`);
   }
 
@@ -1199,26 +1371,26 @@ function generateCharacterEssence(character) {
     return `${character.name} stands as a unique figure in the world, with a story still unfolding and a legacy yet to be fully written.`;
   }
 
-  return `${character.name} ${essenceParts.join(', ')}, embodying the values and principles that define their journey.`;
+  return `${character.name} ${essenceParts.join(", ")}, embodying the values and principles that define their journey.`;
 }
 
 // Quote carousel navigation functions
 function scrollQuotes(direction) {
-  const carousel = document.querySelector('.quotes-carousel');
+  const carousel = document.querySelector(".quotes-carousel");
   if (!carousel) return;
 
   const scrollAmount = carousel.offsetWidth * 0.9;
   const currentScroll = carousel.scrollLeft;
 
-  if (direction === 'left') {
+  if (direction === "left") {
     carousel.scrollTo({
       left: currentScroll - scrollAmount,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   } else {
     carousel.scrollTo({
       left: currentScroll + scrollAmount,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   }
 
@@ -1227,15 +1399,15 @@ function scrollQuotes(direction) {
 }
 
 function scrollToQuote(index) {
-  const carousel = document.querySelector('.quotes-carousel');
+  const carousel = document.querySelector(".quotes-carousel");
   if (!carousel) return;
 
-  const quoteCards = carousel.querySelectorAll('.quote-card-enhanced');
+  const quoteCards = carousel.querySelectorAll(".quote-card-enhanced");
   if (quoteCards[index]) {
     quoteCards[index].scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'center'
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
     });
   }
 
@@ -1244,11 +1416,11 @@ function scrollToQuote(index) {
 }
 
 function updateQuoteIndicators() {
-  const carousel = document.querySelector('.quotes-carousel');
+  const carousel = document.querySelector(".quotes-carousel");
   if (!carousel) return;
 
-  const indicators = document.querySelectorAll('.quote-indicator');
-  const quoteCards = carousel.querySelectorAll('.quote-card-enhanced');
+  const indicators = document.querySelectorAll(".quote-indicator");
+  const quoteCards = carousel.querySelectorAll(".quote-card-enhanced");
 
   let activeIndex = 0;
   let minDistance = Infinity;
@@ -1266,9 +1438,9 @@ function updateQuoteIndicators() {
 
   indicators.forEach((indicator, index) => {
     if (index === activeIndex) {
-      indicator.classList.add('active');
+      indicator.classList.add("active");
     } else {
-      indicator.classList.remove('active');
+      indicator.classList.remove("active");
     }
   });
 }
@@ -1298,7 +1470,7 @@ function generateSkillsSection(character) {
 
   // Categorize skills by type
   const skillsByType = character.skills.reduce((acc, skill) => {
-    const type = skill.type || 'General';
+    const type = skill.type || "General";
     if (!acc[type]) acc[type] = [];
     acc[type].push(skill);
     return acc;
@@ -1307,10 +1479,11 @@ function generateSkillsSection(character) {
   // Calculate skill statistics
   const totalSkills = character.skills.length;
   const skillTypes = Object.keys(skillsByType).length;
-  const averageBonus = character.skills.reduce((sum, skill) => {
-    const bonus = parseInt(skill.bonus?.match(/\d+/)?.[0] || 0);
-    return sum + bonus;
-  }, 0) / totalSkills;
+  const averageBonus =
+    character.skills.reduce((sum, skill) => {
+      const bonus = parseInt(skill.bonus?.match(/\d+/)?.[0] || 0);
+      return sum + bonus;
+    }, 0) / totalSkills;
 
   return `
     <!-- Skills Overview Dashboard -->
@@ -1349,7 +1522,9 @@ function generateSkillsSection(character) {
 
     <!-- Skills Categories -->
     <div class="skills-categories">
-      ${Object.entries(skillsByType).map(([type, skills]) => `
+      ${Object.entries(skillsByType)
+        .map(
+          ([type, skills]) => `
         <div class="skill-category" data-category="${type.toLowerCase()}">
           <div class="category-header" onclick="toggleSkillCategory('${type.toLowerCase()}')">
             <div class="category-info">
@@ -1363,7 +1538,9 @@ function generateSkillsSection(character) {
           </div>
 
           <div class="skills-grid" id="skills-${type.toLowerCase()}">
-            ${skills.map((skill, index) => `
+            ${skills
+              .map(
+                (skill, index) => `
               <div class="skill-card-enhanced ${skill.type.toLowerCase()}" data-skill-index="${index}">
                 <div class="skill-card-glow"></div>
                 <div class="skill-card-header">
@@ -1414,10 +1591,14 @@ function generateSkillsSection(character) {
                   </div>
                 </div>
               </div>
-            `).join('')}
+            `,
+              )
+              .join("")}
           </div>
         </div>
-      `).join('')}
+      `,
+        )
+        .join("")}
     </div>
 
     <!-- Skill Synergies Section -->
@@ -1459,23 +1640,23 @@ function generateSpecialtiesSection(character) {
 // Helper functions for enhanced skills section
 function getSkillTypeIcon(type) {
   const icons = {
-    'Combat': '⚔️',
-    'Magic': '🔮',
-    'Support': '🛡️',
-    'Leadership': '👑',
-    'Crafting': '🔨',
-    'General': '⭐'
+    Combat: "⚔️",
+    Magic: "🔮",
+    Support: "🛡️",
+    Leadership: "👑",
+    Crafting: "🔨",
+    General: "⭐",
   };
-  return icons[type] || '⭐';
+  return icons[type] || "⭐";
 }
 
 function getSkillRarity(skill) {
   const bonus = parseInt(skill.bonus?.match(/\d+/)?.[0] || 0);
-  if (bonus >= 25) return 'legendary';
-  if (bonus >= 20) return 'epic';
-  if (bonus >= 15) return 'rare';
-  if (bonus >= 10) return 'uncommon';
-  return 'common';
+  if (bonus >= 25) return "legendary";
+  if (bonus >= 20) return "epic";
+  if (bonus >= 15) return "rare";
+  if (bonus >= 10) return "uncommon";
+  return "common";
 }
 
 function getSkillPowerLevel(skill) {
@@ -1488,21 +1669,21 @@ function getSkillMastery(skills) {
     return sum + parseInt(skill.bonus?.match(/\d+/)?.[0] || 0);
   }, 0);
 
-  if (totalBonus >= 100) return 'Master';
-  if (totalBonus >= 75) return 'Expert';
-  if (totalBonus >= 50) return 'Advanced';
-  if (totalBonus >= 25) return 'Intermediate';
-  return 'Novice';
+  if (totalBonus >= 100) return "Master";
+  if (totalBonus >= 75) return "Expert";
+  if (totalBonus >= 50) return "Advanced";
+  if (totalBonus >= 25) return "Intermediate";
+  return "Novice";
 }
 
 function generateMasteryStars(skill) {
   const bonus = parseInt(skill.bonus?.match(/\d+/)?.[0] || 0);
   const stars = Math.min(Math.floor(bonus / 5), 5);
-  return '★'.repeat(stars) + '☆'.repeat(5 - stars);
+  return "★".repeat(stars) + "☆".repeat(5 - stars);
 }
 
 function generateSkillSynergies(skills) {
-  if (skills.length < 2) return '<p>Not enough skills to show synergies.</p>';
+  if (skills.length < 2) return "<p>Not enough skills to show synergies.</p>";
 
   const synergies = [];
   for (let i = 0; i < skills.length - 1; i++) {
@@ -1515,31 +1696,36 @@ function generateSkillSynergies(skills) {
         synergies.push({
           skill1: skill1.name,
           skill2: skill2.name,
-          type: 'Type Synergy',
+          type: "Type Synergy",
           description: `${skill1.type} skills work together for enhanced effectiveness`,
-          icon: '🔗'
+          icon: "🔗",
         });
       }
 
       // Check for complementary skills
-      if ((skill1.type === 'Combat' && skill2.type === 'Magic') ||
-          (skill1.type === 'Magic' && skill2.type === 'Support')) {
+      if (
+        (skill1.type === "Combat" && skill2.type === "Magic") ||
+        (skill1.type === "Magic" && skill2.type === "Support")
+      ) {
         synergies.push({
           skill1: skill1.name,
           skill2: skill2.name,
-          type: 'Complementary',
+          type: "Complementary",
           description: `${skill1.type} and ${skill2.type} create powerful combinations`,
-          icon: '⚡'
+          icon: "⚡",
         });
       }
     }
   }
 
   if (synergies.length === 0) {
-    return '<p>No notable synergies detected between current skills.</p>';
+    return "<p>No notable synergies detected between current skills.</p>";
   }
 
-  return synergies.slice(0, 3).map(synergy => `
+  return synergies
+    .slice(0, 3)
+    .map(
+      (synergy) => `
     <div class="synergy-card">
       <div class="synergy-icon">${synergy.icon}</div>
       <div class="synergy-content">
@@ -1548,29 +1734,33 @@ function generateSkillSynergies(skills) {
         <p>${synergy.description}</p>
       </div>
     </div>
-  `).join('');
+  `,
+    )
+    .join("");
 }
 
 // Skill interaction functions
 function toggleSkillCategory(category) {
-  const categoryElement = document.querySelector(`[data-category="${category}"]`);
+  const categoryElement = document.querySelector(
+    `[data-category="${category}"]`,
+  );
   const skillsGrid = document.getElementById(`skills-${category}`);
-  const toggleIcon = categoryElement.querySelector('.toggle-icon');
+  const toggleIcon = categoryElement.querySelector(".toggle-icon");
 
   // Check the actual computed display state
   const computedDisplay = window.getComputedStyle(skillsGrid).display;
-  const isVisible = computedDisplay !== 'none';
+  const isVisible = computedDisplay !== "none";
 
   if (isVisible) {
     // Currently visible, so hide it
-    skillsGrid.style.display = 'none';
-    toggleIcon.textContent = '▼';
-    categoryElement.classList.remove('expanded');
+    skillsGrid.style.display = "none";
+    toggleIcon.textContent = "▼";
+    categoryElement.classList.remove("expanded");
   } else {
     // Currently hidden, so show it
-    skillsGrid.style.display = 'grid';
-    toggleIcon.textContent = '▲';
-    categoryElement.classList.add('expanded');
+    skillsGrid.style.display = "grid";
+    toggleIcon.textContent = "▲";
+    categoryElement.classList.add("expanded");
   }
 }
 
@@ -1585,9 +1775,9 @@ function compareSkill(skillName) {
 }
 
 function closeSkillModal() {
-  const modal = document.getElementById('skill-details-modal');
+  const modal = document.getElementById("skill-details-modal");
   if (modal) {
-    modal.style.display = 'none';
+    modal.style.display = "none";
   }
 }
 
@@ -1595,18 +1785,18 @@ function closeSkillModal() {
 function initializeSkillsSection() {
   // Use requestAnimationFrame for better performance
   requestAnimationFrame(() => {
-    const powerMeters = document.querySelectorAll('.power-meter-fill');
-    powerMeters.forEach(meter => {
+    const powerMeters = document.querySelectorAll(".power-meter-fill");
+    powerMeters.forEach((meter) => {
       const targetWidth = meter.style.width;
-      meter.style.setProperty('--target-width', targetWidth);
-      meter.classList.add('animate-fill');
+      meter.style.setProperty("--target-width", targetWidth);
+      meter.classList.add("animate-fill");
     });
   });
 
   // Add click outside modal to close
-  const modal = document.getElementById('skill-details-modal');
+  const modal = document.getElementById("skill-details-modal");
   if (modal) {
-    modal.addEventListener('click', (e) => {
+    modal.addEventListener("click", (e) => {
       if (e.target === modal) {
         closeSkillModal();
       }
@@ -1614,16 +1804,16 @@ function initializeSkillsSection() {
   }
 
   // Add keyboard navigation for skills
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
       closeSkillModal();
     }
   });
 }
 
 // Add to the initialization - use requestIdleCallback for non-critical work
-document.addEventListener('DOMContentLoaded', () => {
-  if ('requestIdleCallback' in window) {
+document.addEventListener("DOMContentLoaded", () => {
+  if ("requestIdleCallback" in window) {
     requestIdleCallback(() => initializeSkillsSection(), { timeout: 2000 });
   } else {
     requestAnimationFrame(initializeSkillsSection);
@@ -1644,10 +1834,6 @@ function generateWeaknessesSection(character) {
 }
 
 function generateRelationshipsSection(character) {
-  console.log('=== generateRelationshipsSection called ===');
-  console.log('Character:', character.name);
-  console.log('Relationships:', character.relationships);
-
   if (!character.relationships) {
     return `
       <div class="relationships-empty-state">
@@ -1659,29 +1845,80 @@ function generateRelationshipsSection(character) {
   }
 
   const allRelationships = [
-    ...(character.relationships.allies || []).map(name => ({ name, type: 'ally', icon: '👥', color: 'emerald' })),
-    ...(character.relationships.rivals || []).map(name => ({ name, type: 'rival', icon: '⚔️', color: 'crimson' })),
-    ...(character.relationships.mentors || []).map(name => ({ name, type: 'mentor', icon: '🎓', color: 'gold' })),
-    ...(character.relationships.subordinates || []).map(name => ({ name, type: 'subordinate', icon: '👤', color: 'blue' })),
-    ...(character.relationships.friends || []).map(name => ({ name, type: 'friend', icon: '💙', color: 'cyan' }))
+    ...(character.relationships.allies || []).map((name) => ({
+      name,
+      type: "ally",
+      icon: "👥",
+      color: "emerald",
+    })),
+    ...(character.relationships.rivals || []).map((name) => ({
+      name,
+      type: "rival",
+      icon: "⚔️",
+      color: "crimson",
+    })),
+    ...(character.relationships.mentors || []).map((name) => ({
+      name,
+      type: "mentor",
+      icon: "🎓",
+      color: "gold",
+    })),
+    ...(character.relationships.subordinates || []).map((name) => ({
+      name,
+      type: "subordinate",
+      icon: "👤",
+      color: "blue",
+    })),
+    ...(character.relationships.friends || []).map((name) => ({
+      name,
+      type: "friend",
+      icon: "💙",
+      color: "cyan",
+    })),
   ];
 
   const totalRelationships = allRelationships.length;
 
-  console.log('Total relationships:', totalRelationships);
-  console.log('Allies:', character.relationships.allies);
-  console.log('Rivals:', character.relationships.rivals);
-  console.log('Mentors:', character.relationships.mentors);
-
-  const alliesHTML = generateRelationshipCategory(character.relationships.allies, 'Allies', 'ally', '👥', 'emerald', 'Trusted companions and partners in battle');
-  const rivalsHTML = generateRelationshipCategory(character.relationships.rivals, 'Rivals', 'rival', '⚔️', 'crimson', 'Adversaries and competitive opponents');
-  const mentorsHTML = generateRelationshipCategory(character.relationships.mentors, 'Mentors', 'mentor', '🎓', 'gold', 'Teachers and guides who shaped their path');
-  const subordinatesHTML = generateRelationshipCategory(character.relationships.subordinates, 'Subordinates', 'subordinate', '👤', 'blue', 'Those who serve under their leadership');
-  const friendsHTML = generateRelationshipCategory(character.relationships.friends, 'Friends', 'friend', '💙', 'cyan', 'Close personal connections and confidants');
-
-  console.log('Allies HTML length:', alliesHTML.length);
-  console.log('Rivals HTML length:', rivalsHTML.length);
-  console.log('Mentors HTML length:', mentorsHTML.length);
+  const alliesHTML = generateRelationshipCategory(
+    character.relationships.allies,
+    "Allies",
+    "ally",
+    "👥",
+    "emerald",
+    "Trusted companions and partners in battle",
+  );
+  const rivalsHTML = generateRelationshipCategory(
+    character.relationships.rivals,
+    "Rivals",
+    "rival",
+    "⚔️",
+    "crimson",
+    "Adversaries and competitive opponents",
+  );
+  const mentorsHTML = generateRelationshipCategory(
+    character.relationships.mentors,
+    "Mentors",
+    "mentor",
+    "🎓",
+    "gold",
+    "Teachers and guides who shaped their path",
+  );
+  const subordinatesHTML = generateRelationshipCategory(
+    character.relationships.subordinates,
+    "Subordinates",
+    "subordinate",
+    "👤",
+    "blue",
+    "Those who serve under their leadership",
+  );
+  const friendsHTML = generateRelationshipCategory(
+    character.relationships.friends,
+    "Friends",
+    "friend",
+    "💙",
+    "cyan",
+    "Close personal connections and confidants",
+  );
 
   return `
     <!-- Relationships Overview Dashboard -->
@@ -1732,7 +1969,10 @@ function generateRelationshipsSection(character) {
           </div>
         </div>
         <div class="network-connections">
-          ${allRelationships.slice(0, 8).map((rel, index) => `
+          ${allRelationships
+            .slice(0, 8)
+            .map(
+              (rel, index) => `
             <div class="network-node ${rel.type}" style="--node-index: ${index}; --total-nodes: ${Math.min(allRelationships.length, 8)};">
               <div class="connection-line"></div>
               <div class="node-character" onclick="navigateToCharacter('${getCharacterId(rel.name)}')">
@@ -1744,7 +1984,9 @@ function generateRelationshipsSection(character) {
                 <span class="node-type">${rel.type}</span>
               </div>
             </div>
-          `).join('')}
+          `,
+            )
+            .join("")}
         </div>
       </div>
     </div>
@@ -1768,19 +2010,23 @@ function generateRelationshipsSection(character) {
   `;
 }
 
-function generateRelationshipCategory(relationships, title, type, icon, color, description) {
+function generateRelationshipCategory(
+  relationships,
+  title,
+  type,
+  icon,
+  color,
+  description,
+) {
   if (!relationships || relationships.length === 0) {
-    console.log(`No relationships for ${title}`);
-    return '';
+    return "";
   }
 
-  console.log(`Generating ${title} with ${relationships.length} relationships:`, relationships);
+  const cardsHTML = relationships
+    .map((name, index) => {
+      const cleanName = name.replace(/\s*\(.*?\)\s*/g, "").trim();
 
-  const cardsHTML = relationships.map((name, index) => {
-    const cleanName = name.replace(/\s*\(.*?\)\s*/g, '').trim();
-    console.log(`Generating card for: ${name} (clean: ${cleanName})`);
-
-    return `
+      return `
       <div class="relationship-card-enhanced ${type}" data-relationship="${cleanName}" style="animation-delay: ${index * 0.1}s;">
         <div class="card-glow-effect"></div>
         <div class="card-header-enhanced">
@@ -1818,7 +2064,8 @@ function generateRelationshipCategory(relationships, title, type, icon, color, d
         </div>
       </div>
     `;
-  }).join('');
+    })
+    .join("");
 
   return `
     <div class="relationship-category-enhanced ${type}">
@@ -1827,7 +2074,7 @@ function generateRelationshipCategory(relationships, title, type, icon, color, d
         <div class="category-info-enhanced">
           <h4 class="category-title-enhanced ${color}">${title}</h4>
           <p class="category-description">${description}</p>
-          <span class="category-count-badge">${relationships.length} ${relationships.length === 1 ? 'connection' : 'connections'}</span>
+          <span class="category-count-badge">${relationships.length} ${relationships.length === 1 ? "connection" : "connections"}</span>
         </div>
       </div>
       <div class="relationship-cards-grid">
@@ -1843,54 +2090,60 @@ function generateRelationshipInsights(character) {
 
   if (rels.allies && rels.allies.length > 3) {
     insights.push({
-      icon: '🌟',
-      title: 'Strong Alliance Network',
+      icon: "🌟",
+      title: "Strong Alliance Network",
       description: `${character.name} has built a powerful network of ${rels.allies.length} allies, demonstrating exceptional diplomatic skills.`,
-      color: 'emerald'
+      color: "emerald",
     });
   }
 
   if (rels.rivals && rels.rivals.length > 0) {
     insights.push({
-      icon: '⚡',
-      title: 'Competitive Spirit',
+      icon: "⚡",
+      title: "Competitive Spirit",
       description: `Maintains ${rels.rivals.length} rivalries that push them to constantly improve and evolve.`,
-      color: 'crimson'
+      color: "crimson",
     });
   }
 
   if (rels.mentors && rels.mentors.length > 0) {
     insights.push({
-      icon: '📚',
-      title: 'Continuous Learning',
-      description: `Guided by ${rels.mentors.length} mentor${rels.mentors.length > 1 ? 's' : ''}, showing humility and dedication to growth.`,
-      color: 'gold'
+      icon: "📚",
+      title: "Continuous Learning",
+      description: `Guided by ${rels.mentors.length} mentor${rels.mentors.length > 1 ? "s" : ""}, showing humility and dedication to growth.`,
+      color: "gold",
     });
   }
 
-  const totalConnections = (rels.allies?.length || 0) + (rels.rivals?.length || 0) +
-                          (rels.mentors?.length || 0) + (rels.subordinates?.length || 0) +
-                          (rels.friends?.length || 0);
+  const totalConnections =
+    (rels.allies?.length || 0) +
+    (rels.rivals?.length || 0) +
+    (rels.mentors?.length || 0) +
+    (rels.subordinates?.length || 0) +
+    (rels.friends?.length || 0);
 
   if (totalConnections > 10) {
     insights.push({
-      icon: '🕸️',
-      title: 'Influential Figure',
+      icon: "🕸️",
+      title: "Influential Figure",
       description: `With ${totalConnections} documented relationships, ${character.name} is a central figure in the world's power structure.`,
-      color: 'blue'
+      color: "blue",
     });
   }
 
   if (insights.length === 0) {
     insights.push({
-      icon: '🔍',
-      title: 'Mysterious Connections',
-      description: 'Relationship patterns are still being analyzed and documented.',
-      color: 'cyan'
+      icon: "🔍",
+      title: "Mysterious Connections",
+      description:
+        "Relationship patterns are still being analyzed and documented.",
+      color: "cyan",
     });
   }
 
-  return insights.map(insight => `
+  return insights
+    .map(
+      (insight) => `
     <div class="insight-card ${insight.color}">
       <div class="insight-icon">${insight.icon}</div>
       <div class="insight-content">
@@ -1898,53 +2151,57 @@ function generateRelationshipInsights(character) {
         <p>${insight.description}</p>
       </div>
     </div>
-  `).join('');
+  `,
+    )
+    .join("");
 }
 
 function getRelationshipStrength(type) {
   const strengths = {
-    'ally': 85,
-    'rival': 70,
-    'mentor': 90,
-    'subordinate': 75,
-    'friend': 95
+    ally: 85,
+    rival: 70,
+    mentor: 90,
+    subordinate: 75,
+    friend: 95,
   };
   return strengths[type] || 50;
 }
 
 function getRelationshipDescription(name, type) {
   const descriptions = {
-    'ally': `A trusted ally who fights alongside in times of need.`,
-    'rival': `A formidable rival who pushes boundaries through competition.`,
-    'mentor': `A wise mentor who provides guidance and knowledge.`,
-    'subordinate': `A loyal subordinate who serves with dedication.`,
-    'friend': `A close friend who shares a deep personal bond.`
+    ally: `A trusted ally who fights alongside in times of need.`,
+    rival: `A formidable rival who pushes boundaries through competition.`,
+    mentor: `A wise mentor who provides guidance and knowledge.`,
+    subordinate: `A loyal subordinate who serves with dedication.`,
+    friend: `A close friend who shares a deep personal bond.`,
   };
-  return descriptions[type] || 'A significant connection in their journey.';
+  return descriptions[type] || "A significant connection in their journey.";
 }
 
 function getCharacterId(name) {
   // Handle special cases
   const specialCases = {
-    'Hinata Sakaguchi': 'hinata',
-    'Yuuki Kagurazaka': 'yuuki',
-    'Great Sage': 'rimuru', // Great Sage is part of Rimuru
-    'Souei (friendly rivalry)': 'souei'
+    "Hinata Sakaguchi": "hinata",
+    "Yuuki Kagurazaka": "yuuki",
+    "Great Sage": "rimuru", // Great Sage is part of Rimuru
+    "Souei (friendly rivalry)": "souei",
   };
 
   if (specialCases[name]) {
     return specialCases[name];
   }
 
-  return name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  return name
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9-]/g, "");
 }
 
 function getCharacterImage(name) {
   // Clean up the name for special cases
-  const cleanName = name.replace(/\s*\(.*?\)\s*/g, '').trim();
+  const cleanName = name.replace(/\s*\(.*?\)\s*/g, "").trim();
 
   const imagePath = `assets/characters/${cleanName}.png`;
-  console.log(`Getting image for "${name}" -> "${cleanName}" -> "${imagePath}"`);
 
   // Try exact match first
   return imagePath;
@@ -1955,7 +2212,9 @@ function navigateToCharacter(characterId) {
 }
 
 function showRelationshipDetails(name) {
-  window.showNotification(`Detailed relationship analysis for ${name} coming soon!`);
+  window.showNotification(
+    `Detailed relationship analysis for ${name} coming soon!`,
+  );
 }
 
 function generateAchievementsSection(character) {
@@ -1972,7 +2231,9 @@ function generateAchievementsSection(character) {
   }
 
   // Categorize achievements by type
-  const categorizedAchievements = categorizeAchievements(character.achievements);
+  const categorizedAchievements = categorizeAchievements(
+    character.achievements,
+  );
   const totalAchievements = character.achievements.length;
   const achievementRarity = getAchievementRarity(totalAchievements);
 
@@ -2009,7 +2270,9 @@ function generateAchievementsSection(character) {
 
       <!-- Achievement Categories -->
       <div class="achievement-categories">
-        ${Object.entries(categorizedAchievements).map(([category, achievements]) => `
+        ${Object.entries(categorizedAchievements)
+          .map(
+            ([category, achievements]) => `
           <div class="achievement-category" data-category="${category}">
             <div class="category-header" onclick="toggleAchievementCategory('${category}')">
               <div class="category-info">
@@ -2023,7 +2286,9 @@ function generateAchievementsSection(character) {
             </div>
 
             <div class="achievement-grid" id="achievements-${category}">
-              ${achievements.map((achievement, index) => `
+              ${achievements
+                .map(
+                  (achievement, index) => `
                 <div class="achievement-card" data-achievement-index="${index}">
                   <div class="achievement-card-header">
                     <div class="achievement-icon">${getAchievementIcon(achievement)}</div>
@@ -2039,10 +2304,14 @@ function generateAchievementsSection(character) {
                   </div>
                   <div class="achievement-glow"></div>
                 </div>
-              `).join('')}
+              `,
+                )
+                .join("")}
             </div>
           </div>
-        `).join('')}
+        `,
+          )
+          .join("")}
       </div>
 
       <!-- Achievement Showcase -->
@@ -2077,34 +2346,56 @@ function generateAchievementsSection(character) {
 // Helper function to categorize achievements
 function categorizeAchievements(achievements) {
   const categories = {
-    'Leadership': [],
-    'Combat': [],
-    'Evolution': [],
-    'Diplomatic': [],
-    'Magical': [],
-    'Personal': []
+    Leadership: [],
+    Combat: [],
+    Evolution: [],
+    Diplomatic: [],
+    Magical: [],
+    Personal: [],
   };
 
-  achievements.forEach(achievement => {
+  achievements.forEach((achievement) => {
     const achievementLower = achievement.toLowerCase();
 
-    if (achievementLower.includes('founded') || achievementLower.includes('established') ||
-        achievementLower.includes('led') || achievementLower.includes('chief') ||
-        achievementLower.includes('minister') || achievementLower.includes('ruled')) {
+    if (
+      achievementLower.includes("founded") ||
+      achievementLower.includes("established") ||
+      achievementLower.includes("led") ||
+      achievementLower.includes("chief") ||
+      achievementLower.includes("minister") ||
+      achievementLower.includes("ruled")
+    ) {
       categories.Leadership.push(achievement);
-    } else if (achievementLower.includes('defeated') || achievementLower.includes('combat') ||
-               achievementLower.includes('mastered') && achievementLower.includes('technique') ||
-               achievementLower.includes('warrior') || achievementLower.includes('battle')) {
+    } else if (
+      achievementLower.includes("defeated") ||
+      achievementLower.includes("combat") ||
+      (achievementLower.includes("mastered") &&
+        achievementLower.includes("technique")) ||
+      achievementLower.includes("warrior") ||
+      achievementLower.includes("battle")
+    ) {
       categories.Combat.push(achievement);
-    } else if (achievementLower.includes('evolved') || achievementLower.includes('became') ||
-               achievementLower.includes('transformed') || achievementLower.includes('demon lord')) {
+    } else if (
+      achievementLower.includes("evolved") ||
+      achievementLower.includes("became") ||
+      achievementLower.includes("transformed") ||
+      achievementLower.includes("demon lord")
+    ) {
       categories.Evolution.push(achievement);
-    } else if (achievementLower.includes('united') || achievementLower.includes('alliance') ||
-               achievementLower.includes('bridged') || achievementLower.includes('diplomatic') ||
-               achievementLower.includes('trade')) {
+    } else if (
+      achievementLower.includes("united") ||
+      achievementLower.includes("alliance") ||
+      achievementLower.includes("bridged") ||
+      achievementLower.includes("diplomatic") ||
+      achievementLower.includes("trade")
+    ) {
       categories.Diplomatic.push(achievement);
-    } else if (achievementLower.includes('magic') || achievementLower.includes('spell') ||
-               achievementLower.includes('storm') || achievementLower.includes('elemental')) {
+    } else if (
+      achievementLower.includes("magic") ||
+      achievementLower.includes("spell") ||
+      achievementLower.includes("storm") ||
+      achievementLower.includes("elemental")
+    ) {
       categories.Magical.push(achievement);
     } else {
       categories.Personal.push(achievement);
@@ -2112,7 +2403,7 @@ function categorizeAchievements(achievements) {
   });
 
   // Remove empty categories
-  Object.keys(categories).forEach(key => {
+  Object.keys(categories).forEach((key) => {
     if (categories[key].length === 0) {
       delete categories[key];
     }
@@ -2123,72 +2414,124 @@ function categorizeAchievements(achievements) {
 
 // Helper function to get achievement rarity
 function getAchievementRarity(count) {
-  if (count >= 8) return { level: 'Legendary', title: 'Achievement Master' };
-  if (count >= 6) return { level: 'Epic', title: 'High Achiever' };
-  if (count >= 4) return { level: 'Rare', title: 'Accomplished' };
-  return { level: 'Common', title: 'Rising Star' };
+  if (count >= 8) return { level: "Legendary", title: "Achievement Master" };
+  if (count >= 6) return { level: "Epic", title: "High Achiever" };
+  if (count >= 4) return { level: "Rare", title: "Accomplished" };
+  return { level: "Common", title: "Rising Star" };
 }
 
 // Helper function to get category icon
 function getCategoryIcon(category) {
   const icons = {
-    'Leadership': '👑',
-    'Combat': '⚔️',
-    'Evolution': '🔄',
-    'Diplomatic': '🤝',
-    'Magical': '✨',
-    'Personal': '🌟'
+    Leadership: "👑",
+    Combat: "⚔️",
+    Evolution: "🔄",
+    Diplomatic: "🤝",
+    Magical: "✨",
+    Personal: "🌟",
   };
-  return icons[category] || '🏆';
+  return icons[category] || "🏆";
 }
 
 // Helper function to get achievement icon
 function getAchievementIcon(achievement) {
   const achievementLower = achievement.toLowerCase();
 
-  if (achievementLower.includes('founded') || achievementLower.includes('established')) return '🏛️';
-  if (achievementLower.includes('defeated') || achievementLower.includes('battle')) return '⚔️';
-  if (achievementLower.includes('evolved') || achievementLower.includes('became')) return '🔄';
-  if (achievementLower.includes('united') || achievementLower.includes('alliance')) return '🤝';
-  if (achievementLower.includes('magic') || achievementLower.includes('mastered')) return '✨';
-  if (achievementLower.includes('demon lord') || achievementLower.includes('true dragon')) return '👑';
-  if (achievementLower.includes('hero')) return '🦸';
-  if (achievementLower.includes('named')) return '📝';
-  if (achievementLower.includes('trade') || achievementLower.includes('economy')) return '💰';
-  if (achievementLower.includes('peace') || achievementLower.includes('diplomatic')) return '🕊️';
+  if (
+    achievementLower.includes("founded") ||
+    achievementLower.includes("established")
+  )
+    return "🏛️";
+  if (
+    achievementLower.includes("defeated") ||
+    achievementLower.includes("battle")
+  )
+    return "⚔️";
+  if (
+    achievementLower.includes("evolved") ||
+    achievementLower.includes("became")
+  )
+    return "🔄";
+  if (
+    achievementLower.includes("united") ||
+    achievementLower.includes("alliance")
+  )
+    return "🤝";
+  if (
+    achievementLower.includes("magic") ||
+    achievementLower.includes("mastered")
+  )
+    return "✨";
+  if (
+    achievementLower.includes("demon lord") ||
+    achievementLower.includes("true dragon")
+  )
+    return "👑";
+  if (achievementLower.includes("hero")) return "🦸";
+  if (achievementLower.includes("named")) return "📝";
+  if (
+    achievementLower.includes("trade") ||
+    achievementLower.includes("economy")
+  )
+    return "💰";
+  if (
+    achievementLower.includes("peace") ||
+    achievementLower.includes("diplomatic")
+  )
+    return "🕊️";
 
-  return '🏆';
+  return "🏆";
 }
 
 // Helper function to get achievement title
 function getAchievementTitle(achievement) {
   // Extract a shorter title from the achievement description
-  const words = achievement.split(' ');
+  const words = achievement.split(" ");
   if (words.length <= 4) return achievement;
 
   // Try to find key action words
-  const keyWords = ['Founded', 'Became', 'Defeated', 'Mastered', 'United', 'Established', 'Created'];
+  const keyWords = [
+    "Founded",
+    "Became",
+    "Defeated",
+    "Mastered",
+    "United",
+    "Established",
+    "Created",
+  ];
   for (const keyWord of keyWords) {
     if (achievement.includes(keyWord)) {
-      const index = words.findIndex(word => word.includes(keyWord));
-      return words.slice(index, Math.min(index + 3, words.length)).join(' ');
+      const index = words.findIndex((word) => word.includes(keyWord));
+      return words.slice(index, Math.min(index + 3, words.length)).join(" ");
     }
   }
 
-  return words.slice(0, 3).join(' ') + '...';
+  return words.slice(0, 3).join(" ") + "...";
 }
 
 // Helper function to get achievement card rarity
 function getAchievementCardRarity(achievement) {
   const achievementLower = achievement.toLowerCase();
 
-  if (achievementLower.includes('demon lord') || achievementLower.includes('true dragon') ||
-      achievementLower.includes('founded')) return 'legendary';
-  if (achievementLower.includes('defeated') || achievementLower.includes('mastered') ||
-      achievementLower.includes('evolved')) return 'epic';
-  if (achievementLower.includes('became') || achievementLower.includes('established')) return 'rare';
+  if (
+    achievementLower.includes("demon lord") ||
+    achievementLower.includes("true dragon") ||
+    achievementLower.includes("founded")
+  )
+    return "legendary";
+  if (
+    achievementLower.includes("defeated") ||
+    achievementLower.includes("mastered") ||
+    achievementLower.includes("evolved")
+  )
+    return "epic";
+  if (
+    achievementLower.includes("became") ||
+    achievementLower.includes("established")
+  )
+    return "rare";
 
-  return 'common';
+  return "common";
 }
 
 function generateEvolutionSection(character) {
@@ -2200,7 +2543,8 @@ function generateEvolutionSection(character) {
     totalEvolutions: totalForms,
     powerGrowth: Math.round((totalForms - 1) * 25), // Estimated power growth percentage
     timeSpan: "Unknown", // Could be calculated from data if available
-    complexity: totalForms > 4 ? "Legendary" : totalForms > 2 ? "Advanced" : "Basic"
+    complexity:
+      totalForms > 4 ? "Legendary" : totalForms > 2 ? "Advanced" : "Basic",
   };
 
   return `
@@ -2254,7 +2598,9 @@ function generateEvolutionSection(character) {
                   <p>${generateEvolutionImpact(form, index)}</p>
                 </div>
 
-                ${form.powerLevel ? `
+                ${
+                  form.powerLevel
+                    ? `
                 <div class="evolution-power-level">
                   <h6>⚡ Power Level:</h6>
                   <div class="power-level-bar">
@@ -2262,7 +2608,9 @@ function generateEvolutionSection(character) {
                     <span class="power-level-text">${form.powerLevel || (index + 1) * 20}%</span>
                   </div>
                 </div>
-                ` : ''}
+                `
+                    : ""
+                }
               </div>
             </div>
           </div>
@@ -2289,14 +2637,17 @@ function generateEvolutionAbilities(form, index) {
     1: ["🌀 Unique Skills", "🎯 Predator Ability"],
     2: ["👑 Leadership", "🗣️ Communication"],
     3: ["⚔️ Combat Mastery", "🔥 Elemental Control"],
-    4: ["🌟 Ultimate Power", "🌍 Reality Manipulation"]
+    4: ["🌟 Ultimate Power", "🌍 Reality Manipulation"],
   };
 
-  const abilities = abilityMap[index] || ["✨ Enhanced Abilities", "🔮 New Powers"];
+  const abilities = abilityMap[index] || [
+    "✨ Enhanced Abilities",
+    "🔮 New Powers",
+  ];
 
-  return abilities.map(ability =>
-    `<span class="ability-tag">${ability}</span>`
-  ).join('');
+  return abilities
+    .map((ability) => `<span class="ability-tag">${ability}</span>`)
+    .join("");
 }
 
 // Helper function to generate evolution impact description
@@ -2306,82 +2657,104 @@ function generateEvolutionImpact(form, index) {
     "Acquired unique abilities that set the foundation for future growth.",
     "Developed social connections and leadership qualities.",
     "Achieved significant combat prowess and magical mastery.",
-    "Reached the pinnacle of power with reality-altering abilities."
+    "Reached the pinnacle of power with reality-altering abilities.",
   ];
 
-  return impactDescriptions[index] || "Significant growth in power and abilities.";
+  return (
+    impactDescriptions[index] || "Significant growth in power and abilities."
+  );
 }
 
 // Helper function to determine trigger type and apply appropriate styling
 function getTriggerTypeClass(trigger) {
   const triggerLower = trigger.toLowerCase();
 
-  if (triggerLower.includes('name') || triggerLower.includes('naming')) {
-    return 'trigger-naming';
-  } else if (triggerLower.includes('death') || triggerLower.includes('dying') || triggerLower.includes('stabbing')) {
-    return 'trigger-trauma';
-  } else if (triggerLower.includes('skill') || triggerLower.includes('mastery') || triggerLower.includes('ultimate')) {
-    return 'trigger-skill';
-  } else if (triggerLower.includes('harvest') || triggerLower.includes('festival') || triggerLower.includes('ritual')) {
-    return 'trigger-ritual';
-  } else if (triggerLower.includes('natural') || triggerLower.includes('reincarnation')) {
-    return 'trigger-natural';
+  if (triggerLower.includes("name") || triggerLower.includes("naming")) {
+    return "trigger-naming";
+  } else if (
+    triggerLower.includes("death") ||
+    triggerLower.includes("dying") ||
+    triggerLower.includes("stabbing")
+  ) {
+    return "trigger-trauma";
+  } else if (
+    triggerLower.includes("skill") ||
+    triggerLower.includes("mastery") ||
+    triggerLower.includes("ultimate")
+  ) {
+    return "trigger-skill";
+  } else if (
+    triggerLower.includes("harvest") ||
+    triggerLower.includes("festival") ||
+    triggerLower.includes("ritual")
+  ) {
+    return "trigger-ritual";
+  } else if (
+    triggerLower.includes("natural") ||
+    triggerLower.includes("reincarnation")
+  ) {
+    return "trigger-natural";
   }
 
-  return 'trigger-natural'; // Default fallback
+  return "trigger-natural"; // Default fallback
 }
 
 // Function to toggle evolution details
 function toggleEvolutionDetails(index) {
   const detailsElement = document.getElementById(`evolution-details-${index}`);
-  const evolutionForm = document.querySelector(`[data-evolution-index="${index}"]`);
+  const evolutionForm = document.querySelector(
+    `[data-evolution-index="${index}"]`,
+  );
 
   if (detailsElement) {
-    const isVisible = detailsElement.style.display !== 'none';
+    const isVisible = detailsElement.style.display !== "none";
 
     // Hide all other details first
-    document.querySelectorAll('.evolution-details').forEach(detail => {
-      detail.style.display = 'none';
+    document.querySelectorAll(".evolution-details").forEach((detail) => {
+      detail.style.display = "none";
     });
 
     // Remove active class from all forms
-    document.querySelectorAll('.evolution-form').forEach(form => {
-      form.classList.remove('evolution-active');
+    document.querySelectorAll(".evolution-form").forEach((form) => {
+      form.classList.remove("evolution-active");
     });
 
     if (!isVisible) {
       // Show this detail with animation
-      detailsElement.style.display = 'block';
-      evolutionForm.classList.add('evolution-active');
+      detailsElement.style.display = "block";
+      evolutionForm.classList.add("evolution-active");
 
       // Animate in
       setTimeout(() => {
-        detailsElement.style.opacity = '0';
-        detailsElement.style.transform = 'translateY(10px)';
-        detailsElement.style.transition = 'all 0.3s ease';
+        detailsElement.style.opacity = "0";
+        detailsElement.style.transform = "translateY(10px)";
+        detailsElement.style.transition = "all 0.3s ease";
 
         requestAnimationFrame(() => {
-          detailsElement.style.opacity = '1';
-          detailsElement.style.transform = 'translateY(0)';
+          detailsElement.style.opacity = "1";
+          detailsElement.style.transform = "translateY(0)";
         });
       }, 10);
 
       // Scroll into view on mobile
       if (window.innerWidth <= 768) {
         evolutionForm.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center'
+          behavior: "smooth",
+          block: "center",
         });
       }
 
       // Haptic feedback
-      if ('vibrate' in navigator) {
+      if ("vibrate" in navigator) {
         navigator.vibrate(50);
       }
 
       // Show notification
       if (window.showNotification) {
-        window.showNotification(`Viewing details for evolution stage ${index + 1}`, 'info');
+        window.showNotification(
+          `Viewing details for evolution stage ${index + 1}`,
+          "info",
+        );
       }
     }
   }
@@ -2455,7 +2828,7 @@ function setupTabSwitching() {
           tab.scrollIntoView({
             behavior: "smooth",
             block: "nearest",
-            inline: "center"
+            inline: "center",
           });
         });
       }
@@ -2511,11 +2884,12 @@ function setupTabSwitching() {
   // Ensure first tab is visible on mobile on page load
   if (tabs.length > 0 && window.innerWidth <= 768) {
     setTimeout(() => {
-      const activeTab = document.querySelector(".profile-tab.active") || tabs[0];
+      const activeTab =
+        document.querySelector(".profile-tab.active") || tabs[0];
       activeTab.scrollIntoView({
         behavior: "auto",
         block: "nearest",
-        inline: "start"
+        inline: "start",
       });
     }, 100);
 
@@ -2523,12 +2897,16 @@ function setupTabSwitching() {
     const tabsContainer = document.querySelector(".profile-tabs");
     if (tabsContainer) {
       let scrolled = false;
-      tabsContainer.addEventListener("scroll", () => {
-        if (!scrolled) {
-          scrolled = true;
-          tabsContainer.style.setProperty("--scroll-hint-opacity", "0");
-        }
-      }, { once: true });
+      tabsContainer.addEventListener(
+        "scroll",
+        () => {
+          if (!scrolled) {
+            scrolled = true;
+            tabsContainer.style.setProperty("--scroll-hint-opacity", "0");
+          }
+        },
+        { once: true },
+      );
     }
   }
 }
@@ -2716,7 +3094,9 @@ function toggleFavorite() {
   if (!characterId) return;
 
   const favoriteIcon = document.getElementById("favorite-icon");
-  const favorites = JSON.parse(localStorage.getItem("favoriteCharacters") || "[]");
+  const favorites = JSON.parse(
+    localStorage.getItem("favoriteCharacters") || "[]",
+  );
 
   const isFavorited = favorites.includes(characterId);
 
@@ -2749,7 +3129,9 @@ function initializeFavoriteStatus() {
   const characterId = window.getURLParameter("id");
   if (!characterId) return;
 
-  const favorites = JSON.parse(localStorage.getItem("favoriteCharacters") || "[]");
+  const favorites = JSON.parse(
+    localStorage.getItem("favoriteCharacters") || "[]",
+  );
   const favoriteIcon = document.getElementById("favorite-icon");
 
   if (favorites.includes(characterId)) {
@@ -2774,28 +3156,28 @@ function initializeFloatingActionButton() {
     </div>
   `;
 
-  document.body.insertAdjacentHTML('beforeend', fabHTML);
+  document.body.insertAdjacentHTML("beforeend", fabHTML);
 }
 
 function toggleFabMenu() {
-  const fabMenu = document.getElementById('fab-menu');
-  fabMenu.classList.toggle('open');
+  const fabMenu = document.getElementById("fab-menu");
+  fabMenu.classList.toggle("open");
 }
 
 function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top: 0, behavior: "smooth" });
   toggleFabMenu();
 }
 
 function toggleTheme() {
   const body = document.body;
-  const currentTheme = body.dataset.theme || 'dark';
-  const themes = ['dark', 'high-contrast', 'sepia'];
+  const currentTheme = body.dataset.theme || "dark";
+  const themes = ["dark", "high-contrast", "sepia"];
   const currentIndex = themes.indexOf(currentTheme);
   const nextTheme = themes[(currentIndex + 1) % themes.length];
 
   body.dataset.theme = nextTheme;
-  localStorage.setItem('characterTheme', nextTheme);
+  localStorage.setItem("characterTheme", nextTheme);
   window.showNotification(`Theme changed to ${nextTheme}`);
   toggleFabMenu();
 }
@@ -2828,7 +3210,7 @@ function showEnhancedLoading() {
     </div>
   `;
 
-  const content = document.getElementById('profile-content');
+  const content = document.getElementById("profile-content");
   if (content) {
     content.innerHTML = loadingHTML;
     startLoadingTips();
@@ -2841,11 +3223,11 @@ function startLoadingTips() {
     "The Jura Tempest Federation welcomes all races!",
     "Magic and technology coexist in this world!",
     "Demon Lords aren't always evil in this universe!",
-    "Friendship and bonds are the strongest powers!"
+    "Friendship and bonds are the strongest powers!",
   ];
 
   let currentTip = 0;
-  const tipElement = document.getElementById('loading-tip');
+  const tipElement = document.getElementById("loading-tip");
 
   const tipInterval = setInterval(() => {
     if (!tipElement) {
@@ -2854,11 +3236,11 @@ function startLoadingTips() {
     }
 
     currentTip = (currentTip + 1) % tips.length;
-    tipElement.style.opacity = '0';
+    tipElement.style.opacity = "0";
 
     setTimeout(() => {
       tipElement.textContent = tips[currentTip];
-      tipElement.style.opacity = '1';
+      tipElement.style.opacity = "1";
     }, 300);
   }, 3000);
 }
@@ -2869,24 +3251,24 @@ function initializeEnhancedFeatures() {
   initializeFloatingActionButton();
 
   // Load saved theme
-  const savedTheme = localStorage.getItem('characterTheme');
+  const savedTheme = localStorage.getItem("characterTheme");
   if (savedTheme) {
     document.body.dataset.theme = savedTheme;
   }
 
   // Add keyboard shortcuts
-  document.addEventListener('keydown', (e) => {
+  document.addEventListener("keydown", (e) => {
     if (e.ctrlKey || e.metaKey) {
-      switch(e.key) {
-        case 'f':
+      switch (e.key) {
+        case "f":
           e.preventDefault();
           toggleFavorite();
           break;
-        case 'p':
+        case "p":
           e.preventDefault();
           printProfile();
           break;
-        case 't':
+        case "t":
           e.preventDefault();
           toggleTheme();
           break;
@@ -2897,7 +3279,7 @@ function initializeEnhancedFeatures() {
 
 // Update the main initialization to include enhanced features
 const originalInitialize = initializeCharacterPage;
-initializeCharacterPage = function() {
+initializeCharacterPage = function () {
   originalInitialize();
   setTimeout(() => {
     initializeEnhancedFeatures();
@@ -2906,7 +3288,7 @@ initializeCharacterPage = function() {
 
 // Update the character profile rendering
 const originalRenderCharacterProfile = renderCharacterProfile;
-renderCharacterProfile = function(character) {
+renderCharacterProfile = function (character) {
   originalRenderCharacterProfile(character);
 
   // Initialize achievement features after rendering
@@ -2923,32 +3305,33 @@ window.toggleTheme = toggleTheme;
 window.printProfile = printProfile;
 // Scroll progress indicator
 function initializeScrollProgress() {
-  const scrollIndicator = document.getElementById('scroll-indicator');
+  const scrollIndicator = document.getElementById("scroll-indicator");
   if (!scrollIndicator) return;
 
   function updateScrollProgress() {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollHeight =
+      document.documentElement.scrollHeight - window.innerHeight;
     const scrollProgress = (scrollTop / scrollHeight) * 100;
 
     scrollIndicator.style.transform = `scaleX(${scrollProgress / 100})`;
   }
 
-  window.addEventListener('scroll', updateScrollProgress, { passive: true });
+  window.addEventListener("scroll", updateScrollProgress, { passive: true });
   updateScrollProgress(); // Initial call
 }
 
 // Enhanced page transitions
 function addPageTransitions() {
   // Add smooth scroll to all internal links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
       e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
+      const target = document.querySelector(this.getAttribute("href"));
       if (target) {
         target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
+          behavior: "smooth",
+          block: "start",
         });
       }
     });
@@ -2957,43 +3340,50 @@ function addPageTransitions() {
   // Add intersection observer for animations
   const observerOptions = {
     threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    rootMargin: "0px 0px -50px 0px",
   };
 
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('animate-in');
+        entry.target.classList.add("animate-in");
       }
     });
   }, observerOptions);
 
   // Observe all major sections
-  document.querySelectorAll('.profile-section, .info-card, .skill-card-detailed').forEach(el => {
-    observer.observe(el);
-  });
+  document
+    .querySelectorAll(".profile-section, .info-card, .skill-card-detailed")
+    .forEach((el) => {
+      observer.observe(el);
+    });
 }
 
 // Performance monitoring
 function initializePerformanceMonitoring() {
-  if ('performance' in window) {
-    window.addEventListener('load', () => {
+  if ("performance" in window) {
+    window.addEventListener("load", () => {
       setTimeout(() => {
-        const perfData = performance.getEntriesByType('navigation')[0];
+        const perfData = performance.getEntriesByType("navigation")[0];
         const loadTime = perfData.loadEventEnd - perfData.loadEventStart;
 
         if (loadTime > 3000) {
-          console.warn('Page load time is high:', loadTime + 'ms');
+          console.warn("Page load time is high:", loadTime + "ms");
         }
 
         // Store performance metrics
         const metrics = {
           loadTime,
-          domContentLoaded: perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart,
-          timestamp: Date.now()
+          domContentLoaded:
+            perfData.domContentLoadedEventEnd -
+            perfData.domContentLoadedEventStart,
+          timestamp: Date.now(),
         };
 
-        localStorage.setItem('characterPagePerformance', JSON.stringify(metrics));
+        localStorage.setItem(
+          "characterPagePerformance",
+          JSON.stringify(metrics),
+        );
       }, 0);
     });
   }
@@ -3001,58 +3391,58 @@ function initializePerformanceMonitoring() {
 
 // Enhanced error handling with user-friendly messages
 function setupEnhancedErrorHandling() {
-  window.addEventListener('error', (event) => {
-    console.error('Character page error:', event.error);
+  window.addEventListener("error", (event) => {
+    console.error("Character page error:", event.error);
 
     // Show user-friendly error message
     const errorMessage = getErrorMessage(event.error);
-    window.showNotification(errorMessage, 'error');
+    window.showNotification(errorMessage, "error");
   });
 
-  window.addEventListener('unhandledrejection', (event) => {
-    console.error('Unhandled promise rejection:', event.reason);
+  window.addEventListener("unhandledrejection", (event) => {
+    console.error("Unhandled promise rejection:", event.reason);
 
     const errorMessage = getErrorMessage(event.reason);
-    window.showNotification(errorMessage, 'error');
+    window.showNotification(errorMessage, "error");
   });
 }
 
 function getErrorMessage(error) {
-  if (error.message?.includes('fetch')) {
-    return 'Network error - please check your connection';
-  } else if (error.message?.includes('JSON')) {
-    return 'Data format error - please refresh the page';
+  if (error.message?.includes("fetch")) {
+    return "Network error - please check your connection";
+  } else if (error.message?.includes("JSON")) {
+    return "Data format error - please refresh the page";
   } else {
-    return 'Something went wrong - please try again';
+    return "Something went wrong - please try again";
   }
 }
 
 // Initialize all enhanced features on page load
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   initializeScrollProgress();
   addPageTransitions();
   initializePerformanceMonitoring();
   setupEnhancedErrorHandling();
 
   // Add smooth scroll class to html
-  document.documentElement.classList.add('smooth-scroll');
+  document.documentElement.classList.add("smooth-scroll");
 });
 
 // Lazy loading for images
 function initializeLazyLoading() {
-  if ('IntersectionObserver' in window) {
+  if ("IntersectionObserver" in window) {
     const imageObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const img = entry.target;
           img.src = img.dataset.src;
-          img.classList.remove('lazy');
+          img.classList.remove("lazy");
           imageObserver.unobserve(img);
         }
       });
     });
 
-    document.querySelectorAll('img[data-src]').forEach(img => {
+    document.querySelectorAll("img[data-src]").forEach((img) => {
       imageObserver.observe(img);
     });
   }
@@ -3080,15 +3470,15 @@ class EvolutionManager {
   // Setup interactive features for evolution forms
   setupEvolutionInteractions() {
     // Add double-click to expand all details
-    document.addEventListener('dblclick', (e) => {
-      if (e.target.closest('.evolution-form')) {
+    document.addEventListener("dblclick", (e) => {
+      if (e.target.closest(".evolution-form")) {
         this.toggleAllEvolutionDetails();
       }
     });
 
     // Add right-click context menu for evolution forms
-    document.addEventListener('contextmenu', (e) => {
-      if (e.target.closest('.evolution-form')) {
+    document.addEventListener("contextmenu", (e) => {
+      if (e.target.closest(".evolution-form")) {
         e.preventDefault();
         this.showEvolutionContextMenu(e);
       }
@@ -3105,9 +3495,9 @@ class EvolutionManager {
     this.selectedEvolutions = [];
 
     // Add comparison event listeners
-    document.addEventListener('click', (e) => {
-      if (this.comparisonMode && e.target.closest('.evolution-form')) {
-        const evolutionForm = e.target.closest('.evolution-form');
+    document.addEventListener("click", (e) => {
+      if (this.comparisonMode && e.target.closest(".evolution-form")) {
+        const evolutionForm = e.target.closest(".evolution-form");
         const evolutionIndex = parseInt(evolutionForm.dataset.evolutionIndex);
         this.toggleEvolutionSelection(evolutionIndex);
       }
@@ -3116,18 +3506,22 @@ class EvolutionManager {
 
   // Toggle evolution selection for comparison
   toggleEvolutionSelection(index) {
-    const evolutionForm = document.querySelector(`[data-evolution-index="${index}"]`);
+    const evolutionForm = document.querySelector(
+      `[data-evolution-index="${index}"]`,
+    );
     if (!evolutionForm) return;
 
     if (this.selectedEvolutions.includes(index)) {
       // Remove from selection
-      this.selectedEvolutions = this.selectedEvolutions.filter(i => i !== index);
-      evolutionForm.classList.remove('evolution-selected');
+      this.selectedEvolutions = this.selectedEvolutions.filter(
+        (i) => i !== index,
+      );
+      evolutionForm.classList.remove("evolution-selected");
     } else {
       // Add to selection (max 2 for comparison)
       if (this.selectedEvolutions.length < 2) {
         this.selectedEvolutions.push(index);
-        evolutionForm.classList.add('evolution-selected');
+        evolutionForm.classList.add("evolution-selected");
       }
     }
 
@@ -3148,8 +3542,8 @@ class EvolutionManager {
     if (!evolution1 || !evolution2) return;
 
     // Create comparison modal
-    const modal = document.createElement('div');
-    modal.className = 'evolution-comparison-modal';
+    const modal = document.createElement("div");
+    modal.className = "evolution-comparison-modal";
     modal.innerHTML = `
       <div class="comparison-content">
         <div class="comparison-header">
@@ -3182,7 +3576,7 @@ class EvolutionManager {
 
   // Close evolution comparison
   closeEvolutionComparison() {
-    const modal = document.querySelector('.evolution-comparison-modal');
+    const modal = document.querySelector(".evolution-comparison-modal");
     if (modal) {
       modal.remove();
     }
@@ -3191,58 +3585,58 @@ class EvolutionManager {
 
   // Toggle all evolution details at once
   toggleAllEvolutionDetails() {
-    const allDetails = document.querySelectorAll('.evolution-details');
-    const allForms = document.querySelectorAll('.evolution-form');
+    const allDetails = document.querySelectorAll(".evolution-details");
+    const allForms = document.querySelectorAll(".evolution-form");
 
-    const anyVisible = Array.from(allDetails).some(detail =>
-      detail.style.display !== 'none'
+    const anyVisible = Array.from(allDetails).some(
+      (detail) => detail.style.display !== "none",
     );
 
     allDetails.forEach((detail, index) => {
       if (anyVisible) {
-        detail.style.display = 'none';
-        allForms[index]?.classList.remove('evolution-active');
+        detail.style.display = "none";
+        allForms[index]?.classList.remove("evolution-active");
       } else {
-        detail.style.display = 'block';
-        allForms[index]?.classList.add('evolution-active');
+        detail.style.display = "block";
+        allForms[index]?.classList.add("evolution-active");
         this.animateDetailIn(detail);
       }
     });
 
-    const action = anyVisible ? 'collapsed' : 'expanded';
+    const action = anyVisible ? "collapsed" : "expanded";
     if (window.showNotification) {
-      window.showNotification(`All evolution details ${action}`, 'info');
+      window.showNotification(`All evolution details ${action}`, "info");
     }
   }
 
   // Animate detail section in
   animateDetailIn(detail) {
-    detail.style.opacity = '0';
-    detail.style.transform = 'translateY(10px)';
-    detail.style.transition = 'all 0.3s ease';
+    detail.style.opacity = "0";
+    detail.style.transform = "translateY(10px)";
+    detail.style.transition = "all 0.3s ease";
 
     requestAnimationFrame(() => {
-      detail.style.opacity = '1';
-      detail.style.transform = 'translateY(0)';
+      detail.style.opacity = "1";
+      detail.style.transform = "translateY(0)";
     });
   }
 
   // Show context menu for evolution forms
   showEvolutionContextMenu(event) {
-    const evolutionForm = event.target.closest('.evolution-form');
+    const evolutionForm = event.target.closest(".evolution-form");
     const evolutionIndex = evolutionForm?.dataset.evolutionIndex;
 
     if (!evolutionIndex) return;
 
     // Remove existing context menu
-    const existingMenu = document.querySelector('.evolution-context-menu');
+    const existingMenu = document.querySelector(".evolution-context-menu");
     if (existingMenu) {
       existingMenu.remove();
     }
 
     // Create context menu
-    const contextMenu = document.createElement('div');
-    contextMenu.className = 'evolution-context-menu';
+    const contextMenu = document.createElement("div");
+    contextMenu.className = "evolution-context-menu";
     contextMenu.innerHTML = `
       <div class="context-menu-item" onclick="evolutionManager.shareEvolution(${evolutionIndex})">
         📤 Share Evolution
@@ -3259,46 +3653,50 @@ class EvolutionManager {
     `;
 
     // Position and show context menu
-    contextMenu.style.position = 'fixed';
-    contextMenu.style.left = event.clientX + 'px';
-    contextMenu.style.top = event.clientY + 'px';
-    contextMenu.style.zIndex = '10000';
+    contextMenu.style.position = "fixed";
+    contextMenu.style.left = event.clientX + "px";
+    contextMenu.style.top = event.clientY + "px";
+    contextMenu.style.zIndex = "10000";
 
     document.body.appendChild(contextMenu);
 
     // Remove context menu when clicking elsewhere
     setTimeout(() => {
-      document.addEventListener('click', () => {
-        contextMenu.remove();
-      }, { once: true });
+      document.addEventListener(
+        "click",
+        () => {
+          contextMenu.remove();
+        },
+        { once: true },
+      );
     }, 100);
   }
 
   // Add keyboard navigation for evolution forms
   addEvolutionKeyboardNavigation() {
-    document.addEventListener('keydown', (e) => {
-      if (e.target.closest('.evolution-timeline')) {
-        const evolutionForms = document.querySelectorAll('.evolution-form');
-        const currentIndex = Array.from(evolutionForms).findIndex(form =>
-          form.classList.contains('evolution-active')
+    document.addEventListener("keydown", (e) => {
+      if (e.target.closest(".evolution-timeline")) {
+        const evolutionForms = document.querySelectorAll(".evolution-form");
+        const currentIndex = Array.from(evolutionForms).findIndex((form) =>
+          form.classList.contains("evolution-active"),
         );
 
-        switch(e.key) {
-          case 'ArrowDown':
+        switch (e.key) {
+          case "ArrowDown":
             e.preventDefault();
             this.navigateEvolution(currentIndex + 1, evolutionForms);
             break;
-          case 'ArrowUp':
+          case "ArrowUp":
             e.preventDefault();
             this.navigateEvolution(currentIndex - 1, evolutionForms);
             break;
-          case 'Enter':
+          case "Enter":
             e.preventDefault();
             if (currentIndex >= 0) {
               toggleEvolutionDetails(currentIndex);
             }
             break;
-          case 'Escape':
+          case "Escape":
             e.preventDefault();
             this.closeAllEvolutionDetails();
             break;
@@ -3313,13 +3711,13 @@ class EvolutionManager {
     if (newIndex >= evolutionForms.length) newIndex = 0;
 
     // Remove active class from all forms
-    evolutionForms.forEach(form => form.classList.remove('evolution-active'));
+    evolutionForms.forEach((form) => form.classList.remove("evolution-active"));
 
     // Add active class to new form
-    evolutionForms[newIndex].classList.add('evolution-active');
+    evolutionForms[newIndex].classList.add("evolution-active");
     evolutionForms[newIndex].scrollIntoView({
-      behavior: 'smooth',
-      block: 'center'
+      behavior: "smooth",
+      block: "center",
     });
 
     // Show details for the active form
@@ -3328,11 +3726,11 @@ class EvolutionManager {
 
   // Close all evolution details
   closeAllEvolutionDetails() {
-    document.querySelectorAll('.evolution-details').forEach(detail => {
-      detail.style.display = 'none';
+    document.querySelectorAll(".evolution-details").forEach((detail) => {
+      detail.style.display = "none";
     });
-    document.querySelectorAll('.evolution-form').forEach(form => {
-      form.classList.remove('evolution-active');
+    document.querySelectorAll(".evolution-form").forEach((form) => {
+      form.classList.remove("evolution-active");
     });
   }
 
@@ -3347,12 +3745,15 @@ class EvolutionManager {
       navigator.share({
         title: `${evolution.form} Evolution`,
         text: shareText,
-        url: window.location.href
+        url: window.location.href,
       });
     } else if (navigator.clipboard) {
       navigator.clipboard.writeText(shareText).then(() => {
         if (window.showNotification) {
-          window.showNotification('Evolution info copied to clipboard!', 'success');
+          window.showNotification(
+            "Evolution info copied to clipboard!",
+            "success",
+          );
         }
       });
     }
@@ -3371,13 +3772,13 @@ class EvolutionManager {
 
   // Enable evolution comparison mode
   enableComparisonMode(selectedIndex) {
-    const evolutionForms = document.querySelectorAll('.evolution-form');
+    const evolutionForms = document.querySelectorAll(".evolution-form");
 
     evolutionForms.forEach((form, index) => {
       if (index === selectedIndex) {
-        form.classList.add('evolution-selected');
+        form.classList.add("evolution-selected");
       } else {
-        form.classList.add('evolution-dimmed');
+        form.classList.add("evolution-dimmed");
       }
     });
 
@@ -3385,17 +3786,20 @@ class EvolutionManager {
     this.showComparisonUI(selectedIndex);
 
     if (window.showNotification) {
-      window.showNotification('Comparison mode enabled. Click another evolution to compare.', 'info');
+      window.showNotification(
+        "Comparison mode enabled. Click another evolution to compare.",
+        "info",
+      );
     }
   }
 
   // Disable evolution comparison mode
   disableComparisonMode() {
-    document.querySelectorAll('.evolution-form').forEach(form => {
-      form.classList.remove('evolution-selected', 'evolution-dimmed');
+    document.querySelectorAll(".evolution-form").forEach((form) => {
+      form.classList.remove("evolution-selected", "evolution-dimmed");
     });
 
-    const comparisonUI = document.querySelector('.evolution-comparison-ui');
+    const comparisonUI = document.querySelector(".evolution-comparison-ui");
     if (comparisonUI) {
       comparisonUI.remove();
     }
@@ -3404,8 +3808,8 @@ class EvolutionManager {
   // Show comparison UI
   showComparisonUI(selectedIndex) {
     const evolution = this.evolutionData[selectedIndex];
-    const comparisonUI = document.createElement('div');
-    comparisonUI.className = 'evolution-comparison-ui';
+    const comparisonUI = document.createElement("div");
+    comparisonUI.className = "evolution-comparison-ui";
     comparisonUI.innerHTML = `
       <div class="comparison-header">
         <h4>🔍 Comparing: ${evolution.form}</h4>
@@ -3423,16 +3827,16 @@ class EvolutionManager {
       </div>
     `;
 
-    document.querySelector('.evolution-timeline').appendChild(comparisonUI);
+    document.querySelector(".evolution-timeline").appendChild(comparisonUI);
   }
 
   // Get evolution trigger type
   getEvolutionTriggerType(trigger) {
-    if (trigger.toLowerCase().includes('name')) return 'Naming';
-    if (trigger.toLowerCase().includes('death')) return 'Trauma';
-    if (trigger.toLowerCase().includes('skill')) return 'Skill Mastery';
-    if (trigger.toLowerCase().includes('harvest')) return 'Ritual';
-    return 'Natural';
+    if (trigger.toLowerCase().includes("name")) return "Naming";
+    if (trigger.toLowerCase().includes("death")) return "Trauma";
+    if (trigger.toLowerCase().includes("skill")) return "Skill Mastery";
+    if (trigger.toLowerCase().includes("harvest")) return "Ritual";
+    return "Natural";
   }
 
   // Favorite evolution
@@ -3441,7 +3845,7 @@ class EvolutionManager {
     if (!characterId) return;
 
     const favoriteKey = `favoriteEvolutions_${characterId}`;
-    const favorites = JSON.parse(localStorage.getItem(favoriteKey) || '[]');
+    const favorites = JSON.parse(localStorage.getItem(favoriteKey) || "[]");
 
     const isFavorited = favorites.includes(index);
 
@@ -3449,12 +3853,12 @@ class EvolutionManager {
       const favIndex = favorites.indexOf(index);
       favorites.splice(favIndex, 1);
       if (window.showNotification) {
-        window.showNotification('Evolution removed from favorites', 'info');
+        window.showNotification("Evolution removed from favorites", "info");
       }
     } else {
       favorites.push(index);
       if (window.showNotification) {
-        window.showNotification('Evolution added to favorites!', 'success');
+        window.showNotification("Evolution added to favorites!", "success");
       }
     }
 
@@ -3468,18 +3872,18 @@ class EvolutionManager {
     if (!characterId) return;
 
     const favoriteKey = `favoriteEvolutions_${characterId}`;
-    const favorites = JSON.parse(localStorage.getItem(favoriteKey) || '[]');
+    const favorites = JSON.parse(localStorage.getItem(favoriteKey) || "[]");
 
-    document.querySelectorAll('.evolution-form').forEach((form, index) => {
-      const indicator = form.querySelector('.favorite-indicator');
+    document.querySelectorAll(".evolution-form").forEach((form, index) => {
+      const indicator = form.querySelector(".favorite-indicator");
       if (indicator) {
         indicator.remove();
       }
 
       if (favorites.includes(index)) {
-        const newIndicator = document.createElement('div');
-        newIndicator.className = 'favorite-indicator';
-        newIndicator.innerHTML = '⭐';
+        const newIndicator = document.createElement("div");
+        newIndicator.className = "favorite-indicator";
+        newIndicator.innerHTML = "⭐";
         form.appendChild(newIndicator);
       }
     });
@@ -3495,7 +3899,7 @@ class EvolutionManager {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(info).then(() => {
         if (window.showNotification) {
-          window.showNotification('Evolution info copied!', 'success');
+          window.showNotification("Evolution info copied!", "success");
         }
       });
     }
@@ -3507,14 +3911,14 @@ window.evolutionManager = new EvolutionManager();
 
 // Initialize evolution manager when character loads
 const originalLoadCharacterProfile = loadCharacterProfile;
-loadCharacterProfile = async function() {
+loadCharacterProfile = async function () {
   await originalLoadCharacterProfile();
 
   // Initialize evolution manager after character loads
   setTimeout(() => {
     const characterId = window.getURLParameter("id");
     if (characterId && window.GameState) {
-      window.GameState.getCharacter(characterId).then(character => {
+      window.GameState.getCharacter(characterId).then((character) => {
         if (character && character.evolution) {
           window.evolutionManager.initializeEvolution(character);
         }
@@ -3524,59 +3928,73 @@ loadCharacterProfile = async function() {
 };
 // Achievement interaction functions
 function toggleAchievementCategory(category) {
-  const categoryElement = document.querySelector(`[data-category="${category}"]`);
+  const categoryElement = document.querySelector(
+    `[data-category="${category}"]`,
+  );
   const achievementGrid = document.getElementById(`achievements-${category}`);
-  const toggleIcon = categoryElement.querySelector('.toggle-icon');
+  const toggleIcon = categoryElement.querySelector(".toggle-icon");
 
-  if (achievementGrid.style.display === 'none' || !achievementGrid.style.display) {
+  if (
+    achievementGrid.style.display === "none" ||
+    !achievementGrid.style.display
+  ) {
     // Show category
-    achievementGrid.style.display = 'grid';
-    toggleIcon.textContent = '▲';
-    categoryElement.classList.add('category-expanded');
+    achievementGrid.style.display = "grid";
+    toggleIcon.textContent = "▲";
+    categoryElement.classList.add("category-expanded");
 
     // Animate cards in
-    const cards = achievementGrid.querySelectorAll('.achievement-card');
+    const cards = achievementGrid.querySelectorAll(".achievement-card");
     cards.forEach((card, index) => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(20px)';
+      card.style.opacity = "0";
+      card.style.transform = "translateY(20px)";
       setTimeout(() => {
-        card.style.transition = 'all 0.3s ease';
-        card.style.opacity = '1';
-        card.style.transform = 'translateY(0)';
+        card.style.transition = "all 0.3s ease";
+        card.style.opacity = "1";
+        card.style.transform = "translateY(0)";
       }, index * 100);
     });
   } else {
     // Hide category
-    achievementGrid.style.display = 'none';
-    toggleIcon.textContent = '▼';
-    categoryElement.classList.remove('category-expanded');
+    achievementGrid.style.display = "none";
+    toggleIcon.textContent = "▼";
+    categoryElement.classList.remove("category-expanded");
   }
 
   // Haptic feedback
-  if ('vibrate' in navigator) {
+  if ("vibrate" in navigator) {
     navigator.vibrate(50);
   }
 }
 
 function showAchievementDetails(category, index) {
   // Remove existing modal
-  const existingModal = document.querySelector('.achievement-modal');
+  const existingModal = document.querySelector(".achievement-modal");
   if (existingModal) {
     existingModal.remove();
   }
 
   // Get achievement data
-  const categoryElement = document.querySelector(`[data-category="${category}"]`);
-  const achievementCards = categoryElement.querySelectorAll('.achievement-card');
+  const categoryElement = document.querySelector(
+    `[data-category="${category}"]`,
+  );
+  const achievementCards =
+    categoryElement.querySelectorAll(".achievement-card");
   const clickedCard = achievementCards[index];
-  const achievementTitle = clickedCard.querySelector('.achievement-title').textContent;
-  const achievementDescription = clickedCard.querySelector('.achievement-description').textContent;
-  const achievementIcon = clickedCard.querySelector('.achievement-icon').textContent;
-  const achievementRarity = clickedCard.querySelector('.achievement-rarity').className.split(' ')[1];
+  const achievementTitle =
+    clickedCard.querySelector(".achievement-title").textContent;
+  const achievementDescription = clickedCard.querySelector(
+    ".achievement-description",
+  ).textContent;
+  const achievementIcon =
+    clickedCard.querySelector(".achievement-icon").textContent;
+  const achievementRarity = clickedCard
+    .querySelector(".achievement-rarity")
+    .className.split(" ")[1];
 
   // Create modal
-  const modal = document.createElement('div');
-  modal.className = 'achievement-modal';
+  const modal = document.createElement("div");
+  modal.className = "achievement-modal";
   modal.innerHTML = `
     <div class="achievement-modal-content">
       <div class="achievement-modal-header">
@@ -3617,20 +4035,20 @@ function showAchievementDetails(category, index) {
 
   // Animate modal in
   setTimeout(() => {
-    modal.classList.add('achievement-modal-show');
+    modal.classList.add("achievement-modal-show");
   }, 10);
 
   // Prevent body scroll
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow = "hidden";
 }
 
 function closeAchievementModal() {
-  const modal = document.querySelector('.achievement-modal');
+  const modal = document.querySelector(".achievement-modal");
   if (modal) {
-    modal.classList.remove('achievement-modal-show');
+    modal.classList.remove("achievement-modal-show");
     setTimeout(() => {
       modal.remove();
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }, 300);
   }
 }
@@ -3642,12 +4060,15 @@ function shareAchievement(title, description) {
     navigator.share({
       title: `Achievement: ${title}`,
       text: shareText,
-      url: window.location.href
+      url: window.location.href,
     });
   } else if (navigator.clipboard) {
     navigator.clipboard.writeText(shareText).then(() => {
       if (window.showNotification) {
-        window.showNotification('Achievement details copied to clipboard!', 'success');
+        window.showNotification(
+          "Achievement details copied to clipboard!",
+          "success",
+        );
       }
     });
   }
@@ -3660,7 +4081,7 @@ function favoriteAchievement(category, index) {
   if (!characterId) return;
 
   const favoriteKey = `favoriteAchievements_${characterId}`;
-  const favorites = JSON.parse(localStorage.getItem(favoriteKey) || '[]');
+  const favorites = JSON.parse(localStorage.getItem(favoriteKey) || "[]");
   const achievementKey = `${category}_${index}`;
 
   const isFavorited = favorites.includes(achievementKey);
@@ -3669,12 +4090,12 @@ function favoriteAchievement(category, index) {
     const favIndex = favorites.indexOf(achievementKey);
     favorites.splice(favIndex, 1);
     if (window.showNotification) {
-      window.showNotification('Achievement removed from favorites', 'info');
+      window.showNotification("Achievement removed from favorites", "info");
     }
   } else {
     favorites.push(achievementKey);
     if (window.showNotification) {
-      window.showNotification('Achievement added to favorites!', 'success');
+      window.showNotification("Achievement added to favorites!", "success");
     }
   }
 
@@ -3688,34 +4109,36 @@ function updateAchievementFavoriteIndicators() {
   if (!characterId) return;
 
   const favoriteKey = `favoriteAchievements_${characterId}`;
-  const favorites = JSON.parse(localStorage.getItem(favoriteKey) || '[]');
+  const favorites = JSON.parse(localStorage.getItem(favoriteKey) || "[]");
 
-  document.querySelectorAll('.achievement-card').forEach((card, globalIndex) => {
-    const category = card.closest('.achievement-category').dataset.category;
-    const localIndex = Array.from(card.parentElement.children).indexOf(card);
-    const achievementKey = `${category}_${localIndex}`;
+  document
+    .querySelectorAll(".achievement-card")
+    .forEach((card, globalIndex) => {
+      const category = card.closest(".achievement-category").dataset.category;
+      const localIndex = Array.from(card.parentElement.children).indexOf(card);
+      const achievementKey = `${category}_${localIndex}`;
 
-    // Remove existing favorite indicator
-    const existingIndicator = card.querySelector('.achievement-favorite');
-    if (existingIndicator) {
-      existingIndicator.remove();
-    }
+      // Remove existing favorite indicator
+      const existingIndicator = card.querySelector(".achievement-favorite");
+      if (existingIndicator) {
+        existingIndicator.remove();
+      }
 
-    // Add favorite indicator if favorited
-    if (favorites.includes(achievementKey)) {
-      const indicator = document.createElement('div');
-      indicator.className = 'achievement-favorite';
-      indicator.innerHTML = '⭐';
-      card.appendChild(indicator);
-    }
-  });
+      // Add favorite indicator if favorited
+      if (favorites.includes(achievementKey)) {
+        const indicator = document.createElement("div");
+        indicator.className = "achievement-favorite";
+        indicator.innerHTML = "⭐";
+        card.appendChild(indicator);
+      }
+    });
 }
 
 // Initialize achievement features when page loads
 function initializeAchievementFeatures() {
   // Close modal on escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
       closeAchievementModal();
     }
   });
@@ -3727,7 +4150,7 @@ function initializeAchievementFeatures() {
 
   // Auto-expand first category
   setTimeout(() => {
-    const firstCategory = document.querySelector('.achievement-category');
+    const firstCategory = document.querySelector(".achievement-category");
     if (firstCategory) {
       const categoryName = firstCategory.dataset.category;
       toggleAchievementCategory(categoryName);
@@ -3744,7 +4167,7 @@ window.favoriteAchievement = favoriteAchievement;
 
 // Initialize when character loads
 const originalInitializeEnhancedFeatures = initializeEnhancedFeatures;
-initializeEnhancedFeatures = function() {
+initializeEnhancedFeatures = function () {
   originalInitializeEnhancedFeatures();
   initializeAchievementFeatures();
 };

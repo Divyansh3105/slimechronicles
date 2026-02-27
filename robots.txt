@@ -11,7 +11,7 @@ Allow: /index.html
 Allow: /overview.html
 Allow: /codex.html
 Allow: /skills.html
-Allow: /Chronicle.html
+Allow: /chronicle.html
 Allow: /records.html
 Allow: /factions.html
 Allow: /character.html

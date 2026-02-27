@@ -934,21 +934,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Add CSS for ripple effect
-const style = document.createElement("style");
-style.textContent = `
-  @keyframes ripple {
-    from {
-      transform: scale(0);
-      opacity: 1;
-    }
-    to {
-      transform: scale(20);
-      opacity: 0;
-    }
-  }
-`;
-document.head.appendChild(style);
+// @keyframes ripple is defined in shared.css — no injection needed
 
 console.log("✨ Factions page UI enhancements loaded successfully!");
 

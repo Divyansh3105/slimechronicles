@@ -21,6 +21,7 @@ body {
   height: 100%;
   min-height: 100vh;
   position: relative;
+  scroll-behavior: smooth;
   touch-action: pan-y;
   -webkit-overflow-scrolling: touch;
 }
@@ -148,65 +149,9 @@ body.loading * {
   cursor: url("/assets/cursor.cur"), wait !important;
 }
 
-.help,
-[title]:not(button):not(a):not([role="button"]),
-.tooltip,
-.has-tooltip {
-  cursor: url("../assets/pointer.cur"), help !important;
-}
-
-/* Force default cursor for non-interactive elements */
-.no-cursor,
-.text-content,
-.static-content,
-p:not(.clickable),
-span:not(.clickable):not(.button-icon):not(.button-text):not(.nav-icon),
-div:not(.clickable):not(.card):not([onclick]):not([role="button"]),
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  cursor: url("/assets/cursor.cur"), auto !important;
-}
-
-/* Fallback for browsers that don't support custom cursors */
-@supports not (cursor: url("/assets/cursor.cur")) {
-  * {
-    cursor: auto;
-  }
-
-  a,
-  button,
-  input[type="button"],
-  input[type="submit"],
-  input[type="reset"],
-  select,
-  [role="button"],
-  .clickable {
-    cursor: pointer;
-  }
-
-  input[type="text"],
-  input[type="email"],
-  input[type="password"],
-  textarea,
-  [contenteditable="true"] {
-    cursor: text;
-  }
-
-  button:disabled,
-  input:disabled,
-  select:disabled,
-  textarea:disabled,
-  .disabled {
-    cursor: not-allowed;
-  }
-}
-
 /* CSS custom properties for consistent theming */
 :root {
+  /* Default Rimuru Theme */
   --primary-blue: #4dd4ff;
   --primary-dark: #0a0e27;
   --secondary-dark: #151b3d;
@@ -232,6 +177,67 @@ h6 {
   --slime-blue-glow: rgba(77, 212, 255, 0.6);
   --border-subtle: #1a2a40;
   --vh: 1vh;
+}
+
+/* Veldora Theme */
+[data-theme="veldora"] {
+  --primary-blue: #ffd700;
+  --primary-dark: #1a1a0d;
+  --secondary-dark: #2a2a15;
+  --glow-blue: rgba(255, 215, 0, 0.6);
+  --accent-cyan: #ffb700;
+  --accent-cyan-glow: rgba(255, 183, 0, 0.6);
+  --slime-blue: #ffd700;
+  --border-subtle: #403a1a;
+}
+
+/* Benimaru Theme */
+[data-theme="benimaru"] {
+  --primary-blue: #ff3366;
+  --primary-dark: #1a0a0f;
+  --secondary-dark: #2a151b;
+  --glow-blue: rgba(255, 51, 102, 0.6);
+  --accent-cyan: #ff0044;
+  --accent-cyan-glow: rgba(255, 0, 68, 0.6);
+  --slime-blue: #ff3366;
+  --border-subtle: #401a24;
+}
+
+/* Milim Theme */
+[data-theme="milim"] {
+  --primary-blue: #ff66b2;
+  --primary-dark: #1a0d15;
+  --secondary-dark: #2a1523;
+  --glow-blue: rgba(255, 102, 178, 0.6);
+  --accent-cyan: #ff3399;
+  --accent-cyan-glow: rgba(255, 51, 153, 0.6);
+  --slime-blue: #ff66b2;
+  --border-subtle: #401a2d;
+}
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--primary-dark);
+  border-left: 1px solid var(--border-subtle);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--primary-blue), var(--accent-cyan));
+  border-radius: 5px;
+  border: 2px solid var(--primary-dark);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--accent-cyan), var(--primary-blue));
+  box-shadow: 0 0 10px var(--glow-cyan);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--primary-dark);
 }
 
 /* Loading screen overlay with animated elements */
@@ -348,24 +354,6 @@ h6 {
   }
 }
 
-/* Base HTML and body styling with scroll behavior */
-html,
-body {
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-html {
-  height: 100%;
-  scroll-behavior: smooth;
-}
-
-body {
-  height: auto;
-  min-height: 100vh;
-  scroll-behavior: smooth;
-}
-
 /* Main body styling with layered background effects */
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -463,8 +451,7 @@ body::before {
   z-index: 2;
   overflow: visible !important;
   height: 100%;
-  will-change: transform;
-  transform: translate3d(0, 0, 0);
+  translate: var(--parallax-x, 0px) var(--parallax-y, 0px);
 }
 .star {
   position: absolute;
@@ -501,8 +488,8 @@ body::before {
   pointer-events: none;
   z-index: 0;
   animation: magic-rotate 60s linear infinite;
-  will-change: transform;
   transform: translate3d(-50%, -50%, 0);
+  translate: var(--parallax-x, 0px) var(--parallax-y, 0px);
 }
 .magic-circle::before,
 .magic-circle::after {
@@ -679,6 +666,12 @@ body::before {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
   }
 }
 /* Main navigation bar with backdrop blur */
@@ -1378,6 +1371,70 @@ body.mobile-nav-active * {
   }
 }
 
+/* Premium Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(21, 27, 61, 0.8);
+  transition: 0.4s;
+  border: 1px solid rgba(77, 212, 255, 0.3);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--text-light);
+  transition: 0.4s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+input:checked + .slider {
+  background-color: var(--primary-blue);
+  border-color: var(--accent-cyan);
+  box-shadow:
+    0 0 10px rgba(77, 212, 255, 0.4),
+    inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 15px rgba(77, 212, 255, 0.6);
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+  background-color: #ffffff;
+}
+
+.slider.round {
+  border-radius: 26px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
 /* Custom scrollbar styling for webkit browsers */
 ::-webkit-scrollbar {
   width: 12px;
@@ -1387,24 +1444,24 @@ body.mobile-nav-active * {
 ::-webkit-scrollbar-track {
   background: linear-gradient(
     180deg,
-    rgba(10, 14, 39, 0.8) 0%,
-    rgba(21, 27, 61, 0.6) 50%,
-    rgba(10, 14, 39, 0.8) 100%
+    var(--primary-dark) 0%,
+    var(--secondary-dark) 50%,
+    var(--primary-dark) 100%
   );
   border-radius: 10px;
-  border: 1px solid rgba(77, 212, 255, 0.1);
+  border: 1px solid var(--border-subtle);
 }
 
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(
     180deg,
-    rgba(77, 212, 255, 0.8) 0%,
-    rgba(66, 159, 217, 0.9) 50%,
-    rgba(77, 212, 255, 0.8) 100%
+    var(--primary-blue) 0%,
+    var(--accent-cyan) 50%,
+    var(--primary-blue) 100%
   );
   border-radius: 10px;
-  border: 1px solid rgba(77, 212, 255, 0.3);
-  box-shadow: 0 0 10px rgba(77, 212, 255, 0.4);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 0 10px var(--glow-blue);
   inset: 0 1px 0 rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
 }
@@ -1412,28 +1469,27 @@ body.mobile-nav-active * {
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(
     180deg,
-    rgba(77, 212, 255, 1) 0%,
-    rgba(66, 159, 217, 1) 50%,
-    rgba(77, 212, 255, 1) 100%
+    var(--accent-cyan) 0%,
+    var(--primary-blue) 50%,
+    var(--accent-cyan) 100%
   );
-  box-shadow: 0 0 15px rgba(77, 212, 255, 0.6);
+  box-shadow: 0 0 15px var(--glow-cyan);
   inset: 0 1px 0 rgba(255, 255, 255, 0.3);
-  transform: scale(1.1);
 }
 
 ::-webkit-scrollbar-thumb:active {
   background: linear-gradient(
     180deg,
-    rgba(255, 215, 0, 0.9) 0%,
-    rgba(255, 183, 27, 1) 50%,
-    rgba(255, 215, 0, 0.9) 100%
+    var(--accent-gold) 0%,
+    var(--accent-gold) 50%,
+    var(--accent-gold) 100%
   );
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+  box-shadow: 0 0 20px var(--glow-gold);
   inset: 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 ::-webkit-scrollbar-corner {
-  background: rgba(10, 14, 39, 0.8);
+  background: var(--primary-dark);
   border-radius: 10px;
 }
 
@@ -2274,59 +2330,35 @@ body.mobile-nav-active .audio-controls {
 
 /* ========== CURSOR DEBUGGING & TESTING ========== */
 
-/* Add a subtle glow effect to help identify custom cursor usage */
-body {
-  cursor: url("/assets/cursor.cur"), auto !important;
+/* ========== SCROLL REVEAL ANIMATIONS ========== */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
 }
 
-/* Ensure cursor paths are correct with multiple fallbacks */
-html {
-  cursor: url("/assets/cursor.cur"), url("/assets/cursor.cur"), auto !important;
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* Force cursor on all elements as last resort */
-*,
-*::before,
-*::after {
-  cursor: inherit !important;
-}
-
-/* Specific cursor enforcement for problematic elements */
-body *,
-html * {
-  cursor: inherit !important;
-}
-
-/* Override any CSS framework cursor styles */
-.btn,
-.button,
-.clickable,
-[onclick] {
-  cursor: url("../assets/pointer.cur"), pointer !important;
-}
-
-/* Ensure cursor works in all browsers */
-@-moz-document url-prefix() {
-  * {
-    cursor: url("../assets/cursor.cur"), auto !important;
+/* Global override for prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 
-  button,
-  a,
-  [role="button"] {
-    cursor: url("../assets/pointer.cur"), pointer !important;
-  }
-}
-
-/* WebKit specific cursor fixes */
-@media screen and (-webkit-min-device-pixel-ratio: 0) {
-  * {
-    cursor: url("../assets/cursor.cur"), auto !important;
-  }
-
-  button,
-  a,
-  [role="button"] {
-    cursor: url("../assets/pointer.cur"), pointer !important;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

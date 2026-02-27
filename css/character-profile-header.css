@@ -1,0 +1,497 @@
+﻿/* ========== PROFILE HEADER ========== */
+.profile-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 3rem 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(21, 27, 61, 0.9),
+    rgba(21, 27, 61, 0.6)
+  );
+  border-radius: 24px;
+  border: 3px solid var(--character-primary, rgba(77, 212, 255, 0.6));
+  backdrop-filter: blur(20px);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 80px var(--character-glow, rgba(77, 212, 255, 0.3)),
+    inset 0 2px 0 rgba(255, 255, 255, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  animation: slideDown 0.6s ease-out;
+  position: relative;
+  overflow: hidden;
+  transform: perspective(1000px) rotateX(2deg);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.profile-header:hover {
+  transform: perspective(1000px) rotateX(0deg) translateY(-5px);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 100px var(--character-glow, rgba(77, 212, 255, 0.4)),
+    inset 0 2px 0 rgba(255, 255, 255, 0.2);
+}
+
+.profile-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--character-primary, var(--primary-blue)),
+    transparent
+  );
+  animation: headerGlow 3s ease-in-out infinite;
+}
+
+@keyframes headerGlow {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ========== CHARACTER POWER INDICATOR ========== */
+.character-power-indicator {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    rgba(21, 27, 61, 0.9),
+    rgba(21, 27, 61, 0.7)
+  );
+  border: 2px solid var(--character-primary, var(--primary-blue));
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+  z-index: 2;
+}
+
+.power-ring {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border: 2px solid var(--character-primary, var(--primary-blue));
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: powerRingRotate 2s linear infinite;
+}
+
+.power-level {
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: var(--character-primary, var(--primary-blue));
+  text-align: center;
+  line-height: 1;
+  z-index: 1;
+}
+
+@keyframes powerRingRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.profile-image-container {
+  position: relative;
+  width: 320px;
+  height: 420px;
+  margin: 0 auto 2rem;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 8px solid var(--character-primary, var(--primary-blue));
+  box-shadow:
+    0 0 60px var(--character-glow, var(--glow-blue)),
+    0 15px 50px rgba(0, 0, 0, 0.6),
+    inset 0 0 40px rgba(255, 255, 255, 0.15),
+    0 0 0 2px rgba(255, 255, 255, 0.1);
+  animation: pulse 3s ease-in-out infinite;
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform: perspective(1000px) rotateY(-5deg);
+}
+
+.profile-image-container:hover {
+  animation: profileImageHover 0.6s ease-in-out;
+  transform: perspective(1000px) rotateY(0deg) scale(1.08);
+  box-shadow:
+    0 0 80px var(--character-glow, var(--glow-blue)),
+    0 20px 60px rgba(0, 0, 0, 0.8),
+    inset 0 0 50px rgba(255, 255, 255, 0.2);
+}
+
+.profile-image-container:hover::after {
+  opacity: 0.1;
+}
+
+.profile-image-container:hover .profile-image {
+  filter: brightness(1.15) contrast(1.2) saturate(1.1);
+  transform: scale(1.02);
+}
+
+.profile-image-container::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    var(--character-primary, var(--primary-blue)),
+    var(--character-secondary, #2a9fd8),
+    var(--character-primary, var(--primary-blue))
+  );
+  border-radius: 26px;
+  z-index: -1;
+  animation: borderRotate 4s linear infinite;
+  opacity: 0.8;
+}
+
+.profile-image-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, transparent, rgba(0, 0, 0, 0.3));
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+@keyframes borderRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.profile-portrait-fallback {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  font-size: 10rem;
+  background: radial-gradient(
+    circle at 30% 30%,
+    var(--character-glow, rgba(77, 212, 255, 0.3)),
+    transparent
+  );
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 40px var(--character-glow, var(--glow-blue)),
+      0 10px 40px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow:
+      0 0 60px var(--character-glow, var(--glow-blue)),
+      0 15px 50px rgba(0, 0, 0, 0.7);
+  }
+}
+
+.profile-name {
+  font-family: "Cinzel", serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--character-primary, var(--primary-blue));
+  margin-bottom: 0.5rem;
+  text-shadow:
+    0 0 20px var(--character-glow, var(--glow-blue)),
+    0 2px 10px rgba(0, 0, 0, 0.5);
+  letter-spacing: 1px;
+  background: linear-gradient(
+    135deg,
+    var(--character-primary, var(--primary-blue)),
+    var(--character-secondary, #40d0ff),
+    var(--character-primary, var(--primary-blue))
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textShimmer 3s ease-in-out infinite;
+  position: relative;
+}
+
+.profile-name::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--character-primary, var(--primary-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  z-index: -1;
+  filter: blur(2px);
+  opacity: 0.5;
+}
+
+@keyframes textShimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.profile-race,
+.profile-role {
+  color: rgba(232, 240, 255, 0.8);
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+
+.profile-power {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  background: linear-gradient(
+    135deg,
+    var(--character-primary, rgba(77, 212, 255, 0.2)),
+    transparent
+  );
+  border: 2px solid var(--character-primary, var(--primary-blue));
+  border-radius: 25px;
+  color: var(--character-primary, var(--primary-blue));
+  font-weight: bold;
+  font-size: 1.1rem;
+  box-shadow: 0 0 20px var(--character-glow, var(--glow-blue));
+}
+
+.recruit-button-profile {
+  margin-top: 1.5rem;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(
+    135deg,
+    var(--character-primary, var(--primary-blue)),
+    var(--character-secondary, #2a9fd8)
+  );
+  color: var(--primary-dark);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px var(--character-glow, rgba(77, 212, 255, 0.3));
+  font-family: "Rajdhani", sans-serif;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.recruit-button-profile:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 30px var(--character-glow, rgba(77, 212, 255, 0.5));
+}
+
+.recruit-button-profile:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+.button-icon {
+  font-size: 1.2rem;
+  animation: buttonIconBounce 2s ease-in-out infinite;
+}
+
+.button-text {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+@keyframes buttonIconBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+/* ========== RECRUITED BADGE ========== */
+.recruited-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 0.8rem 1.5rem;
+  background: linear-gradient(135deg, var(--accent-gold), #cc9900);
+  border-radius: 25px;
+  color: var(--primary-dark);
+  font-weight: bold;
+  font-size: 1.1rem;
+  box-shadow: 0 0 30px var(--glow-gold);
+  animation: glow-pulse 2s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.badge-icon {
+  font-size: 1.2rem;
+  animation: badgeIconSpin 3s linear infinite;
+}
+
+.badge-text {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.badge-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.badge-particles::before,
+.badge-particles::after {
+  content: "âœ¨";
+  position: absolute;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+  animation: particleFloat 4s ease-in-out infinite;
+}
+
+.badge-particles::before {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.badge-particles::after {
+  top: 60%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 30px var(--glow-gold);
+  }
+  50% {
+    box-shadow: 0 0 40px var(--glow-gold);
+  }
+}
+
+/* ========== TAB SECTIONS ========== */
+.tab-section {
+  display: none;
+}
+
+.tab-section.active {
+  display: block;
+  animation: fadeInSlide 0.5s ease-out;
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== PROFILE SECTIONS ========== */
+.profile-section {
+  margin-bottom: 2.5rem;
+  padding: 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(21, 27, 61, 0.5),
+    rgba(21, 27, 61, 0.3)
+  );
+  border: 1px solid var(--character-primary, rgba(77, 212, 255, 0.2));
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.profile-section:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(21, 27, 61, 0.6),
+    rgba(21, 27, 61, 0.4)
+  );
+  border-color: var(--character-primary, rgba(77, 212, 255, 0.4));
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.profile-section h3 {
+  font-family: "Cinzel", serif;
+  font-size: 1.6rem;
+  color: var(--character-primary, var(--primary-blue));
+  margin-bottom: 1.5rem;
+  border-bottom: 3px solid var(--character-primary, rgba(77, 212, 255, 0.3));
+  padding-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.profile-section h4 {
+  font-family: "Cinzel", serif;
+  font-size: 1.2rem;
+  color: var(--character-secondary, #40d0ff);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.profile-section p {
+  line-height: 1.9;
+  color: rgba(232, 240, 255, 0.9);
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+}
+
+/* ========== SKILLS OVERVIEW ========== */

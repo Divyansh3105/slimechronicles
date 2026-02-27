@@ -163,7 +163,7 @@ slimechronicles/
 ├── codex.html           # Interactive knowledge base and lore
 ├── factions.html        # Factions, organizations, and political entities
 ├── records.html         # Historical records and achievements
-├── Chronicle.html       # Timeline and chronological events
+├── chronicle.html       # Timeline and chronological events
 ├── data/                # Character and event data (JSON)
 ├── js/                  # Application logic and effects
 ├── css/                 # Themed stylesheets

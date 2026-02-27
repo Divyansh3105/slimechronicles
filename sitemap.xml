@@ -59,7 +59,7 @@
 
     <!-- Chronicle Timeline - High priority -->
     <url>
-        <loc>https://slimechronicles.netlify.app/Chronicle.html</loc>
+        <loc>https://slimechronicles.netlify.app/chronicle.html</loc>
         <lastmod>2026-02-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>

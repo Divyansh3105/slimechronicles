@@ -1,17 +1,93 @@
-// Shared JavaScript functions - Common functionality used across multiple pages
+// Smooth Page Transition System
+class PageTransitionManager {
+  constructor() {
+    this.loadingScreen = document.getElementById("loading-screen");
+    this.isTransitioning = false;
+    this.init();
+  }
 
-// Loading screen logic for all pages
-document.addEventListener("DOMContentLoaded", function () {
-  const loadingScreen = document.getElementById("loading-screen");
-  if (loadingScreen) {
-    // Fade out effect
-    loadingScreen.style.transition = "opacity 1s ease";
-    loadingScreen.style.opacity = "0";
+  init() {
+    // Handle initial page load
+    if (this.loadingScreen) {
+      this.loadingScreen.style.transition = "opacity 0.5s ease";
+
+      // If we arrived here, fade out the loading screen
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          this.loadingScreen.style.opacity = "0";
+          setTimeout(() => {
+            this.loadingScreen.style.display = "none";
+          }, 500);
+        }, 300);
+      });
+    }
+
+    // Intercept clicks on links that point to other internal pages
+    document.addEventListener("click", (e) => {
+      // Find closest anchor tag
+      const target = e.target.closest("a");
+      if (!target) return;
+
+      const href = target.getAttribute("href");
+
+      // Ignore if no href, or if it's external, or an anchor link, or opens in new tab
+      if (
+        !href ||
+        href.startsWith("http") ||
+        href.startsWith("#") ||
+        href.startsWith("mailto:") ||
+        target.getAttribute("target") === "_blank"
+      ) {
+        return;
+      }
+
+      // Prevents intercepting JS-driven buttons that happen to be styled as links
+      if (href === "javascript:void(0)" || href === "undefined") return;
+
+      e.preventDefault();
+      this.navigateTo(href);
+    });
+  }
+
+  navigateTo(url) {
+    if (this.isTransitioning) return;
+    this.isTransitioning = true;
+
+    // Play transition sound if sound is enabled
+    if (
+      window.SoundFeedback &&
+      typeof window.SoundFeedback.playEffect === "function"
+    ) {
+      window.SoundFeedback.playEffect("hover"); // A soft hum is good for transitions
+    }
+
+    // Try to use View Transitions API if supported
+    if (document.startViewTransition) {
+      document.startViewTransition(() => {
+        window.location.href = url;
+      });
+      return;
+    }
+
+    // Fade in loading screen
+    if (this.loadingScreen) {
+      this.loadingScreen.style.display = "flex";
+      // Need a tiny timeout to allow display:flex to apply before changing opacity
+      setTimeout(() => {
+        this.loadingScreen.style.opacity = "1";
+      }, 10);
+    }
+
+    // Wait for the fade-in to complete before actually changing the page
     setTimeout(() => {
-      loadingScreen.style.display = "none";
+      window.location.href = url;
     }, 500);
   }
-});
+}
+
+// Initialize transitions
+const transitionManager = new PageTransitionManager();
+
 // Global scroll restore for mobile: ensures scrolling is enabled if stuck
 function restoreScrolling() {
   document.body.classList.remove("mobile-nav-active", "mobile-nav-open");
@@ -126,10 +202,14 @@ function initializeMobileNavigation() {
   let startX = 0;
 
   // Track touch start position for swipe gesture detection
-  mobileNav.addEventListener("touchstart", (e) => {
-    startY = e.touches[0].clientY;
-    startX = e.touches[0].clientX;
-  }, { passive: true });
+  mobileNav.addEventListener(
+    "touchstart",
+    (e) => {
+      startY = e.touches[0].clientY;
+      startX = e.touches[0].clientX;
+    },
+    { passive: true },
+  );
 
   // Process swipe gesture when touch ends and close menu if swiped up
   mobileNav.addEventListener("touchend", (e) => {
@@ -444,22 +524,37 @@ function announceToScreenReader(message) {
 // Cycle through available themes and save preference
 function toggleTheme() {
   const currentTheme =
-    document.documentElement.getAttribute("data-theme") || "dark";
-  const themes = ["dark", "high-contrast", "sepia"];
+    document.documentElement.getAttribute("data-theme") || "rimuru";
+  const themes = ["rimuru", "veldora", "benimaru", "milim"];
   const currentIndex = themes.indexOf(currentTheme);
   const nextTheme = themes[(currentIndex + 1) % themes.length];
 
   // Apply new theme and save preference to localStorage
-  document.documentElement.setAttribute("data-theme", nextTheme);
+  if (nextTheme === "rimuru") {
+    document.documentElement.removeAttribute("data-theme");
+  } else {
+    document.documentElement.setAttribute("data-theme", nextTheme);
+  }
   localStorage.setItem("preferred-theme", nextTheme);
 
-  showNotification(`Theme changed to ${nextTheme}`, 2000, "success");
+  const displayNames = {
+    rimuru: "Rimuru (Water/Slime)",
+    veldora: "Veldora (Storm Dragon)",
+    benimaru: "Benimaru (Crimson Flare)",
+    milim: "Milim (Dragon Nova)",
+  };
+
+  showNotification(
+    `Theme changed to ${displayNames[nextTheme]}`,
+    2000,
+    "success",
+  );
 }
 
 // Load saved theme preference from localStorage
 function loadThemePreference() {
   const savedTheme = localStorage.getItem("preferred-theme");
-  if (savedTheme) {
+  if (savedTheme && savedTheme !== "rimuru") {
     document.documentElement.setAttribute("data-theme", savedTheme);
   }
 }
@@ -526,13 +621,28 @@ function hexToRgb(hex) {
     : null;
 }
 
-// Generate random character stats for display purposes
-function generateRandomStats() {
-  return {
-    atk: Math.floor(Math.random() * 50) + 50,
-    def: Math.floor(Math.random() * 50) + 50,
-    spd: Math.floor(Math.random() * 50) + 50,
-  };
+// Generate deterministic display stats from a string seed (e.g. character id).
+// Using a simple djb2-style hash so the same character always gets the same
+// ATK/DEF/SPD values across re-renders, pagination, and filter changes.
+// Falls back to random values when no seed is provided (backward-compatible).
+function generateRandomStats(seed) {
+  if (!seed) {
+    return {
+      atk: Math.floor(Math.random() * 50) + 50,
+      def: Math.floor(Math.random() * 50) + 50,
+      spd: Math.floor(Math.random() * 50) + 50,
+    };
+  }
+  // djb2 hash — fast, well-distributed, no dependencies
+  let h = 5381;
+  for (let i = 0; i < seed.length; i++) {
+    h = ((h << 5) + h) ^ seed.charCodeAt(i);
+    h = h >>> 0; // keep unsigned 32-bit
+  }
+  const atk = 50 + (h % 50);
+  const def = 50 + ((h >> 6) % 50);
+  const spd = 50 + ((h >> 12) % 50);
+  return { atk, def, spd };
 }
 
 // Animate number transitions with smooth counting effect
@@ -574,20 +684,7 @@ function createRippleEffect(element, event) {
   element.style.position = "relative";
   element.appendChild(ripple);
 
-  // Add ripple animation keyframes if not already present
-  if (!document.querySelector("#ripple-styles")) {
-    const style = document.createElement("style");
-    style.id = "ripple-styles";
-    style.textContent = `
-      @keyframes ripple {
-        to {
-          transform: scale(4);
-          opacity: 0;
-        }
-      }
-    `;
-    document.head.appendChild(style);
-  }
+  // @keyframes ripple is defined in shared.css — no injection needed
 
   // Remove ripple element after animation completes
   setTimeout(() => {
@@ -595,7 +692,178 @@ function createRippleEffect(element, event) {
   }, 600);
 }
 
+// Create a synthesized Web Audio API sound manager instead of relying on external files
+class SynthesizedSoundManager {
+  constructor() {
+    this.audioContext = null;
+    this.enabled = localStorage.getItem("sound-enabled") !== "false";
+    // 'unlocked' is true only after a trusted gesture (click/keydown/touchend)
+    // has created the AudioContext. mouseenter is NOT a trusted gesture in Chrome.
+    this.unlocked = false;
+  }
+
+  // Called ONLY from a trusted gesture handler (click / keydown / touchend).
+  unlock() {
+    if (this.unlocked) return;
+    try {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      this.audioContext = new AudioContext();
+      // Some browsers still start suspended even on click; resume immediately.
+      if (this.audioContext.state === "suspended") {
+        this.audioContext.resume();
+      }
+      this.unlocked = true;
+    } catch (e) {
+      console.warn("Web Audio API not supported", e);
+    }
+  }
+
+  playEffect(type) {
+    if (!this.enabled) return;
+
+    // Silently skip if the AudioContext hasn't been unlocked yet by a trusted
+    // gesture. This is expected on first mouseenter before any click — no warning.
+    if (!this.unlocked || !this.audioContext) return;
+
+    // If somehow still suspended, await resume before scheduling.
+    if (this.audioContext.state === "suspended") {
+      this.audioContext.resume().then(() => this._scheduleEffect(type));
+      return;
+    }
+
+    this._scheduleEffect(type);
+  }
+
+  _scheduleEffect(type) {
+    if (!this.audioContext) return;
+
+    const ctx = this.audioContext;
+    const t = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    const gainNode = ctx.createGain();
+
+    osc.connect(gainNode);
+    gainNode.connect(ctx.destination);
+
+    if (type === "hover") {
+      // Soft, airy magical hum
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(400, t);
+      osc.frequency.exponentialRampToValueAtTime(600, t + 0.1);
+
+      gainNode.gain.setValueAtTime(0, t);
+      gainNode.gain.linearRampToValueAtTime(0.05, t + 0.02);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, t + 0.15);
+
+      osc.start(t);
+      osc.stop(t + 0.15);
+    } else if (type === "click") {
+      // Bright, glassy chime
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(800, t);
+      osc.frequency.exponentialRampToValueAtTime(1200, t + 0.05);
+
+      gainNode.gain.setValueAtTime(0, t);
+      gainNode.gain.linearRampToValueAtTime(0.1, t + 0.01);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, t + 0.3);
+
+      osc.start(t);
+      osc.stop(t + 0.3);
+    } else if (type === "success") {
+      // Small arpeggio
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(523.25, t); // C5
+      osc.frequency.setValueAtTime(659.25, t + 0.1); // E5
+      osc.frequency.setValueAtTime(783.99, t + 0.2); // G5
+      osc.frequency.setValueAtTime(1046.5, t + 0.3); // C6
+
+      gainNode.gain.setValueAtTime(0, t);
+      gainNode.gain.linearRampToValueAtTime(0.1, t + 0.05);
+      gainNode.gain.linearRampToValueAtTime(0.1, t + 0.4);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, t + 0.8);
+
+      osc.start(t);
+      osc.stop(t + 0.8);
+    }
+  }
+
+  setEnabled(state) {
+    this.enabled = state;
+    localStorage.setItem("sound-enabled", state);
+  }
+}
+
+// Global instance — AudioContext is NOT created here.
+window.SoundFeedback = new SynthesizedSoundManager();
+
+// Unlock AudioContext on the first TRUSTED user gesture.
+// mouseenter / mousemove are NOT trusted in Chrome — only click, keydown, touchend are.
+(function registerAudioUnlock() {
+  const unlock = () => {
+    window.SoundFeedback.unlock();
+    ["click", "keydown", "touchend"].forEach((evt) =>
+      document.removeEventListener(evt, unlock, true),
+    );
+  };
+  ["click", "keydown", "touchend"].forEach((evt) =>
+    document.addEventListener(evt, unlock, { capture: true }),
+  );
+})();
+
+// Function kept for backward compatibility
+function initializeAudioManager() {
+  // No-op: AudioContext unlock is handled by the trusted-gesture listener above.
+}
+
+// Initialize Scroll Reveal Animations
+function initScrollReveal() {
+  // Only apply if user hasn't requested reduced motion
+  if (
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    return;
+  }
+
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("revealed");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Auto-apply to common elements across the site
+  const elementsToReveal = document.querySelectorAll(
+    ".character-card, .skill-card, .faction-card, .record-card, .timeline-item",
+  );
+
+  elementsToReveal.forEach((el, index) => {
+    // Add base class for styling
+    el.classList.add("reveal-on-scroll");
+
+    // Slight transition delay based on horizontal pos or index could be added here
+    observer.observe(el);
+  });
+}
+
+// Ensure scroll reveal runs after DOM is loaded
+document.addEventListener("DOMContentLoaded", () => {
+  // Brief timeout to ensure layout is mostly complete
+  setTimeout(initScrollReveal, 100);
+});
+
+// Global sound variable that index.html expects
+window.soundEnabled = localStorage.getItem("sound-enabled") !== "false";
+
 // Make functions globally available for use across all pages
+window.initScrollReveal = initScrollReveal;
 window.toggleMobileMenu = toggleMobileMenu;
 window.initializeMobileNavigation = initializeMobileNavigation;
 window.scrollToTop = scrollToTop;
@@ -620,7 +888,8 @@ window.createRippleEffect = createRippleEffect;
 document.addEventListener("DOMContentLoaded", () => {
   loadThemePreference();
   initializeMobileNavigation();
-  initializeAudioManager();
+  // AudioContext is created lazily on the first playEffect() call,
+  // which is always inside a user-gesture handler — no bootstrap needed.
 });
 
 // Export for module systems if available
@@ -657,8 +926,8 @@ let cursorStyleSheet = null;
 function initializeCursorStyles() {
   if (cursorStyleSheet) return;
 
-  const style = document.createElement('style');
-  style.id = 'cursor-enforcement-styles';
+  const style = document.createElement("style");
+  style.id = "cursor-enforcement-styles";
   style.textContent = `
     /* Default cursor */
     body {
@@ -739,12 +1008,24 @@ function enforceCursorsOnElement(element) {
   if (!element || element.nodeType !== Node.ELEMENT_NODE) return;
 
   // Use CSS classes instead of inline styles for better performance
-  if (element.matches('a, button, input[type="button"], input[type="submit"], input[type="reset"], select, [role="button"], .clickable, .primary-button, .secondary-button, .tertiary-button, .view-profile-button, .view-details-button, .recruit-button, .social-link, .quick-item, .modal-close, .nav-brand, .mobile-menu-toggle')) {
-    element.classList.add('cursor-pointer');
-  } else if (element.matches('input[type="text"], input[type="email"], input[type="password"], input[type="search"], textarea, [contenteditable="true"]')) {
-    element.classList.add('cursor-text');
-  } else if (element.matches('button:disabled, input:disabled, select:disabled, textarea:disabled, .disabled')) {
-    element.classList.add('cursor-not-allowed');
+  if (
+    element.matches(
+      'a, button, input[type="button"], input[type="submit"], input[type="reset"], select, [role="button"], .clickable, .primary-button, .secondary-button, .tertiary-button, .view-profile-button, .view-details-button, .recruit-button, .social-link, .quick-item, .modal-close, .nav-brand, .mobile-menu-toggle',
+    )
+  ) {
+    element.classList.add("cursor-pointer");
+  } else if (
+    element.matches(
+      'input[type="text"], input[type="email"], input[type="password"], input[type="search"], textarea, [contenteditable="true"]',
+    )
+  ) {
+    element.classList.add("cursor-text");
+  } else if (
+    element.matches(
+      "button:disabled, input:disabled, select:disabled, textarea:disabled, .disabled",
+    )
+  ) {
+    element.classList.add("cursor-not-allowed");
   }
 }
 
@@ -772,7 +1053,11 @@ function observeCursorChanges() {
             if (node.nodeType === Node.ELEMENT_NODE) {
               enforceCursorsOnElement(node);
               // Also check children
-              node.querySelectorAll('a, button, input, select, textarea, [role="button"]').forEach(enforceCursorsOnElement);
+              node
+                .querySelectorAll(
+                  'a, button, input, select, textarea, [role="button"]',
+                )
+                .forEach(enforceCursorsOnElement);
             }
           });
         }

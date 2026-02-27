@@ -623,3 +623,36 @@ if (typeof module !== "undefined" && module.exports) {
   };
 }
 // Visual effects system with animated backgrounds, particle systems, and loading screen management
+
+// Add Mouse Move Parallax Effect
+document.addEventListener(
+  "mousemove",
+  window.throttle((e) => {
+    // Only apply parallax if user hasn't requested reduced motion
+    if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
+
+    const xOffset = (window.innerWidth / 2 - e.pageX) / 50;
+    const yOffset = (window.innerHeight / 2 - e.pageY) / 50;
+
+    // Magic circles shift
+    const magicCircles = document.querySelectorAll(".magic-circle");
+    magicCircles.forEach((circle, index) => {
+      // Increase the parallax amount depending on index so they feel tiered
+      const depth = index + 1;
+      circle.style.setProperty("--parallax-x", `${xOffset * depth}px`);
+      circle.style.setProperty("--parallax-y", `${yOffset * depth}px`);
+    });
+
+    // Starfield shift
+    const starfield = document.getElementById("starfield");
+    if (starfield) {
+      starfield.style.setProperty("--parallax-x", `${xOffset * 0.5}px`);
+      starfield.style.setProperty("--parallax-y", `${yOffset * 0.5}px`);
+    }
+  }, 16),
+);

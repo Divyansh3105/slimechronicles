@@ -1,0 +1,327 @@
+﻿/* ========== THEME VARIABLES ========== */
+[data-theme="dark"] {
+  --primary-dark: #0a0e27;
+  --primary-blue: #4dd4ff;
+  --accent-cyan: #40d0ff;
+  --text-primary: #e8f0ff;
+  --text-muted: rgba(232, 240, 255, 0.6);
+}
+
+[data-theme="high-contrast"] {
+  --primary-dark: #000000;
+  --primary-blue: #ffffff;
+  --accent-cyan: #ffff00;
+  --text-primary: #ffffff;
+  --text-muted: #cccccc;
+  --character-primary: #ffffff;
+  --character-secondary: #ffff00;
+  --character-glow: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="sepia"] {
+  --primary-dark: #2c1810;
+  --primary-blue: #d4a574;
+  --accent-cyan: #e6b885;
+  --text-primary: #f4e6d2;
+  --text-muted: rgba(244, 230, 210, 0.6);
+  --character-primary: #d4a574;
+  --character-secondary: #e6b885;
+  --character-glow: rgba(212, 165, 116, 0.6);
+}
+
+/* ========== CUSTOM ANIMATIONS ========== */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes slimeBounce {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes shadowPulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes energyBurst {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+  }
+}
+
+@keyframes stormSwirl {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.slime-bounce {
+  animation: slimeBounce 3s ease-in-out infinite;
+}
+
+.shadow-pulse .character-background::before {
+  animation: shadowPulse 4s ease-in-out infinite;
+}
+
+.energy-burst .floating-element {
+  animation: energyBurst 2s ease-in-out infinite;
+}
+
+.storm-swirl .particles {
+  animation: stormSwirl 8s linear infinite;
+}
+
+.animate-in {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* ========== ACCESSIBILITY AND FOCUS STATES ========== */
+.profile-tab:focus,
+.error-button:focus,
+.back-button:focus {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+
+[data-theme="high-contrast"] .profile-tab.active {
+  background: #000000;
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+[data-theme="high-contrast"] .character-background {
+  display: none;
+}
+
+[data-theme="high-contrast"] .floating-elements {
+  display: none;
+}
+
+/* ========== LOADING AND SKELETON STATES ========== */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(77, 212, 255, 0.1) 25%,
+    rgba(77, 212, 255, 0.2) 50%,
+    rgba(77, 212, 255, 0.1) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ========== TOOLTIPS ========== */
+[data-tooltip] {
+  position: relative;
+  cursor: help;
+}
+
+[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(21, 27, 61, 0.95);
+  color: var(--text-primary);
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  z-index: 1000;
+  border: 1px solid var(--primary-blue);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+[data-tooltip]:hover::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(1px);
+  border: 5px solid transparent;
+  border-top-color: var(--primary-blue);
+  z-index: 1000;
+}
+
+/* ========== ERROR DETAILS ========== */
+.error-details {
+  margin: 1.5rem 0;
+  text-align: left;
+}
+
+.error-details details {
+  background: rgba(21, 27, 61, 0.6);
+  border: 1px solid rgba(255, 51, 102, 0.3);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.error-details summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--accent-crimson);
+  margin-bottom: 0.5rem;
+  user-select: none;
+}
+
+.error-details summary:hover {
+  color: #ff6b8a;
+}
+
+.tech-details {
+  margin-top: 1rem;
+  font-family: "Courier New", monospace;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.tech-details p {
+  margin: 0.3rem 0;
+  color: rgba(232, 240, 255, 0.8);
+}
+
+.tech-details strong {
+  color: var(--primary-blue);
+}
+
+/* ========== LOADING INDICATOR ========== */
+.loading-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  text-align: center;
+}
+
+.loading-indicator h3 {
+  color: var(--primary-blue);
+  margin-bottom: 0.5rem;
+  font-family: "Cinzel", serif;
+}
+
+.loading-indicator p {
+  color: rgba(232, 240, 255, 0.7);
+  margin-bottom: 1rem;
+}
+
+/* ========== TRANSITIONS AND EFFECTS ========== */
+.profile-tab::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: var(--character-primary, var(--primary-blue));
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.profile-tab.active::after {
+  width: 80%;
+}
+
+.profile-tab:focus-visible {
+  outline: 3px solid var(--primary-blue);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 1px rgba(77, 212, 255, 0.3);
+}
+
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.fade-in {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.5s ease-out;
+}
+
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.bounce {
+  animation: slimeBounce 1s ease-in-out;
+}
+
+.content-loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.content-error {
+  opacity: 0.8;
+  filter: grayscale(50%);
+}
+
+.content-success {
+  opacity: 1;
+  filter: none;
+}
+
+/* ========== MOBILE RESPONSIVE STYLES ========== */
