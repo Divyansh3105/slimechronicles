@@ -3,11 +3,7 @@
   text-align: center;
   margin-bottom: 3rem;
   padding: 3rem 2rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.9),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.6));
   border-radius: 24px;
   border: 3px solid var(--character-primary, rgba(77, 212, 255, 0.6));
   backdrop-filter: blur(20px);
@@ -67,11 +63,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.9),
-    rgba(21, 27, 61, 0.7)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
   border: 2px solid var(--character-primary, var(--primary-blue));
   border-radius: 50%;
   backdrop-filter: blur(10px);
@@ -443,11 +435,7 @@
 .profile-section {
   margin-bottom: 2.5rem;
   padding: 2rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.5),
-    rgba(21, 27, 61, 0.3)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.5), rgba(21, 27, 61, 0.3));
   border: 1px solid var(--character-primary, rgba(77, 212, 255, 0.2));
   border-radius: 15px;
   backdrop-filter: blur(5px);
@@ -455,11 +443,7 @@
 }
 
 .profile-section:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.6),
-    rgba(21, 27, 61, 0.4)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.6), rgba(21, 27, 61, 0.4));
   border-color: var(--character-primary, rgba(77, 212, 255, 0.4));
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }

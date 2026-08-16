@@ -23,7 +23,12 @@
     "rivals": ["None"],
     "mentors": ["Rimuru"]
   },
-  "achievements": ["Evolved through naming", "Became powerful commander", "Mastered combat abilities", "Demonstrated insect potential"],
+  "achievements": [
+    "Evolved through naming",
+    "Became powerful commander",
+    "Mastered combat abilities",
+    "Demonstrated insect potential"
+  ],
   "weaknesses": ["Can be overly focused on combat", "Sometimes lacks subtlety"],
   "specialties": ["Combat", "Insect Command", "Absolute Defense"],
   "evolution": [

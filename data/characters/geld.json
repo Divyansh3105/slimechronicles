@@ -24,8 +24,18 @@
     "mentors": ["Rimuru", "Kaijin (engineering)"],
     "subordinates": ["Orc construction teams", "Infrastructure workers"]
   },
-  "achievements": ["Built Rimuru City", "Established efficient construction systems", "Redeemed the Orc race's reputation", "Mastered advanced engineering", "Created innovative building techniques"],
-  "weaknesses": ["Carries guilt from father's actions", "Can be overly self-critical", "Sometimes works to exhaustion"],
+  "achievements": [
+    "Built Rimuru City",
+    "Established efficient construction systems",
+    "Redeemed the Orc race's reputation",
+    "Mastered advanced engineering",
+    "Created innovative building techniques"
+  ],
+  "weaknesses": [
+    "Carries guilt from father's actions",
+    "Can be overly self-critical",
+    "Sometimes works to exhaustion"
+  ],
   "specialties": ["Construction", "Engineering", "Project Management", "Urban Planning"],
   "evolution": [
     {

@@ -23,7 +23,12 @@
     "rivals": ["Souei (friendly rivalry)"],
     "mentors": ["Hakuro"]
   },
-  "achievements": ["Evolved to Kijin", "Became Commander-in-Chief", "Mastered Black Lightning", "Led successful military campaigns"],
+  "achievements": [
+    "Evolved to Kijin",
+    "Became Commander-in-Chief",
+    "Mastered Black Lightning",
+    "Led successful military campaigns"
+  ],
   "weaknesses": ["Can be overly aggressive", "Sometimes acts without consulting others"],
   "specialties": ["Military Strategy", "Fire Magic", "Leadership"],
   "evolution": [

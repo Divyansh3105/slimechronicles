@@ -24,8 +24,20 @@
     "mentors": ["None (ancient being)"],
     "friends": ["Rimuru", "Ramiris", "Manga characters"]
   },
-  "achievements": ["Became guardian deity of Tempest", "Mastered storm magic", "Adopted the Tempest name", "Learned to read manga", "Formed brotherhood with Rimuru", "Gained human form"],
-  "weaknesses": ["Can be reckless", "Manga addiction", "Sometimes too trusting", "Prone to showing off"],
+  "achievements": [
+    "Became guardian deity of Tempest",
+    "Mastered storm magic",
+    "Adopted the Tempest name",
+    "Learned to read manga",
+    "Formed brotherhood with Rimuru",
+    "Gained human form"
+  ],
+  "weaknesses": [
+    "Can be reckless",
+    "Manga addiction",
+    "Sometimes too trusting",
+    "Prone to showing off"
+  ],
   "specialties": ["Storm Magic", "Weather Control", "Dragon Authority", "Manga Expertise"],
   "evolution": [
     {

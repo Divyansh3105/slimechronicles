@@ -23,7 +23,11 @@
     "rivals": ["Rimuru", "Other Demon Lords"],
     "mentors": ["None"]
   },
-  "achievements": ["Became a Demon Lord", "Created multiple schemes", "Manipulated other Demon Lords"],
+  "achievements": [
+    "Became a Demon Lord",
+    "Created multiple schemes",
+    "Manipulated other Demon Lords"
+  ],
   "weaknesses": ["Weak in direct combat", "Overly reliant on schemes", "Arrogant"],
   "specialties": ["Manipulation", "Scheming", "Marionette Control"],
   "evolution": [

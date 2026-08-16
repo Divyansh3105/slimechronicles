@@ -23,7 +23,12 @@
     "rivals": ["None (friendly rivalry with other Primordials)"],
     "mentors": ["None (she is ancient)"]
   },
-  "achievements": ["Summoned by Rimuru", "Mastered combat abilities", "Serves as Primordial Demon", "Evolved through service"],
+  "achievements": [
+    "Summoned by Rimuru",
+    "Mastered combat abilities",
+    "Serves as Primordial Demon",
+    "Evolved through service"
+  ],
   "weaknesses": ["Can be overly playful", "Sometimes lacks seriousness"],
   "specialties": ["Combat", "Poison Magic", "Enthusiasm"],
   "evolution": [

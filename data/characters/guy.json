@@ -23,7 +23,12 @@
     "rivals": ["Veldanava (in the past)", "Other powerful beings"],
     "mentors": ["None (he is the oldest)"]
   },
-  "achievements": ["Became the oldest Demon Lord", "Maintained balance of power", "Ruled frozen continent", "Demonstrated ultimate power"],
+  "achievements": [
+    "Became the oldest Demon Lord",
+    "Maintained balance of power",
+    "Ruled frozen continent",
+    "Demonstrated ultimate power"
+  ],
   "weaknesses": ["Sometimes too calculating", "Can be detached"],
   "specialties": ["Strategic Thinking", "Ultimate Power", "Balance Maintenance"],
   "evolution": [

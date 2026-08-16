@@ -23,7 +23,12 @@
     "rivals": ["None"],
     "mentors": ["Rimuru"]
   },
-  "achievements": ["Became Rimuru's first named monster", "Evolved to Tempest Wolf", "Mastered storm magic", "Served as loyal companion"],
+  "achievements": [
+    "Became Rimuru's first named monster",
+    "Evolved to Tempest Wolf",
+    "Mastered storm magic",
+    "Served as loyal companion"
+  ],
   "weaknesses": ["Sometimes overly enthusiastic", "Can be reckless"],
   "specialties": ["Storm Magic", "Speed", "Loyalty"],
   "evolution": [

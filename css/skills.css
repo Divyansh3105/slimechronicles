@@ -46,11 +46,7 @@ body {
   padding: 1.5rem 0;
   margin-bottom: 2rem;
   overflow: hidden;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.4),
-    rgba(21, 27, 61, 0.2)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.4), rgba(21, 27, 61, 0.2));
   border-radius: 24px;
   border: 1px solid rgba(77, 212, 255, 0.15);
 }
@@ -133,11 +129,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(77, 212, 255, 0.3),
-    rgba(0, 255, 255, 0.3)
-  );
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.3), rgba(0, 255, 255, 0.3));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -181,11 +173,7 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 1.6rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.9),
-    rgba(21, 27, 61, 0.5)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.5));
   backdrop-filter: blur(25px);
   border: 1.5px solid rgba(77, 212, 255, 0.35);
   border-radius: 22px;
@@ -252,11 +240,7 @@ body {
 
 /* Enhanced control panel with improved glassmorphism and better layout */
 .skills-controls {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.9),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.6));
   backdrop-filter: blur(20px);
   border: 1px solid rgba(77, 212, 255, 0.2);
   border-radius: 20px;
@@ -285,11 +269,7 @@ body {
   top: 100%;
   left: 0;
   right: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.95),
-    rgba(21, 27, 61, 0.8)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(21, 27, 61, 0.8));
   backdrop-filter: blur(20px);
   border: 1px solid rgba(77, 212, 255, 0.2);
   border-radius: 12px;
@@ -328,11 +308,7 @@ body {
   align-items: center;
   gap: 0.6rem;
   padding: 0.8rem 1.4rem;
-  background: linear-gradient(
-    135deg,
-    rgba(232, 240, 255, 0.1),
-    rgba(232, 240, 255, 0.05)
-  );
+  background: linear-gradient(135deg, rgba(232, 240, 255, 0.1), rgba(232, 240, 255, 0.05));
   border: 1.5px solid rgba(77, 212, 255, 0.25);
   border-radius: 28px;
   color: var(--text-secondary);
@@ -350,23 +326,14 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(77, 212, 255, 0.2),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(77, 212, 255, 0.2), transparent);
   transform: translateX(-100%);
   transition: transform 0.4s ease;
 }
 
 .filter-chip:hover,
 .filter-chip.active {
-  background: linear-gradient(
-    135deg,
-    rgba(77, 212, 255, 0.25),
-    rgba(77, 212, 255, 0.15)
-  );
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.25), rgba(77, 212, 255, 0.15));
   border-color: var(--primary-blue);
   color: var(--primary-blue);
   transform: translateY(-3px) scale(1.05);
@@ -435,16 +402,8 @@ body {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(
-      circle at 20% 80%,
-      rgba(77, 212, 255, 0.05),
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at 80% 20%,
-      rgba(170, 85, 255, 0.05),
-      transparent 50%
-    ),
+    radial-gradient(circle at 20% 80%, rgba(77, 212, 255, 0.05), transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(170, 85, 255, 0.05), transparent 50%),
     radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.03), transparent 70%);
   pointer-events: none;
 }
@@ -473,11 +432,7 @@ body {
   align-items: center;
   gap: 0.6rem;
   padding: 0.85rem 1.2rem;
-  background: linear-gradient(
-    135deg,
-    rgba(77, 212, 255, 0.18),
-    rgba(77, 212, 255, 0.1)
-  );
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.18), rgba(77, 212, 255, 0.1));
   border: 1.5px solid rgba(77, 212, 255, 0.35);
   border-radius: 14px;
   color: var(--primary-blue);
@@ -496,22 +451,13 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
   transform: translateX(-100%);
   transition: transform 0.4s ease;
 }
 
 .quick-action-btn:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(77, 212, 255, 0.3),
-    rgba(77, 212, 255, 0.18)
-  );
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.3), rgba(77, 212, 255, 0.18));
   border-color: var(--primary-blue);
   transform: translateY(-3px) scale(1.03);
   box-shadow:
@@ -551,51 +497,31 @@ body {
 }
 
 .skill-rarity.common {
-  background: linear-gradient(
-    135deg,
-    rgba(160, 170, 197, 0.2),
-    rgba(160, 170, 197, 0.1)
-  );
+  background: linear-gradient(135deg, rgba(160, 170, 197, 0.2), rgba(160, 170, 197, 0.1));
   border: 1px solid rgba(160, 170, 197, 0.3);
   color: var(--text-muted);
 }
 
 .skill-rarity.uncommon {
-  background: linear-gradient(
-    135deg,
-    rgba(2, 213, 54, 0.2),
-    rgba(2, 213, 54, 0.1)
-  );
+  background: linear-gradient(135deg, rgba(2, 213, 54, 0.2), rgba(2, 213, 54, 0.1));
   border: 1px solid rgba(2, 213, 54, 0.3);
   color: var(--accent-emerald);
 }
 
 .skill-rarity.rare {
-  background: linear-gradient(
-    135deg,
-    rgba(77, 212, 255, 0.2),
-    rgba(77, 212, 255, 0.1)
-  );
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.2), rgba(77, 212, 255, 0.1));
   border: 1px solid rgba(77, 212, 255, 0.3);
   color: var(--primary-blue);
 }
 
 .skill-rarity.epic {
-  background: linear-gradient(
-    135deg,
-    rgba(170, 85, 255, 0.2),
-    rgba(170, 85, 255, 0.1)
-  );
+  background: linear-gradient(135deg, rgba(170, 85, 255, 0.2), rgba(170, 85, 255, 0.1));
   border: 1px solid rgba(170, 85, 255, 0.3);
   color: var(--accent-purple);
 }
 
 .skill-rarity.legendary {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 215, 0, 0.2),
-    rgba(255, 215, 0, 0.1)
-  );
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
   border: 1px solid rgba(255, 215, 0, 0.3);
   color: var(--accent-gold);
 }
@@ -646,11 +572,7 @@ body {
   gap: 1rem;
   margin: 1rem 0;
   padding: 1rem;
-  background: linear-gradient(
-    135deg,
-    rgba(232, 240, 255, 0.05),
-    rgba(232, 240, 255, 0.02)
-  );
+  background: linear-gradient(135deg, rgba(232, 240, 255, 0.05), rgba(232, 240, 255, 0.02));
   border: 1px solid rgba(77, 212, 255, 0.1);
   border-radius: 12px;
 }
@@ -673,11 +595,7 @@ body {
 /* More characters indicator */
 .more-characters {
   padding: 0.5rem 1rem;
-  background: linear-gradient(
-    135deg,
-    rgba(77, 212, 255, 0.2),
-    rgba(77, 212, 255, 0.1)
-  );
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.2), rgba(77, 212, 255, 0.1));
   border: 1.5px solid rgba(77, 212, 255, 0.25);
   border-radius: 18px;
   font-size: 0.78rem;
@@ -689,11 +607,7 @@ body {
 }
 
 .more-characters:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(77, 212, 255, 0.3),
-    rgba(77, 212, 255, 0.18)
-  );
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.3), rgba(77, 212, 255, 0.18));
   transform: translateY(-2px) scale(1.05);
   box-shadow:
     0 4px 12px rgba(77, 212, 255, 0.3),
@@ -762,11 +676,7 @@ body {
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.95),
-    rgba(21, 27, 61, 0.8)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(21, 27, 61, 0.8));
   backdrop-filter: blur(20px);
   border: 1px solid rgba(77, 212, 255, 0.2);
   border-radius: 25px;
@@ -779,11 +689,7 @@ body {
 }
 
 .fab-option:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(77, 212, 255, 0.2),
-    rgba(77, 212, 255, 0.1)
-  );
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.2), rgba(77, 212, 255, 0.1));
   border-color: var(--primary-blue);
   transform: translateX(-5px);
 }
@@ -842,11 +748,7 @@ body {
 .search-box input {
   width: 100%;
   padding: 1.3rem 1.3rem 1.3rem 3.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(232, 240, 255, 0.12),
-    rgba(232, 240, 255, 0.06)
-  );
+  background: linear-gradient(135deg, rgba(232, 240, 255, 0.12), rgba(232, 240, 255, 0.06));
   border: 2px solid rgba(77, 212, 255, 0.2);
   border-radius: 18px;
   color: var(--text-light);
@@ -868,11 +770,7 @@ body {
     0 10px 30px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.25),
     0 0 0 3px rgba(77, 212, 255, 0.1);
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.18),
-    rgba(255, 255, 255, 0.1)
-  );
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.1));
   transform: translateY(-3px);
 }
 
@@ -917,11 +815,7 @@ body {
 /* Enhanced select dropdown with improved styling */
 .filter-group select {
   padding: 1.2rem 1.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(232, 240, 255, 0.1),
-    rgba(232, 240, 255, 0.05)
-  );
+  background: linear-gradient(135deg, rgba(232, 240, 255, 0.1), rgba(232, 240, 255, 0.05));
   border: 2px solid var(--border-subtle);
   border-radius: 16px;
   color: var(--text-light);
@@ -959,21 +853,13 @@ body {
     0 0 25px rgba(77, 212, 255, 0.4),
     0 8px 20px rgba(0, 0, 0, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  background: linear-gradient(
-    135deg,
-    rgba(232, 240, 255, 0.15),
-    rgba(232, 240, 255, 0.08)
-  );
+  background: linear-gradient(135deg, rgba(232, 240, 255, 0.15), rgba(232, 240, 255, 0.08));
   transform: translateY(-2px);
 }
 
 .filter-group select:hover {
   border-color: var(--accent-cyan);
-  background: linear-gradient(
-    135deg,
-    rgba(232, 240, 255, 0.12),
-    rgba(232, 240, 255, 0.06)
-  );
+  background: linear-gradient(135deg, rgba(232, 240, 255, 0.12), rgba(232, 240, 255, 0.06));
   transform: translateY(-1px);
 }
 
@@ -984,11 +870,7 @@ body {
   gap: 1.5rem;
   margin-bottom: 2.5rem;
   padding: 2.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.9),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.6));
   backdrop-filter: blur(20px);
   border: 1px solid rgba(77, 212, 255, 0.2);
   border-radius: 20px;
@@ -1025,16 +907,8 @@ body {
   inset: 0;
   background:
     radial-gradient(circle at 30% 70%, rgba(2, 213, 54, 0.04), transparent 50%),
-    radial-gradient(
-      circle at 70% 30%,
-      rgba(77, 212, 255, 0.04),
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at 50% 50%,
-      rgba(170, 85, 255, 0.03),
-      transparent 70%
-    );
+    radial-gradient(circle at 70% 30%, rgba(77, 212, 255, 0.04), transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(170, 85, 255, 0.03), transparent 70%);
   pointer-events: none;
 }
 
@@ -1042,11 +916,7 @@ body {
 .stat-item {
   text-align: center;
   padding: 1.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(232, 240, 255, 0.08),
-    rgba(232, 240, 255, 0.03)
-  );
+  background: linear-gradient(135deg, rgba(232, 240, 255, 0.08), rgba(232, 240, 255, 0.03));
   border: 1px solid rgba(77, 212, 255, 0.15);
   border-radius: 16px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1114,11 +984,7 @@ body {
   text-align: center;
   margin-bottom: 1.5rem;
   padding: 1rem;
-  background: linear-gradient(
-    135deg,
-    rgba(232, 240, 255, 0.05),
-    rgba(232, 240, 255, 0.02)
-  );
+  background: linear-gradient(135deg, rgba(232, 240, 255, 0.05), rgba(232, 240, 255, 0.02));
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
   color: var(--text-muted);
@@ -1133,11 +999,7 @@ body {
 .skills-learning-path {
   margin-bottom: 2.5rem;
   padding: 2.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.9),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.6));
   backdrop-filter: blur(20px);
   border: 1px solid rgba(77, 212, 255, 0.2);
   border-radius: 20px;
@@ -1177,11 +1039,7 @@ body {
   align-items: center;
   gap: 1.5rem;
   padding: 1.6rem;
-  background: linear-gradient(
-    135deg,
-    rgba(232, 240, 255, 0.1),
-    rgba(232, 240, 255, 0.05)
-  );
+  background: linear-gradient(135deg, rgba(232, 240, 255, 0.1), rgba(232, 240, 255, 0.05));
   border: 1.5px solid rgba(77, 212, 255, 0.2);
   border-radius: 18px;
   cursor: pointer;
@@ -1222,11 +1080,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(
-    circle,
-    rgba(77, 212, 255, 0.35),
-    rgba(77, 212, 255, 0.15)
-  );
+  background: radial-gradient(circle, rgba(77, 212, 255, 0.35), rgba(77, 212, 255, 0.15));
   border-radius: 18px;
   flex-shrink: 0;
   transition: all 0.3s ease;
@@ -1339,11 +1193,7 @@ body {
 
 /* Enhanced skill card with modern glassmorphism and improved interactions */
 .skill-card {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.95),
-    rgba(21, 27, 61, 0.7)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(21, 27, 61, 0.7));
   backdrop-filter: blur(25px);
   border: 1px solid rgba(77, 212, 255, 0.25);
   border-radius: 24px;
@@ -1382,11 +1232,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(77, 212, 255, 0.06),
-    transparent 70%
-  );
+  background: radial-gradient(circle at 50% 50%, rgba(77, 212, 255, 0.06), transparent 70%);
   opacity: 0;
   transition: opacity 0.5s ease;
 }
@@ -1437,20 +1283,11 @@ body {
 }
 
 .skill-card.combat::before {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--accent-crimson),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, var(--accent-crimson), transparent);
 }
 
 .skill-card.combat::after {
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(255, 51, 102, 0.05),
-    transparent 70%
-  );
+  background: radial-gradient(circle at 50% 50%, rgba(255, 51, 102, 0.05), transparent 70%);
 }
 
 .skill-card.magic:hover {
@@ -1461,20 +1298,11 @@ body {
 }
 
 .skill-card.magic::before {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--accent-purple),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, var(--accent-purple), transparent);
 }
 
 .skill-card.magic::after {
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(170, 85, 255, 0.05),
-    transparent 70%
-  );
+  background: radial-gradient(circle at 50% 50%, rgba(170, 85, 255, 0.05), transparent 70%);
 }
 
 .skill-card.support:hover {
@@ -1485,20 +1313,11 @@ body {
 }
 
 .skill-card.support::before {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--accent-emerald),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, var(--accent-emerald), transparent);
 }
 
 .skill-card.support::after {
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(0, 255, 136, 0.05),
-    transparent 70%
-  );
+  background: radial-gradient(circle at 50% 50%, rgba(0, 255, 136, 0.05), transparent 70%);
 }
 
 .skill-card.leadership:hover {
@@ -1509,20 +1328,11 @@ body {
 }
 
 .skill-card.leadership::before {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--accent-gold),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
 }
 
 .skill-card.leadership::after {
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(255, 215, 0, 0.05),
-    transparent 70%
-  );
+  background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.05), transparent 70%);
 }
 
 .skill-card.crafting:hover {
@@ -1533,20 +1343,11 @@ body {
 }
 
 .skill-card.crafting::before {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--accent-cyan),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
 }
 
 .skill-card.crafting::after {
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(0, 212, 255, 0.05),
-    transparent 70%
-  );
+  background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.05), transparent 70%);
 }
 
 /* Enhanced skill card header with better visual hierarchy */
@@ -1566,11 +1367,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(
-    circle,
-    rgba(77, 212, 255, 0.5),
-    rgba(77, 212, 255, 0.2)
-  );
+  background: radial-gradient(circle, rgba(77, 212, 255, 0.5), rgba(77, 212, 255, 0.2));
   border-radius: 22px;
   flex-shrink: 0;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1587,12 +1384,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    45deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
   transform: translateX(-100%);
   transition: transform 0.6s ease;
 }
@@ -1656,12 +1448,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(77, 212, 255, 0.2),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(77, 212, 255, 0.2), transparent);
   transform: translateX(-100%);
   transition: transform 0.5s ease;
 }
@@ -1696,12 +1483,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
   transform: translateX(-100%);
   transition: transform 0.4s ease;
 }
@@ -1711,97 +1493,57 @@ body {
 }
 
 .category-badge.combat {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 85, 17, 0.25),
-    rgba(255, 85, 17, 0.15)
-  );
+  background: linear-gradient(135deg, rgba(255, 85, 17, 0.25), rgba(255, 85, 17, 0.15));
   border: 1px solid rgba(255, 85, 17, 0.4);
   color: var(--accent-crimson);
 }
 
 .category-badge.combat:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 85, 17, 0.35),
-    rgba(255, 85, 17, 0.25)
-  );
+  background: linear-gradient(135deg, rgba(255, 85, 17, 0.35), rgba(255, 85, 17, 0.25));
   transform: translateY(-2px);
 }
 
 .category-badge.magic {
-  background: linear-gradient(
-    135deg,
-    rgba(170, 85, 255, 0.25),
-    rgba(170, 85, 255, 0.15)
-  );
+  background: linear-gradient(135deg, rgba(170, 85, 255, 0.25), rgba(170, 85, 255, 0.15));
   border: 1px solid rgba(170, 85, 255, 0.4);
   color: var(--accent-purple);
 }
 
 .category-badge.magic:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(170, 85, 255, 0.35),
-    rgba(170, 85, 255, 0.25)
-  );
+  background: linear-gradient(135deg, rgba(170, 85, 255, 0.35), rgba(170, 85, 255, 0.25));
   transform: translateY(-2px);
 }
 
 .category-badge.support {
-  background: linear-gradient(
-    135deg,
-    rgba(2, 213, 54, 0.25),
-    rgba(2, 213, 54, 0.15)
-  );
+  background: linear-gradient(135deg, rgba(2, 213, 54, 0.25), rgba(2, 213, 54, 0.15));
   border: 1px solid rgba(2, 213, 54, 0.4);
   color: var(--accent-emerald);
 }
 
 .category-badge.support:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(2, 213, 54, 0.35),
-    rgba(2, 213, 54, 0.25)
-  );
+  background: linear-gradient(135deg, rgba(2, 213, 54, 0.35), rgba(2, 213, 54, 0.25));
   transform: translateY(-2px);
 }
 
 .category-badge.leadership {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 215, 0, 0.25),
-    rgba(255, 215, 0, 0.15)
-  );
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.25), rgba(255, 215, 0, 0.15));
   border: 1px solid rgba(255, 215, 0, 0.4);
   color: var(--accent-gold);
 }
 
 .category-badge.leadership:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 215, 0, 0.35),
-    rgba(255, 215, 0, 0.25)
-  );
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.35), rgba(255, 215, 0, 0.25));
   transform: translateY(-2px);
 }
 
 .category-badge.crafting {
-  background: linear-gradient(
-    135deg,
-    rgba(0, 255, 255, 0.25),
-    rgba(0, 255, 255, 0.15)
-  );
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.25), rgba(0, 255, 255, 0.15));
   border: 1px solid rgba(0, 255, 255, 0.4);
   color: var(--accent-cyan);
 }
 
 .category-badge.crafting:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(0, 255, 255, 0.35),
-    rgba(0, 255, 255, 0.25)
-  );
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.35), rgba(0, 255, 255, 0.25));
   transform: translateY(-2px);
 }
 
@@ -1824,11 +1566,7 @@ body {
   align-items: center;
   gap: 0.5rem;
   padding: 0.3rem 0.8rem;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 85, 17, 0.15),
-    rgba(255, 85, 17, 0.05)
-  );
+  background: linear-gradient(135deg, rgba(255, 85, 17, 0.15), rgba(255, 85, 17, 0.05));
   border: 1px solid rgba(255, 85, 17, 0.2);
   border-radius: 12px;
   font-size: 0.75rem;
@@ -1840,22 +1578,14 @@ body {
 }
 
 .skill-card:hover .skill-difficulty {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 85, 17, 0.2),
-    rgba(255, 85, 17, 0.1)
-  );
+  background: linear-gradient(135deg, rgba(255, 85, 17, 0.2), rgba(255, 85, 17, 0.1));
   transform: translateY(-1px);
 }
 
 .skill-bonus {
   display: inline-block;
   padding: 0.6rem 1.2rem;
-  background: linear-gradient(
-    135deg,
-    rgba(77, 212, 255, 0.2),
-    rgba(77, 212, 255, 0.1)
-  );
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.2), rgba(77, 212, 255, 0.1));
   border: 1px solid rgba(77, 212, 255, 0.3);
   border-radius: 12px;
   font-size: 0.9rem;
@@ -1874,12 +1604,7 @@ body {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
   transition: left 0.5s;
 }
 
@@ -1924,11 +1649,7 @@ body {
 
 .prerequisite-tag {
   padding: 0.5rem 1rem;
-  background: linear-gradient(
-    135deg,
-    rgba(170, 85, 255, 0.25),
-    rgba(170, 85, 255, 0.12)
-  );
+  background: linear-gradient(135deg, rgba(170, 85, 255, 0.25), rgba(170, 85, 255, 0.12));
   border: 1.5px solid rgba(170, 85, 255, 0.35);
   border-radius: 18px;
   font-size: 0.78rem;
@@ -1940,11 +1661,7 @@ body {
 }
 
 .prerequisite-tag:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(170, 85, 255, 0.35),
-    rgba(170, 85, 255, 0.2)
-  );
+  background: linear-gradient(135deg, rgba(170, 85, 255, 0.35), rgba(170, 85, 255, 0.2));
   transform: translateY(-2px) scale(1.05);
   box-shadow:
     0 4px 12px rgba(170, 85, 255, 0.3),
@@ -1983,11 +1700,7 @@ body {
 
 .application-tag {
   padding: 0.5rem 1rem;
-  background: linear-gradient(
-    135deg,
-    rgba(2, 213, 54, 0.25),
-    rgba(2, 213, 54, 0.12)
-  );
+  background: linear-gradient(135deg, rgba(2, 213, 54, 0.25), rgba(2, 213, 54, 0.12));
   border: 1.5px solid rgba(2, 213, 54, 0.35);
   border-radius: 18px;
   font-size: 0.78rem;
@@ -1998,11 +1711,7 @@ body {
 }
 
 .application-tag:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(2, 213, 54, 0.35),
-    rgba(2, 213, 54, 0.2)
-  );
+  background: linear-gradient(135deg, rgba(2, 213, 54, 0.35), rgba(2, 213, 54, 0.2));
   transform: translateY(-2px) scale(1.05);
   box-shadow:
     0 4px 12px rgba(2, 213, 54, 0.3),
@@ -2025,12 +1734,7 @@ body {
   transform: translateX(-50%);
   width: 60px;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--primary-blue),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, var(--primary-blue), transparent);
 }
 
 .skill-characters-title {
@@ -2061,11 +1765,7 @@ body {
   align-items: center;
   gap: 0.6rem;
   padding: 0.7rem 1.1rem;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0.05)
-  );
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
   border: 1px solid rgba(77, 212, 255, 0.2);
   border-radius: 25px;
   font-size: 0.88rem;
@@ -2087,11 +1787,7 @@ body {
 }
 
 .character-tag:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(77, 212, 255, 0.2),
-    rgba(77, 212, 255, 0.1)
-  );
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.2), rgba(77, 212, 255, 0.1));
   border-color: var(--primary-blue);
   color: var(--primary-blue);
   transform: translateY(-4px) scale(1.08);
@@ -2169,11 +1865,7 @@ body {
 
 .skill-detail-content,
 .comparison-content {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.95),
-    rgba(21, 27, 61, 0.8)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(21, 27, 61, 0.8));
   backdrop-filter: blur(20px);
   border: 1px solid var(--border-subtle);
   border-radius: 20px;
@@ -2254,11 +1946,7 @@ body {
 
 .skill-detail-section {
   padding: 1.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(232, 240, 255, 0.05),
-    rgba(232, 240, 255, 0.02)
-  );
+  background: linear-gradient(135deg, rgba(232, 240, 255, 0.05), rgba(232, 240, 255, 0.02));
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
 }
@@ -2302,11 +1990,7 @@ body {
 
 .mastery-progress {
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    var(--accent-emerald),
-    var(--primary-blue)
-  );
+  background: linear-gradient(90deg, var(--accent-emerald), var(--primary-blue));
   border-radius: 4px;
   transition: width 0.8s ease;
   position: relative;
@@ -2319,12 +2003,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(232, 240, 255, 0.3),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(232, 240, 255, 0.3), transparent);
   animation: shimmer 2s ease-in-out infinite;
 }
 
@@ -2380,11 +2059,7 @@ body {
 
 .skill-detail-content::-webkit-scrollbar-thumb,
 .comparison-content::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    180deg,
-    var(--primary-blue),
-    var(--accent-purple)
-  );
+  background: linear-gradient(180deg, var(--primary-blue), var(--accent-purple));
   border-radius: 4px;
   transition: background 0.3s ease;
 }

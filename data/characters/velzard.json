@@ -23,7 +23,12 @@
     "rivals": ["None (maintains balance)"],
     "mentors": ["None (she is the oldest)"]
   },
-  "achievements": ["Existed as oldest True Dragon", "Mastered ice magic", "Maintained elemental balance", "Demonstrated eternal wisdom"],
+  "achievements": [
+    "Existed as oldest True Dragon",
+    "Mastered ice magic",
+    "Maintained elemental balance",
+    "Demonstrated eternal wisdom"
+  ],
   "weaknesses": ["Can be too detached", "Sometimes too ancient"],
   "specialties": ["Ice Magic", "True Dragon Power", "Eternal Wisdom"],
   "evolution": [

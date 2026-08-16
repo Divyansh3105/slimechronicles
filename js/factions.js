@@ -8,35 +8,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Faction Dependencies Database
   const factionDependencies = {
-    "Jura Tempest Federation": [
-      "⚔ Military",
-      "✨ Magic",
-      "🔩 Technology",
-      "🧠 Intelligence",
-    ],
-    "Armed Nation of Dwargon": [
-      "⚔ Military",
-      "🔩 Technology",
-      "🌾 Agriculture",
-    ],
+    "Jura Tempest Federation": ["⚔ Military", "✨ Magic", "🔩 Technology", "🧠 Intelligence"],
+    "Armed Nation of Dwargon": ["⚔ Military", "🔩 Technology", "🌾 Agriculture"],
     "Kingdom of Ingrassia": ["⚔ Military", "🌾 Agriculture", "🧠 Intelligence"],
     "Holy Empire Ruberios": ["⚔ Military", "✨ Magic", "🧠 Intelligence"],
-    "Eastern Empire": [
-      "⚔ Military",
-      "🔩 Technology",
-      "🧠 Intelligence",
-      "🌾 Agriculture",
-    ],
+    "Eastern Empire": ["⚔ Military", "🔩 Technology", "🧠 Intelligence", "🌾 Agriculture"],
     "Kingdom of Blumund": ["🧠 Intelligence", "🌾 Agriculture"],
     "Animal Kingdom Eurazania": ["⚔ Military", "🌾 Agriculture", "✨ Magic"],
     "Kingdom of Farmenas": ["🌾 Agriculture", "🧠 Intelligence"],
     "Octagram (Demon Lords)": ["⚔ Military", "✨ Magic", "🧠 Intelligence"],
     "Free Guild": ["🧠 Intelligence", "🌾 Agriculture"],
-    "Four Nations Trade Alliance": [
-      "🔩 Technology",
-      "🌾 Agriculture",
-      "🧠 Intelligence",
-    ],
+    "Four Nations Trade Alliance": ["🔩 Technology", "🌾 Agriculture", "🧠 Intelligence"],
     "Western Holy Church": ["⚔ Military", "✨ Magic"],
     Cerberus: ["🧠 Intelligence", "🔩 Technology"],
     "Kingdom of Falmuth (Fallen)": ["⚔ Military", "🌾 Agriculture"],
@@ -253,11 +235,9 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const factionName =
-      card.querySelector("h2")?.textContent || "Unknown Faction";
+    const factionName = card.querySelector("h2")?.textContent || "Unknown Faction";
     const factionTag = card.querySelector(".faction-tag");
-    const factionSummary =
-      card.querySelector(".faction-summary")?.textContent || "";
+    const factionSummary = card.querySelector(".faction-summary")?.textContent || "";
     const powerSnapshot = card.querySelector(".power-snapshot");
     const factionDetails = card.querySelector(".faction-details");
 
@@ -314,12 +294,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Prioritize timeline section to appear first
         const timelineSection = Array.from(detailSections).find((section) =>
-          section.classList.contains("timeline-section"),
+          section.classList.contains("timeline-section")
         );
         const otherSections = Array.from(detailSections).filter(
           (section) =>
             !section.classList.contains("timeline-section") &&
-            !section.classList.contains("relations-section"),
+            !section.classList.contains("relations-section")
         );
 
         // Add timeline section first if it exists
@@ -420,16 +400,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Find the faction card that matches
     const targetCard = Array.from(cards).find((card) => {
-      const cardName =
-        card.querySelector("h2")?.textContent.toLowerCase() || "";
+      const cardName = card.querySelector("h2")?.textContent.toLowerCase() || "";
       return (
         cardName.includes(normalizedTarget) ||
         normalizedTarget.includes(cardName.split(" ")[0]) ||
         (normalizedTarget === "tempest" && cardName.includes("jura tempest")) ||
         (normalizedTarget === "dwargon" && cardName.includes("dwargon")) ||
         (normalizedTarget === "ruberios" && cardName.includes("ruberios")) ||
-        (normalizedTarget === "eastern empire" &&
-          cardName.includes("eastern empire"))
+        (normalizedTarget === "eastern empire" && cardName.includes("eastern empire"))
       );
     });
 
@@ -460,9 +438,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const summaryElement = card.querySelector(".faction-summary");
 
       const name = nameElement ? nameElement.textContent.toLowerCase() : "";
-      const summary = summaryElement
-        ? summaryElement.textContent.toLowerCase()
-        : "";
+      const summary = summaryElement ? summaryElement.textContent.toLowerCase() : "";
       const cardType = card.dataset.type || "";
       const cardRelation = card.dataset.relation || "unknown";
 
@@ -501,14 +477,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    const typeText =
-      typeFilter && typeFilter.value !== "all"
-        ? `${typeFilter.value}s`
-        : "factions";
+    const typeText = typeFilter && typeFilter.value !== "all" ? `${typeFilter.value}s` : "factions";
     const relationText =
-      relationFilter && relationFilter.value !== "all"
-        ? ` (${relationFilter.value})`
-        : "";
+      relationFilter && relationFilter.value !== "all" ? ` (${relationFilter.value})` : "";
 
     counter.textContent = `Showing ${visible} of ${total} ${typeText}${relationText}`;
 
@@ -676,7 +647,7 @@ const powerBarObserver = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.5 },
+  { threshold: 0.5 }
 );
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -827,8 +798,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Enhanced filter animation
 function filterFactionsEnhanced() {
   const cards = document.querySelectorAll(".faction-card");
-  const search =
-    document.getElementById("searchInput")?.value.toLowerCase() || "";
+  const search = document.getElementById("searchInput")?.value.toLowerCase() || "";
   const type = document.getElementById("typeFilter")?.value || "all";
   const relation = document.getElementById("relationFilter")?.value || "all";
 
@@ -839,9 +809,7 @@ function filterFactionsEnhanced() {
     const summaryElement = card.querySelector(".faction-summary");
 
     const name = nameElement ? nameElement.textContent.toLowerCase() : "";
-    const summary = summaryElement
-      ? summaryElement.textContent.toLowerCase()
-      : "";
+    const summary = summaryElement ? summaryElement.textContent.toLowerCase() : "";
     const cardType = card.dataset.type || "";
     const cardRelation = card.dataset.relation || "unknown";
 
@@ -1020,7 +988,7 @@ document.addEventListener("DOMContentLoaded", () => {
         {
           duration: 1000 + Math.random() * 500,
           easing: "cubic-bezier(0, 0.5, 0.5, 1)",
-        },
+        }
       );
 
       setTimeout(() => particle.remove(), 1500);
@@ -1036,10 +1004,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add stagger animation to modal sections
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
-        if (
-          mutation.type === "childList" &&
-          modal.classList.contains("active")
-        ) {
+        if (mutation.type === "childList" && modal.classList.contains("active")) {
           const sections = modal.querySelectorAll(".modal-detail-section");
           sections.forEach((section, index) => {
             section.style.animation = "none";
@@ -1184,7 +1149,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const power = bar.style.getPropertyValue("--power");
           bar.style.width = `${power}%`;
         },
-        100 + index * 100,
+        100 + index * 100
       );
     });
   };
@@ -1199,7 +1164,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     },
-    { threshold: 0.5 },
+    { threshold: 0.5 }
   );
 
   const cards = document.querySelectorAll(".faction-card");
@@ -1233,8 +1198,7 @@ document.addEventListener("DOMContentLoaded", () => {
     [searchInput, typeFilter, relationFilter].forEach((element) => {
       if (!element) return;
 
-      const isActive =
-        element.value && element.value !== "all" && element.value.trim() !== "";
+      const isActive = element.value && element.value !== "all" && element.value.trim() !== "";
 
       if (isActive) {
         element.style.borderColor = "rgba(255, 215, 0, 0.8)";
@@ -1248,8 +1212,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (searchInput) searchInput.addEventListener("input", updateFilterVisuals);
   if (typeFilter) typeFilter.addEventListener("change", updateFilterVisuals);
-  if (relationFilter)
-    relationFilter.addEventListener("change", updateFilterVisuals);
+  if (relationFilter) relationFilter.addEventListener("change", updateFilterVisuals);
 });
 
 console.log("✨ Enhanced UI improvements loaded successfully!");

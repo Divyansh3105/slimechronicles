@@ -23,7 +23,12 @@
     "rivals": ["None"],
     "mentors": ["Experience", "Ancient knowledge"]
   },
-  "achievements": ["Was a Demon Lord", "Created labyrinths", "Maintained wisdom", "Served as guardian"],
+  "achievements": [
+    "Was a Demon Lord",
+    "Created labyrinths",
+    "Maintained wisdom",
+    "Served as guardian"
+  ],
   "weaknesses": ["Lost much power", "Small size"],
   "specialties": ["Labyrinth Creation", "Dimensional Magic", "Ancient Wisdom"],
   "evolution": [

@@ -23,8 +23,19 @@
     "rivals": ["None (too diplomatic)", "Shion (friendly cooking rivalry)"],
     "mentors": ["Rimuru", "Kaijin (crafting techniques)"]
   },
-  "achievements": ["Became Minister of Production", "Mastered Analytical Appraisal", "Revolutionized Tempest's textile industry", "Created magical fabrics", "Established trade relationships", "Evolved from Ogre to Wicked Oni"],
-  "weaknesses": ["Sometimes too trusting", "Can be overly perfectionist", "Tends to overwork herself"],
+  "achievements": [
+    "Became Minister of Production",
+    "Mastered Analytical Appraisal",
+    "Revolutionized Tempest's textile industry",
+    "Created magical fabrics",
+    "Established trade relationships",
+    "Evolved from Ogre to Wicked Oni"
+  ],
+  "weaknesses": [
+    "Sometimes too trusting",
+    "Can be overly perfectionist",
+    "Tends to overwork herself"
+  ],
   "specialties": ["Craftsmanship", "Economic Management", "Diplomacy", "Healing Magic"],
   "evolution": [
     {

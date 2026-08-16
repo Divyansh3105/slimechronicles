@@ -23,7 +23,12 @@
     "rivals": ["Other powerful beings"],
     "mentors": ["Experience", "Strategic thinking"]
   },
-  "achievements": ["Became Demon Lord", "Ruled alongside Leon", "Mastered light magic", "Demonstrated vampire power"],
+  "achievements": [
+    "Became Demon Lord",
+    "Ruled alongside Leon",
+    "Mastered light magic",
+    "Demonstrated vampire power"
+  ],
   "weaknesses": ["Can be overly strategic", "Sometimes prefers indirect methods"],
   "specialties": ["Light Magic", "Regeneration", "Strategic Thinking"],
   "evolution": [

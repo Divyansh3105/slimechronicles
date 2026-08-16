@@ -4,11 +4,7 @@
 .relationships-overview-dashboard {
   margin-bottom: 2.5rem;
   padding: 2rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
   border-radius: 20px;
   backdrop-filter: blur(10px);
@@ -25,11 +21,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.9),
-    rgba(21, 27, 61, 0.7)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
   border: 2px solid rgba(77, 212, 255, 0.2);
   border-radius: 15px;
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -69,11 +61,7 @@
 .relationship-network-container {
   margin: 3rem 0;
   padding: 2rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.7),
-    rgba(21, 27, 61, 0.5)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.7), rgba(21, 27, 61, 0.5));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
   border-radius: 20px;
   overflow: hidden;
@@ -163,21 +151,19 @@
   animation: nodeFloat 4s ease-in-out infinite;
   --angle: calc((360deg / var(--total-nodes)) * var(--node-index));
   --radius: 200px;
-  transform: translate(-50%, -50%) rotate(var(--angle))
-    translateY(calc(var(--radius) * -1)) rotate(calc(var(--angle) * -1));
+  transform: translate(-50%, -50%) rotate(var(--angle)) translateY(calc(var(--radius) * -1))
+    rotate(calc(var(--angle) * -1));
 }
 
 @keyframes nodeFloat {
   0%,
   100% {
-    transform: translate(-50%, -50%) rotate(var(--angle))
-      translateY(calc(var(--radius) * -1)) rotate(calc(var(--angle) * -1))
-      translateY(0);
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(calc(var(--radius) * -1))
+      rotate(calc(var(--angle) * -1)) translateY(0);
   }
   50% {
-    transform: translate(-50%, -50%) rotate(var(--angle))
-      translateY(calc(var(--radius) * -1)) rotate(calc(var(--angle) * -1))
-      translateY(-10px);
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(calc(var(--radius) * -1))
+      rotate(calc(var(--angle) * -1)) translateY(-10px);
   }
 }
 
@@ -240,11 +226,7 @@
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(77, 212, 255, 0.3),
-    rgba(77, 212, 255, 0.1)
-  );
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.3), rgba(77, 212, 255, 0.1));
 }
 
 .node-name {
@@ -274,11 +256,7 @@
 }
 
 .relationship-category-enhanced {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid rgba(77, 212, 255, 0.3);
   border-radius: 20px;
   padding: 2rem;
@@ -349,11 +327,7 @@
 .category-count-badge {
   display: inline-block;
   padding: 0.3rem 0.8rem;
-  background: linear-gradient(
-    135deg,
-    rgba(77, 212, 255, 0.2),
-    rgba(77, 212, 255, 0.1)
-  );
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.2), rgba(77, 212, 255, 0.1));
   border: 1px solid rgba(77, 212, 255, 0.3);
   border-radius: 12px;
   color: var(--primary-blue);
@@ -369,11 +343,7 @@
 }
 
 .relationship-card-enhanced {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.9),
-    rgba(21, 27, 61, 0.7)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
   border: 2px solid rgba(77, 212, 255, 0.2);
   border-radius: 15px;
   padding: 1.5rem;
@@ -453,11 +423,7 @@
   right: -50%;
   width: 100%;
   height: 100%;
-  background: radial-gradient(
-    circle,
-    rgba(77, 212, 255, 0.15),
-    transparent 70%
-  );
+  background: radial-gradient(circle, rgba(77, 212, 255, 0.15), transparent 70%);
   opacity: 0;
   transition: opacity 0.5s ease;
   pointer-events: none;
@@ -505,11 +471,7 @@
   align-items: center;
   justify-content: center;
   font-size: 2rem;
-  background: linear-gradient(
-    135deg,
-    rgba(77, 212, 255, 0.3),
-    rgba(77, 212, 255, 0.1)
-  );
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.3), rgba(77, 212, 255, 0.1));
 }
 
 .relationship-badge {
@@ -663,11 +625,7 @@
 .relationship-action-btn {
   flex: 1;
   padding: 0.6rem 1rem;
-  background: linear-gradient(
-    135deg,
-    rgba(77, 212, 255, 0.15),
-    rgba(77, 212, 255, 0.05)
-  );
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.15), rgba(77, 212, 255, 0.05));
   border: 1px solid rgba(77, 212, 255, 0.3);
   border-radius: 8px;
   color: var(--primary-blue);
@@ -682,11 +640,7 @@
 }
 
 .relationship-action-btn:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(77, 212, 255, 0.25),
-    rgba(77, 212, 255, 0.15)
-  );
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.25), rgba(77, 212, 255, 0.15));
   border-color: var(--primary-blue);
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(77, 212, 255, 0.3);
@@ -696,11 +650,7 @@
 .relationship-insights {
   margin-top: 3rem;
   padding: 2rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.7),
-    rgba(21, 27, 61, 0.5)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.7), rgba(21, 27, 61, 0.5));
   border: 2px solid rgba(77, 212, 255, 0.3);
   border-radius: 20px;
 }
@@ -723,11 +673,7 @@
   align-items: flex-start;
   gap: 1rem;
   padding: 1.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid rgba(77, 212, 255, 0.2);
   border-radius: 12px;
   transition: all 0.3s ease;
@@ -831,11 +777,7 @@
 
 /* Cultural Impact Header */
 .cultural-impact-header {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.9),
-    rgba(21, 27, 61, 0.7)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
   border: 3px solid var(--character-primary, rgba(77, 212, 255, 0.5));
   border-radius: 24px;
   padding: 3rem;
@@ -911,11 +853,7 @@
 
 /* Cultural Sections */
 .cultural-section {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
   border-radius: 20px;
   padding: 2.5rem;
@@ -965,11 +903,7 @@
 }
 
 .influence-text-box {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.9),
-    rgba(21, 27, 61, 0.7)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
   border-left: 4px solid var(--character-primary, var(--primary-blue));
   padding: 2rem;
   border-radius: 12px;
@@ -992,11 +926,7 @@
   align-items: flex-start;
   gap: 1rem;
   padding: 1.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.7),
-    rgba(21, 27, 61, 0.5)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.7), rgba(21, 27, 61, 0.5));
   border: 1px solid rgba(77, 212, 255, 0.2);
   border-radius: 12px;
   transition: all 0.3s ease;
@@ -1027,11 +957,7 @@
 
 .philosophy-quote-box {
   position: relative;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.9),
-    rgba(21, 27, 61, 0.7)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
   border-radius: 15px;
   padding: 3rem 2.5rem;
@@ -1074,11 +1000,7 @@
 }
 
 .leadership-text-box {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.9),
-    rgba(21, 27, 61, 0.7)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
   border-left: 4px solid var(--accent-gold);
   padding: 2rem;
   border-radius: 12px;
@@ -1101,11 +1023,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid rgba(255, 215, 0, 0.2);
   border-radius: 12px;
   transition: all 0.3s ease;
@@ -1156,11 +1074,7 @@
 }
 
 .current-timeline {
-  background: linear-gradient(
-    135deg,
-    rgba(0, 255, 136, 0.1),
-    rgba(0, 255, 136, 0.05)
-  );
+  background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 255, 136, 0.05));
   border-color: rgba(0, 255, 136, 0.3);
 }
 
@@ -1171,11 +1085,7 @@
 }
 
 .alternate-timeline {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 51, 102, 0.1),
-    rgba(255, 51, 102, 0.05)
-  );
+  background: linear-gradient(135deg, rgba(255, 51, 102, 0.1), rgba(255, 51, 102, 0.05));
   border-color: rgba(255, 51, 102, 0.3);
 }
 
@@ -1228,11 +1138,7 @@
 
 /* Legacy Summary */
 .legacy-summary-section {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 215, 0, 0.1),
-    rgba(255, 215, 0, 0.05)
-  );
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05));
   border: 3px solid rgba(255, 215, 0, 0.4);
 }
 

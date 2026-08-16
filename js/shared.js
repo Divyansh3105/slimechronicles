@@ -49,15 +49,16 @@ class PageTransitionManager {
     });
   }
 
+  /**
+   * Navigates to a new URL with a smooth transition.
+   * @param {string} url - The target URL to navigate to.
+   */
   navigateTo(url) {
     if (this.isTransitioning) return;
     this.isTransitioning = true;
 
     // Play transition sound if sound is enabled
-    if (
-      window.SoundFeedback &&
-      typeof window.SoundFeedback.playEffect === "function"
-    ) {
+    if (window.SoundFeedback && typeof window.SoundFeedback.playEffect === "function") {
       window.SoundFeedback.playEffect("hover"); // A soft hum is good for transitions
     }
 
@@ -177,10 +178,7 @@ function toggleMobileMenu() {
   }
 
   // Play sound feedback if available
-  if (
-    window.SoundFeedback &&
-    typeof window.SoundFeedback.playEffect === "function"
-  ) {
+  if (window.SoundFeedback && typeof window.SoundFeedback.playEffect === "function") {
     window.SoundFeedback.playEffect("click");
   }
 }
@@ -208,7 +206,7 @@ function initializeMobileNavigation() {
       startY = e.touches[0].clientY;
       startX = e.touches[0].clientX;
     },
-    { passive: true },
+    { passive: true }
   );
 
   // Process swipe gesture when touch ends and close menu if swiped up
@@ -244,11 +242,7 @@ function initializeMobileNavigation() {
 
   // Close menu with Escape key for keyboard accessibility
   document.addEventListener("keydown", (e) => {
-    if (
-      e.key === "Escape" &&
-      mobileNav &&
-      mobileNav.classList.contains("active")
-    ) {
+    if (e.key === "Escape" && mobileNav && mobileNav.classList.contains("active")) {
       toggleMobileMenu();
     }
   });
@@ -293,7 +287,7 @@ function initializeMobileNavigation() {
         }
       }
     },
-    { passive: false },
+    { passive: false }
   );
 }
 
@@ -307,10 +301,7 @@ function scrollToTop() {
   });
 
   // Play sound feedback if available
-  if (
-    window.SoundFeedback &&
-    typeof window.SoundFeedback.playEffect === "function"
-  ) {
+  if (window.SoundFeedback && typeof window.SoundFeedback.playEffect === "function") {
     window.SoundFeedback.playEffect("click");
   }
 }
@@ -319,7 +310,7 @@ function scrollToTop() {
 function showLoadingIndicator(
   containerId = "content",
   message = "Loading...",
-  description = "Please wait while we fetch the information.",
+  description = "Please wait while we fetch the information."
 ) {
   const content = document.getElementById(containerId);
   if (content) {
@@ -348,7 +339,7 @@ function displayError(
   containerId = "content",
   backLink = null,
   additionalInfo = {},
-  showRecovery = false,
+  showRecovery = false
 ) {
   let backLinkHtml = "";
 
@@ -523,8 +514,7 @@ function announceToScreenReader(message) {
 
 // Cycle through available themes and save preference
 function toggleTheme() {
-  const currentTheme =
-    document.documentElement.getAttribute("data-theme") || "rimuru";
+  const currentTheme = document.documentElement.getAttribute("data-theme") || "rimuru";
   const themes = ["rimuru", "veldora", "benimaru", "milim"];
   const currentIndex = themes.indexOf(currentTheme);
   const nextTheme = themes[(currentIndex + 1) % themes.length];
@@ -544,11 +534,7 @@ function toggleTheme() {
     milim: "Milim (Dragon Nova)",
   };
 
-  showNotification(
-    `Theme changed to ${displayNames[nextTheme]}`,
-    2000,
-    "success",
-  );
+  showNotification(`Theme changed to ${displayNames[nextTheme]}`, 2000, "success");
 }
 
 // Load saved theme preference from localStorage
@@ -590,17 +576,13 @@ function throttle(func, limit) {
 function isMobileDevice() {
   return (
     window.innerWidth <= 768 ||
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent,
-    )
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
   );
 }
 
 // Safe mobile detection with fallback for when shared.js might not be loaded
 function safeMobileDetection() {
-  return window.isMobileDevice
-    ? window.isMobileDevice()
-    : window.innerWidth <= 768;
+  return window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
 }
 
 // Extract URL parameter value by name
@@ -802,26 +784,21 @@ window.SoundFeedback = new SynthesizedSoundManager();
   const unlock = () => {
     window.SoundFeedback.unlock();
     ["click", "keydown", "touchend"].forEach((evt) =>
-      document.removeEventListener(evt, unlock, true),
+      document.removeEventListener(evt, unlock, true)
     );
   };
   ["click", "keydown", "touchend"].forEach((evt) =>
-    document.addEventListener(evt, unlock, { capture: true }),
+    document.addEventListener(evt, unlock, { capture: true })
   );
 })();
 
 // Function kept for backward compatibility
-function initializeAudioManager() {
-  // No-op: AudioContext unlock is handled by the trusted-gesture listener above.
-}
+// No-op removed
 
 // Initialize Scroll Reveal Animations
 function initScrollReveal() {
   // Only apply if user hasn't requested reduced motion
-  if (
-    window.matchMedia &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches
-  ) {
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     return;
   }
 
@@ -841,7 +818,7 @@ function initScrollReveal() {
 
   // Auto-apply to common elements across the site
   const elementsToReveal = document.querySelectorAll(
-    ".character-card, .skill-card, .faction-card, .record-card, .timeline-item",
+    ".character-card, .skill-card, .faction-card, .record-card, .timeline-item"
   );
 
   elementsToReveal.forEach((el, index) => {
@@ -1010,19 +987,19 @@ function enforceCursorsOnElement(element) {
   // Use CSS classes instead of inline styles for better performance
   if (
     element.matches(
-      'a, button, input[type="button"], input[type="submit"], input[type="reset"], select, [role="button"], .clickable, .primary-button, .secondary-button, .tertiary-button, .view-profile-button, .view-details-button, .recruit-button, .social-link, .quick-item, .modal-close, .nav-brand, .mobile-menu-toggle',
+      'a, button, input[type="button"], input[type="submit"], input[type="reset"], select, [role="button"], .clickable, .primary-button, .secondary-button, .tertiary-button, .view-profile-button, .view-details-button, .recruit-button, .social-link, .quick-item, .modal-close, .nav-brand, .mobile-menu-toggle'
     )
   ) {
     element.classList.add("cursor-pointer");
   } else if (
     element.matches(
-      'input[type="text"], input[type="email"], input[type="password"], input[type="search"], textarea, [contenteditable="true"]',
+      'input[type="text"], input[type="email"], input[type="password"], input[type="search"], textarea, [contenteditable="true"]'
     )
   ) {
     element.classList.add("cursor-text");
   } else if (
     element.matches(
-      "button:disabled, input:disabled, select:disabled, textarea:disabled, .disabled",
+      "button:disabled, input:disabled, select:disabled, textarea:disabled, .disabled"
     )
   ) {
     element.classList.add("cursor-not-allowed");
@@ -1054,9 +1031,7 @@ function observeCursorChanges() {
               enforceCursorsOnElement(node);
               // Also check children
               node
-                .querySelectorAll(
-                  'a, button, input, select, textarea, [role="button"]',
-                )
+                .querySelectorAll('a, button, input, select, textarea, [role="button"]')
                 .forEach(enforceCursorsOnElement);
             }
           });

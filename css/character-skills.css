@@ -15,11 +15,7 @@
   flex-direction: column;
   align-items: center;
   padding: 1rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 1px solid var(--character-primary, rgba(77, 212, 255, 0.3));
   border-radius: 12px;
   transition: all 0.3s ease;
@@ -51,11 +47,7 @@
 .skills-overview-dashboard {
   margin-bottom: 2rem;
   padding: 1.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
   border-radius: 15px;
   backdrop-filter: blur(10px);
@@ -72,11 +64,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.7),
-    rgba(21, 27, 61, 0.5)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.7), rgba(21, 27, 61, 0.5));
   border: 1px solid var(--character-primary, rgba(77, 212, 255, 0.2));
   border-radius: 12px;
   transition: all 0.3s ease;
@@ -120,11 +108,7 @@
 }
 
 .skill-category {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.7),
-    rgba(21, 27, 61, 0.5)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.7), rgba(21, 27, 61, 0.5));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
   border-radius: 15px;
   overflow: hidden;
@@ -142,21 +126,13 @@
   align-items: center;
   padding: 1.5rem;
   cursor: pointer;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.9),
-    rgba(21, 27, 61, 0.7)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
   border-bottom: 1px solid var(--character-primary, rgba(77, 212, 255, 0.2));
   transition: all 0.3s ease;
 }
 
 .category-header:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(77, 212, 255, 0.15),
-    rgba(77, 212, 255, 0.05)
-  );
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.15), rgba(77, 212, 255, 0.05));
 }
 
 .category-info {
@@ -199,11 +175,7 @@
 /* Enhanced Skill Cards */
 .skill-card-enhanced {
   position: relative;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.9),
-    rgba(21, 27, 61, 0.7)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
   border-radius: 15px;
   padding: 1.5rem;
@@ -523,11 +495,7 @@
 .skill-synergies-section {
   margin-top: 2rem;
   padding: 1.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
   border-radius: 15px;
 }
@@ -552,11 +520,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.7),
-    rgba(21, 27, 61, 0.5)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.7), rgba(21, 27, 61, 0.5));
   border: 1px solid var(--character-primary, rgba(77, 212, 255, 0.2));
   border-radius: 12px;
   transition: all 0.3s ease;
@@ -599,11 +563,7 @@
 .skills-empty-state {
   text-align: center;
   padding: 3rem 2rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
   border-radius: 15px;
 }
@@ -798,11 +758,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 1px solid var(--character-primary, rgba(77, 212, 255, 0.3));
   border-radius: 12px;
 }
@@ -830,11 +786,7 @@
 .skill-detail-stats,
 .skill-detail-applications {
   padding: 1rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.6),
-    rgba(21, 27, 61, 0.4)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.6), rgba(21, 27, 61, 0.4));
   border: 1px solid var(--character-primary, rgba(77, 212, 255, 0.2));
   border-radius: 12px;
 }
@@ -882,11 +834,7 @@
 }
 
 .modal-content {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.95),
-    rgba(21, 27, 61, 0.9)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(21, 27, 61, 0.9));
   border: 2px solid var(--character-primary, var(--primary-blue));
   border-radius: 15px;
   padding: 2rem;
@@ -914,11 +862,7 @@
 }
 
 .evolution-comparison-modal .comparison-content {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.95),
-    rgba(21, 27, 61, 0.9)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(21, 27, 61, 0.9));
   border: 2px solid var(--character-primary, var(--primary-blue));
   border-radius: 15px;
   padding: 2rem;
@@ -966,11 +910,7 @@
 
 .evolution-compare-item {
   padding: 1.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 1px solid var(--character-primary, rgba(77, 212, 255, 0.2));
   border-radius: 12px;
 }
@@ -1038,11 +978,7 @@
 
 /* ========== ENHANCED SKILL CARDS ========== */
 .skill-card-detailed {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.95),
-    rgba(21, 27, 61, 0.7)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(21, 27, 61, 0.7));
   border: 3px solid var(--character-primary, rgba(77, 212, 255, 0.4));
   border-radius: 20px;
   padding: 2rem;
@@ -1054,31 +990,19 @@
 
 .skill-card-detailed.combat {
   border-color: var(--accent-crimson);
-  background: linear-gradient(
-    135deg,
-    rgba(255, 51, 102, 0.15),
-    rgba(21, 27, 61, 0.7)
-  );
+  background: linear-gradient(135deg, rgba(255, 51, 102, 0.15), rgba(21, 27, 61, 0.7));
   transform: perspective(1000px) rotateY(-3deg) rotateX(1deg);
 }
 
 .skill-card-detailed.magic {
   border-color: var(--accent-purple);
-  background: linear-gradient(
-    135deg,
-    rgba(170, 85, 255, 0.15),
-    rgba(21, 27, 61, 0.7)
-  );
+  background: linear-gradient(135deg, rgba(170, 85, 255, 0.15), rgba(21, 27, 61, 0.7));
   transform: perspective(1000px) rotateY(3deg) rotateX(1deg);
 }
 
 .skill-card-detailed.support {
   border-color: var(--accent-emerald);
-  background: linear-gradient(
-    135deg,
-    rgba(0, 255, 136, 0.15),
-    rgba(21, 27, 61, 0.7)
-  );
+  background: linear-gradient(135deg, rgba(0, 255, 136, 0.15), rgba(21, 27, 61, 0.7));
   transform: perspective(1000px) rotateY(-2deg) rotateX(-1deg);
 }
 
@@ -1089,11 +1013,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(
-    90deg,
-    var(--character-primary, var(--primary-blue)),
-    transparent
-  );
+  background: linear-gradient(90deg, var(--character-primary, var(--primary-blue)), transparent);
   box-shadow: 0 0 20px var(--character-glow, var(--glow-blue));
 }
 
@@ -1104,11 +1024,7 @@
   right: 0;
   width: 100px;
   height: 100px;
-  background: radial-gradient(
-    circle,
-    var(--character-glow, rgba(77, 212, 255, 0.2)),
-    transparent
-  );
+  background: radial-gradient(circle, var(--character-glow, rgba(77, 212, 255, 0.2)), transparent);
   border-radius: 50%;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -1140,4 +1056,3 @@
   color: var(--character-primary, var(--primary-blue));
   font-weight: 600;
 }
-

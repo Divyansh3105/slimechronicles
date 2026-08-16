@@ -36,46 +36,49 @@ class TimelineManager {
 
   // Add scroll-based animations
   addScrollAnimations() {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-in');
-        }
-      });
-    }, {
-      threshold: 0.1,
-      rootMargin: '50px'
-    });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-in");
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "50px",
+      }
+    );
 
-    document.querySelectorAll('.timeline-year, .timeline-arc').forEach(el => {
+    document.querySelectorAll(".timeline-year, .timeline-arc").forEach((el) => {
       observer.observe(el);
     });
   }
 
   // Add keyboard shortcuts
   addKeyboardShortcuts() {
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener("keydown", (e) => {
       // Only handle shortcuts when not typing in inputs
-      if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+      if (e.target.tagName === "INPUT" || e.target.tagName === "SELECT") return;
 
-      switch(e.key.toLowerCase()) {
-        case '/':
+      switch (e.key.toLowerCase()) {
+        case "/":
           e.preventDefault();
-          document.getElementById('timeline-search')?.focus();
+          document.getElementById("timeline-search")?.focus();
           break;
-        case 'e':
+        case "e":
           if (e.ctrlKey || e.metaKey) {
             e.preventDefault();
             this.expandAllArcs();
           }
           break;
-        case 'r':
+        case "r":
           if (e.ctrlKey || e.metaKey) {
             e.preventDefault();
             this.collapseAllArcs();
           }
           break;
-        case 'escape':
+        case "escape":
           this.clearSearch();
           break;
       }
@@ -84,28 +87,29 @@ class TimelineManager {
 
   // Add progress indicator
   addProgressIndicator() {
-    const progressBar = document.getElementById('timeline-progress-bar');
+    const progressBar = document.getElementById("timeline-progress-bar");
     if (!progressBar) return;
 
     const updateProgress = () => {
-      const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-      progressBar.style.width = Math.min(100, Math.max(0, scrollPercent)) + '%';
+      const scrollPercent =
+        (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      progressBar.style.width = Math.min(100, Math.max(0, scrollPercent)) + "%";
     };
 
-    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener("scroll", updateProgress, { passive: true });
     updateProgress();
   }
 
   // Add smooth scrolling behavior
   addSmoothScrolling() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const target = document.querySelector(this.getAttribute("href"));
         if (target) {
           target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
+            behavior: "smooth",
+            block: "start",
           });
         }
       });
@@ -124,9 +128,9 @@ class TimelineManager {
           if (arcHeader) {
             window.toggleArcSimple(arcHeader);
             // Add visual feedback
-            arc.style.transform = 'scale(1.02)';
+            arc.style.transform = "scale(1.02)";
             setTimeout(() => {
-              arc.style.transform = '';
+              arc.style.transform = "";
             }, 200);
           }
         }, delay);
@@ -135,7 +139,7 @@ class TimelineManager {
     });
 
     // Show notification
-    this.showNotification('All arcs expanded', 'success');
+    this.showNotification("All arcs expanded", "success");
   }
 
   // Enhanced collapse all arcs functionality
@@ -156,12 +160,12 @@ class TimelineManager {
     });
 
     // Show notification
-    this.showNotification('All arcs collapsed', 'info');
+    this.showNotification("All arcs collapsed", "info");
   }
 
   // Show notification system
-  showNotification(message, type = 'info') {
-    const notification = document.createElement('div');
+  showNotification(message, type = "info") {
+    const notification = document.createElement("div");
     notification.className = `timeline-notification timeline-notification--${type}`;
     notification.innerHTML = `
       <div class="notification-content">
@@ -174,12 +178,12 @@ class TimelineManager {
 
     // Animate in
     requestAnimationFrame(() => {
-      notification.classList.add('show');
+      notification.classList.add("show");
     });
 
     // Remove after delay
     setTimeout(() => {
-      notification.classList.remove('show');
+      notification.classList.remove("show");
       setTimeout(() => {
         notification.remove();
       }, 300);
@@ -188,36 +192,32 @@ class TimelineManager {
 
   // Cache timeline events - Extract and process timeline events from DOM
   cacheEvents() {
-    this.events = Array.from(document.querySelectorAll(".timeline-event")).map(
-      (event) => {
-        // Extract text content from event elements
-        const title = event.querySelector(".event-title")?.textContent || "";
-        const description =
-          event.querySelector(".event-description")?.textContent || "";
-        const consequences =
-          event.querySelector(".event-consequences")?.textContent || "";
-        const characters = Array.from(
-          event.querySelectorAll(".character-link span"),
-        ).map((span) => span.textContent);
-        const date = event.querySelector(".event-date")?.textContent || "";
-        const era = event.closest(".timeline-year")?.dataset.era || "";
+    this.events = Array.from(document.querySelectorAll(".timeline-event")).map((event) => {
+      // Extract text content from event elements
+      const title = event.querySelector(".event-title")?.textContent || "";
+      const description = event.querySelector(".event-description")?.textContent || "";
+      const consequences = event.querySelector(".event-consequences")?.textContent || "";
+      const characters = Array.from(event.querySelectorAll(".character-link span")).map(
+        (span) => span.textContent
+      );
+      const date = event.querySelector(".event-date")?.textContent || "";
+      const era = event.closest(".timeline-year")?.dataset.era || "";
 
-        // Return processed event data object
-        return {
-          element: event,
-          title,
-          description,
-          consequences,
-          characters,
-          date,
-          era,
-          searchText:
-            `${title} ${description} ${consequences} ${characters.join(" ")} ${date}`.toLowerCase(),
-          importance: this.calculateImportance(event),
-          impact: this.calculateImpact(event),
-        };
-      },
-    );
+      // Return processed event data object
+      return {
+        element: event,
+        title,
+        description,
+        consequences,
+        characters,
+        date,
+        era,
+        searchText:
+          `${title} ${description} ${consequences} ${characters.join(" ")} ${date}`.toLowerCase(),
+        importance: this.calculateImportance(event),
+        impact: this.calculateImpact(event),
+      };
+    });
 
     // Store original order for reset functionality
     this.originalOrder = [...this.events];
@@ -229,9 +229,7 @@ class TimelineManager {
 
     // Extract event content for analysis
     const title = eventElement.querySelector(".event-title")?.textContent || "";
-    const consequences = eventElement.querySelectorAll(
-      ".event-consequences li",
-    );
+    const consequences = eventElement.querySelectorAll(".event-consequences li");
     const characters = eventElement.querySelectorAll(".character-link");
 
     // Score based on important keywords in title
@@ -264,35 +262,18 @@ class TimelineManager {
 
   // Calculate event impact - Determine event's impact level based on consequences
   calculateImpact(eventElement) {
-    const consequences = eventElement.querySelectorAll(
-      ".event-consequences li",
-    );
+    const consequences = eventElement.querySelectorAll(".event-consequences li");
     let impact = consequences.length * 2;
 
     // Analyze consequence text for impact keywords
     const consequenceText =
-      eventElement
-        .querySelector(".event-consequences")
-        ?.textContent.toLowerCase() || "";
+      eventElement.querySelector(".event-consequences")?.textContent.toLowerCase() || "";
 
     // Add impact points based on scope keywords
-    if (consequenceText.includes("global") || consequenceText.includes("world"))
-      impact += 20;
-    if (
-      consequenceText.includes("nation") ||
-      consequenceText.includes("federation")
-    )
-      impact += 15;
-    if (
-      consequenceText.includes("military") ||
-      consequenceText.includes("power")
-    )
-      impact += 10;
-    if (
-      consequenceText.includes("diplomatic") ||
-      consequenceText.includes("alliance")
-    )
-      impact += 8;
+    if (consequenceText.includes("global") || consequenceText.includes("world")) impact += 20;
+    if (consequenceText.includes("nation") || consequenceText.includes("federation")) impact += 15;
+    if (consequenceText.includes("military") || consequenceText.includes("power")) impact += 10;
+    if (consequenceText.includes("diplomatic") || consequenceText.includes("alliance")) impact += 8;
 
     return impact;
   }
@@ -334,9 +315,9 @@ class TimelineManager {
     }
 
     // Set up view controls
-    document.querySelectorAll(".view-btn").forEach(btn => {
+    document.querySelectorAll(".view-btn").forEach((btn) => {
       btn.addEventListener("click", (e) => {
-        document.querySelectorAll(".view-btn").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".view-btn").forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
         this.currentView = btn.dataset.view;
         this.updateView();
@@ -400,12 +381,7 @@ class TimelineManager {
   }
 
   highlightTextInElement(element, searchTerm) {
-    const walker = document.createTreeWalker(
-      element,
-      NodeFilter.SHOW_TEXT,
-      null,
-      false,
-    );
+    const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
 
     const textNodes = [];
     let node;
@@ -417,10 +393,7 @@ class TimelineManager {
       const text = textNode.textContent;
       const regex = new RegExp(`(${searchTerm})`, "gi");
       if (regex.test(text)) {
-        const highlightedText = text.replace(
-          regex,
-          '<span class="search-highlight">$1</span>',
-        );
+        const highlightedText = text.replace(regex, '<span class="search-highlight">$1</span>');
         const wrapper = document.createElement("span");
         wrapper.innerHTML = highlightedText;
         textNode.parentNode.replaceChild(wrapper, textNode);
@@ -431,10 +404,7 @@ class TimelineManager {
   clearHighlights() {
     document.querySelectorAll(".search-highlight").forEach((highlight) => {
       const parent = highlight.parentNode;
-      parent.replaceChild(
-        document.createTextNode(highlight.textContent),
-        highlight,
-      );
+      parent.replaceChild(document.createTextNode(highlight.textContent), highlight);
       parent.normalize();
     });
   }
@@ -487,8 +457,9 @@ class TimelineManager {
           const eventData = this.events.find((e) => e.element === event);
           if (eventData) {
             let matchesSearch = !this.searchTerm || eventData.searchText.includes(this.searchTerm);
-            let matchesImportance = this.currentImportanceFilter === "all" ||
-                                  event.dataset.importance === this.currentImportanceFilter;
+            let matchesImportance =
+              this.currentImportanceFilter === "all" ||
+              event.dataset.importance === this.currentImportanceFilter;
 
             if (matchesSearch && matchesImportance) {
               hasMatchingEvents = true;
@@ -504,7 +475,7 @@ class TimelineManager {
         updates.push({
           element: year,
           display: "block",
-          animation: "fadeInUp 0.5s ease-out"
+          animation: "fadeInUp 0.5s ease-out",
         });
         visibleCount++;
       } else {
@@ -514,7 +485,7 @@ class TimelineManager {
 
     // Apply all DOM updates in a single batch
     requestAnimationFrame(() => {
-      updates.forEach(update => {
+      updates.forEach((update) => {
         update.element.style.display = update.display;
         if (update.animation) {
           update.element.style.animation = update.animation;
@@ -540,15 +511,25 @@ class TimelineManager {
   }
 
   updateStatistics() {
-    const visibleYears = document.querySelectorAll(".timeline-year[style*='display: block'], .timeline-year:not([style*='display: none'])").length;
-    const visibleArcs = document.querySelectorAll(".timeline-year[style*='display: block'] .timeline-arc, .timeline-year:not([style*='display: none']) .timeline-arc").length;
-    const visibleEvents = document.querySelectorAll(".timeline-year[style*='display: block'] .timeline-event[style*='display: block'], .timeline-year:not([style*='display: none']) .timeline-event:not([style*='display: none'])").length;
+    const visibleYears = document.querySelectorAll(
+      ".timeline-year[style*='display: block'], .timeline-year:not([style*='display: none'])"
+    ).length;
+    const visibleArcs = document.querySelectorAll(
+      ".timeline-year[style*='display: block'] .timeline-arc, .timeline-year:not([style*='display: none']) .timeline-arc"
+    ).length;
+    const visibleEvents = document.querySelectorAll(
+      ".timeline-year[style*='display: block'] .timeline-event[style*='display: block'], .timeline-year:not([style*='display: none']) .timeline-event:not([style*='display: none'])"
+    ).length;
     const visibleCharacters = new Set();
 
-    document.querySelectorAll(".timeline-year[style*='display: block'] .character-link, .timeline-year:not([style*='display: none']) .character-link").forEach(link => {
-      const name = link.querySelector("span")?.textContent;
-      if (name) visibleCharacters.add(name);
-    });
+    document
+      .querySelectorAll(
+        ".timeline-year[style*='display: block'] .character-link, .timeline-year:not([style*='display: none']) .character-link"
+      )
+      .forEach((link) => {
+        const name = link.querySelector("span")?.textContent;
+        if (name) visibleCharacters.add(name);
+      });
 
     document.getElementById("years-count").textContent = visibleYears;
     document.getElementById("arcs-count").textContent = visibleArcs;
@@ -558,27 +539,27 @@ class TimelineManager {
 
   // Handle URL parameters to automatically navigate to specific events or arcs
   handleURLParameters() {
-    const eventParam = window.getURLParameter ?
-      window.getURLParameter('event') :
-      new URLSearchParams(window.location.search).get('event');
+    const eventParam = window.getURLParameter
+      ? window.getURLParameter("event")
+      : new URLSearchParams(window.location.search).get("event");
 
     if (eventParam) {
       // Map event parameters to arc titles for navigation
       const eventToArcMap = {
-        'Falmuth_War': 'Falmuth Incident Arc',
-        'Demon_Lord_Awakening': 'Falmuth Incident Arc',
-        'Walpurgis': 'Walpurgis Arc',
-        'Eastern_Empire': 'Eastern Empire Arc',
-        'True_Dragon': 'True Dragon Arc',
-        'Labyrinth': 'Labyrinth Arc',
-        'Tenma_War': 'Tenma War Arc',
-        'Saint_Monster_Confrontation': 'Saint-Monster Confrontation Arc',
-        'Michael_Arc': 'Michael Arc',
-        'Phantom_King': 'Phantom King Arc',
-        'Ivarage_Arc': 'Ivarage Arc',
-        'Epilogue_Arc': 'Epilogue Arc',
-        'Orc_Disaster': 'Orc Disaster Arc',
-        'Reincarnation': 'Reincarnation Arc'
+        Falmuth_War: "Falmuth Incident Arc",
+        Demon_Lord_Awakening: "Falmuth Incident Arc",
+        Walpurgis: "Walpurgis Arc",
+        Eastern_Empire: "Eastern Empire Arc",
+        True_Dragon: "True Dragon Arc",
+        Labyrinth: "Labyrinth Arc",
+        Tenma_War: "Tenma War Arc",
+        Saint_Monster_Confrontation: "Saint-Monster Confrontation Arc",
+        Michael_Arc: "Michael Arc",
+        Phantom_King: "Phantom King Arc",
+        Ivarage_Arc: "Ivarage Arc",
+        Epilogue_Arc: "Epilogue Arc",
+        Orc_Disaster: "Orc Disaster Arc",
+        Reincarnation: "Reincarnation Arc",
       };
 
       const targetArcTitle = eventToArcMap[eventParam];
@@ -586,7 +567,7 @@ class TimelineManager {
       if (targetArcTitle) {
         // Find and expand the target arc
         setTimeout(() => {
-          const arcs = document.querySelectorAll('.timeline-arc');
+          const arcs = document.querySelectorAll(".timeline-arc");
           let targetArc = null;
 
           // First try to find by data-event attribute
@@ -594,8 +575,8 @@ class TimelineManager {
 
           // If not found, search by arc title
           if (!targetArc) {
-            arcs.forEach(arc => {
-              const arcTitle = arc.querySelector('.arc-title');
+            arcs.forEach((arc) => {
+              const arcTitle = arc.querySelector(".arc-title");
               if (arcTitle && arcTitle.textContent.trim() === targetArcTitle) {
                 targetArc = arc;
               }
@@ -604,8 +585,8 @@ class TimelineManager {
 
           if (targetArc) {
             // Expand the arc if it's not already expanded
-            if (!targetArc.classList.contains('expanded')) {
-              const arcHeader = targetArc.querySelector('.arc-header');
+            if (!targetArc.classList.contains("expanded")) {
+              const arcHeader = targetArc.querySelector(".arc-header");
               if (arcHeader) {
                 window.toggleArcSimple(arcHeader);
               }
@@ -614,15 +595,15 @@ class TimelineManager {
             // Scroll to the arc with a slight delay to ensure expansion animation completes
             setTimeout(() => {
               targetArc.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start',
-                inline: 'nearest'
+                behavior: "smooth",
+                block: "start",
+                inline: "nearest",
               });
 
               // Add a visual highlight effect
-              targetArc.style.boxShadow = '0 0 20px rgba(77, 212, 255, 0.6)';
+              targetArc.style.boxShadow = "0 0 20px rgba(77, 212, 255, 0.6)";
               setTimeout(() => {
-                targetArc.style.boxShadow = '';
+                targetArc.style.boxShadow = "";
               }, 3000);
             }, 500);
           }
@@ -630,8 +611,6 @@ class TimelineManager {
       }
     }
   }
-
-
 
   showNoResultsMessage(show) {
     let noResultsDiv = document.querySelector(".no-results");
@@ -649,10 +628,6 @@ class TimelineManager {
       noResultsDiv.remove();
     }
   }
-
-
-
-
 
   initializeTooltips() {
     document.querySelectorAll(".character-link").forEach((link) => {
@@ -749,11 +724,7 @@ window.toggleArcSimple = function (arcHeader) {
       arcHeader.style.backgroundColor = "";
     }, 200);
 
-    if (
-      typeof soundEnabled !== "undefined" &&
-      soundEnabled &&
-      window.SoundFeedback
-    ) {
+    if (typeof soundEnabled !== "undefined" && soundEnabled && window.SoundFeedback) {
       window.SoundFeedback.playEffect("click");
     }
   } catch (error) {
@@ -792,11 +763,7 @@ window.toggleEvent = function (eventElement) {
       });
     }
 
-    if (
-      typeof soundEnabled !== "undefined" &&
-      soundEnabled &&
-      window.SoundFeedback
-    ) {
+    if (typeof soundEnabled !== "undefined" && soundEnabled && window.SoundFeedback) {
       window.SoundFeedback.playEffect("click");
     }
   } catch (error) {
@@ -820,9 +787,9 @@ function expandAllArcs() {
         if (arcHeader) {
           window.toggleArcSimple(arcHeader);
           // Add visual feedback
-          arc.style.transform = 'scale(1.02)';
+          arc.style.transform = "scale(1.02)";
           setTimeout(() => {
-            arc.style.transform = '';
+            arc.style.transform = "";
           }, 200);
         }
       }, delay);
@@ -853,8 +820,6 @@ function collapseAllArcs() {
     }
   });
 }
-
-
 
 function initializeArcs() {
   const arcs = document.querySelectorAll(".timeline-arc");
@@ -892,7 +857,7 @@ let cachedInnerHeight = null;
 const scrollElements = {
   timelineProgress: null,
   fab: null,
-  initialized: false
+  initialized: false,
 };
 
 function initScrollElements() {
@@ -936,7 +901,7 @@ const throttledScrollUpdate = (() => {
   let initialized = false;
   let throttledFn = null;
 
-  return function() {
+  return function () {
     if (!initialized) {
       if (window.throttle) {
         throttledFn = window.throttle(() => {
@@ -950,7 +915,8 @@ const throttledScrollUpdate = (() => {
         let lastTime = 0;
         throttledFn = () => {
           const now = Date.now();
-          if (now - lastTime >= 16) { // ~60fps
+          if (now - lastTime >= 16) {
+            // ~60fps
             lastTime = now;
             cachedScrollHeight = document.documentElement.scrollHeight;
             cachedInnerHeight = window.innerHeight;
@@ -973,11 +939,11 @@ document.addEventListener("keydown", (e) => {
   // Timeline-specific shortcuts
   if (e.ctrlKey || e.metaKey) {
     switch (e.key.toLowerCase()) {
-      case 'e':
+      case "e":
         e.preventDefault();
         expandAllArcs();
         break;
-      case 'r':
+      case "r":
         e.preventDefault();
         collapseAllArcs();
         break;
@@ -989,18 +955,28 @@ let timelineProgressionState = {
   currentEra: 0,
   isPlaying: false,
   playInterval: null,
-  eras: ['founding', 'expansion', 'demon-lord', 'imperial', 'dragon', 'cosmic', 'transcendence', 'final']
+  eras: [
+    "founding",
+    "expansion",
+    "demon-lord",
+    "imperial",
+    "dragon",
+    "cosmic",
+    "transcendence",
+    "final",
+  ],
 };
 
 // Toggle timeline progress navigation
 function toggleProgressNav() {
-  const nav = document.getElementById('timeline-progress-nav');
+  const nav = document.getElementById("timeline-progress-nav");
   if (nav) {
-    nav.classList.toggle('collapsed');
-    const toggle = nav.querySelector('.progress-nav-toggle i');
+    nav.classList.toggle("collapsed");
+    const toggle = nav.querySelector(".progress-nav-toggle i");
     if (toggle) {
-      toggle.className = nav.classList.contains('collapsed') ?
-        'ri-timeline-view' : 'ri-timeline-view';
+      toggle.className = nav.classList.contains("collapsed")
+        ? "ri-timeline-view"
+        : "ri-timeline-view";
     }
   }
 }
@@ -1010,8 +986,8 @@ function navigateToEra(era, year) {
   const targetYear = document.getElementById(`year-${year}`);
   if (targetYear) {
     targetYear.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
+      behavior: "smooth",
+      block: "start",
     });
 
     // Update progress navigation
@@ -1019,10 +995,10 @@ function navigateToEra(era, year) {
 
     // Expand the target year's arcs
     setTimeout(() => {
-      const arcs = targetYear.querySelectorAll('.timeline-arc');
-      arcs.forEach(arc => {
-        if (!arc.classList.contains('expanded')) {
-          const arcHeader = arc.querySelector('.arc-header');
+      const arcs = targetYear.querySelectorAll(".timeline-arc");
+      arcs.forEach((arc) => {
+        if (!arc.classList.contains("expanded")) {
+          const arcHeader = arc.querySelector(".arc-header");
           if (arcHeader) {
             window.toggleArcSimple(arcHeader);
           }
@@ -1034,19 +1010,19 @@ function navigateToEra(era, year) {
 
 // Update progress navigation indicators
 function updateProgressNavigation(currentEra) {
-  const markers = document.querySelectorAll('.progress-marker');
-  const indicator = document.getElementById('progress-nav-indicator');
-  const floatingProgress = document.getElementById('floating-timeline-progress');
-  const currentEraYear = document.getElementById('current-era-year');
-  const currentEraName = document.getElementById('current-era-name');
-  const progressBarFill = document.getElementById('progress-bar-fill');
+  const markers = document.querySelectorAll(".progress-marker");
+  const indicator = document.getElementById("progress-nav-indicator");
+  const floatingProgress = document.getElementById("floating-timeline-progress");
+  const currentEraYear = document.getElementById("current-era-year");
+  const currentEraName = document.getElementById("current-era-name");
+  const progressBarFill = document.getElementById("progress-bar-fill");
 
   markers.forEach((marker, index) => {
     const markerEra = marker.dataset.era;
-    marker.classList.remove('active', 'completed');
+    marker.classList.remove("active", "completed");
 
     if (markerEra === currentEra) {
-      marker.classList.add('active');
+      marker.classList.add("active");
       if (indicator) {
         const progress = ((index + 1) / markers.length) * 100;
         indicator.style.width = `${progress}%`;
@@ -1054,13 +1030,16 @@ function updateProgressNavigation(currentEra) {
 
       // Update floating progress indicator
       if (floatingProgress && currentEraYear && currentEraName && progressBarFill) {
-        floatingProgress.classList.add('visible');
+        floatingProgress.classList.add("visible");
         currentEraYear.textContent = marker.dataset.year;
         currentEraName.textContent = getEraDisplayName(currentEra);
         progressBarFill.style.width = `${((index + 1) / markers.length) * 100}%`;
       }
-    } else if (timelineProgressionState.eras.indexOf(markerEra) < timelineProgressionState.eras.indexOf(currentEra)) {
-      marker.classList.add('completed');
+    } else if (
+      timelineProgressionState.eras.indexOf(markerEra) <
+      timelineProgressionState.eras.indexOf(currentEra)
+    ) {
+      marker.classList.add("completed");
     }
   });
 }
@@ -1068,14 +1047,14 @@ function updateProgressNavigation(currentEra) {
 // Get display name for era
 function getEraDisplayName(era) {
   const eraNames = {
-    'founding': 'Founding Era',
-    'expansion': 'Expansion Era',
-    'demon-lord': 'Demon Lord Era',
-    'imperial': 'Imperial Era',
-    'dragon': 'Dragon Era',
-    'cosmic': 'Cosmic Era',
-    'transcendence': 'Transcendence Era',
-    'final': 'Final Era'
+    founding: "Founding Era",
+    expansion: "Expansion Era",
+    "demon-lord": "Demon Lord Era",
+    imperial: "Imperial Era",
+    dragon: "Dragon Era",
+    cosmic: "Cosmic Era",
+    transcendence: "Transcendence Era",
+    final: "Final Era",
   };
   return eraNames[era] || era;
 }
@@ -1141,55 +1120,56 @@ function resetTimelineProgression() {
   timelineProgressionState.currentEra = 0;
 
   // Reset progression fill
-  const progressionFill = document.getElementById('progression-fill');
+  const progressionFill = document.getElementById("progression-fill");
   if (progressionFill) {
-    progressionFill.style.width = '0%';
+    progressionFill.style.width = "0%";
   }
 
   // Reset era nodes
-  const eraNodes = document.querySelectorAll('.era-node');
-  eraNodes.forEach(node => {
-    node.classList.remove('completed', 'current');
+  const eraNodes = document.querySelectorAll(".era-node");
+  eraNodes.forEach((node) => {
+    node.classList.remove("completed", "current");
   });
 
   // Reset progress navigation
-  const markers = document.querySelectorAll('.progress-marker');
-  const indicator = document.getElementById('progress-nav-indicator');
-  const floatingProgress = document.getElementById('floating-timeline-progress');
+  const markers = document.querySelectorAll(".progress-marker");
+  const indicator = document.getElementById("progress-nav-indicator");
+  const floatingProgress = document.getElementById("floating-timeline-progress");
 
-  markers.forEach(marker => {
-    marker.classList.remove('active', 'completed');
+  markers.forEach((marker) => {
+    marker.classList.remove("active", "completed");
   });
 
   if (indicator) {
-    indicator.style.width = '0%';
+    indicator.style.width = "0%";
   }
 
   if (floatingProgress) {
-    floatingProgress.classList.remove('visible');
+    floatingProgress.classList.remove("visible");
   }
 }
 
 // Update progression fill bar
 function updateProgressionFill() {
-  const progressionFill = document.getElementById('progression-fill');
+  const progressionFill = document.getElementById("progression-fill");
   if (progressionFill) {
-    const progress = (timelineProgressionState.currentEra / timelineProgressionState.eras.length) * 100;
+    const progress =
+      (timelineProgressionState.currentEra / timelineProgressionState.eras.length) * 100;
     progressionFill.style.width = `${progress}%`;
   }
 }
 
 // Update era nodes visual state
 function updateEraNodes() {
-  const eraNodes = document.querySelectorAll('.era-node');
+  const eraNodes = document.querySelectorAll(".era-node");
 
   eraNodes.forEach((node, index) => {
-    node.classList.remove('completed', 'current');
+    node.classList.remove("completed", "current");
 
     if (index < timelineProgressionState.currentEra) {
-      node.classList.add('completed');
+      node.classList.add("completed");
     } else if (index === timelineProgressionState.currentEra) {
-      node.classList.add('current');
+      node.classList.add("current");
     }
   });
 }
@@ -1197,9 +1177,9 @@ function updateEraNodes() {
 // Initialize timeline progression on scroll
 function initializeTimelineProgression() {
   // Add click handlers to progress markers
-  const markers = document.querySelectorAll('.progress-marker');
-  markers.forEach(marker => {
-    marker.addEventListener('click', () => {
+  const markers = document.querySelectorAll(".progress-marker");
+  markers.forEach((marker) => {
+    marker.addEventListener("click", () => {
       const era = marker.dataset.era;
       const year = marker.dataset.year;
       navigateToEra(era, year);
@@ -1207,9 +1187,9 @@ function initializeTimelineProgression() {
   });
 
   // Add click handlers to era nodes
-  const eraNodes = document.querySelectorAll('.era-node');
-  eraNodes.forEach(node => {
-    node.addEventListener('click', () => {
+  const eraNodes = document.querySelectorAll(".era-node");
+  eraNodes.forEach((node) => {
+    node.addEventListener("click", () => {
       const era = node.dataset.era;
       const year = node.dataset.year;
       navigateToEra(era, year);
@@ -1217,31 +1197,34 @@ function initializeTimelineProgression() {
   });
 
   // Initialize scroll-based progression updates
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const yearElement = entry.target;
-        const era = yearElement.dataset.era;
-        if (era && !timelineProgressionState.isPlaying) {
-          updateProgressNavigation(era);
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const yearElement = entry.target;
+          const era = yearElement.dataset.era;
+          if (era && !timelineProgressionState.isPlaying) {
+            updateProgressNavigation(era);
 
-          // Update progression state based on visible era
-          const eraIndex = timelineProgressionState.eras.indexOf(era);
-          if (eraIndex !== -1) {
-            timelineProgressionState.currentEra = eraIndex;
-            updateProgressionFill();
-            updateEraNodes();
+            // Update progression state based on visible era
+            const eraIndex = timelineProgressionState.eras.indexOf(era);
+            if (eraIndex !== -1) {
+              timelineProgressionState.currentEra = eraIndex;
+              updateProgressionFill();
+              updateEraNodes();
+            }
           }
         }
-      }
-    });
-  }, {
-    threshold: 0.3,
-    rootMargin: '-100px 0px -100px 0px'
-  });
+      });
+    },
+    {
+      threshold: 0.3,
+      rootMargin: "-100px 0px -100px 0px",
+    }
+  );
 
   // Observe all timeline years
-  document.querySelectorAll('.timeline-year').forEach(year => {
+  document.querySelectorAll(".timeline-year").forEach((year) => {
     observer.observe(year);
   });
 }
@@ -1283,7 +1266,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.classList.add("timeline-mobile-optimized");
 
       // Reduce timeline animation complexity
-      const style = document.createElement('style');
+      const style = document.createElement("style");
       style.textContent = `
         .timeline-mobile-optimized .timeline-event {
           animation-duration: 0.2s !important;
@@ -1301,22 +1284,22 @@ document.addEventListener("DOMContentLoaded", () => {
     // Timeline-specific touch handling with debouncing
     let touchStartTime = 0;
     const debouncedTouchFeedback = window.debounce((target) => {
-      target.style.backgroundColor = 'rgba(77, 212, 255, 0.3)';
+      target.style.backgroundColor = "rgba(77, 212, 255, 0.3)";
       setTimeout(() => {
-        target.style.backgroundColor = '';
+        target.style.backgroundColor = "";
       }, 150);
     }, 10);
 
-    document.addEventListener('touchstart', (e) => {
+    document.addEventListener("touchstart", (e) => {
       touchStartTime = Date.now();
     });
 
-    document.addEventListener('touchend', (e) => {
+    document.addEventListener("touchend", (e) => {
       const touchDuration = Date.now() - touchStartTime;
 
       // Quick tap feedback for timeline elements
       if (touchDuration < 200) {
-        const target = e.target.closest('.arc-header, .event-header');
+        const target = e.target.closest(".arc-header, .event-header");
         if (target) {
           debouncedTouchFeedback(target);
         }

@@ -23,7 +23,12 @@
     "rivals": ["None"],
     "mentors": ["Rimuru"]
   },
-  "achievements": ["Became loyal to Rimuru", "Mastered death magic", "Commands undead forces", "Evolved through naming"],
+  "achievements": [
+    "Became loyal to Rimuru",
+    "Mastered death magic",
+    "Commands undead forces",
+    "Evolved through naming"
+  ],
   "weaknesses": ["Can be overly formal", "Limited by undead nature"],
   "specialties": ["Death Magic", "Necromancy", "Undead Command"],
   "evolution": [

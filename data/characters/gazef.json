@@ -23,7 +23,12 @@
     "rivals": ["None (respects all honorable opponents)"],
     "mentors": ["Experience", "Honor"]
   },
-  "achievements": ["Became renowned warrior", "Maintained honor", "Protected the innocent", "Demonstrated human strength"],
+  "achievements": [
+    "Became renowned warrior",
+    "Maintained honor",
+    "Protected the innocent",
+    "Demonstrated human strength"
+  ],
   "weaknesses": ["Limited by human nature", "Sometimes too honorable"],
   "specialties": ["Swordsmanship", "Honor", "Protection"],
   "evolution": [

@@ -23,7 +23,12 @@
     "rivals": ["None (maintains balance)"],
     "mentors": ["None (she is ancient)"]
   },
-  "achievements": ["Existed as True Dragon", "Mastered fire magic", "Maintained elemental balance", "Demonstrated ancient wisdom"],
+  "achievements": [
+    "Existed as True Dragon",
+    "Mastered fire magic",
+    "Maintained elemental balance",
+    "Demonstrated ancient wisdom"
+  ],
   "weaknesses": ["Can be detached", "Sometimes too ancient"],
   "specialties": ["Fire Magic", "True Dragon Power", "Ancient Wisdom"],
   "evolution": [

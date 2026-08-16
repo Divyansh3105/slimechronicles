@@ -1,1 +1,10 @@
 .vscode/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# OS Files
+desktop.ini
+Thumbs.db
+.DS_Store

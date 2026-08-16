@@ -23,7 +23,12 @@
     "rivals": ["None"],
     "mentors": ["Rimuru"]
   },
-  "achievements": ["Became one of Rimuru's first named monsters", "Evolved to hobgoblin", "Became village chief", "Established administrative systems"],
+  "achievements": [
+    "Became one of Rimuru's first named monsters",
+    "Evolved to hobgoblin",
+    "Became village chief",
+    "Established administrative systems"
+  ],
   "weaknesses": ["Limited combat ability", "Lower power level"],
   "specialties": ["Administration", "Organization", "Reliability"],
   "evolution": [

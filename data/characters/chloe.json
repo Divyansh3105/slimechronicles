@@ -23,7 +23,12 @@
     "rivals": ["Time itself"],
     "mentors": ["Time and experience"]
   },
-  "achievements": ["Mastered time manipulation", "Protected multiple timelines", "Became a Hero", "Altered destiny"],
+  "achievements": [
+    "Mastered time manipulation",
+    "Protected multiple timelines",
+    "Became a Hero",
+    "Altered destiny"
+  ],
   "weaknesses": ["Burdened by multiple timelines", "Complex existence"],
   "specialties": ["Time Magic", "Hero Abilities", "Timeline Protection"],
   "evolution": [

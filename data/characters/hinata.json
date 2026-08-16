@@ -23,7 +23,12 @@
     "rivals": ["Rimuru (initially)"],
     "mentors": ["Experience", "Hero training"]
   },
-  "achievements": ["Became a Hero", "Led crusaders", "Became ally to Rimuru", "Bridged human-monster gap"],
+  "achievements": [
+    "Became a Hero",
+    "Led crusaders",
+    "Became ally to Rimuru",
+    "Bridged human-monster gap"
+  ],
   "weaknesses": ["Initially judgmental", "Can be too rigid"],
   "specialties": ["Hero Abilities", "Swordsmanship", "Leadership"],
   "evolution": [

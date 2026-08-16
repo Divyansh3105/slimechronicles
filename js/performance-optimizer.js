@@ -1,11 +1,10 @@
-
 // Performance optimizer class - Detects device capabilities and applies optimizations
 class PerformanceOptimizer {
   constructor() {
     // Detect device performance characteristics for optimization decisions
     this.isLowEndDevice = this.detectLowEndDevice();
     this.isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
-    this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     // Initialize performance optimizations based on device capabilities
     this.init();
@@ -17,9 +16,11 @@ class PerformanceOptimizer {
     const indicators = {
       lowMemory: navigator.deviceMemory && navigator.deviceMemory < 2,
       lowCores: navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4,
-      slowConnection: navigator.connection && navigator.connection.effectiveType &&
-                     ['slow-2g', '2g', '3g'].includes(navigator.connection.effectiveType),
-      oldBrowser: !window.IntersectionObserver || !window.requestIdleCallback
+      slowConnection:
+        navigator.connection &&
+        navigator.connection.effectiveType &&
+        ["slow-2g", "2g", "3g"].includes(navigator.connection.effectiveType),
+      oldBrowser: !window.IntersectionObserver || !window.requestIdleCallback,
     };
 
     // Count number of low-end indicators present to determine device classification
@@ -45,7 +46,7 @@ class PerformanceOptimizer {
 
   // Apply optimizations for low-end devices - Disable resource-intensive visual effects
   applyLowEndOptimizations() {
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = `
       .particles, .starfield, .floating-elements {
         display: none !important;
@@ -77,7 +78,7 @@ class PerformanceOptimizer {
 
   // Apply reduced motion optimizations - Respect user accessibility preferences for motion
   applyReducedMotionOptimizations() {
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = `
       @media (prefers-reduced-motion: reduce) {
         * {
@@ -131,7 +132,7 @@ class PerformanceOptimizer {
   applyEmergencyOptimizations() {
     this.emergencyOptimizationsApplied = true;
 
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = `
       * {
         animation: none !important;
@@ -162,11 +163,11 @@ class PerformanceOptimizer {
   // Check if specific feature should be optimized - Determine optimization needs for individual features
   shouldOptimize(feature) {
     switch (feature) {
-      case 'particles':
+      case "particles":
         return this.isLowEndDevice || (this.isMobile && this.prefersReducedMotion);
-      case 'animations':
+      case "animations":
         return this.prefersReducedMotion || this.isLowEndDevice;
-      case 'background-effects':
+      case "background-effects":
         return this.isLowEndDevice;
       default:
         return false;
@@ -174,8 +175,8 @@ class PerformanceOptimizer {
   }
 }
 // Initialize performance optimizer based on document ready state - Ensure DOM is ready before optimization
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => {
     window.performanceOptimizer = new PerformanceOptimizer();
   });
 } else {

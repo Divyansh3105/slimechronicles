@@ -23,7 +23,11 @@
     "rivals": ["None"],
     "mentors": ["Rimuru"]
   },
-  "achievements": ["Evolved through naming", "Established scout network", "Mastered aerial reconnaissance"],
+  "achievements": [
+    "Evolved through naming",
+    "Established scout network",
+    "Mastered aerial reconnaissance"
+  ],
   "weaknesses": ["Limited combat ability", "Small size"],
   "specialties": ["Scouting", "Messenger Service", "Aerial Reconnaissance"],
   "evolution": [

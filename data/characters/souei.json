@@ -24,8 +24,18 @@
     "mentors": ["Rimuru"],
     "subordinates": ["Souka", "Various intelligence operatives"]
   },
-  "achievements": ["Established Tempest's intelligence network", "Mastered Shadow Clone technique", "Prevented numerous threats through espionage", "Evolved from Ogre to Divine Oni", "Created the Shadow Squad"],
-  "weaknesses": ["Can be overly secretive", "Sometimes acts independently", "Difficulty expressing emotions"],
+  "achievements": [
+    "Established Tempest's intelligence network",
+    "Mastered Shadow Clone technique",
+    "Prevented numerous threats through espionage",
+    "Evolved from Ogre to Divine Oni",
+    "Created the Shadow Squad"
+  ],
+  "weaknesses": [
+    "Can be overly secretive",
+    "Sometimes acts independently",
+    "Difficulty expressing emotions"
+  ],
   "specialties": ["Espionage", "Assassination", "Information Gathering", "Stealth Operations"],
   "evolution": [
     {

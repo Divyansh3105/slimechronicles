@@ -23,7 +23,12 @@
     "rivals": ["None"],
     "mentors": ["Rimuru", "Experience"]
   },
-  "achievements": ["Evolved to nine-tails", "Mastered illusion magic", "Became trusted companion", "Demonstrated spirit beast power"],
+  "achievements": [
+    "Evolved to nine-tails",
+    "Mastered illusion magic",
+    "Became trusted companion",
+    "Demonstrated spirit beast power"
+  ],
   "weaknesses": ["Can be overly elegant", "Sometimes prefers indirect methods"],
   "specialties": ["Illusion Magic", "Fire Magic", "Spirit Beast Abilities"],
   "evolution": [

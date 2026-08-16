@@ -1,11 +1,6 @@
-﻿
-/* ========== FEDERATION IMPACT ========== */
+﻿/* ========== FEDERATION IMPACT ========== */
 .federation-impact {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid var(--character-primary, var(--primary-blue));
   border-radius: 12px;
   padding: 2rem;
@@ -68,11 +63,7 @@
 .character-rating {
   margin-top: 2rem;
   padding: 1.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
   border-radius: 12px;
 }
@@ -127,8 +118,6 @@
   animation: starTwinkle 2s ease-in-out infinite;
 }
 
-
-
 .star.half {
   color: var(--accent-gold);
   opacity: 0.7;
@@ -174,11 +163,7 @@
   width: 160px;
   height: 160px;
   border-radius: 50%;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.9),
-    rgba(21, 27, 61, 0.7)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -212,11 +197,7 @@
 }
 
 .stats-radar {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
   border-radius: 12px;
   padding: 1.5rem;
@@ -230,11 +211,7 @@
 }
 
 .combat-abilities {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
   border-radius: 12px;
   padding: 1.5rem;
@@ -290,12 +267,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
   animation: shimmer 2s ease-in-out infinite;
 }
 
@@ -336,11 +308,7 @@
 }
 
 .battle-record {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
   border-radius: 12px;
   padding: 1.5rem;
@@ -472,11 +440,7 @@
 }
 
 .timeline-content {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.6),
-    rgba(21, 27, 61, 0.4)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.6), rgba(21, 27, 61, 0.4));
   border: 1px solid var(--character-primary, rgba(77, 212, 255, 0.2));
   border-radius: 8px;
   padding: 1rem;
@@ -485,21 +449,13 @@
 
 .timeline-item:hover .timeline-content {
   border-color: var(--character-primary, var(--primary-blue));
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   transform: translateX(5px);
 }
 
 .timeline-item.current .timeline-content {
   border-color: var(--character-primary, var(--primary-blue));
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.9),
-    rgba(21, 27, 61, 0.7)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
   box-shadow: 0 5px 20px var(--character-glow, rgba(77, 212, 255, 0.3));
 }
 
@@ -545,11 +501,7 @@
 }
 
 .modal-content {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.95),
-    rgba(21, 27, 61, 0.9)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(21, 27, 61, 0.9));
   border: 2px solid var(--primary-blue);
   border-radius: 20px;
   padding: 2rem;
@@ -595,11 +547,7 @@
 .error-container {
   text-align: center;
   padding: 3rem;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 51, 102, 0.1),
-    rgba(21, 27, 61, 0.8)
-  );
+  background: linear-gradient(135deg, rgba(255, 51, 102, 0.1), rgba(21, 27, 61, 0.8));
   border: 2px solid var(--accent-crimson);
   border-radius: 20px;
   margin: 2rem 0;
@@ -668,11 +616,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 1rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid rgba(77, 212, 255, 0.2);
   border-radius: 12px;
   cursor: pointer;
@@ -704,11 +648,7 @@
 .specialties-section {
   margin-top: 2rem;
   padding: 1.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.6),
-    rgba(21, 27, 61, 0.4)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.6), rgba(21, 27, 61, 0.4));
   border: 1px solid var(--character-primary, rgba(77, 212, 255, 0.2));
   border-radius: 12px;
 }
@@ -747,11 +687,7 @@
 .weaknesses-section {
   margin-top: 2rem;
   padding: 1.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 51, 102, 0.1),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(255, 51, 102, 0.1), rgba(21, 27, 61, 0.6));
   border: 1px solid rgba(255, 51, 102, 0.3);
   border-radius: 12px;
 }
@@ -822,11 +758,7 @@
   gap: 2rem;
   padding: 2rem;
   margin-bottom: 2rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.95),
-    rgba(21, 27, 61, 0.8)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(21, 27, 61, 0.8));
   border: 3px solid var(--character-primary, rgba(77, 212, 255, 0.3));
   border-radius: 20px;
   transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -1046,12 +978,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
   transition: left 0.5s ease;
 }
 
@@ -1176,4 +1103,3 @@
     justify-content: center;
   }
 }
-

@@ -23,8 +23,20 @@
     "rivals": ["Diablo (for Rimuru's attention)", "Anyone who threatens Rimuru"],
     "mentors": ["Rimuru", "Hakuro (combat training)"]
   },
-  "achievements": ["Became First Secretary", "Mastered Hercules Strength", "Developed unique Cook skill", "Protected Rimuru countless times", "Led successful military operations", "Evolved from Ogre to Wicked Oni"],
-  "weaknesses": ["Terrible cooking despite Cook skill", "Can be overly possessive of Rimuru", "Sometimes lacks subtlety in diplomatic situations", "Prone to jealousy"],
+  "achievements": [
+    "Became First Secretary",
+    "Mastered Hercules Strength",
+    "Developed unique Cook skill",
+    "Protected Rimuru countless times",
+    "Led successful military operations",
+    "Evolved from Ogre to Wicked Oni"
+  ],
+  "weaknesses": [
+    "Terrible cooking despite Cook skill",
+    "Can be overly possessive of Rimuru",
+    "Sometimes lacks subtlety in diplomatic situations",
+    "Prone to jealousy"
+  ],
   "specialties": ["Close Combat", "Bodyguard Duties", "Unwavering Loyalty", "Administrative Work"],
   "evolution": [
     {

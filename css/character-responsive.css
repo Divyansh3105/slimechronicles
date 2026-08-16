@@ -1669,11 +1669,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.9),
-    rgba(21, 27, 61, 0.7)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
   border: 2px solid var(--character-primary, var(--primary-blue));
   border-radius: 50%;
   backdrop-filter: blur(10px);
@@ -1756,12 +1752,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.4),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
   animation: masteryShimmer 2s ease-in-out infinite;
 }
 
@@ -2307,11 +2298,7 @@
 
 /* ========== ENHANCED EVOLUTION DETAILS ========== */
 .evolution-overview {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
   border-radius: 15px;
   padding: 1.5rem;
@@ -2322,11 +2309,7 @@
 .evolution-details {
   margin-top: 1.5rem;
   padding: 1.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.7),
-    rgba(21, 27, 61, 0.5)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.7), rgba(21, 27, 61, 0.5));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.2));
   border-radius: 12px;
   backdrop-filter: blur(8px);
@@ -2448,11 +2431,7 @@
 }
 
 .evolution-summary {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.7),
-    rgba(21, 27, 61, 0.5)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.7), rgba(21, 27, 61, 0.5));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
   border-radius: 15px;
   padding: 1.5rem;
@@ -2509,11 +2488,7 @@
   height: 50px;
   border-radius: 50%;
   border: 2px solid var(--character-primary, var(--primary-blue));
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.95),
-    rgba(21, 27, 61, 0.8)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(21, 27, 61, 0.8));
   color: var(--character-primary, var(--primary-blue));
   font-size: 1.2rem;
   cursor: pointer;
@@ -2678,11 +2653,7 @@
 }
 /* ========== EVOLUTION CONTEXT MENU & INTERACTIONS ========== */
 .evolution-context-menu {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.95),
-    rgba(21, 27, 61, 0.9)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(21, 27, 61, 0.9));
   border: 2px solid var(--character-primary, var(--primary-blue));
   border-radius: 8px;
   padding: 0.5rem 0;
@@ -2742,11 +2713,7 @@
 .evolution-comparison-ui {
   position: sticky;
   top: 2rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.95),
-    rgba(21, 27, 61, 0.8)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(21, 27, 61, 0.8));
   border: 3px solid var(--accent-gold);
   border-radius: 15px;
   padding: 1.5rem;
@@ -2836,11 +2803,7 @@
   bottom: -20px;
   width: 8px;
   height: 20px;
-  background: linear-gradient(
-    180deg,
-    var(--character-primary, var(--primary-blue)),
-    transparent
-  );
+  background: linear-gradient(180deg, var(--character-primary, var(--primary-blue)), transparent);
   border-radius: 0 0 4px 4px;
 }
 
@@ -2920,28 +2883,16 @@
 /* Dark Mode Specific Adjustments */
 @media (prefers-color-scheme: dark) {
   .evolution-context-menu {
-    background: linear-gradient(
-      135deg,
-      rgba(10, 14, 39, 0.98),
-      rgba(10, 14, 39, 0.95)
-    );
+    background: linear-gradient(135deg, rgba(10, 14, 39, 0.98), rgba(10, 14, 39, 0.95));
   }
 
   .evolution-comparison-ui {
-    background: linear-gradient(
-      135deg,
-      rgba(10, 14, 39, 0.98),
-      rgba(10, 14, 39, 0.9)
-    );
+    background: linear-gradient(135deg, rgba(10, 14, 39, 0.98), rgba(10, 14, 39, 0.9));
   }
 }
 /* ========== TRIGGER TYPE SPECIFIC COLORS ========== */
 .evolution-trigger.trigger-naming {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 215, 0, 0.9),
-    rgba(255, 193, 7, 0.8)
-  );
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(255, 193, 7, 0.8));
   border-color: var(--accent-gold);
   color: rgba(21, 27, 61, 0.95);
   text-shadow: 0 1px 2px rgba(255, 215, 0, 0.3);
@@ -2958,11 +2909,7 @@
 }
 
 .evolution-trigger.trigger-trauma {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 51, 102, 0.9),
-    rgba(220, 20, 60, 0.8)
-  );
+  background: linear-gradient(135deg, rgba(255, 51, 102, 0.9), rgba(220, 20, 60, 0.8));
   border-color: var(--accent-crimson);
   color: rgba(255, 255, 255, 0.95);
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
@@ -2979,11 +2926,7 @@
 }
 
 .evolution-trigger.trigger-skill {
-  background: linear-gradient(
-    135deg,
-    rgba(138, 43, 226, 0.9),
-    rgba(147, 51, 234, 0.8)
-  );
+  background: linear-gradient(135deg, rgba(138, 43, 226, 0.9), rgba(147, 51, 234, 0.8));
   border-color: #8a2be2;
   color: rgba(255, 255, 255, 0.95);
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
@@ -3000,11 +2943,7 @@
 }
 
 .evolution-trigger.trigger-ritual {
-  background: linear-gradient(
-    135deg,
-    rgba(0, 255, 136, 0.9),
-    rgba(34, 197, 94, 0.8)
-  );
+  background: linear-gradient(135deg, rgba(0, 255, 136, 0.9), rgba(34, 197, 94, 0.8));
   border-color: var(--accent-emerald);
   color: rgba(21, 27, 61, 0.95);
   text-shadow: 0 1px 2px rgba(0, 255, 136, 0.3);
@@ -3021,11 +2960,7 @@
 }
 
 .evolution-trigger.trigger-natural {
-  background: linear-gradient(
-    135deg,
-    rgba(59, 130, 246, 0.9),
-    rgba(37, 99, 235, 0.8)
-  );
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.9), rgba(37, 99, 235, 0.8));
   border-color: #3b82f6;
   color: rgba(255, 255, 255, 0.95);
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
@@ -3116,11 +3051,7 @@
 .no-achievements-message {
   text-align: center;
   padding: 3rem 2rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
   border-radius: 15px;
   backdrop-filter: blur(10px);
@@ -3297,11 +3228,7 @@
 }
 
 .achievement-overview {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.9),
-    rgba(21, 27, 61, 0.7)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
   border: 3px solid var(--character-primary, rgba(77, 212, 255, 0.5));
   border-radius: 20px;
   padding: 2rem;
@@ -3324,11 +3251,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
   border-radius: 15px;
   transition: all 0.3s ease;
@@ -3373,11 +3296,7 @@
 }
 
 .achievement-category {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
   border-radius: 15px;
   overflow: hidden;
@@ -3396,11 +3315,7 @@
   padding: 1.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.9),
-    rgba(21, 27, 61, 0.7)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
 }
 
 .achievement-category .category-header:hover {
@@ -3458,11 +3373,7 @@
 
 .achievement-card {
   position: relative;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.9),
-    rgba(21, 27, 61, 0.7)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
   border-radius: 15px;
   padding: 1.5rem;
@@ -3619,11 +3530,7 @@
 
 /* Achievement Showcase */
 .achievement-showcase {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.9),
-    rgba(21, 27, 61, 0.7)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
   border: 3px solid var(--accent-gold);
   border-radius: 20px;
   padding: 2rem;

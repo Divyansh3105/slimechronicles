@@ -44,18 +44,13 @@ class AnimatedBackground {
     try {
       // Check if particles.js is already loaded to avoid duplicate loading
       if (typeof particlesJS === "undefined") {
-        await this.loadScript(
-          "https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js",
-        );
+        await this.loadScript("https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js");
       }
 
       this.createParticlesContainer();
       this.initializeParticles();
     } catch (error) {
-      console.log(
-        "Failed to load particles.js, using base background only:",
-        error,
-      );
+      console.log("Failed to load particles.js, using base background only:", error);
     }
   }
 
@@ -265,9 +260,7 @@ class ParticleSystem {
     let count = 15; // Base particle count for desktop devices
 
     // Reduce particle count for mobile devices to maintain performance
-    if (
-      window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768
-    ) {
+    if (window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768) {
       count = 8;
     }
 
@@ -282,10 +275,7 @@ class ParticleSystem {
     }
 
     // Respect user's reduced motion preference for accessibility
-    if (
-      window.matchMedia &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       count = Math.floor(count * 0.3);
     }
 
@@ -354,8 +344,7 @@ class ParticleSystem {
       const particle = this.getParticle();
 
       // Apply random color class from predefined palette
-      const colorClass =
-        this.colors[Math.floor(Math.random() * this.colors.length)];
+      const colorClass = this.colors[Math.floor(Math.random() * this.colors.length)];
       particle.className = `particle ${colorClass}`;
 
       // Set random initial position using viewport units for responsiveness
@@ -629,10 +618,7 @@ document.addEventListener(
   "mousemove",
   window.throttle((e) => {
     // Only apply parallax if user hasn't requested reduced motion
-    if (
-      window.matchMedia &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return;
     }
 
@@ -654,5 +640,5 @@ document.addEventListener(
       starfield.style.setProperty("--parallax-x", `${xOffset * 0.5}px`);
       starfield.style.setProperty("--parallax-y", `${yOffset * 0.5}px`);
     }
-  }, 16),
+  }, 16)
 );

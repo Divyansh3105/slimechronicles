@@ -24,9 +24,25 @@
     "mentors": ["Ancient sword masters (deceased)"],
     "students": ["Benimaru", "Gobta", "Many Tempest soldiers"]
   },
-  "achievements": ["Became Chief Instructor", "Mastered multiple sword styles", "Trained countless warriors", "Achieved sword saint level", "Survived the Ogre village massacre", "Evolved from Ogre to Divine Oni"],
-  "weaknesses": ["Advanced age (though still formidable)", "Sometimes too focused on tradition", "Can be overly critical of students"],
-  "specialties": ["Swordsmanship", "Military Training", "Battle Strategy", "Martial Arts Philosophy"],
+  "achievements": [
+    "Became Chief Instructor",
+    "Mastered multiple sword styles",
+    "Trained countless warriors",
+    "Achieved sword saint level",
+    "Survived the Ogre village massacre",
+    "Evolved from Ogre to Divine Oni"
+  ],
+  "weaknesses": [
+    "Advanced age (though still formidable)",
+    "Sometimes too focused on tradition",
+    "Can be overly critical of students"
+  ],
+  "specialties": [
+    "Swordsmanship",
+    "Military Training",
+    "Battle Strategy",
+    "Martial Arts Philosophy"
+  ],
   "evolution": [
     {
       "form": "Ogre",

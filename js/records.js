@@ -9,9 +9,7 @@ let HISTORICAL_RECORDS = [];
 // Load records from HTML data - Extract record information from DOM elements
 function loadRecordsFromHTML() {
   // Query all record data elements from the page
-  const recordElements = document.querySelectorAll(
-    "#historical-records-data .record-data",
-  );
+  const recordElements = document.querySelectorAll("#historical-records-data .record-data");
 
   // Transform DOM elements into structured data objects
   HISTORICAL_RECORDS = Array.from(recordElements).map((element) => {
@@ -56,9 +54,7 @@ let expandedRecord = state.expandedRecord;
 // Filter records by category or importance - Apply filtering logic to record collection
 function filterRecords(records, filter) {
   if (filter === "all") return records;
-  return records.filter(
-    (record) => record.category === filter || record.importance === filter,
-  );
+  return records.filter((record) => record.category === filter || record.importance === filter);
 }
 
 // Sort records by specified criteria - Apply sorting logic based on user selection
@@ -67,12 +63,11 @@ function sortRecords(records, sortType) {
   switch (sortType) {
     case "chronological":
       return sorted;
-    case "importance":
+    case "importance": {
       // Define importance hierarchy for sorting priority
       const importanceOrder = { critical: 0, major: 1, moderate: 2 };
-      return sorted.sort(
-        (a, b) => importanceOrder[a.importance] - importanceOrder[b.importance],
-      );
+      return sorted.sort((a, b) => importanceOrder[a.importance] - importanceOrder[b.importance]);
+    }
     case "alphabetical":
       return sorted.sort((a, b) => a.title.localeCompare(b.title));
     case "volume":
@@ -96,10 +91,8 @@ function searchRecords(records, query) {
       record.title.toLowerCase().includes(lowercaseQuery) ||
       record.description.toLowerCase().includes(lowercaseQuery) ||
       record.details.toLowerCase().includes(lowercaseQuery) ||
-      record.participants.some((p) =>
-        p.toLowerCase().includes(lowercaseQuery),
-      ) ||
-      record.location.toLowerCase().includes(lowercaseQuery),
+      record.participants.some((p) => p.toLowerCase().includes(lowercaseQuery)) ||
+      record.location.toLowerCase().includes(lowercaseQuery)
   );
 }
 
@@ -178,9 +171,7 @@ function renderRecords(records = HISTORICAL_RECORDS) {
   }
 
   // Detect device type for responsive behavior
-  const isMobile = window.isMobileDevice
-    ? window.isMobileDevice()
-    : window.innerWidth <= 768;
+  const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
 
   // Generate HTML for each record card with dynamic styling and content
   grid.innerHTML = filteredRecords
@@ -265,7 +256,7 @@ function renderRecords(records = HISTORICAL_RECORDS) {
           this.style.transform = "scale(0.98)";
           this.style.transition = "transform 0.1s ease";
         },
-        { passive: true },
+        { passive: true }
       );
 
       // Track touch movement to distinguish from taps
@@ -279,7 +270,7 @@ function renderRecords(records = HISTORICAL_RECORDS) {
             this.style.transform = "";
           }
         },
-        { passive: true },
+        { passive: true }
       );
 
       // Handle touch end and trigger expansion if it was a tap
@@ -298,7 +289,7 @@ function renderRecords(records = HISTORICAL_RECORDS) {
             }
           }
         },
-        { passive: false },
+        { passive: false }
       );
     } else {
       // Desktop click handler
@@ -321,10 +312,7 @@ function renderRecords(records = HISTORICAL_RECORDS) {
 
     // Sound feedback for all interactions
     card.addEventListener("click", () => {
-      if (
-        window.SoundFeedback &&
-        typeof window.SoundFeedback.playEffect === "function"
-      ) {
+      if (window.SoundFeedback && typeof window.SoundFeedback.playEffect === "function") {
         window.SoundFeedback.playEffect("click");
       }
     });
@@ -373,23 +361,21 @@ function toggleRecordExpansion(recordId) {
     expandedRecord = recordId;
 
     // Collapse all other expanded records to maintain single expansion
-    document
-      .querySelectorAll(".record-details.expanded")
-      .forEach((otherDetails) => {
-        if (otherDetails !== detailsElement) {
-          const otherCard = otherDetails.closest(".record-card");
-          const otherBtn = otherCard.querySelector(".record-expand-btn");
-          const otherIcon = otherBtn.querySelector(".expand-icon");
-          const otherText = otherBtn.querySelector("span:first-child");
+    document.querySelectorAll(".record-details.expanded").forEach((otherDetails) => {
+      if (otherDetails !== detailsElement) {
+        const otherCard = otherDetails.closest(".record-card");
+        const otherBtn = otherCard.querySelector(".record-expand-btn");
+        const otherIcon = otherBtn.querySelector(".expand-icon");
+        const otherText = otherBtn.querySelector("span:first-child");
 
-          otherDetails.classList.remove("expanded");
-          otherText.textContent = "Show More";
-          otherIcon.textContent = "▼";
-          otherBtn.setAttribute("aria-label", "Show more details");
-          otherDetails.setAttribute("aria-hidden", "true");
-          otherBtn.classList.remove("expanded");
-        }
-      });
+        otherDetails.classList.remove("expanded");
+        otherText.textContent = "Show More";
+        otherIcon.textContent = "▼";
+        otherBtn.setAttribute("aria-label", "Show more details");
+        otherDetails.setAttribute("aria-hidden", "true");
+        otherBtn.classList.remove("expanded");
+      }
+    });
 
     // Expand the selected record with smooth animation
     detailsElement.classList.add("expanded");
@@ -412,10 +398,7 @@ function toggleRecordExpansion(recordId) {
   }
 
   // Play sound feedback if available
-  if (
-    window.SoundFeedback &&
-    typeof window.SoundFeedback.playEffect === "function"
-  ) {
+  if (window.SoundFeedback && typeof window.SoundFeedback.playEffect === "function") {
     window.SoundFeedback.playEffect("click");
   }
 
@@ -530,9 +513,7 @@ const handleSearch = window.debounce((query) => {
   }
 
   // Provide accessibility feedback for mobile users
-  if (
-    window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768
-  ) {
+  if (window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768) {
     const visibleCount = document.querySelectorAll(".record-card").length;
     if (query && visibleCount === 0) {
       window.announceToScreenReader("No records found for your search");
@@ -657,7 +638,7 @@ function ensureScrollingWorks() {
 
   // Reset overflow properties on potential blocking elements
   const potentialBlockers = document.querySelectorAll(
-    ".historical-records-container, .records-grid, .record-card, .record-details",
+    ".historical-records-container, .records-grid, .record-card, .record-details"
   );
   potentialBlockers.forEach((element) => {
     element.style.overflow = "visible";
@@ -772,10 +753,7 @@ function toggleHelp() {
   }
 
   // Play sound feedback if available
-  if (
-    window.SoundFeedback &&
-    typeof window.SoundFeedback.playEffect === "function"
-  ) {
+  if (window.SoundFeedback && typeof window.SoundFeedback.playEffect === "function") {
     window.SoundFeedback.playEffect("click");
   }
 }

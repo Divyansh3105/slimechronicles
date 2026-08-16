@@ -1,0 +1,28 @@
+{
+  "name": "slimechronicles",
+  "version": "1.0.0",
+  "description": "<div align=\"center\">",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint js/",
+    "format": "prettier --write \"**/*.{js,css,html,json}\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Divyansh3105/slimechronicles.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Divyansh3105/slimechronicles/issues"
+  },
+  "homepage": "https://github.com/Divyansh3105/slimechronicles#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.8.1",
+    "prettier": "^3.9.6"
+  }
+}

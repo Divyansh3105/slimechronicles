@@ -23,7 +23,12 @@
     "rivals": ["Other powerful beings"],
     "mentors": ["None (he is ancient)"]
   },
-  "achievements": ["Became Demon Lord", "Ruled giants for millennia", "Maintained ancient traditions", "Demonstrated honorable strength"],
+  "achievements": [
+    "Became Demon Lord",
+    "Ruled giants for millennia",
+    "Maintained ancient traditions",
+    "Demonstrated honorable strength"
+  ],
   "weaknesses": ["Can be overly straightforward", "Sometimes lacks subtlety"],
   "specialties": ["Physical Strength", "Giant Leadership", "Earth Magic"],
   "evolution": [

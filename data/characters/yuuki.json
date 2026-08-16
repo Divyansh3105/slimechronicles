@@ -23,7 +23,12 @@
     "rivals": ["Rimuru (complex relationship)"],
     "mentors": ["Knowledge from previous world"]
   },
-  "achievements": ["Reincarnated as otherworlder", "Gained powerful abilities", "Became strategic mastermind", "Influenced world events"],
+  "achievements": [
+    "Reincarnated as otherworlder",
+    "Gained powerful abilities",
+    "Became strategic mastermind",
+    "Influenced world events"
+  ],
   "weaknesses": ["Can be overly manipulative", "Sometimes too ambitious"],
   "specialties": ["Strategy", "Otherworlder Knowledge", "Manipulation"],
   "evolution": [

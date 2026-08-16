@@ -24,8 +24,18 @@
     "mentors": ["None (he is ancient)"],
     "subordinates": ["Demon subordinates", "Diplomatic staff"]
   },
-  "achievements": ["Became Rimuru's second secretary", "Mastered ultimate skills", "Eliminated countless threats to Tempest", "Established diplomatic protocols", "Evolved from Arch Demon to Demon Peer"],
-  "weaknesses": ["Obsessive devotion to Rimuru", "Can be overzealous in eliminating threats", "Disdain for those he deems unworthy"],
+  "achievements": [
+    "Became Rimuru's second secretary",
+    "Mastered ultimate skills",
+    "Eliminated countless threats to Tempest",
+    "Established diplomatic protocols",
+    "Evolved from Arch Demon to Demon Peer"
+  ],
+  "weaknesses": [
+    "Obsessive devotion to Rimuru",
+    "Can be overzealous in eliminating threats",
+    "Disdain for those he deems unworthy"
+  ],
   "specialties": ["Demonic Magic", "Diplomacy", "Administrative Excellence", "Threat Elimination"],
   "evolution": [
     {

@@ -85,9 +85,7 @@ class CharacterDataLoader {
 
       // Validate HTTP response status
       if (!response.ok) {
-        throw new Error(
-          `HTTP error! status: ${response.status} - ${response.statusText}`,
-        );
+        throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
       }
 
       // Parse JSON response data
@@ -168,10 +166,7 @@ class CharacterDataLoader {
       }
       return await response.json();
     } catch (error) {
-      console.error(
-        `Failed to load details for character ${characterId}:`,
-        error,
-      );
+      console.error(`Failed to load details for character ${characterId}:`, error);
 
       // Fallback to basic character data if detailed data fails to load
       const basicChar = this.basicCharacters?.find((c) => c.id === characterId);
@@ -208,7 +203,7 @@ class CharacterDataLoader {
       (char) =>
         char.name.toLowerCase().includes(searchTerm) ||
         char.role.toLowerCase().includes(searchTerm) ||
-        char.race.toLowerCase().includes(searchTerm),
+        char.race.toLowerCase().includes(searchTerm)
     );
   }
 
@@ -351,9 +346,7 @@ function setupTabNavigation() {
   });
 
   // Add mobile-specific optimizations for better performance
-  if (
-    window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768
-  ) {
+  if (window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768) {
     // Optimize for mobile performance by adding mobile class
     document.body.classList.add("mobile-device");
 
@@ -368,7 +361,7 @@ function setupTabNavigation() {
         () => {
           isScrolling = false;
         },
-        { passive: true },
+        { passive: true }
       );
 
       // Mark as scrolling if touch moves significantly
@@ -377,7 +370,7 @@ function setupTabNavigation() {
         () => {
           isScrolling = true;
         },
-        { passive: true },
+        { passive: true }
       );
 
       // Handle tab activation only if not scrolling
@@ -399,9 +392,7 @@ function setupTabNavigation() {
     document.documentElement.style.setProperty("--animation-duration", "0.2s");
 
     // Enable hardware acceleration for smooth scrolling
-    const scrollElements = document.querySelectorAll(
-      ".tab-section, .profile-content",
-    );
+    const scrollElements = document.querySelectorAll(".tab-section, .profile-content");
     scrollElements.forEach((element) => {
       element.style.transform = "translateZ(0)";
       element.style.willChange = "transform";
@@ -442,8 +433,7 @@ function renderCharacterProfile(character) {
     return;
   }
 
-  content.innerHTML =
-    generateProfileHeader(character, true) + generateProfileTabs(character);
+  content.innerHTML = generateProfileHeader(character, true) + generateProfileTabs(character);
 }
 
 // Generate profile header HTML - Create character header section with image and basic info
@@ -687,9 +677,7 @@ function generateCulturalImpactSection(character) {
 
 function generateInfluenceHighlights(worldInfluence) {
   // Extract key points from the world influence text
-  const sentences = worldInfluence
-    .split(".")
-    .filter((s) => s.trim().length > 0);
+  const sentences = worldInfluence.split(".").filter((s) => s.trim().length > 0);
   const highlights = sentences
     .slice(0, 4)
     .map((sentence, index) => {
@@ -703,10 +691,7 @@ function generateInfluenceHighlights(worldInfluence) {
     })
     .join("");
 
-  return (
-    highlights ||
-    '<p class="no-highlights">Key influences are being analyzed.</p>'
-  );
+  return highlights || '<p class="no-highlights">Key influences are being analyzed.</p>';
 }
 
 function generateLeadershipTraits(leadershipStyle) {
@@ -744,7 +729,7 @@ function generateLeadershipTraits(leadershipStyle) {
         <p class="trait-description">${trait.description}</p>
       </div>
     </div>
-  `,
+  `
     )
     .join("");
 }
@@ -765,7 +750,7 @@ function generateQuotesSection(character) {
           <p class="quote-text">"${quote.text}"</p>
           <p class="quote-context">— ${quote.context}</p>
         </div>
-      `,
+      `
         )
         .join("")}
     </div>
@@ -774,8 +759,7 @@ function generateQuotesSection(character) {
 
 // Generate enhanced overview section with improved UI
 function generateOverviewSection(character) {
-  const hasContent =
-    character.lore || character.backstory || character.personality;
+  const hasContent = character.lore || character.backstory || character.personality;
 
   if (!hasContent) {
     return `
@@ -850,7 +834,7 @@ function generateOverviewSection(character) {
                   .map(
                     (specialty) => `
                   <span class="specialty-tag-overview">${specialty}</span>
-                `,
+                `
                   )
                   .join("")}
               </div>
@@ -880,7 +864,7 @@ function generateOverviewSection(character) {
                     <span class="achievement-bullet">✓</span>
                     <span class="achievement-text">${achievement}</span>
                   </div>
-                `,
+                `
                   )
                   .join("")}
                 ${
@@ -1018,7 +1002,7 @@ function generateOverviewSection(character) {
                   .map(
                     (trait) => `
                   <span class="trait-badge">${trait}</span>
-                `,
+                `
                   )
                   .join("")}
               </div>
@@ -1056,7 +1040,7 @@ function generateOverviewSection(character) {
                       <span class="item-marker">▸</span>
                       <span class="item-text">${specialty}</span>
                     </div>
-                  `,
+                  `
                     )
                     .join("")}
                 </div>
@@ -1081,7 +1065,7 @@ function generateOverviewSection(character) {
                       <span class="item-marker">▸</span>
                       <span class="item-text">${weakness}</span>
                     </div>
-                  `,
+                  `
                     )
                     .join("")}
                 </div>
@@ -1128,15 +1112,12 @@ function extractPersonalityTraits(personalityText) {
   const traits = [];
   const text = personalityText.toLowerCase();
 
-  if (text.includes("kind") || text.includes("compassion"))
-    traits.push("Compassionate");
-  if (text.includes("strategic") || text.includes("tactical"))
-    traits.push("Strategic");
+  if (text.includes("kind") || text.includes("compassion")) traits.push("Compassionate");
+  if (text.includes("strategic") || text.includes("tactical")) traits.push("Strategic");
   if (text.includes("protective")) traits.push("Protective");
   if (text.includes("diplomatic")) traits.push("Diplomatic");
   if (text.includes("wise") || text.includes("wisdom")) traits.push("Wise");
-  if (text.includes("brave") || text.includes("courageous"))
-    traits.push("Brave");
+  if (text.includes("brave") || text.includes("courageous")) traits.push("Brave");
   if (text.includes("loyal")) traits.push("Loyal");
   if (text.includes("intelligent")) traits.push("Intelligent");
 
@@ -1300,7 +1281,7 @@ function generateBiographySection(character) {
                 </div>
                 <div class="quote-number">${index + 1}</div>
               </div>
-            `,
+            `
               )
               .join("")}
           </div>
@@ -1316,7 +1297,7 @@ function generateBiographySection(character) {
                   .map(
                     (_, index) => `
                   <span class="quote-indicator ${index === 0 ? "active" : ""}" data-index="${index}" onclick="scrollToQuote(${index})"></span>
-                `,
+                `
                   )
                   .join("")}
               </div>
@@ -1354,7 +1335,7 @@ function generateCharacterEssence(character) {
 
   if (character.philosophy) {
     essenceParts.push(
-      `Guided by a philosophy of ${character.philosophy.split(".")[0].toLowerCase()}`,
+      `Guided by a philosophy of ${character.philosophy.split(".")[0].toLowerCase()}`
     );
   }
 
@@ -1591,12 +1572,12 @@ function generateSkillsSection(character) {
                   </div>
                 </div>
               </div>
-            `,
+            `
               )
               .join("")}
           </div>
         </div>
-      `,
+      `
         )
         .join("")}
     </div>
@@ -1734,16 +1715,14 @@ function generateSkillSynergies(skills) {
         <p>${synergy.description}</p>
       </div>
     </div>
-  `,
+  `
     )
     .join("");
 }
 
 // Skill interaction functions
 function toggleSkillCategory(category) {
-  const categoryElement = document.querySelector(
-    `[data-category="${category}"]`,
-  );
+  const categoryElement = document.querySelector(`[data-category="${category}"]`);
   const skillsGrid = document.getElementById(`skills-${category}`);
   const toggleIcon = categoryElement.querySelector(".toggle-icon");
 
@@ -1885,7 +1864,7 @@ function generateRelationshipsSection(character) {
     "ally",
     "👥",
     "emerald",
-    "Trusted companions and partners in battle",
+    "Trusted companions and partners in battle"
   );
   const rivalsHTML = generateRelationshipCategory(
     character.relationships.rivals,
@@ -1893,7 +1872,7 @@ function generateRelationshipsSection(character) {
     "rival",
     "⚔️",
     "crimson",
-    "Adversaries and competitive opponents",
+    "Adversaries and competitive opponents"
   );
   const mentorsHTML = generateRelationshipCategory(
     character.relationships.mentors,
@@ -1901,7 +1880,7 @@ function generateRelationshipsSection(character) {
     "mentor",
     "🎓",
     "gold",
-    "Teachers and guides who shaped their path",
+    "Teachers and guides who shaped their path"
   );
   const subordinatesHTML = generateRelationshipCategory(
     character.relationships.subordinates,
@@ -1909,7 +1888,7 @@ function generateRelationshipsSection(character) {
     "subordinate",
     "👤",
     "blue",
-    "Those who serve under their leadership",
+    "Those who serve under their leadership"
   );
   const friendsHTML = generateRelationshipCategory(
     character.relationships.friends,
@@ -1917,7 +1896,7 @@ function generateRelationshipsSection(character) {
     "friend",
     "💙",
     "cyan",
-    "Close personal connections and confidants",
+    "Close personal connections and confidants"
   );
 
   return `
@@ -1984,7 +1963,7 @@ function generateRelationshipsSection(character) {
                 <span class="node-type">${rel.type}</span>
               </div>
             </div>
-          `,
+          `
             )
             .join("")}
         </div>
@@ -2010,14 +1989,7 @@ function generateRelationshipsSection(character) {
   `;
 }
 
-function generateRelationshipCategory(
-  relationships,
-  title,
-  type,
-  icon,
-  color,
-  description,
-) {
+function generateRelationshipCategory(relationships, title, type, icon, color, description) {
   if (!relationships || relationships.length === 0) {
     return "";
   }
@@ -2135,8 +2107,7 @@ function generateRelationshipInsights(character) {
     insights.push({
       icon: "🔍",
       title: "Mysterious Connections",
-      description:
-        "Relationship patterns are still being analyzed and documented.",
+      description: "Relationship patterns are still being analyzed and documented.",
       color: "cyan",
     });
   }
@@ -2151,7 +2122,7 @@ function generateRelationshipInsights(character) {
         <p>${insight.description}</p>
       </div>
     </div>
-  `,
+  `
     )
     .join("");
 }
@@ -2212,9 +2183,7 @@ function navigateToCharacter(characterId) {
 }
 
 function showRelationshipDetails(name) {
-  window.showNotification(
-    `Detailed relationship analysis for ${name} coming soon!`,
-  );
+  window.showNotification(`Detailed relationship analysis for ${name} coming soon!`);
 }
 
 function generateAchievementsSection(character) {
@@ -2231,9 +2200,7 @@ function generateAchievementsSection(character) {
   }
 
   // Categorize achievements by type
-  const categorizedAchievements = categorizeAchievements(
-    character.achievements,
-  );
+  const categorizedAchievements = categorizeAchievements(character.achievements);
   const totalAchievements = character.achievements.length;
   const achievementRarity = getAchievementRarity(totalAchievements);
 
@@ -2304,12 +2271,12 @@ function generateAchievementsSection(character) {
                   </div>
                   <div class="achievement-glow"></div>
                 </div>
-              `,
+              `
                 )
                 .join("")}
             </div>
           </div>
-        `,
+        `
           )
           .join("")}
       </div>
@@ -2369,8 +2336,7 @@ function categorizeAchievements(achievements) {
     } else if (
       achievementLower.includes("defeated") ||
       achievementLower.includes("combat") ||
-      (achievementLower.includes("mastered") &&
-        achievementLower.includes("technique")) ||
+      (achievementLower.includes("mastered") && achievementLower.includes("technique")) ||
       achievementLower.includes("warrior") ||
       achievementLower.includes("battle")
     ) {
@@ -2437,48 +2403,17 @@ function getCategoryIcon(category) {
 function getAchievementIcon(achievement) {
   const achievementLower = achievement.toLowerCase();
 
-  if (
-    achievementLower.includes("founded") ||
-    achievementLower.includes("established")
-  )
-    return "🏛️";
-  if (
-    achievementLower.includes("defeated") ||
-    achievementLower.includes("battle")
-  )
-    return "⚔️";
-  if (
-    achievementLower.includes("evolved") ||
-    achievementLower.includes("became")
-  )
-    return "🔄";
-  if (
-    achievementLower.includes("united") ||
-    achievementLower.includes("alliance")
-  )
-    return "🤝";
-  if (
-    achievementLower.includes("magic") ||
-    achievementLower.includes("mastered")
-  )
-    return "✨";
-  if (
-    achievementLower.includes("demon lord") ||
-    achievementLower.includes("true dragon")
-  )
+  if (achievementLower.includes("founded") || achievementLower.includes("established")) return "🏛️";
+  if (achievementLower.includes("defeated") || achievementLower.includes("battle")) return "⚔️";
+  if (achievementLower.includes("evolved") || achievementLower.includes("became")) return "🔄";
+  if (achievementLower.includes("united") || achievementLower.includes("alliance")) return "🤝";
+  if (achievementLower.includes("magic") || achievementLower.includes("mastered")) return "✨";
+  if (achievementLower.includes("demon lord") || achievementLower.includes("true dragon"))
     return "👑";
   if (achievementLower.includes("hero")) return "🦸";
   if (achievementLower.includes("named")) return "📝";
-  if (
-    achievementLower.includes("trade") ||
-    achievementLower.includes("economy")
-  )
-    return "💰";
-  if (
-    achievementLower.includes("peace") ||
-    achievementLower.includes("diplomatic")
-  )
-    return "🕊️";
+  if (achievementLower.includes("trade") || achievementLower.includes("economy")) return "💰";
+  if (achievementLower.includes("peace") || achievementLower.includes("diplomatic")) return "🕊️";
 
   return "🏆";
 }
@@ -2525,10 +2460,7 @@ function getAchievementCardRarity(achievement) {
     achievementLower.includes("evolved")
   )
     return "epic";
-  if (
-    achievementLower.includes("became") ||
-    achievementLower.includes("established")
-  )
+  if (achievementLower.includes("became") || achievementLower.includes("established"))
     return "rare";
 
   return "common";
@@ -2543,8 +2475,7 @@ function generateEvolutionSection(character) {
     totalEvolutions: totalForms,
     powerGrowth: Math.round((totalForms - 1) * 25), // Estimated power growth percentage
     timeSpan: "Unknown", // Could be calculated from data if available
-    complexity:
-      totalForms > 4 ? "Legendary" : totalForms > 2 ? "Advanced" : "Basic",
+    complexity: totalForms > 4 ? "Legendary" : totalForms > 2 ? "Advanced" : "Basic",
   };
 
   return `
@@ -2614,7 +2545,7 @@ function generateEvolutionSection(character) {
               </div>
             </div>
           </div>
-        `,
+        `
           )
           .join("")}
       </div>
@@ -2640,14 +2571,9 @@ function generateEvolutionAbilities(form, index) {
     4: ["🌟 Ultimate Power", "🌍 Reality Manipulation"],
   };
 
-  const abilities = abilityMap[index] || [
-    "✨ Enhanced Abilities",
-    "🔮 New Powers",
-  ];
+  const abilities = abilityMap[index] || ["✨ Enhanced Abilities", "🔮 New Powers"];
 
-  return abilities
-    .map((ability) => `<span class="ability-tag">${ability}</span>`)
-    .join("");
+  return abilities.map((ability) => `<span class="ability-tag">${ability}</span>`).join("");
 }
 
 // Helper function to generate evolution impact description
@@ -2660,9 +2586,7 @@ function generateEvolutionImpact(form, index) {
     "Reached the pinnacle of power with reality-altering abilities.",
   ];
 
-  return (
-    impactDescriptions[index] || "Significant growth in power and abilities."
-  );
+  return impactDescriptions[index] || "Significant growth in power and abilities.";
 }
 
 // Helper function to determine trigger type and apply appropriate styling
@@ -2689,10 +2613,7 @@ function getTriggerTypeClass(trigger) {
     triggerLower.includes("ritual")
   ) {
     return "trigger-ritual";
-  } else if (
-    triggerLower.includes("natural") ||
-    triggerLower.includes("reincarnation")
-  ) {
+  } else if (triggerLower.includes("natural") || triggerLower.includes("reincarnation")) {
     return "trigger-natural";
   }
 
@@ -2702,9 +2623,7 @@ function getTriggerTypeClass(trigger) {
 // Function to toggle evolution details
 function toggleEvolutionDetails(index) {
   const detailsElement = document.getElementById(`evolution-details-${index}`);
-  const evolutionForm = document.querySelector(
-    `[data-evolution-index="${index}"]`,
-  );
+  const evolutionForm = document.querySelector(`[data-evolution-index="${index}"]`);
 
   if (detailsElement) {
     const isVisible = detailsElement.style.display !== "none";
@@ -2751,10 +2670,7 @@ function toggleEvolutionDetails(index) {
 
       // Show notification
       if (window.showNotification) {
-        window.showNotification(
-          `Viewing details for evolution stage ${index + 1}`,
-          "info",
-        );
+        window.showNotification(`Viewing details for evolution stage ${index + 1}`, "info");
       }
     }
   }
@@ -2842,11 +2758,7 @@ function setupTabSwitching() {
         targetSection.classList.add("active");
 
         // Smooth scroll to section on mobile devices
-        if (
-          window.isMobileDevice
-            ? window.isMobileDevice()
-            : window.innerWidth <= 768
-        ) {
+        if (window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768) {
           targetSection.scrollIntoView({
             behavior: "smooth",
             block: "start",
@@ -2884,8 +2796,7 @@ function setupTabSwitching() {
   // Ensure first tab is visible on mobile on page load
   if (tabs.length > 0 && window.innerWidth <= 768) {
     setTimeout(() => {
-      const activeTab =
-        document.querySelector(".profile-tab.active") || tabs[0];
+      const activeTab = document.querySelector(".profile-tab.active") || tabs[0];
       activeTab.scrollIntoView({
         behavior: "auto",
         block: "nearest",
@@ -2905,7 +2816,7 @@ function setupTabSwitching() {
             tabsContainer.style.setProperty("--scroll-hint-opacity", "0");
           }
         },
-        { once: true },
+        { once: true }
       );
     }
   }
@@ -2941,9 +2852,7 @@ function createFloatingElements(character) {
   if (!container) return;
 
   // Adjust particle count based on device type for performance
-  const isMobile = window.isMobileDevice
-    ? window.isMobileDevice()
-    : window.innerWidth <= 768;
+  const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
   const particleCount = isMobile ? 3 : 6;
 
   // Clear existing particles before creating new ones
@@ -2978,7 +2887,7 @@ async function loadCharacterProfile() {
         GameState: !!window.GameState ? "Available" : "Missing",
         CharacterLoader: !!window.CharacterLoader ? "Available" : "Missing",
       },
-      true,
+      true
     );
     return;
   }
@@ -2996,7 +2905,7 @@ async function loadCharacterProfile() {
         GameState: "Missing",
         CharacterLoader: !!window.CharacterLoader ? "Available" : "Missing",
       },
-      true,
+      true
     );
     return;
   }
@@ -3006,12 +2915,11 @@ async function loadCharacterProfile() {
     window.showLoadingIndicator(
       "profile-content",
       "Loading Character Data...",
-      "Please wait while we fetch the character information.",
+      "Please wait while we fetch the character information."
     );
 
     // Load basic character information first for quick display
-    const basicCharacter =
-      await window.GameState.getBasicCharacter(characterId);
+    const basicCharacter = await window.GameState.getBasicCharacter(characterId);
 
     // Handle case where character doesn't exist
     if (!basicCharacter) {
@@ -3025,7 +2933,7 @@ async function loadCharacterProfile() {
           GameState: "Available",
           CharacterLoader: !!window.CharacterLoader ? "Available" : "Missing",
         },
-        true,
+        true
       );
       return;
     }
@@ -3048,9 +2956,7 @@ async function loadCharacterProfile() {
     window.hideLoadingIndicator();
 
     // Show success notification to user
-    window.showNotification(
-      `${basicCharacter.name} profile loaded successfully!`,
-    );
+    window.showNotification(`${basicCharacter.name} profile loaded successfully!`);
   } catch (error) {
     console.error("Error loading character:", error);
     window.displayError(
@@ -3064,7 +2970,7 @@ async function loadCharacterProfile() {
         GameState: !!window.GameState ? "Available" : "Missing",
         CharacterLoader: !!window.CharacterLoader ? "Available" : "Missing",
       },
-      true,
+      true
     );
     window.hideLoadingIndicator();
   }
@@ -3094,9 +3000,7 @@ function toggleFavorite() {
   if (!characterId) return;
 
   const favoriteIcon = document.getElementById("favorite-icon");
-  const favorites = JSON.parse(
-    localStorage.getItem("favoriteCharacters") || "[]",
-  );
+  const favorites = JSON.parse(localStorage.getItem("favoriteCharacters") || "[]");
 
   const isFavorited = favorites.includes(characterId);
 
@@ -3129,9 +3033,7 @@ function initializeFavoriteStatus() {
   const characterId = window.getURLParameter("id");
   if (!characterId) return;
 
-  const favorites = JSON.parse(
-    localStorage.getItem("favoriteCharacters") || "[]",
-  );
+  const favorites = JSON.parse(localStorage.getItem("favoriteCharacters") || "[]");
   const favoriteIcon = document.getElementById("favorite-icon");
 
   if (favorites.includes(characterId)) {
@@ -3310,8 +3212,7 @@ function initializeScrollProgress() {
 
   function updateScrollProgress() {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const scrollHeight =
-      document.documentElement.scrollHeight - window.innerHeight;
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
     const scrollProgress = (scrollTop / scrollHeight) * 100;
 
     scrollIndicator.style.transform = `scaleX(${scrollProgress / 100})`;
@@ -3352,11 +3253,9 @@ function addPageTransitions() {
   }, observerOptions);
 
   // Observe all major sections
-  document
-    .querySelectorAll(".profile-section, .info-card, .skill-card-detailed")
-    .forEach((el) => {
-      observer.observe(el);
-    });
+  document.querySelectorAll(".profile-section, .info-card, .skill-card-detailed").forEach((el) => {
+    observer.observe(el);
+  });
 }
 
 // Performance monitoring
@@ -3374,16 +3273,11 @@ function initializePerformanceMonitoring() {
         // Store performance metrics
         const metrics = {
           loadTime,
-          domContentLoaded:
-            perfData.domContentLoadedEventEnd -
-            perfData.domContentLoadedEventStart,
+          domContentLoaded: perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart,
           timestamp: Date.now(),
         };
 
-        localStorage.setItem(
-          "characterPagePerformance",
-          JSON.stringify(metrics),
-        );
+        localStorage.setItem("characterPagePerformance", JSON.stringify(metrics));
       }, 0);
     });
   }
@@ -3506,16 +3400,12 @@ class EvolutionManager {
 
   // Toggle evolution selection for comparison
   toggleEvolutionSelection(index) {
-    const evolutionForm = document.querySelector(
-      `[data-evolution-index="${index}"]`,
-    );
+    const evolutionForm = document.querySelector(`[data-evolution-index="${index}"]`);
     if (!evolutionForm) return;
 
     if (this.selectedEvolutions.includes(index)) {
       // Remove from selection
-      this.selectedEvolutions = this.selectedEvolutions.filter(
-        (i) => i !== index,
-      );
+      this.selectedEvolutions = this.selectedEvolutions.filter((i) => i !== index);
       evolutionForm.classList.remove("evolution-selected");
     } else {
       // Add to selection (max 2 for comparison)
@@ -3588,9 +3478,7 @@ class EvolutionManager {
     const allDetails = document.querySelectorAll(".evolution-details");
     const allForms = document.querySelectorAll(".evolution-form");
 
-    const anyVisible = Array.from(allDetails).some(
-      (detail) => detail.style.display !== "none",
-    );
+    const anyVisible = Array.from(allDetails).some((detail) => detail.style.display !== "none");
 
     allDetails.forEach((detail, index) => {
       if (anyVisible) {
@@ -3667,7 +3555,7 @@ class EvolutionManager {
         () => {
           contextMenu.remove();
         },
-        { once: true },
+        { once: true }
       );
     }, 100);
   }
@@ -3678,7 +3566,7 @@ class EvolutionManager {
       if (e.target.closest(".evolution-timeline")) {
         const evolutionForms = document.querySelectorAll(".evolution-form");
         const currentIndex = Array.from(evolutionForms).findIndex((form) =>
-          form.classList.contains("evolution-active"),
+          form.classList.contains("evolution-active")
         );
 
         switch (e.key) {
@@ -3750,10 +3638,7 @@ class EvolutionManager {
     } else if (navigator.clipboard) {
       navigator.clipboard.writeText(shareText).then(() => {
         if (window.showNotification) {
-          window.showNotification(
-            "Evolution info copied to clipboard!",
-            "success",
-          );
+          window.showNotification("Evolution info copied to clipboard!", "success");
         }
       });
     }
@@ -3788,7 +3673,7 @@ class EvolutionManager {
     if (window.showNotification) {
       window.showNotification(
         "Comparison mode enabled. Click another evolution to compare.",
-        "info",
+        "info"
       );
     }
   }
@@ -3928,16 +3813,11 @@ loadCharacterProfile = async function () {
 };
 // Achievement interaction functions
 function toggleAchievementCategory(category) {
-  const categoryElement = document.querySelector(
-    `[data-category="${category}"]`,
-  );
+  const categoryElement = document.querySelector(`[data-category="${category}"]`);
   const achievementGrid = document.getElementById(`achievements-${category}`);
   const toggleIcon = categoryElement.querySelector(".toggle-icon");
 
-  if (
-    achievementGrid.style.display === "none" ||
-    !achievementGrid.style.display
-  ) {
+  if (achievementGrid.style.display === "none" || !achievementGrid.style.display) {
     // Show category
     achievementGrid.style.display = "grid";
     toggleIcon.textContent = "▲";
@@ -3975,19 +3855,12 @@ function showAchievementDetails(category, index) {
   }
 
   // Get achievement data
-  const categoryElement = document.querySelector(
-    `[data-category="${category}"]`,
-  );
-  const achievementCards =
-    categoryElement.querySelectorAll(".achievement-card");
+  const categoryElement = document.querySelector(`[data-category="${category}"]`);
+  const achievementCards = categoryElement.querySelectorAll(".achievement-card");
   const clickedCard = achievementCards[index];
-  const achievementTitle =
-    clickedCard.querySelector(".achievement-title").textContent;
-  const achievementDescription = clickedCard.querySelector(
-    ".achievement-description",
-  ).textContent;
-  const achievementIcon =
-    clickedCard.querySelector(".achievement-icon").textContent;
+  const achievementTitle = clickedCard.querySelector(".achievement-title").textContent;
+  const achievementDescription = clickedCard.querySelector(".achievement-description").textContent;
+  const achievementIcon = clickedCard.querySelector(".achievement-icon").textContent;
   const achievementRarity = clickedCard
     .querySelector(".achievement-rarity")
     .className.split(" ")[1];
@@ -4065,10 +3938,7 @@ function shareAchievement(title, description) {
   } else if (navigator.clipboard) {
     navigator.clipboard.writeText(shareText).then(() => {
       if (window.showNotification) {
-        window.showNotification(
-          "Achievement details copied to clipboard!",
-          "success",
-        );
+        window.showNotification("Achievement details copied to clipboard!", "success");
       }
     });
   }
@@ -4111,27 +3981,25 @@ function updateAchievementFavoriteIndicators() {
   const favoriteKey = `favoriteAchievements_${characterId}`;
   const favorites = JSON.parse(localStorage.getItem(favoriteKey) || "[]");
 
-  document
-    .querySelectorAll(".achievement-card")
-    .forEach((card, globalIndex) => {
-      const category = card.closest(".achievement-category").dataset.category;
-      const localIndex = Array.from(card.parentElement.children).indexOf(card);
-      const achievementKey = `${category}_${localIndex}`;
+  document.querySelectorAll(".achievement-card").forEach((card, globalIndex) => {
+    const category = card.closest(".achievement-category").dataset.category;
+    const localIndex = Array.from(card.parentElement.children).indexOf(card);
+    const achievementKey = `${category}_${localIndex}`;
 
-      // Remove existing favorite indicator
-      const existingIndicator = card.querySelector(".achievement-favorite");
-      if (existingIndicator) {
-        existingIndicator.remove();
-      }
+    // Remove existing favorite indicator
+    const existingIndicator = card.querySelector(".achievement-favorite");
+    if (existingIndicator) {
+      existingIndicator.remove();
+    }
 
-      // Add favorite indicator if favorited
-      if (favorites.includes(achievementKey)) {
-        const indicator = document.createElement("div");
-        indicator.className = "achievement-favorite";
-        indicator.innerHTML = "⭐";
-        card.appendChild(indicator);
-      }
-    });
+    // Add favorite indicator if favorited
+    if (favorites.includes(achievementKey)) {
+      const indicator = document.createElement("div");
+      indicator.className = "achievement-favorite";
+      indicator.innerHTML = "⭐";
+      card.appendChild(indicator);
+    }
+  });
 }
 
 // Initialize achievement features when page loads

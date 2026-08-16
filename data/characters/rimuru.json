@@ -23,7 +23,12 @@
     "rivals": ["Clayman", "Yuuki Kagurazaka"],
     "mentors": ["Great Sage", "Veldora"]
   },
-  "achievements": ["Founded Jura-Tempest Federation", "Became a True Demon Lord", "Defeated Clayman", "United multiple races"],
+  "achievements": [
+    "Founded Jura-Tempest Federation",
+    "Became a True Demon Lord",
+    "Defeated Clayman",
+    "United multiple races"
+  ],
   "weaknesses": ["Overly trusting", "Sometimes naive about politics"],
   "specialties": ["Diplomacy", "Magic Analysis", "Monster Evolution"],
   "evolution": [

@@ -49,20 +49,7 @@ const JURA_TEMPEST_STATS = {
 };
 
 // Month abbreviations for date formatting
-const MONTHS = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 // Event log storage for activity tracking
 const eventLog = [];
@@ -370,7 +357,7 @@ function renderEventLog() {
       <div class="event-text">${e.text}</div>
       <div class="event-time">${e.time}</div>
     </div>
-  `,
+  `
     )
     .join("");
 }
@@ -475,8 +462,8 @@ function initInteractiveElements() {
         }
 
         // Add role-specific glow
-        const roleClass = Array.from(figure.classList).find(cls =>
-          ['supreme', 'military', 'enforcement', 'diplomacy'].includes(cls)
+        const roleClass = Array.from(figure.classList).find((cls) =>
+          ["supreme", "military", "enforcement", "diplomacy"].includes(cls)
         );
         addRoleGlow(figure, roleClass);
       });
@@ -690,15 +677,13 @@ function initIntersectionObserver() {
       {
         threshold: 0.1,
         rootMargin: "50px",
-      },
+      }
     );
 
     // Observe elements for scroll-triggered animations
-    document
-      .querySelectorAll(".stat-card, .state-card, .analytics-section")
-      .forEach((el) => {
-        observer.observe(el);
-      });
+    document.querySelectorAll(".stat-card, .state-card, .analytics-section").forEach((el) => {
+      observer.observe(el);
+    });
   }
 }
 
@@ -801,18 +786,14 @@ window.addEventListener("error", (e) => {
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) {
     // Pause animations when tab is not visible to save resources
-    document
-      .querySelectorAll(".stat-card, .emblem-core, .ring")
-      .forEach((el) => {
-        el.style.animationPlayState = "paused";
-      });
+    document.querySelectorAll(".stat-card, .emblem-core, .ring").forEach((el) => {
+      el.style.animationPlayState = "paused";
+    });
   } else {
     // Resume animations when tab becomes visible
-    document
-      .querySelectorAll(".stat-card, .emblem-core, .ring")
-      .forEach((el) => {
-        el.style.animationPlayState = "running";
-      });
+    document.querySelectorAll(".stat-card, .emblem-core, .ring").forEach((el) => {
+      el.style.animationPlayState = "running";
+    });
   }
 });
 
@@ -821,8 +802,8 @@ window.updateOverview = updateOverview;
 
 // Enhanced interaction helper functions
 function createHoverRipple(element) {
-  const ripple = document.createElement('div');
-  ripple.className = 'hover-ripple';
+  const ripple = document.createElement("div");
+  ripple.className = "hover-ripple";
   ripple.style.cssText = `
     position: absolute;
     top: 50%;
@@ -837,7 +818,7 @@ function createHoverRipple(element) {
     z-index: 1;
   `;
 
-  element.style.position = 'relative';
+  element.style.position = "relative";
   element.appendChild(ripple);
 
   setTimeout(() => {
@@ -849,61 +830,65 @@ function createHoverRipple(element) {
 
 function addPillarGlow(pillar, pillarType) {
   const glowColors = {
-    protection: 'rgba(77, 212, 255, 0.4)',
-    merit: 'rgba(255, 215, 0, 0.4)',
-    unity: 'rgba(0, 255, 136, 0.4)',
-    law: 'rgba(170, 85, 255, 0.4)',
-    growth: 'rgba(255, 51, 102, 0.4)'
+    protection: "rgba(77, 212, 255, 0.4)",
+    merit: "rgba(255, 215, 0, 0.4)",
+    unity: "rgba(0, 255, 136, 0.4)",
+    law: "rgba(170, 85, 255, 0.4)",
+    growth: "rgba(255, 51, 102, 0.4)",
   };
 
-  const color = glowColors[pillarType] || 'rgba(77, 212, 255, 0.4)';
+  const color = glowColors[pillarType] || "rgba(77, 212, 255, 0.4)";
   pillar.style.boxShadow = `0 0 30px ${color}, 0 20px 50px rgba(0, 0, 0, 0.3)`;
 }
 
 function removePillarGlow(pillar) {
-  pillar.style.boxShadow = '';
+  pillar.style.boxShadow = "";
 }
 
 function addRoleGlow(figure, roleClass) {
   const roleColors = {
-    supreme: 'rgba(255, 215, 0, 0.4)',
-    military: 'rgba(255, 87, 87, 0.4)',
-    enforcement: 'rgba(170, 85, 255, 0.4)',
-    diplomacy: 'rgba(0, 255, 136, 0.4)'
+    supreme: "rgba(255, 215, 0, 0.4)",
+    military: "rgba(255, 87, 87, 0.4)",
+    enforcement: "rgba(170, 85, 255, 0.4)",
+    diplomacy: "rgba(0, 255, 136, 0.4)",
   };
 
-  const color = roleColors[roleClass] || 'rgba(77, 212, 255, 0.4)';
+  const color = roleColors[roleClass] || "rgba(77, 212, 255, 0.4)";
   figure.style.boxShadow = `0 0 25px ${color}, 0 25px 55px rgba(0, 0, 0, 0.5)`;
 }
 
 function removeRoleGlow(figure) {
-  figure.style.boxShadow = '';
+  figure.style.boxShadow = "";
 }
 
 function addNumberCardEffect(card) {
-  const cardType = card.classList.contains('anime-card') ? 'anime' :
-                   card.classList.contains('novel-card') ? 'novel' :
-                   card.classList.contains('revenue-card') ? 'revenue' : 'default';
+  const cardType = card.classList.contains("anime-card")
+    ? "anime"
+    : card.classList.contains("novel-card")
+      ? "novel"
+      : card.classList.contains("revenue-card")
+        ? "revenue"
+        : "default";
 
   const effects = {
-    anime: 'rgba(77, 212, 255, 0.3)',
-    novel: 'rgba(0, 255, 136, 0.3)',
-    revenue: 'rgba(255, 215, 0, 0.3)',
-    default: 'rgba(77, 212, 255, 0.3)'
+    anime: "rgba(77, 212, 255, 0.3)",
+    novel: "rgba(0, 255, 136, 0.3)",
+    revenue: "rgba(255, 215, 0, 0.3)",
+    default: "rgba(77, 212, 255, 0.3)",
   };
 
   const color = effects[cardType];
   card.style.boxShadow = `0 0 30px ${color}, 0 20px 55px rgba(0, 0, 0, 0.35)`;
-  card.style.transform = 'translateY(-6px) scale(1.02)';
+  card.style.transform = "translateY(-6px) scale(1.02)";
 }
 
 function removeNumberCardEffect(card) {
-  card.style.boxShadow = '';
-  card.style.transform = '';
+  card.style.boxShadow = "";
+  card.style.transform = "";
 }
 
 // Add CSS animations dynamically
-const style = document.createElement('style');
+const style = document.createElement("style");
 style.textContent = `
   @keyframes hoverRipple {
     0% {

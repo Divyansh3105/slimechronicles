@@ -23,7 +23,12 @@
     "rivals": ["None"],
     "mentors": ["Ramiris"]
   },
-  "achievements": ["Developed personality", "Mastered defensive magic", "Protected Ramiris", "Evolved beyond simple golem"],
+  "achievements": [
+    "Developed personality",
+    "Mastered defensive magic",
+    "Protected Ramiris",
+    "Evolved beyond simple golem"
+  ],
   "weaknesses": ["Limited by golem nature", "Overly focused on defense"],
   "specialties": ["Defense", "Barrier Magic", "Protection"],
   "evolution": [

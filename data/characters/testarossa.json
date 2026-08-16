@@ -23,7 +23,12 @@
     "rivals": ["None (friendly rivalry with other Primordials)"],
     "mentors": ["None (she is ancient)"]
   },
-  "achievements": ["Summoned by Rimuru", "Mastered strategic thinking", "Serves as Primordial Demon", "Evolved through service"],
+  "achievements": [
+    "Summoned by Rimuru",
+    "Mastered strategic thinking",
+    "Serves as Primordial Demon",
+    "Evolved through service"
+  ],
   "weaknesses": ["Can be overly strategic", "Sometimes prefers indirect methods"],
   "specialties": ["Strategic Thinking", "Death Magic", "Intelligence"],
   "evolution": [

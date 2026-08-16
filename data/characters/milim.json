@@ -24,8 +24,20 @@
     "mentors": ["Veldanava (father, deceased)"],
     "friends": ["Rimuru", "Shuna", "Shion"]
   },
-  "achievements": ["Became one of the oldest Demon Lords", "Survived 2000+ years", "Mastered Drago Nova", "Formed alliance with Tempest", "Maintained her childlike wonder", "Inherited True Dragon bloodline"],
-  "weaknesses": ["Childish behavior", "Can be manipulated with food/friendship", "Prone to destructive tantrums", "Easily bored"],
+  "achievements": [
+    "Became one of the oldest Demon Lords",
+    "Survived 2000+ years",
+    "Mastered Drago Nova",
+    "Formed alliance with Tempest",
+    "Maintained her childlike wonder",
+    "Inherited True Dragon bloodline"
+  ],
+  "weaknesses": [
+    "Childish behavior",
+    "Can be manipulated with food/friendship",
+    "Prone to destructive tantrums",
+    "Easily bored"
+  ],
   "specialties": ["Destruction Magic", "Dragon Heritage", "Combat Prowess", "Friendship"],
   "evolution": [
     {

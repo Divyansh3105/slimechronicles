@@ -31,21 +31,9 @@ body {
   width: 100%;
   height: 100%;
   background:
-    radial-gradient(
-      circle at 20% 30%,
-      rgba(77, 21, 22, 0.04) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at 80% 70%,
-      rgba(25, 52, 150, 0.03) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at 40% 80%,
-      rgba(170, 85, 25, 0.02) 0%,
-      transparent 50%
-    );
+    radial-gradient(circle at 20% 30%, rgba(77, 21, 22, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(25, 52, 150, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(170, 85, 25, 0.02) 0%, transparent 50%);
   pointer-events: none;
   z-index: 0;
 }
@@ -134,12 +122,7 @@ body {
   transform: translateX(-50%);
   width: 100px;
   height: 4px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--accent-gold),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
   border-radius: 2px;
   animation: titleUnderline 2s ease-in-out infinite;
 }
@@ -312,11 +295,7 @@ body {
     margin 0.3s ease;
   opacity: 0;
   margin-top: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.9),
-    rgba(21, 27, 61, 0.6)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.6));
   backdrop-filter: blur(15px);
   border-radius: 12px;
   border: 1px solid var(--border-subtle);
@@ -462,11 +441,7 @@ kbd {
 #search-input {
   width: 100%;
   padding: 1.3rem 1.3rem 1.3rem 3.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.95),
-    rgba(15, 20, 45, 0.9)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(15, 20, 45, 0.9));
   border: 2px solid rgba(77, 212, 255, 0.35);
   border-radius: 16px;
   color: var(--text-light);
@@ -487,11 +462,7 @@ kbd {
     0 10px 30px rgba(0, 0, 0, 0.35),
     inset 0 2px 4px rgba(255, 255, 255, 0.15),
     0 0 40px rgba(77, 212, 255, 0.15);
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 1),
-    rgba(15, 20, 45, 0.95)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 1), rgba(15, 20, 45, 0.95));
   transform: translateY(-3px) scale(1.01);
 }
 
@@ -506,11 +477,7 @@ kbd {
   right: 1.2rem;
   top: 50%;
   transform: translateY(-50%);
-  background: linear-gradient(
-    135deg,
-    rgba(255, 51, 102, 0.1),
-    rgba(255, 51, 102, 0.05)
-  );
+  background: linear-gradient(135deg, rgba(255, 51, 102, 0.1), rgba(255, 51, 102, 0.05));
   border: 1px solid rgba(255, 51, 102, 0.3);
   color: var(--accent-crimson);
   cursor: pointer;
@@ -527,11 +494,7 @@ kbd {
 }
 
 .clear-search:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 51, 102, 0.2),
-    rgba(255, 51, 102, 0.1)
-  );
+  background: linear-gradient(135deg, rgba(255, 51, 102, 0.2), rgba(255, 51, 102, 0.1));
   border-color: var(--accent-crimson);
   transform: translateY(-50%) scale(1.1);
   box-shadow: 0 4px 15px rgba(255, 51, 102, 0.3);
@@ -562,11 +525,7 @@ kbd {
 
 .filter-group select {
   padding: 1.1rem 1.3rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.95),
-    rgba(15, 20, 45, 0.9)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(15, 20, 45, 0.9));
   border: 2px solid rgba(77, 212, 255, 0.25);
   border-radius: 14px;
   color: var(--text-light);
@@ -589,20 +548,12 @@ kbd {
     inset 0 2px 4px rgba(255, 255, 255, 0.12),
     0 0 30px rgba(77, 212, 255, 0.1);
   transform: translateY(-2px) scale(1.01);
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 1),
-    rgba(15, 20, 45, 0.95)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 1), rgba(15, 20, 45, 0.95));
 }
 
 .filter-group select:hover {
   border-color: rgba(77, 212, 255, 0.4);
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.95),
-    rgba(15, 20, 45, 0.9)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(15, 20, 45, 0.9));
 }
 
 .filter-group select option {
@@ -643,11 +594,7 @@ kbd {
 .stat-item {
   text-align: center;
   padding: 1.2rem 1.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.6),
-    rgba(15, 20, 45, 0.5)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.6), rgba(15, 20, 45, 0.5));
   border-radius: 18px;
   border: 1px solid rgba(77, 212, 255, 0.3);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -666,11 +613,7 @@ kbd {
     0 12px 35px rgba(77, 212, 255, 0.3),
     inset 0 2px 4px rgba(255, 255, 255, 0.15),
     0 0 30px rgba(77, 212, 255, 0.15);
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(15, 20, 45, 0.7)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(15, 20, 45, 0.7));
 }
 
 .stat-number {
@@ -711,11 +654,7 @@ kbd {
   text-align: center;
   padding: 5rem 2rem;
   color: var(--text-secondary);
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.9),
-    rgba(15, 25, 45, 0.8)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(15, 25, 45, 0.8));
   border-radius: 24px;
   border: 2px solid rgba(77, 212, 255, 0.25);
   margin: 3rem 0;
@@ -733,12 +672,7 @@ kbd {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(77, 212, 255, 0.1),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(77, 212, 255, 0.1), transparent);
   animation: shimmer 3s infinite;
 }
 
@@ -933,11 +867,7 @@ kbd {
   bottom: -4px;
   right: -4px;
   font-size: 1.1rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.95),
-    rgba(15, 25, 45, 0.9)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(15, 25, 45, 0.9));
   border-radius: 50%;
   width: 28px;
   height: 28px;
@@ -1004,12 +934,7 @@ kbd {
   left: 0;
   width: 0;
   height: 3px;
-  background: linear-gradient(
-    90deg,
-    var(--primary-blue),
-    var(--accent-cyan),
-    var(--accent-gold)
-  );
+  background: linear-gradient(90deg, var(--primary-blue), var(--accent-cyan), var(--accent-gold));
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 2px;
   box-shadow: 0 0 10px currentColor;
@@ -1056,11 +981,7 @@ kbd {
   color: var(--primary-blue);
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  background: linear-gradient(
-    135deg,
-    rgba(77, 212, 255, 0.2),
-    rgba(77, 212, 255, 0.12)
-  );
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.2), rgba(77, 212, 255, 0.12));
   padding: 0.5rem 1.2rem;
   border-radius: 28px;
   border: 1px solid rgba(77, 212, 255, 0.4);
@@ -1072,11 +993,7 @@ kbd {
 }
 
 .record-volume:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(77, 212, 255, 0.3),
-    rgba(77, 212, 255, 0.2)
-  );
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.3), rgba(77, 212, 255, 0.2));
   border-color: var(--primary-blue);
   transform: translateY(-2px) scale(1.05);
   box-shadow:
@@ -1093,11 +1010,7 @@ kbd {
   letter-spacing: 1px;
   padding: 0.5rem 1rem;
   border-radius: 18px;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.12),
-    rgba(255, 255, 255, 0.06)
-  );
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
   border: 1px solid currentColor;
   box-shadow:
     0 6px 18px rgba(0, 0, 0, 0.15),
@@ -1162,11 +1075,7 @@ kbd {
 .record-details .details-content > div {
   margin-bottom: 1.2rem;
   padding: 1.2rem;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.8),
-    rgba(15, 20, 45, 0.7)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(15, 20, 45, 0.7));
   border-radius: 14px;
   border-left: 4px solid var(--primary-blue);
   box-shadow:
@@ -1180,11 +1089,7 @@ kbd {
 
 .record-details > div:hover,
 .record-details .details-content > div:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 61, 0.95),
-    rgba(15, 20, 45, 0.85)
-  );
+  background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(15, 20, 45, 0.85));
   transform: translateX(6px);
   box-shadow:
     0 8px 25px rgba(0, 0, 0, 0.2),
@@ -1241,11 +1146,7 @@ kbd {
   gap: 0.7rem;
   margin-top: 1.2rem;
   padding: 0.85rem 1.6rem;
-  background: linear-gradient(
-    135deg,
-    rgba(77, 212, 255, 0.18),
-    rgba(77, 212, 255, 0.1)
-  );
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.18), rgba(77, 212, 255, 0.1));
   border: 2px solid rgba(77, 212, 255, 0.35);
   border-radius: 14px;
   color: var(--primary-blue);
@@ -1263,11 +1164,7 @@ kbd {
 }
 
 .record-expand-btn:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(77, 212, 255, 0.3),
-    rgba(77, 212, 255, 0.2)
-  );
+  background: linear-gradient(135deg, rgba(77, 212, 255, 0.3), rgba(77, 212, 255, 0.2));
   border-color: var(--primary-blue);
   transform: translateY(-3px) scale(1.02);
   box-shadow:
@@ -1289,11 +1186,7 @@ kbd {
 
 .record-details.expanded + .record-expand-btn,
 .record-expand-btn.expanded {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 215, 0, 0.15),
-    rgba(255, 215, 0, 0.08)
-  );
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.08));
   border-color: var(--accent-gold);
   color: var(--accent-gold);
 }

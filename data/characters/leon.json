@@ -23,7 +23,12 @@
     "rivals": ["Other powerful beings"],
     "mentors": ["None (self-made)"]
   },
-  "achievements": ["Became Demon Lord", "Ruled Holy Empire", "Mastered powerful magic", "Demonstrated human potential"],
+  "achievements": [
+    "Became Demon Lord",
+    "Ruled Holy Empire",
+    "Mastered powerful magic",
+    "Demonstrated human potential"
+  ],
   "weaknesses": ["Overly proud", "Can be too controlling"],
   "specialties": ["Magic Mastery", "Prideful King", "Light Magic"],
   "evolution": [

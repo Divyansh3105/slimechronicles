@@ -32,7 +32,7 @@ async function updateStatistics() {
       (char) =>
         char.role.toLowerCase().includes("demon lord") ||
         char.power === "Catastrophe+" ||
-        char.power === "Catastrophe",
+        char.power === "Catastrophe"
     ).length;
 
     const demonLordsElement = document.getElementById("demon-lords-count");
@@ -43,9 +43,7 @@ async function updateStatistics() {
     // Calculate disaster-class character count based on power levels
     const disasters = characters.filter(
       (char) =>
-        char.power === "Catastrophe+" ||
-        char.power === "Catastrophe" ||
-        char.power === "Chaos",
+        char.power === "Catastrophe+" || char.power === "Catastrophe" || char.power === "Chaos"
     ).length;
 
     const disastersElement = document.getElementById("disasters-count");
@@ -54,8 +52,7 @@ async function updateStatistics() {
     }
 
     // Calculate unique race count for diversity statistics
-    const uniqueRaces = [...new Set(characters.map((char) => char.race))]
-      .length;
+    const uniqueRaces = [...new Set(characters.map((char) => char.race))].length;
 
     const racesElement = document.getElementById("races-count");
     if (racesElement) {
@@ -70,9 +67,7 @@ async function updateStatistics() {
 
     // Update individual power level count displays
     Object.entries(powerLevels).forEach(([power, count]) => {
-      const element = document.getElementById(
-        power.toLowerCase().replace("+", "-plus"),
-      );
+      const element = document.getElementById(power.toLowerCase().replace("+", "-plus"));
       if (element) {
         element.textContent = count;
       }
@@ -123,8 +118,7 @@ async function renderCharacters() {
   // Validate GameState availability for character data access
   if (!window.GameState) {
     console.error("GameState not available");
-    grid.innerHTML =
-      '<div class="no-results">GameState not loaded. Please refresh the page.</div>';
+    grid.innerHTML = '<div class="no-results">GameState not loaded. Please refresh the page.</div>';
     return;
   }
 
@@ -138,8 +132,7 @@ async function renderCharacters() {
 
   try {
     // Display loading state while fetching character data
-    grid.innerHTML =
-      '<div class="loading-characters">Loading characters...</div>';
+    grid.innerHTML = '<div class="loading-characters">Loading characters...</div>';
 
     // Fetch complete character dataset from GameState
     const characters = await window.GameState.getAllCharacters();
@@ -209,10 +202,7 @@ function renderCurrentPage() {
 
   // Calculate character range for current page
   const startIndex = currentPage * charactersPerPage;
-  const endIndex = Math.min(
-    startIndex + charactersPerPage,
-    filteredCharacters.length,
-  );
+  const endIndex = Math.min(startIndex + charactersPerPage, filteredCharacters.length);
   const pageCharacters = filteredCharacters.slice(startIndex, endIndex);
 
   // Apply base grid styling
@@ -266,9 +256,7 @@ function renderCurrentPage() {
 function renderCompactCharacterCard(character, stats, cssVars) {
   // Calculate character impact values for display
   const impact = generateCharacterImpact(character);
-  const isMobile = window.isMobileDevice
-    ? window.isMobileDevice()
-    : window.innerWidth <= 768;
+  const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
 
   return `
     <div class="character-card character-themed ${character.id === "diablo" ? "dark-theme" : ""}"
@@ -483,10 +471,7 @@ function setupPagination() {
 
   // Calculate character range display values
   const startCharacter = currentPage * charactersPerPage + 1;
-  const endCharacter = Math.min(
-    (currentPage + 1) * charactersPerPage,
-    filteredCharacters.length,
-  );
+  const endCharacter = Math.min((currentPage + 1) * charactersPerPage, filteredCharacters.length);
 
   // Generate pagination control HTML with navigation buttons and page info
   paginationContainer.innerHTML = `
@@ -547,9 +532,7 @@ function filterCharacter(character, filter) {
       );
     case "disaster":
       // Filter for disaster-class characters based on power level
-      return (
-        character.power === "Catastrophe+" || character.power === "Catastrophe"
-      );
+      return character.power === "Catastrophe+" || character.power === "Catastrophe";
     case "named":
       // Filter for named characters (excluding basic B-Rank and A-Rank)
       return character.power !== "B-Rank" && character.power !== "A-Rank";
@@ -712,7 +695,7 @@ async function openCharacterModal(characterId) {
           .map(
             (ability) => `
           <span class="modal-ability-tag">${ability}</span>
-        `,
+        `
           )
           .join("")}
       </div>
@@ -828,7 +811,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     },
-    { threshold: 0.1 },
+    { threshold: 0.1 }
   );
 
   // Setup debug function for development and troubleshooting

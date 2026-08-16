@@ -23,7 +23,12 @@
     "rivals": ["None (friendly competition)"],
     "mentors": ["Rimuru", "Experience"]
   },
-  "achievements": ["Proved loyalty to Rimuru", "Grew through failures", "Became valuable warrior", "Learned from mistakes"],
+  "achievements": [
+    "Proved loyalty to Rimuru",
+    "Grew through failures",
+    "Became valuable warrior",
+    "Learned from mistakes"
+  ],
   "weaknesses": ["Overconfident", "Sometimes fails spectacularly"],
   "specialties": ["Enthusiasm", "Loyalty", "Growth"],
   "evolution": [
