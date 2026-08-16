@@ -4,9 +4,10 @@
   "description": "<div align=\"center\">",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint js/",
-    "format": "prettier --write \"**/*.{js,css,html,json}\""
+    "format": "prettier --write .",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,8 @@
     "@eslint/js": "^10.0.1",
     "eslint": "^10.8.1",
     "globals": "^17.11.0",
-    "prettier": "^3.9.6"
+    "jsdom": "^29.1.1",
+    "prettier": "^3.9.6",
+    "vitest": "^4.1.10"
   }
 }

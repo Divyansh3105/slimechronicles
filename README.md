@@ -1,4 +1,4 @@
-﻿# 🧬 Jura Tempest Federation: Slime Chronicles
+# 🧬 Jura Tempest Federation: Slime Chronicles
 
 <div align="center">
 
@@ -68,11 +68,12 @@ The **Jura Tempest Federation: Slime Chronicles** is a comprehensive fan-made in
 ### 🖥️ Technical Excellence & Performance
 
 - 📱 **Responsive Design** – Mobile-first approach with adaptive layouts for all screen sizes
-- 🚀 **Performance Optimized** – Lazy loading, image optimization, caching strategies, and efficient DOM manipulation
+- ⚙️ **Advanced Architecture** – Modular JavaScript with native **Web Components** (`<main-navigation>`) for DRY code
+- 🔄 **State Management** – Custom **Publisher/Subscriber (Event Bus)** pattern for decoupled UI state
+- 🚀 **Progressive Web App (PWA)** – Fully functional offline experience using custom **Service Workers**
+- 🛡️ **Code Quality & CI/CD** – Enforced with ESLint, Prettier, **Vitest Unit Testing**, and automated **GitHub Actions**
 - ♿ **Accessibility Compliant** – WCAG 2.1 AA standards with semantic HTML, ARIA labels, and keyboard navigation
 - 🔍 **SEO Optimized** – Structured data, meta tags, and search engine friendly URLs
-- 🛡️ **Security Focused** – Content Security Policy, input validation, and secure coding practices
-- 🌐 **Cross-Browser Compatible** – Tested on Chrome, Firefox, Safari, and Edge
 
 ---
 
@@ -131,21 +132,21 @@ The **Jura Tempest Federation: Slime Chronicles** is a comprehensive fan-made in
 
 **Development & Deployment**
 
+- GitHub Actions CI/CD Pipeline
+- ESLint & Prettier
 - Git version control
 - Netlify hosting
-- SEO optimization
 - Analytics integration
-- Error monitoring
 
 </td>
 <td>
 
 **Quality Assurance**
 
+- **Vitest Unit Testing** (Testing pure JS logic)
 - Cross-browser testing
 - Mobile responsiveness
 - Accessibility auditing
-- Performance profiling
 - Code validation
 
 </td>

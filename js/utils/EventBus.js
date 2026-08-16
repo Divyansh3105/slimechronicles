@@ -40,4 +40,11 @@ class EventBus {
 }
 
 // Make globally available
-window.EventBus = new EventBus();
+if (typeof window !== 'undefined') {
+  window.EventBus = new EventBus();
+}
+
+// Export for Node/Vitest testing environment
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { EventBus };
+}

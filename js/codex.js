@@ -931,8 +931,18 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 // Export functions to global window object for external access
-window.clearAllFilters = clearAllFilters;
-window.openCharacterProfile = openCharacterProfile;
-window.openCharacterModal = openCharacterModal;
-window.closeCharacterModal = closeCharacterModal;
-window.changePage = changePage;
+if (typeof window !== 'undefined') {
+  window.clearAllFilters = clearAllFilters;
+  window.openCharacterProfile = openCharacterProfile;
+  window.openCharacterModal = openCharacterModal;
+  window.closeCharacterModal = closeCharacterModal;
+  window.changePage = changePage;
+}
+
+// Export functions for Node/Vitest testing environment
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    generateCharacterImpact,
+    filterCharacter
+  };
+}
