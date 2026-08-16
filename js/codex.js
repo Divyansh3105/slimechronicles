@@ -543,21 +543,62 @@ function filterCharacter(character, filter) {
 
 // Initialize all filter event handlers and search functionality
 function initializeFilters() {
+  // Subscribe to filter changes via EventBus
+  if (window.EventBus) {
+    window.EventBus.subscribe('FILTER_CHANGED', (data) => {
+      if (data.type === 'search') searchTerm = data.value;
+      if (data.type === 'category') currentFilter = data.value;
+      if (data.type === 'race') raceFilter = data.value;
+      if (data.type === 'power') powerFilter = data.value;
+      
+      // Update UI state for category tabs if changed
+      if (data.type === 'category') {
+        document.querySelectorAll(".filter-tab").forEach((t) => t.classList.remove("active"));
+        const activeTab = document.querySelector(`[data-filter="${currentFilter}"]`);
+        if (activeTab) activeTab.classList.add("active");
+      }
+      
+      applyFiltersAndRender();
+    });
+
+    window.EventBus.subscribe('FILTERS_CLEARED', () => {
+      searchTerm = "";
+      currentFilter = "all";
+      raceFilter = "";
+      powerFilter = "";
+      
+      const searchInput = document.getElementById("character-search");
+      if (searchInput) searchInput.value = "";
+      
+      const rFilter = document.getElementById("race-filter");
+      if (rFilter) rFilter.value = "";
+      
+      const pFilter = document.getElementById("power-filter");
+      if (pFilter) pFilter.value = "";
+      
+      document.querySelectorAll(".filter-tab").forEach((tab) => tab.classList.remove("active"));
+      const defaultTab = document.querySelector('[data-filter="all"]');
+      if (defaultTab) defaultTab.classList.add("active");
+      
+      applyFiltersAndRender();
+    });
+  }
+
   const searchInput = document.getElementById("character-search");
   if (searchInput) {
     // Use shared debounce function for search input
     const debouncedSearch = window.debounce
       ? window.debounce((e) => {
-          searchTerm = e.target.value;
-          applyFiltersAndRender();
+          if (window.EventBus) window.EventBus.publish('FILTER_CHANGED', { type: 'search', value: e.target.value });
+          else { searchTerm = e.target.value; applyFiltersAndRender(); }
         }, 300)
       : (() => {
           let timeout;
           return (e) => {
             clearTimeout(timeout);
             timeout = setTimeout(() => {
-              searchTerm = e.target.value;
-              applyFiltersAndRender();
+              if (window.EventBus) window.EventBus.publish('FILTER_CHANGED', { type: 'search', value: e.target.value });
+              else { searchTerm = e.target.value; applyFiltersAndRender(); }
             }, 300);
           };
         })();
@@ -569,12 +610,14 @@ function initializeFilters() {
   const filterTabs = document.querySelectorAll(".filter-tab");
   filterTabs.forEach((tab) => {
     tab.addEventListener("click", () => {
-      // Update active tab visual state
-      filterTabs.forEach((t) => t.classList.remove("active"));
-      tab.classList.add("active");
-      // Apply selected filter and re-render
-      currentFilter = tab.dataset.filter;
-      applyFiltersAndRender();
+      if (window.EventBus) {
+        window.EventBus.publish('FILTER_CHANGED', { type: 'category', value: tab.dataset.filter });
+      } else {
+        filterTabs.forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
+        currentFilter = tab.dataset.filter;
+        applyFiltersAndRender();
+      }
     });
   });
 
@@ -584,41 +627,51 @@ function initializeFilters() {
 
   if (raceSelect) {
     raceSelect.addEventListener("change", (e) => {
-      raceFilter = e.target.value;
-      applyFiltersAndRender();
+      if (window.EventBus) window.EventBus.publish('FILTER_CHANGED', { type: 'race', value: e.target.value });
+      else { raceFilter = e.target.value; applyFiltersAndRender(); }
     });
   }
 
   // Setup power level filter dropdown change handler
   if (powerSelect) {
     powerSelect.addEventListener("change", (e) => {
-      powerFilter = e.target.value;
-      applyFiltersAndRender();
+      if (window.EventBus) window.EventBus.publish('FILTER_CHANGED', { type: 'power', value: e.target.value });
+      else { powerFilter = e.target.value; applyFiltersAndRender(); }
     });
   }
 }
 
 // Reset all active filters and restore default display state
 function clearAllFilters() {
-  // Reset all filter state variables to default values
-  searchTerm = "";
-  currentFilter = "all";
-  raceFilter = "";
-  powerFilter = "";
+  if (window.EventBus) {
+    window.EventBus.publish('FILTERS_CLEARED');
+  } else {
+    // Reset all filter state variables to default values
+    searchTerm = "";
+    currentFilter = "all";
+    raceFilter = "";
+    powerFilter = "";
 
-  // Clear all filter input field values
-  document.getElementById("character-search").value = "";
-  document.getElementById("race-filter").value = "";
-  document.getElementById("power-filter").value = "";
+    // Clear all filter input field values
+    const searchInput = document.getElementById("character-search");
+    if (searchInput) searchInput.value = "";
+    
+    const rFilter = document.getElementById("race-filter");
+    if (rFilter) rFilter.value = "";
+    
+    const pFilter = document.getElementById("power-filter");
+    if (pFilter) pFilter.value = "";
 
-  // Reset filter tab visual states to default
-  document.querySelectorAll(".filter-tab").forEach((tab) => {
-    tab.classList.remove("active");
-  });
-  document.querySelector('[data-filter="all"]').classList.add("active");
+    // Reset filter tab visual states to default
+    document.querySelectorAll(".filter-tab").forEach((tab) => {
+      tab.classList.remove("active");
+    });
+    const defaultTab = document.querySelector('[data-filter="all"]');
+    if (defaultTab) defaultTab.classList.add("active");
 
-  // Re-render character grid with cleared filters
-  applyFiltersAndRender();
+    // Re-render character grid with cleared filters
+    applyFiltersAndRender();
+  }
 }
 // Navigate to character profile page with sound feedback and error handling
 function openCharacterProfile(characterId) {
