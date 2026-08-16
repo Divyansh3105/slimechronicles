@@ -1,4 +1,5 @@
 import js from "@eslint/js";
+import globals from "globals";
 
 export default [
   js.configs.recommended,
@@ -10,6 +11,7 @@ export default [
       ecmaVersion: 2021,
       sourceType: "module",
       globals: {
+        ...globals.browser,
         window: "readonly",
         document: "readonly",
         console: "readonly",
@@ -21,7 +23,9 @@ export default [
     },
     rules: {
       "no-unused-vars": "warn",
-      "no-undef": "warn"
+      "no-undef": "warn",
+      "no-func-assign": "off",
+      "no-useless-assignment": "off"
     }
   }
 ];

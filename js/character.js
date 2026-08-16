@@ -327,20 +327,22 @@ function setupTabNavigation() {
           e.preventDefault();
           tab.click();
           break;
-        case "ArrowLeft":
+        case "ArrowLeft": {
           // Navigate to previous tab with left arrow
           e.preventDefault();
           const prevTab = tabs[index - 1] || tabs[tabs.length - 1];
           prevTab.focus();
           prevTab.click();
           break;
-        case "ArrowRight":
+        }
+        case "ArrowRight": {
           // Navigate to next tab with right arrow
           e.preventDefault();
           const nextTab = tabs[index + 1] || tabs[0];
           nextTab.focus();
           nextTab.click();
           break;
+        }
       }
     });
   });
@@ -2884,8 +2886,8 @@ async function loadCharacterProfile() {
       "codex.html",
       {
         "Character ID": "None",
-        GameState: !!window.GameState ? "Available" : "Missing",
-        CharacterLoader: !!window.CharacterLoader ? "Available" : "Missing",
+        GameState: window.GameState ? "Available" : "Missing",
+        CharacterLoader: window.CharacterLoader ? "Available" : "Missing",
       },
       true
     );
@@ -2903,7 +2905,7 @@ async function loadCharacterProfile() {
       {
         "Character ID": characterId,
         GameState: "Missing",
-        CharacterLoader: !!window.CharacterLoader ? "Available" : "Missing",
+        CharacterLoader: window.CharacterLoader ? "Available" : "Missing",
       },
       true
     );
@@ -2931,7 +2933,7 @@ async function loadCharacterProfile() {
         {
           "Character ID": characterId,
           GameState: "Available",
-          CharacterLoader: !!window.CharacterLoader ? "Available" : "Missing",
+          CharacterLoader: window.CharacterLoader ? "Available" : "Missing",
         },
         true
       );
@@ -2967,8 +2969,8 @@ async function loadCharacterProfile() {
       {
         "Character ID": characterId,
         Error: error.message,
-        GameState: !!window.GameState ? "Available" : "Missing",
-        CharacterLoader: !!window.CharacterLoader ? "Available" : "Missing",
+        GameState: window.GameState ? "Available" : "Missing",
+        CharacterLoader: window.CharacterLoader ? "Available" : "Missing",
       },
       true
     );
