@@ -236,6 +236,7 @@ function renderRecords(records = HISTORICAL_RECORDS) {
 
   if (window.TempestAnimations) {
     window.TempestAnimations.animateCardStagger(".record-card");
+    window.TempestAnimations.enable3DTilt(".record-card");
   }
 
   // Add event handlers for all record cards

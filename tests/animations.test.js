@@ -55,4 +55,13 @@ describe('AnimationManager', () => {
     expect(modal.style.display).toBe('none');
     expect(closed).toBe(true);
   });
+
+  it('should enable 3D tilt and attach glare element to card items', () => {
+    animManager.enable3DTilt('.card-item');
+    const cards = document.querySelectorAll('.card-item');
+    cards.forEach((card) => {
+      expect(card.classList.contains('has-3d-tilt')).toBe(true);
+      expect(card.querySelector('.tilt-glare')).not.toBeNull();
+    });
+  });
 });

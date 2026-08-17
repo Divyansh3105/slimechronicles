@@ -263,8 +263,11 @@ function renderCurrentPage() {
       })
       .join("");
 
-    // Apply scroll animations to newly rendered character cards
+    // Apply scroll animations & 3D tilt to newly rendered character cards
     addScrollAnimations();
+    if (window.TempestAnimations) {
+      window.TempestAnimations.enable3DTilt(".character-card");
+    }
   }, 200);
 }
 

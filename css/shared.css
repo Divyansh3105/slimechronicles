@@ -2313,3 +2313,40 @@ body.mobile-nav-active .audio-controls {
   width: 100%;
 }
 
+/* ========== 3D INTERACTIVE TILT EFFECT ========== */
+.has-3d-tilt {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.has-3d-tilt:hover {
+  box-shadow: 0 15px 35px rgba(0, 200, 255, 0.25), 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.tilt-glare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--glare-x, 50%) var(--glare-y, 50%),
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(77, 212, 255, 0.08) 40%,
+    rgba(255, 255, 255, 0) 80%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+  z-index: 10;
+}
+
+.has-3d-tilt:hover .tilt-glare {
+  opacity: 1;
+}
+
+

@@ -330,6 +330,73 @@ class AnimationManager {
   }
 
   /**
+   * Enable 3D tilt effect on card elements responsive to mouse movement.
+   * @param {string|NodeList|Array|Element} targets - Selector or elements.
+   * @param {Object} options - Custom max tilt angles and scale.
+   */
+  enable3DTilt(targets, options = {}) {
+    const elements = this.resolveElements(targets);
+    if (!elements || elements.length === 0) return;
+
+    if (this.prefersReducedMotion || (window.matchMedia && window.matchMedia("(hover: none)").matches)) {
+      return;
+    }
+
+    const config = {
+      maxTiltX: 12,
+      maxTiltY: 12,
+      scale: 1.04,
+      perspective: 1000,
+      ...options,
+    };
+
+    elements.forEach((el) => {
+      if (el.dataset.tiltInit === "true") return;
+      el.dataset.tiltInit = "true";
+      el.classList.add("has-3d-tilt");
+
+      // Inject specular glare overlay if missing
+      let glare = el.querySelector(".tilt-glare");
+      if (!glare) {
+        glare = document.createElement("div");
+        glare.className = "tilt-glare";
+        el.appendChild(glare);
+      }
+
+      let rafId = null;
+
+      const handleMouseMove = (e) => {
+        const rect = el.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        const rotateY = ((mouseX / width) - 0.5) * (config.maxTiltY * 2);
+        const rotateX = (0.5 - mouseY / height) * (config.maxTiltX * 2);
+
+        const glareX = Math.round((mouseX / width) * 100);
+        const glareY = Math.round((mouseY / height) * 100);
+
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+          el.style.transform = `perspective(${config.perspective}px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(${config.scale}, ${config.scale}, ${config.scale})`;
+          el.style.setProperty("--glare-x", `${glareX}%`);
+          el.style.setProperty("--glare-y", `${glareY}%`);
+        });
+      };
+
+      const handleMouseLeave = () => {
+        if (rafId) cancelAnimationFrame(rafId);
+        el.style.transform = `perspective(${config.perspective}px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+      };
+
+      el.addEventListener("mousemove", handleMouseMove);
+      el.addEventListener("mouseleave", handleMouseLeave);
+    });
+  }
+
+  /**
    * Helper utility to resolve element inputs into an array of DOM Elements.
    */
   resolveElements(targets) {
@@ -350,11 +417,14 @@ class AnimationManager {
 // Global Singleton Instance
 window.TempestAnimations = new AnimationManager();
 
-// Automatically initialize magnetic hover effects on interactive elements after DOM loads
+// Automatically initialize micro-interactions after DOM loads
 document.addEventListener("DOMContentLoaded", () => {
   if (window.TempestAnimations) {
     window.TempestAnimations.enableMagneticHover(
       ".filter-tab, .clear-filters-btn, .view-profile-button, .view-details-button, .expand-all-btn, .collapse-all-btn, .view-btn, .search-btn"
+    );
+    window.TempestAnimations.enable3DTilt(
+      ".character-card, .stat-card, .faction-card, .skill-card, .record-card, .pillar-card, .key-figure-card"
     );
   }
 });

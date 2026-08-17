@@ -486,6 +486,7 @@ function renderSkills(skills) {
 
     if (window.TempestAnimations) {
       window.TempestAnimations.animateCardStagger(".skill-card");
+      window.TempestAnimations.enable3DTilt(".skill-card");
     }
   } catch (error) {
     console.error("Error rendering skills:", error); // Log rendering errors
