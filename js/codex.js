@@ -709,10 +709,54 @@ function openCharacterProfile(characterId) {
   }
 }
 
+// Render skeleton modal placeholder while fetching character details
+function renderSkeletonModal() {
+  return `
+    <div class="modal-character-header">
+      <div class="modal-character-image" style="background: transparent; border: none;">
+        <div class="skeleton skeleton-avatar" style="width: 100%; height: 100%; border-radius: 12px;"></div>
+      </div>
+      <div class="modal-character-info" style="flex: 1;">
+        <div class="skeleton skeleton-title" style="width: 70%; margin: 0 0 0.5rem 0;"></div>
+        <div class="skeleton skeleton-text" style="width: 50%; margin: 0 0 0.5rem 0;"></div>
+        <div class="skeleton skeleton-pill"></div>
+      </div>
+    </div>
+
+    <div class="modal-section" style="margin-top: 1.5rem;">
+      <div class="skeleton skeleton-title" style="width: 30%; height: 20px; margin: 0 0 0.75rem 0;"></div>
+      <div class="skeleton skeleton-text full"></div>
+      <div class="skeleton skeleton-text full"></div>
+      <div class="skeleton skeleton-text" style="width: 60%;"></div>
+    </div>
+
+    <div class="modal-section" style="margin-top: 1.5rem;">
+      <div class="skeleton skeleton-title" style="width: 35%; height: 20px; margin: 0 0 0.75rem 0;"></div>
+      <div style="display: flex; gap: 0.5rem;">
+        <div class="skeleton skeleton-pill"></div>
+        <div class="skeleton skeleton-pill"></div>
+        <div class="skeleton skeleton-pill"></div>
+      </div>
+    </div>
+  `;
+}
+
 // Display character quick view modal with detailed information and stats
 async function openCharacterModal(characterId) {
   // Verify GameState availability before proceeding
   if (!window.GameState) return;
+
+  const modal = document.getElementById("character-modal");
+  const modalBody = document.getElementById("modal-body");
+
+  if (modal && modalBody) {
+    modalBody.innerHTML = renderSkeletonModal();
+    if (window.TempestAnimations) {
+      window.TempestAnimations.animateModalOpen(modal, modalBody);
+    } else {
+      modal.classList.add("active");
+    }
+  }
 
   try {
     // Fetch character data and locate specific character by ID

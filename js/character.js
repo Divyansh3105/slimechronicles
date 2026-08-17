@@ -433,6 +433,42 @@ if (document.readyState === "loading") {
 }
 
 // Character profile rendering functions - Generate HTML content for character display
+// Generate skeleton loading state HTML for character profile
+function generateSkeletonProfile(character) {
+  const header = character
+    ? generateProfileHeader(character)
+    : `
+    <div class="profile-header">
+      <div class="profile-image-container">
+        <div class="skeleton skeleton-avatar"></div>
+      </div>
+      <div class="skeleton skeleton-title"></div>
+      <div class="skeleton skeleton-text short"></div>
+    </div>
+  `;
+
+  return `
+    ${header}
+    <div class="skeleton-profile-container" style="padding: 1.5rem 0; width: 100%;">
+      <div class="skeleton-card">
+        <div class="skeleton skeleton-title" style="width: 40%; height: 24px; margin: 0 0 1rem 0;"></div>
+        <div class="skeleton skeleton-text full"></div>
+        <div class="skeleton skeleton-text full"></div>
+        <div class="skeleton skeleton-text" style="width: 70%;"></div>
+      </div>
+      <div class="skeleton-card">
+        <div class="skeleton skeleton-title" style="width: 35%; height: 24px; margin: 0 0 1rem 0;"></div>
+        <div style="display: flex; gap: 1rem; margin-bottom: 0.5rem;">
+          <div class="skeleton skeleton-pill"></div>
+          <div class="skeleton skeleton-pill"></div>
+          <div class="skeleton skeleton-pill"></div>
+        </div>
+        <div class="skeleton skeleton-text full"></div>
+      </div>
+    </div>
+  `;
+}
+
 function renderBasicCharacterProfile(character) {
   const content = document.getElementById("profile-content");
   if (!content) {
@@ -440,14 +476,7 @@ function renderBasicCharacterProfile(character) {
     return;
   }
 
-  content.innerHTML =
-    generateProfileHeader(character) +
-    `
-    <div class="loading-details" style="text-align: center; padding: 2rem; opacity: 0.7;">
-      <div class="loading-spinner"></div>
-      <p>Loading detailed character information...</p>
-    </div>
-  `;
+  content.innerHTML = generateSkeletonProfile(character);
 }
 
 function renderCharacterProfile(character) {

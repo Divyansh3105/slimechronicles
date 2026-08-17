@@ -589,6 +589,36 @@ function updateResultsCount() {
   skillsGrid.parentNode.insertBefore(count, skillsGrid); // Insert counter before grid
 }
 
+// Render skeleton loading state cards in skills grid
+function renderSkeletonSkillCards(count = 6) {
+  const grid = document.getElementById("skills-grid");
+  if (!grid) return;
+
+  grid.innerHTML = Array.from({ length: count })
+    .map(
+      () => `
+      <div class="skeleton-card" style="height: 220px; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+            <div class="skeleton skeleton-avatar" style="width: 40px; height: 40px; margin: 0;"></div>
+            <div style="flex: 1;">
+              <div class="skeleton skeleton-title" style="width: 60%; height: 20px; margin: 0 0 0.25rem 0;"></div>
+              <div class="skeleton skeleton-text" style="width: 40%; height: 14px; margin: 0;"></div>
+            </div>
+          </div>
+          <div class="skeleton skeleton-text full"></div>
+          <div class="skeleton skeleton-text" style="width: 80%;"></div>
+        </div>
+        <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+          <div class="skeleton skeleton-pill" style="width: 70px;"></div>
+          <div class="skeleton skeleton-pill" style="width: 90px;"></div>
+        </div>
+      </div>
+    `
+    )
+    .join("");
+}
+
 // Initialize the skills page with all required functionality
 async function initializeSkillsPage() {
   try {
@@ -606,6 +636,7 @@ async function initializeSkillsPage() {
       return;
     }
 
+    renderSkeletonSkillCards();
     allSkills = await getAllSkills(); // Load all skills data
 
     if (allSkills.length === 0) {
