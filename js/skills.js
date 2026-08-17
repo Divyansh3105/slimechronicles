@@ -483,6 +483,10 @@ function renderSkills(skills) {
         `;
       })
       .join("");
+
+    if (window.TempestAnimations) {
+      window.TempestAnimations.animateCardStagger(".skill-card");
+    }
   } catch (error) {
     console.error("Error rendering skills:", error); // Log rendering errors
     grid.innerHTML = `
@@ -764,10 +768,14 @@ function openSkillDetail(skillName) {
   // Prevent body scrolling while modal is open
   document.body.style.overflow = "hidden";
 
-  // Add active class with slight delay for animation
-  setTimeout(() => {
-    modal.classList.add("active"); // Trigger modal animation
-  }, 10);
+  if (window.TempestAnimations) {
+    window.TempestAnimations.animateModalOpen(modal, modal.querySelector(".skill-detail-content"));
+  } else {
+    // Add active class with slight delay for animation
+    setTimeout(() => {
+      modal.classList.add("active"); // Trigger modal animation
+    }, 10);
+  }
 
   // Close modal when clicking outside content area
   modal.addEventListener("click", (e) => {
@@ -797,12 +805,19 @@ function openSkillDetail(skillName) {
 function closeSkillDetail() {
   const modal = document.querySelector(".skill-detail-modal"); // Find modal element
   if (modal) {
-    modal.classList.remove("active"); // Remove active class for animation
-    // Restore body scrolling
-    document.body.style.overflow = "";
-    setTimeout(() => {
-      modal.remove(); // Remove modal from DOM after animation
-    }, 300);
+    if (window.TempestAnimations) {
+      window.TempestAnimations.animateModalClose(modal, modal.querySelector(".skill-detail-content"), () => {
+        document.body.style.overflow = "";
+        modal.remove();
+      });
+    } else {
+      modal.classList.remove("active"); // Remove active class for animation
+      // Restore body scrolling
+      document.body.style.overflow = "";
+      setTimeout(() => {
+        modal.remove(); // Remove modal from DOM after animation
+      }, 300);
+    }
   }
 }
 

@@ -234,6 +234,10 @@ function renderRecords(records = HISTORICAL_RECORDS) {
     })
     .join("");
 
+  if (window.TempestAnimations) {
+    window.TempestAnimations.animateCardStagger(".record-card");
+  }
+
   // Add event handlers for all record cards
   document.querySelectorAll(".record-card").forEach((card, index) => {
     const recordId = card.dataset.recordId;

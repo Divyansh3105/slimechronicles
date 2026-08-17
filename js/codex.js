@@ -17,7 +17,11 @@ async function updateStatistics() {
     const totalCharacters = await window.GameState.getCharacterCount();
     const totalElement = document.getElementById("total-characters");
     if (totalElement) {
-      totalElement.textContent = totalCharacters;
+      if (window.TempestAnimations) {
+        window.TempestAnimations.animateStatCounter(totalElement, totalCharacters);
+      } else {
+        totalElement.textContent = totalCharacters;
+      }
     }
 
     // Retrieve all character data for statistical analysis
@@ -37,7 +41,11 @@ async function updateStatistics() {
 
     const demonLordsElement = document.getElementById("demon-lords-count");
     if (demonLordsElement) {
-      demonLordsElement.textContent = demonLords;
+      if (window.TempestAnimations) {
+        window.TempestAnimations.animateStatCounter(demonLordsElement, demonLords);
+      } else {
+        demonLordsElement.textContent = demonLords;
+      }
     }
 
     // Calculate disaster-class character count based on power levels
@@ -48,7 +56,11 @@ async function updateStatistics() {
 
     const disastersElement = document.getElementById("disasters-count");
     if (disastersElement) {
-      disastersElement.textContent = disasters;
+      if (window.TempestAnimations) {
+        window.TempestAnimations.animateStatCounter(disastersElement, disasters);
+      } else {
+        disastersElement.textContent = disasters;
+      }
     }
 
     // Calculate unique race count for diversity statistics
@@ -56,7 +68,11 @@ async function updateStatistics() {
 
     const racesElement = document.getElementById("races-count");
     if (racesElement) {
-      racesElement.textContent = uniqueRaces;
+      if (window.TempestAnimations) {
+        window.TempestAnimations.animateStatCounter(racesElement, uniqueRaces);
+      } else {
+        racesElement.textContent = uniqueRaces;
+      }
     }
 
     // Generate power level distribution statistics
@@ -781,13 +797,17 @@ async function openCharacterModal(characterId) {
 
     // Inject content and display modal
     modalBody.innerHTML = modalContent;
-    modal.style.display = "flex";
-    modal.classList.add("active");
+    if (window.TempestAnimations) {
+      window.TempestAnimations.animateModalOpen(modal, modal.querySelector(".modal-content"));
+    } else {
+      modal.style.display = "flex";
+      modal.classList.add("active");
+    }
 
     // Setup click-outside-to-close functionality
     modal.addEventListener("click", (e) => {
       if (e.target === modal) {
-        modal.style.display = "none";
+        closeCharacterModal();
       }
     });
   } catch (error) {
@@ -799,21 +819,28 @@ async function openCharacterModal(characterId) {
 function closeCharacterModal() {
   const modal = document.getElementById("character-modal");
   if (modal) {
-    modal.style.display = "none";
+    if (window.TempestAnimations) {
+      window.TempestAnimations.animateModalClose(modal, modal.querySelector(".modal-content"), () => {
+        modal.classList.remove("active");
+      });
+    } else {
+      modal.style.display = "none";
+      modal.classList.remove("active");
+    }
   }
 }
 // Apply entrance animations to character cards with staggered timing
 function addScrollAnimations() {
-  const cards = document.querySelectorAll(".character-card");
-
-  // Apply fade-in animation to each character card with progressive delay
-  cards.forEach((card, index) => {
-    card.style.opacity = "1";
-    card.style.transform = "translateY(0)";
-
-    // Stagger animation timing for smooth sequential appearance
-    card.style.animationDelay = `${index * 0.05}s`;
-  });
+  if (window.TempestAnimations) {
+    window.TempestAnimations.animateCardStagger(".character-card");
+  } else {
+    const cards = document.querySelectorAll(".character-card");
+    cards.forEach((card, index) => {
+      card.style.opacity = "1";
+      card.style.transform = "translateY(0)";
+      card.style.animationDelay = `${index * 0.05}s`;
+    });
+  }
 }
 // DOM content loaded event handler - initialize application components
 document.addEventListener("DOMContentLoaded", () => {
@@ -851,6 +878,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 200);
     });
   });
+
+  // Add lore card entrance scroll animations
+  if (window.TempestAnimations) {
+    window.TempestAnimations.animateScrollReveal(".lore-card", { y: 35, duration: 0.6, stagger: 0.15 });
+  }
 
   // Add character card entrance animations
   const observer = new IntersectionObserver(

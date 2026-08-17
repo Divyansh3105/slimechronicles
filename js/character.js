@@ -315,10 +315,32 @@ function initializeCharacterPage() {
 
 // Setup enhanced tab navigation - Initialize keyboard and touch navigation for profile tabs
 function setupTabNavigation() {
-  // Add keyboard navigation support to profile tabs
+  // Add click and keyboard navigation support to profile tabs
   const tabs = document.querySelectorAll(".profile-tab");
   tabs.forEach((tab, index) => {
     tab.setAttribute("tabindex", "0");
+    tab.addEventListener("click", () => {
+      const tabName = tab.getAttribute("data-tab");
+      if (!tabName) return;
+      document.querySelectorAll(".profile-tab").forEach((t) => t.classList.remove("active"));
+      tab.classList.add("active");
+
+      document.querySelectorAll(".tab-section").forEach((sec) => {
+        sec.classList.remove("active");
+      });
+
+      const activeSec = document.getElementById(`tab-${tabName}`);
+      if (activeSec) {
+        activeSec.classList.add("active");
+        if (window.TempestAnimations) {
+          window.TempestAnimations.animateCardStagger(
+            activeSec.querySelectorAll(".profile-section, .stat-card, .relationship-card, .skill-item, .hero-stat"),
+            { y: 25, duration: 0.4, stagger: 0.06 }
+          );
+        }
+      }
+    });
+
     tab.addEventListener("keydown", (e) => {
       switch (e.key) {
         case "Enter":

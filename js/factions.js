@@ -622,13 +622,17 @@ const cardObserver = new IntersectionObserver((entries) => {
 
 // Observe all faction cards
 document.addEventListener("DOMContentLoaded", () => {
-  const factionCards = document.querySelectorAll(".faction-card");
-  factionCards.forEach((card) => {
-    card.style.opacity = "0";
-    card.style.transform = "translateY(30px)";
-    card.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-    cardObserver.observe(card);
-  });
+  if (window.TempestAnimations) {
+    window.TempestAnimations.animateScrollReveal(".faction-card", { y: 35, duration: 0.6, stagger: 0.1 });
+  } else {
+    const factionCards = document.querySelectorAll(".faction-card");
+    factionCards.forEach((card) => {
+      card.style.opacity = "0";
+      card.style.transform = "translateY(30px)";
+      card.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+      cardObserver.observe(card);
+    });
+  }
 });
 
 // Add smooth reveal animation for power bars when cards become visible

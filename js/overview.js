@@ -58,12 +58,16 @@ const eventLog = [];
 function setStat(id, value) {
   const el = document.getElementById(id);
   if (!el) return;
-  const current = parseInt(el.textContent.replace(/,/g, "")) || 0;
-  // Use shared animateNumber function
-  if (window.animateNumber) {
-    window.animateNumber(el, current, value);
+  if (window.TempestAnimations) {
+    window.TempestAnimations.animateStatCounter(el, value);
   } else {
-    el.textContent = value.toLocaleString();
+    const current = parseInt(el.textContent.replace(/,/g, "")) || 0;
+    // Use shared animateNumber function
+    if (window.animateNumber) {
+      window.animateNumber(el, current, value);
+    } else {
+      el.textContent = value.toLocaleString();
+    }
   }
 }
 
@@ -664,7 +668,12 @@ function initMobileOptimizations() {
 }
 // Initialize intersection observer for scroll animations - Set up viewport-based animation triggers
 function initIntersectionObserver() {
-  if ("IntersectionObserver" in window) {
+  if (window.TempestAnimations) {
+    window.TempestAnimations.animateScrollReveal(
+      ".stat-card, .state-card, .pillar-card, .key-figure-card, .number-card",
+      { y: 35, duration: 0.6 }
+    );
+  } else if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {

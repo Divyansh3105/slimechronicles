@@ -36,23 +36,31 @@ class TimelineManager {
 
   // Add scroll-based animations
   addScrollAnimations() {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-in");
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: "50px",
-      }
-    );
+    if (window.TempestAnimations) {
+      window.TempestAnimations.animateScrollReveal(".timeline-year, .timeline-arc", {
+        y: 35,
+        duration: 0.6,
+        stagger: 0.1,
+      });
+    } else {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animate-in");
+            }
+          });
+        },
+        {
+          threshold: 0.1,
+          rootMargin: "50px",
+        }
+      );
 
-    document.querySelectorAll(".timeline-year, .timeline-arc").forEach((el) => {
-      observer.observe(el);
-    });
+      document.querySelectorAll(".timeline-year, .timeline-arc").forEach((el) => {
+        observer.observe(el);
+      });
+    }
   }
 
   // Add keyboard shortcuts
@@ -531,10 +539,21 @@ class TimelineManager {
         if (name) visibleCharacters.add(name);
       });
 
-    document.getElementById("years-count").textContent = visibleYears;
-    document.getElementById("arcs-count").textContent = visibleArcs;
-    document.getElementById("events-count").textContent = visibleEvents;
-    document.getElementById("characters-count").textContent = visibleCharacters.size;
+    if (window.TempestAnimations) {
+      window.TempestAnimations.animateStatCounter("#years-count", visibleYears);
+      window.TempestAnimations.animateStatCounter("#arcs-count", visibleArcs);
+      window.TempestAnimations.animateStatCounter("#events-count", visibleEvents);
+      window.TempestAnimations.animateStatCounter("#characters-count", visibleCharacters.size);
+    } else {
+      const yEl = document.getElementById("years-count");
+      if (yEl) yEl.textContent = visibleYears;
+      const aEl = document.getElementById("arcs-count");
+      if (aEl) aEl.textContent = visibleArcs;
+      const eEl = document.getElementById("events-count");
+      if (eEl) eEl.textContent = visibleEvents;
+      const cEl = document.getElementById("characters-count");
+      if (cEl) cEl.textContent = visibleCharacters.size;
+    }
   }
 
   // Handle URL parameters to automatically navigate to specific events or arcs
@@ -705,6 +724,14 @@ window.toggleArcSimple = function (arcHeader) {
         content.style.maxHeight = "none";
         content.style.opacity = "1";
         content.style.overflow = "visible";
+
+        // Stagger event cards into view using GSAP
+        if (window.TempestAnimations) {
+          window.TempestAnimations.animateCardStagger(
+            content.querySelectorAll(".timeline-event"),
+            { y: 20, duration: 0.4, stagger: 0.08 }
+          );
+        }
       });
     } else {
       content.classList.add("force-collapsed");
