@@ -1,4 +1,4 @@
-const CACHE_NAME = 'slime-chronicles-v1';
+const CACHE_NAME = 'slime-chronicles-v2';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
@@ -10,20 +10,42 @@ const ASSETS_TO_CACHE = [
   '/records.html',
   '/chronicle.html',
   '/css/shared.css',
+  '/css/index.css',
+  '/css/character.css',
+  '/css/skills.css',
+  '/css/codex.css',
+  '/css/factions.css',
+  '/css/records.css',
+  '/css/overview.css',
+  '/css/Chronicle.css',
   '/js/shared.js',
   '/js/effects.js',
-  '/js/components/MainNavigation.js'
+  '/js/animations.js',
+  '/js/character.js',
+  '/js/skills.js',
+  '/js/codex.js',
+  '/js/factions.js',
+  '/js/records.js',
+  '/js/Chronicle.js',
+  '/js/overview.js',
+  '/js/utils/EventBus.js',
+  '/js/utils/SoundEngine.js',
+  '/js/components/MainNavigation.js',
+  '/js/components/CommandPalette.js',
+  '/js/components/GreatSageWidget.js',
+  '/js/components/SkillSynthesizer.js',
+  '/js/components/BattleSimulator.js',
+  '/data/characters-basic.json'
 ];
 
 // Install Event - Precache static assets
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('Opened cache');
+      console.log('Pre-caching offline assets for Slime Chronicles');
       return cache.addAll(ASSETS_TO_CACHE);
     })
   );
-  // Force the waiting service worker to become the active service worker
   self.skipWaiting();
 });
 
@@ -34,35 +56,35 @@ self.addEventListener('activate', (event) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheName !== CACHE_NAME) {
-            console.log('Deleting old cache:', cacheName);
+            console.log('Purging old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
       );
     })
   );
-  // Ensure the Service Worker takes control of the page immediately
   self.clients.claim();
 });
 
-// Fetch Event - Stale-While-Revalidate Strategy
+// Fetch Event - Dynamic Stale-While-Revalidate Strategy
 self.addEventListener('fetch', (event) => {
+  // Only cache GET requests
+  if (event.request.method !== 'GET') return;
+
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       const fetchPromise = fetch(event.request).then((networkResponse) => {
-        // Cache the new response for future
-        if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
+        if (networkResponse && networkResponse.status === 200) {
+          const responseToCache = networkResponse.clone();
           caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, networkResponse.clone());
+            cache.put(event.request, responseToCache);
           });
         }
         return networkResponse;
       }).catch(() => {
-        // Fallback if offline and not in cache
-        console.warn('Offline and resource not cached:', event.request.url);
+        console.debug('Network offline, served from cache if available:', event.request.url);
       });
 
-      // Return cached response immediately if available, otherwise wait for network
       return cachedResponse || fetchPromise;
     })
   );

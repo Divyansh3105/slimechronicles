@@ -7,6 +7,7 @@ class MainNavigation extends HTMLElement {
     this.style.display = "contents";
     this.render();
     this.setActiveLink();
+    this.bindActionButtons();
   }
 
   render() {
@@ -100,6 +101,20 @@ class MainNavigation extends HTMLElement {
         </a>
       </div>
 
+      <!-- Quick Action Controls (Search, Theme, SFX) -->
+      <div class="nav-quick-actions">
+        <button class="nav-action-btn nav-search-btn" id="navSearchTrigger" title="Quick Search (Ctrl+K)">
+          <span class="action-icon">🔍</span>
+          <span class="action-label">Ctrl+K</span>
+        </button>
+        <button class="nav-action-btn nav-theme-btn" id="navThemeTrigger" title="Switch Magicule Theme">
+          <span class="action-icon">🎨</span>
+        </button>
+        <button class="nav-action-btn nav-sfx-btn" id="navSfxTrigger" title="Toggle Sound FX">
+          <span class="action-icon" id="navSfxIcon">🔊</span>
+        </button>
+      </div>
+
       <!-- Mobile menu toggle button -->
       <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
         <span></span>
@@ -117,6 +132,14 @@ class MainNavigation extends HTMLElement {
       <button class="mobile-nav-close" onclick="toggleMobileMenu()">
         <span>✕</span>
       </button>
+      
+      <!-- Mobile Quick Search -->
+      <div class="mobile-nav-search-wrap">
+        <button class="mobile-search-btn" id="mobileSearchTrigger">
+          <span>🔍 Quick Search (Characters, Skills, Codex)...</span>
+        </button>
+      </div>
+
       <!-- Mobile navigation menu items -->
       <a href="overview.html">
         <span class="nav-icon">🏛️</span>
@@ -139,13 +162,23 @@ class MainNavigation extends HTMLElement {
         <span>Chronicle</span>
       </a>
       <a href="records.html">
-        <span class="nav-icon">📜</span>
+        <span class="nav-icon">📊</span>
         <span>Historical Records</span>
       </a>
       <a href="index.html">
         <span class="nav-icon">🚪</span>
         <span>Exit</span>
       </a>
+
+      <!-- Mobile Extras -->
+      <div class="mobile-nav-extras">
+        <button class="mobile-extra-btn" id="mobileThemeTrigger">
+          <span>🎨 Change Theme</span>
+        </button>
+        <button class="mobile-extra-btn" id="mobileSfxTrigger">
+          <span id="mobileSfxIcon">🔊 Toggle SFX</span>
+        </button>
+      </div>
     </div>
     `;
   }
@@ -159,16 +192,69 @@ class MainNavigation extends HTMLElement {
     const links = this.querySelectorAll(".nav-links a, .mobile-nav a");
 
     links.forEach((link) => {
-      // Remove active class from all
       link.classList.remove("active");
-
-      // Add active class if href matches current page
       if (link.getAttribute("href") === page) {
         link.classList.add("active");
       }
     });
   }
+
+  bindActionButtons() {
+    const searchBtn = this.querySelector("#navSearchTrigger");
+    const mobileSearchBtn = this.querySelector("#mobileSearchTrigger");
+    const themeBtn = this.querySelector("#navThemeTrigger");
+    const mobileThemeBtn = this.querySelector("#mobileThemeTrigger");
+    const sfxBtn = this.querySelector("#navSfxTrigger");
+    const mobileSfxBtn = this.querySelector("#mobileSfxTrigger");
+    const sfxIcon = this.querySelector("#navSfxIcon");
+    const mobileSfxIcon = this.querySelector("#mobileSfxIcon");
+
+    const openSearch = () => {
+      if (typeof toggleMobileMenu === "function" && document.body.classList.contains("mobile-nav-active")) {
+        toggleMobileMenu();
+      }
+      const palette = document.querySelector("command-palette");
+      if (palette && typeof palette.open === "function") {
+        palette.open();
+      }
+    };
+
+    if (searchBtn) searchBtn.addEventListener("click", openSearch);
+    if (mobileSearchBtn) mobileSearchBtn.addEventListener("click", openSearch);
+
+    const handleTheme = () => {
+      if (typeof toggleTheme === "function") {
+        toggleTheme();
+      }
+      if (window.SoundEngine) {
+        window.SoundEngine.play("themeSwitch");
+      }
+    };
+
+    if (themeBtn) themeBtn.addEventListener("click", handleTheme);
+    if (mobileThemeBtn) mobileThemeBtn.addEventListener("click", handleTheme);
+
+    const handleSfx = () => {
+      if (window.SoundEngine) {
+        const enabled = window.SoundEngine.toggle();
+        const icon = enabled ? "🔊" : "🔇";
+        if (sfxIcon) sfxIcon.textContent = icon;
+        if (mobileSfxIcon) mobileSfxIcon.textContent = `${icon} Toggle SFX`;
+      }
+    };
+
+    if (sfxBtn) sfxBtn.addEventListener("click", handleSfx);
+    if (mobileSfxBtn) mobileSfxBtn.addEventListener("click", handleSfx);
+
+    // Sync initial SFX state
+    if (window.SoundEngine && !window.SoundEngine.isEnabled) {
+      if (sfxIcon) sfxIcon.textContent = "🔇";
+      if (mobileSfxIcon) mobileSfxIcon.textContent = "🔇 Toggle SFX";
+    }
+  }
 }
 
 // Define the custom element
-customElements.define("main-navigation", MainNavigation);
+if (typeof customElements !== "undefined" && !customElements.get("main-navigation")) {
+  customElements.define("main-navigation", MainNavigation);
+}

@@ -45,14 +45,39 @@ function fallbackShare() {
   }
 }
 
-// Character comparison feature placeholder - Future functionality
+// Tactical battle simulator and character comparison
 function compareCharacter() {
-  window.showNotification("Character comparison feature coming soon!");
+  const sim = document.querySelector("battle-simulator");
+  const urlParams = new URLSearchParams(window.location.search);
+  const characterId = urlParams.get("id") || "rimuru";
+  if (sim && typeof sim.open === "function") {
+    sim.open(characterId);
+  } else {
+    window.showNotification("Tactical Battle Simulator initialized!", 2000, "success");
+  }
 }
 
-// Profile download feature placeholder - Future functionality
+// Download formatted markdown character dossier
 function downloadProfile() {
-  window.showNotification("Profile download feature coming soon!");
+  try {
+    const name = document.querySelector(".character-name, .profile-name, h1")?.textContent?.trim() || "Character";
+    const title = document.querySelector(".character-title, .profile-title")?.textContent?.trim() || "";
+    const bio = document.querySelector(".character-bio-text, .bio-content, .overview-content")?.textContent?.trim() || "Jura Tempest Federation Official Record.";
+    const content = `# 🧬 Jura Tempest Federation - Dossier: ${name}\n\n**Title:** ${title}\n\n## Biography & Records\n${bio}\n\n---\n*Archived from Jura Tempest Federation Archives: Slime Chronicles*`;
+    const blob = new Blob([content], { type: "text/markdown;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${name.toLowerCase().replace(/[^a-z0-9]/g, "_")}_dossier.md`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    if (window.SoundEngine) window.SoundEngine.play("success");
+    window.showNotification(`Downloaded dossier for ${name}!`, 2000, "success");
+  } catch {
+    window.showNotification("Profile download error.", 2000, "error");
+  }
 }
 
 // Make functions globally available - Export functions to window object for global access
