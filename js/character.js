@@ -272,7 +272,7 @@ class CharacterDataLoader {
         role: "Demon Lord & Founder",
         power: "Catastrophe",
         portrait: "🌀",
-        image: "assets/characters/Rimuru.png",
+        image: "assets/characters/Rimuru.webp",
         colorScheme: {
           primary: "#00c8ff",
           secondary: "#40d0ff",
@@ -286,7 +286,7 @@ class CharacterDataLoader {
         role: "Second Secretary",
         power: "Catastrophe",
         portrait: "😈",
-        image: "assets/characters/Diablo.png",
+        image: "assets/characters/Diablo.webp",
         colorScheme: {
           primary: "#aa55ff",
           secondary: "#d488ff",
@@ -530,7 +530,7 @@ function generateProfileHeader(character, detailed = false) {
   return `
     <div class="profile-header">
       <div class="profile-image-container">
-        <img src="${character.image}" alt="${character.name}" class="profile-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <img src="${character.image}" alt="${character.name}" class="profile-image" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="profile-portrait-fallback" style="display: none;">${character.portrait}</div>
         ${powerIndicator}
       </div>
@@ -2019,7 +2019,7 @@ function generateRelationshipsSection(character) {
         <div class="network-center">
           <div class="center-character">
             <div class="character-avatar-large">
-              <img src="${character.image}" alt="${character.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <img src="${character.image}" alt="${character.name}" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
               <div class="avatar-fallback" style="display: none;">${character.portrait}</div>
             </div>
             <span class="center-name">${character.name}</span>
@@ -2250,7 +2250,7 @@ function getCharacterImage(name) {
   // Clean up the name for special cases
   const cleanName = name.replace(/\s*\(.*?\)\s*/g, "").trim();
 
-  const imagePath = `assets/characters/${cleanName}.png`;
+  const imagePath = `assets/characters/${cleanName}.webp`;
 
   // Try exact match first
   return imagePath;

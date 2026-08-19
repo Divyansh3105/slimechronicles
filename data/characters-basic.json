@@ -6,7 +6,7 @@
     "role": "Demon Lord & Founder",
     "power": "Catastrophe",
     "portrait": "💧",
-    "image": "assets/characters/Rimuru.png",
+    "image": "assets/characters/Rimuru.webp",
     "colorScheme": {
       "primary": "#00c8ff",
       "secondary": "#40d0ff",
@@ -20,7 +20,7 @@
     "role": "Commander-in-Chief",
     "power": "Catastrophe",
     "portrait": "🔥",
-    "image": "assets/characters/Benimaru.png",
+    "image": "assets/characters/Benimaru.webp",
     "colorScheme": {
       "primary": "#ff3366",
       "secondary": "#ff6b8a",
@@ -34,7 +34,7 @@
     "role": "First Secretary",
     "power": "Chaos",
     "portrait": "⚔️",
-    "image": "assets/characters/Shion.png",
+    "image": "assets/characters/Shion.webp",
     "colorScheme": {
       "primary": "#aa55ff",
       "secondary": "#c788ff",
@@ -48,7 +48,7 @@
     "role": "Minister of Production",
     "power": "Special S",
     "portrait": "🌸",
-    "image": "assets/characters/Shuna.png",
+    "image": "assets/characters/Shuna.webp",
     "colorScheme": {
       "primary": "#ffb3d9",
       "secondary": "#ffd6ec",
@@ -62,7 +62,7 @@
     "role": "Sword Oni & Grand Master",
     "power": "Catastrophe",
     "portrait": "🗡️",
-    "image": "assets/characters/Hakuro.png",
+    "image": "assets/characters/Hakuro.webp",
     "colorScheme": {
       "primary": "#b0b0b0",
       "secondary": "#d0d0d0",
@@ -76,7 +76,7 @@
     "role": "Minister of Intelligence",
     "power": "Special S",
     "portrait": "🥷",
-    "image": "assets/characters/Souei.png",
+    "image": "assets/characters/Souei.webp",
     "colorScheme": {
       "primary": "#6c7b7f",
       "secondary": "#95a5a6",
@@ -90,7 +90,7 @@
     "role": "Minister of Infrastructure",
     "power": "Special S",
     "portrait": "🏗️",
-    "image": "assets/characters/Geld.png",
+    "image": "assets/characters/Geld.webp",
     "colorScheme": {
       "primary": "#654321",
       "secondary": "#8b7355",
@@ -104,7 +104,7 @@
     "role": "Second Secretary",
     "power": "Catastrophe",
     "portrait": "😈",
-    "image": "assets/characters/Diablo.png",
+    "image": "assets/characters/Diablo.webp",
     "colorScheme": {
       "primary": "#aa55ff",
       "secondary": "#d488ff",
@@ -118,7 +118,7 @@
     "role": "Guardian Deity",
     "power": "Catastrophe+",
     "portrait": "🐉",
-    "image": "assets/characters/Veldora.png",
+    "image": "assets/characters/Veldora.webp",
     "colorScheme": {
       "primary": "#ffd700",
       "secondary": "#ffed4e",
@@ -132,7 +132,7 @@
     "role": "Demon Lord Ally",
     "power": "Catastrophe+",
     "portrait": "⚡",
-    "image": "assets/characters/Milim.png",
+    "image": "assets/characters/Milim.webp",
     "colorScheme": {
       "primary": "#ff1493",
       "secondary": "#ff69b4",
@@ -146,7 +146,7 @@
     "role": "Undead Commander",
     "power": "Special S",
     "portrait": "💀",
-    "image": "assets/characters/Adalmann.png",
+    "image": "assets/characters/Adalmann.webp",
     "colorScheme": {
       "primary": "#4a4a4a",
       "secondary": "#6a6a6a",
@@ -160,7 +160,7 @@
     "role": "Scout & Messenger",
     "power": "A-Rank",
     "portrait": "🐝",
-    "image": "assets/characters/Apito.png",
+    "image": "assets/characters/Apito.webp",
     "colorScheme": {
       "primary": "#ffd700",
       "secondary": "#ffed4e",
@@ -174,7 +174,7 @@
     "role": "Ramiris's Protector",
     "power": "Special S",
     "portrait": "🎎",
-    "image": "assets/characters/Beretta.png",
+    "image": "assets/characters/Beretta.webp",
     "colorScheme": {
       "primary": "#c0c0c0",
       "secondary": "#e0e0e0",
@@ -188,7 +188,7 @@
     "role": "Primordial Demon",
     "power": "Catastrophe",
     "portrait": "💥",
-    "image": "assets/characters/Carrera.png",
+    "image": "assets/characters/Carrera.webp",
     "colorScheme": {
       "primary": "#ff4500",
       "secondary": "#ff6347",
@@ -202,7 +202,7 @@
     "role": "Hero & Time Manipulator",
     "power": "Catastrophe+",
     "portrait": "⏰",
-    "image": "assets/characters/Chloe.png",
+    "image": "assets/characters/Chloe.webp",
     "colorScheme": {
       "primary": "#9370db",
       "secondary": "#ba55d3",
@@ -216,7 +216,7 @@
     "role": "Former Demon Lord",
     "power": "Catastrophe",
     "portrait": "🎭",
-    "image": "assets/characters/Clayman.png",
+    "image": "assets/characters/Clayman.webp",
     "colorScheme": {
       "primary": "#8b4513",
       "secondary": "#a0522d",
@@ -230,7 +230,7 @@
     "role": "Demon Lord",
     "power": "Catastrophe+",
     "portrait": "🗿",
-    "image": "assets/characters/Dagruel.png",
+    "image": "assets/characters/Dagruel.webp",
     "colorScheme": {
       "primary": "#696969",
       "secondary": "#808080",
@@ -244,7 +244,7 @@
     "role": "Lizardman Warrior",
     "power": "A-Rank",
     "portrait": "🦎",
-    "image": "assets/characters/Gabiru.png",
+    "image": "assets/characters/Gabiru.webp",
     "colorScheme": {
       "primary": "#228b22",
       "secondary": "#32cd32",
@@ -258,7 +258,7 @@
     "role": "Human Warrior",
     "power": "Special A",
     "portrait": "⚔️",
-    "image": "assets/characters/Gazef.png",
+    "image": "assets/characters/Gazef.webp",
     "colorScheme": {
       "primary": "#4169e1",
       "secondary": "#6495ed",
@@ -272,7 +272,7 @@
     "role": "Demon Lord",
     "power": "Catastrophe+",
     "portrait": "👹",
-    "image": "assets/characters/Guy.png",
+    "image": "assets/characters/Guy.webp",
     "colorScheme": {
       "primary": "#8b0000",
       "secondary": "#dc143c",
@@ -286,7 +286,7 @@
     "role": "Hero & Crusader Leader",
     "power": "Catastrophe",
     "portrait": "⚔️",
-    "image": "assets/characters/Hinata Sakaguchi.png",
+    "image": "assets/characters/Hinata Sakaguchi.webp",
     "colorScheme": {
       "primary": "#ff69b4",
       "secondary": "#ffb6c1",
@@ -300,7 +300,7 @@
     "role": "Spirit Beast",
     "power": "Special S",
     "portrait": "🦊",
-    "image": "assets/characters/Kumara.png",
+    "image": "assets/characters/Kumara.webp",
     "colorScheme": {
       "primary": "#ff8c00",
       "secondary": "#ffa500",
@@ -314,7 +314,7 @@
     "role": "Demon Lord",
     "power": "Catastrophe+",
     "portrait": "👑",
-    "image": "assets/characters/Leon.png",
+    "image": "assets/characters/Leon.webp",
     "colorScheme": {
       "primary": "#4169e1",
       "secondary": "#6495ed",
@@ -328,7 +328,7 @@
     "role": "Demon Lord",
     "power": "Catastrophe+",
     "portrait": "🧛",
-    "image": "assets/characters/Luminous.png",
+    "image": "assets/characters/Luminous.webp",
     "colorScheme": {
       "primary": "#8b008b",
       "secondary": "#ba55d3",
@@ -342,7 +342,7 @@
     "role": "Fairy Queen & Former Demon Lord",
     "power": "Catastrophe",
     "portrait": "🧚",
-    "image": "assets/characters/Ramiris.png",
+    "image": "assets/characters/Ramiris.webp",
     "colorScheme": {
       "primary": "#98fb98",
       "secondary": "#90ee90",
@@ -356,7 +356,7 @@
     "role": "Rimuru's Companion",
     "power": "Special S",
     "portrait": "🐺",
-    "image": "assets/characters/Ranga.png",
+    "image": "assets/characters/Ranga.webp",
     "colorScheme": {
       "primary": "#2f4f4f",
       "secondary": "#708090",
@@ -370,7 +370,7 @@
     "role": "Village Chief",
     "power": "B-Rank",
     "portrait": "👨",
-    "image": "assets/characters/Rigurd.png",
+    "image": "assets/characters/Rigurd.webp",
     "colorScheme": {
       "primary": "#8b7355",
       "secondary": "#a0826d",
@@ -384,7 +384,7 @@
     "role": "Primordial Demon",
     "power": "Catastrophe",
     "portrait": "🌹",
-    "image": "assets/characters/Testarossa.png",
+    "image": "assets/characters/Testarossa.webp",
     "colorScheme": {
       "primary": "#dc143c",
       "secondary": "#ff1493",
@@ -398,7 +398,7 @@
     "role": "Primordial Demon",
     "power": "Catastrophe",
     "portrait": "🕷️",
-    "image": "assets/characters/Ultima.png",
+    "image": "assets/characters/Ultima.webp",
     "colorScheme": {
       "primary": "#8b008b",
       "secondary": "#9370db",
@@ -412,7 +412,7 @@
     "role": "Scorch Dragon",
     "power": "Catastrophe+",
     "portrait": "🔥",
-    "image": "assets/characters/Velgrynd.jpg",
+    "image": "assets/characters/Velgrynd.webp",
     "colorScheme": {
       "primary": "#ff4500",
       "secondary": "#ff6347",
@@ -426,7 +426,7 @@
     "role": "Frost Dragon",
     "power": "Catastrophe+",
     "portrait": "❄️",
-    "image": "assets/characters/Velzard.jpg",
+    "image": "assets/characters/Velzard.webp",
     "colorScheme": {
       "primary": "#00ced1",
       "secondary": "#40e0d0",
@@ -440,7 +440,7 @@
     "role": "Otherworlder & Strategist",
     "power": "Catastrophe",
     "portrait": "🎭",
-    "image": "assets/characters/Yuuki Kagurazaka.png",
+    "image": "assets/characters/Yuuki Kagurazaka.webp",
     "colorScheme": {
       "primary": "#9370db",
       "secondary": "#ba55d3",
@@ -454,7 +454,7 @@
     "role": "Insect Commander",
     "power": "Catastrophe",
     "portrait": "🦋",
-    "image": "assets/characters/Zegion.png",
+    "image": "assets/characters/Zegion.webp",
     "colorScheme": {
       "primary": "#4b0082",
       "secondary": "#6a5acd",

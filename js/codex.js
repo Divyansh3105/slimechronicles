@@ -293,7 +293,7 @@ function renderCompactCharacterCard(character, stats, cssVars) {
           <div class="character-image-wrapper">
               <img src="${character.image}" alt="${character.name}" class="character-card-image"
                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                   loading="lazy">
+                   loading="lazy" decoding="async">
               <div class="character-portrait">${character.portrait}</div>
           </div>
         </div>
@@ -788,7 +788,7 @@ async function openCharacterModal(characterId) {
     <div class="modal-character-header">
       <div class="modal-character-image">
         <img src="${character.image}" alt="${character.name}"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy" decoding="async">
         <div class="character-portrait" style="display: none; font-size: 3rem; align-items: center; justify-content: center; width: 100%; height: 100%; position: absolute; top: 0; left: 0;">${character.portrait}</div>
       </div>
 
