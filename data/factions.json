@@ -1,0 +1,3561 @@
+[
+  {
+    "name": "Jura Tempest Federation",
+    "type": "nation",
+    "relation": "allied",
+    "tag": "Nation",
+    "tagClass": "nation",
+    "summary": "A monster-led nation founded by Rimuru Tempest, built on coexistence, strength, and innovation.",
+    "power": [
+      {
+        "label": "Military",
+        "value": 95
+      },
+      {
+        "label": "Influence",
+        "value": 90
+      },
+      {
+        "label": "Magic",
+        "value": 98
+      },
+      {
+        "label": "Territory",
+        "value": 75
+      }
+    ],
+    "details": [
+      {
+        "title": "Faction Timeline",
+        "cls": "timeline-section",
+        "kind": "timeline",
+        "nodes": [
+          {
+            "state": "active",
+            "label": "Founded",
+            "sub": "Goblin Alliance"
+          },
+          {
+            "state": "active",
+            "label": "Conflict",
+            "sub": "Orc Lord Crisis"
+          },
+          {
+            "state": "active",
+            "label": "Expansion",
+            "sub": "Falmuth War"
+          },
+          {
+            "state": "current",
+            "label": "Current Era",
+            "sub": "Octagram Member"
+          }
+        ]
+      },
+      {
+        "title": "Strategic Dependencies",
+        "cls": "dependency-section",
+        "kind": "dependencies",
+        "items": ["⚔ Military", "✨ Magic", "🔩 Technology", "🧠 Intelligence"]
+      },
+      {
+        "title": "Leadership Structure",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Supreme Leader:",
+            "text": "Rimuru Tempest (Demon Lord)"
+          },
+          {
+            "label": "Prime Minister:",
+            "text": "Rigurd (Goblin Lord)"
+          },
+          {
+            "label": "Military Commander:",
+            "text": "Benimaru (Kijin General)"
+          },
+          {
+            "label": "Secretary:",
+            "text": "Shion (Oni)"
+          },
+          {
+            "label": "Head of Intelligence:",
+            "text": "Souei (Oni)"
+          },
+          {
+            "label": "Head of Domestic Affairs:",
+            "text": "Shuna (Oni Princess)"
+          },
+          {
+            "label": "Treasury Minister:",
+            "text": "Myulan"
+          }
+        ]
+      },
+      {
+        "title": "Government Structure",
+        "kind": "list",
+        "items": [
+          {
+            "label": "System:",
+            "text": "Democratic Federation with Demon Lord oversight"
+          },
+          {
+            "label": "Capital:",
+            "text": "Tempest City (formerly Goblin Village)"
+          },
+          {
+            "label": "Population:",
+            "text": "~150,000 mixed races"
+          },
+          {
+            "label": "Territory:",
+            "text": "Great Jura Forest and surrounding regions"
+          },
+          {
+            "label": "Founded:",
+            "text": "After the Orc Lord incident"
+          }
+        ]
+      },
+      {
+        "title": "Goals & Ideology",
+        "kind": "list",
+        "items": [
+          {
+            "text": "Create a world where monsters and humans coexist peacefully"
+          },
+          {
+            "text": "Establish fair trade relationships with all nations"
+          },
+          {
+            "text": "Protect all citizens regardless of race or origin"
+          },
+          {
+            "text": "Promote technological and magical advancement"
+          },
+          {
+            "text": "Maintain balance between development and nature"
+          }
+        ]
+      },
+      {
+        "title": "Military Forces",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Goblin Riders:",
+            "text": "Elite cavalry unit"
+          },
+          {
+            "label": "Tempest Wolves:",
+            "text": "Dire wolf pack led by Ranga"
+          },
+          {
+            "label": "Kijin Warriors:",
+            "text": "Evolved ogre elite forces"
+          },
+          {
+            "label": "Lizardmen Aquatic Corps:",
+            "text": "Naval and amphibious forces"
+          },
+          {
+            "label": "Demon Forces:",
+            "text": "Primordial demons and subordinates"
+          }
+        ]
+      },
+      {
+        "title": "Diplomatic Relations",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Close Allies:",
+            "text": "Dwargon, Blumund, Ingrassia"
+          },
+          {
+            "label": "Trade Partners:",
+            "text": "Sarion, Farmenas"
+          },
+          {
+            "label": "Neutral:",
+            "text": "Most Demon Lords, Eastern Empire"
+          },
+          {
+            "label": "Hostile:",
+            "text": "Western Holy Church extremists"
+          }
+        ]
+      },
+      {
+        "title": "Key Historical Events",
+        "kind": "list",
+        "items": [
+          {
+            "text": "Foundation after Goblin Village naming ceremony"
+          },
+          {
+            "text": "Orc Lord crisis and territorial expansion"
+          },
+          {
+            "text": "Falmuth War and Rimuru's awakening as True Demon Lord"
+          },
+          {
+            "text": "Walpurgis Council participation and recognition"
+          },
+          {
+            "text": "Establishment of international trade agreements"
+          }
+        ]
+      },
+      {
+        "title": "Related Records",
+        "cls": "links-section",
+        "kind": "links",
+        "links": [
+          {
+            "href": "character.html?name=Rimuru",
+            "text": "👑 Rimuru Tempest"
+          },
+          {
+            "href": "character.html?name=Benimaru",
+            "text": "👑 Benimaru"
+          },
+          {
+            "href": "character.html?name=Shion",
+            "text": "👑 Shion"
+          },
+          {
+            "href": "chronicle.html?event=Falmuth_War",
+            "text": "📜 Falmuth War"
+          },
+          {
+            "href": "chronicle.html?event=Walpurgis",
+            "text": "📜 Walpurgis Council"
+          }
+        ]
+      },
+      {
+        "title": "Impact on Tempest",
+        "cls": "impact-section",
+        "kind": "list",
+        "items": [
+          {
+            "cls": "impact-positive",
+            "text": "+ Central hub of monster-human cooperation"
+          },
+          {
+            "cls": "impact-positive",
+            "text": "+ Technological and magical advancement"
+          },
+          {
+            "cls": "impact-positive",
+            "text": "+ Diplomatic bridge between nations"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Armed Nation of Dwargon",
+    "type": "nation",
+    "tag": "Nation",
+    "tagClass": "nation",
+    "summary": "A powerful dwarf kingdom known for superior craftsmanship, engineering, and military technology.",
+    "power": [
+      {
+        "label": "Military",
+        "value": 88
+      },
+      {
+        "label": "Influence",
+        "value": 75
+      },
+      {
+        "label": "Magic",
+        "value": 70
+      },
+      {
+        "label": "Territory",
+        "value": 65
+      }
+    ],
+    "details": [
+      {
+        "title": "Faction Timeline",
+        "cls": "timeline-section",
+        "kind": "timeline",
+        "nodes": [
+          {
+            "state": "active",
+            "label": "Ancient",
+            "sub": "Mountain Kingdom"
+          },
+          {
+            "state": "active",
+            "label": "Alliance",
+            "sub": "Tempest Treaty"
+          },
+          {
+            "state": "active",
+            "label": "Exchange",
+            "sub": "Tech Sharing"
+          },
+          {
+            "state": "current",
+            "label": "Current Era",
+            "sub": "Trade Partner"
+          }
+        ]
+      },
+      {
+        "title": "Strategic Dependencies",
+        "cls": "dependency-section",
+        "kind": "dependencies",
+        "items": ["⚔ Military", "🔩 Technology", "🌾 Agriculture"]
+      },
+      {
+        "title": "Royal Leadership",
+        "kind": "list",
+        "items": [
+          {
+            "label": "King:",
+            "text": "Gazel Dwargo"
+          },
+          {
+            "label": "Minister:",
+            "text": "Dolph"
+          },
+          {
+            "label": "Master Smith:",
+            "text": "Kaijin"
+          },
+          {
+            "label": "Capital:",
+            "text": "Dwargon City"
+          },
+          {
+            "label": "Location:",
+            "text": "Canaat Mountains"
+          }
+        ]
+      },
+      {
+        "title": "Industrial Specialization",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Smithing:",
+            "text": "Legendary weapon crafting"
+          },
+          {
+            "label": "Engineering:",
+            "text": "Advanced magical machinery"
+          },
+          {
+            "label": "Mining:",
+            "text": "Rare metal extraction"
+          },
+          {
+            "label": "Architecture:",
+            "text": "Mountain fortress construction"
+          },
+          {
+            "label": "Technology:",
+            "text": "Magical tool development"
+          }
+        ]
+      },
+      {
+        "title": "Military Doctrine",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Heavy Infantry:",
+            "text": "Armored dwarf warriors"
+          },
+          {
+            "label": "Siege Weapons:",
+            "text": "Advanced artillery"
+          },
+          {
+            "label": "Fortress Defense:",
+            "text": "Mountain strongholds"
+          },
+          {
+            "label": "Elite Guards:",
+            "text": "Royal protection force"
+          },
+          {
+            "label": "Engineering Corps:",
+            "text": "Combat construction"
+          }
+        ]
+      },
+      {
+        "title": "Economic Power",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Trade Goods:",
+            "text": "Weapons, armor, tools"
+          },
+          {
+            "label": "Resources:",
+            "text": "Precious metals and gems"
+          },
+          {
+            "label": "Partnerships:",
+            "text": "Tempest technology exchange"
+          },
+          {
+            "label": "Markets:",
+            "text": "International weapon supply"
+          },
+          {
+            "label": "Innovation:",
+            "text": "Magical engineering research"
+          }
+        ]
+      },
+      {
+        "title": "Diplomatic Relations",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Tempest:",
+            "text": "Close alliance and technology sharing"
+          },
+          {
+            "label": "Ingrassia:",
+            "text": "Trade partnership"
+          },
+          {
+            "label": "Blumund:",
+            "text": "Regional cooperation"
+          },
+          {
+            "label": "Status:",
+            "text": "Respected neutral power"
+          }
+        ]
+      },
+      {
+        "title": "Related Records",
+        "cls": "links-section",
+        "kind": "links",
+        "links": [
+          {
+            "href": "character.html?id=gazef",
+            "text": "👑 King Gazel"
+          },
+          {
+            "href": "character.html?name=Kaijin",
+            "text": "👑 Kaijin"
+          },
+          {
+            "href": "chronicle.html?event=Dwargon_Alliance",
+            "text": "📜 Dwargon Alliance"
+          },
+          {
+            "href": "chronicle.html?event=Technology_Exchange",
+            "text": "📜 Technology Exchange"
+          }
+        ]
+      },
+      {
+        "title": "Impact on Tempest",
+        "cls": "impact-section",
+        "kind": "list",
+        "items": [
+          {
+            "cls": "impact-positive",
+            "text": "+ Strengthens technological advancement"
+          },
+          {
+            "cls": "impact-positive",
+            "text": "+ Provides superior craftsmanship"
+          },
+          {
+            "cls": "impact-positive",
+            "text": "+ Enhances military capabilities"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Kingdom of Ingrassia",
+    "type": "nation",
+    "tag": "Nation",
+    "tagClass": "nation",
+    "summary": "The strongest human nation with central location, wealth, and political influence.",
+    "power": [
+      {
+        "label": "Military",
+        "value": 82
+      },
+      {
+        "label": "Influence",
+        "value": 85
+      },
+      {
+        "label": "Magic",
+        "value": 78
+      },
+      {
+        "label": "Territory",
+        "value": 80
+      }
+    ],
+    "details": [
+      {
+        "title": "Faction Timeline",
+        "cls": "timeline-section",
+        "kind": "timeline",
+        "nodes": [
+          {
+            "state": "active",
+            "label": "Established",
+            "sub": "Central Kingdom"
+          },
+          {
+            "state": "active",
+            "label": "Guild Hub",
+            "sub": "Free Guild HQ"
+          },
+          {
+            "state": "active",
+            "label": "Alliance",
+            "sub": "Tempest Relations"
+          },
+          {
+            "state": "current",
+            "label": "Current Era",
+            "sub": "Trade Mediator"
+          }
+        ]
+      },
+      {
+        "title": "Strategic Dependencies",
+        "cls": "dependency-section",
+        "kind": "dependencies",
+        "items": ["⚔ Military", "🌾 Agriculture", "🧠 Intelligence"]
+      },
+      {
+        "title": "Royal Government",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Ruler:",
+            "text": "King of Ingrassia"
+          },
+          {
+            "label": "Capital:",
+            "text": "Ingrassia City"
+          },
+          {
+            "label": "Location:",
+            "text": "Central western continent"
+          },
+          {
+            "label": "Government:",
+            "text": "Constitutional monarchy"
+          },
+          {
+            "label": "Population:",
+            "text": "~2 million humans"
+          }
+        ]
+      },
+      {
+        "title": "Economic Power",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Trade Hub:",
+            "text": "Central continental commerce"
+          },
+          {
+            "label": "Free Guild HQ:",
+            "text": "International adventurer management"
+          },
+          {
+            "label": "Banking:",
+            "text": "Major financial institutions"
+          },
+          {
+            "label": "Education:",
+            "text": "Freedom Academy for gifted children"
+          },
+          {
+            "label": "Resources:",
+            "text": "Agricultural and mineral wealth"
+          }
+        ]
+      },
+      {
+        "title": "Military Structure",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Royal Army:",
+            "text": "Professional standing forces"
+          },
+          {
+            "label": "Knight Orders:",
+            "text": "Elite cavalry units"
+          },
+          {
+            "label": "City Guards:",
+            "text": "Urban security forces"
+          },
+          {
+            "label": "Border Patrol:",
+            "text": "Frontier defense"
+          },
+          {
+            "label": "Adventurer Support:",
+            "text": "Guild coordination"
+          }
+        ]
+      },
+      {
+        "title": "Strategic Position",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Geography:",
+            "text": "Central location advantage"
+          },
+          {
+            "label": "Diplomacy:",
+            "text": "Neutral mediator role"
+          },
+          {
+            "label": "Trade Routes:",
+            "text": "Major commercial crossroads"
+          },
+          {
+            "label": "Information:",
+            "text": "Intelligence gathering hub"
+          },
+          {
+            "label": "Stability:",
+            "text": "Political and economic security"
+          }
+        ]
+      },
+      {
+        "title": "International Relations",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Tempest:",
+            "text": "Growing alliance and cooperation"
+          },
+          {
+            "label": "Dwargon:",
+            "text": "Trade partnership"
+          },
+          {
+            "label": "Ruberios:",
+            "text": "Religious diplomatic ties"
+          },
+          {
+            "label": "Free Guild:",
+            "text": "Host nation privileges"
+          }
+        ]
+      },
+      {
+        "title": "Related Records",
+        "cls": "links-section",
+        "kind": "links",
+        "links": [
+          {
+            "href": "character.html?name=Yuuki",
+            "text": "👑 Yuuki Kagurazaka"
+          },
+          {
+            "href": "chronicle.html?event=Ingrassia_Alliance",
+            "text": "📜 Ingrassia Alliance"
+          },
+          {
+            "href": "chronicle.html?event=Free_Guild_Formation",
+            "text": "📜 Free Guild Formation"
+          }
+        ]
+      },
+      {
+        "title": "Impact on Tempest",
+        "cls": "impact-section",
+        "kind": "list",
+        "items": [
+          {
+            "cls": "impact-positive",
+            "text": "+ Strengthens diplomatic relations"
+          },
+          {
+            "cls": "impact-positive",
+            "text": "+ Improves trade & commerce"
+          },
+          {
+            "cls": "impact-neutral",
+            "text": "● Neutral mediator in conflicts"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Holy Empire Ruberios",
+    "type": "nation",
+    "tag": "Nation",
+    "tagClass": "nation",
+    "summary": "A theocratic empire secretly ruled by Demon Lord Luminous Valentine through her proxy, Holy Emperor Louis Valentine.",
+    "power": [
+      {
+        "label": "Military",
+        "value": 92
+      },
+      {
+        "label": "Influence",
+        "value": 88
+      },
+      {
+        "label": "Magic",
+        "value": 85
+      },
+      {
+        "label": "Territory",
+        "value": 78
+      }
+    ],
+    "details": [
+      {
+        "title": "Faction Timeline",
+        "cls": "timeline-section",
+        "kind": "timeline",
+        "nodes": [
+          {
+            "state": "active",
+            "label": "Founded",
+            "sub": "Theocratic Empire"
+          },
+          {
+            "state": "active",
+            "label": "Secret Rule",
+            "sub": "Luminous Control"
+          },
+          {
+            "state": "active",
+            "label": "Conflict",
+            "sub": "Anti-Monster War"
+          },
+          {
+            "state": "current",
+            "label": "Current Era",
+            "sub": "Diplomatic Balance"
+          }
+        ]
+      },
+      {
+        "title": "Strategic Dependencies",
+        "cls": "dependency-section",
+        "kind": "dependencies",
+        "items": ["⚔ Military", "✨ Magic", "🧠 Intelligence"]
+      },
+      {
+        "title": "Dual Leadership",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Holy Emperor:",
+            "text": "Louis Valentine (Public face)"
+          },
+          {
+            "label": "True Ruler:",
+            "text": "Luminous Valentine (Demon Lord)"
+          },
+          {
+            "label": "High Cardinal:",
+            "text": "Nikolaus Spertus"
+          },
+          {
+            "label": "Saint:",
+            "text": "Hinata Sakaguchi"
+          },
+          {
+            "label": "Capital:",
+            "text": "Holy Capital Ruberius"
+          }
+        ]
+      },
+      {
+        "title": "Religious Structure",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Faith:",
+            "text": "Luminism (worship of Luminous)"
+          },
+          {
+            "label": "Organization:",
+            "text": "Western Holy Church"
+          },
+          {
+            "label": "Doctrine:",
+            "text": "Light magic supremacy"
+          },
+          {
+            "label": "Holy Barrier:",
+            "text": "Magical dome protection"
+          },
+          {
+            "label": "Pilgrimage:",
+            "text": "Religious tourism center"
+          }
+        ]
+      },
+      {
+        "title": "Military Forces",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Holy Knights:",
+            "text": "Elite paladin orders"
+          },
+          {
+            "label": "Crusader Corps:",
+            "text": "Anti-monster specialists"
+          },
+          {
+            "label": "Temple Guards:",
+            "text": "Capital defense forces"
+          },
+          {
+            "label": "Inquisition:",
+            "text": "Internal security and investigation"
+          },
+          {
+            "label": "Saint's Guard:",
+            "text": "Hinata's personal unit"
+          }
+        ]
+      },
+      {
+        "title": "Political Strategy",
+        "kind": "list",
+        "items": [
+          {
+            "text": "Maintain facade of human supremacy"
+          },
+          {
+            "text": "Control western nations through religion"
+          },
+          {
+            "text": "Balance Demon Lord and human interests"
+          },
+          {
+            "text": "Prevent large-scale conflicts"
+          },
+          {
+            "text": "Protect Luminous's true identity"
+          }
+        ]
+      },
+      {
+        "title": "Key Relationships",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Tempest:",
+            "text": "Initially hostile, later neutral"
+          },
+          {
+            "label": "Western Nations:",
+            "text": "Religious influence"
+          },
+          {
+            "label": "Eastern Empire:",
+            "text": "Potential target"
+          },
+          {
+            "label": "Other Demon Lords:",
+            "text": "Complex diplomatic ties"
+          }
+        ]
+      },
+      {
+        "title": "Related Records",
+        "cls": "links-section",
+        "kind": "links",
+        "links": [
+          {
+            "href": "character.html?name=Luminous",
+            "text": "👑 Luminous Valentine"
+          },
+          {
+            "href": "character.html?name=Hinata",
+            "text": "👑 Hinata Sakaguchi"
+          },
+          {
+            "href": "chronicle.html?event=Holy_War",
+            "text": "📜 Holy War"
+          },
+          {
+            "href": "chronicle.html?event=Walpurgis",
+            "text": "📜 Walpurgis Council"
+          }
+        ]
+      },
+      {
+        "title": "Impact on Tempest",
+        "cls": "impact-section",
+        "kind": "list",
+        "items": [
+          {
+            "cls": "impact-negative",
+            "text": "− Initial religious opposition"
+          },
+          {
+            "cls": "impact-positive",
+            "text": "+ Later diplomatic cooperation"
+          },
+          {
+            "cls": "impact-neutral",
+            "text": "● Complex Demon Lord politics"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Eastern Empire",
+    "type": "nation",
+    "tag": "Nation",
+    "tagClass": "nation",
+    "summary": "The Nasca Namrium Ulmeria United Eastern Empire, the world's largest military superpower with over 2.1 million personnel before Tempest's emergence.",
+    "power": [
+      {
+        "label": "Military",
+        "value": 96
+      },
+      {
+        "label": "Influence",
+        "value": 85
+      },
+      {
+        "label": "Magic",
+        "value": 80
+      },
+      {
+        "label": "Territory",
+        "value": 90
+      }
+    ],
+    "details": [
+      {
+        "title": "Faction Timeline",
+        "cls": "timeline-section",
+        "kind": "timeline",
+        "nodes": [
+          {
+            "state": "active",
+            "label": "Ancient",
+            "sub": "Empire Founded"
+          },
+          {
+            "state": "active",
+            "label": "Expansion",
+            "sub": "Continental Wars"
+          },
+          {
+            "state": "active",
+            "label": "Modernization",
+            "sub": "Military Buildup"
+          },
+          {
+            "state": "current",
+            "label": "Current Era",
+            "sub": "World Domination"
+          }
+        ]
+      },
+      {
+        "title": "Strategic Dependencies",
+        "cls": "dependency-section",
+        "kind": "dependencies",
+        "items": ["⚔ Military", "🔩 Technology", "🧠 Intelligence", "🌾 Agriculture"]
+      },
+      {
+        "title": "Imperial Leadership",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Emperor:",
+            "text": "Rudra Nam Ul Nasca"
+          },
+          {
+            "label": "General:",
+            "text": "Kondou Tatsuya (Otherworlder)"
+          },
+          {
+            "label": "Intelligence Chief:",
+            "text": "Damrada"
+          },
+          {
+            "label": "Court Mage:",
+            "text": "Granbell Rosso"
+          },
+          {
+            "label": "Total Military:",
+            "text": "2.1+ million personnel"
+          }
+        ]
+      },
+      {
+        "title": "Military Organization",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Imperial Guard:",
+            "text": "Elite personal forces"
+          },
+          {
+            "label": "Armored Corps:",
+            "text": "Advanced magical technology"
+          },
+          {
+            "label": "Aerial Division:",
+            "text": "Flying magical units"
+          },
+          {
+            "label": "Otherworlder Units:",
+            "text": "Summoned hero battalions"
+          },
+          {
+            "label": "Intelligence Network:",
+            "text": "Extensive spy operations"
+          }
+        ]
+      },
+      {
+        "title": "Imperial Ambitions",
+        "kind": "list",
+        "items": [
+          {
+            "text": "Achieve complete world domination"
+          },
+          {
+            "text": "Eliminate all Demon Lord threats"
+          },
+          {
+            "text": "Establish unified imperial rule"
+          },
+          {
+            "text": "Control all magical resources"
+          },
+          {
+            "text": "Suppress monster nations"
+          }
+        ]
+      },
+      {
+        "title": "Strategic Capabilities",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Technology:",
+            "text": "Most advanced military equipment"
+          },
+          {
+            "label": "Magic:",
+            "text": "Imperial court mages and research"
+          },
+          {
+            "label": "Intelligence:",
+            "text": "Cerberus organization"
+          },
+          {
+            "label": "Resources:",
+            "text": "Vast territorial wealth"
+          },
+          {
+            "label": "Manpower:",
+            "text": "Largest standing army"
+          }
+        ]
+      },
+      {
+        "title": "Major Conflicts",
+        "kind": "list",
+        "items": [
+          {
+            "text": "Ongoing expansion campaigns"
+          },
+          {
+            "text": "Planned invasion of western nations"
+          },
+          {
+            "text": "Conflict with Demon Lord territories"
+          },
+          {
+            "text": "Intelligence war with other powers"
+          },
+          {
+            "text": "Suppression of rebellion movements"
+          }
+        ]
+      },
+      {
+        "title": "Related Records",
+        "cls": "links-section",
+        "kind": "links",
+        "links": [
+          {
+            "href": "character.html?name=Rudra",
+            "text": "👑 Emperor Rudra"
+          },
+          {
+            "href": "character.html?name=Kondou",
+            "text": "👑 General Kondou"
+          },
+          {
+            "href": "chronicle.html?event=Eastern_Empire_War",
+            "text": "📜 Eastern Empire War"
+          },
+          {
+            "href": "chronicle.html?event=Imperial_Invasion",
+            "text": "📜 Imperial Invasion"
+          }
+        ]
+      },
+      {
+        "title": "Impact on Tempest",
+        "cls": "impact-section",
+        "kind": "list",
+        "items": [
+          {
+            "cls": "impact-negative",
+            "text": "− Major military threat"
+          },
+          {
+            "cls": "impact-negative",
+            "text": "− Attracts hostile attention"
+          },
+          {
+            "cls": "impact-negative",
+            "text": "− Forces military preparedness"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Kingdom of Blumund",
+    "type": "nation",
+    "tag": "Nation",
+    "tagClass": "nation",
+    "summary": "A small nation bordering Jura Forest, known for information trading and early alliance with Tempest.",
+    "power": [
+      {
+        "label": "Military",
+        "value": 45
+      },
+      {
+        "label": "Influence",
+        "value": 60
+      },
+      {
+        "label": "Magic",
+        "value": 50
+      },
+      {
+        "label": "Territory",
+        "value": 35
+      }
+    ],
+    "details": [
+      {
+        "title": "Faction Timeline",
+        "cls": "timeline-section",
+        "kind": "timeline",
+        "nodes": [
+          {
+            "state": "active",
+            "label": "Founded",
+            "sub": "Border Kingdom"
+          },
+          {
+            "state": "active",
+            "label": "First Contact",
+            "sub": "Tempest Meeting"
+          },
+          {
+            "state": "active",
+            "label": "Alliance",
+            "sub": "Trade Partnership"
+          },
+          {
+            "state": "current",
+            "label": "Current Era",
+            "sub": "Information Hub"
+          }
+        ]
+      },
+      {
+        "title": "Strategic Dependencies",
+        "cls": "dependency-section",
+        "kind": "dependencies",
+        "items": ["🧠 Intelligence", "🌾 Agriculture"]
+      },
+      {
+        "title": "Royal Leadership",
+        "kind": "list",
+        "items": [
+          {
+            "label": "King:",
+            "text": "King of Blumund"
+          },
+          {
+            "label": "Minister:",
+            "text": "Vesta (former)"
+          },
+          {
+            "label": "Guild Master:",
+            "text": "Fuze"
+          },
+          {
+            "label": "Capital:",
+            "text": "Blumund City"
+          },
+          {
+            "label": "Population:",
+            "text": "~500,000 humans"
+          }
+        ]
+      },
+      {
+        "title": "Strategic Specialization",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Information Trading:",
+            "text": "Intelligence network hub"
+          },
+          {
+            "label": "Border Commerce:",
+            "text": "Jura Forest trade gateway"
+          },
+          {
+            "label": "Diplomatic Relations:",
+            "text": "Neutral mediator"
+          },
+          {
+            "label": "Adventurer Services:",
+            "text": "Guild branch operations"
+          },
+          {
+            "label": "Resource Management:",
+            "text": "Efficient small nation governance"
+          }
+        ]
+      },
+      {
+        "title": "Survival Strategy",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Early Alliance:",
+            "text": "First to ally with Tempest"
+          },
+          {
+            "label": "Information Brokerage:",
+            "text": "Knowledge as currency"
+          },
+          {
+            "label": "Diplomatic Immunity:",
+            "text": "Neutral status protection"
+          },
+          {
+            "label": "Economic Integration:",
+            "text": "Trade dependency benefits"
+          },
+          {
+            "label": "Military Support:",
+            "text": "Tempest protection agreement"
+          }
+        ]
+      },
+      {
+        "title": "Economic Model",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Trade Facilitation:",
+            "text": "Border crossing services"
+          },
+          {
+            "label": "Information Sales:",
+            "text": "Intelligence market"
+          },
+          {
+            "label": "Guild Services:",
+            "text": "Adventurer support fees"
+          },
+          {
+            "label": "Transit Taxes:",
+            "text": "Commercial route revenues"
+          },
+          {
+            "label": "Diplomatic Services:",
+            "text": "Mediation contracts"
+          }
+        ]
+      },
+      {
+        "title": "Key Relationships",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Tempest:",
+            "text": "Closest ally and protector"
+          },
+          {
+            "label": "Ingrassia:",
+            "text": "Information sharing partnership"
+          },
+          {
+            "label": "Free Guild:",
+            "text": "Branch office cooperation"
+          },
+          {
+            "label": "Regional Powers:",
+            "text": "Careful neutrality maintenance"
+          }
+        ]
+      },
+      {
+        "title": "Related Records",
+        "cls": "links-section",
+        "kind": "links",
+        "links": [
+          {
+            "href": "character.html?name=Fuze",
+            "text": "👑 Guild Master Fuze"
+          },
+          {
+            "href": "chronicle.html?event=Blumund_Alliance",
+            "text": "📜 Blumund Alliance"
+          },
+          {
+            "href": "chronicle.html?event=First_Contact",
+            "text": "📜 First Contact"
+          }
+        ]
+      },
+      {
+        "title": "Impact on Tempest",
+        "cls": "impact-section",
+        "kind": "list",
+        "items": [
+          {
+            "cls": "impact-positive",
+            "text": "+ Strengthens diplomatic relations"
+          },
+          {
+            "cls": "impact-positive",
+            "text": "+ Provides valuable intelligence"
+          },
+          {
+            "cls": "impact-positive",
+            "text": "+ Facilitates trade connections"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Animal Kingdom Eurazania",
+    "type": "nation",
+    "tag": "Nation",
+    "tagClass": "nation",
+    "summary": "A beastman kingdom ruled by Demon Lord Carrion, known for advanced agriculture but limited technology.",
+    "power": [
+      {
+        "label": "Military",
+        "value": 78
+      },
+      {
+        "label": "Influence",
+        "value": 65
+      },
+      {
+        "label": "Magic",
+        "value": 70
+      },
+      {
+        "label": "Territory",
+        "value": 60
+      }
+    ],
+    "details": [
+      {
+        "title": "Faction Timeline",
+        "cls": "timeline-section",
+        "kind": "timeline",
+        "nodes": [
+          {
+            "state": "active",
+            "label": "Ancient",
+            "sub": "Beastman Kingdom"
+          },
+          {
+            "state": "active",
+            "label": "Carrion Rule",
+            "sub": "Demon Lord Era"
+          },
+          {
+            "state": "active",
+            "label": "Agriculture",
+            "sub": "Food Innovation"
+          },
+          {
+            "state": "current",
+            "label": "Current Era",
+            "sub": "Octagram Member"
+          }
+        ]
+      },
+      {
+        "title": "Strategic Dependencies",
+        "cls": "dependency-section",
+        "kind": "dependencies",
+        "items": ["⚔ Military", "🌾 Agriculture", "✨ Magic"]
+      },
+      {
+        "title": "Demon Lord Leadership",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Ruler:",
+            "text": "Demon Lord Carrion (Beast Master)"
+          },
+          {
+            "label": "Elite Forces:",
+            "text": "Three Beastketeers"
+          },
+          {
+            "label": "Capital:",
+            "text": "Eurazania City"
+          },
+          {
+            "label": "Population:",
+            "text": "~1.5 million beastmen"
+          },
+          {
+            "label": "Territory:",
+            "text": "Southeastern continent"
+          }
+        ]
+      },
+      {
+        "title": "Agricultural Excellence",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Farming Innovation:",
+            "text": "Advanced cultivation techniques"
+          },
+          {
+            "label": "Crop Diversity:",
+            "text": "Multiple climate adaptations"
+          },
+          {
+            "label": "Food Security:",
+            "text": "Continental surplus production"
+          },
+          {
+            "label": "Research:",
+            "text": "Agricultural experimentation"
+          },
+          {
+            "label": "Export Economy:",
+            "text": "Food trade specialization"
+          }
+        ]
+      },
+      {
+        "title": "Beastmen Society",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Racial Diversity:",
+            "text": "Multiple beastmen subspecies"
+          },
+          {
+            "label": "Tribal Structure:",
+            "text": "Clan-based organization"
+          },
+          {
+            "label": "Natural Abilities:",
+            "text": "Enhanced physical capabilities"
+          },
+          {
+            "label": "Cultural Values:",
+            "text": "Strength and honor traditions"
+          },
+          {
+            "label": "Social Hierarchy:",
+            "text": "Merit-based advancement"
+          }
+        ]
+      },
+      {
+        "title": "Military Organization",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Three Beastketeers:",
+            "text": "Elite warrior champions"
+          },
+          {
+            "label": "Tribal Warriors:",
+            "text": "Clan-based military units"
+          },
+          {
+            "label": "Beast Cavalry:",
+            "text": "Mounted combat specialists"
+          },
+          {
+            "label": "Natural Fighters:",
+            "text": "Instinctive combat abilities"
+          },
+          {
+            "label": "Territorial Defense:",
+            "text": "Home ground advantages"
+          }
+        ]
+      },
+      {
+        "title": "Diplomatic Relations",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Tempest:",
+            "text": "Respectful diplomatic ties"
+          },
+          {
+            "label": "Demon Lords:",
+            "text": "Octagram member relations"
+          },
+          {
+            "label": "Trade Partners:",
+            "text": "Agricultural export agreements"
+          },
+          {
+            "label": "Status:",
+            "text": "Independent but cooperative"
+          }
+        ]
+      },
+      {
+        "title": "Related Records",
+        "cls": "links-section",
+        "kind": "links",
+        "links": [
+          {
+            "href": "character.html?name=Carrion",
+            "text": "👑 Demon Lord Carrion"
+          },
+          {
+            "href": "chronicle.html?event=Beastmen_Alliance",
+            "text": "📜 Beastmen Alliance"
+          },
+          {
+            "href": "chronicle.html?event=Agricultural_Exchange",
+            "text": "📜 Agricultural Exchange"
+          }
+        ]
+      },
+      {
+        "title": "Impact on Tempest",
+        "cls": "impact-section",
+        "kind": "list",
+        "items": [
+          {
+            "cls": "impact-positive",
+            "text": "+ Provides agricultural expertise"
+          },
+          {
+            "cls": "impact-positive",
+            "text": "+ Strengthens Demon Lord relations"
+          },
+          {
+            "cls": "impact-neutral",
+            "text": "● Independent but respectful"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Kingdom of Farmenas",
+    "type": "nation",
+    "tag": "Nation",
+    "tagClass": "nation",
+    "summary": "Successor state to the fallen Kingdom of Falmuth, established after Tempest's intervention.",
+    "power": [
+      {
+        "label": "Military",
+        "value": 55
+      },
+      {
+        "label": "Influence",
+        "value": 50
+      },
+      {
+        "label": "Magic",
+        "value": 45
+      },
+      {
+        "label": "Territory",
+        "value": 60
+      }
+    ],
+    "details": [
+      {
+        "title": "Faction Timeline",
+        "cls": "timeline-section",
+        "kind": "timeline",
+        "nodes": [
+          {
+            "state": "active",
+            "label": "Falmuth Fall",
+            "sub": "Kingdom Dissolved"
+          },
+          {
+            "state": "active",
+            "label": "Reconstruction",
+            "sub": "Youm's Rise"
+          },
+          {
+            "state": "active",
+            "label": "Alliance",
+            "sub": "Four Nations"
+          },
+          {
+            "state": "current",
+            "label": "Current Era",
+            "sub": "Peaceful Nation"
+          }
+        ]
+      },
+      {
+        "title": "Strategic Dependencies",
+        "cls": "dependency-section",
+        "kind": "dependencies",
+        "items": ["🌾 Agriculture", "🧠 Intelligence"]
+      },
+      {
+        "title": "New Royal Leadership",
+        "kind": "list",
+        "items": [
+          {
+            "label": "King:",
+            "text": "Youm Farmenas (former adventurer)"
+          },
+          {
+            "label": "Advisor:",
+            "text": "Edmaris Falmuth (former king)"
+          },
+          {
+            "label": "Government:",
+            "text": "Reformed constitutional monarchy"
+          },
+          {
+            "label": "Capital:",
+            "text": "Farmenas City (rebuilt)"
+          },
+          {
+            "label": "Population:",
+            "text": "~800,000 former Falmuth citizens"
+          }
+        ]
+      },
+      {
+        "title": "Reconstruction Efforts",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Economic Recovery:",
+            "text": "Trade route restoration"
+          },
+          {
+            "label": "Infrastructure:",
+            "text": "City and road rebuilding"
+          },
+          {
+            "label": "Political Reform:",
+            "text": "Democratic institutions"
+          },
+          {
+            "label": "Social Healing:",
+            "text": "Post-war reconciliation"
+          },
+          {
+            "label": "Military Rebuilding:",
+            "text": "Defensive force restructuring"
+          }
+        ]
+      },
+      {
+        "title": "Tempest Influence",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Guidance:",
+            "text": "Political and economic advisement"
+          },
+          {
+            "label": "Protection:",
+            "text": "Security guarantees"
+          },
+          {
+            "label": "Trade Integration:",
+            "text": "Four Nations Alliance member"
+          },
+          {
+            "label": "Technology Transfer:",
+            "text": "Development assistance"
+          },
+          {
+            "label": "Cultural Exchange:",
+            "text": "Monster-human cooperation"
+          }
+        ]
+      },
+      {
+        "title": "Economic Strategy",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Trade Revival:",
+            "text": "Commercial route restoration"
+          },
+          {
+            "label": "Agricultural Focus:",
+            "text": "Food production emphasis"
+          },
+          {
+            "label": "Service Economy:",
+            "text": "Transportation and logistics"
+          },
+          {
+            "label": "Regional Integration:",
+            "text": "Alliance participation"
+          },
+          {
+            "label": "Debt Management:",
+            "text": "War reparations handling"
+          }
+        ]
+      },
+      {
+        "title": "Future Prospects",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Stability:",
+            "text": "Growing political legitimacy"
+          },
+          {
+            "label": "Prosperity:",
+            "text": "Economic recovery trajectory"
+          },
+          {
+            "label": "Integration:",
+            "text": "Regional alliance strengthening"
+          },
+          {
+            "label": "Independence:",
+            "text": "Gradual autonomy increase"
+          }
+        ]
+      },
+      {
+        "title": "Related Records",
+        "cls": "links-section",
+        "kind": "links",
+        "links": [
+          {
+            "href": "character.html?name=Youm",
+            "text": "👑 King Youm"
+          },
+          {
+            "href": "chronicle.html?event=Falmuth_War",
+            "text": "📜 Falmuth War"
+          },
+          {
+            "href": "chronicle.html?event=Farmenas_Reconstruction",
+            "text": "📜 Reconstruction"
+          }
+        ]
+      },
+      {
+        "title": "Impact on Tempest",
+        "cls": "impact-section",
+        "kind": "list",
+        "items": [
+          {
+            "cls": "impact-positive",
+            "text": "+ Strengthens regional alliance"
+          },
+          {
+            "cls": "impact-positive",
+            "text": "+ Demonstrates peaceful integration"
+          },
+          {
+            "cls": "impact-positive",
+            "text": "+ Provides agricultural resources"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Octagram (Demon Lords)",
+    "type": "council",
+    "relation": "neutral",
+    "tag": "Council",
+    "tagClass": "council",
+    "summary": "The ruling council of eight Demon Lords that maintains global balance and oversees continental politics.",
+    "power": [
+      {
+        "label": "Military",
+        "value": 100
+      },
+      {
+        "label": "Influence",
+        "value": 100
+      },
+      {
+        "label": "Magic",
+        "value": 100
+      },
+      {
+        "label": "Territory",
+        "value": 95
+      }
+    ],
+    "details": [
+      {
+        "title": "Faction Timeline",
+        "cls": "timeline-section",
+        "kind": "timeline",
+        "nodes": [
+          {
+            "state": "active",
+            "label": "Ancient Pact",
+            "sub": "Council Founded"
+          },
+          {
+            "state": "active",
+            "label": "Balance Era",
+            "sub": "Continental Peace"
+          },
+          {
+            "state": "active",
+            "label": "Clayman Trial",
+            "sub": "Rogue Execution"
+          },
+          {
+            "state": "current",
+            "label": "Current Era",
+            "sub": "Rimuru Member"
+          }
+        ]
+      },
+      {
+        "title": "Strategic Dependencies",
+        "cls": "dependency-section",
+        "kind": "dependencies",
+        "items": ["⚔ Military", "✨ Magic", "🧠 Intelligence"]
+      },
+      {
+        "title": "Current Members",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Guy Crimson:",
+            "text": "Oldest Demon Lord, Red Primordial"
+          },
+          {
+            "label": "Milim Nava:",
+            "text": "Dragonoid, Destroyer class"
+          },
+          {
+            "label": "Luminous Valentine:",
+            "text": "Vampire Queen, Ruberios ruler"
+          },
+          {
+            "label": "Rimuru Tempest:",
+            "text": "Slime, newest member"
+          },
+          {
+            "label": "Dagruel:",
+            "text": "Giant King, Earth Elemental Lord"
+          },
+          {
+            "label": "Leon Cromwell:",
+            "text": "Hero summoner, Platinum Saber"
+          },
+          {
+            "label": "Ramiris:",
+            "text": "Fairy Queen, Labyrinth Lord"
+          },
+          {
+            "label": "Dino:",
+            "text": "Fallen Angel, Sleep Lord"
+          }
+        ]
+      },
+      {
+        "title": "Governance Structure",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Meeting Format:",
+            "text": "Walpurgis Council"
+          },
+          {
+            "label": "Voting System:",
+            "text": "Majority rule with veto powers"
+          },
+          {
+            "label": "Territory Division:",
+            "text": "Continental regions"
+          },
+          {
+            "label": "Conflict Resolution:",
+            "text": "Diplomatic mediation"
+          },
+          {
+            "label": "Enforcement:",
+            "text": "Combined military action"
+          }
+        ]
+      },
+      {
+        "title": "Primary Functions",
+        "kind": "list",
+        "items": [
+          {
+            "text": "Maintain balance between human and monster nations"
+          },
+          {
+            "text": "Prevent world-ending conflicts and disasters"
+          },
+          {
+            "text": "Oversee territorial disputes and boundaries"
+          },
+          {
+            "text": "Regulate the actions of other Demon Lords"
+          },
+          {
+            "text": "Coordinate responses to existential threats"
+          }
+        ]
+      },
+      {
+        "title": "Historical Significance",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Formation:",
+            "text": "Ancient pact between strongest beings"
+          },
+          {
+            "label": "Clayman Incident:",
+            "text": "Trial and execution of rogue member"
+          },
+          {
+            "label": "Rimuru's Admission:",
+            "text": "Recognition of new power"
+          },
+          {
+            "label": "Continental Stability:",
+            "text": "Centuries of relative peace"
+          }
+        ]
+      },
+      {
+        "title": "Power Dynamics",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Guy Crimson:",
+            "text": "De facto leader, most experienced"
+          },
+          {
+            "label": "Milim:",
+            "text": "Strongest combat power, unpredictable"
+          },
+          {
+            "label": "Rimuru:",
+            "text": "Rising influence, diplomatic bridge"
+          },
+          {
+            "label": "Collective Authority:",
+            "text": "Supreme over all nations"
+          }
+        ]
+      },
+      {
+        "title": "Related Records",
+        "cls": "links-section",
+        "kind": "links",
+        "links": [
+          {
+            "href": "character.html?name=Guy",
+            "text": "👑 Guy Crimson"
+          },
+          {
+            "href": "character.html?name=Milim",
+            "text": "👑 Milim Nava"
+          },
+          {
+            "href": "character.html?name=Rimuru",
+            "text": "👑 Rimuru Tempest"
+          },
+          {
+            "href": "chronicle.html?event=Walpurgis",
+            "text": "📜 Walpurgis Council"
+          },
+          {
+            "href": "chronicle.html?event=Clayman_Trial",
+            "text": "📜 Clayman Trial"
+          }
+        ]
+      },
+      {
+        "title": "Impact on Tempest",
+        "cls": "impact-section",
+        "kind": "list",
+        "items": [
+          {
+            "cls": "impact-positive",
+            "text": "+ Provides legitimacy and recognition"
+          },
+          {
+            "cls": "impact-positive",
+            "text": "+ Grants global political influence"
+          },
+          {
+            "cls": "impact-neutral",
+            "text": "● Balances power responsibilities"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Free Guild",
+    "type": "guild",
+    "tag": "Guild",
+    "tagClass": "guild",
+    "summary": "International adventurer's guild with headquarters in Ingrassia, managing quests and adventurer rankings.",
+    "power": [
+      {
+        "label": "Military",
+        "value": 65
+      },
+      {
+        "label": "Influence",
+        "value": 80
+      },
+      {
+        "label": "Magic",
+        "value": 70
+      },
+      {
+        "label": "Territory",
+        "value": 85
+      }
+    ],
+    "details": [
+      {
+        "title": "Faction Timeline",
+        "cls": "timeline-section",
+        "kind": "timeline",
+        "nodes": [
+          {
+            "state": "active",
+            "label": "Formation",
+            "sub": "Guild Established"
+          },
+          {
+            "state": "active",
+            "label": "Expansion",
+            "sub": "Branch Network"
+          },
+          {
+            "state": "active",
+            "label": "Recognition",
+            "sub": "International Status"
+          },
+          {
+            "state": "current",
+            "label": "Current Era",
+            "sub": "Global Operations"
+          }
+        ]
+      },
+      {
+        "title": "Strategic Dependencies",
+        "cls": "dependency-section",
+        "kind": "dependencies",
+        "items": ["🧠 Intelligence", "🌾 Agriculture"]
+      },
+      {
+        "title": "Organizational Structure",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Headquarters:",
+            "text": "Kingdom of Ingrassia"
+          },
+          {
+            "label": "Guild Master:",
+            "text": "Fuze (Ingrassia branch)"
+          },
+          {
+            "label": "Branch Network:",
+            "text": "International offices"
+          },
+          {
+            "label": "Membership:",
+            "text": "~100,000 active adventurers"
+          },
+          {
+            "label": "Governance:",
+            "text": "Council of Western Nations subordinate"
+          }
+        ]
+      },
+      {
+        "title": "Core Functions",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Quest Management:",
+            "text": "Mission distribution and completion"
+          },
+          {
+            "label": "Adventurer Rankings:",
+            "text": "Skill assessment and promotion"
+          },
+          {
+            "label": "Monster Threat Assessment:",
+            "text": "Danger level classification"
+          },
+          {
+            "label": "Information Network:",
+            "text": "Intelligence gathering and sharing"
+          },
+          {
+            "label": "Conflict Resolution:",
+            "text": "Dispute mediation services"
+          }
+        ]
+      },
+      {
+        "title": "Ranking System",
+        "kind": "list",
+        "items": [
+          {
+            "label": "F-Rank:",
+            "text": "Novice adventurers"
+          },
+          {
+            "label": "E-D-C Ranks:",
+            "text": "Intermediate levels"
+          },
+          {
+            "label": "B-A Ranks:",
+            "text": "Advanced adventurers"
+          },
+          {
+            "label": "S-Rank:",
+            "text": "Elite specialists"
+          },
+          {
+            "label": "Special Ranks:",
+            "text": "Unique classifications"
+          }
+        ]
+      },
+      {
+        "title": "International Operations",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Branch Offices:",
+            "text": "Major cities across continents"
+          },
+          {
+            "label": "Cross-Border Missions:",
+            "text": "International quest coordination"
+          },
+          {
+            "label": "Diplomatic Immunity:",
+            "text": "Neutral organization status"
+          },
+          {
+            "label": "Information Exchange:",
+            "text": "Inter-branch communication"
+          },
+          {
+            "label": "Emergency Response:",
+            "text": "Crisis intervention capabilities"
+          }
+        ]
+      },
+      {
+        "title": "Political Neutrality",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Non-Partisan:",
+            "text": "Avoids political involvement"
+          },
+          {
+            "label": "Service Focus:",
+            "text": "Adventurer welfare priority"
+          },
+          {
+            "label": "Conflict Mediation:",
+            "text": "Neutral arbitration services"
+          },
+          {
+            "label": "Universal Access:",
+            "text": "Open to all qualified members"
+          }
+        ]
+      },
+      {
+        "title": "Related Records",
+        "cls": "links-section",
+        "kind": "links",
+        "links": [
+          {
+            "href": "character.html?name=Fuze",
+            "text": "👑 Guild Master Fuze"
+          },
+          {
+            "href": "chronicle.html?event=Guild_Formation",
+            "text": "📜 Guild Formation"
+          },
+          {
+            "href": "chronicle.html?event=Adventurer_System",
+            "text": "📜 Adventurer System"
+          }
+        ]
+      },
+      {
+        "title": "Impact on Tempest",
+        "cls": "impact-section",
+        "kind": "list",
+        "items": [
+          {
+            "cls": "impact-positive",
+            "text": "+ Provides neutral mediation"
+          },
+          {
+            "cls": "impact-positive",
+            "text": "+ Facilitates international cooperation"
+          },
+          {
+            "cls": "impact-neutral",
+            "text": "● Maintains political neutrality"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Four Nations Trade Alliance",
+    "type": "guild",
+    "tag": "Guild",
+    "tagClass": "guild",
+    "summary": "Commercial alliance between Tempest, Blumund, Farmenas, and Dwargon for economic cooperation.",
+    "power": [
+      {
+        "label": "Military",
+        "value": 55
+      },
+      {
+        "label": "Influence",
+        "value": 85
+      },
+      {
+        "label": "Magic",
+        "value": 65
+      },
+      {
+        "label": "Territory",
+        "value": 75
+      }
+    ],
+    "details": [
+      {
+        "title": "Faction Timeline",
+        "cls": "timeline-section",
+        "kind": "timeline",
+        "nodes": [
+          {
+            "state": "active",
+            "label": "Post-War",
+            "sub": "Alliance Formed"
+          },
+          {
+            "state": "active",
+            "label": "Integration",
+            "sub": "Trade Networks"
+          },
+          {
+            "state": "active",
+            "label": "Expansion",
+            "sub": "Economic Growth"
+          },
+          {
+            "state": "current",
+            "label": "Current Era",
+            "sub": "Regional Power"
+          }
+        ]
+      },
+      {
+        "title": "Strategic Dependencies",
+        "cls": "dependency-section",
+        "kind": "dependencies",
+        "items": ["🔩 Technology", "🌾 Agriculture", "🧠 Intelligence"]
+      },
+      {
+        "title": "Alliance Leadership",
+        "kind": "list",
+        "items": [
+          {
+            "label": "CEO:",
+            "text": "Gard Mjöllmile"
+          },
+          {
+            "label": "Board Members:",
+            "text": "Representatives from each nation"
+          },
+          {
+            "label": "Headquarters:",
+            "text": "Rotating between member nations"
+          },
+          {
+            "label": "Founded:",
+            "text": "Post-Falmuth War reconstruction"
+          },
+          {
+            "label": "Legal Status:",
+            "text": "International commercial entity"
+          }
+        ]
+      },
+      {
+        "title": "Member Nations",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Jura Tempest Federation:",
+            "text": "Technology and magical goods"
+          },
+          {
+            "label": "Kingdom of Blumund:",
+            "text": "Information and logistics"
+          },
+          {
+            "label": "Kingdom of Farmenas:",
+            "text": "Agricultural products"
+          },
+          {
+            "label": "Armed Nation of Dwargon:",
+            "text": "Manufactured goods and weapons"
+          },
+          {
+            "label": "Collective Strength:",
+            "text": "Combined economic power"
+          }
+        ]
+      },
+      {
+        "title": "Trade Specializations",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Technology Exchange:",
+            "text": "Magical and mechanical innovations"
+          },
+          {
+            "label": "Resource Sharing:",
+            "text": "Raw materials and finished goods"
+          },
+          {
+            "label": "Information Network:",
+            "text": "Market intelligence and trends"
+          },
+          {
+            "label": "Transportation:",
+            "text": "Coordinated logistics systems"
+          },
+          {
+            "label": "Financial Services:",
+            "text": "Cross-border banking and credit"
+          }
+        ]
+      },
+      {
+        "title": "Economic Benefits",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Reduced Tariffs:",
+            "text": "Preferential trade rates"
+          },
+          {
+            "label": "Market Access:",
+            "text": "Expanded customer base"
+          },
+          {
+            "label": "Risk Sharing:",
+            "text": "Collective economic security"
+          },
+          {
+            "label": "Innovation Boost:",
+            "text": "Technology transfer programs"
+          },
+          {
+            "label": "Political Stability:",
+            "text": "Economic interdependence"
+          }
+        ]
+      },
+      {
+        "title": "Strategic Impact",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Regional Power:",
+            "text": "Combined economic influence"
+          },
+          {
+            "label": "Diplomatic Tool:",
+            "text": "Economic leverage in negotiations"
+          },
+          {
+            "label": "Development Model:",
+            "text": "Cooperative growth example"
+          },
+          {
+            "label": "Future Expansion:",
+            "text": "Potential new member recruitment"
+          }
+        ]
+      },
+      {
+        "title": "Related Records",
+        "cls": "links-section",
+        "kind": "links",
+        "links": [
+          {
+            "href": "character.html?name=Rimuru",
+            "text": "👑 Rimuru Tempest"
+          },
+          {
+            "href": "character.html?id=gazef",
+            "text": "👑 King Gazel"
+          },
+          {
+            "href": "character.html?name=Youm",
+            "text": "👑 King Youm"
+          },
+          {
+            "href": "chronicle.html?event=Trade_Alliance_Formation",
+            "text": "📜 Alliance Formation"
+          },
+          {
+            "href": "chronicle.html?event=Economic_Cooperation",
+            "text": "📜 Economic Cooperation"
+          }
+        ]
+      },
+      {
+        "title": "Impact on Tempest",
+        "cls": "impact-section",
+        "kind": "list",
+        "items": [
+          {
+            "cls": "impact-positive",
+            "text": "+ Strengthens economic power"
+          },
+          {
+            "cls": "impact-positive",
+            "text": "+ Enhances regional influence"
+          },
+          {
+            "cls": "impact-positive",
+            "text": "+ Promotes cooperative development"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Western Holy Church",
+    "type": "military",
+    "tag": "Military",
+    "tagClass": "military",
+    "summary": "Religious military organization based in Ruberios, violently opposed to monster nations and Demon Lords.",
+    "power": [
+      {
+        "label": "Military",
+        "value": 85
+      },
+      {
+        "label": "Influence",
+        "value": 75
+      },
+      {
+        "label": "Magic",
+        "value": 88
+      },
+      {
+        "label": "Territory",
+        "value": 70
+      }
+    ],
+    "details": [
+      {
+        "title": "Faction Timeline",
+        "cls": "timeline-section",
+        "kind": "timeline",
+        "nodes": [
+          {
+            "state": "active",
+            "label": "Founded",
+            "sub": "Religious Order"
+          },
+          {
+            "state": "active",
+            "label": "Expansion",
+            "sub": "Western Influence"
+          },
+          {
+            "state": "active",
+            "label": "Holy War",
+            "sub": "Anti-Monster Campaign"
+          },
+          {
+            "state": "current",
+            "label": "Current Era",
+            "sub": "Diplomatic Tensions"
+          }
+        ]
+      },
+      {
+        "title": "Strategic Dependencies",
+        "cls": "dependency-section",
+        "kind": "dependencies",
+        "items": ["⚔ Military", "✨ Magic"]
+      },
+      {
+        "title": "Religious Hierarchy",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Supreme Authority:",
+            "text": "Holy Emperor Louis Valentine"
+          },
+          {
+            "label": "High Cardinal:",
+            "text": "Nikolaus Spertus"
+          },
+          {
+            "label": "Saint:",
+            "text": "Hinata Sakaguchi (former)"
+          },
+          {
+            "label": "Crusader Commanders:",
+            "text": "Military leadership"
+          },
+          {
+            "label": "Base:",
+            "text": "Holy Empire Ruberios"
+          }
+        ]
+      },
+      {
+        "title": "Religious Doctrine",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Core Belief:",
+            "text": "Human supremacy over monsters"
+          },
+          {
+            "label": "Divine Mission:",
+            "text": "Purification of the world"
+          },
+          {
+            "label": "Holy War:",
+            "text": "Crusade against monster nations"
+          },
+          {
+            "label": "Light Magic:",
+            "text": "Divine power manifestation"
+          },
+          {
+            "label": "Martyrdom:",
+            "text": "Sacrifice for the greater good"
+          }
+        ]
+      },
+      {
+        "title": "Military Organization",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Crusader Orders:",
+            "text": "Elite holy warriors"
+          },
+          {
+            "label": "Temple Knights:",
+            "text": "Defensive forces"
+          },
+          {
+            "label": "Inquisition:",
+            "text": "Investigation and enforcement"
+          },
+          {
+            "label": "Holy Magic Corps:",
+            "text": "Magical combat specialists"
+          },
+          {
+            "label": "Missionary Guards:",
+            "text": "Expansion forces"
+          }
+        ]
+      },
+      {
+        "title": "Political Influence",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Western Nations:",
+            "text": "Religious authority"
+          },
+          {
+            "label": "Policy Influence:",
+            "text": "Anti-monster legislation"
+          },
+          {
+            "label": "Diplomatic Pressure:",
+            "text": "International relations"
+          },
+          {
+            "label": "Economic Power:",
+            "text": "Religious taxation and donations"
+          },
+          {
+            "label": "Information Network:",
+            "text": "Missionary intelligence"
+          }
+        ]
+      },
+      {
+        "title": "Related Records",
+        "cls": "links-section",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Primary Target:",
+            "text": "Jura Tempest Federation"
+          },
+          {
+            "label": "Demon Lord Opposition:",
+            "text": "Existential threat view"
+          },
+          {
+            "label": "Internal Conflicts:",
+            "text": "Moderate vs extremist factions"
+          },
+          {
+            "label": "Diplomatic Tensions:",
+            "text": "Peace vs war debates"
+          }
+        ]
+      },
+      {
+        "title": "Related Records",
+        "cls": "links-section",
+        "kind": "links",
+        "links": [
+          {
+            "href": "character.html?name=Hinata",
+            "text": "👑 Hinata Sakaguchi"
+          },
+          {
+            "href": "character.html?name=Luminous",
+            "text": "👑 Luminous Valentine"
+          },
+          {
+            "href": "chronicle.html?event=Holy_War",
+            "text": "📜 Holy War"
+          },
+          {
+            "href": "chronicle.html?event=Crusade_Against_Monsters",
+            "text": "📜 Crusade Against Monsters"
+          }
+        ]
+      },
+      {
+        "title": "Impact on Tempest",
+        "cls": "impact-section",
+        "kind": "list",
+        "items": [
+          {
+            "cls": "impact-negative",
+            "text": "− Primary religious opposition"
+          },
+          {
+            "cls": "impact-negative",
+            "text": "− Threatens monster-human relations"
+          },
+          {
+            "cls": "impact-negative",
+            "text": "− Forces defensive preparations"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Cerberus",
+    "type": "guild",
+    "tag": "Guild",
+    "tagClass": "guild",
+    "summary": "Secret criminal organization based in the Eastern Empire, led by Yuuki Kagurazaka, handling both legal and illegal operations.",
+    "power": [
+      {
+        "label": "Military",
+        "value": 75
+      },
+      {
+        "label": "Influence",
+        "value": 85
+      },
+      {
+        "label": "Magic",
+        "value": 80
+      },
+      {
+        "label": "Territory",
+        "value": 60
+      }
+    ],
+    "details": [
+      {
+        "title": "Faction Timeline",
+        "cls": "timeline-section",
+        "kind": "timeline",
+        "nodes": [
+          {
+            "state": "active",
+            "label": "Formation",
+            "sub": "Criminal Network"
+          },
+          {
+            "state": "active",
+            "label": "Expansion",
+            "sub": "Empire Infiltration"
+          },
+          {
+            "state": "active",
+            "label": "Shadow War",
+            "sub": "Intelligence Ops"
+          },
+          {
+            "state": "current",
+            "label": "Current Era",
+            "sub": "Hidden Influence"
+          }
+        ]
+      },
+      {
+        "title": "Strategic Dependencies",
+        "cls": "dependency-section",
+        "kind": "dependencies",
+        "items": ["🧠 Intelligence", "🔩 Technology"]
+      },
+      {
+        "title": "Shadow Leadership",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Supreme Leader:",
+            "text": "Yuuki Kagurazaka (Otherworlder)"
+          },
+          {
+            "label": "Organization Name:",
+            "text": "Three Giant Heads (Cerberus)"
+          },
+          {
+            "label": "Base of Operations:",
+            "text": "Eastern Empire"
+          },
+          {
+            "label": "Structure:",
+            "text": "Cell-based hierarchy"
+          },
+          {
+            "label": "Membership:",
+            "text": "Mixed humans and monsters"
+          }
+        ]
+      },
+      {
+        "title": "Criminal Operations",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Black Market:",
+            "text": "Illegal goods and services"
+          },
+          {
+            "label": "Information Brokerage:",
+            "text": "Intelligence trading"
+          },
+          {
+            "label": "Assassination Services:",
+            "text": "Contract killing"
+          },
+          {
+            "label": "Smuggling Networks:",
+            "text": "Cross-border contraband"
+          },
+          {
+            "label": "Political Manipulation:",
+            "text": "Corruption and bribery"
+          }
+        ]
+      },
+      {
+        "title": "Legitimate Front",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Business Operations:",
+            "text": "Legal commercial activities"
+          },
+          {
+            "label": "Noble Backing:",
+            "text": "High-society connections"
+          },
+          {
+            "label": "Government Contracts:",
+            "text": "Official work assignments"
+          },
+          {
+            "label": "Information Services:",
+            "text": "Intelligence consulting"
+          },
+          {
+            "label": "Security Services:",
+            "text": "Protection and enforcement"
+          }
+        ]
+      },
+      {
+        "title": "Strategic Goals",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Power Accumulation:",
+            "text": "Influence expansion"
+          },
+          {
+            "label": "Chaos Creation:",
+            "text": "Destabilization operations"
+          },
+          {
+            "label": "Profit Maximization:",
+            "text": "Financial gain priority"
+          },
+          {
+            "label": "Information Control:",
+            "text": "Intelligence monopolization"
+          },
+          {
+            "label": "Political Infiltration:",
+            "text": "Government penetration"
+          }
+        ]
+      },
+      {
+        "title": "Opposition and Threats",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Freedom Association:",
+            "text": "Rival organization"
+          },
+          {
+            "label": "Imperial Authorities:",
+            "text": "Law enforcement pressure"
+          },
+          {
+            "label": "Tempest Intelligence:",
+            "text": "Souei's network"
+          },
+          {
+            "label": "Internal Conflicts:",
+            "text": "Power struggles"
+          }
+        ]
+      },
+      {
+        "title": "Related Records",
+        "cls": "links-section",
+        "kind": "links",
+        "links": [
+          {
+            "href": "character.html?name=Yuuki",
+            "text": "👑 Yuuki Kagurazaka"
+          },
+          {
+            "href": "chronicle.html?event=Cerberus_Operations",
+            "text": "📜 Cerberus Operations"
+          },
+          {
+            "href": "chronicle.html?event=Shadow_War",
+            "text": "📜 Shadow War"
+          }
+        ]
+      },
+      {
+        "title": "Impact on Tempest",
+        "cls": "impact-section",
+        "kind": "list",
+        "items": [
+          {
+            "cls": "impact-negative",
+            "text": "− Criminal organization threat"
+          },
+          {
+            "cls": "impact-negative",
+            "text": "− Intelligence warfare target"
+          },
+          {
+            "cls": "impact-neutral",
+            "text": "● Requires counter-intelligence efforts"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Kingdom of Falmuth (Fallen)",
+    "type": "nation",
+    "tag": "Nation",
+    "tagClass": "nation",
+    "summary": "Former trading kingdom that was dissolved after launching a failed war against Tempest to maintain trade monopoly.",
+    "power": [
+      {
+        "label": "Military",
+        "value": 25
+      },
+      {
+        "label": "Influence",
+        "value": 15
+      },
+      {
+        "label": "Magic",
+        "value": 30
+      },
+      {
+        "label": "Territory",
+        "value": 0
+      }
+    ],
+    "details": [
+      {
+        "title": "Faction Timeline",
+        "cls": "timeline-section",
+        "kind": "timeline",
+        "nodes": [
+          {
+            "state": "active",
+            "label": "Founded",
+            "sub": "Trade Kingdom"
+          },
+          {
+            "state": "active",
+            "label": "Prosperity",
+            "sub": "Western Gateway"
+          },
+          {
+            "state": "active",
+            "label": "War",
+            "sub": "Tempest Conflict"
+          },
+          {
+            "state": "current",
+            "label": "Fallen",
+            "sub": "Kingdom Dissolved"
+          }
+        ]
+      },
+      {
+        "title": "Historical Overview",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Status:",
+            "text": "Dissolved nation"
+          },
+          {
+            "label": "Former Role:",
+            "text": "Gateway to western nations"
+          },
+          {
+            "label": "Downfall:",
+            "text": "War against Tempest"
+          },
+          {
+            "label": "Cause:",
+            "text": "Trade route disruption"
+          },
+          {
+            "label": "Successor:",
+            "text": "Kingdom of Farmenas"
+          },
+          {
+            "label": "Legacy:",
+            "text": "Economic warfare consequences"
+          }
+        ]
+      },
+      {
+        "title": "Related Records",
+        "cls": "links-section",
+        "kind": "links",
+        "links": [
+          {
+            "href": "character.html?name=Edmaris",
+            "text": "👑 Former King Edmaris"
+          },
+          {
+            "href": "character.html?name=Youm",
+            "text": "👑 King Youm"
+          },
+          {
+            "href": "chronicle.html?event=Falmuth_War",
+            "text": "📜 Falmuth War"
+          },
+          {
+            "href": "chronicle.html?event=Kingdom_Dissolution",
+            "text": "📜 Kingdom Dissolution"
+          }
+        ]
+      },
+      {
+        "title": "Impact on Tempest",
+        "cls": "impact-section",
+        "kind": "list",
+        "items": [
+          {
+            "cls": "impact-negative",
+            "text": "− Former hostile threat"
+          },
+          {
+            "cls": "impact-positive",
+            "text": "+ Demonstrated Tempest's power"
+          },
+          {
+            "cls": "impact-neutral",
+            "text": "● Led to Farmenas reconstruction"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Goblin Tribes",
+    "type": "race",
+    "relation": "allied",
+    "tag": "Race",
+    "tagClass": "race",
+    "summary": "The original inhabitants of Jura Forest who became the foundation of Tempest Federation.",
+    "power": [
+      {
+        "label": "Military",
+        "value": 70
+      },
+      {
+        "label": "Influence",
+        "value": 65
+      },
+      {
+        "label": "Magic",
+        "value": 60
+      },
+      {
+        "label": "Territory",
+        "value": 55
+      }
+    ],
+    "details": [
+      {
+        "title": "Faction Timeline",
+        "cls": "timeline-section",
+        "kind": "timeline",
+        "nodes": [
+          {
+            "state": "active",
+            "label": "Ancient",
+            "sub": "Forest Dwellers"
+          },
+          {
+            "state": "active",
+            "label": "First Contact",
+            "sub": "Rimuru Meeting"
+          },
+          {
+            "state": "active",
+            "label": "Evolution",
+            "sub": "Mass Naming"
+          },
+          {
+            "state": "current",
+            "label": "Current Era",
+            "sub": "Tempest Foundation"
+          }
+        ]
+      },
+      {
+        "title": "Strategic Dependencies",
+        "cls": "dependency-section",
+        "kind": "dependencies",
+        "items": ["⚔ Military", "🌾 Agriculture"]
+      },
+      {
+        "title": "Leadership",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Chief:",
+            "text": "Rigurd (Goblin Lord)"
+          },
+          {
+            "label": "General:",
+            "text": "Rigur"
+          },
+          {
+            "label": "Population:",
+            "text": "~200 evolved goblins"
+          }
+        ]
+      },
+      {
+        "title": "Goals & Role",
+        "kind": "list",
+        "items": [
+          {
+            "text": "Serve as Tempest's administrative backbone"
+          },
+          {
+            "text": "Protect the Great Jura Forest"
+          },
+          {
+            "text": "Maintain traditional goblin culture"
+          }
+        ]
+      },
+      {
+        "title": "Key Events",
+        "kind": "list",
+        "items": [
+          {
+            "text": "First encounter with Rimuru"
+          },
+          {
+            "text": "Mass naming and evolution"
+          },
+          {
+            "text": "Formation of Tempest Federation"
+          }
+        ]
+      },
+      {
+        "title": "Related Records",
+        "cls": "links-section",
+        "kind": "links",
+        "links": [
+          {
+            "href": "character.html?name=Rigurd",
+            "text": "👑 Chief Rigurd"
+          },
+          {
+            "href": "character.html?name=Rimuru",
+            "text": "👑 Rimuru Tempest"
+          },
+          {
+            "href": "chronicle.html?event=First_Naming",
+            "text": "📜 First Naming"
+          },
+          {
+            "href": "chronicle.html?event=Goblin_Evolution",
+            "text": "📜 Goblin Evolution"
+          }
+        ]
+      },
+      {
+        "title": "Impact on Tempest",
+        "cls": "impact-section",
+        "kind": "list",
+        "items": [
+          {
+            "cls": "impact-positive",
+            "text": "+ Foundation of Tempest Federation"
+          },
+          {
+            "cls": "impact-positive",
+            "text": "+ Administrative backbone"
+          },
+          {
+            "cls": "impact-positive",
+            "text": "+ Cultural diversity strength"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Fanged Wolf Clan",
+    "type": "race",
+    "relation": "allied",
+    "tag": "Race",
+    "tagClass": "race",
+    "summary": "Powerful wolf monsters led by Ranga, serving as Tempest's elite cavalry and scouts.",
+    "power": [
+      {
+        "label": "Military",
+        "value": 85
+      },
+      {
+        "label": "Influence",
+        "value": 55
+      },
+      {
+        "label": "Magic",
+        "value": 75
+      },
+      {
+        "label": "Territory",
+        "value": 50
+      }
+    ],
+    "details": [
+      {
+        "title": "Faction Timeline",
+        "cls": "timeline-section",
+        "kind": "timeline",
+        "nodes": [
+          {
+            "state": "active",
+            "label": "Wild Pack",
+            "sub": "Forest Predators"
+          },
+          {
+            "state": "active",
+            "label": "Conflict",
+            "sub": "Goblin Territory"
+          },
+          {
+            "state": "active",
+            "label": "Submission",
+            "sub": "Veldora's Aura"
+          },
+          {
+            "state": "current",
+            "label": "Current Era",
+            "sub": "Elite Cavalry"
+          }
+        ]
+      },
+      {
+        "title": "Strategic Dependencies",
+        "cls": "dependency-section",
+        "kind": "dependencies",
+        "items": ["⚔ Military", "✨ Magic"]
+      },
+      {
+        "title": "Leadership",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Alpha:",
+            "text": "Ranga (Star Wolf)"
+          },
+          {
+            "label": "Pack Size:",
+            "text": "~100 wolves"
+          },
+          {
+            "label": "Territory:",
+            "text": "Great Jura Forest"
+          }
+        ]
+      },
+      {
+        "title": "Goals & Role",
+        "kind": "list",
+        "items": [
+          {
+            "text": "Serve as Rimuru's personal mount and guard"
+          },
+          {
+            "text": "Provide reconnaissance and mobility"
+          },
+          {
+            "text": "Protect forest territories"
+          }
+        ]
+      },
+      {
+        "title": "Key Events",
+        "kind": "list",
+        "items": [
+          {
+            "text": "Initial conflict with goblin village"
+          },
+          {
+            "text": "Submission to Veldora's aura"
+          },
+          {
+            "text": "Alliance with Rimuru and Tempest"
+          },
+          {
+            "text": "Evolution into Star Wolves"
+          },
+          {
+            "text": "Submission to Rimuru after Veldora's aura"
+          },
+          {
+            "text": "Evolution through naming"
+          }
+        ]
+      },
+      {
+        "title": "Related Records",
+        "cls": "links-section",
+        "kind": "links",
+        "links": [
+          {
+            "href": "character.html?name=Ranga",
+            "text": "👑 Alpha Ranga"
+          },
+          {
+            "href": "character.html?name=Rimuru",
+            "text": "👑 Rimuru Tempest"
+          },
+          {
+            "href": "chronicle.html?event=Wolf_Submission",
+            "text": "📜 Wolf Submission"
+          },
+          {
+            "href": "chronicle.html?event=Star_Wolf_Evolution",
+            "text": "📜 Star Wolf Evolution"
+          }
+        ]
+      },
+      {
+        "title": "Impact on Tempest",
+        "cls": "impact-section",
+        "kind": "list",
+        "items": [
+          {
+            "cls": "impact-positive",
+            "text": "+ Elite military cavalry"
+          },
+          {
+            "cls": "impact-positive",
+            "text": "+ Superior reconnaissance capabilities"
+          },
+          {
+            "cls": "impact-positive",
+            "text": "+ Loyal guardian force"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Lizardmen Tribes",
+    "type": "race",
+    "relation": "neutral",
+    "tag": "Race",
+    "tagClass": "race",
+    "summary": "Marsh-dwelling reptilian humanoids led by Gabiru, known for their adaptability and loyalty.",
+    "power": [
+      {
+        "label": "Military",
+        "value": 65
+      },
+      {
+        "label": "Influence",
+        "value": 45
+      },
+      {
+        "label": "Magic",
+        "value": 55
+      },
+      {
+        "label": "Territory",
+        "value": 40
+      }
+    ],
+    "details": [
+      {
+        "title": "Faction Timeline",
+        "cls": "timeline-section",
+        "kind": "timeline",
+        "nodes": [
+          {
+            "state": "active",
+            "label": "Ancient",
+            "sub": "Marsh Dwellers"
+          },
+          {
+            "state": "active",
+            "label": "Crisis",
+            "sub": "Orc Lord Threat"
+          },
+          {
+            "state": "active",
+            "label": "Rebellion",
+            "sub": "Gabiru's Exile"
+          },
+          {
+            "state": "current",
+            "label": "Current Era",
+            "sub": "Tempest Integration"
+          }
+        ]
+      },
+      {
+        "title": "Strategic Dependencies",
+        "cls": "dependency-section",
+        "kind": "dependencies",
+        "items": ["⚔ Military", "🌾 Agriculture"]
+      },
+      {
+        "title": "Leadership",
+        "kind": "list",
+        "items": [
+          {
+            "label": "Leader:",
+            "text": "Gabiru (Dragonewt)"
+          },
+          {
+            "label": "Former Chief:",
+            "text": "Abiru"
+          },
+          {
+            "label": "Population:",
+            "text": "Several hundred"
+          }
+        ]
+      },
+      {
+        "title": "Goals & Role",
+        "kind": "list",
+        "items": [
+          {
+            "text": "Integrate into Tempest society"
+          },
+          {
+            "text": "Maintain marsh territories"
+          },
+          {
+            "text": "Provide aquatic military support"
+          }
+        ]
+      },
+      {
+        "title": "Key Events",
+        "kind": "list",
+        "items": [
+          {
+            "text": "Orc Lord crisis involvement"
+          },
+          {
+            "text": "Gabiru's rebellion and exile"
+          },
+          {
+            "text": "Integration into Tempest Federation"
+          }
+        ]
+      },
+      {
+        "title": "Related Records",
+        "cls": "links-section",
+        "kind": "links",
+        "links": [
+          {
+            "href": "character.html?name=Gabiru",
+            "text": "👑 Leader Gabiru"
+          },
+          {
+            "href": "character.html?name=Rimuru",
+            "text": "👑 Rimuru Tempest"
+          },
+          {
+            "href": "chronicle.html?event=Orc_Lord_Crisis",
+            "text": "📜 Orc Lord Crisis"
+          },
+          {
+            "href": "chronicle.html?event=Lizardmen_Integration",
+            "text": "📜 Lizardmen Integration"
+          }
+        ]
+      },
+      {
+        "title": "Impact on Tempest",
+        "cls": "impact-section",
+        "kind": "list",
+        "items": [
+          {
+            "cls": "impact-positive",
+            "text": "+ Aquatic military capabilities"
+          },
+          {
+            "cls": "impact-positive",
+            "text": "+ Marsh territory expertise"
+          },
+          {
+            "cls": "impact-positive",
+            "text": "+ Adaptive integration model"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,4 +1,27 @@
-document.addEventListener("DOMContentLoaded", () => {
+/* global renderFactionCard */
+const domReady = new Promise((resolve) => {
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", resolve);
+  else resolve();
+});
+
+const factionsReady = domReady.then(async () => {
+  const grid = document.getElementById("factionsGrid");
+  try {
+    const response = await fetch("data/factions.json");
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const factions = await response.json();
+    grid.innerHTML = factions.map(renderFactionCard).join("");
+  } catch (err) {
+    console.error("Failed to load factions:", err);
+    grid.innerHTML = '<p class="no-results">Could not load factions. Try refreshing the page.</p>';
+  }
+  if (window.initScrollReveal) window.initScrollReveal();
+});
+
+// The handlers below query .faction-card, so they wait for the cards to be rendered
+const onFactionsReady = (fn) => factionsReady.then(fn);
+
+onFactionsReady(() => {
   const cards = document.querySelectorAll(".faction-card");
   const searchInput = document.getElementById("searchInput");
   const typeFilter = document.getElementById("typeFilter");
@@ -528,7 +551,7 @@ function closeFactionModal() {
 // Export global function
 window.closeFactionModal = closeFactionModal;
 
-document.addEventListener("DOMContentLoaded", () => {
+onFactionsReady(() => {
   const scrollBtn = document.createElement("div");
   scrollBtn.className = "scroll-to-top";
   scrollBtn.setAttribute("aria-label", "Scroll to top");
@@ -576,7 +599,7 @@ const cardObserver = new IntersectionObserver((entries) => {
   });
 }, observerOptions);
 
-document.addEventListener("DOMContentLoaded", () => {
+onFactionsReady(() => {
   if (window.TempestAnimations) {
     window.TempestAnimations.animateScrollReveal(".faction-card", {
       y: 35,
@@ -612,7 +635,7 @@ const powerBarObserver = new IntersectionObserver(
   { threshold: 0.5 }
 );
 
-document.addEventListener("DOMContentLoaded", () => {
+onFactionsReady(() => {
   const factionCards = document.querySelectorAll(".faction-card");
   factionCards.forEach((card) => {
     const powerBars = card.querySelectorAll(".power-bar div");
@@ -623,7 +646,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+onFactionsReady(() => {
   const cards = document.querySelectorAll(".faction-card");
 
   cards.forEach((card) => {
@@ -647,7 +670,7 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+onFactionsReady(() => {
   const searchInput = document.getElementById("searchInput");
   const typeFilter = document.getElementById("typeFilter");
   const relationFilter = document.getElementById("relationFilter");
@@ -704,7 +727,7 @@ document.addEventListener("DOMContentLoaded", () => {
   checkActiveFilters();
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+onFactionsReady(() => {
   const powerItems = document.querySelectorAll(".power-item");
 
   const tooltips = {
@@ -723,7 +746,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+onFactionsReady(() => {
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
@@ -738,7 +761,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+onFactionsReady(() => {
   const cards = document.querySelectorAll(".faction-card");
 
   cards.forEach((card) => {
@@ -770,7 +793,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+onFactionsReady(() => {
   const cards = document.querySelectorAll(".faction-card");
 
   cards.forEach((card, index) => {
@@ -778,7 +801,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+onFactionsReady(() => {
   const searchInput = document.getElementById("searchInput");
 
   let searchTimeout;
@@ -794,7 +817,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+onFactionsReady(() => {
   const cards = document.querySelectorAll(".faction-card");
 
   cards.forEach((card) => {
@@ -851,7 +874,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+onFactionsReady(() => {
   const modal = document.getElementById("faction-modal");
 
   if (modal) {
@@ -873,7 +896,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+onFactionsReady(() => {
   document.addEventListener("keydown", (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === "k") {
       e.preventDefault();
@@ -894,7 +917,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+onFactionsReady(() => {
   const observerOptions = {
     threshold: 0.15,
     rootMargin: "0px 0px -100px 0px",
@@ -919,7 +942,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+onFactionsReady(() => {
   const powerItems = document.querySelectorAll(".power-item");
 
   const tooltipTexts = {
@@ -938,7 +961,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+onFactionsReady(() => {
   const cards = document.querySelectorAll(".faction-card");
 
   cards.forEach((card) => {
@@ -962,7 +985,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+onFactionsReady(() => {
   const originalOpenModal = window.openFactionModal;
 
   if (typeof originalOpenModal === "function") {
@@ -982,7 +1005,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+onFactionsReady(() => {
   const animatePowerBars = (container) => {
     const powerBars = container.querySelectorAll(".power-bar div");
     powerBars.forEach((bar, index) => {
@@ -1013,7 +1036,7 @@ document.addEventListener("DOMContentLoaded", () => {
   cards.forEach((card) => cardObserver.observe(card));
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+onFactionsReady(() => {
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
@@ -1028,7 +1051,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+onFactionsReady(() => {
   const searchInput = document.getElementById("searchInput");
   const typeFilter = document.getElementById("typeFilter");
   const relationFilter = document.getElementById("relationFilter");

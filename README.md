@@ -40,7 +40,7 @@ npm run lint    # eslint
 *.html          one page per section
 js/             page scripts, plus components/ (custom elements) and utils/
 css/            shared.css plus one stylesheet per page
-data/           character JSON (basic list + one file per character)
+data/           character JSON (basic list + one file per character), factions.json, timeline.json
 sw.js           service worker
 tests/          vitest specs
 ```
@@ -48,7 +48,7 @@ tests/          vitest specs
 ## Known gaps
 
 - No automated accessibility or cross-browser testing.
-- Page content for factions, records and the chronicle is hardcoded in the HTML rather than loaded from JSON.
+- Factions and the chronicle timeline load from JSON, but other pages (records, overview) still keep their content in HTML or JS.
 
 ## Credits
 

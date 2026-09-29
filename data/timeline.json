@@ -1,0 +1,786 @@
+[
+  {
+    "year": "2013",
+    "era": "founding",
+    "label": "Founding Era",
+    "navLabel": "Founding",
+    "arcs": [
+      {
+        "event": "Reincarnation",
+        "slug": "reincarnation-arc",
+        "icon": "🌟",
+        "title": "Reincarnation Arc",
+        "events": [
+          {
+            "importance": "high",
+            "icon": "💫",
+            "title": "Satoru Mikami's Death & Reincarnation",
+            "date": "Day 1",
+            "description": "Satoru Mikami, a 37-year-old corporate worker, dies and is reincarnated as a slime in the Great Jura Forest with unique abilities.",
+            "consequences": [
+              "Acquisition of unique skills: Great Sage and Predator",
+              "Beginning of the Tempest legend",
+              "First contact with the sealed Storm Dragon Veldora"
+            ],
+            "characters": [
+              {
+                "href": "character.html?id=rimuru",
+                "img": "assets/characters/Rimuru.webp",
+                "alt": "Rimuru",
+                "name": "Rimuru Tempest"
+              },
+              {
+                "href": "character.html?id=veldora",
+                "img": "assets/characters/Veldora.webp",
+                "alt": "Veldora",
+                "name": "Veldora Tempest"
+              }
+            ]
+          },
+          {
+            "importance": "high",
+            "icon": "🐺",
+            "title": "Goblin Village Alliance",
+            "date": "Day 15",
+            "description": "Rimuru saves a goblin village from dire wolves and forms the first alliance, becoming their leader.",
+            "consequences": [
+              "Formation of the first Tempest settlement",
+              "Naming of goblins and wolves, evolution begins",
+              "Establishment of Rimuru as a leader figure"
+            ],
+            "characters": [
+              {
+                "href": "character.html?id=rigurd",
+                "img": "assets/characters/Rigurd.webp",
+                "alt": "Rigurd",
+                "name": "Rigurd"
+              },
+              {
+                "href": "character.html?id=ranga",
+                "img": "assets/characters/Ranga.webp",
+                "alt": "Ranga",
+                "name": "Ranga"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": "2014",
+    "era": "expansion",
+    "label": "Expansion Era",
+    "navLabel": "Expansion",
+    "arcs": [
+      {
+        "event": "Orc_Disaster",
+        "icon": "🐗",
+        "title": "Orc Disaster Arc",
+        "events": [
+          {
+            "importance": "high",
+            "icon": "⚔️",
+            "title": "Orc Lord Invasion",
+            "date": "Spring",
+            "description": "The Orc Lord leads a massive army threatening the forest. Rimuru forms an alliance with the Lizardmen and Ogres to stop the invasion.",
+            "consequences": [
+              "Population spike: 150,000+ orcs join Tempest",
+              "Military restructuring and organization",
+              "Establishment of Tempest as a major power",
+              "Integration of multiple monster races"
+            ],
+            "characters": [
+              {
+                "href": "character.html?id=geld",
+                "img": "assets/characters/Geld.webp",
+                "alt": "Geld",
+                "name": "Geld"
+              },
+              {
+                "href": "character.html?id=benimaru",
+                "img": "assets/characters/Benimaru.webp",
+                "alt": "Benimaru",
+                "name": "Benimaru"
+              },
+              {
+                "href": "character.html?id=shion",
+                "img": "assets/characters/Shion.webp",
+                "alt": "Shion",
+                "name": "Shion"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": "2015",
+    "era": "demon-lord",
+    "label": "Demon Lord Era",
+    "navLabel": "Demon Lord",
+    "arcs": [
+      {
+        "event": "Falmuth_War",
+        "icon": "👑",
+        "title": "Falmuth Incident Arc",
+        "events": [
+          {
+            "importance": "high",
+            "icon": "💀",
+            "title": "Tempest Massacre",
+            "date": "Late Summer",
+            "description": "The Kingdom of Falmuth attacks Tempest while Rimuru is away, resulting in the deaths of many citizens including Shion.",
+            "consequences": [
+              "Rimuru's transformation into a True Demon Lord",
+              "Resurrection of fallen citizens",
+              "Destruction of Falmuth's army",
+              "Global recognition of Tempest's power"
+            ],
+            "characters": [
+              {
+                "href": "character.html?id=rimuru",
+                "img": "assets/characters/Rimuru.webp",
+                "alt": "Rimuru",
+                "name": "Rimuru Tempest"
+              },
+              {
+                "href": "character.html?id=shion",
+                "img": "assets/characters/Shion.webp",
+                "alt": "Shion",
+                "name": "Shion"
+              }
+            ]
+          },
+          {
+            "importance": "high",
+            "icon": "🌟",
+            "title": "Demon Lord Awakening",
+            "date": "Fall",
+            "description": "Rimuru evolves into a True Demon Lord through the Harvest Festival, gaining immense power and transforming Tempest forever.",
+            "consequences": [
+              "Global diplomacy shift - Tempest becomes a recognized nation",
+              "Formation of the Octagram (Eight Star Demon Lords)",
+              "Massive power increase for all Tempest citizens",
+              "Establishment of international relations"
+            ],
+            "characters": [
+              {
+                "href": "character.html?id=diablo",
+                "img": "assets/characters/Diablo.webp",
+                "alt": "Diablo",
+                "name": "Diablo"
+              },
+              {
+                "href": "character.html?id=milim",
+                "img": "assets/characters/Milim.webp",
+                "alt": "Milim",
+                "name": "Milim Nava"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "event": "Walpurgis",
+        "icon": "🎭",
+        "title": "Walpurgis Arc",
+        "events": [
+          {
+            "icon": "🏛️",
+            "title": "First Walpurgis Council",
+            "date": "Winter",
+            "description": "Rimuru attends his first Walpurgis as a newly awakened Demon Lord, meeting the other members of the Octagram and establishing his position in the supernatural hierarchy.",
+            "consequences": [
+              "Official recognition as a True Demon Lord",
+              "Formation of alliances with Guy Crimson and Milim",
+              "Clayman's defeat and removal from power",
+              "Establishment of Tempest's international standing"
+            ],
+            "characters": [
+              {
+                "href": "character.html?id=guy",
+                "img": "assets/characters/Guy.webp",
+                "alt": "Guy",
+                "name": "Guy Crimson"
+              },
+              {
+                "href": "character.html?id=clayman",
+                "img": "assets/characters/Clayman.webp",
+                "alt": "Clayman",
+                "name": "Clayman"
+              },
+              {
+                "href": "character.html?id=milim",
+                "img": "assets/characters/Milim.webp",
+                "alt": "Milim",
+                "name": "Milim Nava"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": "2016",
+    "era": "imperial",
+    "label": "Imperial Era",
+    "navLabel": "Imperial",
+    "arcs": [
+      {
+        "event": "Eastern_Empire",
+        "icon": "🏰",
+        "title": "Eastern Empire Arc",
+        "events": [
+          {
+            "icon": "⚔️",
+            "title": "Empire Invasion",
+            "date": "Spring",
+            "description": "The Eastern Empire launches a massive invasion against Tempest, underestimating the power of the newly awakened Demon Lord and his evolved subordinates.",
+            "consequences": [
+              "Demonstration of Tempest's overwhelming military might",
+              "Capture of 200,000 imperial soldiers",
+              "Hinata Sakaguchi's intervention and alliance",
+              "Establishment of Tempest as a superpower"
+            ],
+            "characters": [
+              {
+                "href": "character.html?id=hinata",
+                "img": "assets/characters/Hinata Sakaguchi.webp",
+                "alt": "Hinata",
+                "name": "Hinata Sakaguchi"
+              },
+              {
+                "href": "character.html?id=benimaru",
+                "img": "assets/characters/Benimaru.webp",
+                "alt": "Benimaru",
+                "name": "Benimaru"
+              }
+            ]
+          },
+          {
+            "icon": "🤝",
+            "title": "Imperial Peace Treaty",
+            "date": "Summer",
+            "description": "Following the decisive defeat, the Eastern Empire negotiates a comprehensive peace treaty with Tempest, marking a new era of cooperation and mutual respect.",
+            "consequences": [
+              "Formal recognition of Tempest as a sovereign nation",
+              "Establishment of trade agreements and diplomatic relations",
+              "Release and rehabilitation of captured soldiers",
+              "Beginning of technological exchange programs"
+            ],
+            "characters": [
+              {
+                "href": "character.html?id=rimuru",
+                "img": "assets/characters/Rimuru.webp",
+                "alt": "Rimuru",
+                "name": "Rimuru Tempest"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": "2017",
+    "era": "dragon",
+    "label": "Dragon Era",
+    "navLabel": "Dragon",
+    "arcs": [
+      {
+        "icon": "🐉",
+        "title": "True Dragon Arc",
+        "events": [
+          {
+            "icon": "❄️",
+            "title": "Velzard's Arrival",
+            "date": "Early Spring",
+            "description": "Velzard, the Ice Dragon and Veldora's sister, arrives in Tempest to investigate her brother's freedom and assess the threat level of Rimuru Tempest.",
+            "consequences": [
+              "First contact with another True Dragon",
+              "Veldora's family dynamics revealed",
+              "Tempest's power acknowledged by True Dragon standards",
+              "Establishment of dragon-level diplomatic relations"
+            ],
+            "characters": [
+              {
+                "href": "character.html?id=velzard",
+                "img": "assets/characters/Velzard.webp",
+                "alt": "Velzard",
+                "name": "Velzard"
+              },
+              {
+                "href": "character.html?id=veldora",
+                "img": "assets/characters/Veldora.webp",
+                "alt": "Veldora",
+                "name": "Veldora Tempest"
+              }
+            ]
+          },
+          {
+            "icon": "🔥",
+            "title": "Velgrynd's Investigation",
+            "date": "Late Spring",
+            "description": "Velgrynd, the Scorch Dragon, conducts her own investigation into Tempest and Rimuru's capabilities, leading to unexpected revelations about parallel worlds and dimensional travel.",
+            "consequences": [
+              "Discovery of parallel world connections",
+              "Revelation of Rimuru's unique nature across dimensions",
+              "Formation of True Dragon alliance",
+              "Expansion of Tempest's cosmic significance"
+            ],
+            "characters": [
+              {
+                "href": "character.html?id=velgrynd",
+                "img": "assets/characters/Velgrynd.webp",
+                "alt": "Velgrynd",
+                "name": "Velgrynd"
+              },
+              {
+                "href": "character.html?id=rimuru",
+                "img": "assets/characters/Rimuru.webp",
+                "alt": "Rimuru",
+                "name": "Rimuru Tempest"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "icon": "🌀",
+        "title": "Labyrinth Arc",
+        "events": [
+          {
+            "icon": "🏗️",
+            "title": "Great Labyrinth Construction",
+            "date": "Summer",
+            "description": "Rimuru and Ramiris collaborate to construct the Great Labyrinth of Tempest, creating a massive dungeon system that serves as both defense mechanism and training ground.",
+            "consequences": [
+              "Creation of Tempest's ultimate defense system",
+              "Establishment of adventurer training programs",
+              "Zegion's evolution into an Insect Kaiser",
+              "Development of advanced magical research facilities"
+            ],
+            "characters": [
+              {
+                "href": "character.html?id=ramiris",
+                "img": "assets/characters/Ramiris.webp",
+                "alt": "Ramiris",
+                "name": "Ramiris"
+              },
+              {
+                "href": "character.html?id=zegion",
+                "img": "assets/characters/Zegion.webp",
+                "alt": "Zegion",
+                "name": "Zegion"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": "2018",
+    "era": "cosmic",
+    "label": "Cosmic Era",
+    "navLabel": "Cosmic",
+    "arcs": [
+      {
+        "event": "Tenma_War",
+        "icon": "⚔️",
+        "title": "Tenma War Arc",
+        "events": [
+          {
+            "importance": "high",
+            "icon": "�",
+            "title": "Empire's Final Assault",
+            "date": "Early Spring",
+            "description": "The Eastern Empire launches its ultimate invasion against Tempest with overwhelming military force, including advanced magical weapons and elite soldiers, in a desperate attempt to eliminate the growing threat of Rimuru's nation.",
+            "consequences": [
+              "Massive military confrontation between Empire and Tempest",
+              "Demonstration of Tempest's evolved defensive capabilities",
+              "Capture and conversion of imperial forces",
+              "Revelation of the Empire's true technological power"
+            ],
+            "characters": [
+              {
+                "href": "character.html?id=rimuru",
+                "img": "assets/characters/Rimuru.webp",
+                "alt": "Rimuru",
+                "name": "Rimuru Tempest"
+              },
+              {
+                "href": "character.html?id=benimaru",
+                "img": "assets/characters/Benimaru.webp",
+                "alt": "Benimaru",
+                "name": "Benimaru"
+              },
+              {
+                "href": "character.html?id=diablo",
+                "img": "assets/characters/Diablo.webp",
+                "alt": "Diablo",
+                "name": "Diablo"
+              }
+            ]
+          },
+          {
+            "importance": "high",
+            "icon": "🔥",
+            "title": "Velgrynd's Intervention",
+            "date": "Spring",
+            "description": "Velgrynd, the Scorch Dragon, intervenes in the war between Tempest and the Empire, leading to a dramatic confrontation with Veldora and revealing deeper connections between the True Dragons and the ongoing conflict.",
+            "consequences": [
+              "Epic battle between True Dragons Veldora and Velgrynd",
+              "Revelation of parallel world connections",
+              "Velgrynd's eventual understanding and alliance",
+              "Expansion of Tempest's cosmic significance"
+            ],
+            "characters": [
+              {
+                "href": "character.html?id=velgrynd",
+                "img": "assets/characters/Velgrynd.webp",
+                "alt": "Velgrynd",
+                "name": "Velgrynd"
+              },
+              {
+                "href": "character.html?id=veldora",
+                "img": "assets/characters/Veldora.webp",
+                "alt": "Veldora",
+                "name": "Veldora Tempest"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "event": "Saint_Monster_Confrontation",
+        "icon": "⚖️",
+        "title": "Saint-Monster Confrontation Arc",
+        "events": [
+          {
+            "importance": "high",
+            "icon": "⚔️",
+            "title": "Hinata's Final Challenge",
+            "date": "Late Spring",
+            "description": "Hinata Sakaguchi confronts Rimuru in what appears to be their final battle, but reveals deeper motivations and ultimately leads to a resolution of the conflict between the Western Holy Church and Tempest.",
+            "consequences": [
+              "Resolution of the Saint-Monster conflict",
+              "Hinata's full alliance with Rimuru",
+              "Reform of the Western Holy Church",
+              "Establishment of religious tolerance"
+            ],
+            "characters": [
+              {
+                "href": "character.html?id=hinata",
+                "img": "assets/characters/Hinata Sakaguchi.webp",
+                "alt": "Hinata",
+                "name": "Hinata Sakaguchi"
+              },
+              {
+                "href": "character.html?id=rimuru",
+                "img": "assets/characters/Rimuru.webp",
+                "alt": "Rimuru",
+                "name": "Rimuru Tempest"
+              }
+            ]
+          },
+          {
+            "importance": "medium",
+            "icon": "⛪",
+            "title": "Church Reformation",
+            "date": "Summer",
+            "description": "The Western Holy Church undergoes major reforms under Hinata's leadership, abandoning its anti-monster policies and establishing new diplomatic relations with monster nations, particularly Tempest.",
+            "consequences": [
+              "End of systematic monster persecution",
+              "New era of human-monster cooperation",
+              "Establishment of joint research initiatives",
+              "Cultural exchange programs"
+            ],
+            "characters": [
+              {
+                "href": "character.html?id=hinata",
+                "img": "assets/characters/Hinata Sakaguchi.webp",
+                "alt": "Hinata",
+                "name": "Hinata Sakaguchi"
+              },
+              {
+                "href": "character.html?id=luminous",
+                "img": "assets/characters/Luminous.webp",
+                "alt": "Luminous",
+                "name": "Luminous Valentine"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": "2019",
+    "era": "transcendence",
+    "label": "Transcendence Era",
+    "navLabel": "Transcendence",
+    "arcs": [
+      {
+        "event": "Michael_Arc",
+        "icon": "👼",
+        "title": "Michael Arc",
+        "events": [
+          {
+            "importance": "high",
+            "icon": "⚡",
+            "title": "Michael's Awakening",
+            "date": "Early Spring",
+            "description": "The Ultimate Skill Michael awakens and begins manipulating events from behind the scenes, seeking to establish a new world order under angelic rule and eliminate threats to its vision of perfect order.",
+            "consequences": [
+              "Discovery of Ultimate Skill consciousness",
+              "Manipulation of world leaders and events",
+              "Threat to the balance of power",
+              "Formation of anti-Michael alliance"
+            ],
+            "characters": [
+              {
+                "href": "character.html?id=rimuru",
+                "img": "assets/characters/Rimuru.webp",
+                "alt": "Rimuru",
+                "name": "Rimuru Tempest"
+              },
+              {
+                "href": "character.html?id=guy",
+                "img": "assets/characters/Guy.webp",
+                "alt": "Guy",
+                "name": "Guy Crimson"
+              }
+            ]
+          },
+          {
+            "importance": "high",
+            "icon": "🌟",
+            "title": "Angelic Domination Attempt",
+            "date": "Spring",
+            "description": "Michael attempts to dominate the world through manipulation of key figures and direct confrontation with the Demon Lords, leading to a cosmic-scale battle that threatens the very fabric of reality.",
+            "consequences": [
+              "Epic battle between angelic and demonic forces",
+              "Revelation of the true nature of Ultimate Skills",
+              "Rimuru's evolution to near-godlike status",
+              "Establishment of new cosmic balance"
+            ],
+            "characters": [
+              {
+                "href": "character.html?id=rimuru",
+                "img": "assets/characters/Rimuru.webp",
+                "alt": "Rimuru",
+                "name": "Rimuru Tempest"
+              },
+              {
+                "href": "character.html?id=milim",
+                "img": "assets/characters/Milim.webp",
+                "alt": "Milim",
+                "name": "Milim Nava"
+              },
+              {
+                "href": "character.html?id=guy",
+                "img": "assets/characters/Guy.webp",
+                "alt": "Guy",
+                "name": "Guy Crimson"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "event": "Phantom_King",
+        "icon": "👻",
+        "title": "Phantom King Arc",
+        "events": [
+          {
+            "importance": "high",
+            "icon": "🌌",
+            "title": "Yuuki's True Nature Revealed",
+            "date": "Summer",
+            "description": "Yuuki Kagurazaka reveals his true nature as a multiversal threat, having gained power across multiple timelines and realities. His ambition extends beyond mere world domination to complete universal control.",
+            "consequences": [
+              "Discovery of multiversal threats",
+              "Revelation of Yuuki's true power and intentions",
+              "Formation of the ultimate alliance against cosmic threats",
+              "Rimuru's evolution toward cosmic-level abilities"
+            ],
+            "characters": [
+              {
+                "href": "character.html?id=yuuki",
+                "img": "assets/characters/Yuuki Kagurazaka.webp",
+                "alt": "Yuuki",
+                "name": "Yuuki Kagurazaka"
+              },
+              {
+                "href": "character.html?id=rimuru",
+                "img": "assets/characters/Rimuru.webp",
+                "alt": "Rimuru",
+                "name": "Rimuru Tempest"
+              }
+            ]
+          },
+          {
+            "importance": "high",
+            "icon": "⭐",
+            "title": "Ultimate Skill Mastery",
+            "date": "Late Summer",
+            "description": "Rimuru achieves complete mastery over multiple Ultimate Skills, transcending normal limitations and preparing for the final confrontation with cosmic-level threats. Ciel evolves to become an independent consciousness.",
+            "consequences": [
+              "Transcendence of normal power limitations",
+              "Ciel's evolution to independent existence",
+              "Ability to manipulate space-time directly",
+              "Protection of multiple parallel worlds",
+              "Establishment as a multiversal guardian"
+            ],
+            "characters": [
+              {
+                "href": "character.html?id=rimuru",
+                "img": "assets/characters/Rimuru.webp",
+                "alt": "Rimuru",
+                "name": "Rimuru Tempest"
+              },
+              {
+                "href": "character.html?id=ciel",
+                "img": "assets/characters/Rimuru.webp",
+                "alt": "Ciel",
+                "name": "Ciel"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": "2020",
+    "era": "final",
+    "label": "Final Era",
+    "navLabel": "Final",
+    "arcs": [
+      {
+        "event": "Ivarage_Arc",
+        "icon": "🌑",
+        "title": "Ivarage Arc",
+        "events": [
+          {
+            "importance": "high",
+            "icon": "🌌",
+            "title": "Ivarage's Awakening",
+            "date": "Early Spring",
+            "description": "The ancient evil Ivarage awakens, representing a threat that transcends even the True Dragons and Demon Lords. This primordial entity seeks to return the world to primordial chaos, threatening all existence.",
+            "consequences": [
+              "Emergence of the ultimate existential threat",
+              "Unity of all major powers against common enemy",
+              "Revelation of the world's true history",
+              "Final test of Rimuru's evolved abilities"
+            ],
+            "characters": [
+              {
+                "href": "character.html?id=rimuru",
+                "img": "assets/characters/Rimuru.webp",
+                "alt": "Rimuru",
+                "name": "Rimuru Tempest"
+              },
+              {
+                "href": "character.html?id=veldora",
+                "img": "assets/characters/Veldora.webp",
+                "alt": "Veldora",
+                "name": "Veldora Tempest"
+              },
+              {
+                "href": "character.html?id=guy",
+                "img": "assets/characters/Guy.webp",
+                "alt": "Guy",
+                "name": "Guy Crimson"
+              }
+            ]
+          },
+          {
+            "importance": "high",
+            "icon": "⚡",
+            "title": "Final Confrontation",
+            "date": "Spring",
+            "description": "The ultimate battle against Ivarage brings together all of Rimuru's allies and former enemies in a desperate fight for existence itself. This confrontation determines the fate of not just their world, but all possible realities.",
+            "consequences": [
+              "Ultimate test of all evolved powers and alliances",
+              "Resolution of all major conflicts and threats",
+              "Establishment of permanent cosmic balance",
+              "Rimuru's ascension to true godhood",
+              "Beginning of a new age of peace and prosperity"
+            ],
+            "characters": [
+              {
+                "href": "character.html?id=rimuru",
+                "img": "assets/characters/Rimuru.webp",
+                "alt": "Rimuru",
+                "name": "Rimuru Tempest"
+              },
+              {
+                "href": "character.html?id=milim",
+                "img": "assets/characters/Milim.webp",
+                "alt": "Milim",
+                "name": "Milim Nava"
+              },
+              {
+                "href": "character.html?id=guy",
+                "img": "assets/characters/Guy.webp",
+                "alt": "Guy",
+                "name": "Guy Crimson"
+              },
+              {
+                "href": "character.html?id=veldora",
+                "img": "assets/characters/Veldora.webp",
+                "alt": "Veldora",
+                "name": "Veldora Tempest"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "event": "Epilogue_Arc",
+        "icon": "🌅",
+        "title": "Epilogue Arc",
+        "events": [
+          {
+            "importance": "medium",
+            "icon": "🌍",
+            "title": "New World Order",
+            "date": "Summer",
+            "description": "With all major threats eliminated, a new world order emerges with Tempest at its center. Rimuru, now recognized as a true god-like being, works to establish lasting peace and prosperity across all nations and species.",
+            "consequences": [
+              "Establishment of permanent world peace",
+              "Universal cooperation between all species",
+              "Technological and magical advancement",
+              "Rimuru's role as benevolent world guardian"
+            ],
+            "characters": [
+              {
+                "href": "character.html?id=rimuru",
+                "img": "assets/characters/Rimuru.webp",
+                "alt": "Rimuru",
+                "name": "Rimuru Tempest"
+              },
+              {
+                "href": "character.html?id=shuna",
+                "img": "assets/characters/Shuna.webp",
+                "alt": "Shuna",
+                "name": "Shuna"
+              },
+              {
+                "href": "character.html?id=benimaru",
+                "img": "assets/characters/Benimaru.webp",
+                "alt": "Benimaru",
+                "name": "Benimaru"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

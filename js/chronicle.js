@@ -1172,7 +1172,29 @@ window.testArcExpansion = function () {
     }
   }
 };
-document.addEventListener("DOMContentLoaded", () => {
+/* global renderTimelineMarkers, renderTimelineYears */
+async function loadTimeline() {
+  try {
+    const response = await fetch("data/timeline.json");
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const years = await response.json();
+    document.querySelector(".progress-nav-markers").innerHTML = renderTimelineMarkers(years);
+    document
+      .querySelector(".timeline-line")
+      .insertAdjacentHTML("afterend", renderTimelineYears(years));
+  } catch (err) {
+    console.error("Failed to load timeline:", err);
+    document
+      .querySelector(".timeline-line")
+      .insertAdjacentHTML(
+        "afterend",
+        '<p class="no-results">Could not load the timeline. Try refreshing the page.</p>'
+      );
+  }
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadTimeline();
   const initializeTimeline = () => {
     if (!window.isMobileDevice || !window.debounce || !window.throttle || !window.getURLParameter) {
       setTimeout(initializeTimeline, 50);

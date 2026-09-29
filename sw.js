@@ -1,4 +1,4 @@
-const CACHE_NAME = "slime-chronicles-v3";
+const CACHE_NAME = "slime-chronicles-v5";
 
 // App shell + character data. Images and audio are cached as they are visited (see fetch handler).
 const ASSETS_TO_CACHE = [
@@ -35,6 +35,7 @@ const ASSETS_TO_CACHE = [
   "/js/animations.js",
   "/js/character.js",
   "/js/chronicle.js",
+  "/js/timeline-render.js",
   "/js/codex.js",
   "/js/components/BattleSimulator.js",
   "/js/components/CommandPalette.js",
@@ -42,6 +43,7 @@ const ASSETS_TO_CACHE = [
   "/js/components/MainNavigation.js",
   "/js/components/SkillSynthesizer.js",
   "/js/effects.js",
+  "/js/faction-cards.js",
   "/js/factions.js",
   "/js/game-state.js",
   "/js/overview.js",
@@ -53,6 +55,8 @@ const ASSETS_TO_CACHE = [
   "/js/utils/SoundEngine.js",
   // data
   "/data/characters-basic.json",
+  "/data/factions.json",
+  "/data/timeline.json",
   "/data/characters/adalmann.json",
   "/data/characters/apito.json",
   "/data/characters/benimaru.json",
