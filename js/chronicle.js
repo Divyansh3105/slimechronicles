@@ -1254,7 +1254,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   initializeTimeline();
 });
 
-// Export timeline progression functions to global scope
 window.toggleProgressNav = toggleProgressNav;
 window.navigateToEra = navigateToEra;
 window.playTimelineProgression = playTimelineProgression;

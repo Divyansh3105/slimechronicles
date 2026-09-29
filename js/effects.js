@@ -49,7 +49,6 @@ class AnimatedBackground {
 
   loadScript(src) {
     return new Promise((resolve, reject) => {
-      // Prevent duplicate script loading by checking existing script tags
       if (document.querySelector(`script[src="${src}"]`)) {
         resolve();
         return;
@@ -64,7 +63,6 @@ class AnimatedBackground {
   }
 
   createParticlesContainer() {
-    // Remove existing particles container to prevent conflicts
     const existing = document.getElementById("particles-js");
     if (existing) {
       existing.remove();
@@ -195,7 +193,6 @@ class AnimatedBackground {
   }
 
   destroy() {
-    // Properly destroy particles.js instance to prevent memory leaks
     if (this.particlesInstance && this.particlesInstance.pJS) {
       this.particlesInstance.pJS.fn.vendors.destroypJS();
       this.particlesInstance = null;
@@ -251,7 +248,7 @@ class ParticleSystem {
       count = Math.floor(count * 0.3);
     }
 
-    // Disable particles on low-memory devices to prevent crashes
+    // low-memory devices
     if (navigator.deviceMemory && navigator.deviceMemory < 2) {
       count = 0;
     }
@@ -386,7 +383,6 @@ class LoadingScreenManager {
       return;
     }
 
-    // Enable pointer events during loading to prevent user interaction
     this.loadingScreen.style.pointerEvents = "auto";
     this.setupPageLoadComplete();
   }
@@ -435,7 +431,6 @@ class LoadingScreenManager {
   }
 }
 
-// Global particle system instance for application-wide particle management
 let particleSystem = null;
 
 function createParticles() {
@@ -500,7 +495,6 @@ if (document.readyState === "loading") {
   });
 }
 
-// Clean up resources before page unload to prevent memory leaks
 window.addEventListener("beforeunload", () => {
   if (particleSystem) {
     particleSystem.cleanup();

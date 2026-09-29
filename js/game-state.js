@@ -180,6 +180,5 @@ class GameStateManager {
   }
 }
 
-// Initialize global game state instances - Make GameStateManager available globally
 window.GameStateManager = new GameStateManager();
 window.GameState = window.GameStateManager;

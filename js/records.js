@@ -1,4 +1,3 @@
-// Resize handling with debouncing - Prevent excessive resize event processing
 const handleResize = window.debounce(() => {
   renderRecords();
 }, 250);
@@ -552,7 +551,6 @@ function initializeHistoricalRecordsPage() {
   }
 }
 
-// Add global event listeners - Set up page-wide keyboard shortcuts and event handlers
 function addGlobalEventListeners() {
   window.addEventListener("resize", handleResize);
   document.addEventListener("keydown", function (e) {
@@ -578,7 +576,6 @@ function addGlobalEventListeners() {
   ensureScrollingWorks();
 }
 
-// Ensure page scrolling functionality - Prevent scroll blocking and maintain proper overflow behavior
 function ensureScrollingWorks() {
   document.documentElement.style.overflow = "auto";
   document.body.style.overflow = "auto";
@@ -703,7 +700,6 @@ function testFunction() {
   }
 }
 
-// Export functions to global scope - Make functions available for external access and HTML event handlers
 window.handleSearch = handleSearch;
 window.clearSearch = clearSearch;
 window.handleCategoryFilter = handleCategoryFilter;

@@ -646,7 +646,6 @@ function openSkillDetail(skillName) {
   const skill = allSkills.find((s) => s.name === skillName); // Find skill by name
   if (!skill) return; // Exit if skill not found
 
-  // Remove any existing modal to prevent duplicates
   document.querySelector(".skill-detail-modal")?.remove();
 
   const modal = document.createElement("div"); // Create modal container
@@ -731,7 +730,6 @@ function openSkillDetail(skillName) {
 
   document.body.appendChild(modal); // Add modal to page
 
-  // Prevent body scrolling while modal is open
   document.body.style.overflow = "hidden";
 
   if (window.TempestAnimations) {
@@ -785,7 +783,6 @@ function closeSkillDetail() {
   }
 }
 
-// Global keyboard event handlers for accessibility and shortcuts
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     closeSkillDetail(); // Close any open skill detail modal
@@ -817,7 +814,6 @@ function forceInitialize() {
   }, 500);
 }
 
-// Make functions globally available for HTML onclick handlers
 window.filterByPath = filterByPath;
 window.viewCharacter = viewCharacter;
 window.openSkillDetail = openSkillDetail;

@@ -66,7 +66,6 @@ class PerfTuner {
     document.head.appendChild(style);
   }
 
-  // Apply reduced motion optimizations - Respect user accessibility preferences for motion
   applyReducedMotionOptimizations() {
     const style = document.createElement("style");
     style.textContent = `
@@ -166,5 +165,4 @@ if (document.readyState === "loading") {
   window.perfTuner = new PerfTuner();
 }
 
-// Make PerfTuner class globally available for external access
 window.PerfTuner = PerfTuner;

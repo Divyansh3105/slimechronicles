@@ -1,11 +1,5 @@
-/**
- * Jura Tempest Federation - Animation Manager
- * Powered by GSAP (GreenSock) & ScrollTrigger
- *
- * Provides dynamic card staggers, ScrollTrigger scroll reveals,
- * spring modal animations, stat count-ups, and magnetic hover micro-interactions.
- * Includes graceful fallbacks for environments without GSAP or when reduced motion is preferred.
- */
+// GSAP-based animations. Every method falls back to plain styles when GSAP is
+// missing or the user prefers reduced motion.
 
 class AnimationManager {
   constructor() {
@@ -17,18 +11,12 @@ class AnimationManager {
     this.initGSAP();
   }
 
-  /**
-   * Check if user prefers reduced motion for accessibility.
-   */
   checkReducedMotion() {
     if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       this.prefersReducedMotion = true;
     }
   }
 
-  /**
-   * Initialize GSAP plugins if available.
-   */
   initGSAP() {
     if (this.isGSAPAvailable && this.isScrollTriggerAvailable) {
       try {
@@ -39,11 +27,6 @@ class AnimationManager {
     }
   }
 
-  /**
-   * Staggered card entrance animation.
-   * @param {string|NodeList|Array|Element} targets - Selector or elements to animate.
-   * @param {Object} options - Custom animation options.
-   */
   animateCardStagger(targets, options = {}) {
     const elements = this.resolveElements(targets);
     if (!elements || elements.length === 0) return;
@@ -85,11 +68,6 @@ class AnimationManager {
     );
   }
 
-  /**
-   * ScrollTrigger-based entrance animation for scrollable elements.
-   * @param {string|NodeList|Array|Element} targets - Elements to animate on scroll.
-   * @param {Object} options - Custom options.
-   */
   animateScrollReveal(targets, options = {}) {
     const elements = this.resolveElements(targets);
     if (!elements || elements.length === 0) return;
@@ -100,7 +78,6 @@ class AnimationManager {
     }
 
     elements.forEach((el) => {
-      // Avoid duplicate triggers
       if (el.dataset.gsapRevealed === "true") return;
 
       const yOffset = options.y || 40;
@@ -131,9 +108,6 @@ class AnimationManager {
     });
   }
 
-  /**
-   * IntersectionObserver fallback for scroll reveals when GSAP is absent.
-   */
   fallbackScrollReveal(elements) {
     if (typeof IntersectionObserver === "undefined") {
       elements.forEach((el) => {
@@ -159,11 +133,6 @@ class AnimationManager {
     elements.forEach((el) => observer.observe(el));
   }
 
-  /**
-   * Animated modal pop-in with spring physics and backdrop blur fade.
-   * @param {Element} modalElement - Outer modal overlay container.
-   * @param {Element} contentElement - Inner modal dialog box.
-   */
   animateModalOpen(modalElement, contentElement) {
     if (!modalElement) return;
 
@@ -204,12 +173,6 @@ class AnimationManager {
     }
   }
 
-  /**
-   * Animated modal close transition.
-   * @param {Element} modalElement - Outer modal overlay.
-   * @param {Element} contentElement - Inner modal dialog box.
-   * @param {Function} onComplete - Callback executed after animation finishes.
-   */
   animateModalClose(modalElement, contentElement, onComplete) {
     if (!modalElement) {
       if (onComplete) onComplete();
@@ -246,12 +209,6 @@ class AnimationManager {
     });
   }
 
-  /**
-   * Count-up number animation for statistics counters.
-   * @param {Element|string} target - DOM element or selector containing number.
-   * @param {number} endValue - Final target number.
-   * @param {number} duration - Duration in seconds.
-   */
   animateStatCounter(target, endValue, duration = 1.2) {
     const element = typeof target === "string" ? document.querySelector(target) : target;
     if (!element) return;
@@ -280,12 +237,6 @@ class AnimationManager {
     });
   }
 
-  /**
-   * Magnetic hover micro-interaction for interactive buttons and cards.
-   * Elements follow the mouse cursor slightly when hovered.
-   * @param {string|NodeList|Array} targets - Selectors or elements.
-   * @param {number} strength - Pull intensity (default 0.25).
-   */
   enableMagneticHover(targets, strength = 0.25) {
     const elements = this.resolveElements(targets);
     if (!elements || elements.length === 0 || this.prefersReducedMotion || !this.isGSAPAvailable) {
@@ -326,11 +277,6 @@ class AnimationManager {
     });
   }
 
-  /**
-   * Enable 3D tilt effect on card elements responsive to mouse movement.
-   * @param {string|NodeList|Array|Element} targets - Selector or elements.
-   * @param {Object} options - Custom max tilt angles and scale.
-   */
   enable3DTilt(targets, options = {}) {
     const elements = this.resolveElements(targets);
     if (!elements || elements.length === 0) return;
@@ -395,9 +341,6 @@ class AnimationManager {
     });
   }
 
-  /**
-   * Helper utility to resolve element inputs into an array of DOM Elements.
-   */
   resolveElements(targets) {
     if (!targets) return [];
     if (typeof targets === "string") {
@@ -413,7 +356,6 @@ class AnimationManager {
   }
 }
 
-// Global Singleton Instance
 window.TempestAnimations = new AnimationManager();
 
 document.addEventListener("DOMContentLoaded", () => {

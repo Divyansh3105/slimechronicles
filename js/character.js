@@ -80,7 +80,6 @@ function downloadProfile() {
   }
 }
 
-// Make functions globally available - Export functions to window object for global access
 window.shareCharacter = shareCharacter;
 window.compareCharacter = compareCharacter;
 window.downloadProfile = downloadProfile;
@@ -283,7 +282,6 @@ class CharacterDataLoader {
   }
 }
 
-// Create global character loader instance - Initialize character data loader for application use
 window.CharacterLoader = new CharacterDataLoader();
 
 function initializeCharacterPage() {
@@ -1125,7 +1123,6 @@ function switchToTab(tabName) {
   });
 }
 
-// Make function globally available
 window.switchToTab = switchToTab;
 
 function generateBiographySection(character) {
@@ -1410,7 +1407,6 @@ function updateQuoteIndicators() {
   });
 }
 
-// Make functions globally available
 window.scrollQuotes = scrollQuotes;
 window.scrollToQuote = scrollToQuote;
 window.updateQuoteIndicators = updateQuoteIndicators;
@@ -1719,12 +1715,10 @@ function toggleSkillCategory(category) {
 }
 
 function showSkillDetails(skillName) {
-  // This would show detailed skill information in a modal
   window.showNotification(`Detailed view for ${skillName} coming soon!`);
 }
 
 function compareSkill(skillName) {
-  // This would allow comparing skills
   window.showNotification(`Skill comparison for ${skillName} coming soon!`);
 }
 
@@ -2620,7 +2614,6 @@ function toggleEvolutionDetails(index) {
   }
 }
 
-// Make function globally available
 window.toggleEvolutionDetails = toggleEvolutionDetails;
 
 function generateImpactStatsSection(character) {
@@ -3028,7 +3021,6 @@ renderCharacterProfile = function (character) {
   }, 500);
 };
 
-// Export functions for global access
 window.toggleFavorite = toggleFavorite;
 window.toggleFabMenu = toggleFabMenu;
 window.scrollToTop = scrollToTop;
@@ -3567,7 +3559,6 @@ class EvolutionManager {
   }
 }
 
-// Create global evolution manager instance
 window.evolutionManager = new EvolutionManager();
 
 const originalLoadCharacterProfile = loadCharacterProfile;
@@ -3785,7 +3776,6 @@ function initializeAchievementFeatures() {
   }, 1500);
 }
 
-// Make functions globally available
 window.toggleAchievementCategory = toggleAchievementCategory;
 window.showAchievementDetails = showAchievementDetails;
 window.closeAchievementModal = closeAchievementModal;

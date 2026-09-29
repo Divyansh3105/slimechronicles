@@ -43,10 +43,6 @@ class PageTransitionManager {
     });
   }
 
-  /**
-   * Navigates to a new URL with a smooth transition.
-   * @param {string} url - The target URL to navigate to.
-   */
   navigateTo(url) {
     if (this.isTransitioning) return;
     this.isTransitioning = true;
@@ -77,7 +73,7 @@ class PageTransitionManager {
 
 new PageTransitionManager();
 
-// Global scroll restore for mobile: ensures scrolling is enabled if stuck
+// Clears the scroll lock left behind if the page was reloaded with the mobile menu open
 function restoreScrolling() {
   document.body.classList.remove("mobile-nav-active", "mobile-nav-open");
   document.documentElement.classList.remove("mobile-nav-active");
@@ -90,7 +86,6 @@ function restoreScrolling() {
   document.documentElement.style.height = "";
 }
 
-// Run on page load to fix stuck scroll
 window.addEventListener("DOMContentLoaded", restoreScrolling);
 
 window.restoreScrolling = restoreScrolling;
@@ -520,7 +515,6 @@ function debounce(func, wait, immediate) {
   };
 }
 
-// Limit function execution rate to prevent excessive calls
 function throttle(func, limit) {
   let inThrottle;
   return function (...args) {
@@ -624,7 +618,6 @@ function createRippleEffect(element, event) {
   }, 600);
 }
 
-// Create a synthesized Web Audio API sound manager instead of relying on external files
 class SynthesizedSoundManager {
   constructor() {
     this.audioContext = null;
@@ -770,10 +763,8 @@ document.addEventListener("DOMContentLoaded", () => {
   setTimeout(initScrollReveal, 100);
 });
 
-// Global sound variable that index.html expects
 window.soundEnabled = localStorage.getItem("sound-enabled") !== "false";
 
-// Make functions globally available for use across all pages
 window.initScrollReveal = initScrollReveal;
 window.toggleMobileMenu = toggleMobileMenu;
 window.initializeMobileNavigation = initializeMobileNavigation;
@@ -826,7 +817,6 @@ if (typeof module !== "undefined" && module.exports) {
 
 let cursorStyleSheet = null;
 
-// Create a style sheet for cursor rules to avoid forced reflows
 function initializeCursorStyles() {
   if (cursorStyleSheet) return;
 
@@ -907,11 +897,9 @@ function initializeCursorStyles() {
   cursorStyleSheet = style;
 }
 
-// Lightweight function to apply cursors only to new elements
 function enforceCursorsOnElement(element) {
   if (!element || element.nodeType !== Node.ELEMENT_NODE) return;
 
-  // Use CSS classes instead of inline styles for better performance
   if (
     element.matches(
       'a, button, input[type="button"], input[type="submit"], input[type="reset"], select, [role="button"], .clickable, .primary-button, .secondary-button, .tertiary-button, .view-profile-button, .view-details-button, .recruit-button, .social-link, .quick-item, .modal-close, .nav-brand, .mobile-menu-toggle'
@@ -971,11 +959,6 @@ document.addEventListener("visibilitychange", () => {
     initializeCursorStyles();
   }
 });
-
-/**
- * Audio Manager - Background Music Controller
- * Handles background music playback across all pages
- */
 
 class AudioManager {
   constructor() {
@@ -1313,7 +1296,6 @@ class AudioManager {
 let audioManager = null;
 
 function initializeAudioManager() {
-  // Check if audio controls already exist to prevent duplicates
   if (document.querySelector(".audio-controls")) {
     return;
   }
@@ -1321,7 +1303,6 @@ function initializeAudioManager() {
   if (!audioManager) {
     try {
       audioManager = new AudioManager();
-      // Update the global reference
       window.audioManager = audioManager;
     } catch (error) {
       console.warn("Failed to initialize Audio Manager:", error);
@@ -1329,7 +1310,6 @@ function initializeAudioManager() {
   }
 }
 
-// Make AudioManager available globally
 window.AudioManager = AudioManager;
 window.audioManager = audioManager;
 window.initializeAudioManager = initializeAudioManager;

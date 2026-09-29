@@ -97,7 +97,6 @@ function createPopulationBreakdown() {
 
   const breakdown = JURA_TEMPEST_STATS.population.breakdown;
 
-  // Remove existing breakdown to prevent duplicates
   const existingBreakdown = card.querySelector(".stat-breakdown");
   if (existingBreakdown) {
     existingBreakdown.remove();
@@ -150,7 +149,6 @@ function createDefenseBreakdown() {
   }
 
   const defense = JURA_TEMPEST_STATS.defense;
-  // Remove existing breakdown to prevent duplicates
   const existingBreakdown = card.querySelector(".stat-breakdown");
   if (existingBreakdown) existingBreakdown.remove();
 
@@ -211,7 +209,6 @@ function createEconomyBreakdown() {
   }
 
   const economy = JURA_TEMPEST_STATS.economy;
-  // Remove existing breakdown to prevent duplicates
   const existingBreakdown = card.querySelector(".stat-breakdown");
   if (existingBreakdown) existingBreakdown.remove();
 
@@ -272,7 +269,6 @@ function createTechnologyBreakdown() {
   }
 
   const technology = JURA_TEMPEST_STATS.technology;
-  // Remove existing breakdown to prevent duplicates
   const existingBreakdown = card.querySelector(".stat-breakdown");
   if (existingBreakdown) existingBreakdown.remove();
 
@@ -703,7 +699,6 @@ document.addEventListener("visibilitychange", () => {
   }
 });
 
-// Make functions globally available for external access - Export key functions to window object
 window.updateOverview = updateOverview;
 
 function createHoverRipple(element) {

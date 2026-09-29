@@ -1,4 +1,3 @@
-// Global state variables for character filtering and display management
 let currentFilter = "all"; // Active filter category for character display
 let searchTerm = ""; // User input search query for character filtering
 let raceFilter = ""; // Selected race filter option
@@ -924,7 +923,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-// Export functions to global window object for external access
 if (typeof window !== "undefined") {
   window.clearAllFilters = clearAllFilters;
   window.openCharacterProfile = openCharacterProfile;
