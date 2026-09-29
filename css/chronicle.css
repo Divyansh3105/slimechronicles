@@ -1,4 +1,3 @@
-/* Main content container with centered layout and responsive padding */
 /* Force scroll on mobile for chronicle page - apply globally */
 html,
 body {
@@ -21,7 +20,6 @@ body {
   visibility: visible;
 }
 
-/* Performance optimizations for timeline animations */
 .timeline-arc,
 .timeline-event,
 .arc-content,
@@ -30,7 +28,6 @@ body {
   transform: translateZ(0); /* Force hardware acceleration */
 }
 
-/* Optimize transitions for better performance */
 .arc-content,
 .event-content {
   transition:
@@ -39,7 +36,6 @@ body {
     padding 0.2s ease;
 }
 
-/* Reduce paint complexity on mobile */
 @media (max-width: 768px) {
   .timeline-mobile-optimized .timeline-arc,
   .timeline-mobile-optimized .timeline-event {
@@ -59,7 +55,6 @@ body {
   z-index: 1001 !important;
 }
 
-/* Page header section with title and subtitle styling */
 .page-header {
   text-align: center;
   margin-bottom: 4rem;
@@ -68,7 +63,6 @@ body {
   z-index: 10;
 }
 
-/* Enhanced timeline controls for search and filtering */
 .timeline-controls {
   max-width: 900px;
   margin: 2rem auto 0;
@@ -106,8 +100,6 @@ body {
   animation: slimeShimmer 4s linear infinite;
   background-size: 200% 100%;
 }
-
-/* Removed gradientShift - replaced with slimeShimmer */
 
 .timeline-controls::after {
   content: "";
@@ -173,7 +165,6 @@ body {
   }
 }
 
-/* Search container with input and button */
 .search-container {
   display: flex;
   gap: 1.5rem;
@@ -280,7 +271,6 @@ body {
   background: rgba(74, 123, 167, 0.1);
 }
 
-/* Enhanced search and action buttons */
 .search-btn {
   padding: 1.2rem 2rem;
   background: linear-gradient(135deg, #1e3a5f, #2e5984, #4a7ba7);
@@ -330,7 +320,6 @@ body {
   transform: translateY(-1px) scale(0.98);
 }
 
-/* Enhanced control buttons */
 .control-buttons {
   display: flex;
   gap: 1rem;
@@ -378,7 +367,6 @@ body {
   font-weight: 700;
 }
 
-/* Filter controls section */
 .filter-controls {
   display: flex;
   flex-wrap: wrap;
@@ -496,7 +484,6 @@ body {
   border: none;
 }
 
-/* Main page title with gradient text and glow effects */
 .page-title {
   font-family: "Cinzel", serif;
   font-size: 3.5rem;
@@ -531,7 +518,6 @@ body {
   z-index: 2;
 }
 
-/* Timeline container with vertical layout and central positioning */
 .timeline-container {
   position: relative;
   margin: 4rem 0;
@@ -540,7 +526,6 @@ body {
   visibility: visible;
 }
 
-/* Central timeline line with gradient colors and glow effect */
 .timeline-line {
   position: absolute;
   left: 50%;
@@ -567,7 +552,6 @@ body {
   animation: slimePulse 3s ease-in-out infinite;
 }
 
-/* Individual timeline year section with fade-in animation */
 .timeline-year {
   position: relative;
   margin-bottom: 6rem;
@@ -580,7 +564,6 @@ body {
   align-items: center;
 }
 
-/* Year marker badge with glassmorphism design */
 .year-marker {
   position: relative;
   left: 50%;
@@ -655,7 +638,6 @@ body {
   white-space: nowrap;
 }
 
-/* Enhanced timeline arc container for grouping related events */
 .timeline-arc {
   background: linear-gradient(
     135deg,
@@ -723,7 +705,6 @@ body {
   );
 }
 
-/* Enhanced arc header with click interaction and expand/collapse functionality */
 .arc-header {
   display: flex;
   align-items: center;
@@ -751,7 +732,6 @@ body {
   min-height: 70px;
 }
 
-/* Enhanced shimmer effect for arc header hover state */
 .arc-header::before {
   content: "";
   position: absolute;
@@ -769,7 +749,6 @@ body {
   transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Enhanced click hint tooltip for arc headers */
 .arc-header::after {
   content: "👆 Click to expand";
   position: absolute;
@@ -882,7 +861,6 @@ body {
   content: "👆 Click to collapse";
 }
 
-/* Collapsible content area for timeline arcs */
 .arc-content {
   max-height: 0;
   overflow: hidden;
@@ -915,7 +893,6 @@ body {
   overflow: hidden !important;
 }
 
-/* Enhanced individual timeline event with expandable content */
 .timeline-event {
   border-top: 1px solid rgba(74, 123, 167, 0.15);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -962,7 +939,6 @@ body {
   box-shadow: 0 8px 25px rgba(74, 123, 167, 0.2);
 }
 
-/* Enhanced event header with icon, title, and date information */
 .event-header {
   display: flex;
   align-items: center;
@@ -1108,7 +1084,6 @@ body {
   text-shadow: 0 0 10px rgba(74, 123, 167, 0.8);
 }
 
-/* Expandable event content with detailed information */
 .event-content {
   max-height: 0;
   overflow: hidden;
@@ -1127,7 +1102,6 @@ body {
     opacity 0.3s ease 0.1s;
 }
 
-/* Event description with highlighted styling */
 .event-description {
   font-size: 1.1rem;
   line-height: 1.7;
@@ -1144,7 +1118,6 @@ body {
   backdrop-filter: blur(20px);
 }
 
-/* Event consequences and characters sections */
 .event-consequences,
 .event-characters {
   margin-bottom: 2rem;
@@ -1262,7 +1235,6 @@ body {
   box-shadow: 0 0 8px rgba(74, 123, 167, 0.3);
 }
 
-/* Timeline statistics grid showing event counts and metrics */
 .timeline-stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -1272,7 +1244,6 @@ body {
   border-top: 1px solid rgba(74, 123, 167, 0.2);
 }
 
-/* Individual statistic card with icon and value */
 .stat-card {
   background: linear-gradient(135deg, rgba(74, 123, 167, 0.25), rgba(46, 89, 132, 0.2));
   border: 1px solid rgba(74, 123, 167, 0.2);
@@ -1330,7 +1301,6 @@ body {
   letter-spacing: 1px;
 }
 
-/* Character tooltip for hover information */
 .character-tooltip {
   position: absolute;
   background: linear-gradient(135deg, rgba(74, 123, 167, 0.35), rgba(46, 89, 132, 0.3));
@@ -1360,7 +1330,6 @@ body {
   opacity: 0.8;
 }
 
-/* Timeline progress bar at top of page */
 .timeline-progress {
   position: fixed;
   top: 0;
@@ -1372,7 +1341,6 @@ body {
   backdrop-filter: blur(15px);
 }
 
-/* Enhanced floating action buttons */
 .timeline-fab-container {
   position: fixed;
   bottom: 2rem;
@@ -1439,7 +1407,6 @@ body {
   opacity: 0;
 }
 
-/* Enhanced notification system */
 .timeline-notification {
   position: fixed;
   top: 100px;
@@ -1485,7 +1452,6 @@ body {
   font-size: 1.2rem;
 }
 
-/* Enhanced scroll animations */
 .timeline-year,
 .timeline-arc {
   opacity: 0;
@@ -1499,7 +1465,6 @@ body {
   transform: translateY(0);
 }
 
-/* Staggered animation delays */
 .timeline-year:nth-child(1) {
   transition-delay: 0.1s;
 }
@@ -1516,7 +1481,6 @@ body {
   transition-delay: 0.5s;
 }
 
-/* Enhanced keyboard shortcut hints */
 .keyboard-hints {
   position: fixed;
   bottom: 2rem;
@@ -1629,7 +1593,6 @@ body {
   }
 }
 
-/* Staggered entrance animations for timeline elements */
 .timeline-year:nth-child(odd) .timeline-arc {
   animation: slideInFromLeft 0.8s ease-out;
 }
@@ -1655,7 +1618,6 @@ body {
   animation: arcCollapse 0.4s cubic-bezier(0.4, 0.21);
 }
 
-/* Accessibility focus states for interactive elements */
 .timeline-event:focus {
   outline: 2px solid #4a7ba7;
   outline-offset: 2px;
@@ -1726,7 +1688,6 @@ body {
   overflow: visible !important;
 }
 
-/* Text rendering optimizations for better typography */
 .year-number,
 .year-label,
 .arc-title,
@@ -1845,7 +1806,6 @@ body {
   font-size: 2rem;
 }
 
-/* Loading state with spinner animation */
 .timeline-loading {
   display: flex;
   flex-direction: column;
@@ -1867,7 +1827,6 @@ body {
   }
 }
 
-/* Error state styling for timeline failures */
 .timeline-error {
   text-align: center;
   padding: 4rem 2rem;
@@ -1894,7 +1853,6 @@ body {
   opacity: 0.8;
 }
 
-/* Performance optimizations using CSS containment */
 .timeline-year,
 .timeline-arc,
 .timeline-event {
@@ -1929,7 +1887,6 @@ body {
   }
 }
 
-/* Search highlighting and visual enhancements */
 .search-highlight {
   background: linear-gradient(135deg, rgba(90, 138, 184, 0.4), rgba(90, 138, 184, 0.2));
   padding: 0.1rem 0.3rem;
@@ -1950,7 +1907,6 @@ body {
   }
 }
 
-/* Enhanced no-results state */
 .no-results {
   text-align: center;
   padding: 4rem 2rem;
@@ -2015,7 +1971,6 @@ body {
   font-style: italic;
 }
 
-/* Timeline Progress Navigation */
 .timeline-progress-nav {
   position: sticky;
   top: 1px;
@@ -2177,7 +2132,6 @@ body {
   z-index: 1;
 }
 
-/* Timeline Progression Section */
 .timeline-progression {
   background: linear-gradient(
     135deg,
@@ -2431,7 +2385,6 @@ body {
   box-shadow: 0 0 6px rgba(74, 123, 167, 0.3);
 }
 
-/* Floating Timeline Progress Indicator */
 .floating-timeline-progress {
   position: fixed;
   top: 50%;
@@ -2527,7 +2480,6 @@ body {
   text-shadow: 0 0 10px rgba(74, 123, 167, 0.6);
 }
 
-/* Improved accessibility focus states */
 .timeline-search-input:focus,
 .filter-select:focus,
 .view-btn:focus,
@@ -2538,7 +2490,6 @@ body {
   outline-offset: 2px;
 }
 
-/* Enhanced hover effects for interactive elements */
 .timeline-search-input:hover {
   border-color: rgba(74, 123, 167, 0.5);
   background: rgba(74, 123, 167, 0.12);
@@ -2549,12 +2500,10 @@ body {
   background: rgba(74, 123, 167, 0.12);
 }
 
-/* Smooth transitions for all interactive elements */
 .timeline-controls * {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Enhanced visual feedback for active states */
 .filter-select:active,
 .timeline-search-input:active {
   transform: scale(0.98);
@@ -2567,7 +2516,6 @@ body {
   transform: translateY(1px) scale(0.95);
 }
 
-/* Improved contrast for better readability */
 .timeline-controls {
   box-shadow:
     0 15px 50px rgba(0, 0, 0, 0.3),
@@ -2628,9 +2576,7 @@ body {
   backdrop-filter: blur(15px);
 }
 
-/* Mobile-first responsive design for small screens */
 @media (max-width: 767px) {
-  /* Enhanced mobile touch targets */
   .view-btn,
   .expand-all-btn,
   .collapse-all-btn,
@@ -2653,7 +2599,6 @@ body {
     max-width: 100%;
   }
 
-  /* Page Header */
   .page-header {
     margin-bottom: 2rem;
     padding: 1rem 0;
@@ -2675,7 +2620,6 @@ body {
     margin-bottom: 2rem;
   }
 
-  /* Timeline Controls - Mobile Layout */
   .timeline-controls {
     padding: 1.5rem;
     gap: 1.5rem;
@@ -2718,7 +2662,6 @@ body {
     font-size: 0.9rem;
   }
 
-  /* Enhanced FAB container for mobile */
   .timeline-fab-container {
     bottom: 1.5rem;
     right: 1.5rem;
@@ -2737,7 +2680,6 @@ body {
     font-size: 1.1rem;
   }
 
-  /* Mobile keyboard hints */
   .keyboard-hints {
     bottom: 1rem;
     left: 1rem;
@@ -2750,7 +2692,6 @@ body {
     font-size: 0.8rem;
   }
 
-  /* Mobile notifications */
   .timeline-notification {
     top: 80px;
     right: 1rem;
@@ -2759,27 +2700,23 @@ body {
     font-size: 0.9rem;
   }
 
-  /* Timeline Container */
   .timeline-container {
     margin: 2rem 0;
     padding-left: 0;
   }
 
-  /* Central Line → Left aligned on mobile */
   .timeline-line {
     left: 1rem !important;
     transform: none !important;
     width: 3px;
   }
 
-  /* Year Section */
   .timeline-year {
     padding-left: 2rem;
     margin-bottom: 2.5rem;
     align-items: flex-start;
   }
 
-  /* Year Marker */
   .year-marker {
     left: 0 !important;
     transform: none !important;
@@ -2800,13 +2737,11 @@ body {
     white-space: nowrap;
   }
 
-  /* Timeline Arcs */
   .timeline-arc {
     margin-left: 0;
     margin-bottom: 2rem;
   }
 
-  /* Arc Header */
   .arc-header {
     padding: 1.5rem 1.5rem;
     gap: 1rem;
@@ -2830,12 +2765,10 @@ body {
     margin-left: auto;
   }
 
-  /* Arc Content */
   .arc-content {
     padding: 0;
   }
 
-  /* Events */
   .timeline-event {
     margin-bottom: 1rem;
     border-radius: 12px;
@@ -2917,7 +2850,6 @@ body {
     height: 20px;
   }
 
-  /* Timeline Progress Navigation - Mobile */
   .timeline-progress-nav {
     margin-bottom: 2rem;
     position: static;
@@ -2954,7 +2886,6 @@ body {
     height: 12px;
   }
 
-  /* Timeline Progression - Mobile */
   .timeline-progression {
     padding: 1.5rem;
     margin-top: 2rem;
@@ -3043,28 +2974,24 @@ body {
     font-size: 0.85rem;
   }
 
-  /* Disable heavy animations on mobile */
   .timeline-arc,
   .timeline-event,
   .year-marker {
     animation: none !important;
   }
 
-  /* Touch-friendly interactions */
   .arc-header,
   .event-header {
     touch-action: manipulation;
     -webkit-tap-highlight-color: rgba(74, 123, 167, 0.2);
   }
 
-  /* Disable heavy background effects on mobile */
   .magic-circle,
   .particles,
   .starfield {
     display: none !important;
   }
 
-  /* Floating Timeline Progress - Mobile */
   .floating-timeline-progress {
     right: 1rem;
     min-width: 140px;
@@ -3083,7 +3010,6 @@ body {
     height: 4px;
   }
 
-  /* Reduce backdrop blur for better performance */
   .timeline-arc,
   .year-marker,
   .event-description,
@@ -3099,31 +3025,26 @@ body {
     transform: none !important;
   }
 
-  /* Optimize scrolling */
   body {
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
   }
 
-  /* Improve touch targets */
   .arc-header,
   .event-header {
     min-height: 48px;
     touch-action: manipulation;
   }
 
-  /* Reduce motion for better performance */
   * {
     animation-duration: 0.2s !important;
     transition-duration: 0.2s !important;
   }
 
-  /* Hide decorative elements */
   .page-title::after {
     display: none;
   }
 
-  /* Optimize text rendering */
   .year-number,
   .year-label,
   .arc-title,
@@ -3132,7 +3053,6 @@ body {
     -webkit-font-smoothing: subpixel-antialiased;
   }
 
-  /* Improve text selection on mobile */
   .arc-title,
   .event-title,
   .event-description {
@@ -3142,26 +3062,22 @@ body {
     user-select: text;
   }
 
-  /* Better focus indicators for accessibility */
   .arc-header:focus,
   .event-header:focus {
     outline: 3px solid #4a7ba7;
     outline-offset: 2px;
   }
 
-  /* Improve contrast for better readability */
   .event-date {
     background: rgba(74, 123, 167, 0.2);
     border-color: rgba(74, 123, 167, 0.4);
   }
 
-  /* Better spacing for touch targets */
   .character-links {
     gap: 1rem;
     justify-content: flex-start;
   }
 
-  /* Optimize loading states */
   .timeline-loading {
     padding: 2rem 1rem;
   }
@@ -3172,7 +3088,6 @@ body {
     border-width: 2px;
   }
 
-  /* Better error states */
   .timeline-error {
     margin: 1rem 0;
     padding: 2rem 1rem;
@@ -3186,14 +3101,12 @@ body {
     font-size: 1rem;
   }
 
-  /* Improve search highlights */
   .search-highlight {
     background: rgba(90, 138, 184, 0.3);
     padding: 0.1rem 0.2rem;
     border-radius: 3px;
   }
 
-  /* Better no-results state */
   .no-results {
     text-align: center;
     padding: 3rem 1rem;
@@ -3223,7 +3136,6 @@ body {
   }
 }
 
-/* Small phone optimizations for very narrow screens */
 @media (max-width: 479px) {
   .main-content {
     padding: 0.75rem;
@@ -3250,7 +3162,6 @@ body {
     margin-bottom: 1.5rem;
   }
 
-  /* Timeline Progress Navigation - Small Mobile */
   .timeline-progress-nav {
     margin-bottom: 1.5rem;
   }
@@ -3292,7 +3203,6 @@ body {
     border-width: 2px;
   }
 
-  /* Timeline Progression - Small Mobile */
   .timeline-progression {
     padding: 1rem;
     margin-top: 1.5rem;
@@ -3478,14 +3388,12 @@ body {
   }
 }
 
-/* Tablet layout adjustments for medium screens */
 @media (min-width: 768px) {
   .main-content {
     padding: 2rem;
     padding-top: 2rem;
   }
 
-  /* Timeline Controls - Tablet Layout */
   .timeline-controls {
     max-width: 900px;
   }
@@ -3499,7 +3407,6 @@ body {
     justify-content: space-between;
   }
 
-  /* Restore center line */
   .timeline-line {
     left: 50% !important;
     transform: translateX(-50%) !important;
@@ -3533,7 +3440,6 @@ body {
   }
 }
 
-/* Laptop and desktop optimizations for larger screens */
 @media (min-width: 1024px) {
   .main-content {
     max-width: 1200px;
@@ -3550,7 +3456,6 @@ body {
   }
 }
 
-/* ---------- Large Screens (≥ 1280px) ---------- */
 @media (min-width: 1280px) {
   .main-content {
     max-width: 1400px;
@@ -3573,7 +3478,6 @@ body {
   }
 }
 
-/* High DPI display optimizations for crisp images */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .character-link img {
     image-rendering: -webkit-optimize-contrast;
@@ -3581,7 +3485,6 @@ body {
   }
 }
 
-/* Dark mode color scheme adjustments */
 @media (prefers-color-scheme: dark) {
   :root {
     --text-light: #f0f8ff;

@@ -1,4 +1,3 @@
-/* CSS Custom Properties - Color palette and design tokens for consistent theming */
 :root {
   --primary-blue: #4dd4ff;
   --accent-purple: #aa55ff;
@@ -15,8 +14,6 @@
   scroll-behavior: smooth;
 }
 
-/* Main container for skills page with centered layout and fade-in animation */
-/* Force scroll on mobile for skills page */
 html,
 body {
   overflow-y: auto !important;
@@ -39,7 +36,6 @@ body {
   animation: fadeInUp 0.8s ease-out;
 }
 
-/* Enhanced page header with animated background */
 .page-header {
   position: relative;
   text-align: center;
@@ -101,7 +97,6 @@ body {
   }
 }
 
-/* Enhanced page title with 3D text effect */
 .page-title {
   font-family: "Cinzel", serif;
   font-size: 4rem;
@@ -149,7 +144,6 @@ body {
   }
 }
 
-/* Enhanced page subtitle */
 .page-subtitle {
   font-size: 1.3rem;
   color: var(--text-secondary);
@@ -159,7 +153,6 @@ body {
   opacity: 0.9;
 }
 
-/* Header statistics bubbles */
 .header-stats {
   display: flex;
   justify-content: center;
@@ -238,7 +231,6 @@ body {
   line-height: 1.2;
 }
 
-/* Enhanced control panel with improved glassmorphism and better layout */
 .skills-controls {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.6));
   backdrop-filter: blur(20px);
@@ -254,7 +246,6 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Search section with chips */
 .search-section {
   margin-bottom: 2rem;
 }
@@ -295,7 +286,6 @@ body {
   border-bottom: none;
 }
 
-/* Filter chips */
 .search-filters {
   display: flex;
   gap: 0.75rem;
@@ -356,7 +346,6 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* Controls row layout */
 .controls-row {
   display: flex;
   gap: 2rem;
@@ -377,7 +366,6 @@ body {
   flex-wrap: wrap;
 }
 
-/* Enhanced decorative elements */
 .skills-controls::before {
   content: "";
   position: absolute;
@@ -418,7 +406,6 @@ body {
   }
 }
 
-/* Quick actions toolbar */
 .quick-actions {
   display: flex;
   gap: 0.75rem;
@@ -482,7 +469,6 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* Skill rarity indicator */
 .skill-rarity {
   position: absolute;
   top: 1rem;
@@ -526,7 +512,6 @@ body {
   color: var(--accent-gold);
 }
 
-/* Skill mastery indicator */
 .skill-mastery-indicator {
   display: flex;
   align-items: center;
@@ -566,7 +551,6 @@ body {
   color: var(--primary-blue);
 }
 
-/* Enhanced skill meta information */
 .skill-meta {
   display: flex;
   gap: 1rem;
@@ -592,7 +576,6 @@ body {
   font-size: 1rem;
 }
 
-/* More characters indicator */
 .more-characters {
   padding: 0.5rem 1rem;
   background: linear-gradient(135deg, rgba(77, 212, 255, 0.2), rgba(77, 212, 255, 0.1));
@@ -614,7 +597,6 @@ body {
     0 0 15px rgba(77, 212, 255, 0.2);
 }
 
-/* Floating Action Button */
 .floating-action-btn {
   position: fixed;
   bottom: 2rem;
@@ -717,7 +699,6 @@ body {
   }
 }
 
-/* Enhanced search input with better visual feedback */
 .search-box {
   flex: 1;
   min-width: 300px;
@@ -725,7 +706,6 @@ body {
   z-index: 10;
 }
 
-/* Improved search icon with animation */
 .search-box::before {
   content: "🔍";
   position: absolute;
@@ -744,7 +724,6 @@ body {
   transform: translateY(-50%) scale(1.1);
 }
 
-/* Enhanced search input styling */
 .search-box input {
   width: 100%;
   padding: 1.3rem 1.3rem 1.3rem 3.5rem;
@@ -779,7 +758,6 @@ body {
   font-style: italic;
 }
 
-/* Enhanced filter dropdown styling with better visual hierarchy */
 .filter-group {
   display: flex;
   align-items: center;
@@ -787,7 +765,6 @@ body {
   position: relative;
 }
 
-/* Improved filter labels */
 .filter-group label {
   font-size: 0.9rem;
   color: var(--text-secondary);
@@ -812,7 +789,6 @@ body {
   width: 100%;
 }
 
-/* Enhanced select dropdown with improved styling */
 .filter-group select {
   padding: 1.2rem 1.5rem;
   background: linear-gradient(135deg, rgba(232, 240, 255, 0.1), rgba(232, 240, 255, 0.05));
@@ -863,7 +839,6 @@ body {
   transform: translateY(-1px);
 }
 
-/* Enhanced statistics panel with improved visual design */
 .skills-stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -912,7 +887,6 @@ body {
   pointer-events: none;
 }
 
-/* Enhanced individual statistic items */
 .stat-item {
   text-align: center;
   padding: 1.5rem;
@@ -995,7 +969,6 @@ body {
   animation: fadeInUp 0.4s ease-out 0.3s both;
 }
 
-/* Enhanced learning paths section with modern card design */
 .skills-learning-path {
   margin-bottom: 2.5rem;
   padding: 2.5rem;
@@ -1148,7 +1121,6 @@ body {
   filter: drop-shadow(0 0 12px rgba(0, 255, 255, 0.6));
 }
 
-/* Enhanced main grid layout with list view support */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
@@ -1191,7 +1163,6 @@ body {
   display: none;
 }
 
-/* Enhanced skill card with modern glassmorphism and improved interactions */
 .skill-card {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(21, 27, 61, 0.7));
   backdrop-filter: blur(25px);
@@ -1274,7 +1245,6 @@ body {
   }
 }
 
-/* Category-specific hover effects for different skill types */
 .skill-card.combat:hover {
   border-color: var(--accent-crimson);
   box-shadow:
@@ -1350,7 +1320,6 @@ body {
   background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.05), transparent 70%);
 }
 
-/* Enhanced skill card header with better visual hierarchy */
 .skill-header {
   display: flex;
   align-items: center;
@@ -1359,7 +1328,6 @@ body {
   position: relative;
 }
 
-/* Enhanced skill icon with improved animations and effects */
 .skill-icon {
   font-size: 3rem;
   width: 75px;
@@ -1464,7 +1432,6 @@ body {
   transform: translateX(100%);
 }
 
-/* Category badges with color-coded styling for skill types */
 .category-badge {
   display: inline-block;
   padding: 0.4rem 0.9rem;
@@ -1617,7 +1584,6 @@ body {
   left: 100%;
 }
 
-/* Skill prerequisites section showing required skills */
 .skill-prerequisites {
   margin-top: 1rem;
   padding-top: 1rem;
@@ -1668,7 +1634,6 @@ body {
     0 0 15px rgba(170, 85, 255, 0.2);
 }
 
-/* Skill applications section showing practical uses */
 .skill-applications {
   margin-top: 1rem;
   padding-top: 1rem;
@@ -1718,7 +1683,6 @@ body {
     0 0 15px rgba(2, 213, 54, 0.2);
 }
 
-/* Characters section showing which characters possess the skill */
 .skill-characters {
   margin-top: 1.5rem;
   padding-top: 1.5rem;
@@ -1811,7 +1775,6 @@ body {
   filter: drop-shadow(0 0 8px rgba(77, 212, 255, 0.6));
 }
 
-/* Staggered animation delays for skill cards entrance */
 .skill-card:nth-child(1) {
   animation-delay: 0.1s;
 }
@@ -1840,7 +1803,6 @@ body {
   animation-delay: 0.5s;
 }
 
-/* Modal overlays for detailed skill information and comparisons */
 .skill-detail-modal,
 .skill-comparison-modal {
   position: fixed;
@@ -2014,7 +1976,6 @@ body {
   min-width: fit-content;
 }
 
-/* Accessibility focus states for interactive elements */
 .skill-card:focus,
 .character-tag:focus,
 .learning-path-item:focus,
@@ -2039,13 +2000,11 @@ body {
   outline-offset: 2px;
 }
 
-/* Performance optimizations for smooth animations */
 .skill-card {
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Custom scrollbar styling for modal content */
 .skill-detail-content::-webkit-scrollbar,
 .comparison-content::-webkit-scrollbar {
   width: 8px;
@@ -2069,7 +2028,6 @@ body {
   background: linear-gradient(180deg, var(--accent-cyan), var(--primary-blue));
 }
 
-/* CSS keyframe animations for entrance effects */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -2112,14 +2070,12 @@ body {
   }
 }
 
-/* Mobile-first responsive design breakpoints */
 @media (max-width: 767px) {
   .skills-container {
     padding: 1.25rem 1rem;
     margin-top: 80px; /* Account for fixed navbar */
   }
 
-  /* Enhanced header for mobile */
   .page-header {
     padding: 2rem 0;
     margin-bottom: 2rem;
@@ -2167,7 +2123,6 @@ body {
     font-size: 0.7rem;
   }
 
-  /* Controls */
   .skills-controls {
     padding: 1.5rem;
     margin-bottom: 1.5rem;
@@ -2265,7 +2220,6 @@ body {
     padding: 0.875rem 3rem 0.875rem 1rem;
   }
 
-  /* Stats */
   .skills-stats {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
@@ -2285,7 +2239,6 @@ body {
     font-size: 0.75rem;
   }
 
-  /* Learning Paths */
   .skills-learning-path {
     padding: 1.5rem;
     margin-bottom: 1.5rem;
@@ -2317,20 +2270,17 @@ body {
     font-size: 0.7rem;
   }
 
-  /* Results Count */
   .results-count {
     font-size: 0.8rem;
     padding: 0.875rem;
     margin-bottom: 1rem;
   }
 
-  /* Skills Grid */
   .skills-grid {
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
 
-  /* Skill Cards */
   .skill-card {
     padding: 1.25rem;
     border-radius: 16px;
@@ -2389,26 +2339,22 @@ body {
     font-size: 0.75rem;
   }
 
-  /* Category Badge */
   .category-badge {
     font-size: 0.7rem;
     padding: 0.3rem 0.7rem;
   }
 
-  /* Difficulty */
   .skill-difficulty {
     font-size: 0.7rem;
     padding: 0.25rem 0.6rem;
   }
 
-  /* Bonus */
   .skill-bonus {
     font-size: 0.8rem;
     padding: 0.5rem 1rem;
     margin-bottom: 1rem;
   }
 
-  /* Prerequisites */
   .skill-prerequisites {
     margin-top: 0.875rem;
     padding-top: 0.875rem;
@@ -2424,7 +2370,6 @@ body {
     padding: 0.3rem 0.6rem;
   }
 
-  /* Applications */
   .skill-applications {
     margin-top: 0.875rem;
     padding-top: 0.875rem;
@@ -2440,7 +2385,6 @@ body {
     padding: 0.3rem 0.6rem;
   }
 
-  /* Characters */
   .skill-characters {
     margin-top: 1rem;
     padding-top: 1rem;
@@ -2461,7 +2405,6 @@ body {
     font-size: 1.1rem;
   }
 
-  /* Modal Adjustments */
   .skill-detail-modal,
   .skill-comparison-modal {
     padding: 1rem;
@@ -2494,12 +2437,10 @@ body {
     font-size: 0.85rem;
   }
 
-  /* Disable hover effects on touch devices */
   .skill-card:hover {
     transform: none;
   }
 
-  /* Improve touch targets */
   .character-tag,
   .prerequisite-tag,
   .application-tag,
@@ -2510,20 +2451,17 @@ body {
     touch-action: manipulation;
   }
 
-  /* Performance optimizations */
   .magic-circle,
   .particles,
   .starfield {
     display: none !important;
   }
 
-  /* Scrolling improvements */
   body {
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
   }
 
-  /* Skill Categories */
   .skill-categories {
     display: grid;
     grid-template-columns: 1fr;
@@ -2531,20 +2469,17 @@ body {
     margin-bottom: 2rem;
   }
 
-  /* Skill Grid */
   .skills-grid {
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
 
-  /* Skill Card */
   .skill-card,
   .skill-card-detailed {
     padding: 1.25rem;
     border-radius: 16px;
   }
 
-  /* Skill Card Header */
   .skill-card-header {
     gap: 0.75rem;
   }
@@ -2561,19 +2496,16 @@ body {
     font-size: 0.7rem;
   }
 
-  /* Skill Description */
   .skill-card-description {
     font-size: 0.9rem;
     line-height: 1.45;
   }
 
-  /* Skill Bonus */
   .skill-card-bonus {
     font-size: 0.8rem;
     padding: 0.4rem 0.7rem;
   }
 
-  /* Action Buttons */
   .skill-actions button {
     width: 100%;
     min-height: 44px;
@@ -2582,7 +2514,6 @@ body {
   }
 }
 
-/* Small phone optimizations for very narrow screens */
 @media (max-width: 479px) {
   .skills-container {
     padding: 1rem 0.75rem;
@@ -2646,7 +2577,6 @@ body {
   }
 }
 
-/* Tablet layout adjustments for medium screens */
 @media (min-width: 768px) {
   .skills-container {
     padding: 2rem;
@@ -2680,7 +2610,6 @@ body {
   }
 }
 
-/* Laptop and desktop optimizations for larger screens */
 @media (min-width: 1024px) {
   .skills-container {
     max-width: 1400px;
@@ -2699,16 +2628,13 @@ body {
   }
 }
 
-/* Large screen layout for ultra-wide displays */
 @media (min-width: 1280px) {
   .skills-container {
     max-width: 1600px;
   }
 }
 
-/* Mobile performance optimizations and touch interaction improvements */
 @media (max-width: 767px) {
-  /* Floating Action Button on mobile */
   .floating-action-btn {
     bottom: 1rem;
     right: 1rem;
@@ -2734,7 +2660,6 @@ body {
     font-size: 0.8rem;
   }
 
-  /* Disable heavy background effects for better performance */
   .magic-circle,
   .particles,
   .starfield,
@@ -2742,7 +2667,6 @@ body {
     display: none !important;
   }
 
-  /* Disable hover transforms on touch devices */
   .skill-card:hover,
   .skill-card:hover .skill-icon,
   .skill-card:hover .skill-name,
@@ -2759,18 +2683,15 @@ body {
     transform: none !important;
   }
 
-  /* Optimize scrolling */
   body {
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
   }
 
-  /* Reduce animations for better performance */
   .skill-card {
     animation-duration: 0.2s;
   }
 
-  /* Improve touch interaction */
   .skill-card,
   .character-tag,
   .prerequisite-tag,
@@ -2780,7 +2701,6 @@ body {
     -webkit-tap-highlight-color: rgba(77, 212, 255, 0.2);
   }
 
-  /* Ensure proper touch targets */
   .character-tag,
   .prerequisite-tag,
   .application-tag,

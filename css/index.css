@@ -1,6 +1,4 @@
-/* ========== INDEX PAGE CURSOR FIXES ========== */
 
-/* Ensure all button child elements show pointer cursor on index page */
 .primary-button,
 .secondary-button,
 .tertiary-button {
@@ -18,14 +16,11 @@
   pointer-events: none; /* Prevent child elements from blocking parent clicks */
 }
 
-/* Quick access items */
 .quick-item,
 .quick-item * {
   cursor: url("../assets/pointer.cur"), pointer !important;
 }
 
-/* ========== ORIGINAL INDEX STYLES ========== */
-/* Force scroll on mobile for index page */
 html,
 body {
   overflow-y: auto !important;
@@ -37,7 +32,6 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Main logo icon styling with hover and click effects */
 .main-logo-icon {
   display: inline-block;
   transform: scale(1.2); /* Increased base size */
@@ -61,7 +55,6 @@ body {
   animation: logoClick 0.6s ease-out;
 }
 
-/* Logo click animation keyframes */
 @keyframes logoClick {
   0% {
     transform: scale(1.2);
@@ -77,7 +70,6 @@ body {
   }
 }
 
-/* Magic circles container for background decoration */
 .magic-circles {
   position: fixed;
   top: 0;
@@ -107,7 +99,6 @@ body {
   animation-duration: 30s;
 }
 
-/* Main intro container with centered layout */
 .intro-container {
   position: relative;
   z-index: 10;
@@ -126,7 +117,6 @@ body {
     radial-gradient(circle at 40% 40%, rgba(170, 85, 255, 0.04) 0%, transparent 50%);
 }
 
-/* Logo container with fade-in animation */
 .logo-container {
   margin-bottom: 3rem;
   animation: fadeInDown 1.2s ease-out;
@@ -147,7 +137,6 @@ body {
   animation: logoAura 4s ease-in-out infinite;
 }
 
-/* Interactive slime orb with complex layered effects */
 .slime-orb {
   width: 180px;
   height: 180px;
@@ -186,7 +175,6 @@ body {
   animation: orbClick 0.6s ease-out;
 }
 
-/* Slime orb inner layers for depth effect */
 .slime-core {
   position: absolute;
   top: 50%;
@@ -211,7 +199,6 @@ body {
   animation: innerPulse 3.5s ease-in-out infinite;
 }
 
-/* Slime shine effects for eye-like appearance */
 .slime-shine {
   position: absolute;
   top: 35%;
@@ -242,7 +229,6 @@ body {
   animation-delay: 0.1s;
 }
 
-/* Floating particles within the slime orb */
 .slime-particles {
   position: absolute;
   top: 0;
@@ -276,7 +262,6 @@ body {
   animation-delay: -2.5s;
 }
 
-/* Rotating aura effect around the slime orb */
 .slime-aura {
   position: absolute;
   top: -15px;
@@ -302,7 +287,6 @@ body {
   opacity: 1;
 }
 
-/* Slime orb animation keyframes */
 @keyframes orbClick {
   0% {
     transform: scale(1);
@@ -386,7 +370,6 @@ body {
   }
 }
 
-/* Main title with gradient shimmer effect */
 .title {
   font-family: "Cinzel", serif;
   font-size: 4.5rem;
@@ -430,7 +413,6 @@ body {
   animation: underlineGlow 3s ease-in-out infinite;
 }
 
-/* Subtitle with floating animation */
 .subtitle {
   font-size: 1.6rem;
   color: rgba(232, 240, 255, 0.9);
@@ -462,7 +444,6 @@ body {
   animation: sparkle 3s ease-in-out infinite 1.5s;
 }
 
-/* Title animation keyframes */
 @keyframes titleShimmer {
   to {
     background-position: 400% center;
@@ -565,7 +546,6 @@ body {
   }
 }
 
-/* Lore section with animated text lines */
 .lore-section {
   max-width: 900px;
   margin: 0 auto 4rem;
@@ -603,7 +583,6 @@ body {
   z-index: 2;
 }
 
-/* Individual lore text lines with staggered animation */
 .lore-line {
   margin-bottom: 1.5rem;
   font-size: 1.3rem;
@@ -643,7 +622,6 @@ body {
   text-shadow: 0 0 10px rgba(77, 212, 255, 0.3);
 }
 
-/* Statistics preview grid layout */
 .stats-preview {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -654,7 +632,6 @@ body {
   z-index: 2;
 }
 
-/* Individual stat items with hover effects */
 .stat-item {
   text-align: center;
   padding: 2rem 1.5rem;
@@ -735,7 +712,6 @@ body {
   color: var(--text-light);
 }
 
-/* Button group container with enhanced layout */
 .button-group {
   display: flex;
   flex-direction: column;
@@ -789,14 +765,12 @@ body {
   z-index: -1;
 }
 
-/* Primary button row */
 .primary-button-row {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Secondary buttons row */
 .secondary-buttons-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -805,7 +779,6 @@ body {
   justify-content: center;
 }
 
-/* Tertiary buttons row with 3 columns */
 .tertiary-buttons-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -814,7 +787,6 @@ body {
   justify-content: center;
 }
 
-/* Desktop-specific improvements */
 @media (min-width: 1024px) {
   .button-group {
     max-width: 1100px;
@@ -838,7 +810,6 @@ body {
   }
 }
 
-/* Large desktop improvements */
 @media (min-width: 1280px) {
   .button-group {
     max-width: 1200px;
@@ -854,7 +825,6 @@ body {
   }
 }
 
-/* Large tablets and small laptops responsive breakpoint (1024px - 1279px) */
 @media (min-width: 1024px) and (max-width: 1279px) {
   .title {
     font-size: 4rem;
@@ -865,7 +835,6 @@ body {
   }
 }
 
-/* Enhanced primary button with premium styling */
 .primary-button {
   position: relative;
   padding: 1.5rem 4rem;
@@ -941,7 +910,6 @@ body {
   transform: translateY(-4px) scale(1.01);
 }
 
-/* Enhanced secondary buttons with distinct colors */
 .secondary-button {
   position: relative;
   padding: 1.2rem 2.5rem;
@@ -963,7 +931,6 @@ body {
   gap: 0.75rem;
 }
 
-/* Character Codex - Emerald theme */
 .secondary-button:nth-child(1) {
   background: linear-gradient(135deg, rgba(0, 255, 136, 0.15), rgba(0, 255, 136, 0.08));
   color: #00ff88;
@@ -979,7 +946,6 @@ body {
   text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
 }
 
-/* Skills Database - Cyan theme */
 .secondary-button:nth-child(2) {
   background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(0, 212, 255, 0.08));
   color: #00d4ff;
@@ -995,7 +961,6 @@ body {
   text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
 }
 
-/* Enhanced tertiary buttons with distinct themes */
 .tertiary-button {
   position: relative;
   padding: 1rem 2rem;
@@ -1017,7 +982,6 @@ body {
   gap: 0.5rem;
 }
 
-/* Chronicle Timeline - Gold theme */
 .tertiary-button:nth-child(1) {
   background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.08));
   color: #ffd700;
@@ -1033,7 +997,6 @@ body {
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
-/* Historical Records - Purple theme */
 .tertiary-button:nth-child(2) {
   background: linear-gradient(135deg, rgba(170, 85, 255, 0.15), rgba(170, 85, 255, 0.08));
   color: #aa55ff;
@@ -1049,7 +1012,6 @@ body {
   text-shadow: 0 0 10px rgba(170, 85, 255, 0.5);
 }
 
-/* Factions - Crimson theme */
 .tertiary-button:nth-child(3) {
   background: linear-gradient(135deg, rgba(255, 51, 102, 0.15), rgba(255, 51, 102, 0.08));
   color: #ff3366;
@@ -1065,7 +1027,6 @@ body {
   text-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
 }
 
-/* Common hover effects for all buttons */
 .secondary-button:hover,
 .tertiary-button:hover {
   transform: translateY(-4px) scale(1.02);
@@ -1076,7 +1037,6 @@ body {
   transform: translateY(-2px) scale(1.01);
 }
 
-/* Enhanced button icons */
 .button-icon {
   font-size: 1.4rem;
   transition: all 0.3s ease;
@@ -1098,7 +1058,6 @@ body {
   animation: buttonClick 0.3s ease-out;
 }
 
-/* Button click animation keyframes */
 @keyframes buttonClick {
   0% {
     transform: translateY(-4px) scale(1.02);
@@ -1111,7 +1070,6 @@ body {
   }
 }
 
-/* Quick access circular buttons */
 .quick-access {
   display: flex;
   gap: 1.5rem;
@@ -1120,7 +1078,6 @@ body {
   justify-content: center;
 }
 
-/* Individual quick access items with tooltips */
 .quick-item {
   display: flex;
   align-items: center;
@@ -1204,7 +1161,6 @@ body {
   }
 }
 
-/* Modal overlay with backdrop blur */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -1227,7 +1183,6 @@ body {
   visibility: visible;
 }
 
-/* Modal content container with backdrop effects */
 .modal-content {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.98), rgba(21, 27, 61, 0.95));
   backdrop-filter: blur(25px);
@@ -1341,7 +1296,6 @@ body {
   margin-top: 2.5rem;
 }
 
-/* Modal feature items with hover effects */
 .feature-item {
   display: flex;
   align-items: center;
@@ -1410,14 +1364,12 @@ body {
   }
 }
 
-/* Hide performance-heavy elements on index page */
 .particles,
 .magic-circle,
 .starfield {
   display: none;
 }
 
-/* Custom scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -1437,7 +1389,6 @@ body {
   background: linear-gradient(180deg, var(--accent-cyan), var(--slime-blue));
 }
 
-/* Base animation keyframes */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -1469,9 +1420,6 @@ body {
   }
 }
 
-/* ========== MOBILE RESPONSIVE STYLES ========== */
-
-/* Base mobile styles for phones (≤ 767px) */
 @media (max-width: 767px) {
   .intro-container {
     padding: 1rem;
@@ -1487,7 +1435,6 @@ body {
     height: 150px;
   }
 
-  /* Make main logo smaller on mobile but still larger than before */
   .main-logo-icon {
     transform: scale(1);
   }
@@ -1497,7 +1444,6 @@ body {
     height: 180px !important;
   }
 
-  /* Adjust title for mobile */
   .title {
     font-size: 2.5rem;
     line-height: 1.1;
@@ -1514,7 +1460,6 @@ body {
     display: none; /* Hide sparkles on mobile for cleaner look */
   }
 
-  /* Lore section mobile adjustments */
   .lore-section {
     margin-bottom: 2.5rem;
     padding: 1.5rem;
@@ -1528,7 +1473,6 @@ body {
     padding-left: 1rem;
   }
 
-  /* Stats preview mobile layout */
   .stats-preview {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -1548,7 +1492,6 @@ body {
     font-size: 2rem;
   }
 
-  /* Button group mobile layout */
   .button-group {
     padding: 1.5rem;
     margin-bottom: 2rem;
@@ -1590,7 +1533,6 @@ body {
     font-size: 1.5rem;
   }
 
-  /* Quick access mobile */
   .quick-access {
     margin-bottom: 1.5rem;
     gap: 1rem;
@@ -1605,7 +1547,6 @@ body {
     font-size: 1.3rem;
   }
 
-  /* Modal mobile adjustments */
   .modal-content {
     width: 95%;
     max-width: none;
@@ -1636,7 +1577,6 @@ body {
     border-radius: 12px;
   }
 
-  /* Loading screen mobile */
   .loading-orb {
     width: 60px;
     height: 60px;
@@ -1650,7 +1590,6 @@ body {
     width: 150px;
   }
 
-  /* Improve touch interactions */
   .slime-orb {
     width: 140px;
     height: 140px;
@@ -1658,7 +1597,6 @@ body {
   }
 }
 
-/* Small mobile phones responsive breakpoint (≤ 479px) */
 @media (max-width: 479px) {
   .intro-container {
     padding: 0.75rem;
@@ -1704,7 +1642,6 @@ body {
     padding: 1.25rem;
   }
 
-  /* Smaller logo for very small screens but still reasonable size */
   .main-logo-icon {
     transform: scale(0.9);
   }
@@ -1715,7 +1652,6 @@ body {
   }
 }
 
-/* Tablet portrait responsive breakpoint (768px - 1023px) */
 @media (min-width: 768px) and (max-width: 1023px) {
   .intro-container {
     padding: 1.5rem;
@@ -1764,7 +1700,6 @@ body {
   }
 }
 
-/* Footer mobile responsive adjustments */
 @media (max-width: 767px) {
   .main-footer {
     padding: 2rem 0 1rem;
@@ -1794,7 +1729,6 @@ body {
   }
 }
 
-/* Landscape mobile orientation optimizations */
 @media (max-width: 767px) and (orientation: landscape) {
   .intro-container {
     padding: 0.5rem;
@@ -1835,7 +1769,6 @@ body {
   }
 }
 
-/* High DPI and retina display optimizations */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .slime-orb,
   .main-logo-icon svg {
@@ -1844,16 +1777,13 @@ body {
   }
 }
 
-/* Performance optimizations for mobile devices */
 @media (max-width: 767px) {
-  /* Hide performance-heavy elements on mobile */
   .magic-circles,
   .particles,
   .starfield {
     display: none !important;
   }
 
-  /* Simplify animations on mobile */
   .slime-orb {
     animation-duration: 6s; /* Slower animation for better performance */
   }
@@ -1862,13 +1792,11 @@ body {
     animation-duration: 2s;
   }
 
-  /* Optimize touch scrolling */
   body {
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
   }
 
-  /* Improve touch targets */
   .primary-button,
   .secondary-button,
   .tertiary-button,
@@ -1885,7 +1813,6 @@ body {
     font-size: 16px;
   }
 
-  /* Reduce motion for better performance */
   .title {
     animation-duration: 10s; /* Slower shimmer */
   }
@@ -1914,7 +1841,6 @@ body {
     transition: none !important;
   }
 
-  /* Keep essential animations but make them subtle */
   .title {
     background: linear-gradient(135deg, var(--primary-blue), #fff);
     -webkit-background-clip: text;
@@ -1922,7 +1848,6 @@ body {
     background-clip: text;
   }
 
-  /* Maintain hover effects for better UX */
   .stat-item:hover,
   .primary-button:hover,
   .secondary-button:hover,
@@ -1931,7 +1856,6 @@ body {
   }
 }
 
-/* High contrast mode support */
 @media (prefers-contrast: high) {
   .title {
     -webkit-text-fill-color: var(--primary-blue);
@@ -1955,7 +1879,6 @@ body {
   }
 }
 
-/* Dark mode enhancements (if system prefers dark) */
 @media (prefers-color-scheme: dark) {
   :root {
     --text-light: #f0f8ff;
@@ -1964,7 +1887,6 @@ body {
   }
 }
 
-/* Print styles */
 @media print {
   .magic-circles,
   .particles,
@@ -1986,8 +1908,6 @@ body {
     -webkit-text-fill-color: #000 !important;
   }
 }
-
-/* ========== FOOTER STYLES ========== */
 
 .main-footer {
   padding: 1.5rem 0 1rem;
@@ -2028,7 +1948,6 @@ body {
   transition: color 0.3s;
 }
 
-/* Developer credit card inside the footer */
 .footer-dev-card {
   margin: 0.5rem 0;
   padding: 0.5rem;
@@ -2040,7 +1959,6 @@ body {
   backdrop-filter: blur(5px);
 }
 
-/* Animated top-border accent line */
 .footer-dev-card-accent {
   position: absolute;
   top: 0;
@@ -2068,7 +1986,6 @@ body {
   filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.4));
 }
 
-/* Inspirational quote at the bottom of the footer */
 .footer-quote {
   font-size: 0.75rem;
   color: var(--text-secondary);

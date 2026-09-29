@@ -286,7 +286,6 @@ class BattleSimulator extends HTMLElement {
     const r = 100;
     const numAxes = keys.length;
 
-    // Helper to calculate polygon points
     const getPoints = (fighterStats) => {
       return keys.map((k, i) => {
         const val = (fighterStats[k.key] || 50) / 100;
@@ -300,7 +299,6 @@ class BattleSimulator extends HTMLElement {
     const pointsA = getPoints(a.stats);
     const pointsB = getPoints(b.stats);
 
-    // Axis lines and labels
     const axesSvg = keys.map((k, i) => {
       const angle = (Math.PI * 2 / numAxes) * i - Math.PI / 2;
       const x2 = cx + Math.cos(angle) * r;
@@ -313,7 +311,6 @@ class BattleSimulator extends HTMLElement {
       `;
     }).join("");
 
-    // Background concentric rings
     const rings = [0.25, 0.5, 0.75, 1.0].map(scale => `
       <circle cx="${cx}" cy="${cy}" r="${r * scale}" fill="none" stroke="rgba(77,212,255,0.1)" stroke-width="1" />
     `).join("");
@@ -346,7 +343,6 @@ class BattleSimulator extends HTMLElement {
     `;
 
     setTimeout(() => {
-      // Determine tactical outcome based on stats & lore advantages
       const scoreA = a.stats.magicules * 0.25 + a.stats.skillTier * 0.35 + a.stats.defense * 0.2 + a.stats.battleIQ * 0.2;
       const scoreB = b.stats.magicules * 0.25 + b.stats.skillTier * 0.35 + b.stats.defense * 0.2 + b.stats.battleIQ * 0.2;
 
@@ -407,12 +403,10 @@ class BattleSimulator extends HTMLElement {
   }
 }
 
-// Register custom element
 if (typeof customElements !== "undefined" && !customElements.get("battle-simulator")) {
   customElements.define("battle-simulator", BattleSimulator);
 }
 
-// Auto-inject onto page if missing
 if (typeof document !== "undefined") {
   document.addEventListener("DOMContentLoaded", () => {
     if (!document.querySelector("battle-simulator")) {

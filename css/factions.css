@@ -380,7 +380,6 @@ body {
   transform: translateY(0);
 }
 
-/* mobile responsive design */
 @media (max-width: 767px) {
   .factions-container {
     padding: 1.5rem 1rem 3rem;
@@ -475,7 +474,6 @@ body {
     border-radius: 10px;
   }
 
-  /* Power snapshot mobile optimization */
   .power-snapshot {
     margin: 1rem 0;
     gap: 0.5rem;
@@ -491,7 +489,6 @@ body {
     height: 6px;
   }
 
-  /* Quick filters mobile layout */
   .quick-filters {
     flex-direction: column;
     align-items: stretch;
@@ -506,7 +503,6 @@ body {
     touch-action: manipulation;
   }
 
-  /* Disable hover effects on touch devices */
   .faction-card:hover {
     transform: none;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
@@ -516,7 +512,6 @@ body {
     transform: none;
   }
 
-  /* Touch-friendly interactions */
   .faction-card {
     -webkit-tap-highlight-color: rgba(77, 212, 255, 0.1);
     touch-action: manipulation;
@@ -526,20 +521,17 @@ body {
     -webkit-tap-highlight-color: rgba(77, 212, 255, 0.2);
   }
 
-  /* Performance optimizations */
   .magic-circle,
   .particles,
   .starfield {
     display: none !important;
   }
 
-  /* Reduce animations for better performance */
   .faction-card {
     animation-duration: 0.2s !important;
     transition-duration: 0.2s !important;
   }
 
-  /* Improve text readability */
   .faction-header h2,
   .faction-summary,
   .detail-section {
@@ -548,7 +540,6 @@ body {
   }
 }
 
-/* Small phone optimizations */
 @media (max-width: 479px) {
   .factions-container {
     padding: 1rem 0.75rem 2rem;
@@ -612,7 +603,6 @@ body {
   }
 }
 
-/* Tablet layout adjustments */
 @media (min-width: 768px) {
   .factions-container {
     padding: 2rem;
@@ -648,7 +638,6 @@ body {
   }
 }
 
-/* Desktop optimizations */
 @media (min-width: 1024px) {
   .factions-container {
     max-width: 1400px;
@@ -665,15 +654,12 @@ body {
   }
 }
 
-/* Mobile performance optimizations and accessibility */
 @media (max-width: 767px) {
-  /* Enable smooth scrolling on mobile */
   body {
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
   }
 
-  /* Optimize touch interactions */
   .faction-card,
   .expand-btn,
   .quick-filter,
@@ -682,7 +668,6 @@ body {
     -webkit-tap-highlight-color: rgba(77, 212, 255, 0.1);
   }
 
-  /* Improve focus visibility for accessibility */
   .expand-btn:focus,
   .quick-filter:focus,
   .factions-controls input:focus,
@@ -691,7 +676,6 @@ body {
     outline-offset: 2px;
   }
 
-  /* Ensure proper text wrapping */
   .faction-header h2,
   .faction-summary,
   .detail-section li {
@@ -699,13 +683,11 @@ body {
     hyphens: auto;
   }
 
-  /* Mobile-specific loading states */
   .faction-card.loading {
     opacity: 0.6;
     pointer-events: none;
   }
 
-  /* Better error handling on mobile */
   .faction-error {
     padding: 2rem 1rem;
     text-align: center;
@@ -726,7 +708,6 @@ body {
   }
 }
 
-/* High contrast mode support */
 @media (prefers-contrast: high) {
   .faction-card {
     border: 2px solid;
@@ -741,7 +722,6 @@ body {
   }
 }
 
-/* ===== Mini Faction Timeline ===== */
 .mini-timeline {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
@@ -820,7 +800,6 @@ body {
   box-shadow: 0 4px 12px rgba(77, 212, 255, 0.3);
 }
 
-/* Mobile timeline adjustments */
 @media (max-width: 767px) {
   .mini-timeline {
     grid-template-columns: repeat(2, 1fr);
@@ -837,7 +816,6 @@ body {
   }
 }
 
-/* Modal-specific timeline styling */
 .modal-detail-section .mini-timeline {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -882,7 +860,6 @@ body {
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
 }
 
-/* Timeline animation in modal */
 .modal-detail-section .timeline-node {
   animation: timelineSlideIn 0.4s ease-out forwards;
   opacity: 0;
@@ -909,7 +886,6 @@ body {
   }
 }
 
-/* faction details styling */
 .faction-details ul {
   list-style: none;
   padding-left: 0;
@@ -931,7 +907,6 @@ body {
   color: #4dd4ff;
   font-weight: 600;
 }
-/*  faction detail sections */
 .detail-section {
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
@@ -963,7 +938,6 @@ body {
   color: #ba55d3;
 }
 
-/* Relation-based styling */
 .faction-card[data-relation="allied"] {
   border-left: 4px solid #90ee90;
 }
@@ -984,7 +958,6 @@ body {
   color: rgba(232, 240, 255, 0.5);
 }
 
-/*  mobile responsiveness for detail sections */
 @media (max-width: 768px) {
   .detail-section h4 {
     font-size: 1rem;
@@ -995,7 +968,6 @@ body {
     padding-bottom: 0.8rem;
   }
 }
-/* Quick filter buttons */
 .quick-filters {
   display: flex;
   gap: 0.5rem;
@@ -1037,7 +1009,6 @@ body {
     max-width: 200px;
   }
 }
-/* ===== Faction Power Snapshot ===== */
 .power-snapshot {
   margin: 1.2rem 0;
   display: grid;
@@ -1096,12 +1067,10 @@ body {
   }
 }
 
-/*  power bar animations */
 .faction-card:hover .power-bar div {
   box-shadow: 0 0 12px rgba(77, 212, 255, 0.8);
 }
 
-/* Power level color variations */
 .power-bar div[style*="--power: 9"],
 .power-bar div[style*="--power: 10"] {
   background: linear-gradient(90deg, #ffd700, #ff6b35);
@@ -1119,7 +1088,6 @@ body {
 .power-bar div[style*="--power: 5"] {
   background: linear-gradient(90deg, #90ee90, #87ceeb);
 }
-/* Special styling for fallen/dissolved factions */
 .faction-card[data-type="nation"]:has(h2:contains("Fallen")) .power-bar,
 .faction-card h2:contains("Fallen") ~ .power-snapshot .power-bar {
   background: rgba(255, 99, 71, 0.15);
@@ -1130,7 +1098,6 @@ body {
   box-shadow: 0 0 8px rgba(255, 99, 71, 0.4);
 }
 
-/*  power bar for trade/economic factions */
 .faction-card[data-type="guild"] .power-snapshot .power-item:nth-child(2) .power-bar div {
   background: linear-gradient(90deg, #90ee90, #ffd700);
   box-shadow: 0 0 10px rgba(144, 238, 144, 0.6);
@@ -1141,7 +1108,6 @@ body {
   background: linear-gradient(90deg, #ba55d3, #9370db);
   box-shadow: 0 0 8px rgba(186, 85, 211, 0.5);
 }
-/* ========== FACTION MODAL ========== */
 .faction-modal {
   display: none;
   position: fixed;
@@ -1230,7 +1196,6 @@ body {
   max-height: 85vh;
 }
 
-/* Modal faction header */
 .modal-faction-header {
   display: flex;
   align-items: center;
@@ -1272,7 +1237,6 @@ body {
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
-/* Modal power snapshot */
 .modal-power-snapshot {
   background: rgba(21, 27, 61, 0.4);
   border: 1px solid rgba(77, 212, 255, 0.2);
@@ -1397,7 +1361,6 @@ body {
   font-weight: 600;
 }
 
-/* Modal links section styling */
 .modal-detail-section .faction-links {
   display: flex;
   flex-wrap: wrap;
@@ -1421,7 +1384,6 @@ body {
   transform: translateY(-1px);
 }
 
-/* Mobile responsiveness for modal */
 @media (max-width: 767px) {
   .faction-modal .modal-content {
     margin: 0.5rem;
@@ -1499,7 +1461,6 @@ body {
     padding: 0.3rem 0.6rem;
   }
 
-  /* Mobile timeline in modal */
   .modal-detail-section .mini-timeline {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.8rem;
@@ -1565,7 +1526,6 @@ body {
   display: none !important;
 }
 
-/* ===== Dependency Indicators ===== */
 .dependency-grid {
   display: flex;
   flex-wrap: wrap;
@@ -1606,7 +1566,6 @@ body {
   box-shadow: 0 4px 12px rgba(77, 212, 255, 0.3);
 }
 
-/* Mobile dependency grid adjustments */
 @media (max-width: 767px) {
   .dependency-grid {
     gap: 0.5rem;
@@ -1618,7 +1577,6 @@ body {
   }
 }
 
-/* ===== Cross Links ===== */
 .faction-links {
   display: flex;
   flex-wrap: wrap;
@@ -1641,7 +1599,6 @@ body {
   transform: translateY(-1px);
 }
 
-/* ===== Federation Impact ===== */
 .impact-section ul li {
   padding-left: 1.2rem;
   position: relative;
@@ -1668,7 +1625,6 @@ body {
   left: 0;
 }
 
-/* ===== Faction Relations Pills ===== */
 .relation-pills {
   display: flex;
   flex-wrap: wrap;
@@ -1759,7 +1715,6 @@ body {
   box-shadow: 0 2px 8px rgba(128, 128, 128, 0.3);
 }
 
-/* Relations section styling */
 .relations-section {
   background: rgba(21, 27, 61, 0.2);
   border: 1px solid rgba(77, 212, 255, 0.2);
@@ -1778,7 +1733,6 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* Modal Relations Legend */
 .modal-relations-legend {
   display: flex;
   justify-content: center;
@@ -1805,7 +1759,6 @@ body {
   font-weight: 500;
 }
 
-/* Mobile responsiveness for modal legend */
 @media (max-width: 767px) {
   .modal-relations-legend {
     flex-wrap: wrap;
@@ -1827,7 +1780,6 @@ body {
   }
 }
 
-/* Mobile responsiveness for relation pills */
 @media (max-width: 767px) {
   .relation-pills {
     gap: 0.4rem;
@@ -1850,7 +1802,6 @@ body {
   }
 }
 
-/* =====  Faction Card Hover Stats ===== */
 .faction-card {
   position: relative;
 }
@@ -1885,7 +1836,6 @@ body {
   }
 }
 
-/* ===== Power Item  Styling ===== */
 .power-item span {
   font-weight: 600;
   color: rgba(232, 240, 255, 0.9);
@@ -1894,7 +1844,6 @@ body {
   font-size: 0.8rem;
 }
 
-/* ===== Faction Summary  ===== */
 .faction-summary {
   margin: 1rem 0;
   color: rgba(232, 240, 255, 0.9);
@@ -1903,7 +1852,6 @@ body {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-/* =====  Modal Animations ===== */
 .faction-modal.active {
   animation: modalFadeIn 0.3s ease-out;
 }
@@ -1945,7 +1893,6 @@ body {
   }
 }
 
-/* ===== Scrollbar Styling for Modal ===== */
 .faction-modal .modal-body::-webkit-scrollbar {
   width: 8px;
 }
@@ -1965,7 +1912,6 @@ body {
   background: linear-gradient(180deg, #ffd700, #4dd4ff);
 }
 
-/* =====  Impact Section ===== */
 .impact-section ul li {
   padding: 0.5rem 0.5rem 0.5rem 1.5rem;
   margin-bottom: 0.5rem;
@@ -1990,7 +1936,6 @@ body {
   border-left: 3px solid #ffd700;
 }
 
-/* =====  Detail Section Headers ===== */
 .detail-section h4,
 .modal-detail-section h4 {
   position: relative;
@@ -2010,7 +1955,6 @@ body {
   border-radius: 2px;
 }
 
-/* ===== Faction Type Specific Enhancements ===== */
 .faction-card[data-type="nation"]:hover {
   border-color: rgba(77, 212, 255, 0.7);
 }
@@ -2031,7 +1975,6 @@ body {
   border-color: rgba(186, 85, 211, 0.7);
 }
 
-/* ===== Loading State Enhancement ===== */
 .faction-card.loading {
   opacity: 0.5;
   pointer-events: none;
@@ -2048,7 +1991,6 @@ body {
   }
 }
 
-/* ===== No Results Message ===== */
 .no-results {
   text-align: center;
   padding: 3rem;
@@ -2065,7 +2007,6 @@ body {
   opacity: 0.5;
 }
 
-/* ===== Scroll to Top Button ===== */
 .scroll-to-top {
   position: fixed;
   bottom: 2rem;
@@ -2105,7 +2046,6 @@ body {
   font-weight: bold;
 }
 
-/* =====  Modal Content Animation ===== */
 .modal-detail-sections {
   animation: fadeInStagger 0.6s ease-out;
 }
@@ -2140,7 +2080,6 @@ body {
   animation-delay: 0.35s;
 }
 
-/* ===== Faction Card Relation Border Glow ===== */
 .faction-card[data-relation="allied"] {
   border-left: 4px solid #90ee90;
   box-shadow: -4px 0 15px rgba(144, 238, 144, 0.2);
@@ -2161,7 +2100,6 @@ body {
   box-shadow: -4px 0 15px rgba(128, 128, 128, 0.2);
 }
 
-/* =====  Modal Power Snapshot ===== */
 .modal-power-snapshot {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.5), rgba(10, 14, 39, 0.5));
   border: 2px solid rgba(77, 212, 255, 0.3);
@@ -2182,7 +2120,6 @@ body {
   letter-spacing: 1px;
 }
 
-/* =====  Faction Header ===== */
 .faction-header {
   display: flex;
   justify-content: space-between;
@@ -2194,7 +2131,6 @@ body {
   flex-wrap: wrap;
 }
 
-/* ===== Search Input Enhancement ===== */
 .factions-controls input[type="text"] {
   min-width: 250px;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%234dd4ff" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>');
@@ -2203,7 +2139,6 @@ body {
   padding-left: 2.5rem;
 }
 
-/* ===== Select Dropdown Enhancement ===== */
 .factions-controls select {
   cursor: pointer;
   appearance: none;
@@ -2213,14 +2148,12 @@ body {
   padding-right: 2.5rem;
 }
 
-/* =====  Faction Summary ===== */
 .faction-summary {
   position: relative;
   padding-left: 1rem;
   border-left: 3px solid rgba(77, 212, 255, 0.3);
 }
 
-/* =====  Timeline Section ===== */
 .timeline-section {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.5), rgba(10, 14, 39, 0.5));
   border: 2px solid rgba(77, 212, 255, 0.3);
@@ -2235,7 +2168,6 @@ body {
   font-size: 1.2rem;
 }
 
-/* ===== Responsive Enhancements ===== */
 @media (max-width: 767px) {
   .scroll-to-top {
     bottom: 1rem;
@@ -2249,7 +2181,6 @@ body {
   }
 }
 
-/* ===== Active Filter Indicators ===== */
 .factions-controls select:not([value="all"]),
 .factions-controls input:not(:placeholder-shown) {
   border-color: rgba(255, 215, 0, 0.6);
@@ -2264,7 +2195,6 @@ body {
   color: #ffd700;
 }
 
-/* ===== Clear Filters Button ===== */
 .clear-filters-btn {
   padding: 0.8rem 1.2rem;
   border-radius: 12px;
@@ -2295,7 +2225,6 @@ body {
   transform: translateY(0);
 }
 
-/* ===== Faction Card States ===== */
 .faction-card.filtered-out {
   opacity: 0;
   transform: scale(0.95);
@@ -2319,7 +2248,6 @@ body {
   }
 }
 
-/* =====  Modal Header ===== */
 .modal-faction-header {
   display: flex;
   align-items: center;
@@ -2351,7 +2279,6 @@ body {
   }
 }
 
-/* ===== Tooltip for Power Stats ===== */
 .power-item {
   position: relative;
   cursor: help;
@@ -2384,7 +2311,6 @@ body {
   transform: translateX(-50%) translateY(-10px);
 }
 
-/* =====  Faction Links ===== */
 .faction-links {
   display: flex;
   flex-wrap: wrap;
@@ -2399,7 +2325,6 @@ body {
   padding: 1.2rem;
 }
 
-/* ===== Faction Card Quick Actions ===== */
 .faction-card-actions {
   display: flex;
   gap: 0.5rem;
@@ -2427,7 +2352,6 @@ body {
   box-shadow: 0 4px 12px rgba(77, 212, 255, 0.2);
 }
 
-/* =====  Page Transitions ===== */
 @keyframes pageLoad {
   from {
     opacity: 0;
@@ -2443,7 +2367,6 @@ body {
   animation: pageLoad 0.6s ease-out;
 }
 
-/* =====  Mobile Touch Feedback ===== */
 @media (max-width: 767px) {
   .faction-card:active {
     transform: scale(0.98);
@@ -2458,7 +2381,6 @@ body {
   }
 }
 
-/* ===== Print Styles ===== */
 @media print {
   .factions-controls,
   .scroll-to-top,
@@ -2481,7 +2403,6 @@ body {
   }
 }
 
-/*  Faction Header */
 .faction-header h2 {
   font-size: 1.6rem !important;
   filter: drop-shadow(0 0 20px rgba(77, 212, 255, 0.4)) !important;
@@ -2529,7 +2450,6 @@ body {
   border-radius: 12px !important;
 }
 
-/* Faction Tags */
 .faction-tag {
   padding: 0.5rem 1.2rem !important;
   border-radius: 25px !important;
@@ -2620,7 +2540,6 @@ body {
   letter-spacing: 1.5px !important;
 }
 
-/* Dependency Grid */
 .dependency-grid span {
   padding: 0.5rem 0.9rem !important;
   font-size: 0.8rem !important;
@@ -2638,7 +2557,6 @@ body {
   box-shadow: 0 6px 20px rgba(77, 212, 255, 0.4) !important;
 }
 
-/* Clear Filters Button */
 .clear-filters-btn {
   padding: 1rem 1.5rem !important;
   border-radius: 14px !important;
@@ -2659,7 +2577,6 @@ body {
   box-shadow: 0 10px 30px rgba(255, 99, 71, 0.4) !important;
 }
 
-/* Scroll to Top Button */
 .scroll-to-top {
   width: 55px !important;
   height: 55px !important;
@@ -2675,7 +2592,6 @@ body {
   background: linear-gradient(135deg, #4dd4ff, rgba(77, 212, 255, 0.95)) !important;
 }
 
-/* Page Subtitle */
 .page-subtitle {
   font-size: 1.15rem !important;
   line-height: 1.7 !important;
@@ -2684,7 +2600,6 @@ body {
   font-weight: 500 !important;
 }
 
-/* Faction Summary */
 .faction-summary {
   font-size: 1rem !important;
   line-height: 1.7 !important;
@@ -2694,7 +2609,6 @@ body {
   font-weight: 500 !important;
 }
 
-/* Modal Close Button */
 .faction-modal .modal-close {
   width: 50px !important;
   height: 50px !important;
@@ -2712,7 +2626,6 @@ body {
   box-shadow: 0 8px 30px rgba(255, 87, 87, 0.5) !important;
 }
 
-/* Impact Section */
 .impact-section ul li {
   padding: 0.7rem 0.7rem 0.7rem 1.8rem !important;
   margin-bottom: 0.7rem !important;
@@ -2736,12 +2649,10 @@ body {
   background: linear-gradient(90deg, rgba(255, 215, 0, 0.1), transparent) !important;
 }
 
-/*  Grid Layout */
 .factions-grid {
   gap: 2.5rem !important;
 }
 
-/*  Modal Power Bar */
 .modal-power-bar {
   height: 14px !important;
   background: linear-gradient(90deg, rgba(10, 14, 39, 0.9), rgba(77, 212, 255, 0.2)) !important;
@@ -2758,7 +2669,6 @@ body {
   border-radius: 14px !important;
 }
 
-/*  Modal Faction Summary */
 .modal-faction-summary {
   font-size: 1.15rem !important;
   line-height: 1.8 !important;
@@ -2770,7 +2680,6 @@ body {
   border-radius: 0 12px 12px 0 !important;
 }
 
-/*  Relations Section */
 .relations-section {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.4), rgba(10, 14, 39, 0.4)) !important;
   border: 2px solid rgba(77, 212, 255, 0.3) !important;
@@ -2780,7 +2689,6 @@ body {
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3) !important;
 }
 
-/*  Timeline Section */
 .timeline-section {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.6), rgba(10, 14, 39, 0.6)) !important;
   border: 2px solid rgba(77, 212, 255, 0.4) !important;
@@ -2790,7 +2698,6 @@ body {
   backdrop-filter: blur(10px) !important;
 }
 
-/* Mobile Enhancements */
 @media (max-width: 767px) {
   .page-title {
     font-size: 2.5rem !important;
@@ -2813,9 +2720,6 @@ body {
   }
 }
 
-/* ===== ADDITIONAL VISUAL ENHANCEMENTS ===== */
-
-/* Glassmorphism Effect for Cards */
 .faction-card::after {
   content: "";
   position: absolute;
@@ -2840,7 +2744,6 @@ body {
   opacity: 1;
 }
 
-/* Text Glow */
 .faction-header h2::before {
   content: attr(data-text);
   position: absolute;
@@ -2851,7 +2754,6 @@ body {
   opacity: 0.5;
 }
 
-/* Particle Effect on Hover */
 @keyframes particleFloat {
   0%,
   100% {
@@ -2867,7 +2769,6 @@ body {
   animation: particleFloat 2s ease-in-out infinite;
 }
 
-/*  Focus States for Accessibility */
 .expand-btn:focus-visible,
 .factions-controls input:focus-visible,
 .factions-controls select:focus-visible {
@@ -2875,7 +2776,6 @@ body {
   outline-offset: 3px !important;
 }
 
-/* Smooth Page Transitions */
 @keyframes pageEnter {
   from {
     opacity: 0;
@@ -2891,7 +2791,6 @@ body {
   animation: pageEnter 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
 }
 
-/*  Hover States for Interactive Elements */
 .faction-card,
 .expand-btn,
 .factions-controls input,
@@ -2905,7 +2804,6 @@ body {
   backface-visibility: hidden;
 }
 
-/* Typography */
 .faction-header h2,
 .page-title,
 .modal-faction-title {
@@ -2914,25 +2812,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Contrast for Better Readability */
 .faction-summary,
 .page-subtitle,
 .modal-faction-summary {
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* Modal Backdrop */
 .faction-modal {
   backdrop-filter: blur(12px) saturate(150%) !important;
   background: rgba(0, 0, 0, 0.9) !important;
 }
 
-/* Smooth Transitions for All Interactive Elements */
 * {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/*  Grid Responsiveness */
 @media (min-width: 768px) and (max-width: 1024px) {
   .factions-grid {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -2946,7 +2840,6 @@ body {
   }
 }
 
-/*  Scrollbar for Better UX */
 .faction-modal .modal-body::-webkit-scrollbar {
   width: 10px !important;
 }
@@ -2967,7 +2860,6 @@ body {
   box-shadow: 0 0 10px rgba(77, 212, 255, 0.5) !important;
 }
 
-/*  No Results Message */
 .no-results {
   padding: 4rem 2rem !important;
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.5), rgba(10, 14, 39, 0.5)) !important;
@@ -2982,7 +2874,6 @@ body {
   filter: drop-shadow(0 0 20px rgba(77, 212, 255, 0.3)) !important;
 }
 
-/*  Relation Border Indicators */
 .faction-card[data-relation="allied"]::before {
   content: "";
   position: absolute;
@@ -3019,7 +2910,6 @@ body {
   box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
 }
 
-/*  Power Item Labels */
 .power-item span {
   position: relative;
   display: inline-block;
@@ -3040,7 +2930,6 @@ body {
   width: 100%;
 }
 
-/*  Modal Header Animation */
 .modal-faction-header {
   position: relative;
   overflow: hidden;
@@ -3067,25 +2956,21 @@ body {
   }
 }
 
-/*  Button Press Effect */
 .expand-btn:active,
 .clear-filters-btn:active {
   transform: translateY(-1px) scale(0.98) !important;
 }
 
-/*  Focus Indicators */
 .faction-card:focus-within {
   outline: 3px solid rgba(77, 212, 255, 0.6);
   outline-offset: 4px;
 }
 
-/*  Faction Tag Hover Effects */
 .faction-tag:hover {
   transform: scale(1.1) !important;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
 }
 
-/* Smooth Color Transitions */
 .faction-card,
 .expand-btn,
 .relation,
@@ -3101,7 +2986,6 @@ body {
     color 0.3s ease !important;
 }
 
-/*  Page Header */
 .page-header {
   position: relative;
   padding-bottom: 2rem;
@@ -3120,7 +3004,6 @@ body {
   box-shadow: 0 0 20px rgba(77, 212, 255, 0.5);
 }
 
-/* Performance Optimizations */
 .faction-card,
 .modal-content,
 .factions-controls {
@@ -3138,7 +3021,6 @@ body {
   }
 }
 
-/* High Contrast Mode Improvements */
 @media (prefers-contrast: high) {
   .faction-card,
   .expand-btn,
@@ -3153,7 +3035,6 @@ body {
   }
 }
 
-/* =====  UI IMPROVEMENTS ===== */
 .faction-modal .modal-close {
   position: absolute;
   top: 1.2rem;
@@ -3184,7 +3065,6 @@ body {
   box-shadow: 0 8px 30px rgba(255, 87, 87, 0.5);
 }
 
-/* power item labels */
 .power-item span {
   font-weight: 700;
   color: rgba(232, 240, 255, 0.95);
@@ -3193,7 +3073,6 @@ body {
   font-size: 0.85rem;
 }
 
-/*  faction header spacing */
 .faction-header {
   display: flex;
   justify-content: space-between;
@@ -3212,7 +3091,6 @@ body {
   border-color: rgba(77, 212, 255, 0.5);
 }
 
-/*  relation pills */
 .relation {
   padding: 0.4rem 0.9rem;
   border-radius: 999px;
@@ -3228,7 +3106,6 @@ body {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-/*  modal detail sections */
 .modal-detail-section {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.5), rgba(10, 14, 39, 0.5));
   border: 2px solid rgba(77, 212, 255, 0.3);
@@ -3245,7 +3122,6 @@ body {
   transform: translateY(-3px);
 }
 
-/*  scroll to top button */
 .scroll-to-top {
   position: fixed;
   bottom: 2rem;
@@ -3285,7 +3161,6 @@ body {
   font-weight: bold;
 }
 
-/*  clear filters button */
 .clear-filters-btn {
   padding: 1rem 1.4rem;
   border-radius: 14px;
@@ -3314,7 +3189,6 @@ body {
   box-shadow: 0 8px 30px rgba(255, 99, 71, 0.4);
 }
 
-/*  no results message */
 .no-results {
   text-align: center;
   padding: 4rem;
@@ -3346,7 +3220,6 @@ body {
   }
 }
 
-/*  page header */
 .page-header {
   text-align: center;
   margin-bottom: 3.5rem;
@@ -3354,7 +3227,6 @@ body {
   animation: fadeInDown 0.6s ease-out;
 }
 
-/*  faction tag glow effects */
 .faction-tag.nation {
   background: linear-gradient(135deg, rgba(77, 212, 255, 0.25), rgba(77, 212, 255, 0.15));
   color: #4dd4ff;
@@ -3387,7 +3259,6 @@ body {
   border: 2px solid rgba(186, 85, 211, 0.4);
 }
 
-/*  modal power snapshot */
 .modal-power-snapshot {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.6), rgba(10, 14, 39, 0.6));
   border: 2px solid rgba(77, 212, 255, 0.4);
@@ -3409,7 +3280,6 @@ body {
   font-weight: 700;
 }
 
-/*  dependency grid */
 .dependency-grid span {
   padding: 0.5rem 0.9rem;
   font-size: 0.8rem;
@@ -3432,7 +3302,6 @@ body {
   border-color: rgba(77, 212, 255, 0.6);
 }
 
-/*  search input icon */
 .factions-controls input[type="text"] {
   min-width: 280px;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="%234dd4ff" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>');
@@ -3441,7 +3310,6 @@ body {
   padding-left: 3rem;
 }
 
-/*  select dropdown */
 .factions-controls select {
   cursor: pointer;
   appearance: none;
@@ -3451,7 +3319,6 @@ body {
   padding-right: 3rem;
 }
 
-/*  modal header */
 .modal-faction-header {
   display: flex;
   align-items: center;
@@ -3473,7 +3340,6 @@ body {
   animation: headerGlow 3s ease-in-out infinite;
 }
 
-/*  faction links */
 .faction-link {
   padding: 0.6rem 1.1rem;
   border-radius: 16px;
@@ -3499,11 +3365,6 @@ body {
   border-color: rgba(77, 212, 255, 0.7);
 }
 
-/* ===== END OF  UI IMPROVEMENTS ===== */
-
-/* ===== FINAL POLISH & ANIMATIONS ===== */
-
-/* Staggered Card Entrance Animation */
 .faction-card {
   animation: cardEntrance 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) backwards !important;
 }
@@ -3519,7 +3380,6 @@ body {
   }
 }
 
-/*  Hover Lift Effect */
 .faction-card {
   transform-style: preserve-3d;
   perspective: 1000px;
@@ -3529,7 +3389,6 @@ body {
   animation: none !important;
 }
 
-/* Ripple Effect on Click */
 @keyframes ripple {
   0% {
     transform: scale(0);
@@ -3563,7 +3422,6 @@ body {
   transition: 0s;
 }
 
-/* Floating Animation for Tags */
 @keyframes float {
   0%,
   100% {
@@ -3582,7 +3440,6 @@ body {
   animation-delay: 0.5s;
 }
 
-/* Glow Pulse for Active Elements */
 @keyframes glowPulse {
   0%,
   100% {
@@ -3597,7 +3454,6 @@ body {
   animation: glowPulse 2s ease-in-out infinite;
 }
 
-/* Smooth Fade-in for Modal Content */
 .modal-detail-section {
   animation: modalContentFade 0.5s ease-out backwards;
 }
@@ -3632,7 +3488,6 @@ body {
   animation-delay: 0.35s;
 }
 
-/*  Search Input Animation */
 .factions-controls input {
   position: relative;
 }
@@ -3650,12 +3505,10 @@ body {
   }
 }
 
-/* Smooth Scroll Behavior */
 html {
   scroll-behavior: smooth;
 }
 
-/*  Power Bar Fill Animation */
 .power-bar div {
   transform-origin: left;
   animation: powerBarFill 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) backwards;
@@ -3684,7 +3537,6 @@ html {
   animation-delay: 0.4s;
 }
 
-/*  Mobile Touch Feedback */
 @media (max-width: 767px) {
   .faction-card:active {
     transform: scale(0.98) !important;
@@ -3704,7 +3556,6 @@ html {
       0 8px 32px rgba(77, 212, 255, 0.15) !important;
   }
 
-  /* Optimize animations for mobile performance */
   .faction-card,
   .expand-btn,
   .power-bar div {
@@ -3712,7 +3563,6 @@ html {
   }
 }
 
-/*  Skeleton Loading State */
 .faction-card.loading {
   pointer-events: none;
   position: relative;
@@ -3739,7 +3589,6 @@ html {
   }
 }
 
-/*  Accessibility - Focus Visible */
 .faction-card:focus-visible,
 .expand-btn:focus-visible,
 .relation:focus-visible,
@@ -3749,7 +3598,6 @@ html {
   box-shadow: 0 0 0 6px rgba(77, 212, 255, 0.2) !important;
 }
 
-/*  Results Counter Animation */
 .results-counter {
   animation: counterPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -3768,7 +3616,6 @@ html {
   }
 }
 
-/* Smooth Transition for Filtered Cards */
 .faction-card {
   transition:
     opacity 0.4s ease,
@@ -3798,7 +3645,6 @@ html {
   }
 }
 
-/*  Modal Entrance */
 .faction-modal.active {
   animation: modalBackdropFade 0.3s ease-out;
 }
@@ -3827,7 +3673,6 @@ html {
   }
 }
 
-/*  Clear Button Animation */
 .clear-filters-btn {
   animation: buttonSlideIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -3843,7 +3688,6 @@ html {
   }
 }
 
-/*  Scroll to Top Button */
 .scroll-to-top {
   animation: scrollButtonFade 0.3s ease-out;
 }
@@ -3859,7 +3703,6 @@ html {
   }
 }
 
-/* Subtle Background Pattern */
 .factions-container::before {
   content: "";
   position: fixed;
@@ -3874,9 +3717,6 @@ html {
   z-index: -1;
 }
 
-/*  Typography Hierarchy - glow effect already defined at top */
-
-/*  Link Hover States */
 .faction-link,
 .relation {
   position: relative;
@@ -3900,7 +3740,6 @@ html {
   left: 100%;
 }
 
-/*  Grid Layout Animation */
 .factions-grid {
   animation: gridFadeIn 0.8s ease-out 0.2s backwards;
 }
@@ -3914,7 +3753,6 @@ html {
   }
 }
 
-/*  No Results State */
 .no-results {
   animation: noResultsBounce 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -3933,7 +3771,6 @@ html {
   }
 }
 
-/* Performance Optimization - GPU Acceleration */
 .faction-card,
 .expand-btn,
 .modal-content,
@@ -3947,7 +3784,6 @@ html {
   -webkit-backface-visibility: hidden;
 }
 
-/* Smooth Opacity Transitions */
 .faction-card,
 .modal-detail-section,
 .timeline-node,
@@ -3956,7 +3792,6 @@ html {
   transition: opacity 0.3s ease;
 }
 
-/*  Visual Feedback */
 .expand-btn:active,
 .relation:active,
 .faction-link:active,
@@ -3965,7 +3800,6 @@ html {
   transition: transform 0.1s ease !important;
 }
 
-/*  Contrast for Better Readability */
 .faction-header h2,
 .page-title,
 .modal-faction-title {
@@ -3974,7 +3808,6 @@ html {
     0 0 30px rgba(77, 212, 255, 0.3);
 }
 
-/* Final Polish - Subtle Animations */
 @keyframes subtleFloat {
   0%,
   100% {
@@ -3990,7 +3823,6 @@ html {
   animation: subtleFloat 4s ease-in-out infinite;
 }
 
-/* Ensure Smooth Rendering */
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

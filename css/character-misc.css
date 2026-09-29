@@ -29,7 +29,6 @@
   --character-glow: rgba(212, 165, 116, 0.6);
 }
 
-/* ========== CUSTOM ANIMATIONS ========== */
 @keyframes slideInRight {
   from {
     transform: translateX(100%);
@@ -118,7 +117,6 @@
   animation: fadeInUp 0.6s ease-out forwards;
 }
 
-/* ========== ACCESSIBILITY AND FOCUS STATES ========== */
 .profile-tab:focus,
 .error-button:focus,
 .back-button:focus {
@@ -140,7 +138,6 @@
   display: none;
 }
 
-/* ========== LOADING AND SKELETON STATES ========== */
 .skeleton {
   background: linear-gradient(
     90deg,
@@ -161,7 +158,6 @@
   }
 }
 
-/* ========== TOOLTIPS ========== */
 [data-tooltip] {
   position: relative;
   cursor: help;
@@ -195,7 +191,6 @@
   z-index: 1000;
 }
 
-/* ========== ERROR DETAILS ========== */
 .error-details {
   margin: 1.5rem 0;
   text-align: left;
@@ -236,7 +231,6 @@
   color: var(--primary-blue);
 }
 
-/* ========== LOADING INDICATOR ========== */
 .loading-indicator {
   display: flex;
   flex-direction: column;
@@ -257,7 +251,6 @@
   margin-bottom: 1rem;
 }
 
-/* ========== TRANSITIONS AND EFFECTS ========== */
 .profile-tab::after {
   content: "";
   position: absolute;
@@ -324,4 +317,3 @@
   filter: none;
 }
 
-/* ========== MOBILE RESPONSIVE STYLES ========== */

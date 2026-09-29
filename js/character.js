@@ -1,16 +1,12 @@
 /* exported toggleSkillCategory, showSkillDetails, compareSkill, navigateToCharacter, showRelationshipDetails, attemptErrorRecovery -- called from inline onclick handlers */
-// Additional mobile-specific functions - Handle character sharing functionality
 function shareCharacter() {
-  // Get character ID from URL parameters for sharing
   const characterId = window.getURLParameter("id");
 
-  // Validate character ID exists before attempting to share
   if (!characterId) {
     window.showNotification("No character selected to share");
     return;
   }
 
-  // Prepare share data with character information and current URL
   const shareData = {
     title: `${document.querySelector(".profile-name")?.textContent || "Character"} - Jura Tempest Federation`,
     text: `Check out this character profile from the Jura Tempest Federation!`,
@@ -30,7 +26,6 @@ function shareCharacter() {
   }
 }
 
-// Fallback sharing method - Copy URL to clipboard when native sharing unavailable
 function fallbackShare() {
   if (navigator.clipboard) {
     navigator.clipboard
@@ -46,7 +41,6 @@ function fallbackShare() {
   }
 }
 
-// Tactical battle simulator and character comparison
 function compareCharacter() {
   const sim = document.querySelector("battle-simulator");
   const urlParams = new URLSearchParams(window.location.search);
@@ -58,7 +52,6 @@ function compareCharacter() {
   }
 }
 
-// Download formatted markdown character dossier
 function downloadProfile() {
   try {
     const name = document.querySelector(".character-name, .profile-name, h1")?.textContent?.trim() || "Character";
@@ -86,10 +79,8 @@ window.shareCharacter = shareCharacter;
 window.compareCharacter = compareCharacter;
 window.downloadProfile = downloadProfile;
 
-// Character data loader class - Handles efficient loading and caching of character data
 class CharacterDataLoader {
   constructor() {
-    // Initialize data storage and caching properties
     this.basicCharacters = null;
     this.detailedCache = new Map();
     this.loadingPromises = new Map();
@@ -98,36 +89,28 @@ class CharacterDataLoader {
     this.cacheRequests = 0;
   }
 
-  // Load basic character data from JSON file with error handling
   async loadBasicCharacters() {
-    // Return cached data if already loaded
     if (this.basicCharacters) {
       return this.basicCharacters;
     }
 
     try {
-      // Fetch basic character data from JSON endpoint
       const response = await fetch("data/characters-basic.json");
 
-      // Validate HTTP response status
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
       }
 
-      // Parse JSON response data
       const data = await response.json();
 
-      // Validate data structure is array
       if (!Array.isArray(data)) {
         throw new Error("Character data is not an array");
       }
 
-      // Validate array contains data
       if (data.length === 0) {
         throw new Error("Character data array is empty");
       }
 
-      // Filter out invalid character entries
       const validatedData = data.filter((char) => {
         if (!char.id || !char.name || !char.race || !char.role) {
           console.warn("Invalid character data:", char);
@@ -136,31 +119,25 @@ class CharacterDataLoader {
         return true;
       });
 
-      // Cache validated data for future use
       this.basicCharacters = validatedData;
       return this.basicCharacters;
     } catch (error) {
       console.error("Failed to load basic character data:", error);
 
-      // Attempt to load fallback data on error
       const fallbackData = await this.getFallbackBasicData();
       this.basicCharacters = fallbackData;
       return this.basicCharacters;
     }
   }
 
-  // Load character details with caching - Fetch detailed character data with cache management
   async loadCharacterDetails(characterId) {
-    // Track cache request for performance metrics
     this.cacheRequests++;
 
-    // Return cached data if available to improve performance
     if (this.detailedCache.has(characterId)) {
       this.cacheHits++;
       return this.detailedCache.get(characterId);
     }
 
-    // Return existing loading promise if character is already being loaded
     if (this.loadingPromises.has(characterId)) {
       return this.loadingPromises.get(characterId);
     }
@@ -170,22 +147,18 @@ class CharacterDataLoader {
     this.loadingPromises.set(characterId, loadingPromise);
 
     try {
-      // Wait for character details to load and cache the result
       const details = await loadingPromise;
       this.detailedCache.set(characterId, details);
       this.loadingPromises.delete(characterId);
       return details;
     } catch (error) {
-      // Clean up loading promise on error and re-throw
       this.loadingPromises.delete(characterId);
       throw error;
     }
   }
 
-  // Fetch character details from API - Load individual character data from JSON file
   async fetchCharacterDetails(characterId) {
     try {
-      // Fetch character data from individual JSON file
       const response = await fetch(`data/characters/${characterId}.json`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -194,36 +167,28 @@ class CharacterDataLoader {
     } catch (error) {
       console.error(`Failed to load details for character ${characterId}:`, error);
 
-      // Fallback to basic character data if detailed data fails to load
       const basicChar = this.basicCharacters?.find((c) => c.id === characterId);
       return basicChar || null;
     }
   }
 
-  // Load character batch - Get a subset of characters for pagination
   async loadCharacterBatch(startIndex = 0, batchSize = this.batchSize) {
-    // Load basic characters first to ensure data is available
     const basicChars = await this.loadBasicCharacters();
     if (!basicChars) return [];
 
-    // Calculate end index and return slice of characters
     const endIndex = Math.min(startIndex + batchSize, basicChars.length);
     return basicChars.slice(startIndex, endIndex);
   }
 
-  // Get total character count - Return number of available characters
   async getCharacterCount() {
     const basicChars = await this.loadBasicCharacters();
     return basicChars ? basicChars.length : 0;
   }
 
-  // Search characters by query - Filter characters based on search term
   async searchCharacters(query) {
-    // Load basic characters for searching
     const basicChars = await this.loadBasicCharacters();
     if (!basicChars || !query) return basicChars || [];
 
-    // Convert query to lowercase for case-insensitive search
     const searchTerm = query.toLowerCase();
     return basicChars.filter(
       (char) =>
@@ -233,28 +198,22 @@ class CharacterDataLoader {
     );
   }
 
-  // Preload character details - Load multiple character details in parallel
   async preloadCharacterDetails(characterIds) {
-    // Create promises for all character IDs to load in parallel
     const promises = characterIds.map((id) => this.loadCharacterDetails(id));
     try {
-      // Wait for all promises to settle (some may fail)
       await Promise.allSettled(promises);
     } catch (error) {
       console.warn("Some character details failed to preload:", error);
     }
   }
 
-  // Clear all caches - Reset cached data and loading promises
   clearCache() {
     this.detailedCache.clear();
     this.loadingPromises.clear();
   }
 
-  // Get fallback basic data - Provide hardcoded fallback data when API fails
   async getFallbackBasicData() {
     try {
-      // Attempt to load from JSON file as fallback
       const response = await fetch("data/characters-basic.json");
       if (response.ok) {
         const data = await response.json();
@@ -264,7 +223,6 @@ class CharacterDataLoader {
       console.warn("Could not load from JSON file in fallback mode:", error);
     }
 
-    // Return hardcoded fallback data as last resort
     return [
       {
         id: "rimuru",
@@ -297,7 +255,6 @@ class CharacterDataLoader {
     ];
   }
 
-  // Get performance metrics - Return cache performance statistics
   getPerformanceMetrics() {
     return {
       basicDataLoaded: !!this.basicCharacters,
@@ -308,14 +265,11 @@ class CharacterDataLoader {
     };
   }
 
-  // Estimate memory usage - Calculate approximate memory consumption
   estimateMemoryUsage() {
     let size = 0;
-    // Calculate size of basic characters data
     if (this.basicCharacters) {
       size += JSON.stringify(this.basicCharacters).length;
     }
-    // Calculate size of cached detailed character data
     for (const value of this.detailedCache.values()) {
       size += JSON.stringify(value).length;
     }
@@ -326,22 +280,17 @@ class CharacterDataLoader {
 // Create global character loader instance - Initialize character data loader for application use
 window.CharacterLoader = new CharacterDataLoader();
 
-// Consolidated initialization function
 function initializeCharacterPage() {
-  // Use requestAnimationFrame for better performance
   requestAnimationFrame(() => {
     loadCharacterProfile();
 
-    // Set up enhanced tab navigation after profile loads
     requestAnimationFrame(() => {
       setupTabNavigation();
     });
   });
 }
 
-// Setup enhanced tab navigation - Initialize keyboard and touch navigation for profile tabs
 function setupTabNavigation() {
-  // Add click and keyboard navigation support to profile tabs
   const tabs = document.querySelectorAll(".profile-tab");
   tabs.forEach((tab, index) => {
     tab.setAttribute("tabindex", "0");
@@ -371,12 +320,10 @@ function setupTabNavigation() {
       switch (e.key) {
         case "Enter":
         case " ":
-          // Activate tab on Enter or Space key
           e.preventDefault();
           tab.click();
           break;
         case "ArrowLeft": {
-          // Navigate to previous tab with left arrow
           e.preventDefault();
           const prevTab = tabs[index - 1] || tabs[tabs.length - 1];
           prevTab.focus();
@@ -384,7 +331,6 @@ function setupTabNavigation() {
           break;
         }
         case "ArrowRight": {
-          // Navigate to next tab with right arrow
           e.preventDefault();
           const nextTab = tabs[index + 1] || tabs[0];
           nextTab.focus();
@@ -395,17 +341,13 @@ function setupTabNavigation() {
     });
   });
 
-  // Add mobile-specific optimizations for better performance
   if (window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768) {
-    // Optimize for mobile performance by adding mobile class
     document.body.classList.add("mobile-device");
 
-    // Add touch event listeners for better mobile tab interaction
     const profileTabs = document.querySelector(".profile-tabs");
     if (profileTabs) {
       let isScrolling = false;
 
-      // Track touch start to detect scrolling vs tapping
       profileTabs.addEventListener(
         "touchstart",
         () => {
@@ -414,7 +356,6 @@ function setupTabNavigation() {
         { passive: true }
       );
 
-      // Mark as scrolling if touch moves significantly
       profileTabs.addEventListener(
         "touchmove",
         () => {
@@ -431,17 +372,14 @@ function setupTabNavigation() {
       });
     }
 
-    // Optimize images for mobile by enabling lazy loading
     const images = document.querySelectorAll(".profile-image");
     images.forEach((img) => {
       img.loading = "lazy";
       img.decoding = "async";
     });
 
-    // Apply mobile performance optimizations
     document.documentElement.style.setProperty("--animation-duration", "0.2s");
 
-    // Enable hardware acceleration for smooth scrolling
     const scrollElements = document.querySelectorAll(".tab-section, .profile-content");
     scrollElements.forEach((element) => {
       element.style.transform = "translateZ(0)";
@@ -450,16 +388,12 @@ function setupTabNavigation() {
   }
 }
 
-// Initialize page when DOM is ready - Set up character profile page functionality
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initializeCharacterPage);
 } else {
-  // Initialize immediately if DOM is already loaded
   initializeCharacterPage();
 }
 
-// Character profile rendering functions - Generate HTML content for character display
-// Generate skeleton loading state HTML for character profile
 function generateSkeletonProfile(character) {
   const header = character
     ? generateProfileHeader(character)
@@ -515,7 +449,6 @@ function renderCharacterProfile(character) {
   content.innerHTML = generateProfileHeader(character, true) + generateProfileTabs(character);
 }
 
-// Generate profile header HTML - Create character header section with image and basic info
 function generateProfileHeader(character, detailed = false) {
   const powerIndicator = detailed
     ? `
@@ -545,7 +478,6 @@ function generateProfileHeader(character, detailed = false) {
   `;
 }
 
-// Generate profile tabs HTML - Create tabbed sections for detailed character information
 function generateProfileTabs(character) {
   return `
     <div class="tab-section active" id="tab-overview">
@@ -755,7 +687,6 @@ function generateCulturalImpactSection(character) {
 }
 
 function generateInfluenceHighlights(worldInfluence) {
-  // Extract key points from the world influence text
   const sentences = worldInfluence.split(".").filter((s) => s.trim().length > 0);
   const highlights = sentences
     .slice(0, 4)
@@ -774,7 +705,6 @@ function generateInfluenceHighlights(worldInfluence) {
 }
 
 function generateLeadershipTraits() {
-  // Extract leadership traits from the text
   const traits = [
     {
       icon: "🎯",
@@ -813,8 +743,6 @@ function generateLeadershipTraits() {
     .join("");
 }
 
-
-// Generate enhanced overview section with improved UI
 function generateOverviewSection(character) {
   const hasContent = character.lore || character.backstory || character.personality;
 
@@ -1161,11 +1089,9 @@ function generateOverviewSection(character) {
   `;
 }
 
-// Helper function to extract personality traits
 function extractPersonalityTraits(personalityText) {
   if (!personalityText) return [];
 
-  // Extract key traits from personality description
   const traits = [];
   const text = personalityText.toLowerCase();
 
@@ -1181,7 +1107,6 @@ function extractPersonalityTraits(personalityText) {
   return traits.slice(0, 5); // Limit to 5 traits
 }
 
-// Function to switch tabs programmatically
 function switchToTab(tabName) {
   const tabs = document.querySelectorAll(".profile-tab");
 
@@ -1195,7 +1120,6 @@ function switchToTab(tabName) {
 // Make function globally available
 window.switchToTab = switchToTab;
 
-// Generate enhanced biography section with improved UI
 function generateBiographySection(character) {
   const hasContent =
     character.philosophy ||
@@ -1385,7 +1309,6 @@ function generateBiographySection(character) {
   `;
 }
 
-// Generate character essence summary
 function generateCharacterEssence(character) {
   const essenceParts = [];
 
@@ -1411,7 +1334,6 @@ function generateCharacterEssence(character) {
   return `${character.name} ${essenceParts.join(", ")}, embodying the values and principles that define their journey.`;
 }
 
-// Quote carousel navigation functions
 function scrollQuotes(direction) {
   const carousel = document.querySelector(".quotes-carousel");
   if (!carousel) return;
@@ -1431,7 +1353,6 @@ function scrollQuotes(direction) {
     });
   }
 
-  // Update indicators after scroll
   setTimeout(updateQuoteIndicators, 300);
 }
 
@@ -1448,7 +1369,6 @@ function scrollToQuote(index) {
     });
   }
 
-  // Update indicators
   setTimeout(updateQuoteIndicators, 300);
 }
 
@@ -1505,7 +1425,6 @@ function generateSkillsSection(character) {
     `;
   }
 
-  // Categorize skills by type
   const skillsByType = character.skills.reduce((acc, skill) => {
     const type = skill.type || "General";
     if (!acc[type]) acc[type] = [];
@@ -1513,7 +1432,6 @@ function generateSkillsSection(character) {
     return acc;
   }, {});
 
-  // Calculate skill statistics
   const totalSkills = character.skills.length;
   const skillTypes = Object.keys(skillsByType).length;
   const averageBonus =
@@ -1674,7 +1592,6 @@ function generateSpecialtiesSection(character) {
   `;
 }
 
-// Helper functions for enhanced skills section
 function getSkillTypeIcon(type) {
   const icons = {
     Combat: "⚔️",
@@ -1728,7 +1645,6 @@ function generateSkillSynergies(skills) {
       const skill1 = skills[i];
       const skill2 = skills[j];
 
-      // Check for type synergies
       if (skill1.type === skill2.type) {
         synergies.push({
           skill1: skill1.name,
@@ -1739,7 +1655,6 @@ function generateSkillSynergies(skills) {
         });
       }
 
-      // Check for complementary skills
       if (
         (skill1.type === "Combat" && skill2.type === "Magic") ||
         (skill1.type === "Magic" && skill2.type === "Support")
@@ -1776,23 +1691,19 @@ function generateSkillSynergies(skills) {
     .join("");
 }
 
-// Skill interaction functions
 function toggleSkillCategory(category) {
   const categoryElement = document.querySelector(`[data-category="${category}"]`);
   const skillsGrid = document.getElementById(`skills-${category}`);
   const toggleIcon = categoryElement.querySelector(".toggle-icon");
 
-  // Check the actual computed display state
   const computedDisplay = window.getComputedStyle(skillsGrid).display;
   const isVisible = computedDisplay !== "none";
 
   if (isVisible) {
-    // Currently visible, so hide it
     skillsGrid.style.display = "none";
     toggleIcon.textContent = "▼";
     categoryElement.classList.remove("expanded");
   } else {
-    // Currently hidden, so show it
     skillsGrid.style.display = "grid";
     toggleIcon.textContent = "▲";
     categoryElement.classList.add("expanded");
@@ -1816,9 +1727,7 @@ function closeSkillModal() {
   }
 }
 
-// Initialize skills section interactions
 function initializeSkillsSection() {
-  // Use requestAnimationFrame for better performance
   requestAnimationFrame(() => {
     const powerMeters = document.querySelectorAll(".power-meter-fill");
     powerMeters.forEach((meter) => {
@@ -1828,7 +1737,6 @@ function initializeSkillsSection() {
     });
   });
 
-  // Add click outside modal to close
   const modal = document.getElementById("skill-details-modal");
   if (modal) {
     modal.addEventListener("click", (e) => {
@@ -1838,7 +1746,6 @@ function initializeSkillsSection() {
     });
   }
 
-  // Add keyboard navigation for skills
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       closeSkillModal();
@@ -1846,7 +1753,6 @@ function initializeSkillsSection() {
   });
 }
 
-// Add to the initialization - use requestIdleCallback for non-critical work
 document.addEventListener("DOMContentLoaded", () => {
   if ("requestIdleCallback" in window) {
     requestIdleCallback(() => initializeSkillsSection(), { timeout: 2000 });
@@ -2061,8 +1967,7 @@ function generateRelationshipCategory(relationships, title, type, icon, color, d
           <div class="character-avatar-medium">
             <img src="${getCharacterImage(cleanName)}"
                  alt="${cleanName}"
-                 onload="console.log('Image loaded:', this.src);"
-                 onerror="console.log('Image failed:', this.src); this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                  style="display: block; width: 100%; height: 100%; object-fit: cover;">
             <div class="avatar-fallback-medium" style="display: none;">${icon}</div>
             <div class="relationship-badge ${type}">${icon}</div>
@@ -2206,7 +2111,6 @@ function getRelationshipDescription(name, type) {
 }
 
 function getCharacterId(name) {
-  // Handle special cases
   const specialCases = {
     "Hinata Sakaguchi": "hinata",
     "Yuuki Kagurazaka": "yuuki",
@@ -2225,12 +2129,10 @@ function getCharacterId(name) {
 }
 
 function getCharacterImage(name) {
-  // Clean up the name for special cases
   const cleanName = name.replace(/\s*\(.*?\)\s*/g, "").trim();
 
   const imagePath = `assets/characters/${cleanName}.webp`;
 
-  // Try exact match first
   return imagePath;
 }
 
@@ -2255,7 +2157,6 @@ function generateAchievementsSection(character) {
     `;
   }
 
-  // Categorize achievements by type
   const categorizedAchievements = categorizeAchievements(character.achievements);
   const totalAchievements = character.achievements.length;
   const achievementRarity = getAchievementRarity(totalAchievements);
@@ -2366,7 +2267,6 @@ function generateAchievementsSection(character) {
   `;
 }
 
-// Helper function to categorize achievements
 function categorizeAchievements(achievements) {
   const categories = {
     Leadership: [],
@@ -2424,7 +2324,6 @@ function categorizeAchievements(achievements) {
     }
   });
 
-  // Remove empty categories
   Object.keys(categories).forEach((key) => {
     if (categories[key].length === 0) {
       delete categories[key];
@@ -2434,7 +2333,6 @@ function categorizeAchievements(achievements) {
   return categories;
 }
 
-// Helper function to get achievement rarity
 function getAchievementRarity(count) {
   if (count >= 8) return { level: "Legendary", title: "Achievement Master" };
   if (count >= 6) return { level: "Epic", title: "High Achiever" };
@@ -2442,7 +2340,6 @@ function getAchievementRarity(count) {
   return { level: "Common", title: "Rising Star" };
 }
 
-// Helper function to get category icon
 function getCategoryIcon(category) {
   const icons = {
     Leadership: "👑",
@@ -2455,7 +2352,6 @@ function getCategoryIcon(category) {
   return icons[category] || "🏆";
 }
 
-// Helper function to get achievement icon
 function getAchievementIcon(achievement) {
   const achievementLower = achievement.toLowerCase();
 
@@ -2474,13 +2370,10 @@ function getAchievementIcon(achievement) {
   return "🏆";
 }
 
-// Helper function to get achievement title
 function getAchievementTitle(achievement) {
-  // Extract a shorter title from the achievement description
   const words = achievement.split(" ");
   if (words.length <= 4) return achievement;
 
-  // Try to find key action words
   const keyWords = [
     "Founded",
     "Became",
@@ -2500,7 +2393,6 @@ function getAchievementTitle(achievement) {
   return words.slice(0, 3).join(" ") + "...";
 }
 
-// Helper function to get achievement card rarity
 function getAchievementCardRarity(achievement) {
   const achievementLower = achievement.toLowerCase();
 
@@ -2525,7 +2417,6 @@ function getAchievementCardRarity(achievement) {
 function generateEvolutionSection(character) {
   if (!character.evolution || character.evolution.length === 0) return "";
 
-  // Calculate evolution stats and progression
   const totalForms = character.evolution.length;
   const evolutionStats = {
     totalEvolutions: totalForms,
@@ -2617,7 +2508,6 @@ function generateEvolutionSection(character) {
   `;
 }
 
-// Helper function to generate evolution abilities based on form
 function generateEvolutionAbilities(form, index) {
   const abilityMap = {
     0: ["🧠 Basic Consciousness", "🔍 Observation"],
@@ -2632,7 +2522,6 @@ function generateEvolutionAbilities(form, index) {
   return abilities.map((ability) => `<span class="ability-tag">${ability}</span>`).join("");
 }
 
-// Helper function to generate evolution impact description
 function generateEvolutionImpact(form, index) {
   const impactDescriptions = [
     "Gained basic sentience and awareness of the world.",
@@ -2645,7 +2534,6 @@ function generateEvolutionImpact(form, index) {
   return impactDescriptions[index] || "Significant growth in power and abilities.";
 }
 
-// Helper function to determine trigger type and apply appropriate styling
 function getTriggerTypeClass(trigger) {
   const triggerLower = trigger.toLowerCase();
 
@@ -2676,7 +2564,6 @@ function getTriggerTypeClass(trigger) {
   return "trigger-natural"; // Default fallback
 }
 
-// Function to toggle evolution details
 function toggleEvolutionDetails(index) {
   const detailsElement = document.getElementById(`evolution-details-${index}`);
   const evolutionForm = document.querySelector(`[data-evolution-index="${index}"]`);
@@ -2684,22 +2571,18 @@ function toggleEvolutionDetails(index) {
   if (detailsElement) {
     const isVisible = detailsElement.style.display !== "none";
 
-    // Hide all other details first
     document.querySelectorAll(".evolution-details").forEach((detail) => {
       detail.style.display = "none";
     });
 
-    // Remove active class from all forms
     document.querySelectorAll(".evolution-form").forEach((form) => {
       form.classList.remove("evolution-active");
     });
 
     if (!isVisible) {
-      // Show this detail with animation
       detailsElement.style.display = "block";
       evolutionForm.classList.add("evolution-active");
 
-      // Animate in
       setTimeout(() => {
         detailsElement.style.opacity = "0";
         detailsElement.style.transform = "translateY(10px)";
@@ -2711,7 +2594,6 @@ function toggleEvolutionDetails(index) {
         });
       }, 10);
 
-      // Scroll into view on mobile
       if (window.innerWidth <= 768) {
         evolutionForm.scrollIntoView({
           behavior: "smooth",
@@ -2719,12 +2601,10 @@ function toggleEvolutionDetails(index) {
         });
       }
 
-      // Haptic feedback
       if ("vibrate" in navigator) {
         navigator.vibrate(50);
       }
 
-      // Show notification
       if (window.showNotification) {
         window.showNotification(`Viewing details for evolution stage ${index + 1}`, "info");
       }
@@ -2777,25 +2657,18 @@ function generateImpactStatsSection(character) {
   `;
 }
 
-// Setup tab switching functionality - Initialize tab navigation and interaction handlers
 function setupTabSwitching() {
-  // Get all profile tabs and tab sections for navigation setup
   const tabs = document.querySelectorAll(".profile-tab");
   const sections = document.querySelectorAll(".tab-section");
 
-  // Add click event listeners to each tab for switching functionality
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => {
-      // Remove active class from all tabs and sections
       tabs.forEach((t) => t.classList.remove("active"));
       sections.forEach((s) => s.classList.remove("active"));
 
-      // Add active class to clicked tab
       tab.classList.add("active");
 
-      // Scroll the active tab into view on mobile
       if (window.innerWidth <= 768) {
-        // Small delay to ensure DOM is ready
         requestAnimationFrame(() => {
           tab.scrollIntoView({
             behavior: "smooth",
@@ -2805,15 +2678,12 @@ function setupTabSwitching() {
         });
       }
 
-      // Get target tab identifier and activate corresponding section
       const targetTab = tab.getAttribute("data-tab");
       const targetSection = document.getElementById(`tab-${targetTab}`);
 
       if (targetSection) {
-        // Activate target section and scroll to it on mobile
         targetSection.classList.add("active");
 
-        // Smooth scroll to section on mobile devices
         if (window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768) {
           targetSection.scrollIntoView({
             behavior: "smooth",
@@ -2822,34 +2692,28 @@ function setupTabSwitching() {
         }
       }
 
-      // Provide haptic feedback on supported devices
       if ("vibrate" in navigator) {
         navigator.vibrate(50);
       }
 
-      // Play sound effect if audio system is available
       if (window.playSound) {
         window.playSound("tab-switch");
       }
     });
   });
 
-  // Add keyboard navigation support for tabs
   tabs.forEach((tab, index) => {
     tab.addEventListener("keydown", (e) => {
       if (e.key === "ArrowLeft" && index > 0) {
-        // Navigate to previous tab with left arrow key
         tabs[index - 1].focus();
         tabs[index - 1].click();
       } else if (e.key === "ArrowRight" && index < tabs.length - 1) {
-        // Navigate to next tab with right arrow key
         tabs[index + 1].focus();
         tabs[index + 1].click();
       }
     });
   });
 
-  // Ensure first tab is visible on mobile on page load
   if (tabs.length > 0 && window.innerWidth <= 768) {
     setTimeout(() => {
       const activeTab = document.querySelector(".profile-tab.active") || tabs[0];
@@ -2860,7 +2724,6 @@ function setupTabSwitching() {
       });
     }, 100);
 
-    // Hide scroll hint after user scrolls
     const tabsContainer = document.querySelector(".profile-tabs");
     if (tabsContainer) {
       let scrolled = false;
@@ -2878,43 +2741,32 @@ function setupTabSwitching() {
   }
 }
 
-// Apply character theme - Set character-specific colors and styling
 function applyCharacterTheme(colorScheme, characterId) {
-  // Exit early if no color scheme provided
   if (!colorScheme) return;
 
-  // Get document root and background elements for theming
   const root = document.documentElement;
   const background = document.getElementById("character-background");
 
-  // Apply character color scheme to CSS custom properties
   root.style.setProperty("--character-primary", colorScheme.primary);
   root.style.setProperty("--character-secondary", colorScheme.secondary);
   root.style.setProperty("--character-glow", colorScheme.glow);
 
-  // Apply character-specific background class if element exists
   if (background) {
     background.className = `character-background ${characterId}`;
   }
 
-  // Update page title with character name
   document.title = `${characterId.charAt(0).toUpperCase() + characterId.slice(1)} - Character Profile`;
 }
 
-// Create floating elements for character theme - Generate animated background particles
 function createFloatingElements(character) {
-  // Get container element for floating particles
   const container = document.getElementById("floating-elements");
   if (!container) return;
 
-  // Adjust particle count based on device type for performance
   const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
   const particleCount = isMobile ? 3 : 6;
 
-  // Clear existing particles before creating new ones
   container.innerHTML = "";
 
-  // Generate floating particles with random positioning and timing
   for (let i = 0; i < particleCount; i++) {
     const element = document.createElement("div");
     element.className = "floating-element";
@@ -2926,12 +2778,9 @@ function createFloatingElements(character) {
   }
 }
 
-// Load character profile - Main function to load and display character data
 async function loadCharacterProfile() {
-  // Extract character ID from URL parameters
   const characterId = window.getURLParameter("id");
 
-  // Validate character ID exists in URL
   if (!characterId) {
     window.displayError(
       "No Character Selected",
@@ -2948,7 +2797,6 @@ async function loadCharacterProfile() {
     return;
   }
 
-  // Validate GameState is available for data loading
   if (!window.GameState) {
     console.error("GameState not found on window object");
     window.displayError(
@@ -2967,17 +2815,14 @@ async function loadCharacterProfile() {
   }
 
   try {
-    // Show loading indicator while fetching data
     window.showLoadingIndicator(
       "profile-content",
       "Loading Character Data...",
       "Please wait while we fetch the character information."
     );
 
-    // Load basic character information first for quick display
     const basicCharacter = await window.GameState.getBasicCharacter(characterId);
 
-    // Handle case where character doesn't exist
     if (!basicCharacter) {
       window.displayError(
         "Character Not Found",
@@ -2994,24 +2839,19 @@ async function loadCharacterProfile() {
       return;
     }
 
-    // Apply character-specific theming and visual elements
     applyCharacterTheme(basicCharacter.colorScheme, characterId);
     createFloatingElements(basicCharacter);
     renderBasicCharacterProfile(basicCharacter);
 
-    // Load detailed character information asynchronously
     const detailedCharacter = await window.GameState.getCharacter(characterId);
 
-    // Render full character profile if detailed data is available
     if (detailedCharacter) {
       renderCharacterProfile(detailedCharacter);
     }
 
-    // Initialize tab navigation and hide loading indicator
     setupTabSwitching();
     window.hideLoadingIndicator();
 
-    // Show success notification to user
     window.showNotification(`${basicCharacter.name} profile loaded successfully!`);
   } catch (error) {
     console.error("Error loading character:", error);
@@ -3032,25 +2872,19 @@ async function loadCharacterProfile() {
   }
 }
 
-// Attempt error recovery - Try to recover from loading errors
 function attemptErrorRecovery() {
-  // Clear character cache to force fresh data load
   if (window.GameState) {
     window.GameState.clearCharacterCache();
   }
 
-  // Reset to first tab if tabs are available
   const firstTab = document.querySelector(".profile-tab");
   if (firstTab) {
     firstTab.click();
   }
 
-  // Notify user of recovery attempt
   window.showNotification("System recovered. Please try again.");
 }
-// Enhanced UI functionality for character page
 
-// Toggle favorite status for character
 function toggleFavorite() {
   const characterId = window.getURLParameter("id");
   if (!characterId) return;
@@ -3061,14 +2895,12 @@ function toggleFavorite() {
   const isFavorited = favorites.includes(characterId);
 
   if (isFavorited) {
-    // Remove from favorites
     const index = favorites.indexOf(characterId);
     favorites.splice(index, 1);
     favoriteIcon.textContent = "⭐";
     favoriteIcon.style.filter = "grayscale(100%)";
     window.showNotification("Removed from favorites");
   } else {
-    // Add to favorites
     favorites.push(characterId);
     favoriteIcon.textContent = "🌟";
     favoriteIcon.style.filter = "none";
@@ -3077,14 +2909,12 @@ function toggleFavorite() {
 
   localStorage.setItem("favoriteCharacters", JSON.stringify(favorites));
 
-  // Add visual feedback
   favoriteIcon.style.transform = "scale(1.3)";
   setTimeout(() => {
     favoriteIcon.style.transform = "scale(1)";
   }, 200);
 }
 
-// Initialize favorite status on page load
 function initializeFavoriteStatus() {
   const characterId = window.getURLParameter("id");
   if (!characterId) return;
@@ -3101,7 +2931,6 @@ function initializeFavoriteStatus() {
   }
 }
 
-// Floating Action Button functionality
 function initializeFloatingActionButton() {
   const fabHTML = `
     <div class="floating-action-menu" id="fab-menu">
@@ -3145,19 +2974,15 @@ function printProfile() {
   toggleFabMenu();
 }
 
-
-// Initialize all enhanced features
-function initializeEnhancedFeatures() {
+function initializeFeatures() {
   initializeFavoriteStatus();
   initializeFloatingActionButton();
 
-  // Load saved theme
   const savedTheme = localStorage.getItem("characterTheme");
   if (savedTheme) {
     document.body.dataset.theme = savedTheme;
   }
 
-  // Add keyboard shortcuts
   document.addEventListener("keydown", (e) => {
     if (e.ctrlKey || e.metaKey) {
       switch (e.key) {
@@ -3178,21 +3003,18 @@ function initializeEnhancedFeatures() {
   });
 }
 
-// Update the main initialization to include enhanced features
 const originalInitialize = initializeCharacterPage;
 initializeCharacterPage = function () {
   originalInitialize();
   setTimeout(() => {
-    initializeEnhancedFeatures();
+    initializeFeatures();
   }, 1000);
 };
 
-// Update the character profile rendering
 const originalRenderCharacterProfile = renderCharacterProfile;
 renderCharacterProfile = function (character) {
   originalRenderCharacterProfile(character);
 
-  // Initialize achievement features after rendering
   setTimeout(() => {
     updateAchievementFavoriteIndicators();
   }, 500);
@@ -3204,7 +3026,6 @@ window.toggleFabMenu = toggleFabMenu;
 window.scrollToTop = scrollToTop;
 window.toggleTheme = toggleTheme;
 window.printProfile = printProfile;
-// Scroll progress indicator
 function initializeScrollProgress() {
   const scrollIndicator = document.getElementById("scroll-indicator");
   if (!scrollIndicator) return;
@@ -3221,9 +3042,7 @@ function initializeScrollProgress() {
   updateScrollProgress(); // Initial call
 }
 
-// Enhanced page transitions
 function addPageTransitions() {
-  // Add smooth scroll to all internal links
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
@@ -3237,7 +3056,6 @@ function addPageTransitions() {
     });
   });
 
-  // Add intersection observer for animations
   const observerOptions = {
     threshold: 0.1,
     rootMargin: "0px 0px -50px 0px",
@@ -3251,13 +3069,11 @@ function addPageTransitions() {
     });
   }, observerOptions);
 
-  // Observe all major sections
   document.querySelectorAll(".profile-section, .info-card, .skill-card-detailed").forEach((el) => {
     observer.observe(el);
   });
 }
 
-// Performance monitoring
 function initializePerformanceMonitoring() {
   if ("performance" in window) {
     window.addEventListener("load", () => {
@@ -3269,7 +3085,6 @@ function initializePerformanceMonitoring() {
           console.warn("Page load time is high:", loadTime + "ms");
         }
 
-        // Store performance metrics
         const metrics = {
           loadTime,
           domContentLoaded: perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart,
@@ -3282,12 +3097,10 @@ function initializePerformanceMonitoring() {
   }
 }
 
-// Enhanced error handling with user-friendly messages
-function setupEnhancedErrorHandling() {
+function setupErrorHandling() {
   window.addEventListener("error", (event) => {
     console.error("Character page error:", event.error);
 
-    // Show user-friendly error message
     const errorMessage = getErrorMessage(event.error);
     window.showNotification(errorMessage, "error");
   });
@@ -3310,18 +3123,15 @@ function getErrorMessage(error) {
   }
 }
 
-// Initialize all enhanced features on page load
 document.addEventListener("DOMContentLoaded", () => {
   initializeScrollProgress();
   addPageTransitions();
   initializePerformanceMonitoring();
-  setupEnhancedErrorHandling();
+  setupErrorHandling();
 
-  // Add smooth scroll class to html
   document.documentElement.classList.add("smooth-scroll");
 });
 
-// Lazy loading for images
 function initializeLazyLoading() {
   if ("IntersectionObserver" in window) {
     const imageObserver = new IntersectionObserver((entries) => {
@@ -3341,10 +3151,8 @@ function initializeLazyLoading() {
   }
 }
 
-// Call lazy loading initialization
 setTimeout(initializeLazyLoading, 1000);
 
-// Enhanced Evolution Form Features
 class EvolutionManager {
   constructor() {
     this.currentCharacter = null;
@@ -3352,7 +3160,6 @@ class EvolutionManager {
     this.comparisonMode = false;
   }
 
-  // Initialize evolution features for a character
   initializeEvolution(character) {
     this.currentCharacter = character;
     this.evolutionData = character.evolution || [];
@@ -3360,16 +3167,13 @@ class EvolutionManager {
     this.addEvolutionKeyboardNavigation();
   }
 
-  // Setup interactive features for evolution forms
   setupEvolutionInteractions() {
-    // Add double-click to expand all details
     document.addEventListener("dblclick", (e) => {
       if (e.target.closest(".evolution-form")) {
         this.toggleAllEvolutionDetails();
       }
     });
 
-    // Add right-click context menu for evolution forms
     document.addEventListener("contextmenu", (e) => {
       if (e.target.closest(".evolution-form")) {
         e.preventDefault();
@@ -3377,17 +3181,13 @@ class EvolutionManager {
       }
     });
 
-    // Add evolution comparison feature
     this.addEvolutionComparison();
   }
 
-  // Add evolution comparison functionality
   addEvolutionComparison() {
-    // Initialize comparison mode state
     this.comparisonMode = false;
     this.selectedEvolutions = [];
 
-    // Add comparison event listeners
     document.addEventListener("click", (e) => {
       if (this.comparisonMode && e.target.closest(".evolution-form")) {
         const evolutionForm = e.target.closest(".evolution-form");
@@ -3397,30 +3197,25 @@ class EvolutionManager {
     });
   }
 
-  // Toggle evolution selection for comparison
   toggleEvolutionSelection(index) {
     const evolutionForm = document.querySelector(`[data-evolution-index="${index}"]`);
     if (!evolutionForm) return;
 
     if (this.selectedEvolutions.includes(index)) {
-      // Remove from selection
       this.selectedEvolutions = this.selectedEvolutions.filter((i) => i !== index);
       evolutionForm.classList.remove("evolution-selected");
     } else {
-      // Add to selection (max 2 for comparison)
       if (this.selectedEvolutions.length < 2) {
         this.selectedEvolutions.push(index);
         evolutionForm.classList.add("evolution-selected");
       }
     }
 
-    // Show comparison if 2 evolutions selected
     if (this.selectedEvolutions.length === 2) {
       this.showEvolutionComparison();
     }
   }
 
-  // Show evolution comparison
   showEvolutionComparison() {
     if (this.selectedEvolutions.length !== 2) return;
 
@@ -3430,7 +3225,6 @@ class EvolutionManager {
 
     if (!evolution1 || !evolution2) return;
 
-    // Create comparison modal
     const modal = document.createElement("div");
     modal.className = "evolution-comparison-modal";
     modal.innerHTML = `
@@ -3457,13 +3251,11 @@ class EvolutionManager {
 
     document.body.appendChild(modal);
 
-    // Auto-close after 10 seconds
     setTimeout(() => {
       this.closeEvolutionComparison();
     }, 10000);
   }
 
-  // Close evolution comparison
   closeEvolutionComparison() {
     const modal = document.querySelector(".evolution-comparison-modal");
     if (modal) {
@@ -3472,7 +3264,6 @@ class EvolutionManager {
     this.disableComparisonMode();
   }
 
-  // Toggle all evolution details at once
   toggleAllEvolutionDetails() {
     const allDetails = document.querySelectorAll(".evolution-details");
     const allForms = document.querySelectorAll(".evolution-form");
@@ -3496,7 +3287,6 @@ class EvolutionManager {
     }
   }
 
-  // Animate detail section in
   animateDetailIn(detail) {
     detail.style.opacity = "0";
     detail.style.transform = "translateY(10px)";
@@ -3508,20 +3298,17 @@ class EvolutionManager {
     });
   }
 
-  // Show context menu for evolution forms
   showEvolutionContextMenu(event) {
     const evolutionForm = event.target.closest(".evolution-form");
     const evolutionIndex = evolutionForm?.dataset.evolutionIndex;
 
     if (!evolutionIndex) return;
 
-    // Remove existing context menu
     const existingMenu = document.querySelector(".evolution-context-menu");
     if (existingMenu) {
       existingMenu.remove();
     }
 
-    // Create context menu
     const contextMenu = document.createElement("div");
     contextMenu.className = "evolution-context-menu";
     contextMenu.innerHTML = `
@@ -3539,7 +3326,6 @@ class EvolutionManager {
       </div>
     `;
 
-    // Position and show context menu
     contextMenu.style.position = "fixed";
     contextMenu.style.left = event.clientX + "px";
     contextMenu.style.top = event.clientY + "px";
@@ -3547,7 +3333,6 @@ class EvolutionManager {
 
     document.body.appendChild(contextMenu);
 
-    // Remove context menu when clicking elsewhere
     setTimeout(() => {
       document.addEventListener(
         "click",
@@ -3559,7 +3344,6 @@ class EvolutionManager {
     }, 100);
   }
 
-  // Add keyboard navigation for evolution forms
   addEvolutionKeyboardNavigation() {
     document.addEventListener("keydown", (e) => {
       if (e.target.closest(".evolution-timeline")) {
@@ -3592,26 +3376,21 @@ class EvolutionManager {
     });
   }
 
-  // Navigate between evolution forms
   navigateEvolution(newIndex, evolutionForms) {
     if (newIndex < 0) newIndex = evolutionForms.length - 1;
     if (newIndex >= evolutionForms.length) newIndex = 0;
 
-    // Remove active class from all forms
     evolutionForms.forEach((form) => form.classList.remove("evolution-active"));
 
-    // Add active class to new form
     evolutionForms[newIndex].classList.add("evolution-active");
     evolutionForms[newIndex].scrollIntoView({
       behavior: "smooth",
       block: "center",
     });
 
-    // Show details for the active form
     toggleEvolutionDetails(newIndex);
   }
 
-  // Close all evolution details
   closeAllEvolutionDetails() {
     document.querySelectorAll(".evolution-details").forEach((detail) => {
       detail.style.display = "none";
@@ -3621,7 +3400,6 @@ class EvolutionManager {
     });
   }
 
-  // Share evolution information
   shareEvolution(index) {
     const evolution = this.evolutionData[index];
     if (!evolution) return;
@@ -3643,7 +3421,6 @@ class EvolutionManager {
     }
   }
 
-  // Compare evolution with others
   compareEvolution(index) {
     this.comparisonMode = !this.comparisonMode;
 
@@ -3654,7 +3431,6 @@ class EvolutionManager {
     }
   }
 
-  // Enable evolution comparison mode
   enableComparisonMode(selectedIndex) {
     const evolutionForms = document.querySelectorAll(".evolution-form");
 
@@ -3666,7 +3442,6 @@ class EvolutionManager {
       }
     });
 
-    // Add comparison UI
     this.showComparisonUI(selectedIndex);
 
     if (window.showNotification) {
@@ -3677,7 +3452,6 @@ class EvolutionManager {
     }
   }
 
-  // Disable evolution comparison mode
   disableComparisonMode() {
     document.querySelectorAll(".evolution-form").forEach((form) => {
       form.classList.remove("evolution-selected", "evolution-dimmed");
@@ -3689,7 +3463,6 @@ class EvolutionManager {
     }
   }
 
-  // Show comparison UI
   showComparisonUI(selectedIndex) {
     const evolution = this.evolutionData[selectedIndex];
     const comparisonUI = document.createElement("div");
@@ -3714,7 +3487,6 @@ class EvolutionManager {
     document.querySelector(".evolution-timeline").appendChild(comparisonUI);
   }
 
-  // Get evolution trigger type
   getEvolutionTriggerType(trigger) {
     if (trigger.toLowerCase().includes("name")) return "Naming";
     if (trigger.toLowerCase().includes("death")) return "Trauma";
@@ -3723,7 +3495,6 @@ class EvolutionManager {
     return "Natural";
   }
 
-  // Favorite evolution
   favoriteEvolution(index) {
     const characterId = window.getURLParameter?.("id");
     if (!characterId) return;
@@ -3750,7 +3521,6 @@ class EvolutionManager {
     this.updateFavoriteIndicators();
   }
 
-  // Update favorite indicators
   updateFavoriteIndicators() {
     const characterId = window.getURLParameter?.("id");
     if (!characterId) return;
@@ -3773,7 +3543,6 @@ class EvolutionManager {
     });
   }
 
-  // Copy evolution information
   copyEvolutionInfo(index) {
     const evolution = this.evolutionData[index];
     if (!evolution) return;
@@ -3793,12 +3562,10 @@ class EvolutionManager {
 // Create global evolution manager instance
 window.evolutionManager = new EvolutionManager();
 
-// Initialize evolution manager when character loads
 const originalLoadCharacterProfile = loadCharacterProfile;
 loadCharacterProfile = async function () {
   await originalLoadCharacterProfile();
 
-  // Initialize evolution manager after character loads
   setTimeout(() => {
     const characterId = window.getURLParameter("id");
     if (characterId && window.GameState) {
@@ -3810,19 +3577,16 @@ loadCharacterProfile = async function () {
     }
   }, 1500);
 };
-// Achievement interaction functions
 function toggleAchievementCategory(category) {
   const categoryElement = document.querySelector(`[data-category="${category}"]`);
   const achievementGrid = document.getElementById(`achievements-${category}`);
   const toggleIcon = categoryElement.querySelector(".toggle-icon");
 
   if (achievementGrid.style.display === "none" || !achievementGrid.style.display) {
-    // Show category
     achievementGrid.style.display = "grid";
     toggleIcon.textContent = "▲";
     categoryElement.classList.add("category-expanded");
 
-    // Animate cards in
     const cards = achievementGrid.querySelectorAll(".achievement-card");
     cards.forEach((card, index) => {
       card.style.opacity = "0";
@@ -3834,26 +3598,22 @@ function toggleAchievementCategory(category) {
       }, index * 100);
     });
   } else {
-    // Hide category
     achievementGrid.style.display = "none";
     toggleIcon.textContent = "▼";
     categoryElement.classList.remove("category-expanded");
   }
 
-  // Haptic feedback
   if ("vibrate" in navigator) {
     navigator.vibrate(50);
   }
 }
 
 function showAchievementDetails(category, index) {
-  // Remove existing modal
   const existingModal = document.querySelector(".achievement-modal");
   if (existingModal) {
     existingModal.remove();
   }
 
-  // Get achievement data
   const categoryElement = document.querySelector(`[data-category="${category}"]`);
   const achievementCards = categoryElement.querySelectorAll(".achievement-card");
   const clickedCard = achievementCards[index];
@@ -3864,7 +3624,6 @@ function showAchievementDetails(category, index) {
     .querySelector(".achievement-rarity")
     .className.split(" ")[1];
 
-  // Create modal
   const modal = document.createElement("div");
   modal.className = "achievement-modal";
   modal.innerHTML = `
@@ -3905,7 +3664,6 @@ function showAchievementDetails(category, index) {
 
   document.body.appendChild(modal);
 
-  // Animate modal in
   setTimeout(() => {
     modal.classList.add("achievement-modal-show");
   }, 10);
@@ -3985,13 +3743,11 @@ function updateAchievementFavoriteIndicators() {
     const localIndex = Array.from(card.parentElement.children).indexOf(card);
     const achievementKey = `${category}_${localIndex}`;
 
-    // Remove existing favorite indicator
     const existingIndicator = card.querySelector(".achievement-favorite");
     if (existingIndicator) {
       existingIndicator.remove();
     }
 
-    // Add favorite indicator if favorited
     if (favorites.includes(achievementKey)) {
       const indicator = document.createElement("div");
       indicator.className = "achievement-favorite";
@@ -4001,21 +3757,17 @@ function updateAchievementFavoriteIndicators() {
   });
 }
 
-// Initialize achievement features when page loads
 function initializeAchievementFeatures() {
-  // Close modal on escape key
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       closeAchievementModal();
     }
   });
 
-  // Update favorite indicators
   setTimeout(() => {
     updateAchievementFavoriteIndicators();
   }, 1000);
 
-  // Auto-expand first category
   setTimeout(() => {
     const firstCategory = document.querySelector(".achievement-category");
     if (firstCategory) {
@@ -4032,9 +3784,8 @@ window.closeAchievementModal = closeAchievementModal;
 window.shareAchievement = shareAchievement;
 window.favoriteAchievement = favoriteAchievement;
 
-// Initialize when character loads
-const originalInitializeEnhancedFeatures = initializeEnhancedFeatures;
-initializeEnhancedFeatures = function () {
-  originalInitializeEnhancedFeatures();
+const originalInitializeFeatures = initializeFeatures;
+initializeFeatures = function () {
+  originalInitializeFeatures();
   initializeAchievementFeatures();
 };

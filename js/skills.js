@@ -1,53 +1,21 @@
-// Enhanced skills functionality with improved UI interactions and animations
 
-// Get all skills from character data - Aggregate skills from all characters
 async function getAllSkills() {
   try {
-    let basicCharacters = null;
-
-    // Attempt to load characters using GameState first
-    if (window.GameState) {
-      try {
-        basicCharacters = await window.GameState.getAllCharacters();
-      } catch (err) {
-        console.error("GameState.getAllCharacters() failed:", err);
-      }
-    }
-
-    // Fallback to CharacterLoader if GameState fails or returns empty
-    if (!basicCharacters || basicCharacters.length === 0) {
-      console.warn("GameState not available or returned empty, trying CharacterLoader directly...");
-      if (window.CharacterLoader) {
-        try {
-          basicCharacters = await window.CharacterLoader.loadBasicCharacters();
-        } catch (err) {
-          console.error("CharacterLoader.loadBasicCharacters() failed:", err);
-        }
-      } else {
-        console.error("CharacterLoader not available!");
-        return [];
-      }
-    }
-
-    // Validate we have character data to process
-    if (!basicCharacters || basicCharacters.length === 0) {
-      console.warn("No characters found from any source");
+    const basicCharacters = await window.GameState.getAllCharacters();
+    if (!basicCharacters.length) {
+      console.warn("No characters found");
       return [];
     }
 
-    // Initialize skill processing variables
     const skillsMap = new Map();
     let processedCount = 0;
 
-    // Show loading progress
     updateLoadingProgress(0, basicCharacters.length);
 
-    // Process each character to extract skills data
     for (let i = 0; i < basicCharacters.length; i++) {
       const basicChar = basicCharacters[i];
 
       try {
-        // Fetch detailed character data from JSON file
         const response = await fetch(`data/characters/${basicChar.id}.json`);
         if (!response.ok) {
           console.warn(
@@ -59,10 +27,8 @@ async function getAllSkills() {
         }
 
         try {
-          // Parse character JSON data
           const character = await response.json();
 
-          // Validate character has skills array
           if (!character.skills || !Array.isArray(character.skills)) {
             console.warn(`Character ${character.name} has no skills array`);
             processedCount++;
@@ -70,14 +36,12 @@ async function getAllSkills() {
             continue;
           }
 
-          // Process each skill from the character
           character.skills.forEach((skill) => {
             if (!skill.name) {
               console.warn(`Skill missing name for character ${character.name}`);
               return;
             }
 
-            // Create or update skill entry in skills map
             if (!skillsMap.has(skill.name)) {
               skillsMap.set(skill.name, {
                 name: skill.name,
@@ -94,7 +58,6 @@ async function getAllSkills() {
                 rarity: getSkillRarity(skill.type),
               });
             }
-            // Add character to skill's character list
             skillsMap.get(skill.name).characters.push(character);
           });
           processedCount++;
@@ -108,7 +71,6 @@ async function getAllSkills() {
       }
     }
 
-    // Convert skills map to array and return
     const skills = Array.from(skillsMap.values());
     return skills;
   } catch (error) {
@@ -117,7 +79,6 @@ async function getAllSkills() {
   }
 }
 
-// Update loading progress indicator
 function updateLoadingProgress(current, total) {
   const progressBar = document.querySelector(".loading-bar");
   const loadingText = document.querySelector(".loading-text");
@@ -129,7 +90,6 @@ function updateLoadingProgress(current, total) {
   }
 }
 
-// Get appropriate icon for skill type
 function getSkillIcon(type) {
   const icons = {
     Combat: "⚔️",
@@ -142,7 +102,6 @@ function getSkillIcon(type) {
   return icons[type] || "✨";
 }
 
-// Get skill rarity based on type and usage
 function getSkillRarity(type) {
   const rarities = {
     Combat: "Common",
@@ -154,7 +113,6 @@ function getSkillRarity(type) {
   return rarities[type] || "Common";
 }
 
-// Generate prerequisite requirements based on skill type classification
 function generatePrerequisites(type) {
   const prerequisites = {
     Combat: ["Basic Training", "Physical Conditioning"], // Physical combat requirements
@@ -166,7 +124,6 @@ function generatePrerequisites(type) {
   return prerequisites[type] || ["Basic Knowledge"]; // Default fallback prerequisites
 }
 
-// Generate practical applications for each skill type
 function generateApplications(type) {
   const applications = {
     Combat: ["Battle Strategy", "Personal Defense", "Military Operations"], // Combat use cases
@@ -178,7 +135,6 @@ function generateApplications(type) {
   return applications[type] || ["General Application"]; // Default application category
 }
 
-// Determine difficulty level based on skill type complexity
 function getDifficultyLevel(type) {
   const difficulties = {
     Combat: "Advanced", // Combat skills require extensive training
@@ -190,7 +146,6 @@ function getDifficultyLevel(type) {
   return difficulties[type] || "Beginner"; // Default difficulty level
 }
 
-// Estimate learning time required for skill mastery
 function getLearningTime(type) {
   const times = {
     Combat: "6-12 months", // Combat proficiency timeline
@@ -202,7 +157,6 @@ function getLearningTime(type) {
   return times[type] || "3-6 months"; // Default learning timeframe
 }
 
-// Map skill types to broader categories for organization
 function getCategoryFromType(type) {
   const categories = {
     Combat: "Offensive", // Combat categorized as offensive
@@ -216,7 +170,6 @@ function getCategoryFromType(type) {
 let allSkills = []; // Global array to store all loaded skills data
 let filteredSkills = []; // Global array to store currently filtered skills
 
-// Calculate and return comprehensive statistics about all skills
 function getSkillStats() {
   const stats = {
     total: allSkills.length, // Total number of skills available
@@ -233,7 +186,6 @@ function getSkillStats() {
   return stats; // Return compiled statistics object
 }
 
-// Render skills statistics display section
 function renderSkillStats() {
   const stats = getSkillStats(); // Get current skill statistics
   const statsContainer = document.createElement("div"); // Create stats container element
@@ -269,7 +221,6 @@ function renderSkillStats() {
   skillsGrid.parentNode.insertBefore(statsContainer, skillsGrid); // Insert stats before grid
 }
 
-// Enhanced learning paths section with interactive animations
 function renderLearningPaths() {
   const learningPathsContainer = document.createElement("div");
   learningPathsContainer.className = "skills-learning-path";
@@ -333,7 +284,6 @@ function renderLearningPaths() {
   const skillsGrid = document.getElementById("skills-grid");
   skillsGrid.parentNode.insertBefore(learningPathsContainer, skillsGrid);
 
-  // Add hover sound effects (if audio is available)
   const pathItems = learningPathsContainer.querySelectorAll(".learning-path-item");
   pathItems.forEach((item) => {
     item.addEventListener("mouseenter", () => {
@@ -345,13 +295,11 @@ function renderLearningPaths() {
   });
 }
 
-// Filter skills by learning path type and update display
 function filterByPath(pathType) {
   document.getElementById("type-filter").value = pathType; // Set filter dropdown value
   applyFilters(); // Apply the selected filter
 }
 
-// Render skills grid with provided skills array
 function renderSkills(skills) {
   const grid = document.getElementById("skills-grid"); // Get skills grid element
 
@@ -496,7 +444,6 @@ function renderSkills(skills) {
   }
 }
 
-// Navigate to character detail page with visual feedback
 function viewCharacter(characterId) {
   try {
     if (!characterId) {
@@ -512,7 +459,6 @@ function viewCharacter(characterId) {
       }, 300);
     }
 
-    // Navigate to character page after brief delay for animation
     setTimeout(() => {
       window.location.href = `character.html?id=${encodeURIComponent(characterId)}`;
     }, 150);
@@ -523,7 +469,6 @@ function viewCharacter(characterId) {
   }
 }
 
-// Apply all active filters and sorting to skills display
 function applyFilters() {
   const searchTerm = document.getElementById("search-input").value.toLowerCase(); // Get search input value
   const typeFilter = document.getElementById("type-filter").value; // Get type filter value
@@ -572,7 +517,6 @@ function applyFilters() {
   updateResultsCount(); // Update results counter display
 }
 
-// Update and display current filter results count
 function updateResultsCount() {
   const existingCount = document.querySelector(".results-count"); // Find existing counter
   if (existingCount) {
@@ -587,7 +531,6 @@ function updateResultsCount() {
   skillsGrid.parentNode.insertBefore(count, skillsGrid); // Insert counter before grid
 }
 
-// Render skeleton loading state cards in skills grid
 function renderSkeletonSkillCards(count = 6) {
   const grid = document.getElementById("skills-grid");
   if (!grid) return;
@@ -617,7 +560,6 @@ function renderSkeletonSkillCards(count = 6) {
     .join("");
 }
 
-// Initialize the skills page with all required functionality
 async function initializeSkillsPage() {
   try {
     if (!window.GameState) {
@@ -657,7 +599,6 @@ async function initializeSkillsPage() {
     renderSkillStats(); // Render skills statistics section
     renderLearningPaths(); // Render learning paths section
 
-    // Setup event listeners for interactive elements
     const typeFilter = document.getElementById("type-filter"); // Get type filter element
     const difficultyFilter = document.getElementById("difficulty-filter"); // Get difficulty filter element
     const sortSelect = document.getElementById("sort-select"); // Get sort selector element
@@ -676,7 +617,6 @@ async function initializeSkillsPage() {
     }
 
     if (searchInput) {
-      // Use shared debounce function for search input
       const debouncedSearch = window.debounce ? window.debounce(applyFilters, 300) : applyFilters;
       searchInput.addEventListener("input", debouncedSearch);
     }
@@ -697,14 +637,12 @@ async function initializeSkillsPage() {
   }
 }
 
-// Initialize page when DOM is ready or immediately if already loaded
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initializeSkillsPage); // Wait for DOM if still loading
 } else {
   initializeSkillsPage(); // Initialize immediately if DOM ready
 }
 
-// Open detailed skill information modal
 function openSkillDetail(skillName) {
   const skill = allSkills.find((s) => s.name === skillName); // Find skill by name
   if (!skill) return; // Exit if skill not found
@@ -800,20 +738,17 @@ function openSkillDetail(skillName) {
   if (window.TempestAnimations) {
     window.TempestAnimations.animateModalOpen(modal, modal.querySelector(".skill-detail-content"));
   } else {
-    // Add active class with slight delay for animation
     setTimeout(() => {
       modal.classList.add("active"); // Trigger modal animation
     }, 10);
   }
 
-  // Close modal when clicking outside content area
   modal.addEventListener("click", (e) => {
     if (e.target === modal) {
       closeSkillDetail(); // Close on backdrop click
     }
   });
 
-  // Add keyboard navigation support for character tags
   modal.querySelectorAll(".character-tag").forEach((tag) => {
     tag.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
@@ -823,14 +758,12 @@ function openSkillDetail(skillName) {
     });
   });
 
-  // Focus close button for accessibility
   const closeButton = modal.querySelector(".close-detail");
   if (closeButton) {
     closeButton.focus(); // Set initial focus
   }
 }
 
-// Close skill detail modal and restore page state
 function closeSkillDetail() {
   const modal = document.querySelector(".skill-detail-modal"); // Find modal element
   if (modal) {
@@ -841,7 +774,6 @@ function closeSkillDetail() {
       });
     } else {
       modal.classList.remove("active"); // Remove active class for animation
-      // Restore body scrolling
       document.body.style.overflow = "";
       setTimeout(() => {
         modal.remove(); // Remove modal from DOM after animation
@@ -852,19 +784,16 @@ function closeSkillDetail() {
 
 // Global keyboard event handlers for accessibility and shortcuts
 document.addEventListener("keydown", (e) => {
-  // Close modal with Escape key
   if (e.key === "Escape") {
     closeSkillDetail(); // Close any open skill detail modal
   }
 
-  // Focus search input with Ctrl+F or forward slash
   if ((e.ctrlKey && e.key === "f") || e.key === "/") {
     e.preventDefault(); // Prevent browser search
     document.getElementById("search-input")?.focus(); // Focus search input
   }
 });
 
-// Force initialization function for the Force Load button
 function forceInitialize() {
   const grid = document.getElementById("skills-grid");
   if (grid) {
@@ -877,11 +806,9 @@ function forceInitialize() {
     `; // Display loading indicator
   }
 
-  // Clear any cached data
   allSkills = []; // Reset skills array
   filteredSkills = []; // Reset filtered skills array
 
-  // Reinitialize after brief delay
   setTimeout(() => {
     initializeSkillsPage(); // Restart initialization process
   }, 500);
@@ -894,18 +821,14 @@ window.openSkillDetail = openSkillDetail;
 window.closeSkillDetail = closeSkillDetail;
 window.forceInitialize = forceInitialize;
 
-// Enhanced quick action functions
 window.showAllSkills = function () {
-  // Reset all filters
   document.getElementById("search-input").value = "";
   document.getElementById("type-filter").value = "all";
   document.getElementById("difficulty-filter").value = "all";
   document.getElementById("sort-select").value = "name";
 
-  // Apply filters to show all skills
   applyFilters();
 
-  // Add visual feedback
   const btn = event.target.closest(".quick-action-btn");
   if (btn) {
     btn.style.transform = "scale(0.95)";
@@ -914,7 +837,6 @@ window.showAllSkills = function () {
 };
 
 window.showFavoriteSkills = function () {
-  // Filter to show most popular skills (those with most characters)
   const popularSkills = allSkills
     .filter((skill) => skill.characters.length >= 3)
     .sort((a, b) => b.characters.length - a.characters.length);
@@ -922,13 +844,11 @@ window.showFavoriteSkills = function () {
   renderSkills(popularSkills);
   updateResultsCount();
 
-  // Update results counter
   const count = document.querySelector(".results-count");
   if (count) {
     count.textContent = `Showing ${popularSkills.length} favorite skills`;
   }
 
-  // Add visual feedback
   const btn = event.target.closest(".quick-action-btn");
   if (btn) {
     btn.style.transform = "scale(0.95)";
@@ -939,19 +859,16 @@ window.showFavoriteSkills = function () {
 window.showRandomSkill = function () {
   if (allSkills.length === 0) return;
 
-  // Select a random skill
   const randomSkill = allSkills[Math.floor(Math.random() * allSkills.length)];
 
   // Show only the random skill
   renderSkills([randomSkill]);
 
-  // Update results counter
   const count = document.querySelector(".results-count");
   if (count) {
     count.textContent = `Showing 1 random skill: ${randomSkill.name}`;
   }
 
-  // Add visual feedback with special animation
   const btn = event.target.closest(".quick-action-btn");
   if (btn) {
     btn.style.transform = "rotate(360deg) scale(0.95)";
@@ -960,12 +877,10 @@ window.showRandomSkill = function () {
 };
 
 window.compareSkills = function () {
-  // Show comparison modal or interface
   alert(
     "Skill comparison feature coming soon! This will allow you to compare multiple skills side by side."
   );
 
-  // Add visual feedback
   const btn = event.target.closest(".quick-action-btn");
   if (btn) {
     btn.style.transform = "scale(0.95)";
@@ -973,7 +888,6 @@ window.compareSkills = function () {
   }
 };
 
-// Floating Action Button functions
 window.toggleFabMenu = function () {
   const fab = document.getElementById("fab");
   const isActive = fab.classList.contains("active");
@@ -984,7 +898,6 @@ window.toggleFabMenu = function () {
     fab.classList.add("active");
   }
 
-  // Close menu when clicking outside
   if (!isActive) {
     setTimeout(() => {
       document.addEventListener("click", closeFabMenu, { once: true });
@@ -1005,7 +918,6 @@ window.scrollToTop = function () {
     behavior: "smooth",
   });
 
-  // Close FAB menu
   document.getElementById("fab").classList.remove("active");
 };
 
@@ -1014,27 +926,20 @@ window.toggleDarkMode = function () {
   // For now, just show a message
   alert("Theme toggle feature coming soon! This will switch between light and dark modes.");
 
-  // Close FAB menu
   document.getElementById("fab").classList.remove("active");
 };
-// Enhanced UI functions for the improved skills page
 
-// Quick filter chips functionality
 window.setQuickFilter = function (filterType) {
-  // Update active chip
   document.querySelectorAll(".filter-chip").forEach((chip) => {
     chip.classList.remove("active");
   });
   document.querySelector(`[data-filter="${filterType}"]`).classList.add("active");
 
-  // Update the type filter dropdown
   document.getElementById("type-filter").value = filterType;
 
-  // Apply filters
   applyFilters();
 };
 
-// Toggle grid/list view
 let isGridView = true;
 window.toggleGridView = function () {
   const grid = document.getElementById("skills-grid");
@@ -1054,12 +959,10 @@ window.toggleGridView = function () {
     toggleBtn.querySelector(".btn-text").textContent = "List";
   }
 
-  // Add visual feedback
   toggleBtn.style.transform = "scale(0.95)";
   setTimeout(() => (toggleBtn.style.transform = ""), 150);
 };
 
-// Enhanced search with suggestions
 function setupSearchSuggestions() {
   const searchInput = document.getElementById("search-input");
   const suggestionsContainer = document.getElementById("search-suggestions");
@@ -1074,10 +977,8 @@ function setupSearchSuggestions() {
       return;
     }
 
-    // Generate suggestions from skills and characters
     const suggestions = [];
 
-    // Add skill name suggestions
     allSkills.forEach((skill) => {
       if (skill.name.toLowerCase().includes(query)) {
         suggestions.push({
@@ -1088,7 +989,6 @@ function setupSearchSuggestions() {
       }
     });
 
-    // Add character name suggestions
     const characters = new Set();
     allSkills.forEach((skill) => {
       skill.characters.forEach((char) => {
@@ -1103,7 +1003,6 @@ function setupSearchSuggestions() {
       });
     });
 
-    // Limit suggestions
     const limitedSuggestions = suggestions.slice(0, 5);
 
     if (limitedSuggestions.length > 0) {
@@ -1124,7 +1023,6 @@ function setupSearchSuggestions() {
     }
   });
 
-  // Hide suggestions when clicking outside
   document.addEventListener("click", function (e) {
     if (!searchInput.contains(e.target) && !suggestionsContainer.contains(e.target)) {
       suggestionsContainer.style.display = "none";
@@ -1138,7 +1036,6 @@ window.applySuggestion = function (text) {
   applyFilters();
 };
 
-// Update header statistics
 function updateHeaderStats() {
   const totalSkillsBubble = document.getElementById("total-skills-bubble");
   const practitionersBubble = document.getElementById("active-practitioners-bubble");
@@ -1158,7 +1055,6 @@ function updateHeaderStats() {
   }
 }
 
-// Animate numbers counting up
 function animateNumber(element, start, end, duration) {
   const startTime = performance.now();
 
@@ -1181,8 +1077,7 @@ function easeOutCubic(t) {
   return 1 - Math.pow(1 - t, 3);
 }
 
-// Enhanced apply filters with rarity support
-function applyFiltersEnhanced() {
+function applyFiltersAndSort() {
   const searchTerm = document.getElementById("search-input").value.toLowerCase();
   const typeFilter = document.querySelector(".filter-chip.active")?.dataset.filter || "all";
   const difficultyFilter = document.getElementById("difficulty-filter").value;
@@ -1206,7 +1101,6 @@ function applyFiltersEnhanced() {
     return matchesSearch && matchesType && matchesDifficulty && matchesRarity;
   });
 
-  // Enhanced sorting
   filteredSkills.sort((a, b) => {
     switch (sortBy) {
       case "name":
@@ -1235,18 +1129,15 @@ function applyFiltersEnhanced() {
 }
 
 // Override the original applyFilters function
-window.applyFilters = applyFiltersEnhanced;
+window.applyFilters = applyFiltersAndSort;
 
-// Initialize enhanced features when page loads
 document.addEventListener("DOMContentLoaded", function () {
   setupSearchSuggestions();
 
-  // Add event listeners for new filter elements
   const rarityFilter = document.getElementById("rarity-filter");
   if (rarityFilter) {
     rarityFilter.addEventListener("change", applyFilters);
   }
 
-  // Update header stats when skills are loaded
   setTimeout(updateHeaderStats, 1000);
 });

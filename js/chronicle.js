@@ -1,7 +1,5 @@
-// Timeline management class - Handles timeline events, filtering, and search functionality
 class TimelineManager {
   constructor() {
-    // Initialize timeline state properties
     this.currentView = "detailed";
     this.currentSort = "chronological";
     this.searchTerm = "";
@@ -11,11 +9,9 @@ class TimelineManager {
     this.originalOrder = [];
     this.isInitialized = false;
 
-    // Initialize timeline functionality
     this.init();
   }
 
-  // Initialize timeline manager - Set up caching, event listeners, and tooltips
   init() {
     this.cacheEvents();
     this.setupEventListeners();
@@ -26,7 +22,6 @@ class TimelineManager {
     this.isInitialized = true;
   }
 
-  // Initialize UI enhancements
   initializeEnhancements() {
     this.addScrollAnimations();
     this.addKeyboardShortcuts();
@@ -34,7 +29,6 @@ class TimelineManager {
     this.addSmoothScrolling();
   }
 
-  // Add scroll-based animations
   addScrollAnimations() {
     if (window.TempestAnimations) {
       window.TempestAnimations.animateScrollReveal(".timeline-year, .timeline-arc", {
@@ -63,7 +57,6 @@ class TimelineManager {
     }
   }
 
-  // Add keyboard shortcuts
   addKeyboardShortcuts() {
     document.addEventListener("keydown", (e) => {
       // Only handle shortcuts when not typing in inputs
@@ -93,7 +86,6 @@ class TimelineManager {
     });
   }
 
-  // Add progress indicator
   addProgressIndicator() {
     const progressBar = document.getElementById("timeline-progress-bar");
     if (!progressBar) return;
@@ -108,7 +100,6 @@ class TimelineManager {
     updateProgress();
   }
 
-  // Add smooth scrolling behavior
   addSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener("click", function (e) {
@@ -124,7 +115,6 @@ class TimelineManager {
     });
   }
 
-  // Enhanced expand all arcs functionality
   expandAllArcs() {
     const arcs = document.querySelectorAll(".timeline-arc");
     let delay = 0;
@@ -135,7 +125,6 @@ class TimelineManager {
           const arcHeader = arc.querySelector(".arc-header");
           if (arcHeader) {
             window.toggleArcSimple(arcHeader);
-            // Add visual feedback
             arc.style.transform = "scale(1.02)";
             setTimeout(() => {
               arc.style.transform = "";
@@ -146,11 +135,9 @@ class TimelineManager {
       }
     });
 
-    // Show notification
     this.showNotification("All arcs expanded", "success");
   }
 
-  // Enhanced collapse all arcs functionality
   collapseAllArcs() {
     const arcs = document.querySelectorAll(".timeline-arc");
     let delay = 0;
@@ -167,11 +154,9 @@ class TimelineManager {
       }
     });
 
-    // Show notification
     this.showNotification("All arcs collapsed", "info");
   }
 
-  // Show notification system
   showNotification(message, type = "info") {
     const notification = document.createElement("div");
     notification.className = `timeline-notification timeline-notification--${type}`;
@@ -184,12 +169,10 @@ class TimelineManager {
 
     document.body.appendChild(notification);
 
-    // Animate in
     requestAnimationFrame(() => {
       notification.classList.add("show");
     });
 
-    // Remove after delay
     setTimeout(() => {
       notification.classList.remove("show");
       setTimeout(() => {
@@ -198,10 +181,8 @@ class TimelineManager {
     }, 2000);
   }
 
-  // Cache timeline events - Extract and process timeline events from DOM
   cacheEvents() {
     this.events = Array.from(document.querySelectorAll(".timeline-event")).map((event) => {
-      // Extract text content from event elements
       const title = event.querySelector(".event-title")?.textContent || "";
       const description = event.querySelector(".event-description")?.textContent || "";
       const consequences = event.querySelector(".event-consequences")?.textContent || "";
@@ -211,7 +192,6 @@ class TimelineManager {
       const date = event.querySelector(".event-date")?.textContent || "";
       const era = event.closest(".timeline-year")?.dataset.era || "";
 
-      // Return processed event data object
       return {
         element: event,
         title,
@@ -227,20 +207,16 @@ class TimelineManager {
       };
     });
 
-    // Store original order for reset functionality
     this.originalOrder = [...this.events];
   }
 
-  // Calculate event importance - Assign importance score based on content analysis
   calculateImportance(eventElement) {
     let score = 0;
 
-    // Extract event content for analysis
     const title = eventElement.querySelector(".event-title")?.textContent || "";
     const consequences = eventElement.querySelectorAll(".event-consequences li");
     const characters = eventElement.querySelectorAll(".character-link");
 
-    // Score based on important keywords in title
     const importantKeywords = [
       "awakening",
       "demon lord",
@@ -254,13 +230,10 @@ class TimelineManager {
       if (title.toLowerCase().includes(keyword)) score += 10;
     });
 
-    // Score based on number of consequences listed
     score += consequences.length * 5;
 
-    // Score based on number of characters involved
     score += characters.length * 3;
 
-    // Bonus points for specific high-importance characters
     if (title.includes("Rimuru")) score += 15;
     if (title.includes("True Dragon")) score += 12;
     if (title.includes("Walpurgis")) score += 10;
@@ -268,16 +241,13 @@ class TimelineManager {
     return score;
   }
 
-  // Calculate event impact - Determine event's impact level based on consequences
   calculateImpact(eventElement) {
     const consequences = eventElement.querySelectorAll(".event-consequences li");
     let impact = consequences.length * 2;
 
-    // Analyze consequence text for impact keywords
     const consequenceText =
       eventElement.querySelector(".event-consequences")?.textContent.toLowerCase() || "";
 
-    // Add impact points based on scope keywords
     if (consequenceText.includes("global") || consequenceText.includes("world")) impact += 20;
     if (consequenceText.includes("nation") || consequenceText.includes("federation")) impact += 15;
     if (consequenceText.includes("military") || consequenceText.includes("power")) impact += 10;
@@ -286,9 +256,7 @@ class TimelineManager {
     return impact;
   }
 
-  // Set up event listeners - Initialize search input and keyboard shortcuts
   setupEventListeners() {
-    // Set up search input with debounced input handling
     const searchInput = document.getElementById("timeline-search");
     if (searchInput) {
       searchInput.addEventListener("input", (e) => {
@@ -297,7 +265,6 @@ class TimelineManager {
         this.updateSearchUI();
       });
 
-      // Handle Enter key press for immediate search
       searchInput.addEventListener("keypress", (e) => {
         if (e.key === "Enter") {
           this.searchTimeline();
@@ -305,7 +272,6 @@ class TimelineManager {
       });
     }
 
-    // Set up filter controls
     const eraFilter = document.getElementById("era-filter");
     if (eraFilter) {
       eraFilter.addEventListener("change", (e) => {
@@ -322,7 +288,6 @@ class TimelineManager {
       });
     }
 
-    // Set up view controls
     document.querySelectorAll(".view-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         document.querySelectorAll(".view-btn").forEach((b) => b.classList.remove("active"));
@@ -332,7 +297,6 @@ class TimelineManager {
       });
     });
 
-    // Add keyboard shortcut for search focus (Ctrl+F)
     document.addEventListener("keydown", (e) => {
       if (e.ctrlKey && e.key === "f") {
         e.preventDefault();
@@ -341,7 +305,6 @@ class TimelineManager {
     });
   }
 
-  // Update search UI elements - Show/hide clear button based on search state
   updateSearchUI() {
     const clearBtn = document.querySelector(".clear-search-btn");
     if (clearBtn) {
@@ -349,14 +312,12 @@ class TimelineManager {
     }
   }
 
-  // Execute timeline search - Apply search filters and highlight results
   searchTimeline() {
     const searchInput = document.getElementById("timeline-search");
     if (searchInput) {
       this.searchTerm = searchInput.value.toLowerCase();
       this.applyFilters();
 
-      // Highlight and expand search results if search term exists
       if (this.searchTerm) {
         this.highlightSearchResults();
         this.expandSearchResults();
@@ -364,7 +325,6 @@ class TimelineManager {
     }
   }
 
-  // Clear search functionality - Reset search state and UI
   clearSearch() {
     const searchInput = document.getElementById("timeline-search");
     if (searchInput) {
@@ -443,7 +403,6 @@ class TimelineManager {
     const timelineYears = document.querySelectorAll(".timeline-year");
     let visibleCount = 0;
 
-    // Batch DOM operations to reduce reflows
     const updates = [];
 
     timelineYears.forEach((year) => {
@@ -451,13 +410,11 @@ class TimelineManager {
       let hasMatchingEvents = false;
       const yearEra = year.dataset.era;
 
-      // Check era filter
       if (this.currentEraFilter !== "all" && yearEra !== this.currentEraFilter) {
         updates.push({ element: year, display: "none" });
         return;
       }
 
-      // Check search and importance filters
       if (!this.searchTerm && this.currentImportanceFilter === "all") {
         hasMatchingEvents = true;
       } else {
@@ -491,7 +448,6 @@ class TimelineManager {
       }
     });
 
-    // Apply all DOM updates in a single batch
     requestAnimationFrame(() => {
       updates.forEach((update) => {
         update.element.style.display = update.display;
@@ -556,14 +512,12 @@ class TimelineManager {
     }
   }
 
-  // Handle URL parameters to automatically navigate to specific events or arcs
   handleURLParameters() {
     const eventParam = window.getURLParameter
       ? window.getURLParameter("event")
       : new URLSearchParams(window.location.search).get("event");
 
     if (eventParam) {
-      // Map event parameters to arc titles for navigation
       const eventToArcMap = {
         Falmuth_War: "Falmuth Incident Arc",
         Demon_Lord_Awakening: "Falmuth Incident Arc",
@@ -584,15 +538,12 @@ class TimelineManager {
       const targetArcTitle = eventToArcMap[eventParam];
 
       if (targetArcTitle) {
-        // Find and expand the target arc
         setTimeout(() => {
           const arcs = document.querySelectorAll(".timeline-arc");
           let targetArc = null;
 
-          // First try to find by data-event attribute
           targetArc = document.querySelector(`[data-event="${eventParam}"]`);
 
-          // If not found, search by arc title
           if (!targetArc) {
             arcs.forEach((arc) => {
               const arcTitle = arc.querySelector(".arc-title");
@@ -603,7 +554,6 @@ class TimelineManager {
           }
 
           if (targetArc) {
-            // Expand the arc if it's not already expanded
             if (!targetArc.classList.contains("expanded")) {
               const arcHeader = targetArc.querySelector(".arc-header");
               if (arcHeader) {
@@ -611,7 +561,6 @@ class TimelineManager {
               }
             }
 
-            // Scroll to the arc with a slight delay to ensure expansion animation completes
             setTimeout(() => {
               targetArc.scrollIntoView({
                 behavior: "smooth",
@@ -619,7 +568,6 @@ class TimelineManager {
                 inline: "nearest",
               });
 
-              // Add a visual highlight effect
               targetArc.style.boxShadow = "0 0 20px rgba(77, 212, 255, 0.6)";
               setTimeout(() => {
                 targetArc.style.boxShadow = "";
@@ -711,7 +659,6 @@ window.toggleArcSimple = function (arcHeader) {
 
     const isExpanded = arc.classList.toggle("expanded");
 
-    // Reset styles
     content.style.cssText = "";
     content.classList.remove("force-expanded", "force-collapsed");
 
@@ -725,7 +672,6 @@ window.toggleArcSimple = function (arcHeader) {
         content.style.opacity = "1";
         content.style.overflow = "visible";
 
-        // Stagger event cards into view using GSAP
         if (window.TempestAnimations) {
           window.TempestAnimations.animateCardStagger(
             content.querySelectorAll(".timeline-event"),
@@ -737,7 +683,6 @@ window.toggleArcSimple = function (arcHeader) {
       content.classList.add("force-collapsed");
       if (toggle) toggle.textContent = "▼";
 
-      // Use CSS transitions for collapse
       requestAnimationFrame(() => {
         content.style.maxHeight = "0px";
         content.style.opacity = "0";
@@ -745,7 +690,6 @@ window.toggleArcSimple = function (arcHeader) {
       });
     }
 
-    // Visual feedback
     arcHeader.style.backgroundColor = "rgba(77, 212, 255, 0.3)";
     setTimeout(() => {
       arcHeader.style.backgroundColor = "";
@@ -767,7 +711,6 @@ window.toggleEvent = function (eventElement) {
 
     const isExpanded = eventElement.classList.toggle("expanded");
 
-    // Reset styles
     content.style.cssText = "";
 
     if (isExpanded) {
@@ -782,7 +725,6 @@ window.toggleEvent = function (eventElement) {
     } else {
       if (expandHint) expandHint.textContent = "Click to expand";
 
-      // Use CSS transitions for collapse
       requestAnimationFrame(() => {
         content.style.maxHeight = "0px";
         content.style.opacity = "0";
@@ -797,7 +739,6 @@ window.toggleEvent = function (eventElement) {
     console.error("Error in toggleEvent:", error);
   }
 };
-// Expand all timeline arcs with enhanced animations
 function expandAllArcs() {
   if (window.timelineManager && window.timelineManager.isInitialized) {
     window.timelineManager.expandAllArcs();
@@ -813,7 +754,6 @@ function expandAllArcs() {
         const arcHeader = arc.querySelector(".arc-header");
         if (arcHeader) {
           window.toggleArcSimple(arcHeader);
-          // Add visual feedback
           arc.style.transform = "scale(1.02)";
           setTimeout(() => {
             arc.style.transform = "";
@@ -825,7 +765,6 @@ function expandAllArcs() {
   });
 }
 
-// Collapse all timeline arcs with enhanced animations
 function collapseAllArcs() {
   if (window.timelineManager && window.timelineManager.isInitialized) {
     window.timelineManager.collapseAllArcs();
@@ -875,7 +814,6 @@ function initializeArcs() {
     }
   });
 }
-// Timeline-specific scroll handling with performance optimization
 let ticking = false;
 let cachedScrollHeight = null;
 let cachedInnerHeight = null;
@@ -904,7 +842,6 @@ function updateTimelineScrollElements() {
 
   const scrollPercent = (window.scrollY / (cachedScrollHeight - cachedInnerHeight)) * 100;
 
-  // Batch DOM updates
   if (scrollElements.timelineProgress) {
     scrollElements.timelineProgress.style.width = scrollPercent + "%";
   }
@@ -923,7 +860,6 @@ function requestTimelineScrollUpdate() {
   }
 }
 
-// Use throttle function from shared.js with initialization check
 const throttledScrollUpdate = (() => {
   let initialized = false;
   let throttledFn = null;
@@ -938,12 +874,10 @@ const throttledScrollUpdate = (() => {
         }, 16);
         initialized = true;
       } else {
-        // Fallback throttle implementation
         let lastTime = 0;
         throttledFn = () => {
           const now = Date.now();
           if (now - lastTime >= 16) {
-            // ~60fps
             lastTime = now;
             cachedScrollHeight = document.documentElement.scrollHeight;
             cachedInnerHeight = window.innerHeight;
@@ -961,9 +895,7 @@ const throttledScrollUpdate = (() => {
 })();
 
 window.addEventListener("scroll", throttledScrollUpdate, { passive: true });
-// Timeline-specific keyboard shortcuts
 document.addEventListener("keydown", (e) => {
-  // Timeline-specific shortcuts
   if (e.ctrlKey || e.metaKey) {
     switch (e.key.toLowerCase()) {
       case "e":
@@ -977,7 +909,6 @@ document.addEventListener("keydown", (e) => {
     }
   }
 });
-// Timeline progression and navigation functionality
 let timelineProgressionState = {
   currentEra: 0,
   isPlaying: false,
@@ -994,7 +925,6 @@ let timelineProgressionState = {
   ],
 };
 
-// Toggle timeline progress navigation
 function toggleProgressNav() {
   const nav = document.getElementById("timeline-progress-nav");
   if (nav) {
@@ -1008,7 +938,6 @@ function toggleProgressNav() {
   }
 }
 
-// Navigate to specific year/era
 function navigateToEra(era, year) {
   const targetYear = document.getElementById(`year-${year}`);
   if (targetYear) {
@@ -1017,10 +946,8 @@ function navigateToEra(era, year) {
       block: "start",
     });
 
-    // Update progress navigation
     updateProgressNavigation(era);
 
-    // Expand the target year's arcs
     setTimeout(() => {
       const arcs = targetYear.querySelectorAll(".timeline-arc");
       arcs.forEach((arc) => {
@@ -1035,7 +962,6 @@ function navigateToEra(era, year) {
   }
 }
 
-// Update progress navigation indicators
 function updateProgressNavigation(currentEra) {
   const markers = document.querySelectorAll(".progress-marker");
   const indicator = document.getElementById("progress-nav-indicator");
@@ -1055,7 +981,6 @@ function updateProgressNavigation(currentEra) {
         indicator.style.width = `${progress}%`;
       }
 
-      // Update floating progress indicator
       if (floatingProgress && currentEraYear && currentEraName && progressBarFill) {
         floatingProgress.classList.add("visible");
         currentEraYear.textContent = marker.dataset.year;
@@ -1071,7 +996,6 @@ function updateProgressNavigation(currentEra) {
   });
 }
 
-// Get display name for era
 function getEraDisplayName(era) {
   const eraNames = {
     founding: "Founding Era",
@@ -1086,7 +1010,6 @@ function getEraDisplayName(era) {
   return eraNames[era] || era;
 }
 
-// Play timeline progression animation
 function playTimelineProgression() {
   if (timelineProgressionState.isPlaying) {
     stopTimelineProgression();
@@ -1101,22 +1024,17 @@ function playTimelineProgression() {
     playBtn.innerHTML = '<i class="ri-pause-fill"></i> Pause';
   }
 
-  // Reset progression
   resetTimelineProgression();
 
-  // Start progression animation
   timelineProgressionState.playInterval = setInterval(() => {
     if (timelineProgressionState.currentEra < timelineProgressionState.eras.length) {
       const era = timelineProgressionState.eras[timelineProgressionState.currentEra];
       const year = 2013 + timelineProgressionState.currentEra;
 
-      // Update progression fill
       updateProgressionFill();
 
-      // Update era nodes
       updateEraNodes();
 
-      // Navigate to era
       navigateToEra(era, year);
 
       timelineProgressionState.currentEra++;
@@ -1126,7 +1044,6 @@ function playTimelineProgression() {
   }, 3000); // 3 seconds per era
 }
 
-// Stop timeline progression
 function stopTimelineProgression() {
   timelineProgressionState.isPlaying = false;
 
@@ -1141,24 +1058,20 @@ function stopTimelineProgression() {
   }
 }
 
-// Reset timeline progression
 function resetTimelineProgression() {
   stopTimelineProgression();
   timelineProgressionState.currentEra = 0;
 
-  // Reset progression fill
   const progressionFill = document.getElementById("progression-fill");
   if (progressionFill) {
     progressionFill.style.width = "0%";
   }
 
-  // Reset era nodes
   const eraNodes = document.querySelectorAll(".era-node");
   eraNodes.forEach((node) => {
     node.classList.remove("completed", "current");
   });
 
-  // Reset progress navigation
   const markers = document.querySelectorAll(".progress-marker");
   const indicator = document.getElementById("progress-nav-indicator");
   const floatingProgress = document.getElementById("floating-timeline-progress");
@@ -1176,7 +1089,6 @@ function resetTimelineProgression() {
   }
 }
 
-// Update progression fill bar
 function updateProgressionFill() {
   const progressionFill = document.getElementById("progression-fill");
   if (progressionFill) {
@@ -1186,7 +1098,6 @@ function updateProgressionFill() {
   }
 }
 
-// Update era nodes visual state
 function updateEraNodes() {
   const eraNodes = document.querySelectorAll(".era-node");
 
@@ -1201,9 +1112,7 @@ function updateEraNodes() {
   });
 }
 
-// Initialize timeline progression on scroll
 function initializeTimelineProgression() {
-  // Add click handlers to progress markers
   const markers = document.querySelectorAll(".progress-marker");
   markers.forEach((marker) => {
     marker.addEventListener("click", () => {
@@ -1213,7 +1122,6 @@ function initializeTimelineProgression() {
     });
   });
 
-  // Add click handlers to era nodes
   const eraNodes = document.querySelectorAll(".era-node");
   eraNodes.forEach((node) => {
     node.addEventListener("click", () => {
@@ -1223,7 +1131,6 @@ function initializeTimelineProgression() {
     });
   });
 
-  // Initialize scroll-based progression updates
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -1233,7 +1140,6 @@ function initializeTimelineProgression() {
           if (era && !timelineProgressionState.isPlaying) {
             updateProgressNavigation(era);
 
-            // Update progression state based on visible era
             const eraIndex = timelineProgressionState.eras.indexOf(era);
             if (eraIndex !== -1) {
               timelineProgressionState.currentEra = eraIndex;
@@ -1250,7 +1156,6 @@ function initializeTimelineProgression() {
     }
   );
 
-  // Observe all timeline years
   document.querySelectorAll(".timeline-year").forEach((year) => {
     observer.observe(year);
   });
@@ -1266,33 +1171,24 @@ window.testArcExpansion = function () {
     }
   }
 };
-// Timeline-specific DOMContentLoaded initialization
 document.addEventListener("DOMContentLoaded", () => {
-  // Wait for shared.js functions to be available
   const initializeTimeline = () => {
     if (!window.isMobileDevice || !window.debounce || !window.throttle || !window.getURLParameter) {
-      // If shared.js functions aren't ready, wait a bit more
       setTimeout(initializeTimeline, 50);
       return;
     }
 
-    // Initialize timeline-specific functionality
     initializeArcs();
     window.timelineManager = new TimelineManager();
 
-    // Initialize timeline progression features
     initializeTimelineProgression();
 
-    // Initialize scroll elements cache
     initScrollElements();
 
-    // Timeline-specific mobile optimizations
     const isMobile = window.isMobileDevice();
     if (isMobile) {
-      // Disable heavy timeline animations on mobile
       document.body.classList.add("timeline-mobile-optimized");
 
-      // Reduce timeline animation complexity
       const style = document.createElement("style");
       style.textContent = `
         .timeline-mobile-optimized .timeline-event {
@@ -1308,7 +1204,6 @@ document.addEventListener("DOMContentLoaded", () => {
       document.head.appendChild(style);
     }
 
-    // Timeline-specific touch handling with debouncing
     let touchStartTime = 0;
     const debouncedTouchFeedback = window.debounce((target) => {
       target.style.backgroundColor = "rgba(77, 212, 255, 0.3)";
@@ -1324,7 +1219,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("touchend", (e) => {
       const touchDuration = Date.now() - touchStartTime;
 
-      // Quick tap feedback for timeline elements
       if (touchDuration < 200) {
         const target = e.target.closest(".arc-header, .event-header");
         if (target) {
@@ -1334,7 +1228,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // Start initialization
   initializeTimeline();
 });
 

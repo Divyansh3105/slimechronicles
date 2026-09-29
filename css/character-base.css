@@ -1,5 +1,4 @@
 ﻿/* ========== MAIN CONTAINER ========== */
-/* Force scroll on mobile for character page */
 html,
 body {
   overflow-y: auto !important;
@@ -24,7 +23,6 @@ body {
   transition: all 0.5s ease;
 }
 
-/* ========== CHARACTER BACKGROUND ========== */
 .character-background {
   position: fixed;
   inset: 0;
@@ -58,7 +56,6 @@ body {
   opacity: 0.4;
 }
 
-/* ========== PROFILE HEADER NAVIGATION ========== */
 .profile-header-nav {
   display: flex;
   justify-content: space-between;
@@ -223,7 +220,6 @@ body {
   gap: 0.5rem;
 }
 
-/* ========== ENHANCED PROFILE TABS ========== */
 .profile-tabs {
   display: flex;
   gap: 0.3rem;
@@ -313,7 +309,6 @@ body {
   transform: perspective(500px) rotateY(0deg) translateY(-5px) scale(1.08);
 }
 
-/* ========== CHARACTER SUMMARY CARD ========== */
 .character-summary-card {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
@@ -493,7 +488,6 @@ body {
   line-height: 1.4;
 }
 
-/* ========== PROFILE CONTENT ========== */
 .profile-content {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(21, 27, 61, 0.8));
   backdrop-filter: blur(20px);
@@ -527,7 +521,6 @@ body {
   opacity: 0.8;
 }
 
-/* ========== ENHANCED INFO CARDS ========== */
 .info-card {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(21, 27, 61, 0.8));
   border: 3px solid var(--character-primary, rgba(77, 212, 255, 0.5));

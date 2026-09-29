@@ -1,6 +1,5 @@
 ﻿/* ========== MOBILE RESPONSIVE STYLES ========== */
 @media (max-width: 767px) {
-  /* Main Container */
   .character-profile-container {
     padding: 1rem;
     padding-top: 5rem;
@@ -8,7 +7,6 @@
     overflow-x: hidden;
   }
 
-  /* Profile Header Navigation */
   .profile-header-nav {
     flex-direction: column;
     gap: 1rem;
@@ -41,7 +39,6 @@
     padding: 0.3rem 0.6rem;
   }
 
-  /* Profile Tabs */
   .profile-tabs {
     padding: 0.5rem;
     padding-right: 45px;
@@ -79,7 +76,6 @@
     background: rgba(77, 212, 255, 0.7);
   }
 
-  /* Add scroll indicator shadow */
   .profile-tabs::after {
     content: "";
     position: absolute;
@@ -92,7 +88,6 @@
     z-index: 1;
   }
 
-  /* Add scroll indicator at the start too */
   .profile-tabs::before {
     content: "â†’";
     position: absolute;
@@ -165,7 +160,6 @@
     display: none;
   }
 
-  /* Profile Content */
   .profile-content {
     padding: 1.5rem;
     border-radius: 16px;
@@ -174,7 +168,6 @@
     box-sizing: border-box;
   }
 
-  /* Profile Header */
   .profile-header {
     padding: 2rem 1rem;
     margin-bottom: 2rem;
@@ -219,7 +212,6 @@
     padding: 0.9rem 2rem;
   }
 
-  /* Info Cards Grid */
   .character-info-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -244,7 +236,6 @@
     font-size: 0.95rem;
   }
 
-  /* Quick Facts Grid */
   .quick-facts-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -261,7 +252,6 @@
     margin-bottom: 0.5rem;
   }
 
-  /* Skills Grid */
   .skills-grid {
     grid-template-columns: 1fr;
     gap: 1.25rem;
@@ -304,7 +294,6 @@
     line-height: 1.5;
   }
 
-  /* Enhanced Skills Mobile Responsive */
   .skills-stats-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.8rem;
@@ -387,7 +376,6 @@
     width: 95%;
   }
 
-  /* Evolution Comparison Mobile */
   .evolution-comparison-modal .comparison-content {
     padding: 1.5rem;
     width: 95%;
@@ -408,13 +396,11 @@
     padding: 1rem;
   }
 
-  /* Relationships Grid */
   .relationships-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
 
-  /* Enhanced Relationships Responsive */
   .relationships-stats-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
@@ -445,7 +431,6 @@
     height: 80px;
   }
 
-  /* Overview Section Mobile Responsive */
   .overview-section-enhanced {
     gap: 2rem;
   }
@@ -698,7 +683,6 @@
     font-size: 0.95rem;
   }
 
-  /* Biography Section Mobile Responsive */
   .biography-section-enhanced {
     gap: 1.5rem;
   }
@@ -746,7 +730,6 @@
     text-align: left;
   }
 
-  /* Quotes Section Mobile */
   .quotes-section-enhanced {
     padding: 1.5rem 1rem;
   }
@@ -832,7 +815,6 @@
     height: 10px;
   }
 
-  /* Character Essence Mobile */
   .character-essence {
     padding: 1.5rem;
   }
@@ -926,7 +908,6 @@
     width: 100%;
   }
 
-  /* Cultural Impact Responsive */
   .cultural-main-title {
     font-size: 1.8rem;
   }
@@ -996,7 +977,6 @@
     font-size: 3rem;
   }
 
-  /* Achievements Grid */
   .achievements-grid {
     grid-template-columns: 1fr;
     gap: 0.75rem;
@@ -1006,7 +986,6 @@
     padding: 0.75rem;
   }
 
-  /* Battle Stats */
   .battle-stats-container {
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -1022,7 +1001,6 @@
     height: 120px;
   }
 
-  /* Ability Meters */
   .ability-meter {
     flex-direction: column;
     gap: 0.5rem;
@@ -1038,19 +1016,16 @@
     width: 100%;
   }
 
-  /* Record Stats */
   .record-stats {
     flex-direction: column;
     gap: 1rem;
   }
 
-  /* Impact Stats */
   .impact-stats {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
 
-  /* Specialty Tags */
   .specialty-tags,
   .specialty-tags-compact {
     justify-content: center;
@@ -1062,7 +1037,6 @@
     padding: 0.4rem 0.7rem;
   }
 
-  /* Evolution Timeline */
   .evolution-form {
     flex-direction: column;
     text-align: center;
@@ -1073,7 +1047,6 @@
     align-self: center;
   }
 
-  /* Quotes Container */
   .quote-item {
     padding: 1rem;
   }
@@ -1083,7 +1056,6 @@
     padding-left: 0;
   }
 
-  /* Character Selector */
   .character-selector {
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     gap: 0.75rem;
@@ -1102,7 +1074,6 @@
     font-size: 0.8rem;
   }
 
-  /* Modal Content */
   .modal-content,
   .skill-modal .modal-content {
     padding: 1.5rem;
@@ -1125,7 +1096,6 @@
     min-height: 40px;
   }
 
-  /* Error Container */
   .error-container {
     padding: 2rem 1rem;
   }
@@ -1148,7 +1118,6 @@
     justify-content: center;
   }
 
-  /* Profile Section */
   .profile-section {
     padding: 1.5rem;
     margin-bottom: 1.5rem;
@@ -1162,7 +1131,6 @@
     font-size: 1.1rem;
   }
 
-  /* Character Rating */
   .character-rating {
     padding: 1rem;
   }
@@ -1175,7 +1143,6 @@
     padding: 0.6rem;
   }
 
-  /* Disable heavy animations on mobile */
   .character-background::before,
   .character-background::after {
     display: none;
@@ -1193,7 +1160,6 @@
     opacity: 0.3;
   }
 
-  /* Touch-friendly interactions */
   .profile-tab,
   .action-button,
   .error-button,
@@ -1208,13 +1174,11 @@
     cursor: pointer;
   }
 
-  /* Reduce motion for better performance */
   * {
     animation-duration: 0.3s !important;
     transition-duration: 0.3s !important;
   }
 
-  /* Better text readability on mobile */
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -1229,7 +1193,6 @@
   }
 }
 
-/* ========== SMALL PHONE STYLES ========== */
 @media (max-width: 479px) {
   .character-profile-container {
     padding: 0.75rem;
@@ -1274,7 +1237,6 @@
     border-radius: 3px;
   }
 
-  /* Add scroll indicator shadow on small phones */
   .profile-tabs::after {
     content: "";
     position: absolute;
@@ -1387,7 +1349,6 @@
   }
 }
 
-/* ========== TABLET STYLES ========== */
 @media (min-width: 768px) {
   .character-profile-container {
     padding: 2rem;
@@ -1445,7 +1406,6 @@
   }
 }
 
-/* ========== LAPTOP STYLES ========== */
 @media (min-width: 1024px) {
   .character-profile-container {
     max-width: 1400px;
@@ -1477,7 +1437,6 @@
   }
 }
 
-/* ========== LARGE SCREEN STYLES ========== */
 @media (min-width: 1280px) {
   .character-profile-container {
     max-width: 1600px;
@@ -1497,9 +1456,7 @@
   }
 }
 
-/* ========== MOBILE PERFORMANCE & UX OPTIMIZATIONS ========== */
 @media (max-width: 767px) {
-  /* Disable heavy background effects for better performance */
   .character-background::before,
   .character-background::after,
   .floating-elements,
@@ -1508,7 +1465,6 @@
     display: none !important;
   }
 
-  /* Reduce hover transforms on touch devices */
   .info-card:hover,
   .skill-card-detailed:hover,
   .fact-card:hover,
@@ -1520,13 +1476,11 @@
     transform: none;
   }
 
-  /* Optimize scrolling */
   body {
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
   }
 
-  /* Improve touch targets */
   .profile-tab,
   .action-button,
   .back-button,
@@ -1535,14 +1489,12 @@
     min-width: 44px;
   }
 
-  /* Reduce animation complexity */
   .loading-spinner,
   .power-level-circle,
   .timeline-marker {
     animation-duration: 1s;
   }
 
-  /* Hide complex visual elements */
   .profile-image-container::before,
   .skill-card-detailed::after,
   .info-card::before {
@@ -1561,50 +1513,41 @@
   }
 }
 
-/* ========== MOBILE NAVIGATION ========== */
 @media (max-width: 767px) {
-  /* Improve tab scrolling on mobile */
   .profile-tabs {
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
   }
 
-  /* Better touch targets */
   .profile-tab {
     touch-action: manipulation;
     -webkit-tap-highlight-color: rgba(77, 212, 255, 0.2);
   }
 
-  /* Optimize images for mobile */
   .profile-image {
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
   }
 
-  /* Reduce motion for better performance */
   .profile-image-container:hover .profile-image {
     transform: none;
     filter: none;
   }
 
-  /* Mobile-friendly modals */
   .comparison-modal .modal-content {
     margin: 1rem;
     max-height: calc(100vh - 2rem);
   }
 
-  /* Improve readability on small screens */
   .profile-section p {
     font-size: 1rem;
     line-height: 1.6;
   }
 
-  /* Better spacing for mobile */
   .character-details {
     gap: 0.75rem;
   }
 }
-/* ========== MOBILE DEVICE OPTIMIZATIONS ========== */
 .mobile-device {
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -1623,7 +1566,6 @@
   scroll-snap-align: center;
 }
 
-/* ========== MOBILE SCROLLING PERFORMANCE ========== */
 @media (max-width: 767px) {
   .profile-content,
   .profile-tabs {
@@ -1631,7 +1573,6 @@
     overscroll-behavior: contain;
   }
 
-  /* Reduce complexity for better performance */
   .character-background,
   .floating-elements,
   .particles {
@@ -1639,7 +1580,6 @@
     transform: none;
   }
 
-  /* Optimize animations */
   .loading-spinner {
     animation-duration: 0.8s;
   }
@@ -1648,7 +1588,6 @@
     animation: none;
   }
 
-  /* Better mobile typography */
   .profile-name {
     word-break: break-word;
     hyphens: auto;
@@ -1659,7 +1598,6 @@
     overflow-wrap: break-word;
   }
 }
-/* ========== CHARACTER POWER INDICATOR ========== */
 .character-power-indicator {
   position: absolute;
   bottom: 10px;
@@ -1790,7 +1728,6 @@
   }
 }
 
-/* ========== MOBILE ENHANCEMENTS ========== */
 @media (max-width: 767px) {
   .character-power-indicator {
     width: 50px;
@@ -1809,7 +1746,6 @@
   }
 }
 
-/* ========== ACCESSIBILITY IMPROVEMENTS ========== */
 @media (prefers-reduced-motion: reduce) {
   .power-ring,
   .character-badge,
@@ -1823,7 +1759,6 @@
   }
 }
 
-/* ========== HIGH CONTRAST MODE ========== */
 @media (prefers-contrast: high) {
   .profile-header,
   .profile-tabs,
@@ -1838,7 +1773,6 @@
   }
 }
 
-/* ========== FLOATING ACTION MENU ========== */
 .floating-action-menu {
   position: fixed;
   bottom: 2rem;
@@ -1916,7 +1850,6 @@
   transform: scale(1.1);
 }
 
-/* ========== ENHANCED ANIMATIONS ========== */
 @keyframes statsFadeIn {
   from {
     opacity: 0;
@@ -1957,7 +1890,6 @@
     glowPulse 3s ease-in-out infinite;
 }
 
-/* ========== RESPONSIVE ENHANCEMENTS ========== */
 @media (max-width: 768px) {
   .floating-action-menu {
     bottom: 1rem;
@@ -1971,7 +1903,6 @@
   }
 }
 
-/* ========== ACCESSIBILITY IMPROVEMENTS ========== */
 .action-button:focus,
 .stats-view-btn:focus,
 .fab-main:focus,
@@ -1989,7 +1920,6 @@
   }
 }
 
-/* ========== HIGH CONTRAST MODE ========== */
 @media (prefers-contrast: high) {
   .action-button {
     border-width: 3px;
@@ -2002,7 +1932,6 @@
     font-weight: bold;
   }
 }
-/* ========== ENHANCED LOADING ANIMATION ========== */
 .enhanced-loading {
   display: flex;
   flex-direction: column;
@@ -2130,7 +2059,6 @@
   font-style: italic;
 }
 
-/* ========== PRINT STYLES ========== */
 @media print {
   .floating-action-menu,
   .character-actions,
@@ -2166,7 +2094,6 @@
   }
 }
 
-/* ========== DARK MODE ENHANCEMENTS ========== */
 [data-theme="dark"] {
   --loading-bg: rgba(21, 27, 61, 0.95);
   --loading-text: #e8f0ff;
@@ -2197,7 +2124,6 @@
   box-shadow: 0 0 30px rgba(212, 165, 116, 0.6);
 }
 
-/* ========== MICRO-INTERACTIONS ========== */
 .action-button:active {
   transform: translateY(-1px) scale(1.05);
 }
@@ -2214,7 +2140,6 @@
   transform: translateY(-2px) scale(0.98);
 }
 
-/* ========== LOADING STATES ========== */
 .content-loading {
   opacity: 0.6;
   pointer-events: none;
@@ -2250,7 +2175,6 @@
   animation: skeleton-loading 1.5s infinite;
 }
 
-/* ========== SCROLL ENHANCEMENTS ========== */
 .smooth-scroll {
   scroll-behavior: smooth;
 }
@@ -2272,7 +2196,6 @@
   z-index: 9999;
 }
 
-/* ========== FINAL RESPONSIVE TOUCHES ========== */
 @media (max-width: 480px) {
   .enhanced-loading {
     padding: 2rem 1rem;
@@ -2296,7 +2219,6 @@
   }
 }
 
-/* ========== ENHANCED EVOLUTION DETAILS ========== */
 .evolution-overview {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
@@ -2455,7 +2377,6 @@
   font-size: 1rem;
 }
 
-/* ========== FLOATING ACTION BUTTON STYLES ========== */
 .floating-action-menu {
   position: fixed;
   bottom: 2rem;
@@ -2529,7 +2450,6 @@
   transform: rotate(45deg);
 }
 
-/* ========== ENHANCED LOADING STYLES ========== */
 .enhanced-loading {
   display: flex;
   flex-direction: column;
@@ -2610,7 +2530,6 @@
   transition: opacity 0.3s ease;
 }
 
-/* ========== THEME VARIATIONS ========== */
 [data-theme="high-contrast"] {
   --character-primary: #ffffff;
   --character-secondary: #cccccc;
@@ -2633,7 +2552,6 @@
   border-color: #d4a574;
 }
 
-/* ========== PRINT STYLES ========== */
 @media print {
   .floating-action-menu,
   .profile-header-nav,
@@ -2651,7 +2569,6 @@
     display: block !important;
   }
 }
-/* ========== EVOLUTION CONTEXT MENU & INTERACTIONS ========== */
 .evolution-context-menu {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(21, 27, 61, 0.9));
   border: 2px solid var(--character-primary, var(--primary-blue));
@@ -2696,7 +2613,6 @@
   transform: translateX(5px);
 }
 
-/* Evolution Comparison Styles */
 .evolution-selected {
   border-color: var(--accent-gold) !important;
   box-shadow:
@@ -2762,7 +2678,6 @@
   font-weight: 600;
 }
 
-/* Favorite Evolution Indicators */
 .favorite-indicator {
   position: absolute;
   top: 10px;
@@ -2785,7 +2700,6 @@
   }
 }
 
-/* Evolution Navigation Indicators */
 .evolution-form.evolution-active::before {
   opacity: 1;
 }
@@ -2795,7 +2709,6 @@
   outline-offset: 2px;
 }
 
-/* Enhanced Evolution Timeline Connector */
 .evolution-timeline::after {
   content: "";
   position: absolute;
@@ -2807,7 +2720,6 @@
   border-radius: 0 0 4px 4px;
 }
 
-/* Evolution Form Hover Effects Enhancement */
 .evolution-form:hover .evolution-order::before {
   animation-duration: 2s;
 }
@@ -2816,7 +2728,6 @@
   animation-duration: 1s;
 }
 
-/* Mobile Enhancements for Evolution Features */
 @media (max-width: 768px) {
   .evolution-context-menu {
     position: fixed !important;
@@ -2850,7 +2761,6 @@
   }
 }
 
-/* Accessibility Enhancements */
 @media (prefers-reduced-motion: reduce) {
   .evolution-form,
   .evolution-order,
@@ -2865,7 +2775,6 @@
   }
 }
 
-/* High Contrast Mode Enhancements */
 @media (prefers-contrast: high) {
   .evolution-form {
     border-width: 3px;
@@ -2880,7 +2789,6 @@
   }
 }
 
-/* Dark Mode Specific Adjustments */
 @media (prefers-color-scheme: dark) {
   .evolution-context-menu {
     background: linear-gradient(135deg, rgba(10, 14, 39, 0.98), rgba(10, 14, 39, 0.95));
@@ -2890,7 +2798,6 @@
     background: linear-gradient(135deg, rgba(10, 14, 39, 0.98), rgba(10, 14, 39, 0.9));
   }
 }
-/* ========== TRIGGER TYPE SPECIFIC COLORS ========== */
 .evolution-trigger.trigger-naming {
   background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(255, 193, 7, 0.8));
   border-color: var(--accent-gold);
@@ -2976,7 +2883,6 @@
   filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6));
 }
 
-/* Hover effects for specific trigger types */
 .evolution-form:hover .evolution-trigger.trigger-naming {
   background: linear-gradient(135deg, var(--accent-gold), #cc9900);
   box-shadow:
@@ -3017,7 +2923,6 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
-/* Accessibility improvements for trigger pills */
 @media (prefers-contrast: high) {
   .evolution-trigger {
     border-width: 3px;
@@ -3031,7 +2936,6 @@
   }
 }
 
-/* Dark mode adjustments for trigger pills */
 @media (prefers-color-scheme: dark) {
   .evolution-trigger {
     box-shadow:
@@ -3040,14 +2944,12 @@
       inset 0 1px 0 rgba(255, 255, 255, 0.15);
   }
 }
-/* ========== ENHANCED ACHIEVEMENTS SECTION ========== */
 .achievements-section {
   padding: 2rem;
   margin-bottom: 3rem;
   position: relative;
 }
 
-/* No Achievements Message */
 .no-achievements-message {
   text-align: center;
   padding: 3rem 2rem;
@@ -3069,7 +2971,6 @@
   font-style: italic;
 }
 
-/* No Results Message */
 .no-achievements-found {
   text-align: center;
   padding: 3rem 2rem;
@@ -3083,7 +2984,6 @@
   opacity: 0.5;
 }
 
-/* Achievement Stats Modal */
 .achievement-stats-modal {
   position: fixed;
   top: 0;
@@ -3287,7 +3187,6 @@
   letter-spacing: 0.5px;
 }
 
-/* Achievement Categories */
 .achievement-categories {
   display: flex;
   flex-direction: column;
@@ -3362,7 +3261,6 @@
   font-size: 1.2rem;
 }
 
-/* Achievement Grid */
 .achievement-grid {
   display: none;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -3504,7 +3402,6 @@
   opacity: 1;
 }
 
-/* Achievement Favorite Indicator */
 .achievement-favorite {
   position: absolute;
   top: 10px;
@@ -3528,7 +3425,6 @@
   }
 }
 
-/* Achievement Showcase */
 .achievement-showcase {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
   border: 3px solid var(--accent-gold);
@@ -3602,7 +3498,6 @@
   color: var(--accent-gold);
 }
 
-/* Achievement Modal */
 .achievement-modal {
   position: fixed;
   top: 0;
@@ -3774,7 +3669,6 @@
   box-shadow: 0 8px 25px var(--character-glow, rgba(77, 212, 255, 0.4));
 }
 
-/* Mobile Optimizations */
 @media (max-width: 768px) {
   .achievement-stats {
     grid-template-columns: 1fr;
@@ -3880,7 +3774,6 @@
   }
 }
 
-/* Accessibility Enhancements */
 @media (prefers-reduced-motion: reduce) {
   .achievement-card,
   .featured-icon,
@@ -3895,7 +3788,6 @@
   }
 }
 
-/* High Contrast Mode */
 @media (prefers-contrast: high) {
   .achievement-card {
     border-width: 3px;
@@ -3916,7 +3808,6 @@
   }
 }
 
-/* Print Styles */
 @media print {
   .achievement-card {
     break-inside: avoid;

@@ -1,26 +1,31 @@
 {
   "name": "slimechronicles",
   "version": "1.0.0",
-  "description": "<div align=\"center\">",
-  "main": "index.js",
+  "description": "A fan-made codex and timeline for That Time I Got Reincarnated as a Slime (Tensura).",
+  "private": true,
+  "author": "Divyansh Garg",
+  "license": "UNLICENSED",
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Divyansh3105/slimechronicles.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Divyansh3105/slimechronicles/issues"
+  },
+  "homepage": "https://github.com/Divyansh3105/slimechronicles#readme",
+  "keywords": [
+    "tensura",
+    "anime",
+    "codex",
+    "vanilla-js"
+  ],
   "scripts": {
     "lint": "eslint js/",
     "format": "prettier --write .",
     "test": "vitest run",
     "test:watch": "vitest"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Divyansh3105/slimechronicles.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/Divyansh3105/slimechronicles/issues"
-  },
-  "homepage": "https://github.com/Divyansh3105/slimechronicles#readme",
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "eslint": "^10.8.1",

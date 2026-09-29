@@ -3,23 +3,17 @@ const handleResize = window.debounce(() => {
   renderRecords();
 }, 250);
 
-// Historical records storage - Array to hold all record data
 let HISTORICAL_RECORDS = [];
 
-// Load records from HTML data - Extract record information from DOM elements
 function loadRecordsFromHTML() {
-  // Query all record data elements from the page
   const recordElements = document.querySelectorAll("#historical-records-data .record-data");
 
-  // Transform DOM elements into structured data objects
   HISTORICAL_RECORDS = Array.from(recordElements).map((element) => {
-    // Parse participants list from comma-separated string
     const participants = element
       .querySelector(".record-participants")
       .textContent.split(", ")
       .map((p) => p.trim());
 
-    // Return structured record object with all properties
     return {
       id: element.dataset.id,
       icon: element.dataset.icon,
@@ -38,7 +32,6 @@ function loadRecordsFromHTML() {
   return HISTORICAL_RECORDS;
 }
 
-// Application state management - Centralized state object for filter and UI state
 const state = {
   currentFilter: "all",
   currentSort: "chronological",
@@ -46,25 +39,21 @@ const state = {
   expandedRecord: null,
 };
 
-// State accessors for backward compatibility
 let currentFilter = state.currentFilter;
 let currentSort = state.currentSort;
 let searchQuery = state.searchQuery;
 let expandedRecord = state.expandedRecord;
-// Filter records by category or importance - Apply filtering logic to record collection
 function filterRecords(records, filter) {
   if (filter === "all") return records;
   return records.filter((record) => record.category === filter || record.importance === filter);
 }
 
-// Sort records by specified criteria - Apply sorting logic based on user selection
 function sortRecords(records, sortType) {
   const sorted = [...records];
   switch (sortType) {
     case "chronological":
       return sorted;
     case "importance": {
-      // Define importance hierarchy for sorting priority
       const importanceOrder = { critical: 0, major: 1, moderate: 2 };
       return sorted.sort((a, b) => importanceOrder[a.importance] - importanceOrder[b.importance]);
     }
@@ -72,7 +61,6 @@ function sortRecords(records, sortType) {
       return sorted.sort((a, b) => a.title.localeCompare(b.title));
     case "volume":
       return sorted.sort((a, b) => {
-        // Extract volume numbers for numerical comparison
         const aVol = parseInt(a.volume.match(/\d+/)[0]);
         const bVol = parseInt(b.volume.match(/\d+/)[0]);
         return aVol - bVol;
@@ -82,7 +70,6 @@ function sortRecords(records, sortType) {
   }
 }
 
-// Search records by query string - Filter records based on text search across multiple fields
 function searchRecords(records, query) {
   if (!query) return records;
   const lowercaseQuery = query.toLowerCase();
@@ -96,7 +83,6 @@ function searchRecords(records, query) {
   );
 }
 
-// Get CSS color variable for importance level - Return appropriate color for visual importance indication
 function getImportanceColor(importance) {
   switch (importance) {
     case "critical":
@@ -110,7 +96,6 @@ function getImportanceColor(importance) {
   }
 }
 
-// Get emoji icon for importance level - Return appropriate emoji for visual importance indication
 function getImportanceIcon(importance) {
   switch (importance) {
     case "critical":
@@ -124,7 +109,6 @@ function getImportanceIcon(importance) {
   }
 }
 
-// Get emoji icon for record category - Return appropriate emoji for visual category identification
 function getCategoryIcon(category) {
   const icons = {
     origin: "🌟",
@@ -144,7 +128,6 @@ function getCategoryIcon(category) {
   };
   return icons[category] || "📜";
 }
-// Render records to DOM - Generate and display filtered, sorted, and searched records
 function renderRecords(records = HISTORICAL_RECORDS) {
   const grid = document.getElementById("records-grid");
 
@@ -153,12 +136,10 @@ function renderRecords(records = HISTORICAL_RECORDS) {
     return;
   }
 
-  // Apply all filtering, searching, and sorting operations
   let filteredRecords = filterRecords(records, currentFilter);
   filteredRecords = searchRecords(filteredRecords, searchQuery);
   filteredRecords = sortRecords(filteredRecords, currentSort);
 
-  // Display no results message if no records match criteria
   if (filteredRecords.length === 0) {
     grid.innerHTML = `
       <div class="no-results">
@@ -170,10 +151,8 @@ function renderRecords(records = HISTORICAL_RECORDS) {
     return;
   }
 
-  // Detect device type for responsive behavior
   const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
 
-  // Generate HTML for each record card with dynamic styling and content
   grid.innerHTML = filteredRecords
     .map((record) => {
       const importanceColor = getImportanceColor(record.importance);
@@ -239,18 +218,15 @@ function renderRecords(records = HISTORICAL_RECORDS) {
     window.TempestAnimations.enable3DTilt(".record-card");
   }
 
-  // Add event handlers for all record cards
   document.querySelectorAll(".record-card").forEach((card) => {
     const recordId = card.dataset.recordId;
 
     if (isMobile) {
-      // Mobile-specific touch interactions
       let touchStartY = 0;
       let touchStartX = 0;
       let touchMoved = false;
       let touchStartTime = 0;
 
-      // Handle touch start with visual feedback
       card.addEventListener(
         "touchstart",
         function (e) {
@@ -264,7 +240,6 @@ function renderRecords(records = HISTORICAL_RECORDS) {
         { passive: true }
       );
 
-      // Track touch movement to distinguish from taps
       card.addEventListener(
         "touchmove",
         function (e) {
@@ -278,7 +253,6 @@ function renderRecords(records = HISTORICAL_RECORDS) {
         { passive: true }
       );
 
-      // Handle touch end and trigger expansion if it was a tap
       card.addEventListener(
         "touchend",
         function (e) {
@@ -297,7 +271,6 @@ function renderRecords(records = HISTORICAL_RECORDS) {
         { passive: false }
       );
     } else {
-      // Desktop click handler
       card.addEventListener("click", function () {
         if (recordId) {
           toggleRecordExpansion(recordId);
@@ -305,7 +278,6 @@ function renderRecords(records = HISTORICAL_RECORDS) {
       });
     }
 
-    // Keyboard accessibility support for all devices
     card.addEventListener("keydown", function (e) {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
@@ -315,7 +287,6 @@ function renderRecords(records = HISTORICAL_RECORDS) {
       }
     });
 
-    // Sound feedback for all interactions
     card.addEventListener("click", () => {
       if (window.SoundFeedback && typeof window.SoundFeedback.playEffect === "function") {
         window.SoundFeedback.playEffect("click");
@@ -323,7 +294,6 @@ function renderRecords(records = HISTORICAL_RECORDS) {
     });
   });
 
-  // Update statistics display and announce to screen readers
   updateVisibleRecordsCount();
 
   if (filteredRecords.length > 0) {
@@ -332,7 +302,6 @@ function renderRecords(records = HISTORICAL_RECORDS) {
   }
 }
 
-// Toggle record expansion state - Show or hide detailed information for a specific record
 function toggleRecordExpansion(recordId) {
   const recordCard = document.querySelector(`[data-record-id="${recordId}"]`);
   if (!recordCard) return;
@@ -347,7 +316,6 @@ function toggleRecordExpansion(recordId) {
   const isCurrentlyExpanded = detailsElement.classList.contains("expanded");
 
   if (isCurrentlyExpanded) {
-    // Collapse the current record with smooth animation
     expandedRecord = null;
     detailsElement.classList.remove("expanded");
     expandText.textContent = "Show More";
@@ -356,16 +324,13 @@ function toggleRecordExpansion(recordId) {
     detailsElement.setAttribute("aria-hidden", "true");
     expandBtn.classList.remove("expanded");
 
-    // Add subtle bounce effect
     recordCard.style.animation = "cardBounce 0.4s ease";
     setTimeout(() => {
       recordCard.style.animation = "";
     }, 400);
   } else {
-    // Expand the selected record and collapse any others
     expandedRecord = recordId;
 
-    // Collapse all other expanded records to maintain single expansion
     document.querySelectorAll(".record-details.expanded").forEach((otherDetails) => {
       if (otherDetails !== detailsElement) {
         const otherCard = otherDetails.closest(".record-card");
@@ -382,7 +347,6 @@ function toggleRecordExpansion(recordId) {
       }
     });
 
-    // Expand the selected record with smooth animation
     detailsElement.classList.add("expanded");
     expandText.textContent = "Show Less";
     expandIcon.textContent = "▲";
@@ -390,28 +354,23 @@ function toggleRecordExpansion(recordId) {
     detailsElement.setAttribute("aria-hidden", "false");
     expandBtn.classList.add("expanded");
 
-    // Add subtle pulse effect
     recordCard.style.animation = "cardPulse 0.5s ease";
     setTimeout(() => {
       recordCard.style.animation = "";
     }, 500);
 
-    // Smooth scroll to expanded card
     setTimeout(() => {
       recordCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }, 100);
   }
 
-  // Play sound feedback if available
   if (window.SoundFeedback && typeof window.SoundFeedback.playEffect === "function") {
     window.SoundFeedback.playEffect("click");
   }
 
-  // Ensure page scrolling remains enabled
   document.body.style.overflow = "";
   document.documentElement.style.overflow = "";
 }
-// Create filter and search controls - Generate UI controls for filtering and searching records
 function createFilterControls() {
   const container = document.querySelector(".historical-records-container");
   if (!container) {
@@ -425,7 +384,6 @@ function createFilterControls() {
     return;
   }
 
-  // Generate comprehensive filter controls HTML with accessibility features
   const controlsHTML = `
     <div class="records-controls">
       <div class="search-container">
@@ -498,26 +456,22 @@ function createFilterControls() {
     </div>
   `;
 
-  // Insert controls into DOM with error handling
   try {
     titleElement.insertAdjacentHTML("afterend", controlsHTML);
   } catch (error) {
     console.error("Error creating filter controls:", error);
   }
 }
-// Handle search input with debouncing - Process search queries with delay to improve performance
 const handleSearch = window.debounce((query) => {
   searchQuery = query;
   updateVisibleRecordsCount();
   renderRecords();
 
-  // Toggle clear button visibility based on query presence
   const clearBtn = document.querySelector(".clear-search");
   if (clearBtn) {
     clearBtn.style.display = query ? "block" : "none";
   }
 
-  // Provide accessibility feedback for mobile users
   if (window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768) {
     const visibleCount = document.querySelectorAll(".record-card").length;
     if (query && visibleCount === 0) {
@@ -528,7 +482,6 @@ const handleSearch = window.debounce((query) => {
   }
 }, 300);
 
-// Clear search input and reset results - Reset search state and update display
 function clearSearch() {
   searchQuery = "";
   document.getElementById("search-input").value = "";
@@ -537,27 +490,23 @@ function clearSearch() {
   renderRecords();
 }
 
-// Handle category filter selection - Apply category-based filtering
 function handleCategoryFilter(category) {
   currentFilter = category;
   updateVisibleRecordsCount();
   renderRecords();
 }
 
-// Handle importance filter selection - Apply importance-based filtering
 function handleImportanceFilter(importance) {
   currentFilter = importance;
   updateVisibleRecordsCount();
   renderRecords();
 }
 
-// Handle sort option selection - Apply sorting to displayed records
 function handleSort(sortType) {
   currentSort = sortType;
   renderRecords();
 }
 
-// Update visible records count display - Calculate and display current filtered record count
 function updateVisibleRecordsCount() {
   let filteredRecords = filterRecords(HISTORICAL_RECORDS, currentFilter);
   filteredRecords = searchRecords(filteredRecords, searchQuery);
@@ -567,7 +516,6 @@ function updateVisibleRecordsCount() {
     visibleElement.textContent = filteredRecords.length;
   }
 }
-// Initialize historical records page - Main initialization function for records functionality
 function initializeHistoricalRecordsPage() {
   try {
     loadRecordsFromHTML();
@@ -575,7 +523,6 @@ function initializeHistoricalRecordsPage() {
     const container = document.querySelector(".historical-records-container");
     const grid = document.getElementById("records-grid");
 
-    // Validate required DOM elements exist
     if (!container) {
       throw new Error("Historical records container not found");
     }
@@ -584,7 +531,6 @@ function initializeHistoricalRecordsPage() {
       throw new Error("Records grid element not found");
     }
 
-    // Initialize all page components in sequence
     createFilterControls();
     renderRecords();
     addGlobalEventListeners();
@@ -592,7 +538,6 @@ function initializeHistoricalRecordsPage() {
   } catch (error) {
     console.error("Error initializing historical records page:", error);
 
-    // Display user-friendly error message
     const grid = document.getElementById("records-grid");
     if (grid) {
       grid.innerHTML = `
@@ -611,12 +556,10 @@ function initializeHistoricalRecordsPage() {
 function addGlobalEventListeners() {
   window.addEventListener("resize", handleResize);
   document.addEventListener("keydown", function (e) {
-    // Close expanded record on Escape key
     if (e.key === "Escape" && expandedRecord) {
       toggleRecordExpansion(expandedRecord);
     }
 
-    // Focus search input on Ctrl+F or Cmd+F
     if ((e.ctrlKey || e.metaKey) && e.key === "f") {
       e.preventDefault();
       const searchInput = document.getElementById("search-input");
@@ -626,7 +569,6 @@ function addGlobalEventListeners() {
       }
     }
 
-    // Reset all filters on Ctrl+R or Cmd+R
     if ((e.ctrlKey || e.metaKey) && e.key === "r") {
       e.preventDefault();
       resetAllFilters();
@@ -641,7 +583,6 @@ function ensureScrollingWorks() {
   document.documentElement.style.overflow = "auto";
   document.body.style.overflow = "auto";
 
-  // Reset overflow properties on potential blocking elements
   const potentialBlockers = document.querySelectorAll(
     ".historical-records-container, .records-grid, .record-card, .record-details"
   );
@@ -650,7 +591,6 @@ function ensureScrollingWorks() {
     element.style.contain = "none";
   });
 
-  // Monitor DOM changes and maintain scroll functionality
   const observer = new MutationObserver(() => {
     setTimeout(() => {
       document.documentElement.style.overflow = "auto";
@@ -666,14 +606,12 @@ function ensureScrollingWorks() {
   });
 }
 
-// Reset all filters to default state - Clear all filtering, sorting, and search criteria
 function resetAllFilters() {
   currentFilter = "all";
   currentSort = "chronological";
   searchQuery = "";
   expandedRecord = null;
 
-  // Reset all UI controls to default values
   const searchInput = document.getElementById("search-input");
   const categoryFilter = document.getElementById("category-filter");
   const importanceFilter = document.getElementById("importance-filter");
@@ -686,16 +624,13 @@ function resetAllFilters() {
   if (sortSelect) sortSelect.value = "chronological";
   if (clearBtn) clearBtn.style.display = "none";
 
-  // Update display and announce to screen readers
   updateVisibleRecordsCount();
   renderRecords();
   window.announceToScreenReader("All filters have been reset");
 }
-// DOM content loaded event handler - Initialize page when DOM is ready
 document.addEventListener("DOMContentLoaded", function () {
   const grid = document.getElementById("records-grid");
 
-  // Display loading message while initialization occurs
   if (grid) {
     grid.innerHTML = `
       <div style="text-align: center; padding: 40px; color: var(--text-light);">
@@ -711,7 +646,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   try {
-    // Staggered initialization for better performance
     setTimeout(() => {
       initializeHistoricalRecordsPage();
 
@@ -722,7 +656,6 @@ document.addEventListener("DOMContentLoaded", function () {
   } catch (error) {
     console.error("Error initializing records page:", error);
 
-    // Display error message to user
     if (grid) {
       grid.innerHTML = `
         <div class="no-results">
@@ -736,7 +669,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// Toggle help content visibility - Show or hide help information panel
 function toggleHelp() {
   const helpContent = document.getElementById("help-content");
   const helpToggle = document.querySelector(".help-toggle");
@@ -746,24 +678,20 @@ function toggleHelp() {
   const isExpanded = helpContent.classList.contains("expanded");
 
   if (isExpanded) {
-    // Collapse help content
     helpContent.classList.remove("expanded");
     helpToggle.classList.remove("active");
     helpToggle.setAttribute("aria-expanded", "false");
   } else {
-    // Expand help content
     helpContent.classList.add("expanded");
     helpToggle.classList.add("active");
     helpToggle.setAttribute("aria-expanded", "true");
   }
 
-  // Play sound feedback if available
   if (window.SoundFeedback && typeof window.SoundFeedback.playEffect === "function") {
     window.SoundFeedback.playEffect("click");
   }
 }
 
-// Test function for debugging - Verify JavaScript functionality and render records
 function testFunction() {
   alert("JavaScript is working correctly!");
 

@@ -20,7 +20,6 @@ class CommandPalette extends HTMLElement {
 
   initDatabase() {
     this.database = [
-      // Major Characters
       { title: "Rimuru Tempest", subtitle: "Chancellor & Awakened Demon Lord (Chaos Creator)", category: "Characters", icon: "🌀", url: "character.html?id=rimuru", keywords: "slime leader protagonist raphael ciel beelzebuth" },
       { title: "Veldora Tempest", subtitle: "Storm Dragon (Catastrophe Class)", category: "Characters", icon: "🐉", url: "character.html?id=veldora", keywords: "true dragon storm faust king of investigation" },
       { title: "Benimaru", subtitle: "Generalissimo & Commander (Flame Lord)", category: "Characters", icon: "🔥", url: "character.html?id=benimaru", keywords: "ogre kijin fire general amaterasu" },
@@ -38,7 +37,6 @@ class CommandPalette extends HTMLElement {
       { title: "Gabiru", subtitle: "Dragon Lord & Air Corps Commander", category: "Characters", icon: "🦎", url: "character.html?id=gabiru", keywords: "lizardman dragonewt mood maker" },
       { title: "Hakuro", subtitle: "Military Instructor & Master Swordsman", category: "Characters", icon: "🥋", url: "character.html?id=hakuro", keywords: "swordmaster ogre martial arts" },
 
-      // Skills
       { title: "Ciel / Great Sage / Raphael", subtitle: "Lord of Wisdom & Manas (Ultimate Skill)", category: "Skills", icon: "🧠", url: "skills.html?search=Raphael", keywords: "thought acceleration analysis parallel operation manas" },
       { title: "Beelzebuth (Lord of Gluttony)", subtitle: "Ultimate Skill - Predation & Soul Consumption", category: "Skills", icon: "🌀", url: "skills.html?search=Beelzebuth", keywords: "predator stomach isolate supply food chain" },
       { title: "Uriel (Lord of Vows)", subtitle: "Ultimate Skill - Spatial & Absolute Defense", category: "Skills", icon: "🛡️", url: "skills.html?search=Uriel", keywords: "absolute defense spatial dominate law manipulation" },
@@ -48,20 +46,17 @@ class CommandPalette extends HTMLElement {
       { title: "Satanael (Lord of Wrath)", subtitle: "Milim's Ultimate Skill - Infinite Magicule Breeder", category: "Skills", icon: "💥", url: "skills.html?search=Satanael", keywords: "wrath infinite energy breeder reactor" },
       { title: "Lucifer (Lord of Pride)", subtitle: "Guy Crimson's Ultimate Skill - Ultimate Duplication", category: "Skills", icon: "✨", url: "skills.html?search=Lucifer", keywords: "copy reproduce pride demon lord" },
 
-      // Codex & Lore
       { title: "Existence Value (EP)", subtitle: "Numerical quantification of combat power & magicules", category: "Codex", icon: "📊", url: "codex.html?search=EP", keywords: "stats magicules energy power level" },
       { title: "Harvest Festival", subtitle: "The awakening ritual to become a True Demon Lord", category: "Codex", icon: "🌕", url: "codex.html?search=Harvest", keywords: "evolution soul sleep awakening demon lord" },
       { title: "Octagram (Eight Star Demon Lords)", subtitle: "The council governing the Demon Lord realms", category: "Codex", icon: "⭐", url: "codex.html?search=Octagram", keywords: "walpurgis guy milim rimuru luminous leon" },
       { title: "Primordial Demons (Seven Colors)", subtitle: "The ancient first seven demons born of darkness", category: "Codex", icon: "🖤", url: "codex.html?search=Primordial", keywords: "noir blanc jaune violet rouge vert bleu diablo" },
       { title: "True Dragons (Veldanava lineage)", subtitle: "The highest spiritual lifeforms embodying nature", category: "Codex", icon: "🐲", url: "codex.html?search=Dragon", keywords: "velzard velgrynd veldora veldanava" },
 
-      // Factions & Places
       { title: "Jura Tempest Federation", subtitle: "Monster nation founded by Chancellor Rimuru", category: "Factions", icon: "🏛️", url: "factions.html#tempest", keywords: "monsters alliance capital rimuru city" },
       { title: "Armed Nation of Dwargon", subtitle: "Underground kingdom of dwarves ruled by King Gazef", category: "Factions", icon: "⛏️", url: "factions.html#dwargon", keywords: "dwarf gazef blacksmith technology" },
       { title: "Holy Empire of Lubelius", subtitle: "Western nation protected by the Luminas Faith", category: "Factions", icon: "⛪", url: "factions.html#lubelius", keywords: "hinata luminous paladins church" },
       { title: "Eastern Empire (Nasca Namrium Ulmeria)", subtitle: "Massive industrialized empire ruled by Rudra", category: "Factions", icon: "🚩", url: "factions.html#empire", keywords: "rudra tanks airships single digits" },
 
-      // Chronicle & Records
       { title: "Founding of Tempest Chronicle", subtitle: "From cave slime to multi-species metropolis", category: "Chronicle", icon: "📜", url: "chronicle.html", keywords: "timeline history story events" },
       { title: "Battle Records & Feats", subtitle: "Chronicles of major battles & strategic victories", category: "Records", icon: "🏆", url: "records.html", keywords: "orc lord charybdis clayman farmus empire" },
       { title: "Skill Synthesizer", subtitle: "Interactive skill fusion & alchemy laboratory", category: "Interactive", icon: "🧪", url: "skills.html#synthesizer", keywords: "combine craft fusion tree evolve" },
@@ -97,7 +92,6 @@ class CommandPalette extends HTMLElement {
     const input = this.querySelector("#cmdInput");
     const backdrop = this.querySelector("#cmdBackdrop");
 
-    // Keyboard shortcut to toggle (Ctrl+K or Cmd+K)
     window.addEventListener("keydown", (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
@@ -174,7 +168,6 @@ class CommandPalette extends HTMLElement {
   search(query) {
     const q = query.trim().toLowerCase();
     if (!q) {
-      // Show default top picks / popular items
       this.results = this.database.slice(0, 8);
     } else {
       this.results = this.database.filter((item) => {
@@ -206,7 +199,6 @@ class CommandPalette extends HTMLElement {
       return;
     }
 
-    // Group by category
     container.innerHTML = this.results.map((item, idx) => `
       <div class="cmd-result-item ${idx === this.selectedIndex ? "selected" : ""}" 
            data-index="${idx}"
@@ -221,7 +213,6 @@ class CommandPalette extends HTMLElement {
       </div>
     `).join("");
 
-    // Add click listeners to result items
     container.querySelectorAll(".cmd-result-item").forEach((el) => {
       el.addEventListener("click", () => {
         const index = parseInt(el.getAttribute("data-index"), 10);
@@ -278,12 +269,10 @@ class CommandPalette extends HTMLElement {
   }
 }
 
-// Register custom element
 if (typeof customElements !== "undefined" && !customElements.get("command-palette")) {
   customElements.define("command-palette", CommandPalette);
 }
 
-// Auto-inject onto page if missing
 if (typeof document !== "undefined") {
   document.addEventListener("DOMContentLoaded", () => {
     if (!document.querySelector("command-palette")) {

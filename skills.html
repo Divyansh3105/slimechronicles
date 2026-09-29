@@ -1,23 +1,19 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Favicon configuration for browser tab icons -->
     <link rel="icon" type="image/png" href="assets/fav.png" />
     <link rel="icon" type="image/x-icon" href="assets/fav.ico" />
     <link rel="manifest" href="manifest.json" />
 
-    <!-- Essential meta tags for responsive design and character encoding -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Skills Database - Jura Tempest Federation</title>
 
-    <!-- External font imports for enhanced typography -->
     <link
       href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Rajdhani:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Icon libraries for UI elements -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
       rel="stylesheet"
@@ -27,16 +23,13 @@
       rel="stylesheet"
     />
 
-    <!-- Local stylesheet imports -->
     <link rel="stylesheet" href="css/shared.css" />
     <link rel="stylesheet" href="css/skills.css" />
 
-    <!-- GSAP animation library & ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/animations.js"></script>
 
-    <!-- JavaScript for visual effects loaded with defer for performance -->
     <script src="js/utils/SoundEngine.js" defer></script>
     <script src="js/components/CommandPalette.js" defer></script>
     <script src="js/components/GreatSageWidget.js" defer></script>
@@ -174,7 +167,6 @@
       </div>
     </noscript>
 
-    <!-- Loading screen displayed during page initialization -->
     <div class="loading-screen" id="loading-screen">
       <div class="loading-orb">
         <div class="loading-inner"></div>
@@ -185,15 +177,12 @@
       </div>
     </div>
 
-    <!-- Background visual effects for enhanced user experience -->
     <div class="starfield" id="starfield"></div>
     <div class="magic-circle" style="top: 20%; left: 80%"></div>
     <div class="particles" id="particles"></div>
 
     <main-navigation></main-navigation>
-    <!-- Main container for skills database content -->
     <div class="skills-container">
-      <!-- Enhanced page header with animated elements -->
       <div class="page-header">
         <div class="header-background">
           <div class="floating-orb orb-1"></div>
@@ -221,12 +210,9 @@
         </div>
       </div>
 
-      <!-- Interactive Skill Synthesizer & Evolution Tree -->
       <skill-synthesizer></skill-synthesizer>
 
-      <!-- Enhanced skills control panel with advanced filtering -->
       <div class="skills-controls">
-        <!-- Advanced search section -->
         <div class="search-section">
           <div class="search-box">
             <input
@@ -269,9 +255,7 @@
           </div>
         </div>
 
-        <!-- Advanced controls row -->
         <div class="controls-row">
-          <!-- Quick actions toolbar -->
           <div class="quick-actions">
             <button class="quick-action-btn" onclick="showAllSkills()" title="Show All Skills">
               <span class="btn-icon">🔍</span>
@@ -300,9 +284,7 @@
             </button>
           </div>
 
-          <!-- Advanced filter dropdowns -->
           <div class="advanced-filters">
-            <!-- Sort dropdown -->
             <div class="filter-group">
               <label>Sort By:</label>
               <select id="sort-select">
@@ -315,7 +297,6 @@
               </select>
             </div>
 
-            <!-- Difficulty filter -->
             <div class="filter-group">
               <label>Difficulty:</label>
               <select id="difficulty-filter">
@@ -327,7 +308,6 @@
               </select>
             </div>
 
-            <!-- Rarity filter -->
             <div class="filter-group">
               <label>Rarity:</label>
               <select id="rarity-filter">
@@ -343,11 +323,8 @@
         </div>
       </div>
 
-      <!-- Skills grid container populated dynamically by JavaScript -->
       <div class="skills-grid" id="skills-grid">
-        <!-- Loading state displayed while skills data is being fetched -->
         <div class="loading-state" style="grid-column: 1/-1; text-align: center; padding: 4rem">
-          <!-- Animated loading spinner -->
           <div
             class="loading-spinner"
             style="
@@ -362,7 +339,6 @@
           ></div>
           <h3>Loading Skills...</h3>
           <p>Please wait while we gather the skills database</p>
-          <!-- Force load button for manual initialization -->
           <button
             onclick="forceInitialize()"
             style="
@@ -380,7 +356,6 @@
         </div>
       </div>
 
-      <!-- Floating Action Button -->
       <div class="floating-action-btn" id="fab" onclick="toggleFabMenu()">
         <span class="fab-icon">⚡</span>
         <div class="fab-menu" id="fab-menu">
@@ -403,7 +378,6 @@
         </div>
       </div>
 
-      <!-- Skill Comparison Modal -->
       <div class="skill-comparison-modal" id="comparison-modal">
         <div class="comparison-content">
           <div class="comparison-header">
@@ -412,7 +386,6 @@
           </div>
           <div class="comparison-body">
             <div class="comparison-skills" id="comparison-skills">
-              <!-- Comparison skills will be populated here -->
             </div>
             <div class="comparison-actions">
               <button class="comparison-btn" onclick="clearComparison()">Clear All</button>
@@ -423,7 +396,6 @@
       </div>
     </div>
 
-    <!-- Site footer with branding and developer information -->
     <footer
       class="main-footer"
       style="
@@ -436,7 +408,6 @@
         class="footer-content"
         style="grid-template-columns: 1fr 1fr; text-align: left; gap: 2rem; align-items: center"
       >
-        <!-- Footer branding section -->
         <div class="footer-brand" style="align-items: flex-start">
           <div class="footer-brand-header">
             <div class="footer-logo"></div>
@@ -447,13 +418,10 @@
           </div>
         </div>
 
-        <!-- Footer information and credits section -->
         <div class="footer-info" style="text-align: right">
-          <!-- Copyright and attribution information -->
           <div class="footer-copyright">© 2025 Tensura Chronicles</div>
           <div class="footer-version">Inspired by "That Time I Got Reincarnated as a Slime"</div>
 
-          <!-- Developer credit section with styling -->
           <div
             style="
               margin: 0.5rem 0;
@@ -466,7 +434,6 @@
               backdrop-filter: blur(5px);
             "
           >
-            <!-- Animated glow effect for developer credit -->
             <div
               style="
                 position: absolute;
@@ -483,7 +450,6 @@
                 animation: footerGlow 3s ease-in-out infinite;
               "
             ></div>
-            <!-- Developer name and GitHub link -->
             <div style="font-size: 0.85rem; color: var(--text-light)">
               🧠 Brain + 💻 Keyboard =
               <a
@@ -492,7 +458,6 @@
                 >Divyansh Garg</a
               >
             </div>
-            <!-- Decorative stars -->
             <div
               style="
                 font-size: 1rem;
@@ -504,12 +469,10 @@
             </div>
           </div>
 
-          <!-- Social media links section -->
           <div
             class="footer-social"
             style="justify-content: flex-end; gap: 0.6rem; margin: 0.5rem 0"
           >
-            <!-- GitHub repository link -->
             <a
               href="https://github.com/Divyansh3105"
               class="social-link"
@@ -526,7 +489,6 @@
                 "
               ></i>
             </a>
-            <!-- LinkedIn profile link -->
             <a
               href="https://www.linkedin.com/in/divyanshgarg3105/"
               class="social-link"
@@ -545,7 +507,6 @@
             </a>
           </div>
 
-          <!-- Inspirational quote footer message -->
           <div
             style="
               font-size: 0.75rem;
@@ -561,9 +522,8 @@
       </div>
     </footer>
 
-    <!-- JavaScript imports for page functionality -->
     <script src="js/character.js"></script>
-    <script src="js/game-state-optimized.js"></script>
+    <script src="js/game-state.js"></script>
     <script src="js/skills.js"></script>
   </body>
 </html>

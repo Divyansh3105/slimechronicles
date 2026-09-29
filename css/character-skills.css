@@ -41,9 +41,6 @@
   animation: categoryExpand 0.4s ease-out;
 }
 
-/* ========== ENHANCED SKILLS SECTION ========== */
-
-/* Skills Overview Dashboard */
 .skills-overview-dashboard {
   margin-bottom: 2rem;
   padding: 1.5rem;
@@ -100,7 +97,6 @@
   letter-spacing: 0.5px;
 }
 
-/* Skills Categories */
 .skills-categories {
   display: flex;
   flex-direction: column;
@@ -172,7 +168,6 @@
   color: var(--character-primary, var(--primary-blue));
 }
 
-/* Enhanced Skill Cards */
 .skill-card-enhanced {
   position: relative;
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
@@ -491,7 +486,6 @@
   filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.4));
 }
 
-/* Skill Synergies Section */
 .skill-synergies-section {
   margin-top: 2rem;
   padding: 1.5rem;
@@ -559,7 +553,6 @@
   line-height: 1.4;
 }
 
-/* Skills Empty State */
 .skills-empty-state {
   text-align: center;
   padding: 3rem 2rem;
@@ -619,7 +612,6 @@
   }
 }
 
-/* Skill Card Entrance Animations */
 @keyframes skillCardSlideIn {
   from {
     opacity: 0;
@@ -650,7 +642,6 @@
   animation-delay: 0.35s;
 }
 
-/* Power Meter Animation */
 @keyframes powerMeterFill {
   from {
     width: 0%;
@@ -665,7 +656,6 @@
   width: 0%;
 }
 
-/* Skill Rarity Pulse Animation */
 @keyframes rarityPulse {
   0%,
   100% {
@@ -686,7 +676,6 @@
   animation: rarityPulse 3s ease-in-out infinite;
 }
 
-/* Category Toggle Animation */
 @keyframes categoryExpand {
   from {
     max-height: 0;
@@ -698,7 +687,6 @@
   }
 }
 
-/* Mastery Stars Twinkle */
 @keyframes starTwinkle {
   0%,
   100% {
@@ -715,7 +703,6 @@
   animation: starTwinkle 2s ease-in-out infinite;
 }
 
-/* Synergy Card Hover Effect */
 @keyframes synergyGlow {
   0%,
   100% {
@@ -730,7 +717,6 @@
   animation: synergyGlow 1s ease-in-out infinite;
 }
 
-/* Modal Entrance Animation */
 @keyframes modalSlideIn {
   from {
     opacity: 0;
@@ -746,7 +732,6 @@
   animation: modalSlideIn 0.3s ease-out;
 }
 
-/* Skill Detail Modal Styles */
 .skill-detail-view {
   display: flex;
   flex-direction: column;
@@ -818,7 +803,6 @@
   font-family: "Rajdhani", sans-serif;
 }
 
-/* Skill Modal */
 .skill-modal {
   position: fixed;
   top: 0;
@@ -845,7 +829,6 @@
   backdrop-filter: blur(20px);
 }
 
-/* Evolution Comparison Modal */
 .evolution-comparison-modal {
   position: fixed;
   top: 0;
@@ -976,7 +959,6 @@
   color: var(--character-primary, var(--primary-blue));
 }
 
-/* ========== ENHANCED SKILL CARDS ========== */
 .skill-card-detailed {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(21, 27, 61, 0.7));
   border: 3px solid var(--character-primary, rgba(77, 212, 255, 0.4));

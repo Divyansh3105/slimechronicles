@@ -64,7 +64,6 @@
   animation: shimmer 2s ease-in-out infinite;
 }
 
-/* ========== QUOTES CONTAINER ========== */
 .quotes-container {
   display: flex;
   flex-direction: column;
@@ -114,14 +113,12 @@
   font-weight: 600;
 }
 
-/* ========== ENHANCED OVERVIEW SECTION ========== */
 .overview-section-enhanced {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
 }
 
-/* Overview Hero Section */
 .overview-hero {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(21, 27, 61, 0.8));
   border: 3px solid var(--character-primary, rgba(77, 212, 255, 0.5));
@@ -274,7 +271,6 @@
   height: 100px;
 }
 
-/* Section Headers */
 .section-header-overview {
   display: flex;
   align-items: center;
@@ -298,7 +294,6 @@
   text-shadow: 0 0 15px var(--character-glow, rgba(77, 212, 255, 0.3));
 }
 
-/* Quick Info Section */
 .quick-info-section {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
@@ -520,7 +515,6 @@
   font-weight: 600;
 }
 
-/* Overview Content Grid */
 .overview-content-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -711,7 +705,6 @@
   box-shadow: 0 5px 15px var(--character-glow, rgba(77, 212, 255, 0.4));
 }
 
-/* Character Highlights */
 .character-highlights {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
@@ -826,7 +819,6 @@
   line-height: 1.5;
 }
 
-/* Call to Action */
 .overview-cta {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(21, 27, 61, 0.8));
   border: 3px solid var(--character-primary, rgba(77, 212, 255, 0.5));
@@ -955,7 +947,6 @@
   letter-spacing: 0.5px;
 }
 
-/* Overview Empty State */
 .overview-empty-state {
   text-align: center;
   padding: 4rem 2rem;
@@ -982,7 +973,6 @@
   font-size: 1.05rem;
 }
 
-/* Animations */
 @keyframes fadeInDown {
   from {
     opacity: 0;
@@ -994,7 +984,6 @@
   }
 }
 
-/* ========== ENHANCED BIOGRAPHY SECTION ========== */
 .biography-section-enhanced {
   display: flex;
   flex-direction: column;
@@ -1057,7 +1046,6 @@
   margin: 0 auto;
 }
 
-/* Biography Grid */
 .biography-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
@@ -1174,7 +1162,6 @@
   pointer-events: none;
 }
 
-/* Specific card styles */
 .philosophy-card {
   border-color: rgba(138, 43, 226, 0.3);
 }
@@ -1211,7 +1198,6 @@
   box-shadow: 0 20px 60px rgba(255, 51, 102, 0.4);
 }
 
-/* Enhanced Quotes Section */
 .quotes-section-enhanced {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
@@ -1379,7 +1365,6 @@
   color: var(--character-primary, var(--primary-blue));
 }
 
-/* Quotes Navigation */
 .quotes-navigation {
   display: flex;
   align-items: center;
@@ -1443,7 +1428,6 @@
   transform: scale(1.3);
 }
 
-/* Character Essence */
 .character-essence {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.4));
@@ -1506,7 +1490,6 @@
   border-left: 4px solid var(--character-primary, var(--primary-blue));
 }
 
-/* Biography Empty State */
 .biography-empty-state {
   text-align: center;
   padding: 4rem 2rem;
@@ -1533,7 +1516,6 @@
   font-size: 1.05rem;
 }
 
-/* Animations */
 @keyframes float {
   0%,
   100% {
@@ -1544,4 +1526,3 @@
   }
 }
 
-/* ========== THEME VARIABLES ========== */

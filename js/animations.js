@@ -1,5 +1,5 @@
 /**
- * Jura Tempest Federation - Advanced Animation Manager
+ * Jura Tempest Federation - Animation Manager
  * Powered by GSAP (GreenSock) & ScrollTrigger
  * 
  * Provides dynamic card staggers, ScrollTrigger scroll reveals,
@@ -49,7 +49,6 @@ class AnimationManager {
     if (!elements || elements.length === 0) return;
 
     if (this.prefersReducedMotion || !this.isGSAPAvailable) {
-      // Fallback: Make all elements visible immediately
       elements.forEach((el) => {
         el.style.opacity = "1";
         el.style.transform = "none";
@@ -69,7 +68,6 @@ class AnimationManager {
 
     const config = { ...defaults, ...options };
 
-    // Reset initial state then animate
     window.gsap.killTweensOf(elements);
     window.gsap.fromTo(
       elements,
@@ -97,7 +95,6 @@ class AnimationManager {
     if (!elements || elements.length === 0) return;
 
     if (this.prefersReducedMotion || !this.isGSAPAvailable || !this.isScrollTriggerAvailable) {
-      // Fallback using IntersectionObserver
       this.fallbackScrollReveal(elements);
       return;
     }
@@ -183,7 +180,6 @@ class AnimationManager {
 
     const modalContent = contentElement || modalElement.querySelector(".modal-content, .modal-body");
 
-    // Fade backdrop
     window.gsap.killTweensOf([modalElement, modalContent]);
     window.gsap.fromTo(
       modalElement,
@@ -191,7 +187,6 @@ class AnimationManager {
       { opacity: 1, duration: 0.3, ease: "power2.out" }
     );
 
-    // Spring content scale-in
     if (modalContent) {
       window.gsap.fromTo(
         modalContent,
@@ -355,7 +350,6 @@ class AnimationManager {
       el.dataset.tiltInit = "true";
       el.classList.add("has-3d-tilt");
 
-      // Inject specular glare overlay if missing
       let glare = el.querySelector(".tilt-glare");
       if (!glare) {
         glare = document.createElement("div");
@@ -417,7 +411,6 @@ class AnimationManager {
 // Global Singleton Instance
 window.TempestAnimations = new AnimationManager();
 
-// Automatically initialize micro-interactions after DOM loads
 document.addEventListener("DOMContentLoaded", () => {
   if (window.TempestAnimations) {
     window.TempestAnimations.enableMagneticHover(
@@ -429,7 +422,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Module Export for Vitest / Node testing environment
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { AnimationManager };
 }

@@ -1,5 +1,4 @@
 ﻿/* ========== MAIN CONTAINER ========== */
-/* Force scroll on mobile for codex page */
 html,
 body {
   overflow-y: auto !important;
@@ -33,7 +32,6 @@ body {
   }
 }
 
-/* background effects with animated gradients */
 .codex-container::before {
   content: "";
   position: fixed;
@@ -60,7 +58,6 @@ body {
   }
 }
 
-/* ========== PAGE HEADER ========== */
 .codex-header {
   text-align: center;
   margin-bottom: 3rem;
@@ -152,7 +149,6 @@ body {
   }
 }
 
-/* ========== STATISTICS CARDS ========== */
 .codex-stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -346,7 +342,6 @@ body {
   transform: translateY(-2px);
 }
 
-/* ========== FILTER CONTROLS ========== */
 .filter-section {
   display: flex;
   flex-direction: column;
@@ -413,7 +408,6 @@ body {
   transform: translateY(-2px);
 }
 
-/* ========== SEARCH FUNCTIONALITY ========== */
 .search-suggestions {
   position: absolute;
   top: 100%;
@@ -446,12 +440,10 @@ body {
   border-bottom: none;
 }
 
-/* ========== CHARACTER DISPLAY ========== */
 .character-display {
   position: relative;
 }
 
-/* ========== CHARACTER MODAL ========== */
 .character-modal {
   display: none;
   position: fixed;
@@ -710,7 +702,6 @@ body {
   background: linear-gradient(135deg, #2a9fd8, var(--primary-blue));
 }
 
-/* ========== LORE SECTION ========== */
 .lore-section {
   margin-top: 4rem;
   padding: 3rem 0;
@@ -798,7 +789,6 @@ body {
   font-size: 0.95rem;
 }
 
-/* ========== SEARCH CONTAINER ========== */
 .codex-controls {
   margin-bottom: 3rem;
   animation: controlsSlideIn 0.8s ease-out 0.4s backwards;
@@ -917,7 +907,6 @@ body {
   color: rgba(232, 240, 255, 0.5);
 }
 
-/* ========== FILTER TABS ========== */
 .filter-tabs {
   display: flex;
   gap: 0.5rem;
@@ -1018,7 +1007,6 @@ body {
   box-shadow: 0 0 15px var(--glow-blue);
 }
 
-/* ========== CHARACTER GRID ========== */
 .character-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1075,7 +1063,6 @@ body {
   box-shadow: 0 0 15px var(--glow-blue);
 }
 
-/* Standard 4-column grid for desktop */
 @media (min-width: 1200px) {
   .character-grid {
     grid-template-columns: repeat(4, 1fr);
@@ -1083,7 +1070,6 @@ body {
   }
 }
 
-/* 3-column grid for tablets */
 @media (min-width: 768px) and (max-width: 1199px) {
   .character-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -1091,7 +1077,6 @@ body {
   }
 }
 
-/* ========== CHARACTER CARDS ========== */
 .character-card {
   background: linear-gradient(145deg, rgba(21, 25, 35, 0.95), rgba(35, 53, 80, 0.9));
   border: 2px solid rgba(77, 212, 255, 0.4);
@@ -1224,7 +1209,6 @@ body {
   z-index: 10;
 }
 
-/* ========== CHARACTER CARD HEADER ========== */
 .character-header {
   position: relative;
   height: 200px;
@@ -1392,7 +1376,6 @@ body {
   filter: brightness(1.1) contrast(1.2) saturate(1.05);
 }
 
-/* ========== CHARACTER INFO SECTION ========== */
 .character-portrait {
   display: none;
   position: absolute;
@@ -1689,7 +1672,6 @@ body {
   border-color: rgba(255, 255, 255, 0.6);
 }
 
-/* ========== CHARACTER ACTIONS ========== */
 .character-actions {
   display: flex;
   flex-direction: column;
@@ -1854,7 +1836,6 @@ body {
   transform: translateY(-1px) scale(0.98);
 }
 
-/* ========== PAGINATION CONTROLS ========== */
 .pagination-controls {
   display: flex;
   justify-content: center;
@@ -1946,7 +1927,6 @@ body {
   text-shadow: 0 0 10px var(--glow-blue);
 }
 
-/* ========== CHARACTER THEMING ========== */
 .character-card[data-character-id="rimuru"] {
   --character-primary: #4dd4ff;
   --character-secondary: #2a9fd8;
@@ -1996,7 +1976,6 @@ body {
   --character-secondary-rgb: 147, 112, 219;
 }
 
-/* ========== LOADING AND ERROR STATES ========== */
 .character-grid.loading {
   opacity: 0.5;
   pointer-events: none;
@@ -2030,7 +2009,6 @@ body {
   opacity: 0.5;
 }
 
-/* ========== ACCESSIBILITY AND FOCUS STATES ========== */
 .character-card,
 .filter-tab,
 .view-profile-button,
@@ -2173,7 +2151,6 @@ body {
     0 2px 4px rgba(0, 0, 0, 0.9) !important;
 }
 
-/* ========== RESPONSIVE TEXT SIZING ========== */
 .character-role {
   font-size: 0.65rem;
   line-height: 1.1;
@@ -2217,7 +2194,6 @@ body {
   z-index: 3;
 }
 
-/* ========== LOADING AND NO RESULTS STATES ========== */
 .loading-characters {
   display: flex;
   flex-direction: column;
@@ -2375,7 +2351,6 @@ body {
   box-shadow: 0 8px 25px rgba(77, 212, 255, 0.5);
 }
 
-/* ========== PERFORMANCE OPTIMIZATIONS ========== */
 .stat-card,
 .filter-select,
 .search-input,
@@ -2393,20 +2368,17 @@ body {
   transform: translateY(-2px);
 }
 
-/* ========== MOBILE RESPONSIVE STYLES ========== */
 @media (max-width: 767px) {
   .codex-container {
     padding: 1.5rem 1rem;
     padding-top: 2rem; /* Reduced since navbar is no longer fixed */
   }
 
-  /* Character Grid */
   .character-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
 
-  /* Page Header */
   .page-title {
     font-size: 2.2rem;
     margin-bottom: 0.75rem;
@@ -2417,7 +2389,6 @@ body {
     margin-bottom: 2rem;
   }
 
-  /* Statistics Cards */
   .codex-stats {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
@@ -2437,7 +2408,6 @@ body {
     font-size: 0.8rem;
   }
 
-  /* Search and Filters */
   .search-input {
     max-width: 100%;
     padding: 0.8rem 1rem;
@@ -2479,7 +2449,6 @@ body {
     font-size: 0.85rem;
   }
 
-  /* Character Grid */
   .character-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
@@ -2563,7 +2532,6 @@ body {
     gap: 0.4rem;
   }
 
-  /* Pagination */
   .pagination-controls {
     flex-direction: column;
     gap: 0.8rem;
@@ -2584,7 +2552,6 @@ body {
     padding: 0;
   }
 
-  /* Modal Adjustments */
   .modal-content {
     margin: 0.5rem;
     max-height: 95vh;
@@ -2627,7 +2594,6 @@ body {
     min-height: 44px;
   }
 
-  /* Lore Section */
   .section-title {
     font-size: 2rem;
   }
@@ -2658,7 +2624,6 @@ body {
     touch-action: manipulation;
   }
 
-  /* Remove special 11-card layout on mobile */
   .character-grid {
     grid-template-columns: repeat(2, 1fr) !important;
   }
@@ -2668,26 +2633,21 @@ body {
     min-height: 420px;
   }
 
-  /* ===== MOBILE PERFORMANCE & UX OPTIMIZATIONS ===== */
-  /* Disable heavy background effects */
   .magic-circle,
   .particles,
   .starfield {
     display: none !important;
   }
 
-  /* Reduce hover effects on touch devices */
   .character-card:hover {
     transform: none;
   }
 
-  /* Enable touch scrolling */
   body {
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
   }
 
-  /* Optimize touch interactions */
   .character-card,
   .filter-tab,
   .view-profile-button,
@@ -2697,7 +2657,6 @@ body {
     touch-action: manipulation;
   }
 
-  /* Improve text readability on mobile */
   .character-name,
   .character-title,
   .stat-label,
@@ -2706,7 +2665,6 @@ body {
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Ensure minimum touch target sizes */
   .character-card,
   .filter-tab,
   button,
@@ -2715,7 +2673,6 @@ body {
     min-height: 44px;
   }
 
-  /* Optimize animations for mobile */
   .character-card,
   .filter-tab,
   .stat-card {
@@ -2723,13 +2680,11 @@ body {
     transform: translateZ(0);
   }
 
-  /* Reduce motion for better performance */
   * {
     animation-duration: 0.2s !important;
     transition-duration: 0.2s !important;
   }
 
-  /* Mobile-specific focus styles */
   .search-input:focus,
   .filter-select:focus,
   .filter-tab:focus {
@@ -2737,7 +2692,6 @@ body {
     outline-offset: 2px;
   }
 
-  /* Improve mobile navigation visibility */
   .mobile-menu-toggle {
     z-index: 1001;
   }
@@ -2746,7 +2700,6 @@ body {
     z-index: 1000;
   }
 
-  /* Better mobile modal handling */
   .character-modal {
     padding: 0.5rem;
   }
@@ -2758,7 +2711,6 @@ body {
     border-radius: 12px;
   }
 
-  /* Improve search suggestions on mobile */
   .search-suggestions {
     max-height: 150px;
     border-radius: 0 0 12px 12px;
@@ -2770,7 +2722,6 @@ body {
   }
 }
 
-/* ========== SMALL PHONE STYLES ========== */
 @media (max-width: 479px) {
   .codex-container {
     padding: 1rem 0.5rem;
@@ -2785,7 +2736,6 @@ body {
     font-size: 0.95rem;
   }
 
-  /* Single column layout for very small screens */
   .character-grid {
     grid-template-columns: 1fr !important;
     gap: 1rem;
@@ -2838,13 +2788,11 @@ body {
     margin: 0 auto;
   }
 
-  /* Remove eleven cards special handling */
   .character-grid {
     grid-template-columns: 1fr;
   }
 }
 
-/* ========== TABLET STYLES ========== */
 @media (min-width: 768px) {
   .main-content.codex-page {
     padding: 2rem;
@@ -2867,7 +2815,6 @@ body {
   }
 }
 
-/* ========== LAPTOP STYLES ========== */
 @media (min-width: 1024px) {
   .main-content.codex-page {
     max-width: 1400px;
@@ -2880,7 +2827,6 @@ body {
   }
 }
 
-/* ========== LARGE SCREEN STYLES ========== */
 @media (min-width: 1280px) {
   .main-content.codex-page {
     max-width: 1600px;

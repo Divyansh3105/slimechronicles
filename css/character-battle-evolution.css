@@ -59,7 +59,6 @@
   box-shadow: 0 0 10px var(--character-glow, var(--glow-blue));
 }
 
-/* ========== CHARACTER RATING ========== */
 .character-rating {
   margin-top: 2rem;
   padding: 1.5rem;
@@ -127,7 +126,6 @@
   color: rgba(232, 240, 255, 0.3);
 }
 
-/* ========== BATTLE STATS ========== */
 .battle-stats-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -372,7 +370,6 @@
   margin-right: 0.5rem;
 }
 
-/* ========== EVOLUTION TIMELINE ========== */
 .evolution-timeline {
   grid-column: 1 / -1;
 }
@@ -479,7 +476,6 @@
   font-style: italic;
 }
 
-/* ========== COMPARISON MODAL ========== */
 .comparison-modal {
   position: fixed;
   top: 0;
@@ -512,7 +508,6 @@
   box-shadow: 0 20px 60px rgba(77, 212, 255, 0.3);
 }
 
-/* ========== ANIMATIONS AND KEYFRAMES ========== */
 @keyframes modalFadeIn {
   from {
     opacity: 0;
@@ -534,7 +529,6 @@
   margin: 0 auto 1rem;
 }
 
-/* ========== ERROR HANDLING ========== */
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -600,7 +594,6 @@
   box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4);
 }
 
-/* ========== CHARACTER SELECTOR ========== */
 .character-selector {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -644,7 +637,6 @@
   color: rgba(232, 240, 255, 0.9);
 }
 
-/* ========== SPECIALTIES AND WEAKNESSES ========== */
 .specialties-section {
   margin-top: 2rem;
   padding: 1.5rem;
@@ -716,7 +708,6 @@
   border-bottom: none;
 }
 
-/* ========== ENHANCED EVOLUTION FORMS ========== */
 .evolution-timeline {
   position: relative;
   padding: 2rem 0;
@@ -1017,7 +1008,6 @@
   filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.9));
 }
 
-/* Evolution Progress Indicator */
 .evolution-progress {
   position: absolute;
   left: 48px;
@@ -1043,7 +1033,6 @@
   }
 }
 
-/* Evolution Stats */
 .evolution-stats {
   display: flex;
   gap: 1rem;
@@ -1075,7 +1064,6 @@
   filter: drop-shadow(0 0 5px var(--character-glow, var(--glow-blue)));
 }
 
-/* Mobile Optimizations */
 @media (max-width: 768px) {
   .evolution-timeline::before {
     left: 30px;

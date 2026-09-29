@@ -261,7 +261,6 @@ class SkillSynthesizer extends HTMLElement {
       }
       this.slotB = skill;
     } else {
-      // Replace slot B
       this.slotB = skill;
     }
 
@@ -389,7 +388,6 @@ class SkillSynthesizer extends HTMLElement {
   }
 }
 
-// Register custom element
 if (typeof customElements !== "undefined" && !customElements.get("skill-synthesizer")) {
   customElements.define("skill-synthesizer", SkillSynthesizer);
 }

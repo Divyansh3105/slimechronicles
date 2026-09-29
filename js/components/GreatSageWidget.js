@@ -210,7 +210,6 @@ class GreatSageWidget extends HTMLElement {
       return;
     }
 
-    // Match query against knowledge base patterns
     const found = this.knowledgeBase.find((item) =>
       item.patterns.some((pattern) => q.includes(pattern) || pattern.includes(q))
     );
@@ -218,7 +217,6 @@ class GreatSageWidget extends HTMLElement {
     if (found) {
       this.typeMessage(found.response);
     } else {
-      // Default intelligent Great Sage response
       this.typeMessage(
         `Report: Analysis of inquiry "${rawQuery}" indicates a specialized topic in Tensura lore. Please consult the [Codex] or [Skills] repositories, or formulate an inquiry regarding Rimuru's abilities, Demon Lords, or Existence Values.`
       );
@@ -252,7 +250,6 @@ class GreatSageWidget extends HTMLElement {
     };
     typeChar();
 
-    // Voice Synthesis if enabled
     if (this.isVoiceEnabled && typeof window !== "undefined" && "speechSynthesis" in window) {
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text.replace(/Notice:|Report:|Analysis:|Advisory:/g, ""));
@@ -263,12 +260,10 @@ class GreatSageWidget extends HTMLElement {
   }
 }
 
-// Register custom element
 if (typeof customElements !== "undefined" && !customElements.get("great-sage-widget")) {
   customElements.define("great-sage-widget", GreatSageWidget);
 }
 
-// Auto-inject onto page if missing
 if (typeof document !== "undefined") {
   document.addEventListener("DOMContentLoaded", () => {
     if (!document.querySelector("great-sage-widget")) {

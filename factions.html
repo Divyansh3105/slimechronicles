@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Favicon configuration for browser tab icons -->
     <link rel="icon" type="image/png" href="assets/fav.png" />
     <link rel="icon" type="image/x-icon" href="assets/fav.ico" />
     <link rel="manifest" href="manifest.json" />
@@ -10,13 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Factions & Organizations – Jura Tempest Federation</title>
 
-    <!-- Fonts & Icons -->
     <link
       href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Rajdhani:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Icon libraries for UI elements -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
       rel="stylesheet"
@@ -26,13 +23,10 @@
       rel="stylesheet"
     />
 
-    <!-- Shared Styles -->
     <link rel="stylesheet" href="css/shared.css" />
 
-    <!-- Page Styles -->
     <link rel="stylesheet" href="css/factions.css" />
 
-    <!-- Effects & GSAP Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/animations.js"></script>
@@ -173,7 +167,6 @@
       </div>
     </noscript>
 
-    <!-- Loading screen displayed during page initialization -->
     <div class="loading-screen" id="loading-screen">
       <div class="loading-orb">
         <div class="loading-inner"></div>
@@ -184,13 +177,11 @@
       </div>
     </div>
 
-    <!-- Background Effects -->
     <div class="starfield" id="starfield"></div>
     <div class="particles" id="particles"></div>
 
     <main-navigation></main-navigation>
 
-    <!-- MAIN CONTENT -->
     <main class="factions-container">
       <header class="page-header">
         <h1 class="page-title">Factions & Organizations</h1>
@@ -199,7 +190,6 @@
         </p>
       </header>
 
-      <!-- Controls -->
       <section class="factions-controls">
         <input type="text" id="searchInput" placeholder="Search factions..." />
         <select id="typeFilter">
@@ -219,9 +209,7 @@
         </select>
       </section>
 
-      <!-- Factions Grid -->
       <section class="factions-grid" id="factionsGrid">
-        <!-- MAJOR NATIONS -->
         <article class="faction-card" data-type="nation" data-relation="allied">
           <header class="faction-header">
             <h2>Jura Tempest Federation</h2>
@@ -233,7 +221,6 @@
             innovation.
           </p>
 
-          <!-- Power Snapshot -->
           <div class="power-snapshot">
             <div class="power-item">
               <span>Military</span>
@@ -389,7 +376,6 @@
             technology.
           </p>
 
-          <!-- Power Snapshot -->
           <div class="power-snapshot">
             <div class="power-item">
               <span>Military</span>
@@ -532,7 +518,6 @@
             The strongest human nation with central location, wealth, and political influence.
           </p>
 
-          <!-- Power Snapshot -->
           <div class="power-snapshot">
             <div class="power-item">
               <span>Military</span>
@@ -675,7 +660,6 @@
             Holy Emperor Louis Valentine.
           </p>
 
-          <!-- Power Snapshot -->
           <div class="power-snapshot">
             <div class="power-item">
               <span>Military</span>
@@ -819,7 +803,6 @@
             with over 2.1 million personnel before Tempest's emergence.
           </p>
 
-          <!-- Power Snapshot -->
           <div class="power-snapshot">
             <div class="power-item">
               <span>Military</span>
@@ -965,7 +948,6 @@
             with Tempest.
           </p>
 
-          <!-- Power Snapshot -->
           <div class="power-snapshot">
             <div class="power-item">
               <span>Military</span>
@@ -1107,7 +1089,6 @@
             limited technology.
           </p>
 
-          <!-- Power Snapshot -->
           <div class="power-snapshot">
             <div class="power-item">
               <span>Military</span>
@@ -1250,7 +1231,6 @@
             intervention.
           </p>
 
-          <!-- Power Snapshot -->
           <div class="power-snapshot">
             <div class="power-item">
               <span>Military</span>
@@ -1379,7 +1359,6 @@
           </div>
         </article>
 
-        <!-- COUNCILS & ORGANIZATIONS -->
         <article class="faction-card" data-type="council" data-relation="neutral">
           <header class="faction-header">
             <h2>Octagram (Demon Lords)</h2>
@@ -1391,7 +1370,6 @@
             continental politics.
           </p>
 
-          <!-- Power Snapshot -->
           <div class="power-snapshot">
             <div class="power-item">
               <span>Military</span>
@@ -1538,7 +1516,6 @@
             adventurer rankings.
           </p>
 
-          <!-- Power Snapshot -->
           <div class="power-snapshot">
             <div class="power-item">
               <span>Military</span>
@@ -1680,7 +1657,6 @@
             cooperation.
           </p>
 
-          <!-- Power Snapshot -->
           <div class="power-snapshot">
             <div class="power-item">
               <span>Military</span>
@@ -1814,7 +1790,6 @@
           </div>
         </article>
 
-        <!-- RELIGIOUS & SECRET ORGANIZATIONS -->
         <article class="faction-card" data-type="military">
           <header class="faction-header">
             <h2>Western Holy Church</h2>
@@ -1826,7 +1801,6 @@
             and Demon Lords.
           </p>
 
-          <!-- Power Snapshot -->
           <div class="power-snapshot">
             <div class="power-item">
               <span>Military</span>
@@ -1969,7 +1943,6 @@
             handling both legal and illegal operations.
           </p>
 
-          <!-- Power Snapshot -->
           <div class="power-snapshot">
             <div class="power-item">
               <span>Military</span>
@@ -2098,7 +2071,6 @@
           </div>
         </article>
 
-        <!-- FALLEN/HISTORICAL FACTIONS -->
         <article class="faction-card" data-type="nation">
           <header class="faction-header">
             <h2>Kingdom of Falmuth (Fallen)</h2>
@@ -2110,7 +2082,6 @@
             to maintain trade monopoly.
           </p>
 
-          <!-- Power Snapshot -->
           <div class="power-snapshot">
             <div class="power-item">
               <span>Military</span>
@@ -2208,7 +2179,6 @@
             The original inhabitants of Jura Forest who became the foundation of Tempest Federation.
           </p>
 
-          <!-- Power Snapshot -->
           <div class="power-snapshot">
             <div class="power-item">
               <span>Military</span>
@@ -2323,7 +2293,6 @@
             Powerful wolf monsters led by Ranga, serving as Tempest's elite cavalry and scouts.
           </p>
 
-          <!-- Power Snapshot -->
           <div class="power-snapshot">
             <div class="power-item">
               <span>Military</span>
@@ -2444,7 +2413,6 @@
             loyalty.
           </p>
 
-          <!-- Power Snapshot -->
           <div class="power-snapshot">
             <div class="power-item">
               <span>Military</span>
@@ -2552,20 +2520,15 @@
         </article>
       </section>
 
-      <!-- Faction Details Modal -->
       <div class="faction-modal" id="faction-modal">
         <div class="modal-content">
-          <!-- Modal close button -->
           <button class="modal-close" onclick="closeFactionModal()">&times;</button>
-          <!-- Modal body content populated dynamically -->
           <div class="modal-body" id="modal-body">
-            <!-- Faction details will be loaded here -->
           </div>
         </div>
       </div>
     </main>
 
-    <!-- Site footer with branding and developer information -->
     <footer
       class="main-footer"
       style="
@@ -2578,7 +2541,6 @@
         class="footer-content"
         style="grid-template-columns: 1fr 1fr; text-align: left; gap: 2rem; align-items: center"
       >
-        <!-- Footer branding section -->
         <div class="footer-brand" style="align-items: flex-start">
           <div class="footer-brand-header">
             <div class="footer-logo"></div>
@@ -2589,13 +2551,10 @@
           </div>
         </div>
 
-        <!-- Footer information and credits section -->
         <div class="footer-info" style="text-align: right">
-          <!-- Copyright and attribution information -->
           <div class="footer-copyright">© 2025 Tensura Chronicles</div>
           <div class="footer-version">Inspired by "That Time I Got Reincarnated as a Slime"</div>
 
-          <!-- Developer credit section with styling -->
           <div
             style="
               margin: 0.5rem 0;
@@ -2608,7 +2567,6 @@
               backdrop-filter: blur(5px);
             "
           >
-            <!-- Animated glow effect for developer credit -->
             <div
               style="
                 position: absolute;
@@ -2625,7 +2583,6 @@
                 animation: footerGlow 3s ease-in-out infinite;
               "
             ></div>
-            <!-- Developer name and GitHub link -->
             <div style="font-size: 0.85rem; color: var(--text-light)">
               🧠 Brain + 💻 Keyboard =
               <a
@@ -2634,7 +2591,6 @@
                 >Divyansh Garg</a
               >
             </div>
-            <!-- Decorative stars -->
             <div
               style="
                 font-size: 1rem;
@@ -2646,12 +2602,10 @@
             </div>
           </div>
 
-          <!-- Social media links section -->
           <div
             class="footer-social"
             style="justify-content: flex-end; gap: 0.6rem; margin: 0.5rem 0"
           >
-            <!-- GitHub repository link -->
             <a
               href="https://github.com/Divyansh3105"
               class="social-link"
@@ -2668,7 +2622,6 @@
                 "
               ></i>
             </a>
-            <!-- LinkedIn profile link -->
             <a
               href="https://www.linkedin.com/in/divyanshgarg3105/"
               class="social-link"
@@ -2687,7 +2640,6 @@
             </a>
           </div>
 
-          <!-- Inspirational quote footer message -->
           <div
             style="
               font-size: 0.75rem;

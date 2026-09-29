@@ -1,23 +1,19 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Favicon configuration for browser tab icons -->
     <link rel="icon" type="image/png" href="assets/fav.png" />
     <link rel="icon" type="image/x-icon" href="assets/fav.ico" />
     <link rel="manifest" href="manifest.json" />
 
-    <!-- Essential meta tags for responsive design and character encoding -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Character Codex</title>
 
-    <!-- External font imports for enhanced typography -->
     <link
       href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Rajdhani:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Icon libraries for UI elements -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
       rel="stylesheet"
@@ -27,16 +23,13 @@
       rel="stylesheet"
     />
 
-    <!-- Local stylesheet imports -->
     <link rel="stylesheet" href="css/shared.css" />
     <link rel="stylesheet" href="css/codex.css" />
 
-    <!-- GSAP animation library & ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/animations.js"></script>
 
-    <!-- JavaScript for visual effects loaded with defer for performance -->
     <script src="js/utils/EventBus.js"></script>
     <script src="js/utils/SoundEngine.js" defer></script>
     <script src="js/components/CommandPalette.js" defer></script>
@@ -174,7 +167,6 @@
       </div>
     </noscript>
 
-    <!-- Loading screen displayed during page initialization -->
     <div class="loading-screen" id="loading-screen">
       <div class="loading-orb">
         <div class="loading-inner"></div>
@@ -185,35 +177,28 @@
       </div>
     </div>
 
-    <!-- Background visual effects for enhanced user experience -->
     <div class="starfield" id="starfield"></div>
     <div class="particles" id="particles"></div>
 
     <main-navigation></main-navigation>
-    <!-- Main container for codex content and functionality -->
     <div class="codex-container">
-      <!-- Page header with title, subtitle, and statistics overview -->
       <header class="codex-header">
         <h1 class="page-title">Character Codex</h1>
         <p class="page-subtitle">
           Comprehensive guide to the inhabitants of the Jura Tempest Federation
         </p>
 
-        <!-- Statistics overview cards displaying character metrics -->
         <div class="codex-stats">
-          <!-- Total character count display -->
           <div class="stat-card" title="Total characters in the codex">
             <div class="stat-icon">👥</div>
             <div class="stat-number" id="total-characters">0</div>
             <div class="stat-label">Total Characters</div>
           </div>
-          <!-- Demon lords count display -->
           <div class="stat-card" title="Powerful demon lords">
             <div class="stat-icon">👑</div>
             <div class="stat-number" id="demon-lords-count">0</div>
             <div class="stat-label">Demon Lords</div>
           </div>
-          <!-- Disasters count display -->
           <div class="stat-card" title="Catastrophe-class beings">
             <div class="stat-icon">⚡</div>
             <div class="stat-number" id="disasters-count">0</div>
@@ -228,9 +213,7 @@
         </div>
       </header>
 
-      <!-- Search and filter controls for character browsing -->
       <div class="codex-controls">
-        <!-- Search functionality with suggestions -->
         <div class="search-container">
           <input
             type="text"
@@ -238,13 +221,10 @@
             class="search-input"
             placeholder="🔍 Search characters by name, race, role, or abilities..."
           />
-          <!-- Dynamic search suggestions dropdown -->
           <div class="search-suggestions" id="search-suggestions"></div>
         </div>
 
-        <!-- Filter section with tabs and advanced options -->
         <div class="filter-section">
-          <!-- Quick filter tabs for character categories -->
           <div class="filter-tabs">
             <button class="filter-tab active" data-filter="all">All Characters</button>
             <button class="filter-tab" data-filter="demon-lord">Demon Lords</button>
@@ -252,49 +232,36 @@
             <button class="filter-tab" data-filter="named">Named Monsters</button>
           </div>
 
-          <!-- Advanced filtering options -->
           <div class="advanced-filters">
             <!-- Race-based filtering dropdown -->
             <select id="race-filter" class="filter-select">
               <option value="">All Races</option>
             </select>
-            <!-- Power level filtering dropdown -->
             <select id="power-filter" class="filter-select">
               <option value="">All Power Levels</option>
             </select>
 
-            <!-- Clear all filters button -->
             <button class="clear-filters-btn" onclick="clearAllFilters()">Clear Filters</button>
           </div>
         </div>
       </div>
 
-      <!-- Character display area with grid layout and modal -->
       <div class="character-display">
-        <!-- Grid container for character cards populated by JavaScript -->
         <div class="character-grid" id="character-grid">
-          <!-- Characters will be loaded here -->
         </div>
 
-        <!-- Modal overlay for detailed character information -->
         <div class="character-modal" id="character-modal">
           <div class="modal-content">
-            <!-- Modal close button -->
             <button class="modal-close" onclick="closeCharacterModal()">&times;</button>
-            <!-- Modal body content populated dynamically -->
             <div class="modal-body" id="modal-body">
-              <!-- Character details will be loaded here -->
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Lore section providing background information about the federation -->
       <section class="lore-section">
         <h2 class="section-title">Federation Lore</h2>
-        <!-- Lore content cards with key information -->
         <div class="lore-content">
-          <!-- Great Jura Forest lore card -->
           <div class="lore-card">
             <h3>The Great Jura Forest</h3>
             <p>
@@ -303,7 +270,6 @@
               heart of the Jura Tempest Federation.
             </p>
           </div>
-          <!-- Monster integration lore card -->
           <div class="lore-card">
             <h3>Monster Integration</h3>
             <p>
@@ -312,7 +278,6 @@
               prosperity.
             </p>
           </div>
-          <!-- Naming system lore card -->
           <div class="lore-card">
             <h3>Naming System</h3>
             <p>
@@ -324,7 +289,6 @@
       </section>
     </div>
 
-    <!-- Site footer with branding and developer information -->
     <footer
       class="main-footer"
       style="
@@ -337,7 +301,6 @@
         class="footer-content"
         style="grid-template-columns: 1fr 1fr; text-align: left; gap: 2rem; align-items: center"
       >
-        <!-- Footer branding section -->
         <div class="footer-brand" style="align-items: flex-start">
           <div class="footer-brand-header">
             <div class="footer-logo"></div>
@@ -348,13 +311,10 @@
           </div>
         </div>
 
-        <!-- Footer information and credits section -->
         <div class="footer-info" style="text-align: right">
-          <!-- Copyright and attribution information -->
           <div class="footer-copyright">© 2025 Tensura Chronicles</div>
           <div class="footer-version">Inspired by "That Time I Got Reincarnated as a Slime"</div>
 
-          <!-- Developer credit section with styling -->
           <div
             style="
               margin: 0.5rem 0;
@@ -367,7 +327,6 @@
               backdrop-filter: blur(5px);
             "
           >
-            <!-- Animated glow effect for developer credit -->
             <div
               style="
                 position: absolute;
@@ -384,7 +343,6 @@
                 animation: footerGlow 3s ease-in-out infinite;
               "
             ></div>
-            <!-- Developer name and GitHub link -->
             <div style="font-size: 0.85rem; color: var(--text-light)">
               🧠 Brain + 💻 Keyboard =
               <a
@@ -393,7 +351,6 @@
                 >Divyansh Garg</a
               >
             </div>
-            <!-- Decorative stars -->
             <div
               style="
                 font-size: 1rem;
@@ -405,12 +362,10 @@
             </div>
           </div>
 
-          <!-- Social media links section -->
           <div
             class="footer-social"
             style="justify-content: flex-end; gap: 0.6rem; margin: 0.5rem 0"
           >
-            <!-- GitHub repository link -->
             <a
               href="https://github.com/Divyansh3105"
               class="social-link"
@@ -427,7 +382,6 @@
                 "
               ></i>
             </a>
-            <!-- LinkedIn profile link -->
             <a
               href="https://www.linkedin.com/in/divyanshgarg3105/"
               class="social-link"
@@ -446,7 +400,6 @@
             </a>
           </div>
 
-          <!-- Inspirational quote footer message -->
           <div
             style="
               font-size: 0.75rem;
@@ -462,9 +415,8 @@
       </div>
     </footer>
 
-    <!-- JavaScript imports for page functionality -->
     <script src="js/character.js"></script>
-    <script src="js/game-state-optimized.js"></script>
+    <script src="js/game-state.js"></script>
     <script src="js/codex.js"></script>
   </body>
 </html>

@@ -39,7 +39,7 @@ class SoundEngine {
         }
       }
     } catch {
-      // Ignore localStorage access issues
+      // localStorage can throw in private mode
     }
   }
 
@@ -50,7 +50,7 @@ class SoundEngine {
         localStorage.setItem(this.volStorageKey, this.volume.toString());
       }
     } catch {
-      // Ignore localStorage access issues
+      // localStorage can throw in private mode
     }
   }
 
@@ -167,7 +167,6 @@ class SoundEngine {
     osc.stop(now + 0.1);
   }
 
-  // Signature Great Sage / Raphael chime (Two-tone crystal bell)
   _playGreatSage(now, out) {
     [
       { freq: 880, start: 0, dur: 0.28 }, // A5
@@ -190,7 +189,6 @@ class SoundEngine {
     });
   }
 
-  // Skill fusion ascending magical arpeggio
   _playSkillFuse(now, out) {
     const notes = [523.25, 659.25, 783.99, 1046.5, 1318.51, 1567.98]; // C5, E5, G5, C6, E6, G6
     notes.forEach((freq, idx) => {
@@ -281,7 +279,6 @@ class SoundEngine {
   attachGlobalListeners() {
     if (typeof document === "undefined") return;
 
-    // Attach listeners on user interaction
     const unlock = () => {
       this.initContext();
       window.removeEventListener("pointerdown", unlock);
@@ -310,11 +307,9 @@ class SoundEngine {
   }
 }
 
-// Export singleton instance
 const soundEngineInstance = new SoundEngine();
 if (typeof window !== "undefined") {
   window.SoundEngine = soundEngineInstance;
-  // Initialize automatic UI listeners after DOM ready
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => soundEngineInstance.attachGlobalListeners());
   } else {
@@ -322,7 +317,6 @@ if (typeof window !== "undefined") {
   }
 }
 
-// Support CommonJS/ESM testing
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { SoundEngine, soundEngineInstance };
 }

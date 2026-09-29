@@ -1,25 +1,21 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Favicon configuration for browser tab icons -->
     <link rel="icon" type="image/png" href="assets/fav.png" />
     <link rel="icon" type="image/x-icon" href="assets/fav.ico" />
     <link rel="manifest" href="manifest.json" />
 
-    <!-- Essential meta tags for responsive design and SEO -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#4dd4ff" />
     <meta name="description" content="Character profiles from the Jura Tempest Federation" />
     <title>Character Profile - Jura Tempest Federation</title>
 
-    <!-- External font imports for enhanced typography -->
     <link
       href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Rajdhani:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Icon libraries for UI elements -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
       rel="stylesheet"
@@ -29,16 +25,13 @@
       rel="stylesheet"
     />
 
-    <!-- Local stylesheet imports -->
     <link rel="stylesheet" href="css/shared.css" />
     <link rel="stylesheet" href="css/character.css" />
 
-    <!-- GSAP animation library & ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/animations.js"></script>
 
-    <!-- JavaScript for visual effects loaded with defer for performance -->
     <script src="js/utils/SoundEngine.js" defer></script>
     <script src="js/components/CommandPalette.js" defer></script>
     <script src="js/components/GreatSageWidget.js" defer></script>
@@ -175,7 +168,6 @@
       </div>
     </noscript>
 
-    <!-- Loading screen displayed during page initialization -->
     <div class="loading-screen" id="loading-screen">
       <div class="loading-orb">
         <div class="loading-inner"></div>
@@ -186,22 +178,17 @@
       </div>
     </div>
 
-    <!-- Dynamic background visual effects for enhanced user experience -->
     <div class="starfield" id="starfield"></div>
     <div class="character-background" id="character-background"></div>
     <div class="particles" id="particles"></div>
     <div class="floating-elements" id="floating-elements"></div>
 
-    <!-- Scroll progress indicator -->
     <div class="scroll-indicator" id="scroll-indicator"></div>
 
     <main-navigation></main-navigation>
 
-    <!-- Main content container for character profile display -->
     <main class="character-profile-container">
-      <!-- Profile header with navigation and action buttons -->
       <header class="profile-header-nav">
-        <!-- Back navigation button to return to codex -->
         <button
           class="back-button"
           onclick="window.location.href = 'codex.html'"
@@ -209,7 +196,6 @@
         >
           <span class="back-icon">← Back to Codex</span>
         </button>
-        <!-- Character action buttons for sharing, comparing, and downloading -->
         <div class="character-actions">
           <button class="action-button" onclick="shareCharacter()" title="Share Character">
             <span>🔗</span>
@@ -230,34 +216,27 @@
         </div>
       </header>
 
-      <!-- Tab navigation for different character information sections -->
       <nav class="profile-tabs">
-        <!-- Overview tab showing basic character information -->
         <button class="profile-tab active" data-tab="overview">
           <span class="tab-icon">�</span>
           <span class="tab-text">Overview</span>
         </button>
-        <!-- Biography tab with character backstory -->
         <button class="profile-tab" data-tab="biography">
           <span class="tab-icon">📜</span>
           <span class="tab-text">Biography</span>
         </button>
-        <!-- Analysis tab with character worldbuilding details -->
         <button class="profile-tab" data-tab="worldbuilding">
           <span class="tab-icon">🌍</span>
           <span class="tab-text">Analysis</span>
         </button>
-        <!-- Abilities tab showing character skills and powers -->
         <button class="profile-tab" data-tab="skills">
           <span class="tab-icon">⚔️</span>
           <span class="tab-text">Abilities</span>
         </button>
-        <!-- Relationships tab displaying character connections -->
         <button class="profile-tab" data-tab="relationships">
           <span class="tab-icon">🤝</span>
           <span class="tab-text">Relations</span>
         </button>
-        <!-- Cultural impact tab showing character influence -->
         <button class="profile-tab" data-tab="cultural">
           <span class="tab-icon">🏛️</span>
           <span class="tab-text"
@@ -267,13 +246,10 @@
         </button>
       </nav>
 
-      <!-- Profile content section populated dynamically by JavaScript -->
       <section class="profile-content" id="profile-content">
-        <!-- Content will be loaded by character.js -->
       </section>
     </main>
 
-    <!-- Site footer with branding and developer information -->
     <footer
       class="main-footer"
       style="
@@ -286,7 +262,6 @@
         class="footer-content"
         style="grid-template-columns: 1fr 1fr; text-align: left; gap: 2rem; align-items: center"
       >
-        <!-- Footer branding section -->
         <div class="footer-brand" style="align-items: flex-start">
           <div class="footer-brand-header">
             <div class="footer-logo"></div>
@@ -297,13 +272,10 @@
           </div>
         </div>
 
-        <!-- Footer information and credits section -->
         <div class="footer-info" style="text-align: right">
-          <!-- Copyright and attribution information -->
           <div class="footer-copyright">© 2025 Tensura Chronicles</div>
           <div class="footer-version">Inspired by "That Time I Got Reincarnated as a Slime"</div>
 
-          <!-- Developer credit section with styling -->
           <div
             style="
               margin: 0.5rem 0;
@@ -316,7 +288,6 @@
               backdrop-filter: blur(5px);
             "
           >
-            <!-- Animated glow effect for developer credit -->
             <div
               style="
                 position: absolute;
@@ -333,7 +304,6 @@
                 animation: footerGlow 3s ease-in-out infinite;
               "
             ></div>
-            <!-- Developer name and GitHub link -->
             <div style="font-size: 0.85rem; color: var(--text-light)">
               🧠 Brain + 💻 Keyboard =
               <a
@@ -342,7 +312,6 @@
                 >Divyansh Garg</a
               >
             </div>
-            <!-- Decorative stars -->
             <div
               style="
                 font-size: 1rem;
@@ -354,12 +323,10 @@
             </div>
           </div>
 
-          <!-- Social media links section -->
           <div
             class="footer-social"
             style="justify-content: flex-end; gap: 0.6rem; margin: 0.5rem 0"
           >
-            <!-- GitHub repository link -->
             <a
               href="https://github.com/Divyansh3105"
               class="social-link"
@@ -376,7 +343,6 @@
                 "
               ></i>
             </a>
-            <!-- LinkedIn profile link -->
             <a
               href="https://www.linkedin.com/in/divyanshgarg3105/"
               class="social-link"
@@ -395,7 +361,6 @@
             </a>
           </div>
 
-          <!-- Inspirational quote footer message -->
           <div
             style="
               font-size: 0.75rem;
@@ -411,12 +376,10 @@
       </div>
     </footer>
 
-    <!-- JavaScript imports for page functionality and performance -->
-    <script src="js/performance-optimizer.js"></script>
-    <script src="js/game-state-optimized.js"></script>
+    <script src="js/perf.js"></script>
+    <script src="js/game-state.js"></script>
     <script src="js/character.js"></script>
 
-    <!-- Debug script for URL parameter handling -->
     <script>
       window.addEventListener("load", () => {
         const urlParams = new URLSearchParams(window.location.search);

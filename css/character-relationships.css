@@ -1,6 +1,5 @@
 ﻿/* ========== ENHANCED RELATIONSHIPS SECTION ========== */
 
-/* Relationships Overview Dashboard */
 .relationships-overview-dashboard {
   margin-bottom: 2.5rem;
   padding: 2rem;
@@ -57,7 +56,6 @@
   letter-spacing: 0.5px;
 }
 
-/* Relationship Network Visualization */
 .relationship-network-container {
   margin: 3rem 0;
   padding: 2rem;
@@ -247,7 +245,6 @@
   letter-spacing: 0.5px;
 }
 
-/* Enhanced Relationship Categories */
 .relationships-categories-enhanced {
   display: flex;
   flex-direction: column;
@@ -335,7 +332,6 @@
   font-weight: 600;
 }
 
-/* Relationship Cards Grid */
 .relationship-cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -646,7 +642,6 @@
   box-shadow: 0 5px 15px rgba(77, 212, 255, 0.3);
 }
 
-/* Relationship Insights */
 .relationship-insights {
   margin-top: 3rem;
   padding: 2rem;
@@ -749,7 +744,6 @@
   line-height: 1.6;
 }
 
-/* Empty State */
 .relationships-empty-state {
   text-align: center;
   padding: 4rem 2rem;
@@ -773,9 +767,6 @@
   font-size: 1rem;
 }
 
-/* ========== CULTURAL IMPACT SECTION ========== */
-
-/* Cultural Impact Header */
 .cultural-impact-header {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
   border: 3px solid var(--character-primary, rgba(77, 212, 255, 0.5));
@@ -851,7 +842,6 @@
   font-weight: 600;
 }
 
-/* Cultural Sections */
 .cultural-section {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
@@ -895,7 +885,6 @@
   font-style: italic;
 }
 
-/* World Influence Section */
 .influence-content {
   display: flex;
   flex-direction: column;
@@ -950,7 +939,6 @@
   font-size: 0.95rem;
 }
 
-/* Philosophy Section */
 .philosophy-content {
   padding: 1rem 0;
 }
@@ -992,7 +980,6 @@
   z-index: 1;
 }
 
-/* Leadership Section */
 .leadership-content {
   display: flex;
   flex-direction: column;
@@ -1054,7 +1041,6 @@
   line-height: 1.4;
 }
 
-/* Alternate Scenario Section */
 .alternate-scenario-content {
   padding: 1rem 0;
 }
@@ -1136,7 +1122,6 @@
   animation: pulse 2s ease-in-out infinite;
 }
 
-/* Legacy Summary */
 .legacy-summary-section {
   background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05));
   border: 3px solid rgba(255, 215, 0, 0.4);
@@ -1174,7 +1159,6 @@
   margin: 0 auto;
 }
 
-/* Cultural Empty State */
 .cultural-empty-state {
   text-align: center;
   padding: 4rem 2rem;
@@ -1198,4 +1182,3 @@
   font-size: 1rem;
 }
 
-/* ========== PROFILE HEADER ========== */

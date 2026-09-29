@@ -1,22 +1,15 @@
-/* 1. Foundational layout, shared cards, navigation, tabs */
 @import url("character-base.css");
 
-/* 2. Relationships network, stat cards, relationship categories */
 @import url("character-relationships.css");
 
-/* 3. Profile header, image, power indicator, profile sections */
 @import url("character-profile-header.css");
 
-/* 4. Skills overview, categories, cards, synergies, modals */
 @import url("character-skills.css");
 
-/* 5. Battle stats, power level, evolution timeline, comparison modal */
 @import url("character-battle-evolution.css");
 
-/* 6. Overview hero, biography, quotes, stat boxes */
 @import url("character-overview-bio.css");
 
-/* 7. Theme variables, animations, accessibility, tooltips, loading, FAB */
 @import url("character-misc.css");
 
 /* 8. All @media breakpoints, print, prefers-reduced-motion, high-contrast */

@@ -185,11 +185,9 @@ class MainNavigation extends HTMLElement {
   }
 
   setActiveLink() {
-    // Get the current filename from URL
     const path = window.location.pathname;
     const page = path.split("/").pop() || "index.html";
 
-    // Find all links in both desktop and mobile navs
     const links = this.querySelectorAll(".nav-links a, .mobile-nav a");
 
     links.forEach((link) => {
@@ -247,7 +245,6 @@ class MainNavigation extends HTMLElement {
     if (sfxBtn) sfxBtn.addEventListener("click", handleSfx);
     if (mobileSfxBtn) mobileSfxBtn.addEventListener("click", handleSfx);
 
-    // Sync initial SFX state
     if (window.SoundEngine && !window.SoundEngine.isEnabled) {
       if (sfxIcon) sfxIcon.textContent = "🔇";
       if (mobileSfxIcon) mobileSfxIcon.textContent = "🔇 Toggle SFX";
@@ -255,7 +252,6 @@ class MainNavigation extends HTMLElement {
   }
 }
 
-// Define the custom element
 if (typeof customElements !== "undefined" && !customElements.get("main-navigation")) {
   customElements.define("main-navigation", MainNavigation);
 }

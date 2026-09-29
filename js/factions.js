@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const modal = document.getElementById("faction-modal");
   const modalBody = document.getElementById("modal-body");
 
-  // Faction Dependencies Database
   const factionDependencies = {
     "Jura Tempest Federation": ["⚔ Military", "✨ Magic", "🔩 Technology", "🧠 Intelligence"],
     "Armed Nation of Dwargon": ["⚔ Military", "🔩 Technology", "🌾 Agriculture"],
@@ -27,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
     "Lizardmen Tribes": ["⚔ Military", "🌾 Agriculture"],
   };
 
-  // Function to generate faction dependencies HTML
   function generateFactionDependencies(factionName) {
     const dependencies = factionDependencies[factionName];
     if (!dependencies || dependencies.length === 0) return "";
@@ -50,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return dependenciesHTML;
   }
 
-  // Faction Relations Database
   const factionRelations = {
     "Jura Tempest Federation": {
       allied: ["Dwargon", "Blumund", "Ingrassia", "Farmenas"],
@@ -156,7 +153,6 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   };
 
-  // Function to generate faction relations HTML
   function generateFactionRelations(factionName) {
     const relations = factionRelations[factionName];
     if (!relations) return "";
@@ -184,22 +180,18 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="relation-pills">
     `;
 
-    // Add allied relations
     relations.allied.forEach((faction) => {
       relationsHTML += `<span class="relation allied" data-faction="${faction}" title="Allied: Close partnership with ${faction}">${faction}</span>`;
     });
 
-    // Add neutral relations
     relations.neutral.forEach((faction) => {
       relationsHTML += `<span class="relation neutral" data-faction="${faction}" title="Neutral: Diplomatic relations with ${faction}">${faction}</span>`;
     });
 
-    // Add hostile relations
     relations.hostile.forEach((faction) => {
       relationsHTML += `<span class="relation hostile" data-faction="${faction}" title="Hostile: Active conflict with ${faction}">${faction}</span>`;
     });
 
-    // Add unknown relations
     relations.unknown.forEach((faction) => {
       relationsHTML += `<span class="relation unknown" data-faction="${faction}" title="Unknown: Unclear relations with ${faction}">${faction}</span>`;
     });
@@ -212,13 +204,11 @@ document.addEventListener("DOMContentLoaded", () => {
     return relationsHTML;
   }
 
-  // Check if required elements exist
   if (!modal || !modalBody) {
     console.warn("Modal elements not found, modal functionality disabled");
     return;
   }
 
-  // Add modal functionality to expand buttons
   cards.forEach((card) => {
     const expandBtn = card.querySelector(".expand-btn");
     if (expandBtn) {
@@ -228,7 +218,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Function to open faction modal
   function openFactionModal(card) {
     if (!modal || !modalBody) {
       console.warn("Modal elements not available");
@@ -241,7 +230,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const powerSnapshot = card.querySelector(".power-snapshot");
     const factionDetails = card.querySelector(".faction-details");
 
-    // Build modal content
     let modalContent = `
       <div class="modal-faction-header">
         <div>
@@ -253,7 +241,6 @@ document.addEventListener("DOMContentLoaded", () => {
       <p class="modal-faction-summary">${factionSummary}</p>
     `;
 
-    // Add power snapshot if it exists
     if (powerSnapshot) {
       const powerItems = powerSnapshot.querySelectorAll(".power-item");
       modalContent += `
@@ -286,13 +273,11 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
     }
 
-    // Add detailed sections if they exist
     if (factionDetails) {
       const detailSections = factionDetails.querySelectorAll(".detail-section");
       if (detailSections.length > 0) {
         modalContent += `<div class="modal-detail-sections">`;
 
-        // Prioritize timeline section to appear first
         const timelineSection = Array.from(detailSections).find((section) =>
           section.classList.contains("timeline-section")
         );
@@ -302,7 +287,6 @@ document.addEventListener("DOMContentLoaded", () => {
             !section.classList.contains("relations-section")
         );
 
-        // Add timeline section first if it exists
         if (timelineSection) {
           const title = timelineSection.querySelector("h4")?.textContent || "";
           const timelineDiv = timelineSection.querySelector(".mini-timeline");
@@ -317,13 +301,10 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
 
-        // Add faction relations section (dynamically generated)
         modalContent += generateFactionRelations(factionName);
 
-        // Add faction dependencies section (dynamically generated)
         modalContent += generateFactionDependencies(factionName);
 
-        // Add other sections
         otherSections.forEach((section) => {
           const title = section.querySelector("h4")?.textContent || "";
           const list = section.querySelector("ul");
@@ -363,7 +344,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     } else {
-      // If no faction details exist, still add the relations section
       modalContent += `<div class="modal-detail-sections">`;
       modalContent += generateFactionRelations(factionName);
       modalContent += `</div>`;
@@ -373,17 +353,14 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.classList.add("active");
     document.body.style.overflow = "hidden";
 
-    // Add click handlers for relation pills (future functionality)
     const relationPills = modal.querySelectorAll(".relation[data-faction]");
     relationPills.forEach((pill) => {
       pill.addEventListener("click", (e) => {
         const targetFaction = e.target.dataset.faction;
-        // Future: Open modal for the clicked faction
         findAndOpenFactionModal(targetFaction);
       });
     });
 
-    // Animate power bars after modal opens
     setTimeout(() => {
       const modalPowerBars = modal.querySelectorAll(".modal-power-bar div");
       modalPowerBars.forEach((bar) => {
@@ -393,12 +370,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 100);
   }
 
-  // Function to find and open faction modal by name
   function findAndOpenFactionModal(factionName) {
-    // Normalize faction names for matching
     const normalizedTarget = factionName.toLowerCase();
 
-    // Find the faction card that matches
     const targetCard = Array.from(cards).find((card) => {
       const cardName = card.querySelector("h2")?.textContent.toLowerCase() || "";
       return (
@@ -412,20 +386,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     if (targetCard) {
-      // Close current modal first
       closeFactionModal();
 
-      // Open new modal after a brief delay
       setTimeout(() => {
         openFactionModal(targetCard);
       }, 300);
     } else {
       console.warn(`Faction not found: ${factionName}`);
-      // Could show a toast notification here
     }
   }
 
-  // Enhanced filter functionality
   function filterFactions() {
     const search = searchInput ? searchInput.value.toLowerCase() : "";
     const type = typeFilter ? typeFilter.value : "all";
@@ -457,14 +427,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Update results count
     updateResultsCount(visibleCount, cards.length);
 
-    // Show/hide no results message
     showNoResultsMessage(visibleCount);
   }
 
-  // Add results counter with more detailed info
   function updateResultsCount(visible, total) {
     let counter = document.getElementById("resultsCounter");
     if (!counter) {
@@ -483,14 +450,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     counter.textContent = `Showing ${visible} of ${total} ${typeText}${relationText}`;
 
-    // Add animation when count changes
     counter.style.animation = "none";
     setTimeout(() => {
       counter.style.animation = "pulse 2s ease-in-out infinite";
     }, 10);
   }
 
-  // Show/hide no results message
   function showNoResultsMessage(visibleCount) {
     const grid = document.querySelector(".factions-grid");
     let noResultsMsg = document.getElementById("noResultsMessage");
@@ -511,14 +476,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Other DOMContentLoaded handlers below call these from outside this closure
   window.filterFactions = filterFactions;
 
-  // Event listeners
   if (searchInput) {
     searchInput.addEventListener("input", filterFactions);
 
-    // Add keyboard navigation and shortcuts
     searchInput.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         searchInput.value = "";
@@ -537,10 +499,8 @@ document.addEventListener("DOMContentLoaded", () => {
     relationFilter.addEventListener("change", filterFactions);
   }
 
-  // Initialize results counter
   updateResultsCount(cards.length, cards.length);
 
-  // Close modal when clicking outside
   if (modal) {
     modal.addEventListener("click", (e) => {
       if (e.target === modal) {
@@ -549,7 +509,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Close modal with Escape key
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && modal && modal.classList.contains("active")) {
       closeFactionModal();
@@ -569,9 +528,7 @@ function closeFactionModal() {
 // Export global function
 window.closeFactionModal = closeFactionModal;
 
-// Scroll to Top Button Functionality
 document.addEventListener("DOMContentLoaded", () => {
-  // Create scroll to top button
   const scrollBtn = document.createElement("div");
   scrollBtn.className = "scroll-to-top";
   scrollBtn.setAttribute("aria-label", "Scroll to top");
@@ -579,7 +536,6 @@ document.addEventListener("DOMContentLoaded", () => {
   scrollBtn.setAttribute("tabindex", "0");
   document.body.appendChild(scrollBtn);
 
-  // Show/hide scroll button based on scroll position
   window.addEventListener("scroll", () => {
     if (window.pageYOffset > 300) {
       scrollBtn.classList.add("visible");
@@ -588,7 +544,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Scroll to top on click
   scrollBtn.addEventListener("click", () => {
     window.scrollTo({
       top: 0,
@@ -596,7 +551,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Keyboard accessibility
   scrollBtn.addEventListener("keypress", (e) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
@@ -608,7 +562,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Enhanced card animations on scroll
 const observerOptions = {
   threshold: 0.1,
   rootMargin: "0px 0px -50px 0px",
@@ -623,7 +576,6 @@ const cardObserver = new IntersectionObserver((entries) => {
   });
 }, observerOptions);
 
-// Observe all faction cards
 document.addEventListener("DOMContentLoaded", () => {
   if (window.TempestAnimations) {
     window.TempestAnimations.animateScrollReveal(".faction-card", { y: 35, duration: 0.6, stagger: 0.1 });
@@ -638,7 +590,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Add smooth reveal animation for power bars when cards become visible
 const powerBarObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -660,7 +611,6 @@ const powerBarObserver = new IntersectionObserver(
 document.addEventListener("DOMContentLoaded", () => {
   const factionCards = document.querySelectorAll(".faction-card");
   factionCards.forEach((card) => {
-    // Reset power bars to 0 width initially
     const powerBars = card.querySelectorAll(".power-bar div");
     powerBars.forEach((bar) => {
       bar.style.width = "0";
@@ -669,7 +619,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Add keyboard navigation for faction cards
 document.addEventListener("DOMContentLoaded", () => {
   const cards = document.querySelectorAll(".faction-card");
 
@@ -687,7 +636,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Enhanced modal close with escape key (already exists but enhanced)
 document.addEventListener("keydown", (e) => {
   const modal = document.getElementById("faction-modal");
   if (e.key === "Escape" && modal && modal.classList.contains("active")) {
@@ -695,14 +643,12 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-// Clear Filters Button Functionality
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("searchInput");
   const typeFilter = document.getElementById("typeFilter");
   const relationFilter = document.getElementById("relationFilter");
   const controlsElement = document.querySelector(".factions-controls");
 
-  // Create clear filters button
   const clearBtn = document.createElement("button");
   clearBtn.className = "clear-filters-btn";
   clearBtn.textContent = "✕ Clear Filters";
@@ -712,7 +658,6 @@ document.addEventListener("DOMContentLoaded", () => {
     controlsElement.appendChild(clearBtn);
   }
 
-  // Function to check if any filters are active
   function checkActiveFilters() {
     const hasSearch = searchInput && searchInput.value.trim() !== "";
     const hasTypeFilter = typeFilter && typeFilter.value !== "all";
@@ -725,28 +670,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Clear all filters
   clearBtn.addEventListener("click", () => {
     if (searchInput) searchInput.value = "";
     if (typeFilter) typeFilter.value = "all";
     if (relationFilter) relationFilter.value = "all";
 
-    // Trigger filter update
     if (window.filterFactions) {
       window.filterFactions();
     }
 
-    // Hide clear button
     clearBtn.classList.remove("visible");
 
-    // Add feedback animation
     clearBtn.style.animation = "none";
     setTimeout(() => {
       clearBtn.style.animation = "";
     }, 10);
   });
 
-  // Monitor filter changes
   if (searchInput) {
     searchInput.addEventListener("input", checkActiveFilters);
   }
@@ -757,11 +697,9 @@ document.addEventListener("DOMContentLoaded", () => {
     relationFilter.addEventListener("change", checkActiveFilters);
   }
 
-  // Initial check
   checkActiveFilters();
 });
 
-// Add tooltips to power items
 document.addEventListener("DOMContentLoaded", () => {
   const powerItems = document.querySelectorAll(".power-item");
 
@@ -781,7 +719,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Add smooth scroll behavior for internal links
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
@@ -797,12 +734,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Add visual feedback for card interactions
 document.addEventListener("DOMContentLoaded", () => {
   const cards = document.querySelectorAll(".faction-card");
 
   cards.forEach((card) => {
-    // Add ripple effect on click
     card.addEventListener("click", function (e) {
       const ripple = document.createElement("div");
       ripple.className = "ripple-effect";
@@ -831,13 +766,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// @keyframes ripple is defined in shared.css — no injection needed
 
-console.log("✨ Factions page UI enhancements loaded successfully!");
-
-// ===== ENHANCED UI IMPROVEMENTS =====
-
-// Add smooth entrance animations for cards
 document.addEventListener("DOMContentLoaded", () => {
   const cards = document.querySelectorAll(".faction-card");
 
@@ -846,11 +775,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Enhanced filter with smooth transitions
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("searchInput");
 
-  // Add debounce to search for better performance
   let searchTimeout;
   if (searchInput) {
     searchInput.addEventListener("input", () => {
@@ -864,7 +791,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Add particle effect on card hover
 document.addEventListener("DOMContentLoaded", () => {
   const cards = document.querySelectorAll(".faction-card");
 
@@ -900,7 +826,6 @@ document.addEventListener("DOMContentLoaded", () => {
       card.style.position = "relative";
       card.appendChild(particle);
 
-      // Animate particle
       particle.animate(
         [
           {
@@ -923,12 +848,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Enhanced modal animations
 document.addEventListener("DOMContentLoaded", () => {
   const modal = document.getElementById("faction-modal");
 
   if (modal) {
-    // Add stagger animation to modal sections
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.type === "childList" && modal.classList.contains("active")) {
@@ -947,10 +870,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Add keyboard shortcuts
 document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("keydown", (e) => {
-    // Ctrl/Cmd + K to focus search
     if ((e.ctrlKey || e.metaKey) && e.key === "k") {
       e.preventDefault();
       const searchInput = document.getElementById("searchInput");
@@ -960,7 +881,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Ctrl/Cmd + Shift + C to clear filters
     if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === "C") {
       e.preventDefault();
       const clearBtn = document.querySelector(".clear-filters-btn");
@@ -971,7 +891,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Enhanced scroll animations
 document.addEventListener("DOMContentLoaded", () => {
   const observerOptions = {
     threshold: 0.15,
@@ -988,7 +907,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }, observerOptions);
 
-  // Observe faction cards
   const cards = document.querySelectorAll(".faction-card");
   cards.forEach((card) => {
     card.style.opacity = "0";
@@ -998,7 +916,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Add tooltip for power bars
 document.addEventListener("DOMContentLoaded", () => {
   const powerItems = document.querySelectorAll(".power-item");
 
@@ -1018,12 +935,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Enhanced card interaction feedback
 document.addEventListener("DOMContentLoaded", () => {
   const cards = document.querySelectorAll(".faction-card");
 
   cards.forEach((card) => {
-    // Add subtle tilt effect on mouse move
     card.addEventListener("mousemove", (e) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -1044,7 +959,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Add loading state to modal
 document.addEventListener("DOMContentLoaded", () => {
   const originalOpenModal = window.openFactionModal;
 
@@ -1065,7 +979,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Enhanced power bar animations
 document.addEventListener("DOMContentLoaded", () => {
   const animatePowerBars = (container) => {
     const powerBars = container.querySelectorAll(".power-bar div");
@@ -1081,7 +994,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // Animate power bars when cards become visible
   const cardObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -1098,9 +1010,7 @@ document.addEventListener("DOMContentLoaded", () => {
   cards.forEach((card) => cardObserver.observe(card));
 });
 
-// Add smooth scroll behavior
 document.addEventListener("DOMContentLoaded", () => {
-  // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
@@ -1115,7 +1025,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Add visual feedback for active filters
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("searchInput");
   const typeFilter = document.getElementById("typeFilter");
@@ -1142,6 +1051,4 @@ document.addEventListener("DOMContentLoaded", () => {
   if (relationFilter) relationFilter.addEventListener("change", updateFilterVisuals);
 });
 
-console.log("✨ Enhanced UI improvements loaded successfully!");
 
-// ===== END OF ENHANCED UI IMPROVEMENTS =====

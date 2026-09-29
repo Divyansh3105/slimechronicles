@@ -7,12 +7,10 @@
 
 /* ========== CURSOR STYLES - COMPREHENSIVE FIX ========== */
 
-/* Base cursor for all elements */
 * {
   cursor: url("/assets/cursor.cur"), auto;
 }
 
-/* Default cursor for html and body */
 html,
 body {
   cursor: url("/assets/cursor.cur"), auto !important;
@@ -26,7 +24,6 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Interactive elements - pointer cursor */
 a,
 button,
 input[type="button"],
@@ -73,7 +70,6 @@ select,
   cursor: url("../assets/pointer.cur"), pointer !important;
 }
 
-/* Interactive elements on hover */
 a:hover,
 button:hover,
 input[type="button"]:hover,
@@ -85,7 +81,6 @@ select:hover,
   cursor: url("../assets/pointer.cur"), pointer !important;
 }
 
-/* Text input elements */
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -100,7 +95,6 @@ textarea,
   cursor: url("/assets/cursor.cur"), text !important;
 }
 
-/* Button child elements inherit pointer cursor */
 button *,
 .primary-button *,
 .secondary-button *,
@@ -120,7 +114,6 @@ a *,
   pointer-events: none !important;
 }
 
-/* Disabled elements */
 button:disabled,
 input:disabled,
 select:disabled,
@@ -131,7 +124,6 @@ textarea:disabled,
   opacity: 0.6;
 }
 
-/* Special cursor types */
 .resizable,
 textarea.resizable {
   cursor: url("/assets/cursor.cur"), se-resize !important;
@@ -149,9 +141,7 @@ body.loading * {
   cursor: url("/assets/cursor.cur"), wait !important;
 }
 
-/* CSS custom properties for consistent theming */
 :root {
-  /* Default Rimuru Theme */
   --primary-blue: #4dd4ff;
   --primary-dark: #0a0e27;
   --secondary-dark: #151b3d;
@@ -179,7 +169,6 @@ body.loading * {
   --vh: 1vh;
 }
 
-/* Veldora Theme */
 [data-theme="veldora"] {
   --primary-blue: #ffd700;
   --primary-dark: #1a1a0d;
@@ -191,7 +180,6 @@ body.loading * {
   --border-subtle: #403a1a;
 }
 
-/* Benimaru Theme */
 [data-theme="benimaru"] {
   --primary-blue: #ff3366;
   --primary-dark: #1a0a0f;
@@ -203,7 +191,6 @@ body.loading * {
   --border-subtle: #401a24;
 }
 
-/* Milim Theme */
 [data-theme="milim"] {
   --primary-blue: #ff66b2;
   --primary-dark: #1a0d15;
@@ -214,7 +201,6 @@ body.loading * {
   --slime-blue: #ff66b2;
   --border-subtle: #401a2d;
 }
-/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -240,7 +226,6 @@ body.loading * {
   background: var(--primary-dark);
 }
 
-/* Loading screen overlay with animated elements */
 .loading-screen {
   position: fixed;
   top: 0;
@@ -302,7 +287,6 @@ body.loading * {
   animation: loadingBar 2s ease-in-out infinite;
 }
 
-/* Loading animation keyframes */
 @keyframes loadingPulse {
   0%,
   100% {
@@ -345,7 +329,6 @@ body.loading * {
   }
 }
 
-/* Main body styling with layered background effects */
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background:
@@ -370,7 +353,6 @@ body > * {
   pointer-events: auto;
 }
 
-/* Animated background particles and visual effects */
 .particles,
 .starfield,
 body::before {
@@ -380,7 +362,6 @@ body::before {
   z-index: 1;
 }
 
-/* Grid overlay pattern for background texture */
 body::before {
   content: "";
   position: fixed;
@@ -392,7 +373,6 @@ body::before {
   pointer-events: none;
   z-index: 2;
 }
-/* Floating particle container */
 .particles {
   position: fixed;
   top: 0;
@@ -404,7 +384,6 @@ body::before {
   will-change: transform;
   transform: translate3d(0, 0, 0);
 }
-/* Individual particle styling with color variants */
 .particle {
   position: absolute;
   width: 3px;
@@ -417,7 +396,6 @@ body::before {
   will-change: transform;
   transform: translate3d(0, 0, 0);
 }
-/* Starfield background container */
 .starfield {
   position: fixed;
   inset: 0;
@@ -452,7 +430,6 @@ body::before {
   box-shadow: 0 0 10px var(--glow-gold);
 }
 
-/* Rotating magic circle background decoration */
 .magic-circle {
   position: fixed;
   width: 600px;
@@ -477,7 +454,6 @@ body::before {
   inset: 50px;
   border-style: dashed;
 }
-/* Animation keyframes for visual effects */
 @keyframes twinkleOptimized {
   0%,
   100% {
@@ -648,7 +624,6 @@ body::before {
     opacity: 0;
   }
 }
-/* Main navigation bar with backdrop blur */
 .main-nav {
   position: relative;
   z-index: 1000;
@@ -684,7 +659,6 @@ body::before {
   background: linear-gradient(135deg, rgba(10, 14, 39, 0.98), rgba(21, 27, 61, 0.95));
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
-/* Navigation brand logo and text */
 .nav-brand {
   display: flex;
   align-items: center;
@@ -719,7 +693,6 @@ body::before {
   transform: scale(1.1);
   filter: drop-shadow(0 0 15px var(--glow-blue));
 }
-/* Desktop navigation links container */
 .nav-links {
   display: flex;
   gap: 0.5rem;
@@ -809,7 +782,6 @@ body::before {
     transform: translateY(-3px) rotate(5deg);
   }
 }
-/* Mobile menu toggle button */
 .mobile-menu-toggle {
   display: none;
   flex-direction: column;
@@ -877,7 +849,6 @@ body.mobile-nav-active * {
   -webkit-overflow-scrolling: auto !important;
 }
 
-/* Full-screen mobile navigation overlay */
 .mobile-nav {
   position: fixed;
   top: 0;
@@ -1113,7 +1084,6 @@ body.mobile-nav-active * {
 .nav-progress.visible {
   opacity: 1;
 }
-/* Button styling variants for different use cases */
 .primary-button,
 .secondary-button,
 .tertiary-button {
@@ -1200,7 +1170,6 @@ body.mobile-nav-active * {
   position: relative;
   z-index: 2;
 }
-/* Specialized buttons for character cards */
 .view-profile-button,
 .view-details-button,
 .recruit-button {
@@ -1247,7 +1216,6 @@ body.mobile-nav-active * {
 .recruit-button:active {
   transform: translateY(-1px) scale(0.98);
 }
-/* Page title with gradient text effect */
 .page-title {
   font-size: 3rem;
   text-align: center;
@@ -1275,7 +1243,6 @@ body.mobile-nav-active * {
   }
 }
 
-/* Premium Toggle Switch */
 .switch {
   position: relative;
   display: inline-block;
@@ -1339,7 +1306,6 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-/* Custom scrollbar styling for webkit browsers */
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
@@ -1403,7 +1369,6 @@ html {
   scrollbar-color: rgba(77, 212, 255, 0.8) rgba(21, 27, 61, 0.6);
 }
 
-/* Main footer with gradient border and backdrop effects */
 .main-footer {
   background: linear-gradient(
     135deg,
@@ -1464,7 +1429,6 @@ html {
   pointer-events: none;
 }
 
-/* Footer content grid layout */
 .footer-content {
   max-width: 1400px;
   margin: 0 auto;
@@ -1475,7 +1439,6 @@ html {
   align-items: start;
 }
 
-/* Footer brand section with logo and text */
 .footer-brand {
   display: flex;
   flex-direction: column;
@@ -1490,7 +1453,6 @@ html {
   gap: 1rem;
 }
 
-/* Animated footer logo with glow effects */
 .footer-logo {
   width: 50px;
   height: 50px;
@@ -1570,7 +1532,6 @@ html {
   margin-top: 0.5rem;
 }
 
-/* Social media links with hover effects */
 .social-link {
   display: inline-flex;
   align-items: center;
@@ -1654,9 +1615,6 @@ html {
   }
 }
 
-/* ========== MOBILE RESPONSIVE STYLES ========== */
-
-/* Mobile navigation breakpoints and responsive design */
 @media (max-width: 1023px) {
   .main-nav {
     padding: 1rem 1.5rem;
@@ -1671,9 +1629,6 @@ html {
   }
 }
 
-/* ========== ENHANCED MOBILE RESPONSIVE STYLES ========== */
-
-/* Tablet and small desktop adjustments */
 @media (max-width: 767px) {
   .main-nav {
     padding: 0.75rem 1rem;
@@ -1714,21 +1669,18 @@ html {
     height: 2rem;
   }
 
-  /* Improve mobile menu toggle */
   .mobile-menu-toggle {
     min-width: 44px;
     min-height: 44px;
     touch-action: manipulation;
   }
 
-  /* Better mobile nav close button */
   .mobile-nav-close {
     top: max(1rem, env(safe-area-inset-top, 1rem));
     right: max(1rem, env(safe-area-inset-right, 1rem));
   }
 }
 
-/* Mobile phone optimizations */
 @media (max-width: 479px) {
   .main-nav {
     padding: 0.5rem 0.75rem;
@@ -1794,7 +1746,6 @@ html {
   }
 }
 
-/* Extra small screen adjustments */
 @media (max-width: 360px) {
   .mobile-nav {
     padding-top: 3rem;
@@ -1823,7 +1774,6 @@ html {
   }
 }
 
-/* Button responsive styling adjustments */
 @media (max-width: 767px) {
   .primary-button,
   .secondary-button,
@@ -1849,7 +1799,6 @@ html {
   }
 }
 
-/* Footer responsive layout changes */
 @media (max-width: 1023px) {
   .footer-content {
     grid-template-columns: 1fr 1fr;
@@ -1920,7 +1869,6 @@ html {
   }
 }
 
-/* Page title responsive font sizing */
 @media (max-width: 767px) {
   .page-title {
     font-size: 2.2rem;
@@ -1967,7 +1915,6 @@ html {
   cursor: url("/assets/cursor.cur"), auto !important;
 }
 
-/* Ensure cursor works on dynamically added elements */
 .dynamic-content,
 .dynamic-content * {
   cursor: inherit !important;
@@ -1979,7 +1926,6 @@ html {
 .dynamic-content .clickable {
   cursor: url("../assets/pointer.cur"), pointer !important;
 }
-/* ========== AUDIO CONTROLS STYLING ========== */
 
 .audio-controls {
   position: absolute;
@@ -1999,7 +1945,6 @@ html {
   animation: audioControlsSlideIn 0.8s ease-out;
 }
 
-/* Hide audio controls when mobile nav is active */
 body.mobile-nav-active .audio-controls {
   opacity: 0;
   pointer-events: none;
@@ -2013,7 +1958,6 @@ body.mobile-nav-active .audio-controls {
   transform: translateY(-1px);
 }
 
-/* Audio toggle button */
 .audio-toggle {
   background: none;
   border: none;
@@ -2046,7 +1990,6 @@ body.mobile-nav-active .audio-controls {
   opacity: 0.7;
 }
 
-/* Volume control slider */
 .volume-control {
   display: flex;
   align-items: center;
@@ -2109,7 +2052,6 @@ body.mobile-nav-active .audio-controls {
   box-shadow: 0 0 15px var(--glow-cyan);
 }
 
-/* Volume level indicator */
 .volume-level {
   font-size: 0.8rem;
   color: var(--text-secondary);
@@ -2117,7 +2059,6 @@ body.mobile-nav-active .audio-controls {
   text-align: center;
 }
 
-/* Audio loading indicator */
 .audio-loading {
   display: none;
   width: 16px;
@@ -2128,7 +2069,6 @@ body.mobile-nav-active .audio-controls {
   animation: audioLoadingSpin 1s linear infinite;
 }
 
-/* Animations */
 @keyframes audioControlsSlideIn {
   from {
     opacity: 0;
@@ -2159,7 +2099,6 @@ body.mobile-nav-active .audio-controls {
   }
 }
 
-/* Mobile responsive adjustments */
 @media (max-width: 767px) {
   .audio-controls {
     top: 4.5rem; /* Moved down below mobile navbar (from 1rem) */
@@ -2202,9 +2141,6 @@ body.mobile-nav-active .audio-controls {
   }
 }
 
-/* ========== CURSOR DEBUGGING & TESTING ========== */
-
-/* ========== SCROLL REVEAL ANIMATIONS ========== */
 .reveal-on-scroll {
   opacity: 0;
   transform: translateY(30px);
@@ -2237,7 +2173,6 @@ body.mobile-nav-active .audio-controls {
   }
 }
 
-/* ========== SKELETON LOADING STATES ========== */
 @keyframes skeleton-shimmer {
   0% {
     background-position: -200% 0;
@@ -2313,7 +2248,6 @@ body.mobile-nav-active .audio-controls {
   width: 100%;
 }
 
-/* ========== 3D INTERACTIVE TILT EFFECT ========== */
 .has-3d-tilt {
   transform-style: preserve-3d;
   will-change: transform;
@@ -3602,6 +3536,4 @@ body.mobile-nav-active .audio-controls {
   color: #8da4c4;
   line-height: 1.4;
 }
-
-
 

@@ -1,23 +1,19 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Favicon configuration for browser tab icons -->
     <link rel="icon" type="image/png" href="assets/fav.png" />
     <link rel="icon" type="image/x-icon" href="assets/fav.ico" />
     <link rel="manifest" href="manifest.json" />
 
-    <!-- Essential meta tags for responsive design and character encoding -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Federation Overview - Jura Tempest</title>
 
-    <!-- External font imports for enhanced typography -->
     <link
       href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Rajdhani:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Icon libraries for UI elements -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
       rel="stylesheet"
@@ -27,16 +23,13 @@
       rel="stylesheet"
     />
 
-    <!-- Local stylesheet imports -->
     <link rel="stylesheet" href="css/shared.css" />
     <link rel="stylesheet" href="css/overview.css" />
 
-    <!-- GSAP animation library & ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/animations.js"></script>
 
-    <!-- JavaScript for visual effects loaded with defer for performance -->
     <script src="js/utils/SoundEngine.js" defer></script>
     <script src="js/components/CommandPalette.js" defer></script>
     <script src="js/components/GreatSageWidget.js" defer></script>
@@ -173,7 +166,6 @@
       </div>
     </noscript>
 
-    <!-- Loading screen displayed during page initialization -->
     <div class="loading-screen" id="loading-screen">
       <div class="loading-orb">
         <div class="loading-inner"></div>
@@ -184,7 +176,6 @@
       </div>
     </div>
 
-    <!-- Background visual effects for enhanced user experience -->
     <div class="starfield" id="starfield"></div>
     <div class="magic-circle" style="top: 20%; left: 80%"></div>
     <div
@@ -195,16 +186,12 @@
 
     <main-navigation></main-navigation>
 
-    <!-- Main content area containing all page sections -->
     <main class="main-content">
-      <!-- Decorative floating orbs for visual enhancement -->
       <div class="floating-orb"></div>
       <div class="floating-orb"></div>
       <div class="floating-orb"></div>
 
-      <!-- Hero section with federation introduction and branding -->
       <div class="hero-welcome">
-        <!-- Main welcome content with title and description -->
         <div class="welcome-content">
           <h1 class="welcome-title">Jura Tempest Federation</h1>
           <p class="welcome-description">
@@ -213,7 +200,6 @@
             demographics, economic performance, and strategic capabilities that have established
             Tempest as a major continental power under the leadership of Demon Lord Rimuru Tempest.
           </p>
-          <!-- Interactive badges highlighting key federation attributes -->
           <div class="welcome-badges">
             <div class="badge" tabindex="0" role="button" aria-label="Federal Republic Information">
               <span class="badge-icon">🏛️</span>
@@ -243,13 +229,11 @@
             </div>
           </div>
         </div>
-        <!-- Visual element featuring federation emblem with animated rings -->
         <div class="welcome-visual">
           <div class="federation-emblem" tabindex="0" role="button" aria-label="Federation Emblem">
             <div class="emblem-core">
               <img src="assets/federation.jpg" alt="Jura Tempest Federation" class="emblem-image" />
             </div>
-            <!-- Animated concentric rings around the emblem -->
             <div class="emblem-rings">
               <div class="ring outer"></div>
               <div class="ring middle"></div>
@@ -259,7 +243,6 @@
         </div>
       </div>
 
-      <!-- ================= FEDERATION PILLARS ================= -->
       <section class="federation-pillars">
         <h2 class="pillars-title">Pillars of the Jura Tempest Federation</h2>
         <p class="pillars-subtitle">
@@ -298,15 +281,12 @@
           </a>
         </div>
       </section>
-      <!-- ====================================================== -->
 
-      <!-- ================= KEY FIGURES AT A GLANCE ================= -->
       <section class="key-figures-section">
         <h2 class="section-title">Key Figures at a Glance</h2>
         <p class="section-subtitle">The pillars upon which the Jura Tempest Federation stands.</p>
 
         <div class="key-figures-grid">
-          <!-- Rimuru -->
           <a href="character.html?id=rimuru" class="key-figure-card supreme">
             <div class="figure-icon">👑</div>
             <div class="figure-info">
@@ -315,7 +295,6 @@
             </div>
           </a>
 
-          <!-- Benimaru -->
           <a href="character.html?id=benimaru" class="key-figure-card military">
             <div class="figure-icon">⚔️</div>
             <div class="figure-info">
@@ -324,7 +303,6 @@
             </div>
           </a>
 
-          <!-- Shion -->
           <a href="character.html?id=shion" class="key-figure-card enforcement">
             <div class="figure-icon">🩸</div>
             <div class="figure-info">
@@ -333,7 +311,6 @@
             </div>
           </a>
 
-          <!-- Diablo -->
           <a href="character.html?id=diablo" class="key-figure-card diplomacy">
             <div class="figure-icon">🕶️</div>
             <div class="figure-info">
@@ -343,25 +320,19 @@
           </a>
         </div>
       </section>
-      <!-- ========================================================== -->
 
-      <!-- Section title for federation analysis -->
       <h2 class="section-title">Federation Analysis</h2>
 
-      <!-- Federation status summary with current state and capabilities -->
       <div class="state-summary mobile-stack">
-        <!-- Primary status card showing current federation state -->
         <div class="state-card primary mobile-full-width">
           <div class="state-header">
             <h3 class="state-title">Current Federation Status</h3>
-            <!-- Status indicator with visual feedback -->
             <div class="state-status">
               <div class="status-indicator stable"></div>
               <span>Stable & Prosperous</span>
             </div>
           </div>
           <div class="state-content">
-            <!-- Detailed description of federation's current state -->
             <p class="state-description">
               The Jura Tempest Federation has established itself as a major continental power
               through strategic governance, technological advancement, and diplomatic excellence.
@@ -369,7 +340,6 @@
               inclusive policies that have fostered unprecedented growth and stability in the
               region.
             </p>
-            <!-- Key highlights showcasing federation strengths -->
             <div class="state-highlights mobile-stack">
               <div class="highlight-item">
                 <span class="highlight-icon">�</span>
@@ -391,11 +361,9 @@
           </div>
         </div>
 
-        <!-- Secondary card detailing key strengths and performance metrics -->
         <div class="state-card secondary mobile-full-width">
           <div class="state-header">
             <h3 class="state-title">Key Strengths & Capabilities</h3>
-            <!-- Overall performance rating display -->
             <div class="strength-rating">
               <span class="rating-label">Overall Performance</span>
               <div class="rating-display">
@@ -403,9 +371,7 @@
               </div>
             </div>
           </div>
-          <!-- Detailed breakdown of strength categories -->
           <div class="strength-areas">
-            <!-- Governance and administration capabilities -->
             <div class="strength-category">
               <div class="strength-header">
                 <span class="strength-icon">🏛️</span>
@@ -417,7 +383,6 @@
                 participation
               </p>
             </div>
-            <!-- Economic performance metrics -->
             <div class="strength-category">
               <div class="strength-header">
                 <span class="strength-icon">�</span>
@@ -428,7 +393,6 @@
                 Robust economy with diversified sectors and sustainable growth patterns
               </p>
             </div>
-            <!-- Research and development capabilities -->
             <div class="strength-category">
               <div class="strength-header">
                 <span class="strength-icon">🔬</span>
@@ -439,7 +403,6 @@
                 Advanced research facilities and innovation programs driving technological progress
               </p>
             </div>
-            <!-- International relations and diplomacy -->
             <div class="strength-category">
               <div class="strength-header">
                 <span class="strength-icon">🌍</span>
@@ -454,9 +417,7 @@
         </div>
       </div>
 
-      <!-- Key statistics grid displaying federation metrics -->
       <div class="nation-grid mobile-animate">
-        <!-- Population statistics card -->
         <div
           class="stat-card gold mobile-full-width"
           id="population-card"
@@ -472,7 +433,6 @@
           <div class="stat-subtext">Federation Citizens</div>
         </div>
 
-        <!-- Military and defense statistics card -->
         <div
           class="stat-card crimson mobile-full-width"
           id="military-card"
@@ -488,7 +448,6 @@
           <div class="stat-subtext">Security & Defense Forces</div>
         </div>
 
-        <!-- Economic classification and status card -->
         <div
           class="stat-card cyan mobile-full-width"
           id="economy-card"
@@ -504,7 +463,6 @@
           <div class="stat-subtext">High-income developed nation</div>
         </div>
 
-        <!-- Technology advancement index card -->
         <div
           class="stat-card purple mobile-full-width"
           id="technology-card"
@@ -521,16 +479,13 @@
         </div>
       </div>
 
-      <!-- Real-world impact statistics section -->
       <div class="by-numbers-section">
         <h2 class="section-title">By the Numbers</h2>
         <p class="section-subtitle">
           Real-world impact of "That Time I Got Reincarnated as a Slime"
         </p>
 
-        <!-- Statistics grid showing franchise performance metrics -->
         <div class="numbers-grid">
-          <!-- Anime series statistics card -->
           <div
             class="number-card anime-card"
             tabindex="0"
@@ -541,7 +496,6 @@
               <div class="number-icon">📺</div>
               <div class="number-category">Anime Series</div>
             </div>
-            <!-- Anime performance metrics -->
             <div class="number-stats">
               <div class="stat-item">
                 <div class="stat-label">Episodes Aired</div>
@@ -561,7 +515,6 @@
             </div>
           </div>
 
-          <!-- Light novel publication statistics card -->
           <div
             class="number-card novel-card"
             tabindex="0"
@@ -572,7 +525,6 @@
               <div class="number-icon">📚</div>
               <div class="number-category">Light Novel</div>
             </div>
-            <!-- Novel publication and sales metrics -->
             <div class="number-stats">
               <div class="stat-item">
                 <div class="stat-label">Copies Sold</div>
@@ -592,7 +544,6 @@
             </div>
           </div>
 
-          <!-- Revenue and commercial impact statistics card -->
           <div
             class="number-card revenue-card"
             tabindex="0"
@@ -603,7 +554,6 @@
               <div class="number-icon">💰</div>
               <div class="number-category">Revenue Impact</div>
             </div>
-            <!-- Commercial success and market reach metrics -->
             <div class="number-stats">
               <div class="stat-item">
                 <div class="stat-label">Revenue Generated</div>
@@ -626,7 +576,6 @@
       </div>
     </main>
 
-    <!-- Site footer with branding and developer information -->
     <footer
       class="main-footer"
       style="
@@ -639,7 +588,6 @@
         class="footer-content"
         style="grid-template-columns: 1fr 1fr; text-align: left; gap: 2rem; align-items: center"
       >
-        <!-- Footer branding section -->
         <div class="footer-brand" style="align-items: flex-start">
           <div class="footer-brand-header">
             <div class="footer-logo"></div>
@@ -650,13 +598,10 @@
           </div>
         </div>
 
-        <!-- Footer information and credits section -->
         <div class="footer-info" style="text-align: right">
-          <!-- Copyright and attribution information -->
           <div class="footer-copyright">© 2025 Tensura Chronicles</div>
           <div class="footer-version">Inspired by "That Time I Got Reincarnated as a Slime"</div>
 
-          <!-- Developer credit section with styling -->
           <div
             style="
               margin: 0.5rem 0;
@@ -669,7 +614,6 @@
               backdrop-filter: blur(5px);
             "
           >
-            <!-- Animated glow effect for developer credit -->
             <div
               style="
                 position: absolute;
@@ -686,7 +630,6 @@
                 animation: footerGlow 3s ease-in-out infinite;
               "
             ></div>
-            <!-- Developer name and GitHub link -->
             <div style="font-size: 0.85rem; color: var(--text-light)">
               🧠 Brain + 💻 Keyboard =
               <a
@@ -695,7 +638,6 @@
                 >Divyansh Garg</a
               >
             </div>
-            <!-- Decorative stars -->
             <div
               style="
                 font-size: 1rem;
@@ -707,12 +649,10 @@
             </div>
           </div>
 
-          <!-- Social media links section -->
           <div
             class="footer-social"
             style="justify-content: flex-end; gap: 0.6rem; margin: 0.5rem 0"
           >
-            <!-- GitHub repository link -->
             <a
               href="https://github.com/Divyansh3105"
               class="social-link"
@@ -729,7 +669,6 @@
                 "
               ></i>
             </a>
-            <!-- LinkedIn profile link -->
             <a
               href="https://www.linkedin.com/in/divyanshgarg3105/"
               class="social-link"
@@ -748,7 +687,6 @@
             </a>
           </div>
 
-          <!-- Inspirational quote footer message -->
           <div
             style="
               font-size: 0.75rem;
@@ -764,7 +702,6 @@
       </div>
     </footer>
 
-    <!-- JavaScript imports for page functionality -->
     <script src="js/overview.js"></script>
   </body>
 </html>
