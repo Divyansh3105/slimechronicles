@@ -582,7 +582,6 @@ function initMobileOptimizations() {
     // Enable passive touch event listeners for better scroll performance
     document.addEventListener("touchstart", function () {}, { passive: true });
     document.addEventListener("touchmove", function () {}, { passive: true });
-
   }
 }
 function initIntersectionObserver() {

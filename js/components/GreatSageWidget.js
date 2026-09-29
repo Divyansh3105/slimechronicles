@@ -21,37 +21,53 @@ class GreatSageWidget extends HTMLElement {
   initKnowledge() {
     return [
       {
-        patterns: ["rimuru skill", "ultimate skill", "raphael", "beelzebuth", "uriel", "ciel", "skills of rimuru"],
-        response: "Notice: Individual Rimuru Tempest possesses the following core Ultimate Skills:\n1. Raphael (Lord of Wisdom) / Manas Ciel: Thought Acceleration (1,000,000x), Parallel Operation, All of Creation, Future Attack Prediction.\n2. Beelzebuth (Lord of Gluttony): Predation, Stomach, Isolation, Supply, Food Chain, Soul Consumption.\n3. Uriel (Lord of Vows): Spatial Domination, Universal Barrier, Law Manipulation.\n4. Veldora (Storm King): Summon Storm Dragon, Release Storm Dragon, Storm Magic."
+        patterns: [
+          "rimuru skill",
+          "ultimate skill",
+          "raphael",
+          "beelzebuth",
+          "uriel",
+          "ciel",
+          "skills of rimuru",
+        ],
+        response:
+          "Notice: Individual Rimuru Tempest possesses the following core Ultimate Skills:\n1. Raphael (Lord of Wisdom) / Manas Ciel: Thought Acceleration (1,000,000x), Parallel Operation, All of Creation, Future Attack Prediction.\n2. Beelzebuth (Lord of Gluttony): Predation, Stomach, Isolation, Supply, Food Chain, Soul Consumption.\n3. Uriel (Lord of Vows): Spatial Domination, Universal Barrier, Law Manipulation.\n4. Veldora (Storm King): Summon Storm Dragon, Release Storm Dragon, Storm Magic.",
       },
       {
         patterns: ["strongest demon lord", "octagram", "guy", "milim", "power ranking"],
-        response: "Report: Among the Octagram (Eight Star Demon Lords), Guy Crimson (Lord of Darkness) and Milim Nava (Destroyer) rank at the pinnacle with ancient combat experience exceeding 20,000 years. Chancellor Rimuru Tempest has attained parity with both following the Harvest Festival and True Dragon evolution."
+        response:
+          "Report: Among the Octagram (Eight Star Demon Lords), Guy Crimson (Lord of Darkness) and Milim Nava (Destroyer) rank at the pinnacle with ancient combat experience exceeding 20,000 years. Chancellor Rimuru Tempest has attained parity with both following the Harvest Festival and True Dragon evolution.",
       },
       {
         patterns: ["ep", "existence value", "power level", "magicule count", "what is ep"],
-        response: "Analysis: Existence Value (EP) is the quantitative metric measuring an entity's total magical energy, physical power, and equipment potency. Examples:\n• Guy Crimson: ~40,000,000+ EP (with World-class weapon)\n• True Dragon Veldora: 88,126,579 EP\n• Rimuru Tempest: ~10,000,000+ base EP (80,000,000+ when releasing Veldora & Velgrynd)\n• Diablo: 6,666,666 EP"
+        response:
+          "Analysis: Existence Value (EP) is the quantitative metric measuring an entity's total magical energy, physical power, and equipment potency. Examples:\n• Guy Crimson: ~40,000,000+ EP (with World-class weapon)\n• True Dragon Veldora: 88,126,579 EP\n• Rimuru Tempest: ~10,000,000+ base EP (80,000,000+ when releasing Veldora & Velgrynd)\n• Diablo: 6,666,666 EP",
       },
       {
         patterns: ["veldora vs guy", "guy vs veldora", "who wins veldora guy"],
-        response: "Tactical Assessment: In past historical engagements, Guy Crimson repeatedly neutralized True Dragon Veldora due to Guy's Ultimate Skill 'Lucifer' and superior mastery over combat arts, despite Veldora possessing higher total magicule volume. With Veldora's mastery of 'Faust' and 'Storm King', modern engagements result in high-difficulty stalemate."
+        response:
+          "Tactical Assessment: In past historical engagements, Guy Crimson repeatedly neutralized True Dragon Veldora due to Guy's Ultimate Skill 'Lucifer' and superior mastery over combat arts, despite Veldora possessing higher total magicule volume. With Veldora's mastery of 'Faust' and 'Storm King', modern engagements result in high-difficulty stalemate.",
       },
       {
         patterns: ["skill synthesis", "how to fuse", "evolution tree", "synthesizer"],
-        response: "Advisory: Skill Synthesis combines two or more compatible skills using High-Speed Calculation to evolve or discover higher-order abilities. For instance, combining [Predator] and [Starving One] during the Orc Disaster yielded Unique Skill [Gluttony], which later ascended to Ultimate Skill [Beelzebuth]."
+        response:
+          "Advisory: Skill Synthesis combines two or more compatible skills using High-Speed Calculation to evolve or discover higher-order abilities. For instance, combining [Predator] and [Starving One] during the Orc Disaster yielded Unique Skill [Gluttony], which later ascended to Ultimate Skill [Beelzebuth].",
       },
       {
         patterns: ["diablo", "noir", "primordial", "black primordial"],
-        response: "Report: Diablo, formerly Noir (The Primordial Black), is the Second Secretary of Tempest and leader of the Black Numbers. Known as the most eccentric of the Seven Primordials, his loyalty to Lord Rimuru is absolute."
+        response:
+          "Report: Diablo, formerly Noir (The Primordial Black), is the Second Secretary of Tempest and leader of the Black Numbers. Known as the most eccentric of the Seven Primordials, his loyalty to Lord Rimuru is absolute.",
       },
       {
         patterns: ["shion", "cook", "master chef", "bodyguard"],
-        response: "Notice: Shion holds the post of Chief Bodyguard and Secretary. Following the resurrection ceremony, her Unique Skill [Cook] / [Master Chef] gained the ability to rewrite the laws of reality to ensure any dish or strike accomplishes its intended outcome."
+        response:
+          "Notice: Shion holds the post of Chief Bodyguard and Secretary. Following the resurrection ceremony, her Unique Skill [Cook] / [Master Chef] gained the ability to rewrite the laws of reality to ensure any dish or strike accomplishes its intended outcome.",
       },
       {
         patterns: ["harvest festival", "demon lord awakening", "how to become demon lord"],
-        response: "Report: The Harvest Festival is triggered when a Demon Lord Seed absorbs 20,000+ human or high-density monster souls. During the Evolution Sleep, biological and spiritual structures restructure, granting immense magicules, skill evolutions, and bestowal of blessings upon all named subordinates via the Soul Corridor."
-      }
+        response:
+          "Report: The Harvest Festival is triggered when a Demon Lord Seed absorbs 20,000+ human or high-density monster souls. During the Evolution Sleep, biological and spiritual structures restructure, granting immense magicules, skill evolutions, and bestowal of blessings upon all named subordinates via the Soul Corridor.",
+      },
     ];
   }
 
@@ -143,7 +159,11 @@ class GreatSageWidget extends HTMLElement {
         voiceBtn.querySelector(".voice-icon").textContent = this.isVoiceEnabled ? "🔊" : "🔇";
         voiceBtn.classList.toggle("active", this.isVoiceEnabled);
         if (window.SoundEngine) window.SoundEngine.play("click");
-        this.typeMessage(this.isVoiceEnabled ? "Notice: Voice modulation synthesis enabled." : "Notice: Voice modulation muted.");
+        this.typeMessage(
+          this.isVoiceEnabled
+            ? "Notice: Voice modulation synthesis enabled."
+            : "Notice: Voice modulation muted."
+        );
       });
     }
 
@@ -252,7 +272,9 @@ class GreatSageWidget extends HTMLElement {
 
     if (this.isVoiceEnabled && typeof window !== "undefined" && "speechSynthesis" in window) {
       window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text.replace(/Notice:|Report:|Analysis:|Advisory:/g, ""));
+      const utterance = new SpeechSynthesisUtterance(
+        text.replace(/Notice:|Report:|Analysis:|Advisory:/g, "")
+      );
       utterance.rate = 1.05;
       utterance.pitch = 1.1;
       window.speechSynthesis.speak(utterance);

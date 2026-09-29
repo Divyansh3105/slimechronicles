@@ -505,40 +505,40 @@ function filterCharacter(character, filter) {
 
 function initializeFilters() {
   if (window.EventBus) {
-    window.EventBus.subscribe('FILTER_CHANGED', (data) => {
-      if (data.type === 'search') searchTerm = data.value;
-      if (data.type === 'category') currentFilter = data.value;
-      if (data.type === 'race') raceFilter = data.value;
-      if (data.type === 'power') powerFilter = data.value;
-      
-      if (data.type === 'category') {
+    window.EventBus.subscribe("FILTER_CHANGED", (data) => {
+      if (data.type === "search") searchTerm = data.value;
+      if (data.type === "category") currentFilter = data.value;
+      if (data.type === "race") raceFilter = data.value;
+      if (data.type === "power") powerFilter = data.value;
+
+      if (data.type === "category") {
         document.querySelectorAll(".filter-tab").forEach((t) => t.classList.remove("active"));
         const activeTab = document.querySelector(`[data-filter="${currentFilter}"]`);
         if (activeTab) activeTab.classList.add("active");
       }
-      
+
       applyFiltersAndRender();
     });
 
-    window.EventBus.subscribe('FILTERS_CLEARED', () => {
+    window.EventBus.subscribe("FILTERS_CLEARED", () => {
       searchTerm = "";
       currentFilter = "all";
       raceFilter = "";
       powerFilter = "";
-      
+
       const searchInput = document.getElementById("character-search");
       if (searchInput) searchInput.value = "";
-      
+
       const rFilter = document.getElementById("race-filter");
       if (rFilter) rFilter.value = "";
-      
+
       const pFilter = document.getElementById("power-filter");
       if (pFilter) pFilter.value = "";
-      
+
       document.querySelectorAll(".filter-tab").forEach((tab) => tab.classList.remove("active"));
       const defaultTab = document.querySelector('[data-filter="all"]');
       if (defaultTab) defaultTab.classList.add("active");
-      
+
       applyFiltersAndRender();
     });
   }
@@ -547,16 +547,27 @@ function initializeFilters() {
   if (searchInput) {
     const debouncedSearch = window.debounce
       ? window.debounce((e) => {
-          if (window.EventBus) window.EventBus.publish('FILTER_CHANGED', { type: 'search', value: e.target.value });
-          else { searchTerm = e.target.value; applyFiltersAndRender(); }
+          if (window.EventBus)
+            window.EventBus.publish("FILTER_CHANGED", { type: "search", value: e.target.value });
+          else {
+            searchTerm = e.target.value;
+            applyFiltersAndRender();
+          }
         }, 300)
       : (() => {
           let timeout;
           return (e) => {
             clearTimeout(timeout);
             timeout = setTimeout(() => {
-              if (window.EventBus) window.EventBus.publish('FILTER_CHANGED', { type: 'search', value: e.target.value });
-              else { searchTerm = e.target.value; applyFiltersAndRender(); }
+              if (window.EventBus)
+                window.EventBus.publish("FILTER_CHANGED", {
+                  type: "search",
+                  value: e.target.value,
+                });
+              else {
+                searchTerm = e.target.value;
+                applyFiltersAndRender();
+              }
             }, 300);
           };
         })();
@@ -568,7 +579,7 @@ function initializeFilters() {
   filterTabs.forEach((tab) => {
     tab.addEventListener("click", () => {
       if (window.EventBus) {
-        window.EventBus.publish('FILTER_CHANGED', { type: 'category', value: tab.dataset.filter });
+        window.EventBus.publish("FILTER_CHANGED", { type: "category", value: tab.dataset.filter });
       } else {
         filterTabs.forEach((t) => t.classList.remove("active"));
         tab.classList.add("active");
@@ -584,22 +595,30 @@ function initializeFilters() {
 
   if (raceSelect) {
     raceSelect.addEventListener("change", (e) => {
-      if (window.EventBus) window.EventBus.publish('FILTER_CHANGED', { type: 'race', value: e.target.value });
-      else { raceFilter = e.target.value; applyFiltersAndRender(); }
+      if (window.EventBus)
+        window.EventBus.publish("FILTER_CHANGED", { type: "race", value: e.target.value });
+      else {
+        raceFilter = e.target.value;
+        applyFiltersAndRender();
+      }
     });
   }
 
   if (powerSelect) {
     powerSelect.addEventListener("change", (e) => {
-      if (window.EventBus) window.EventBus.publish('FILTER_CHANGED', { type: 'power', value: e.target.value });
-      else { powerFilter = e.target.value; applyFiltersAndRender(); }
+      if (window.EventBus)
+        window.EventBus.publish("FILTER_CHANGED", { type: "power", value: e.target.value });
+      else {
+        powerFilter = e.target.value;
+        applyFiltersAndRender();
+      }
     });
   }
 }
 
 function clearAllFilters() {
   if (window.EventBus) {
-    window.EventBus.publish('FILTERS_CLEARED');
+    window.EventBus.publish("FILTERS_CLEARED");
   } else {
     searchTerm = "";
     currentFilter = "all";
@@ -608,10 +627,10 @@ function clearAllFilters() {
 
     const searchInput = document.getElementById("character-search");
     if (searchInput) searchInput.value = "";
-    
+
     const rFilter = document.getElementById("race-filter");
     if (rFilter) rFilter.value = "";
-    
+
     const pFilter = document.getElementById("power-filter");
     if (pFilter) pFilter.value = "";
 
@@ -785,9 +804,13 @@ function closeCharacterModal() {
   const modal = document.getElementById("character-modal");
   if (modal) {
     if (window.TempestAnimations) {
-      window.TempestAnimations.animateModalClose(modal, modal.querySelector(".modal-content"), () => {
-        modal.classList.remove("active");
-      });
+      window.TempestAnimations.animateModalClose(
+        modal,
+        modal.querySelector(".modal-content"),
+        () => {
+          modal.classList.remove("active");
+        }
+      );
     } else {
       modal.style.display = "none";
       modal.classList.remove("active");
@@ -840,7 +863,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   if (window.TempestAnimations) {
-    window.TempestAnimations.animateScrollReveal(".lore-card", { y: 35, duration: 0.6, stagger: 0.15 });
+    window.TempestAnimations.animateScrollReveal(".lore-card", {
+      y: 35,
+      duration: 0.6,
+      stagger: 0.15,
+    });
   }
 
   window.debugCharacters = async () => {
@@ -898,7 +925,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 // Export functions to global window object for external access
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   window.clearAllFilters = clearAllFilters;
   window.openCharacterProfile = openCharacterProfile;
   window.openCharacterModal = openCharacterModal;
@@ -906,9 +933,9 @@ if (typeof window !== 'undefined') {
   window.changePage = changePage;
 }
 
-if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== "undefined" && module.exports) {
   module.exports = {
     generateCharacterImpact,
-    filterCharacter
+    filterCharacter,
   };
 }

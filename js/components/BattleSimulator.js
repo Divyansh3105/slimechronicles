@@ -28,8 +28,14 @@ class BattleSimulator extends HTMLElement {
         epDisplay: "10,000,000+ (80M+ Dragon Release)",
         stats: { magicules: 98, physical: 85, skillTier: 100, defense: 99, battleIQ: 100 },
         ultimateSkills: ["Raphael / Ciel", "Beelzebuth", "Uriel", "Veldora"],
-        resistances: ["Physical Attack Nullification", "Pain Nullification", "Thermal Fluctuation Nullification", "Spiritual Attack Resistance"],
-        loreAdvantage: "Manas: Ciel performs multi-threaded predictive calculations to counter all known physical and magical vectors."
+        resistances: [
+          "Physical Attack Nullification",
+          "Pain Nullification",
+          "Thermal Fluctuation Nullification",
+          "Spiritual Attack Resistance",
+        ],
+        loreAdvantage:
+          "Manas: Ciel performs multi-threaded predictive calculations to counter all known physical and magical vectors.",
       },
       guy: {
         id: "guy",
@@ -40,8 +46,14 @@ class BattleSimulator extends HTMLElement {
         epDisplay: "40,000,000+ (with Genesis Sword)",
         stats: { magicules: 99, physical: 98, skillTier: 99, defense: 96, battleIQ: 98 },
         ultimateSkills: ["Lucifer (Lord of Pride)"],
-        resistances: ["Physical Attack Nullification", "Natural Elements Nullification", "Abnormal Status Nullification", "Spiritual Attack Nullification"],
-        loreAdvantage: "20,000+ years of unvanquished combat mastery and the ability to duplicate any skill witnessed with 'Lucifer'."
+        resistances: [
+          "Physical Attack Nullification",
+          "Natural Elements Nullification",
+          "Abnormal Status Nullification",
+          "Spiritual Attack Nullification",
+        ],
+        loreAdvantage:
+          "20,000+ years of unvanquished combat mastery and the ability to duplicate any skill witnessed with 'Lucifer'.",
       },
       milim: {
         id: "milim",
@@ -52,8 +64,13 @@ class BattleSimulator extends HTMLElement {
         epDisplay: "Infinite (Breeder Reactor)",
         stats: { magicules: 100, physical: 100, skillTier: 96, defense: 98, battleIQ: 82 },
         ultimateSkills: ["Satanael (Lord of Wrath)"],
-        resistances: ["Physical Attack Nullification", "Holy-Demonic Magic Nullification", "Abnormal Status Nullification"],
-        loreAdvantage: "Wrath King Satanael generates infinite magicules in direct proportion to anger."
+        resistances: [
+          "Physical Attack Nullification",
+          "Holy-Demonic Magic Nullification",
+          "Abnormal Status Nullification",
+        ],
+        loreAdvantage:
+          "Wrath King Satanael generates infinite magicules in direct proportion to anger.",
       },
       veldora: {
         id: "veldora",
@@ -64,8 +81,13 @@ class BattleSimulator extends HTMLElement {
         epDisplay: "88,126,579",
         stats: { magicules: 100, physical: 95, skillTier: 92, defense: 94, battleIQ: 88 },
         ultimateSkills: ["Faust (Lord of Investigation)", "Storm King"],
-        resistances: ["Physical Attack Nullification", "Natural Elements Nullification", "Spiritual Attack Resistance"],
-        loreAdvantage: "Probability Manipulation allows converting improbable combat outcomes into guaranteed hits."
+        resistances: [
+          "Physical Attack Nullification",
+          "Natural Elements Nullification",
+          "Spiritual Attack Resistance",
+        ],
+        loreAdvantage:
+          "Probability Manipulation allows converting improbable combat outcomes into guaranteed hits.",
       },
       diablo: {
         id: "diablo",
@@ -76,8 +98,13 @@ class BattleSimulator extends HTMLElement {
         epDisplay: "6,666,666",
         stats: { magicules: 90, physical: 88, skillTier: 95, defense: 92, battleIQ: 96 },
         ultimateSkills: ["Azazel (Lord of Temptation)"],
-        resistances: ["Physical Attack Nullification", "Spiritual Attack Nullification", "Illusion Nullification"],
-        loreAdvantage: "World of Temptation traps opponent's consciousness in an inescapable realm where Diablo controls physical laws."
+        resistances: [
+          "Physical Attack Nullification",
+          "Spiritual Attack Nullification",
+          "Illusion Nullification",
+        ],
+        loreAdvantage:
+          "World of Temptation traps opponent's consciousness in an inescapable realm where Diablo controls physical laws.",
       },
       benimaru: {
         id: "benimaru",
@@ -88,8 +115,13 @@ class BattleSimulator extends HTMLElement {
         epDisplay: "5,000,000+",
         stats: { magicules: 86, physical: 92, skillTier: 88, defense: 84, battleIQ: 90 },
         ultimateSkills: ["Amaterasu (Blazing Sun)"],
-        resistances: ["Thermal Fluctuation Nullification", "Physical Attack Resistance", "Abnormal Status Resistance"],
-        loreAdvantage: "Prominence Acceleration infuses martial strikes with pure stellar nuclear flame."
+        resistances: [
+          "Thermal Fluctuation Nullification",
+          "Physical Attack Resistance",
+          "Abnormal Status Resistance",
+        ],
+        loreAdvantage:
+          "Prominence Acceleration infuses martial strikes with pure stellar nuclear flame.",
       },
       zegion: {
         id: "zegion",
@@ -100,8 +132,13 @@ class BattleSimulator extends HTMLElement {
         epDisplay: "4,988,856",
         stats: { magicules: 88, physical: 96, skillTier: 93, defense: 99, battleIQ: 92 },
         ultimateSkills: ["Mephisto (Lord of Illusion)"],
-        resistances: ["Physical Attack Nullification", "Magical Attack Nullification", "Space-Time Manipulation Resistance"],
-        loreAdvantage: "Exoskeleton forged from Rimuru's Magisteel cells grants near-impenetrable physical and magical deflection."
+        resistances: [
+          "Physical Attack Nullification",
+          "Magical Attack Nullification",
+          "Space-Time Manipulation Resistance",
+        ],
+        loreAdvantage:
+          "Exoskeleton forged from Rimuru's Magisteel cells grants near-impenetrable physical and magical deflection.",
       },
       hinata: {
         id: "hinata",
@@ -113,8 +150,9 @@ class BattleSimulator extends HTMLElement {
         stats: { magicules: 78, physical: 89, skillTier: 86, defense: 82, battleIQ: 94 },
         ultimateSkills: ["Fortuna (Lord of Fortune) / Usurper"],
         resistances: ["Spirit Attack Resistance", "Pain Resistance", "Elemental Resistance"],
-        loreAdvantage: "Seven Celestial Slashes target the spiritual core directly, destroying the soul on the seventh strike."
-      }
+        loreAdvantage:
+          "Seven Celestial Slashes target the spiritual core directly, destroying the soul on the seventh strike.",
+      },
     };
   }
 
@@ -140,9 +178,13 @@ class BattleSimulator extends HTMLElement {
               <div class="sim-fighter-card fighter-a">
                 <label for="selectFighterA">Fighter Alpha</label>
                 <select id="selectFighterA" class="sim-select">
-                  ${Object.values(this.database).map(c => `
+                  ${Object.values(this.database)
+                    .map(
+                      (c) => `
                     <option value="${c.id}" ${c.id === this.charA ? "selected" : ""}>${c.name} (${c.title})</option>
-                  `).join("")}
+                  `
+                    )
+                    .join("")}
                 </select>
                 <div class="fighter-ep-badge" id="epFighterA">EP: Loading...</div>
               </div>
@@ -153,9 +195,13 @@ class BattleSimulator extends HTMLElement {
               <div class="sim-fighter-card fighter-b">
                 <label for="selectFighterB">Fighter Beta</label>
                 <select id="selectFighterB" class="sim-select">
-                  ${Object.values(this.database).map(c => `
+                  ${Object.values(this.database)
+                    .map(
+                      (c) => `
                     <option value="${c.id}" ${c.id === this.charB ? "selected" : ""}>${c.name} (${c.title})</option>
-                  `).join("")}
+                  `
+                    )
+                    .join("")}
                 </select>
                 <div class="fighter-ep-badge" id="epFighterB">EP: Loading...</div>
               </div>
@@ -278,7 +324,7 @@ class BattleSimulator extends HTMLElement {
       { key: "physical", label: "Physical Might" },
       { key: "skillTier", label: "Skill Authority" },
       { key: "defense", label: "Defense/Nullify" },
-      { key: "battleIQ", label: "Battle IQ" }
+      { key: "battleIQ", label: "Battle IQ" },
     ];
 
     const cx = 150;
@@ -287,33 +333,41 @@ class BattleSimulator extends HTMLElement {
     const numAxes = keys.length;
 
     const getPoints = (fighterStats) => {
-      return keys.map((k, i) => {
-        const val = (fighterStats[k.key] || 50) / 100;
-        const angle = (Math.PI * 2 / numAxes) * i - Math.PI / 2;
-        const px = cx + Math.cos(angle) * r * val;
-        const py = cy + Math.sin(angle) * r * val;
-        return `${px.toFixed(1)},${py.toFixed(1)}`;
-      }).join(" ");
+      return keys
+        .map((k, i) => {
+          const val = (fighterStats[k.key] || 50) / 100;
+          const angle = ((Math.PI * 2) / numAxes) * i - Math.PI / 2;
+          const px = cx + Math.cos(angle) * r * val;
+          const py = cy + Math.sin(angle) * r * val;
+          return `${px.toFixed(1)},${py.toFixed(1)}`;
+        })
+        .join(" ");
     };
 
     const pointsA = getPoints(a.stats);
     const pointsB = getPoints(b.stats);
 
-    const axesSvg = keys.map((k, i) => {
-      const angle = (Math.PI * 2 / numAxes) * i - Math.PI / 2;
-      const x2 = cx + Math.cos(angle) * r;
-      const y2 = cy + Math.sin(angle) * r;
-      const lx = cx + Math.cos(angle) * (r + 24);
-      const ly = cy + Math.sin(angle) * (r + 24);
-      return `
+    const axesSvg = keys
+      .map((k, i) => {
+        const angle = ((Math.PI * 2) / numAxes) * i - Math.PI / 2;
+        const x2 = cx + Math.cos(angle) * r;
+        const y2 = cy + Math.sin(angle) * r;
+        const lx = cx + Math.cos(angle) * (r + 24);
+        const ly = cy + Math.sin(angle) * (r + 24);
+        return `
         <line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="rgba(255,255,255,0.15)" stroke-width="1" />
         <text x="${lx}" y="${ly}" fill="#aac8e8" font-size="10" font-family="Rajdhani, sans-serif" text-anchor="middle" dominant-baseline="middle">${k.label}</text>
       `;
-    }).join("");
+      })
+      .join("");
 
-    const rings = [0.25, 0.5, 0.75, 1.0].map(scale => `
+    const rings = [0.25, 0.5, 0.75, 1.0]
+      .map(
+        (scale) => `
       <circle cx="${cx}" cy="${cy}" r="${r * scale}" fill="none" stroke="rgba(77,212,255,0.1)" stroke-width="1" />
-    `).join("");
+    `
+      )
+      .join("");
 
     container.innerHTML = `
       <svg viewBox="0 0 300 300" class="radar-svg" width="100%" height="260">
@@ -343,8 +397,16 @@ class BattleSimulator extends HTMLElement {
     `;
 
     setTimeout(() => {
-      const scoreA = a.stats.magicules * 0.25 + a.stats.skillTier * 0.35 + a.stats.defense * 0.2 + a.stats.battleIQ * 0.2;
-      const scoreB = b.stats.magicules * 0.25 + b.stats.skillTier * 0.35 + b.stats.defense * 0.2 + b.stats.battleIQ * 0.2;
+      const scoreA =
+        a.stats.magicules * 0.25 +
+        a.stats.skillTier * 0.35 +
+        a.stats.defense * 0.2 +
+        a.stats.battleIQ * 0.2;
+      const scoreB =
+        b.stats.magicules * 0.25 +
+        b.stats.skillTier * 0.35 +
+        b.stats.defense * 0.2 +
+        b.stats.battleIQ * 0.2;
 
       let winnerText = "";
       let winnerClass = "";

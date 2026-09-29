@@ -1,4 +1,3 @@
-
 async function getAllSkills() {
   try {
     const basicCharacters = await window.GameState.getAllCharacters();
@@ -768,10 +767,14 @@ function closeSkillDetail() {
   const modal = document.querySelector(".skill-detail-modal"); // Find modal element
   if (modal) {
     if (window.TempestAnimations) {
-      window.TempestAnimations.animateModalClose(modal, modal.querySelector(".skill-detail-content"), () => {
-        document.body.style.overflow = "";
-        modal.remove();
-      });
+      window.TempestAnimations.animateModalClose(
+        modal,
+        modal.querySelector(".skill-detail-content"),
+        () => {
+          document.body.style.overflow = "";
+          modal.remove();
+        }
+      );
     } else {
       modal.classList.remove("active"); // Remove active class for animation
       document.body.style.overflow = "";

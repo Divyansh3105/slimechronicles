@@ -54,9 +54,15 @@ function compareCharacter() {
 
 function downloadProfile() {
   try {
-    const name = document.querySelector(".character-name, .profile-name, h1")?.textContent?.trim() || "Character";
-    const title = document.querySelector(".character-title, .profile-title")?.textContent?.trim() || "";
-    const bio = document.querySelector(".character-bio-text, .bio-content, .overview-content")?.textContent?.trim() || "Jura Tempest Federation Official Record.";
+    const name =
+      document.querySelector(".character-name, .profile-name, h1")?.textContent?.trim() ||
+      "Character";
+    const title =
+      document.querySelector(".character-title, .profile-title")?.textContent?.trim() || "";
+    const bio =
+      document
+        .querySelector(".character-bio-text, .bio-content, .overview-content")
+        ?.textContent?.trim() || "Jura Tempest Federation Official Record.";
     const content = `# 🧬 Jura Tempest Federation - Dossier: ${name}\n\n**Title:** ${title}\n\n## Biography & Records\n${bio}\n\n---\n*Archived from Jura Tempest Federation Archives: Slime Chronicles*`;
     const blob = new Blob([content], { type: "text/markdown;charset=utf-8" });
     const url = URL.createObjectURL(blob);
@@ -309,7 +315,9 @@ function setupTabNavigation() {
         activeSec.classList.add("active");
         if (window.TempestAnimations) {
           window.TempestAnimations.animateCardStagger(
-            activeSec.querySelectorAll(".profile-section, .stat-card, .relationship-card, .skill-item, .hero-stat"),
+            activeSec.querySelectorAll(
+              ".profile-section, .stat-card, .relationship-card, .skill-item, .hero-stat"
+            ),
             { y: 25, duration: 0.4, stagger: 0.06 }
           );
         }

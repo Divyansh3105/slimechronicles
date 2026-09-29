@@ -4,7 +4,7 @@ A fan-made codex for _That Time I Got Reincarnated as a Slime_ (Tensura): charac
 
 Live: https://slimechronicles.netlify.app/
 
-![Overview page](assets/overview.png)
+![Overview page](assets/overview.webp)
 
 ## What's in it
 

@@ -209,7 +209,10 @@ class MainNavigation extends HTMLElement {
     const mobileSfxIcon = this.querySelector("#mobileSfxIcon");
 
     const openSearch = () => {
-      if (typeof toggleMobileMenu === "function" && document.body.classList.contains("mobile-nav-active")) {
+      if (
+        typeof toggleMobileMenu === "function" &&
+        document.body.classList.contains("mobile-nav-active")
+      ) {
         toggleMobileMenu();
       }
       const palette = document.querySelector("command-palette");

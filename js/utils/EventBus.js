@@ -36,10 +36,10 @@ class EventBus {
 }
 
 // Make globally available
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   window.EventBus = new EventBus();
 }
 
-if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== "undefined" && module.exports) {
   module.exports = { EventBus };
 }

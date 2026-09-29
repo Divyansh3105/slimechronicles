@@ -20,18 +20,90 @@ class SkillSynthesizer extends HTMLElement {
 
   initBaseSkills() {
     return [
-      { id: "predator", name: "Predator", type: "Unique", icon: "🌀", desc: "Absorbs targets into the stomach for analysis and mimicry." },
-      { id: "great_sage", name: "Great Sage", type: "Unique", icon: "🧠", desc: "Provides high-speed thought acceleration and comprehensive world analysis." },
-      { id: "degenerate", name: "Degenerate", type: "Unique", icon: "✨", desc: "Enables synthesis and separation of skills and organic matter." },
-      { id: "severer", name: "Severer", type: "Unique", icon: "🗡️", desc: "Enables spatial cutting that bypasses conventional physical defenses." },
-      { id: "starving_one", name: "Starving One", type: "Unique", icon: "🍖", desc: "Endless ravenous hunger that passes abilities down the food chain." },
-      { id: "black_flame", name: "Black Flame", type: "Extra", icon: "🔥", desc: "High-temperature unquenchable dark fire magic." },
-      { id: "black_lightning", name: "Black Lightning", type: "Extra", icon: "⚡", desc: "Devastating localized dark plasma discharge." },
-      { id: "water_blade", name: "Water Blade", type: "Common", icon: "💧", desc: "Pressurized water projectile capable of slicing iron." },
-      { id: "hydraulic_propulsion", name: "Hydraulic Propulsion", type: "Common", icon: "🌊", desc: "High-speed water expulsion for rapid movement." },
-      { id: "coercion", name: "Coercion", type: "Extra", icon: "👁️", desc: "Emits an intimidating aura of magicules to stun weaker foes." },
-      { id: "thought_comm", name: "Thought Communication", type: "Common", icon: "📡", desc: "Telepathic link allowing silent instant messaging." },
-      { id: "shadow_step", name: "Shadow Step", type: "Extra", icon: "👤", desc: "Enables travel through shadow dimensions without physical collision." }
+      {
+        id: "predator",
+        name: "Predator",
+        type: "Unique",
+        icon: "🌀",
+        desc: "Absorbs targets into the stomach for analysis and mimicry.",
+      },
+      {
+        id: "great_sage",
+        name: "Great Sage",
+        type: "Unique",
+        icon: "🧠",
+        desc: "Provides high-speed thought acceleration and comprehensive world analysis.",
+      },
+      {
+        id: "degenerate",
+        name: "Degenerate",
+        type: "Unique",
+        icon: "✨",
+        desc: "Enables synthesis and separation of skills and organic matter.",
+      },
+      {
+        id: "severer",
+        name: "Severer",
+        type: "Unique",
+        icon: "🗡️",
+        desc: "Enables spatial cutting that bypasses conventional physical defenses.",
+      },
+      {
+        id: "starving_one",
+        name: "Starving One",
+        type: "Unique",
+        icon: "🍖",
+        desc: "Endless ravenous hunger that passes abilities down the food chain.",
+      },
+      {
+        id: "black_flame",
+        name: "Black Flame",
+        type: "Extra",
+        icon: "🔥",
+        desc: "High-temperature unquenchable dark fire magic.",
+      },
+      {
+        id: "black_lightning",
+        name: "Black Lightning",
+        type: "Extra",
+        icon: "⚡",
+        desc: "Devastating localized dark plasma discharge.",
+      },
+      {
+        id: "water_blade",
+        name: "Water Blade",
+        type: "Common",
+        icon: "💧",
+        desc: "Pressurized water projectile capable of slicing iron.",
+      },
+      {
+        id: "hydraulic_propulsion",
+        name: "Hydraulic Propulsion",
+        type: "Common",
+        icon: "🌊",
+        desc: "High-speed water expulsion for rapid movement.",
+      },
+      {
+        id: "coercion",
+        name: "Coercion",
+        type: "Extra",
+        icon: "👁️",
+        desc: "Emits an intimidating aura of magicules to stun weaker foes.",
+      },
+      {
+        id: "thought_comm",
+        name: "Thought Communication",
+        type: "Common",
+        icon: "📡",
+        desc: "Telepathic link allowing silent instant messaging.",
+      },
+      {
+        id: "shadow_step",
+        name: "Shadow Step",
+        type: "Extra",
+        icon: "👤",
+        desc: "Enables travel through shadow dimensions without physical collision.",
+      },
     ];
   }
 
@@ -44,8 +116,8 @@ class SkillSynthesizer extends HTMLElement {
           tier: "Unique Skill",
           icon: "🖤",
           desc: "Evolved fusion of Predator and Starving One. Grants infinite stomach storage, soul consumption, and power distribution through the Food Chain network.",
-          subskills: ["Predation", "Stomach", "Isolate", "Mimicry", "Food Chain"]
-        }
+          subskills: ["Predation", "Stomach", "Isolate", "Mimicry", "Food Chain"],
+        },
       },
       {
         inputs: ["predator", "great_sage"],
@@ -54,8 +126,14 @@ class SkillSynthesizer extends HTMLElement {
           tier: "Ultimate Skill (Sin Series)",
           icon: "🌀",
           desc: "Awakened during the Harvest Festival. The ultimate authority over consumption, spiritual decay, and energy assimilation.",
-          subskills: ["Soul Consumption", "Food Chain", "Universal Stomach", "Decomposition", "Isolation"]
-        }
+          subskills: [
+            "Soul Consumption",
+            "Food Chain",
+            "Universal Stomach",
+            "Decomposition",
+            "Isolation",
+          ],
+        },
       },
       {
         inputs: ["great_sage", "degenerate"],
@@ -64,8 +142,14 @@ class SkillSynthesizer extends HTMLElement {
           tier: "Ultimate Skill (Angelic Series)",
           icon: "🧠",
           desc: "The absolute zenith of analytical calculation. Accelerates cognition by 1,000,000x and executes parallel multi-threaded spell casting.",
-          subskills: ["Thought Acceleration", "All of Creation", "Parallel Operation", "Chant Annulment", "Future Attack Prediction"]
-        }
+          subskills: [
+            "Thought Acceleration",
+            "All of Creation",
+            "Parallel Operation",
+            "Chant Annulment",
+            "Future Attack Prediction",
+          ],
+        },
       },
       {
         inputs: ["black_flame", "black_lightning"],
@@ -74,8 +158,8 @@ class SkillSynthesizer extends HTMLElement {
           tier: "Extra / Special Magic",
           icon: "💥",
           desc: "Combines the searing heat of Black Flame with the kinetic devastation of Black Lightning into a single compressed spherical blast.",
-          subskills: ["Hellflare Dome", "Plasma Fusion", "Thermal Expansion"]
-        }
+          subskills: ["Hellflare Dome", "Plasma Fusion", "Thermal Expansion"],
+        },
       },
       {
         inputs: ["severer", "shadow_step"],
@@ -84,8 +168,13 @@ class SkillSynthesizer extends HTMLElement {
           tier: "Ultimate Skill (Angelic Series)",
           icon: "🛡️",
           desc: "Manifests absolute defense through dimensional isolation and grants authority over universal physical and spatial laws.",
-          subskills: ["Universal Barrier", "Spatial Domination", "Law Manipulation", "Boundless Prison"]
-        }
+          subskills: [
+            "Universal Barrier",
+            "Spatial Domination",
+            "Law Manipulation",
+            "Boundless Prison",
+          ],
+        },
       },
       {
         inputs: ["water_blade", "hydraulic_propulsion"],
@@ -94,8 +183,8 @@ class SkillSynthesizer extends HTMLElement {
           tier: "Extra Skill",
           icon: "🌊",
           desc: "Hyper-accelerated micro-thin stream of water capable of severing mountain boulders with zero friction.",
-          subskills: ["Water Slicing", "Sonar Wave", "Pressure Control"]
-        }
+          subskills: ["Water Slicing", "Sonar Wave", "Pressure Control"],
+        },
       },
       {
         inputs: ["coercion", "thought_comm"],
@@ -104,9 +193,9 @@ class SkillSynthesizer extends HTMLElement {
           tier: "Extra / Haki Skill",
           icon: "👑",
           desc: "Infuses the user's aura with commanding will, forcing opponents of lower willpower to submit or collapse unconscious.",
-          subskills: ["Magicule Pressure", "Mental Domination", "Aura Compression"]
-        }
-      }
+          subskills: ["Magicule Pressure", "Mental Domination", "Aura Compression"],
+        },
+      },
     ];
   }
 
@@ -169,7 +258,9 @@ class SkillSynthesizer extends HTMLElement {
           <div class="synth-pool-container">
             <h3 class="synth-pool-title">Available Skill Reagents</h3>
             <div class="synth-pool-grid" id="synthPool">
-              ${this.baseSkills.map(s => `
+              ${this.baseSkills
+                .map(
+                  (s) => `
                 <div class="synth-chip" data-id="${s.id}">
                   <span class="synth-chip-icon">${s.icon}</span>
                   <div class="synth-chip-info">
@@ -177,7 +268,9 @@ class SkillSynthesizer extends HTMLElement {
                     <div class="synth-chip-type ${s.type.toLowerCase()}">${s.type}</div>
                   </div>
                 </div>
-              `).join("")}
+              `
+                )
+                .join("")}
             </div>
           </div>
         </div>
@@ -230,7 +323,7 @@ class SkillSynthesizer extends HTMLElement {
     const fuseBtn = this.querySelector("#synthFuseBtn");
     const resetBtn = this.querySelector("#synthResetBtn");
 
-    chips.forEach(chip => {
+    chips.forEach((chip) => {
       chip.addEventListener("click", () => {
         const id = chip.getAttribute("data-id");
         this.selectSkill(id);
@@ -247,7 +340,7 @@ class SkillSynthesizer extends HTMLElement {
   }
 
   selectSkill(id) {
-    const skill = this.baseSkills.find(s => s.id === id);
+    const skill = this.baseSkills.find((s) => s.id === id);
     if (!skill) return;
 
     if (window.SoundEngine) window.SoundEngine.play("select");
@@ -273,13 +366,15 @@ class SkillSynthesizer extends HTMLElement {
     const fuseBtn = this.querySelector("#synthFuseBtn");
 
     if (elA) {
-      elA.innerHTML = this.slotA ? `
+      elA.innerHTML = this.slotA
+        ? `
         <div class="synth-slot-filled">
           <span class="filled-icon">${this.slotA.icon}</span>
           <div class="filled-name">${this.slotA.name}</div>
           <div class="filled-type">${this.slotA.type}</div>
         </div>
-      ` : `
+      `
+        : `
         <div class="synth-slot-placeholder">
           <span class="slot-plus">+</span>
           <span>Select Skill A</span>
@@ -288,13 +383,15 @@ class SkillSynthesizer extends HTMLElement {
     }
 
     if (elB) {
-      elB.innerHTML = this.slotB ? `
+      elB.innerHTML = this.slotB
+        ? `
         <div class="synth-slot-filled">
           <span class="filled-icon">${this.slotB.icon}</span>
           <div class="filled-name">${this.slotB.name}</div>
           <div class="filled-type">${this.slotB.type}</div>
         </div>
-      ` : `
+      `
+        : `
         <div class="synth-slot-placeholder">
           <span class="slot-plus">+</span>
           <span>Select Skill B</span>
@@ -341,9 +438,10 @@ class SkillSynthesizer extends HTMLElement {
     `;
 
     setTimeout(() => {
-      const match = this.recipes.find(r => 
-        (r.inputs[0] === this.slotA.id && r.inputs[1] === this.slotB.id) ||
-        (r.inputs[1] === this.slotA.id && r.inputs[0] === this.slotB.id)
+      const match = this.recipes.find(
+        (r) =>
+          (r.inputs[0] === this.slotA.id && r.inputs[1] === this.slotB.id) ||
+          (r.inputs[1] === this.slotA.id && r.inputs[0] === this.slotB.id)
       );
 
       if (match) {
@@ -367,7 +465,7 @@ class SkillSynthesizer extends HTMLElement {
             <div class="success-subskills">
               <strong>Sub-Skills Acquired:</strong>
               <div class="subskills-tags">
-                ${match.result.subskills.map(s => `<span class="subskill-tag">✨ ${s}</span>`).join("")}
+                ${match.result.subskills.map((s) => `<span class="subskill-tag">✨ ${s}</span>`).join("")}
               </div>
             </div>
           </div>

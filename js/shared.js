@@ -964,7 +964,6 @@ function observeCursorChanges() {
 document.addEventListener("DOMContentLoaded", () => {
   initializeCursorStyles();
   observeCursorChanges();
-
 });
 
 document.addEventListener("visibilitychange", () => {
@@ -1335,10 +1334,10 @@ window.AudioManager = AudioManager;
 window.audioManager = audioManager;
 window.initializeAudioManager = initializeAudioManager;
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch((err) => {
-      console.warn('ServiceWorker registration failed:', err);
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/sw.js").catch((err) => {
+      console.warn("ServiceWorker registration failed:", err);
     });
   });
 }

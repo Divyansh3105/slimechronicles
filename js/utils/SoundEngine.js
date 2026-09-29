@@ -171,7 +171,7 @@ class SoundEngine {
     [
       { freq: 880, start: 0, dur: 0.28 }, // A5
       { freq: 1318.51, start: 0.12, dur: 0.45 }, // E6
-      { freq: 1760, start: 0.22, dur: 0.55 } // A6
+      { freq: 1760, start: 0.22, dur: 0.55 }, // A6
     ].forEach((tone) => {
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
@@ -287,23 +287,35 @@ class SoundEngine {
     window.addEventListener("pointerdown", unlock, { once: true });
     window.addEventListener("keydown", unlock, { once: true });
 
-    document.addEventListener("pointerenter", (e) => {
-      const target = e.target.closest?.("button, .nav-links a, .nav-brand, .character-card, .skill-card, .codex-card, .btn-action, .theme-btn");
-      if (target) {
-        this.play("hover");
-      }
-    }, true);
-
-    document.addEventListener("click", (e) => {
-      const target = e.target.closest?.("button, .nav-links a, .btn-action, .theme-btn, .close-btn, .modal-close");
-      if (target) {
-        if (target.classList.contains("modal-close") || target.classList.contains("close-btn")) {
-          this.play("closeModal");
-        } else {
-          this.play("click");
+    document.addEventListener(
+      "pointerenter",
+      (e) => {
+        const target = e.target.closest?.(
+          "button, .nav-links a, .nav-brand, .character-card, .skill-card, .codex-card, .btn-action, .theme-btn"
+        );
+        if (target) {
+          this.play("hover");
         }
-      }
-    }, true);
+      },
+      true
+    );
+
+    document.addEventListener(
+      "click",
+      (e) => {
+        const target = e.target.closest?.(
+          "button, .nav-links a, .btn-action, .theme-btn, .close-btn, .modal-close"
+        );
+        if (target) {
+          if (target.classList.contains("modal-close") || target.classList.contains("close-btn")) {
+            this.play("closeModal");
+          } else {
+            this.play("click");
+          }
+        }
+      },
+      true
+    );
   }
 }
 
@@ -311,7 +323,9 @@ const soundEngineInstance = new SoundEngine();
 if (typeof window !== "undefined") {
   window.SoundEngine = soundEngineInstance;
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => soundEngineInstance.attachGlobalListeners());
+    document.addEventListener("DOMContentLoaded", () =>
+      soundEngineInstance.attachGlobalListeners()
+    );
   } else {
     soundEngineInstance.attachGlobalListeners();
   }

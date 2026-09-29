@@ -673,10 +673,11 @@ window.toggleArcSimple = function (arcHeader) {
         content.style.overflow = "visible";
 
         if (window.TempestAnimations) {
-          window.TempestAnimations.animateCardStagger(
-            content.querySelectorAll(".timeline-event"),
-            { y: 20, duration: 0.4, stagger: 0.08 }
-          );
+          window.TempestAnimations.animateCardStagger(content.querySelectorAll(".timeline-event"), {
+            y: 20,
+            duration: 0.4,
+            stagger: 0.08,
+          });
         }
       });
     } else {

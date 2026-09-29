@@ -578,7 +578,11 @@ const cardObserver = new IntersectionObserver((entries) => {
 
 document.addEventListener("DOMContentLoaded", () => {
   if (window.TempestAnimations) {
-    window.TempestAnimations.animateScrollReveal(".faction-card", { y: 35, duration: 0.6, stagger: 0.1 });
+    window.TempestAnimations.animateScrollReveal(".faction-card", {
+      y: 35,
+      duration: 0.6,
+      stagger: 0.1,
+    });
   } else {
     const factionCards = document.querySelectorAll(".faction-card");
     factionCards.forEach((card) => {
@@ -765,7 +769,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-
 
 document.addEventListener("DOMContentLoaded", () => {
   const cards = document.querySelectorAll(".faction-card");
@@ -1050,5 +1053,3 @@ document.addEventListener("DOMContentLoaded", () => {
   if (typeFilter) typeFilter.addEventListener("change", updateFilterVisuals);
   if (relationFilter) relationFilter.addEventListener("change", updateFilterVisuals);
 });
-
-

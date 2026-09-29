@@ -1,7 +1,7 @@
 /**
  * Jura Tempest Federation - Animation Manager
  * Powered by GSAP (GreenSock) & ScrollTrigger
- * 
+ *
  * Provides dynamic card staggers, ScrollTrigger scroll reveals,
  * spring modal animations, stat count-ups, and magnetic hover micro-interactions.
  * Includes graceful fallbacks for environments without GSAP or when reduced motion is preferred.
@@ -178,7 +178,8 @@ class AnimationManager {
       return;
     }
 
-    const modalContent = contentElement || modalElement.querySelector(".modal-content, .modal-body");
+    const modalContent =
+      contentElement || modalElement.querySelector(".modal-content, .modal-body");
 
     window.gsap.killTweensOf([modalElement, modalContent]);
     window.gsap.fromTo(
@@ -221,7 +222,8 @@ class AnimationManager {
       return;
     }
 
-    const modalContent = contentElement || modalElement.querySelector(".modal-content, .modal-body");
+    const modalContent =
+      contentElement || modalElement.querySelector(".modal-content, .modal-body");
 
     if (modalContent) {
       window.gsap.to(modalContent, {
@@ -333,7 +335,10 @@ class AnimationManager {
     const elements = this.resolveElements(targets);
     if (!elements || elements.length === 0) return;
 
-    if (this.prefersReducedMotion || (window.matchMedia && window.matchMedia("(hover: none)").matches)) {
+    if (
+      this.prefersReducedMotion ||
+      (window.matchMedia && window.matchMedia("(hover: none)").matches)
+    ) {
       return;
     }
 
@@ -366,7 +371,7 @@ class AnimationManager {
         const mouseX = e.clientX - rect.left;
         const mouseY = e.clientY - rect.top;
 
-        const rotateY = ((mouseX / width) - 0.5) * (config.maxTiltY * 2);
+        const rotateY = (mouseX / width - 0.5) * (config.maxTiltY * 2);
         const rotateX = (0.5 - mouseY / height) * (config.maxTiltX * 2);
 
         const glareX = Math.round((mouseX / width) * 100);
