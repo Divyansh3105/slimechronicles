@@ -258,13 +258,13 @@
   }
 
   .skill-card-detailed,
-  .skill-card-enhanced {
+  .profile-skill-card {
     padding: 1.5rem;
     transform: none;
   }
 
   .skill-card-detailed:hover,
-  .skill-card-enhanced:hover {
+  .profile-skill-card:hover {
     transform: translateY(-5px) scale(1.01);
   }
 
@@ -431,7 +431,7 @@
     height: 80px;
   }
 
-  .overview-section-enhanced {
+  .overview-section {
     gap: 2rem;
   }
 
@@ -683,7 +683,7 @@
     font-size: 0.95rem;
   }
 
-  .biography-section-enhanced {
+  .biography-section {
     gap: 1.5rem;
   }
 
@@ -730,7 +730,7 @@
     text-align: left;
   }
 
-  .quotes-section-enhanced {
+  .profile-quotes-section {
     padding: 1.5rem 1rem;
   }
 
@@ -754,7 +754,7 @@
     padding: 1rem 0;
   }
 
-  .quote-card-enhanced {
+  .profile-quote-card {
     flex: 0 0 calc(100% - 1rem);
     min-width: calc(100% - 1rem);
     padding: 2rem 1.5rem;
@@ -775,12 +775,12 @@
     right: 0.5rem;
   }
 
-  .quote-text-enhanced {
+  .profile-quote-text {
     font-size: 1.1rem;
     line-height: 1.7;
   }
 
-  .quote-context-enhanced {
+  .profile-quote-context {
     flex-direction: column;
     gap: 0.3rem;
     font-size: 0.9rem;
@@ -864,7 +864,7 @@
     gap: 1rem;
   }
 
-  .relationship-card-enhanced {
+  .rel-card {
     padding: 1.2rem;
   }
 
@@ -877,7 +877,7 @@
     font-size: 1.1rem;
   }
 
-  .category-header-enhanced {
+  .rel-category-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
@@ -887,7 +887,7 @@
     font-size: 2.5rem;
   }
 
-  .category-title-enhanced {
+  .rel-category-title {
     font-size: 1.3rem;
   }
 
@@ -900,7 +900,7 @@
     padding: 1.2rem;
   }
 
-  .card-footer-enhanced {
+  .rel-card-footer {
     flex-direction: column;
   }
 
@@ -1319,7 +1319,7 @@
   }
 
   .skill-card-detailed,
-  .skill-card-enhanced {
+  .profile-skill-card {
     padding: 1.25rem;
   }
 
@@ -1932,7 +1932,7 @@
     font-weight: bold;
   }
 }
-.enhanced-loading {
+.profile-loading {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2197,7 +2197,7 @@
 }
 
 @media (max-width: 480px) {
-  .enhanced-loading {
+  .profile-loading {
     padding: 2rem 1rem;
   }
 
@@ -2450,7 +2450,7 @@
   transform: rotate(45deg);
 }
 
-.enhanced-loading {
+.profile-loading {
   display: flex;
   flex-direction: column;
   align-items: center;

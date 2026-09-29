@@ -1,4 +1,4 @@
-﻿/* ========== ENHANCED RELATIONSHIPS SECTION ========== */
+﻿/* ========== RELATIONSHIPS SECTION ========== */
 
 .relationships-overview-dashboard {
   margin-bottom: 2.5rem;
@@ -245,14 +245,14 @@
   letter-spacing: 0.5px;
 }
 
-.relationships-categories-enhanced {
+.rel-categories {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   margin-top: 3rem;
 }
 
-.relationship-category-enhanced {
+.rel-category {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid rgba(77, 212, 255, 0.3);
   border-radius: 20px;
@@ -260,12 +260,12 @@
   transition: all 0.3s ease;
 }
 
-.relationship-category-enhanced:hover {
+.rel-category:hover {
   border-color: var(--character-primary, var(--primary-blue));
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-.category-header-enhanced {
+.rel-category-header {
   display: flex;
   align-items: center;
   gap: 1.5rem;
@@ -279,37 +279,37 @@
   filter: drop-shadow(0 0 15px var(--character-glow, var(--glow-blue)));
 }
 
-.category-info-enhanced {
+.rel-category-info {
   flex: 1;
 }
 
-.category-title-enhanced {
+.rel-category-title {
   font-family: "Cinzel", serif;
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
 }
 
-.category-title-enhanced.emerald {
+.rel-category-title.emerald {
   color: var(--accent-emerald);
   text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
 }
 
-.category-title-enhanced.crimson {
+.rel-category-title.crimson {
   color: var(--accent-crimson);
   text-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
 }
 
-.category-title-enhanced.gold {
+.rel-category-title.gold {
   color: var(--accent-gold);
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
-.category-title-enhanced.blue {
+.rel-category-title.blue {
   color: var(--primary-blue);
   text-shadow: 0 0 10px rgba(77, 212, 255, 0.5);
 }
 
-.category-title-enhanced.cyan {
+.rel-category-title.cyan {
   color: var(--accent-cyan);
   text-shadow: 0 0 10px rgba(77, 212, 255, 0.5);
 }
@@ -338,7 +338,7 @@
   gap: 1.5rem;
 }
 
-.relationship-card-enhanced {
+.rel-card {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.9), rgba(21, 27, 61, 0.7));
   border: 2px solid rgba(77, 212, 255, 0.2);
   border-radius: 15px;
@@ -363,52 +363,52 @@
   }
 }
 
-.relationship-card-enhanced:hover {
+.rel-card:hover {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
 }
 
-.relationship-card-enhanced.ally {
+.rel-card.ally {
   border-color: rgba(0, 255, 136, 0.3);
 }
 
-.relationship-card-enhanced.ally:hover {
+.rel-card.ally:hover {
   border-color: var(--accent-emerald);
   box-shadow: 0 15px 40px rgba(0, 255, 136, 0.3);
 }
 
-.relationship-card-enhanced.rival {
+.rel-card.rival {
   border-color: rgba(255, 51, 102, 0.3);
 }
 
-.relationship-card-enhanced.rival:hover {
+.rel-card.rival:hover {
   border-color: var(--accent-crimson);
   box-shadow: 0 15px 40px rgba(255, 51, 102, 0.3);
 }
 
-.relationship-card-enhanced.mentor {
+.rel-card.mentor {
   border-color: rgba(255, 215, 0, 0.3);
 }
 
-.relationship-card-enhanced.mentor:hover {
+.rel-card.mentor:hover {
   border-color: var(--accent-gold);
   box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
 }
 
-.relationship-card-enhanced.subordinate {
+.rel-card.subordinate {
   border-color: rgba(77, 212, 255, 0.3);
 }
 
-.relationship-card-enhanced.subordinate:hover {
+.rel-card.subordinate:hover {
   border-color: var(--primary-blue);
   box-shadow: 0 15px 40px rgba(77, 212, 255, 0.3);
 }
 
-.relationship-card-enhanced.friend {
+.rel-card.friend {
   border-color: rgba(77, 212, 255, 0.3);
 }
 
-.relationship-card-enhanced.friend:hover {
+.rel-card.friend:hover {
   border-color: var(--accent-cyan);
   box-shadow: 0 15px 40px rgba(77, 212, 255, 0.3);
 }
@@ -425,11 +425,11 @@
   pointer-events: none;
 }
 
-.relationship-card-enhanced:hover .card-glow-effect {
+.rel-card:hover .card-glow-effect {
   opacity: 1;
 }
 
-.card-header-enhanced {
+.rel-card-header {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -448,7 +448,7 @@
   transition: all 0.3s ease;
 }
 
-.relationship-card-enhanced:hover .character-avatar-medium {
+.rel-card:hover .character-avatar-medium {
   border-color: var(--character-primary, var(--primary-blue));
   box-shadow: 0 0 30px var(--character-glow, var(--glow-blue));
   transform: scale(1.1);
@@ -543,7 +543,7 @@
   color: var(--accent-cyan);
 }
 
-.card-body-enhanced {
+.rel-card-body {
   margin-bottom: 1rem;
   flex: 1;
   display: flex;
@@ -611,7 +611,7 @@
   line-height: 1.6;
 }
 
-.card-footer-enhanced {
+.rel-card-footer {
   display: flex;
   gap: 0.5rem;
   padding-top: 1rem;

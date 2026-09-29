@@ -1823,7 +1823,7 @@ body {
   }
 }
 
-/* Enhanced accessibility and reduced motion support */
+/* Accessibility and reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   .slime-orb,
   .main-logo-icon svg,

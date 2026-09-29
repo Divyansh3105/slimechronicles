@@ -1968,7 +1968,7 @@ body {
   }
 }
 
-.enhanced-particles {
+.overview-particles {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -1976,8 +1976,8 @@ body {
   overflow: hidden;
 }
 
-.enhanced-particles::before,
-.enhanced-particles::after {
+.overview-particles::before,
+.overview-particles::after {
   content: "";
   position: absolute;
   width: 4px;
@@ -1987,13 +1987,13 @@ body {
   animation: particleFloat 8s ease-in-out infinite;
 }
 
-.enhanced-particles::before {
+.overview-particles::before {
   top: 20%;
   left: 10%;
   animation-delay: 0s;
 }
 
-.enhanced-particles::after {
+.overview-particles::after {
   top: 60%;
   right: 15%;
   animation-delay: 4s;
@@ -2073,7 +2073,7 @@ body {
   .magic-circle,
   .particles,
   .starfield,
-  .enhanced-particles {
+  .overview-particles {
     display: none !important;
   }
 
@@ -2104,7 +2104,7 @@ body {
   .floating-orb,
   .magic-circle,
   .particles,
-  .enhanced-particles {
+  .overview-particles {
     display: none !important;
   }
 

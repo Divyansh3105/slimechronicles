@@ -759,7 +759,7 @@ function generateOverviewSection(character) {
   }
 
   return `
-    <div class="profile-section overview-section-enhanced">
+    <div class="profile-section overview-section">
       <!-- Overview Hero Section -->
       <div class="overview-hero">
         <div class="hero-content">
@@ -1141,7 +1141,7 @@ function generateBiographySection(character) {
   }
 
   return `
-    <div class="profile-section biography-section-enhanced">
+    <div class="profile-section biography-section">
       <!-- Biography Header -->
       <div class="biography-header">
         <div class="biography-title-container">
@@ -1234,11 +1234,11 @@ function generateBiographySection(character) {
         }
       </div>
 
-      <!-- Quotes Section Enhanced -->
+      <!-- Quotes section -->
       ${
         character.quotes && character.quotes.length > 0
           ? `
-        <div class="quotes-section-enhanced">
+        <div class="profile-quotes-section">
           <div class="quotes-header">
             <span class="quotes-icon">💬</span>
             <h4 class="quotes-title">Notable Quotes</h4>
@@ -1248,13 +1248,13 @@ function generateBiographySection(character) {
             ${character.quotes
               .map(
                 (quote, index) => `
-              <div class="quote-card-enhanced" data-quote-index="${index}">
+              <div class="profile-quote-card" data-quote-index="${index}">
                 <div class="quote-decoration-left">❝</div>
                 <div class="quote-decoration-right">❞</div>
-                <div class="quote-content-enhanced">
-                  <p class="quote-text-enhanced">${quote.text}</p>
+                <div class="profile-quote-content">
+                  <p class="profile-quote-text">${quote.text}</p>
                   <div class="quote-divider"></div>
-                  <p class="quote-context-enhanced">
+                  <p class="profile-quote-context">
                     <span class="context-label">Context:</span>
                     <span class="context-text">${quote.context}</span>
                   </p>
@@ -1360,7 +1360,7 @@ function scrollToQuote(index) {
   const carousel = document.querySelector(".quotes-carousel");
   if (!carousel) return;
 
-  const quoteCards = carousel.querySelectorAll(".quote-card-enhanced");
+  const quoteCards = carousel.querySelectorAll(".profile-quote-card");
   if (quoteCards[index]) {
     quoteCards[index].scrollIntoView({
       behavior: "smooth",
@@ -1377,7 +1377,7 @@ function updateQuoteIndicators() {
   if (!carousel) return;
 
   const indicators = document.querySelectorAll(".quote-indicator");
-  const quoteCards = carousel.querySelectorAll(".quote-card-enhanced");
+  const quoteCards = carousel.querySelectorAll(".profile-quote-card");
 
   let activeIndex = 0;
   let minDistance = Infinity;
@@ -1496,7 +1496,7 @@ function generateSkillsSection(character) {
             ${skills
               .map(
                 (skill, index) => `
-              <div class="skill-card-enhanced ${skill.type.toLowerCase()}" data-skill-index="${index}">
+              <div class="profile-skill-card ${skill.type.toLowerCase()}" data-skill-index="${index}">
                 <div class="skill-card-glow"></div>
                 <div class="skill-card-header">
                   <div class="skill-card-icon-container">
@@ -1932,8 +1932,8 @@ function generateRelationshipsSection(character) {
       </div>
     </div>
 
-    <!-- Enhanced Relationships Grid -->
-    <div class="relationships-categories-enhanced">
+    <!-- Relationships grid -->
+    <div class="rel-categories">
       ${alliesHTML}
       ${rivalsHTML}
       ${mentorsHTML}
@@ -1961,9 +1961,9 @@ function generateRelationshipCategory(relationships, title, type, icon, color, d
       const cleanName = name.replace(/\s*\(.*?\)\s*/g, "").trim();
 
       return `
-      <div class="relationship-card-enhanced ${type}" data-relationship="${cleanName}" style="animation-delay: ${index * 0.1}s;">
+      <div class="rel-card ${type}" data-relationship="${cleanName}" style="animation-delay: ${index * 0.1}s;">
         <div class="card-glow-effect"></div>
-        <div class="card-header-enhanced">
+        <div class="rel-card-header">
           <div class="character-avatar-medium">
             <img src="${getCharacterImage(cleanName)}"
                  alt="${cleanName}"
@@ -1977,7 +1977,7 @@ function generateRelationshipCategory(relationships, title, type, icon, color, d
             <span class="relationship-type-label ${color}">${type.charAt(0).toUpperCase() + type.slice(1)}</span>
           </div>
         </div>
-        <div class="card-body-enhanced">
+        <div class="rel-card-body">
           <div class="relationship-strength">
             <span class="strength-label">Bond Strength</span>
             <div class="strength-bar">
@@ -1987,7 +1987,7 @@ function generateRelationshipCategory(relationships, title, type, icon, color, d
           </div>
           <p class="relationship-description">${getRelationshipDescription(cleanName, type)}</p>
         </div>
-        <div class="card-footer-enhanced">
+        <div class="rel-card-footer">
           <button class="relationship-action-btn" onclick="navigateToCharacter('${getCharacterId(cleanName)}')" title="View Profile">
             <span>👤</span> View Profile
           </button>
@@ -2001,11 +2001,11 @@ function generateRelationshipCategory(relationships, title, type, icon, color, d
     .join("");
 
   return `
-    <div class="relationship-category-enhanced ${type}">
-      <div class="category-header-enhanced">
+    <div class="rel-category ${type}">
+      <div class="rel-category-header">
         <div class="category-icon-large">${icon}</div>
-        <div class="category-info-enhanced">
-          <h4 class="category-title-enhanced ${color}">${title}</h4>
+        <div class="rel-category-info">
+          <h4 class="rel-category-title ${color}">${title}</h4>
           <p class="category-description">${description}</p>
           <span class="category-count-badge">${relationships.length} ${relationships.length === 1 ? "connection" : "connections"}</span>
         </div>

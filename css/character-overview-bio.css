@@ -113,7 +113,7 @@
   font-weight: 600;
 }
 
-.overview-section-enhanced {
+.overview-section {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
@@ -984,7 +984,7 @@
   }
 }
 
-.biography-section-enhanced {
+.biography-section {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
@@ -1198,7 +1198,7 @@
   box-shadow: 0 20px 60px rgba(255, 51, 102, 0.4);
 }
 
-.quotes-section-enhanced {
+.profile-quotes-section {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 2px solid var(--character-primary, rgba(77, 212, 255, 0.3));
   border-radius: 20px;
@@ -1259,7 +1259,7 @@
   display: none;
 }
 
-.quote-card-enhanced {
+.profile-quote-card {
   flex: 0 0 calc(100% - 2rem);
   min-width: calc(100% - 2rem);
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.95), rgba(21, 27, 61, 0.8));
@@ -1271,7 +1271,7 @@
   transition: all 0.4s ease;
 }
 
-.quote-card-enhanced:hover {
+.profile-quote-card:hover {
   transform: scale(1.02);
   border-color: var(--character-primary, var(--primary-blue));
   box-shadow: 0 15px 50px var(--character-glow, rgba(77, 212, 255, 0.4));
@@ -1297,12 +1297,12 @@
   right: 1rem;
 }
 
-.quote-content-enhanced {
+.profile-quote-content {
   position: relative;
   z-index: 1;
 }
 
-.quote-text-enhanced {
+.profile-quote-text {
   font-size: 1.3rem;
   line-height: 1.8;
   color: rgba(232, 240, 255, 0.95);
@@ -1325,7 +1325,7 @@
   border-radius: 2px;
 }
 
-.quote-context-enhanced {
+.profile-quote-context {
   display: flex;
   align-items: center;
   justify-content: center;
