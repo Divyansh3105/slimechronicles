@@ -1,13 +1,6 @@
-﻿/* ========== SKILLS OVERVIEW ========== */
+﻿/* Skills overview */
 .skills-overview {
   margin-bottom: 2rem;
-}
-
-.skill-stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
-  margin-bottom: 1.5rem;
 }
 
 .skill-stat {
@@ -732,12 +725,6 @@
   animation: modalSlideIn 0.3s ease-out;
 }
 
-.skill-detail-view {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
 .skill-detail-header {
   display: flex;
   align-items: center;
@@ -746,11 +733,6 @@
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.8), rgba(21, 27, 61, 0.6));
   border: 1px solid var(--character-primary, rgba(77, 212, 255, 0.3));
   border-radius: 12px;
-}
-
-.skill-detail-icon {
-  font-size: 3rem;
-  filter: drop-shadow(0 0 15px var(--character-glow, var(--glow-blue)));
 }
 
 .skill-detail-info h4 {
@@ -767,40 +749,18 @@
   font-weight: 600;
 }
 
-.skill-detail-description,
-.skill-detail-stats,
-.skill-detail-applications {
+.skill-detail-description {
   padding: 1rem;
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.6), rgba(21, 27, 61, 0.4));
   border: 1px solid var(--character-primary, rgba(77, 212, 255, 0.2));
   border-radius: 12px;
 }
 
-.skill-detail-description h5,
-.skill-detail-stats h5,
-.skill-detail-applications h5 {
+.skill-detail-description h5 {
   font-family: "Cinzel", serif;
   color: var(--character-primary, var(--primary-blue));
   margin: 0 0 1rem 0;
   font-size: 1.2rem;
-}
-
-.skill-stat-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid rgba(77, 212, 255, 0.1);
-}
-
-.skill-stat-item:last-child {
-  border-bottom: none;
-}
-
-.skill-stat-item .stat-value {
-  color: var(--character-primary, var(--primary-blue));
-  font-weight: bold;
-  font-family: "Rajdhani", sans-serif;
 }
 
 .skill-modal {
@@ -1022,19 +982,4 @@
   box-shadow:
     0 15px 50px var(--character-glow, rgba(77, 212, 255, 0.5)),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-.skill-card-bonus {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background: linear-gradient(
-    135deg,
-    var(--character-primary, rgba(77, 212, 255, 0.15)),
-    transparent
-  );
-  border: 1px solid var(--character-primary, rgba(77, 212, 255, 0.3));
-  border-radius: 8px;
-  font-size: 0.9rem;
-  color: var(--character-primary, var(--primary-blue));
-  font-weight: 600;
 }

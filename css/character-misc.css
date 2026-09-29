@@ -1,4 +1,4 @@
-﻿/* ========== THEME VARIABLES ========== */
+﻿/* Theme variables */
 [data-theme="dark"] {
   --primary-dark: #0a0e27;
   --primary-blue: #4dd4ff;
@@ -95,22 +95,6 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-.slime-bounce {
-  animation: slimeBounce 3s ease-in-out infinite;
-}
-
-.shadow-pulse .character-background::before {
-  animation: shadowPulse 4s ease-in-out infinite;
-}
-
-.energy-burst .floating-element {
-  animation: energyBurst 2s ease-in-out infinite;
-}
-
-.storm-swirl .particles {
-  animation: stormSwirl 8s linear infinite;
 }
 
 .animate-in {
@@ -274,45 +258,10 @@
   box-shadow: 0 0 0 1px rgba(77, 212, 255, 0.3);
 }
 
-.gpu-accelerated {
-  transform: translateZ(0);
-  will-change: transform;
-}
-
-.no-select {
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-}
-
-.fade-in {
-  animation: fadeInUp 0.6s ease-out;
-}
-
-.slide-in-right {
-  animation: slideInRight 0.5s ease-out;
-}
-
 .pulse {
   animation: pulse 2s ease-in-out infinite;
 }
 
 .bounce {
   animation: slimeBounce 1s ease-in-out;
-}
-
-.content-loading {
-  opacity: 0.6;
-  pointer-events: none;
-}
-
-.content-error {
-  opacity: 0.8;
-  filter: grayscale(50%);
-}
-
-.content-success {
-  opacity: 1;
-  filter: none;
 }

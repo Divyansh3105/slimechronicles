@@ -1595,15 +1595,6 @@ kbd {
 }
 
 @media (max-width: 479px) {
-  .records-page {
-    padding: 1rem 0.75rem;
-    padding-top: 1.5rem;
-  }
-
-  .records-title {
-    font-size: 1.8rem;
-  }
-
   .record-card {
     padding: 1rem;
   }

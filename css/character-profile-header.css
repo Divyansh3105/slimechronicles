@@ -1,4 +1,4 @@
-﻿/* ========== PROFILE HEADER ========== */
+﻿/* Profile header */
 .profile-header {
   text-align: center;
   margin-bottom: 3rem;
@@ -287,40 +287,6 @@
   box-shadow: 0 0 20px var(--character-glow, var(--glow-blue));
 }
 
-.recruit-button-profile {
-  margin-top: 1.5rem;
-  padding: 1rem 2.5rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border: none;
-  border-radius: 12px;
-  background: linear-gradient(
-    135deg,
-    var(--character-primary, var(--primary-blue)),
-    var(--character-secondary, #2a9fd8)
-  );
-  color: var(--primary-dark);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 20px var(--character-glow, rgba(77, 212, 255, 0.3));
-  font-family: "Rajdhani", sans-serif;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  justify-content: center;
-}
-
-.recruit-button-profile:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 30px var(--character-glow, rgba(77, 212, 255, 0.5));
-}
-
-.recruit-button-profile:active {
-  transform: translateY(-1px) scale(1.02);
-}
-
 .button-icon {
   font-size: 1.2rem;
   animation: buttonIconBounce 2s ease-in-out infinite;
@@ -341,23 +307,6 @@
   }
 }
 
-.recruited-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 1.5rem;
-  padding: 0.8rem 1.5rem;
-  background: linear-gradient(135deg, var(--accent-gold), #cc9900);
-  border-radius: 25px;
-  color: var(--primary-dark);
-  font-weight: bold;
-  font-size: 1.1rem;
-  box-shadow: 0 0 30px var(--glow-gold);
-  animation: glow-pulse 2s ease-in-out infinite;
-  position: relative;
-  overflow: hidden;
-}
-
 .badge-icon {
   font-size: 1.2rem;
   animation: badgeIconSpin 3s linear infinite;
@@ -366,36 +315,6 @@
 .badge-text {
   font-weight: 700;
   letter-spacing: 0.5px;
-}
-
-.badge-particles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-}
-
-.badge-particles::before,
-.badge-particles::after {
-  content: "âœ¨";
-  position: absolute;
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.8);
-  animation: particleFloat 4s ease-in-out infinite;
-}
-
-.badge-particles::before {
-  top: 20%;
-  left: 10%;
-  animation-delay: 0s;
-}
-
-.badge-particles::after {
-  top: 60%;
-  right: 15%;
-  animation-delay: 2s;
 }
 
 @keyframes glow-pulse {

@@ -5,8 +5,55 @@
   box-sizing: border-box;
 }
 
-/* ========== CURSOR STYLES - COMPREHENSIVE FIX ========== */
+/* No-JS fallback */
+.noscript-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: #0a0e27;
+  color: #cce6ff;
+  font-family: Georgia, serif;
+}
 
+.noscript-card {
+  max-width: 600px;
+  text-align: center;
+  padding: 2.5rem;
+  border: 1px solid rgba(77, 212, 255, 0.27);
+  border-radius: 16px;
+  background: rgba(77, 212, 255, 0.05);
+}
+
+.noscript-card h1 {
+  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+  color: #4dd4ff;
+}
+
+.noscript-card p {
+  margin-bottom: 1.5rem;
+  color: #aac8e8;
+}
+
+.noscript-card nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.noscript-card a {
+  padding: 0.45rem 1rem;
+  border: 1px solid rgba(77, 212, 255, 0.4);
+  border-radius: 8px;
+  color: #4dd4ff;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+/* Cursors */
 * {
   cursor: url("/assets/cursor.cur"), auto;
 }
@@ -54,30 +101,7 @@ select,
 .record-card,
 .timeline-item,
 .search-suggestion,
-.filter-button,
-.sort-button,
-.tab-button,
-.close-button,
-.expand-button,
-.collapse-button,
-.toggle-button,
-.dropdown-toggle,
-.pagination-button,
-.nav-arrow,
-.carousel-button,
-.modal-trigger,
-.tooltip-trigger {
-  cursor: url("../assets/pointer.cur"), pointer !important;
-}
-
-a:hover,
-button:hover,
-input[type="button"]:hover,
-input[type="submit"]:hover,
-input[type="reset"]:hover,
-select:hover,
-[role="button"]:hover,
-.clickable:hover {
+.tab-button {
   cursor: url("../assets/pointer.cur"), pointer !important;
 }
 
@@ -89,7 +113,6 @@ input[type="url"],
 input[type="tel"],
 input[type="number"],
 textarea,
-.text-input,
 .search-input,
 [contenteditable="true"] {
   cursor: url("/assets/cursor.cur"), text !important;
@@ -124,12 +147,6 @@ textarea:disabled,
   opacity: 0.6;
 }
 
-.resizable,
-textarea.resizable {
-  cursor: url("/assets/cursor.cur"), se-resize !important;
-}
-
-.draggable,
 [draggable="true"] {
   cursor: url("../assets/pointer.cur"), move !important;
 }
@@ -139,6 +156,11 @@ textarea.resizable {
 body.loading,
 body.loading * {
   cursor: url("/assets/cursor.cur"), wait !important;
+}
+
+/* inline cursor styles from JS-built markup */
+[style*="cursor"] {
+  cursor: url("../assets/pointer.cur"), pointer !important;
 }
 
 :root {
@@ -1052,15 +1074,7 @@ body.mobile-nav-active * {
   text-align: center;
   letter-spacing: 1px;
 }
-.mobile-nav-particle {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: rgba(77, 212, 255, 0.6);
-  border-radius: 50%;
-  pointer-events: none;
-  animation: mobileNavParticleFloat 8s ease-in-out infinite;
-}
+
 @keyframes mobileNavParticleFloat {
   0%,
   100% {
@@ -1891,42 +1905,6 @@ html {
   }
 }
 
-/* ========== CURSOR STYLE OVERRIDES ========== */
-
-/* Override any inline cursor styles */
-*[style*="cursor"] {
-  cursor: url("../assets/pointer.cur"), pointer !important;
-}
-
-/* Specific overrides for common inline styles */
-*[style*="cursor: pointer"] {
-  cursor: url("../assets/pointer.cur"), pointer !important;
-}
-
-*[style*="cursor: text"] {
-  cursor: url("/assets/cursor.cur"), text !important;
-}
-
-*[style*="cursor: default"] {
-  cursor: url("/assets/cursor.cur"), auto !important;
-}
-
-*[style*="cursor: auto"] {
-  cursor: url("/assets/cursor.cur"), auto !important;
-}
-
-.dynamic-content,
-.dynamic-content * {
-  cursor: inherit !important;
-}
-
-.dynamic-content button,
-.dynamic-content a,
-.dynamic-content [role="button"],
-.dynamic-content .clickable {
-  cursor: url("../assets/pointer.cur"), pointer !important;
-}
-
 .audio-controls {
   position: absolute;
   top: 6.5rem;
@@ -2241,13 +2219,6 @@ body.mobile-nav-active .audio-controls {
   margin-bottom: 1rem;
 }
 
-.skeleton-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
-  width: 100%;
-}
-
 .has-3d-tilt {
   transform-style: preserve-3d;
   will-change: transform;
@@ -2287,9 +2258,7 @@ body.mobile-nav-active .audio-controls {
   opacity: 1;
 }
 
-/* ==========================================================================
-   NAV QUICK ACTIONS (SEARCH, THEME, SFX)
-   ========================================================================== */
+/* Nav quick actions */
 .nav-quick-actions {
   display: flex;
   align-items: center;
@@ -2368,9 +2337,7 @@ body.mobile-nav-active .audio-controls {
   cursor: pointer;
 }
 
-/* ==========================================================================
-   GLOBAL COMMAND PALETTE (CTRL+K SPOTLIGHT SEARCH)
-   ========================================================================== */
+/* Command palette (Ctrl+K) */
 .cmd-palette-backdrop {
   position: fixed;
   inset: 0;
@@ -2550,9 +2517,7 @@ body.mobile-nav-active .audio-controls {
   color: #aac8e8;
 }
 
-/* ==========================================================================
-   GREAT SAGE / CIEL TACTICAL AI WIDGET
-   ========================================================================== */
+/* Great Sage widget */
 .great-sage-container {
   position: fixed;
   bottom: 24px;
@@ -2847,9 +2812,7 @@ body.mobile-nav-active .audio-controls {
   box-shadow: 0 0 12px var(--primary-blue, #4dd4ff);
 }
 
-/* ==========================================================================
-   SKILL SYNTHESIZER COMPONENT
-   ========================================================================== */
+/* Skill synthesizer */
 .skill-synthesizer-card {
   background: rgba(13, 19, 44, 0.75);
   border: 1px solid rgba(77, 212, 255, 0.3);
@@ -3290,9 +3253,7 @@ body.mobile-nav-active .audio-controls {
   font-size: 0.8rem;
 }
 
-/* ==========================================================================
-   TACTICAL BATTLE SIMULATOR COMPONENT
-   ========================================================================== */
+/* Battle simulator */
 .battle-sim-backdrop {
   position: fixed;
   inset: 0;

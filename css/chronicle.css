@@ -2,7 +2,7 @@
 html,
 body {
   overflow-y: auto !important;
-  overflow-x: hidden !important;
+  overflow-x: hidden;
   height: 100%;
   min-height: 100vh;
   position: relative;
@@ -721,7 +721,7 @@ body {
   position: relative;
   overflow: hidden;
   pointer-events: auto !important;
-  user-select: none !important;
+  user-select: none;
   -webkit-user-select: none !important;
   -moz-user-select: none !important;
   -ms-user-select: none !important;
@@ -1614,10 +1614,6 @@ body {
   animation: arcExpand 0.6s cubic-bezier(0.4, 0.21);
 }
 
-.timeline-arc.collapsing {
-  animation: arcCollapse 0.4s cubic-bezier(0.4, 0.21);
-}
-
 .timeline-event:focus {
   outline: 2px solid #4a7ba7;
   outline-offset: 2px;
@@ -1631,8 +1627,8 @@ body {
   margin: 0 auto 2rem auto !important;
   display: block !important;
   width: 100% !important;
-  max-width: calc(100vw - 4rem) !important;
-  box-sizing: border-box !important;
+  max-width: calc(100vw - 4rem);
+  box-sizing: border-box;
 }
 
 .timeline-line {
@@ -1641,11 +1637,11 @@ body {
 }
 
 .timeline-arc {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
+  margin-left: 0;
+  margin-right: 0;
   width: 100% !important;
-  max-width: calc(100vw - 4rem) !important;
-  box-sizing: border-box !important;
+  max-width: calc(100vw - 4rem);
+  box-sizing: border-box;
 }
 
 /* Visibility and display overrides for timeline components */
@@ -1806,18 +1802,6 @@ body {
   font-size: 2rem;
 }
 
-.timeline-loading {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 4rem 2rem;
-  color: #7a9bb8;
-  background: linear-gradient(135deg, rgba(74, 123, 167, 0.05), rgba(74, 123, 167, 0.02));
-  border-radius: 20px;
-  margin: 2rem 0;
-}
-
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -1825,32 +1809,6 @@ body {
   100% {
     transform: rotate(360deg);
   }
-}
-
-.timeline-error {
-  text-align: center;
-  padding: 4rem 2rem;
-  color: #4a7ba7;
-  background: linear-gradient(135deg, rgba(74, 123, 167, 0.1), rgba(74, 123, 167, 0.05));
-  border: 2px solid rgba(74, 123, 167, 0.2);
-  border-radius: 20px;
-  margin: 2rem 0;
-}
-
-.timeline-error-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.timeline-error-text {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.timeline-error-hint {
-  font-size: 1rem;
-  opacity: 0.8;
 }
 
 .timeline-year,
@@ -2132,59 +2090,6 @@ body {
   z-index: 1;
 }
 
-.timeline-progression {
-  background: linear-gradient(
-    135deg,
-    rgba(74, 123, 167, 0.2),
-    rgba(46, 89, 132, 0.15),
-    rgba(90, 138, 184, 0.08)
-  );
-  border: 2px solid rgba(74, 123, 167, 0.3);
-  border-radius: 24px;
-  padding: 2.5rem;
-  margin-top: 4rem;
-  backdrop-filter: blur(30px);
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  position: relative;
-  overflow: hidden;
-}
-
-.timeline-progression::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #4a7ba7, #5a8ab8, #5a8ab8);
-  opacity: 0.8;
-}
-
-.progression-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2.5rem;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.progression-header h3 {
-  font-family: "Cinzel", serif;
-  font-size: 2rem;
-  font-weight: 700;
-  color: #4a7ba7;
-  text-shadow: 0 0 20px rgba(74, 123, 167, 0.6);
-  margin: 0;
-}
-
-.progression-controls {
-  display: flex;
-  gap: 1rem;
-}
-
 .progression-btn {
   padding: 0.75rem 1.5rem;
   background: linear-gradient(135deg, #4a7ba7, #5a8ab8);
@@ -2210,31 +2115,6 @@ body {
   transform: translateY(0);
 }
 
-.progression-content {
-  position: relative;
-}
-
-.progression-track {
-  position: relative;
-  padding: 2rem 0;
-}
-
-.progression-line {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 6px;
-  background: linear-gradient(
-    90deg,
-    rgba(74, 123, 167, 0.3),
-    rgba(74, 123, 167, 0.2),
-    rgba(74, 123, 167, 0.3)
-  );
-  border-radius: 3px;
-  transform: translateY(-50%);
-}
-
 .progression-fill {
   position: absolute;
   top: 50%;
@@ -2249,13 +2129,6 @@ body {
   z-index: 2;
 }
 
-.progression-eras {
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  z-index: 3;
-}
-
 .era-node {
   display: flex;
   flex-direction: column;
@@ -2268,31 +2141,6 @@ body {
 
 .era-node:hover {
   transform: translateY(-8px);
-}
-
-.era-dot {
-  width: 20px;
-  height: 20px;
-  background: linear-gradient(135deg, rgba(74, 123, 167, 0.5), rgba(74, 123, 167, 0.3));
-  border: 3px solid rgba(74, 123, 167, 0.6);
-  border-radius: 50%;
-  transition: all 0.4s ease;
-  position: relative;
-  z-index: 4;
-  box-shadow: 0 0 10px rgba(74, 123, 167, 0.3);
-}
-
-.era-node.completed .era-dot {
-  background: linear-gradient(135deg, #5a8ab8, #4a7ba7);
-  border-color: #5a8ab8;
-  box-shadow: 0 0 15px rgba(74, 123, 167, 0.6);
-}
-
-.era-node.current .era-dot {
-  background: linear-gradient(135deg, #5a8ab8, #4a7ba7);
-  border-color: #5a8ab8;
-  box-shadow: 0 0 20px rgba(90, 138, 184, 0.6);
-  animation: currentEraPulse 2s ease-in-out infinite;
 }
 
 @keyframes currentEraPulse {
@@ -2336,22 +2184,6 @@ body {
   margin-bottom: 0.5rem;
 }
 
-.era-description {
-  font-size: 0.75rem;
-  color: #7a9bb8;
-  line-height: 1.3;
-  max-width: 100px;
-}
-
-.progression-legend {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(74, 123, 167, 0.2);
-}
-
 .legend-item {
   display: flex;
   align-items: center;
@@ -2377,12 +2209,6 @@ body {
   background: linear-gradient(135deg, #5a8ab8, #4a7ba7);
   border-color: #5a8ab8;
   box-shadow: 0 0 10px rgba(90, 138, 184, 0.6);
-}
-
-.legend-dot.upcoming {
-  background: linear-gradient(135deg, rgba(74, 123, 167, 0.5), rgba(74, 123, 167, 0.3));
-  border-color: rgba(74, 123, 167, 0.6);
-  box-shadow: 0 0 6px rgba(74, 123, 167, 0.3);
 }
 
 .floating-timeline-progress {
@@ -2460,24 +2286,6 @@ body {
   width: 0%;
   transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 0 10px rgba(90, 138, 184, 0.5);
-}
-
-.timeline-loading-spinner {
-  width: 50px;
-  height: 50px;
-  border: 4px solid rgba(74, 123, 167, 0.2);
-  border-top: 4px solid #4a7ba7;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 0 20px rgba(74, 123, 167, 0.3);
-}
-
-.timeline-loading-text {
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: #4a7ba7;
-  text-shadow: 0 0 10px rgba(74, 123, 167, 0.6);
 }
 
 .timeline-search-input:focus,
@@ -2886,49 +2694,13 @@ body {
     height: 12px;
   }
 
-  .timeline-progression {
-    padding: 1.5rem;
-    margin-top: 2rem;
-  }
-
-  .progression-header {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .progression-header h3 {
-    font-size: 1.5rem;
-    text-align: center;
-  }
-
-  .progression-controls {
-    justify-content: center;
-  }
-
   .progression-btn {
     padding: 0.75rem 1.25rem;
     font-size: 0.85rem;
   }
 
-  .progression-track {
-    padding: 1.5rem 0;
-  }
-
-  .progression-eras {
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-  }
-
   .era-node {
     max-width: 100px;
-  }
-
-  .era-dot {
-    width: 16px;
-    height: 16px;
   }
 
   .era-info {
@@ -2941,17 +2713,6 @@ body {
 
   .era-name {
     font-size: 0.8rem;
-  }
-
-  .era-description {
-    font-size: 0.7rem;
-    max-width: 90px;
-  }
-
-  .progression-legend {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
   }
 
   .legend-item {
@@ -3015,7 +2776,7 @@ body {
   .event-description,
   .event-consequences,
   .event-characters {
-    backdrop-filter: blur(10px) !important;
+    backdrop-filter: blur(10px);
   }
 
   /* Disable hover-only transforms on touch */
@@ -3076,29 +2837,6 @@ body {
   .character-links {
     gap: 1rem;
     justify-content: flex-start;
-  }
-
-  .timeline-loading {
-    padding: 2rem 1rem;
-  }
-
-  .timeline-loading-spinner {
-    width: 32px;
-    height: 32px;
-    border-width: 2px;
-  }
-
-  .timeline-error {
-    margin: 1rem 0;
-    padding: 2rem 1rem;
-  }
-
-  .timeline-error-icon {
-    font-size: 2rem;
-  }
-
-  .timeline-error-text {
-    font-size: 1rem;
   }
 
   .search-highlight {
@@ -3203,32 +2941,13 @@ body {
     border-width: 2px;
   }
 
-  .timeline-progression {
-    padding: 1rem;
-    margin-top: 1.5rem;
-  }
-
-  .progression-header h3 {
-    font-size: 1.3rem;
-  }
-
   .progression-btn {
     padding: 0.6rem 1rem;
     font-size: 0.8rem;
   }
 
-  .progression-eras {
-    gap: 0.75rem;
-  }
-
   .era-node {
     max-width: 80px;
-  }
-
-  .era-dot {
-    width: 14px;
-    height: 14px;
-    border-width: 2px;
   }
 
   .era-year {
@@ -3237,11 +2956,6 @@ body {
 
   .era-name {
     font-size: 0.75rem;
-  }
-
-  .era-description {
-    font-size: 0.65rem;
-    max-width: 75px;
   }
 
   .legend-item {

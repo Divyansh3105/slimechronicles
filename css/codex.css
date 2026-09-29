@@ -1,8 +1,8 @@
-﻿/* ========== MAIN CONTAINER ========== */
+﻿/* Main container */
 html,
 body {
   overflow-y: auto !important;
-  overflow-x: hidden !important;
+  overflow-x: hidden;
   height: 100%;
   min-height: 100vh;
   position: relative;
@@ -2032,7 +2032,7 @@ body {
   transition: transform 0.3s ease;
 }
 
-/* ========== SPECIAL CHARACTER OVERRIDES ========== */
+/* Special character overrides */
 .character-card[data-character-id="geld"] .character-name,
 .character-card[data-character-id="geld"] .character-title,
 .character-card[data-character-id="geld"] .stat-value,
@@ -2040,35 +2040,35 @@ body {
   color: #ffffff !important;
   text-shadow:
     0 0 12px rgba(0, 0, 0, 0.9),
-    0 2px 4px rgba(0, 0, 0, 0.8) !important;
+    0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .character-card[data-character-id="geld"] .character-race,
 .character-card[data-character-id="geld"] .character-role,
 .character-card[data-character-id="geld"] .bonus-tag {
   background: rgba(21, 25, 35, 0.95) !important;
-  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6);
   color: rgba(255, 255, 255, 0.95) !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9) !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 .character-card[data-character-id="geld"] .view-profile-button {
   background: linear-gradient(135deg, rgba(21, 25, 35, 0.95), rgba(35, 53, 80, 0.9)) !important;
-  border: 2px solid rgba(255, 255, 255, 0.6) !important;
+  border: 2px solid rgba(255, 255, 255, 0.6);
   color: rgba(255, 255, 255, 0.95) !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9) !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 .character-card[data-character-id="geld"] .view-profile-button:hover {
   background: rgba(21, 25, 35, 0.95) !important;
-  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5);
   color: rgba(255, 255, 255, 0.9) !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8) !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .character-card[data-character-id="geld"] .stat-item {
   background: rgba(21, 25, 35, 0.9) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .character-card[data-character-id="guy"] .character-name,
@@ -2132,7 +2132,7 @@ body {
   color: #ffffff !important;
   text-shadow:
     0 0 15px rgba(255, 255, 255, 0.8),
-    0 2px 4px rgba(0, 0, 0, 0.9) !important;
+    0 2px 4px rgba(0, 0, 0, 0.9);
 }
 
 .character-card[data-character-id="geld"]:hover .character-title,
@@ -2148,7 +2148,7 @@ body {
   color: #ffffff !important;
   text-shadow:
     0 0 15px rgba(255, 255, 255, 0.8),
-    0 2px 4px rgba(0, 0, 0, 0.9) !important;
+    0 2px 4px rgba(0, 0, 0, 0.9);
 }
 
 .character-role {
@@ -2361,7 +2361,7 @@ body {
 .view-profile-button,
 .pagination-controls,
 .modal-content {
-  backdrop-filter: none !important;
+  backdrop-filter: none;
 }
 
 .character-card:hover .character-actions {
@@ -2625,7 +2625,7 @@ body {
   }
 
   .character-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .character-card {
@@ -2794,49 +2794,18 @@ body {
 }
 
 @media (min-width: 768px) {
-  .main-content.codex-page {
-    padding: 2rem;
-    padding-top: 2rem;
-  }
-
   .page-title {
     font-size: 2.8rem;
   }
 
-  .codex-grid,
-  .codex-categories,
-  .codex-entries {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .codex-card button,
-  .entry-card button {
+  .codex-card button {
     width: auto;
   }
 }
 
-@media (min-width: 1024px) {
-  .main-content.codex-page {
-    max-width: 1400px;
-  }
-
-  .codex-grid,
-  .codex-categories,
-  .codex-entries {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (min-width: 1280px) {
-  .main-content.codex-page {
-    max-width: 1600px;
-  }
-}
-
-/* ========== REDUCED MOTION ACCESSIBILITY ========== */
+/* Reduced motion accessibility */
 @media (prefers-reduced-motion: reduce) {
-  .codex-card,
-  .entry-card {
+  .codex-card {
     animation: none;
     transition: none;
   }

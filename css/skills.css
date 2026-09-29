@@ -17,7 +17,7 @@
 html,
 body {
   overflow-y: auto !important;
-  overflow-x: hidden !important;
+  overflow-x: hidden;
   height: 100%;
   min-height: 100vh;
   position: relative;
@@ -1432,88 +1432,6 @@ body {
   transform: translateX(100%);
 }
 
-.category-badge {
-  display: inline-block;
-  padding: 0.4rem 0.9rem;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 0.5rem;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.category-badge::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transform: translateX(-100%);
-  transition: transform 0.4s ease;
-}
-
-.skill-card:hover .category-badge::before {
-  transform: translateX(100%);
-}
-
-.category-badge.combat {
-  background: linear-gradient(135deg, rgba(255, 85, 17, 0.25), rgba(255, 85, 17, 0.15));
-  border: 1px solid rgba(255, 85, 17, 0.4);
-  color: var(--accent-crimson);
-}
-
-.category-badge.combat:hover {
-  background: linear-gradient(135deg, rgba(255, 85, 17, 0.35), rgba(255, 85, 17, 0.25));
-  transform: translateY(-2px);
-}
-
-.category-badge.magic {
-  background: linear-gradient(135deg, rgba(170, 85, 255, 0.25), rgba(170, 85, 255, 0.15));
-  border: 1px solid rgba(170, 85, 255, 0.4);
-  color: var(--accent-purple);
-}
-
-.category-badge.magic:hover {
-  background: linear-gradient(135deg, rgba(170, 85, 255, 0.35), rgba(170, 85, 255, 0.25));
-  transform: translateY(-2px);
-}
-
-.category-badge.support {
-  background: linear-gradient(135deg, rgba(2, 213, 54, 0.25), rgba(2, 213, 54, 0.15));
-  border: 1px solid rgba(2, 213, 54, 0.4);
-  color: var(--accent-emerald);
-}
-
-.category-badge.support:hover {
-  background: linear-gradient(135deg, rgba(2, 213, 54, 0.35), rgba(2, 213, 54, 0.25));
-  transform: translateY(-2px);
-}
-
-.category-badge.leadership {
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.25), rgba(255, 215, 0, 0.15));
-  border: 1px solid rgba(255, 215, 0, 0.4);
-  color: var(--accent-gold);
-}
-
-.category-badge.leadership:hover {
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.35), rgba(255, 215, 0, 0.25));
-  transform: translateY(-2px);
-}
-
-.category-badge.crafting {
-  background: linear-gradient(135deg, rgba(0, 255, 255, 0.25), rgba(0, 255, 255, 0.15));
-  border: 1px solid rgba(0, 255, 255, 0.4);
-  color: var(--accent-cyan);
-}
-
-.category-badge.crafting:hover {
-  background: linear-gradient(135deg, rgba(0, 255, 255, 0.35), rgba(0, 255, 255, 0.25));
-  transform: translateY(-2px);
-}
-
 .skill-description {
   color: var(--text-secondary);
   font-size: 0.98rem;
@@ -2339,11 +2257,6 @@ body {
     font-size: 0.75rem;
   }
 
-  .category-badge {
-    font-size: 0.7rem;
-    padding: 0.3rem 0.7rem;
-  }
-
   .skill-difficulty {
     font-size: 0.7rem;
     padding: 0.25rem 0.6rem;
@@ -2499,18 +2412,6 @@ body {
   .skill-card-description {
     font-size: 0.9rem;
     line-height: 1.45;
-  }
-
-  .skill-card-bonus {
-    font-size: 0.8rem;
-    padding: 0.4rem 0.7rem;
-  }
-
-  .skill-actions button {
-    width: 100%;
-    min-height: 44px;
-    font-size: 0.9rem;
-    touch-action: manipulation;
   }
 }
 
@@ -2672,7 +2573,6 @@ body {
   .skill-card:hover .skill-name,
   .skill-card:hover .skill-type,
   .skill-card:hover .skill-description,
-  .skill-card:hover .category-badge,
   .skill-card:hover .skill-difficulty,
   .skill-card:hover .skill-bonus,
   .character-tag:hover,
