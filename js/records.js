@@ -175,7 +175,7 @@ function renderRecords(records = HISTORICAL_RECORDS) {
 
   // Generate HTML for each record card with dynamic styling and content
   grid.innerHTML = filteredRecords
-    .map((record, index) => {
+    .map((record) => {
       const importanceColor = getImportanceColor(record.importance);
       const importanceIcon = getImportanceIcon(record.importance);
       const categoryIcon = getCategoryIcon(record.category);
@@ -240,7 +240,7 @@ function renderRecords(records = HISTORICAL_RECORDS) {
   }
 
   // Add event handlers for all record cards
-  document.querySelectorAll(".record-card").forEach((card, index) => {
+  document.querySelectorAll(".record-card").forEach((card) => {
     const recordId = card.dataset.recordId;
 
     if (isMobile) {
@@ -298,7 +298,7 @@ function renderRecords(records = HISTORICAL_RECORDS) {
       );
     } else {
       // Desktop click handler
-      card.addEventListener("click", function (e) {
+      card.addEventListener("click", function () {
         if (recordId) {
           toggleRecordExpansion(recordId);
         }

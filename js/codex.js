@@ -931,21 +931,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.TempestAnimations.animateScrollReveal(".lore-card", { y: 35, duration: 0.6, stagger: 0.15 });
   }
 
-  // Add character card entrance animations
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = "1";
-            entry.target.style.transform = "translateY(0)";
-          }, index * 100);
-        }
-      });
-    },
-    { threshold: 0.1 }
-  );
-
   // Setup debug function for development and troubleshooting
   window.debugCharacters = async () => {
     try {

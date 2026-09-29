@@ -129,7 +129,7 @@ class TimelineManager {
     const arcs = document.querySelectorAll(".timeline-arc");
     let delay = 0;
 
-    arcs.forEach((arc, index) => {
+    arcs.forEach((arc) => {
       if (!arc.classList.contains("expanded")) {
         setTimeout(() => {
           const arcHeader = arc.querySelector(".arc-header");
@@ -155,7 +155,7 @@ class TimelineManager {
     const arcs = document.querySelectorAll(".timeline-arc");
     let delay = 0;
 
-    arcs.forEach((arc, index) => {
+    arcs.forEach((arc) => {
       if (arc.classList.contains("expanded")) {
         setTimeout(() => {
           const arcHeader = arc.querySelector(".arc-header");
@@ -324,7 +324,7 @@ class TimelineManager {
 
     // Set up view controls
     document.querySelectorAll(".view-btn").forEach((btn) => {
-      btn.addEventListener("click", (e) => {
+      btn.addEventListener("click", () => {
         document.querySelectorAll(".view-btn").forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
         this.currentView = btn.dataset.view;
@@ -651,7 +651,7 @@ class TimelineManager {
   initializeTooltips() {
     document.querySelectorAll(".character-link").forEach((link) => {
       link.addEventListener("mouseenter", (e) => {
-        this.showCharacterTooltip(e.target, e);
+        this.showCharacterTooltip(e.target);
       });
 
       link.addEventListener("mouseleave", () => {
@@ -660,7 +660,7 @@ class TimelineManager {
     });
   }
 
-  showCharacterTooltip(element, event) {
+  showCharacterTooltip(element) {
     const characterName = element.querySelector("span")?.textContent;
     if (!characterName) return;
 
@@ -751,7 +751,7 @@ window.toggleArcSimple = function (arcHeader) {
       arcHeader.style.backgroundColor = "";
     }, 200);
 
-    if (typeof soundEnabled !== "undefined" && soundEnabled && window.SoundFeedback) {
+    if (window.soundEnabled && window.SoundFeedback) {
       window.SoundFeedback.playEffect("click");
     }
   } catch (error) {
@@ -790,7 +790,7 @@ window.toggleEvent = function (eventElement) {
       });
     }
 
-    if (typeof soundEnabled !== "undefined" && soundEnabled && window.SoundFeedback) {
+    if (window.soundEnabled && window.SoundFeedback) {
       window.SoundFeedback.playEffect("click");
     }
   } catch (error) {
@@ -807,7 +807,7 @@ function expandAllArcs() {
   const arcs = document.querySelectorAll(".timeline-arc");
   let delay = 0;
 
-  arcs.forEach((arc, index) => {
+  arcs.forEach((arc) => {
     if (!arc.classList.contains("expanded")) {
       setTimeout(() => {
         const arcHeader = arc.querySelector(".arc-header");
@@ -835,7 +835,7 @@ function collapseAllArcs() {
   const arcs = document.querySelectorAll(".timeline-arc");
   let delay = 0;
 
-  arcs.forEach((arc, index) => {
+  arcs.forEach((arc) => {
     if (arc.classList.contains("expanded")) {
       setTimeout(() => {
         const arcHeader = arc.querySelector(".arc-header");
@@ -1317,7 +1317,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 150);
     }, 10);
 
-    document.addEventListener("touchstart", (e) => {
+    document.addEventListener("touchstart", () => {
       touchStartTime = Date.now();
     });
 

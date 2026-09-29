@@ -1,3 +1,4 @@
+/* exported toggleSkillCategory, showSkillDetails, compareSkill, navigateToCharacter, showRelationshipDetails, attemptErrorRecovery -- called from inline onclick handlers */
 // Additional mobile-specific functions - Handle character sharing functionality
 function shareCharacter() {
   // Get character ID from URL parameters for sharing
@@ -21,7 +22,7 @@ function shareCharacter() {
     navigator.share &&
     (window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768)
   ) {
-    navigator.share(shareData).catch((error) => {
+    navigator.share(shareData).catch(() => {
       fallbackShare();
     });
   } else {
@@ -315,7 +316,7 @@ class CharacterDataLoader {
       size += JSON.stringify(this.basicCharacters).length;
     }
     // Calculate size of cached detailed character data
-    for (const [key, value] of this.detailedCache) {
+    for (const value of this.detailedCache.values()) {
       size += JSON.stringify(value).length;
     }
     return `${(size / 1024).toFixed(2)} KB`;
@@ -691,7 +692,7 @@ function generateCulturalImpactSection(character) {
             <p class="leadership-text">${character.leadershipStyle}</p>
           </div>
           <div class="leadership-traits">
-            ${generateLeadershipTraits(character.leadershipStyle)}
+            ${generateLeadershipTraits()}
           </div>
         </div>
       </div>
@@ -772,7 +773,7 @@ function generateInfluenceHighlights(worldInfluence) {
   return highlights || '<p class="no-highlights">Key influences are being analyzed.</p>';
 }
 
-function generateLeadershipTraits(leadershipStyle) {
+function generateLeadershipTraits() {
   // Extract leadership traits from the text
   const traits = [
     {
@@ -812,28 +813,6 @@ function generateLeadershipTraits(leadershipStyle) {
     .join("");
 }
 
-// Helper functions for generating specific sections
-function generateQuotesSection(character) {
-  if (!character.quotes || character.quotes.length === 0) {
-    return "<p>Biographical details are being researched and documented.</p>";
-  }
-
-  return `
-    <h4>💬 Notable Quotes</h4>
-    <div class="quotes-container">
-      ${character.quotes
-        .map(
-          (quote) => `
-        <div class="quote-item">
-          <p class="quote-text">"${quote.text}"</p>
-          <p class="quote-context">— ${quote.context}</p>
-        </div>
-      `
-        )
-        .join("")}
-    </div>
-  `;
-}
 
 // Generate enhanced overview section with improved UI
 function generateOverviewSection(character) {
@@ -1205,7 +1184,6 @@ function extractPersonalityTraits(personalityText) {
 // Function to switch tabs programmatically
 function switchToTab(tabName) {
   const tabs = document.querySelectorAll(".profile-tab");
-  const sections = document.querySelectorAll(".tab-section");
 
   tabs.forEach((tab) => {
     if (tab.dataset.tab === tabName) {
@@ -3167,63 +3145,6 @@ function printProfile() {
   toggleFabMenu();
 }
 
-// Enhanced loading with progress indicator
-function showEnhancedLoading() {
-  const loadingHTML = `
-    <div class="enhanced-loading">
-      <div class="loading-character-icon">
-        <div class="slime-loader">
-          <div class="slime-body"></div>
-          <div class="slime-eyes">
-            <div class="eye left"></div>
-            <div class="eye right"></div>
-          </div>
-        </div>
-      </div>
-      <div class="loading-text">Loading Character Profile...</div>
-      <div class="loading-progress-bar">
-        <div class="progress-fill"></div>
-      </div>
-      <div class="loading-tips">
-        <p id="loading-tip">Did you know? Characters can evolve through naming!</p>
-      </div>
-    </div>
-  `;
-
-  const content = document.getElementById("profile-content");
-  if (content) {
-    content.innerHTML = loadingHTML;
-    startLoadingTips();
-  }
-}
-
-function startLoadingTips() {
-  const tips = [
-    "Did you know? Characters can evolve through naming!",
-    "The Jura Tempest Federation welcomes all races!",
-    "Magic and technology coexist in this world!",
-    "Demon Lords aren't always evil in this universe!",
-    "Friendship and bonds are the strongest powers!",
-  ];
-
-  let currentTip = 0;
-  const tipElement = document.getElementById("loading-tip");
-
-  const tipInterval = setInterval(() => {
-    if (!tipElement) {
-      clearInterval(tipInterval);
-      return;
-    }
-
-    currentTip = (currentTip + 1) % tips.length;
-    tipElement.style.opacity = "0";
-
-    setTimeout(() => {
-      tipElement.textContent = tips[currentTip];
-      tipElement.style.opacity = "1";
-    }, 300);
-  }, 3000);
-}
 
 // Initialize all enhanced features
 function initializeEnhancedFeatures() {
@@ -3403,7 +3324,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Lazy loading for images
 function initializeLazyLoading() {
   if ("IntersectionObserver" in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
+    const imageObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const img = entry.target;
@@ -4059,7 +3980,7 @@ function updateAchievementFavoriteIndicators() {
   const favoriteKey = `favoriteAchievements_${characterId}`;
   const favorites = JSON.parse(localStorage.getItem(favoriteKey) || "[]");
 
-  document.querySelectorAll(".achievement-card").forEach((card, globalIndex) => {
+  document.querySelectorAll(".achievement-card").forEach((card) => {
     const category = card.closest(".achievement-category").dataset.category;
     const localIndex = Array.from(card.parentElement.children).indexOf(card);
     const achievementKey = `${category}_${localIndex}`;

@@ -7,25 +7,27 @@ export default [
     ignores: ["node_modules/", "dist/", "build/", "assets/"],
   },
   {
+    files: ["js/**/*.js"],
     languageOptions: {
-      ecmaVersion: 2021,
-      sourceType: "module",
+      ecmaVersion: 2022,
+      // Plain <script> tags, not ES modules
+      sourceType: "script",
       globals: {
         ...globals.browser,
-        window: "readonly",
-        document: "readonly",
-        console: "readonly",
-        setTimeout: "readonly",
-        localStorage: "readonly",
-        sessionStorage: "readonly",
-        fetch: "readonly"
-      }
+        // `module` is only touched behind a typeof guard so vitest can require() these files
+        module: "writable",
+        // CDN scripts
+        particlesJS: "readonly",
+        gsap: "readonly",
+        ScrollTrigger: "readonly",
+      },
     },
     rules: {
-      "no-unused-vars": "warn",
-      "no-undef": "warn",
+      "no-unused-vars": ["error", { caughtErrors: "none" }],
+      "no-undef": "error",
+      // character.js wraps its own functions by reassignment; clean up separately
       "no-func-assign": "off",
-      "no-useless-assignment": "off"
-    }
-  }
+      "no-useless-assignment": "off",
+    },
+  },
 ];

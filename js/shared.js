@@ -87,7 +87,7 @@ class PageTransitionManager {
 }
 
 // Initialize transitions
-const transitionManager = new PageTransitionManager();
+new PageTransitionManager();
 
 // Global scroll restore for mobile: ensures scrolling is enabled if stuck
 function restoreScrolling() {
@@ -332,6 +332,15 @@ function hideLoadingIndicator() {
   }
 }
 
+// Escape text before interpolating it into innerHTML (URL params end up in error messages)
+function escapeHTML(value) {
+  return String(value).replace(
+    /[&<>"']/g,
+    (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]
+  );
+}
+window.escapeHTML = escapeHTML;
+
 // Display comprehensive error message with recovery options
 function displayError(
   title,
@@ -342,6 +351,9 @@ function displayError(
   showRecovery = false
 ) {
   let backLinkHtml = "";
+  title = escapeHTML(title);
+  message = escapeHTML(message);
+  backLink = backLink && escapeHTML(backLink);
 
   if (backLink && showRecovery) {
     backLinkHtml = `
@@ -376,10 +388,10 @@ function displayError(
   const techDetails =
     Object.keys(additionalInfo).length > 0
       ? Object.entries(additionalInfo)
-          .map(([key, value]) => `<p><strong>${key}:</strong> ${value}</p>`)
+          .map(([key, value]) => `<p><strong>${escapeHTML(key)}:</strong> ${escapeHTML(value)}</p>`)
           .join("")
       : `
-      <p><strong>URL:</strong> ${window.location.href}</p>
+      <p><strong>URL:</strong> ${escapeHTML(window.location.href)}</p>
       <p><strong>Timestamp:</strong> ${new Date().toISOString()}</p>
     `;
 
@@ -821,7 +833,7 @@ function initScrollReveal() {
     ".character-card, .skill-card, .faction-card, .record-card, .timeline-item"
   );
 
-  elementsToReveal.forEach((el, index) => {
+  elementsToReveal.forEach((el) => {
     // Add base class for styling
     el.classList.add("reveal-on-scroll");
 
@@ -896,7 +908,6 @@ if (typeof module !== "undefined" && module.exports) {
 // ========== CURSOR ENFORCEMENT ========== //
 
 // Optimized cursor enforcement with batching and caching
-let cursorEnforcementPending = false;
 let cursorStyleSheet = null;
 
 // Create a style sheet for cursor rules to avoid forced reflows
@@ -1006,15 +1017,6 @@ function enforceCursorsOnElement(element) {
   }
 }
 
-// Debounced cursor enforcement for batch updates
-function scheduleCursorEnforcement() {
-  if (cursorEnforcementPending) return;
-
-  cursorEnforcementPending = true;
-  requestAnimationFrame(() => {
-    cursorEnforcementPending = false;
-  });
-}
 
 // Optimized mutation observer with throttling
 function observeCursorChanges() {

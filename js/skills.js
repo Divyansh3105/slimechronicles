@@ -38,7 +38,6 @@ async function getAllSkills() {
     // Initialize skill processing variables
     const skillsMap = new Map();
     let processedCount = 0;
-    let errorCount = 0;
 
     // Show loading progress
     updateLoadingProgress(0, basicCharacters.length);
@@ -102,11 +101,9 @@ async function getAllSkills() {
           updateLoadingProgress(processedCount, basicCharacters.length);
         } catch (jsonError) {
           console.warn(`Failed to parse JSON for character ${basicChar.name}:`, jsonError.message);
-          errorCount++;
         }
       } catch (error) {
         console.warn(`Error loading character ${basicChar.name}:`, error.message);
-        errorCount++;
         // Continue processing other characters instead of failing completely
       }
     }

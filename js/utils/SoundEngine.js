@@ -291,14 +291,14 @@ class SoundEngine {
     window.addEventListener("keydown", unlock, { once: true });
 
     document.addEventListener("pointerenter", (e) => {
-      const target = e.target.closest("button, .nav-links a, .nav-brand, .character-card, .skill-card, .codex-card, .btn-action, .theme-btn");
+      const target = e.target.closest?.("button, .nav-links a, .nav-brand, .character-card, .skill-card, .codex-card, .btn-action, .theme-btn");
       if (target) {
         this.play("hover");
       }
     }, true);
 
     document.addEventListener("click", (e) => {
-      const target = e.target.closest("button, .nav-links a, .btn-action, .theme-btn, .close-btn, .modal-close");
+      const target = e.target.closest?.("button, .nav-links a, .btn-action, .theme-btn, .close-btn, .modal-close");
       if (target) {
         if (target.classList.contains("modal-close") || target.classList.contains("close-btn")) {
           this.play("closeModal");

@@ -48,12 +48,6 @@ const JURA_TEMPEST_STATS = {
   },
 };
 
-// Month abbreviations for date formatting
-const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-// Event log storage for activity tracking
-const eventLog = [];
-
 // Update statistic display with animated number transition - Set new value with smooth counting animation
 function setStat(id, value) {
   const el = document.getElementById(id);
@@ -343,28 +337,8 @@ function createTechnologyBreakdown() {
   card.appendChild(breakdownDiv);
 }
 
-// Add new event to activity log - Insert event at beginning of log with timestamp
-function addEvent(icon, text) {
-  eventLog.unshift({ icon, text, time: "Just now" });
-  if (eventLog.length > 8) eventLog.pop(); // Maintain maximum of 8 events
-}
 
-// Render event log to DOM - Display recent events in activity feed
-function renderEventLog() {
-  const list = document.getElementById("event-list");
-  if (!list) return;
-  list.innerHTML = eventLog
-    .map(
-      (e) => `
-    <div class="event-item">
-      <div class="event-icon">${e.icon}</div>
-      <div class="event-text">${e.text}</div>
-      <div class="event-time">${e.time}</div>
-    </div>
-  `
-    )
-    .join("");
-}
+
 // Initialize interactive elements with hover and click effects - Set up user interaction handlers
 function initInteractiveElements() {
   const supportsHover = window.matchMedia("(hover: hover)").matches;
@@ -442,7 +416,7 @@ function initInteractiveElements() {
       });
     }
 
-    pillar.addEventListener("click", (e) => {
+    pillar.addEventListener("click", () => {
       if (window.SoundFeedback) {
         window.SoundFeedback.playEffect("click");
       }
@@ -626,7 +600,6 @@ function showCardDetails(cardId) {
 
 // Show number card detailed information - Display additional metrics for number cards
 function showNumberCardDetails(card) {
-  const category = card.querySelector(".number-category").textContent;
   // Simplified visual feedback with icon animation
   const icon = card.querySelector(".number-icon");
 
@@ -641,7 +614,6 @@ function showNumberCardDetails(card) {
 // Show badge information tooltip - Display detailed information about achievement badges
 function showBadgeInfo(badge) {
   // Placeholder for badge information display
-  const badgeText = badge.querySelector("span:last-child").textContent;
   badge.style.transform = "scale(1.1)";
   setTimeout(() => {
     badge.style.transform = "";

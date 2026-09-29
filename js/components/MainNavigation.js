@@ -1,3 +1,4 @@
+/* global toggleMobileMenu, toggleTheme */
 class MainNavigation extends HTMLElement {
   constructor() {
     super();

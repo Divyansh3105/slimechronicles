@@ -511,6 +511,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Other DOMContentLoaded handlers below call these from outside this closure
+  window.filterFactions = filterFactions;
+
   // Event listeners
   if (searchInput) {
     searchInput.addEventListener("input", filterFactions);
@@ -670,7 +673,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const cards = document.querySelectorAll(".faction-card");
 
-  cards.forEach((card, index) => {
+  cards.forEach((card) => {
     card.setAttribute("tabindex", "0");
 
     card.addEventListener("keypress", (e) => {
@@ -691,27 +694,6 @@ document.addEventListener("keydown", (e) => {
     closeFactionModal();
   }
 });
-
-// Add loading state to cards during filter
-let filterTimeout;
-function filterFactionsWithLoading() {
-  const cards = document.querySelectorAll(".faction-card");
-
-  // Add loading state
-  cards.forEach((card) => card.classList.add("loading"));
-
-  // Clear previous timeout
-  clearTimeout(filterTimeout);
-
-  // Filter after brief delay for smooth UX
-  filterTimeout = setTimeout(() => {
-    filterFactions();
-    cards.forEach((card) => card.classList.remove("loading"));
-  }, 150);
-}
-
-// Export for use in main code
-window.filterFactionsWithLoading = filterFactionsWithLoading;
 
 // Clear Filters Button Functionality
 document.addEventListener("DOMContentLoaded", () => {
@@ -750,8 +732,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (relationFilter) relationFilter.value = "all";
 
     // Trigger filter update
-    if (typeof filterFactions === "function") {
-      filterFactions();
+    if (window.filterFactions) {
+      window.filterFactions();
     }
 
     // Hide clear button
@@ -798,63 +780,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
-// Enhanced filter animation
-function filterFactionsEnhanced() {
-  const cards = document.querySelectorAll(".faction-card");
-  const search = document.getElementById("searchInput")?.value.toLowerCase() || "";
-  const type = document.getElementById("typeFilter")?.value || "all";
-  const relation = document.getElementById("relationFilter")?.value || "all";
-
-  let visibleCount = 0;
-
-  cards.forEach((card, index) => {
-    const nameElement = card.querySelector("h2");
-    const summaryElement = card.querySelector(".faction-summary");
-
-    const name = nameElement ? nameElement.textContent.toLowerCase() : "";
-    const summary = summaryElement ? summaryElement.textContent.toLowerCase() : "";
-    const cardType = card.dataset.type || "";
-    const cardRelation = card.dataset.relation || "unknown";
-
-    const matchesSearch = name.includes(search) || summary.includes(search);
-    const matchesType = type === "all" || type === cardType;
-    const matchesRelation = relation === "all" || relation === cardRelation;
-
-    const isVisible = matchesSearch && matchesType && matchesRelation;
-
-    if (isVisible) {
-      card.classList.remove("filtered-out");
-      card.classList.add("filtered-in");
-      card.style.display = "block";
-      card.style.animationDelay = `${index * 0.05}s`;
-      visibleCount++;
-    } else {
-      card.classList.add("filtered-out");
-      card.classList.remove("filtered-in");
-      setTimeout(() => {
-        if (card.classList.contains("filtered-out")) {
-          card.style.display = "none";
-        }
-      }, 300);
-    }
-  });
-
-  // Update results count
-  if (typeof updateResultsCount === "function") {
-    updateResultsCount(visibleCount, cards.length);
-  }
-
-  // Show/hide no results message
-  if (typeof showNoResultsMessage === "function") {
-    showNoResultsMessage(visibleCount);
-  }
-}
-
-// Replace the original filterFactions with enhanced version
-if (typeof filterFactions !== "undefined") {
-  window.filterFactions = filterFactionsEnhanced;
-}
 
 // Add smooth scroll behavior for internal links
 document.addEventListener("DOMContentLoaded", () => {
@@ -924,8 +849,6 @@ document.addEventListener("DOMContentLoaded", () => {
 // Enhanced filter with smooth transitions
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("searchInput");
-  const typeFilter = document.getElementById("typeFilter");
-  const relationFilter = document.getElementById("relationFilter");
 
   // Add debounce to search for better performance
   let searchTimeout;
@@ -933,8 +856,8 @@ document.addEventListener("DOMContentLoaded", () => {
     searchInput.addEventListener("input", () => {
       clearTimeout(searchTimeout);
       searchTimeout = setTimeout(() => {
-        if (typeof filterFactions === "function") {
-          filterFactions();
+        if (window.filterFactions) {
+          window.filterFactions();
         }
       }, 300);
     });
@@ -946,7 +869,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const cards = document.querySelectorAll(".faction-card");
 
   cards.forEach((card) => {
-    card.addEventListener("mouseenter", function (e) {
+    card.addEventListener("mouseenter", function () {
       createParticles(this);
     });
   });
