@@ -4,7 +4,7 @@
   "race": "Human (Hero)",
   "role": "Hero & Crusader Leader",
   "power": "Catastrophe",
-  "portrait": "⚔️",
+  "portrait": "H",
   "image": "assets/characters/Hinata Sakaguchi.webp",
   "colorScheme": {
     "primary": "#ff69b4",
@@ -63,22 +63,19 @@
       "name": "Hero Abilities",
       "type": "Combat",
       "description": "Powers of a Hero",
-      "bonus": "+30 Military",
-      "icon": "⚔️"
+      "bonus": "+30 Military"
     },
     {
       "name": "Swordsmanship",
       "type": "Combat",
       "description": "Master-level sword skills",
-      "bonus": "+25 Military",
-      "icon": "🗡️"
+      "bonus": "+25 Military"
     },
     {
       "name": "Crusader Leadership",
       "type": "Leadership",
       "description": "Leads crusaders effectively",
-      "bonus": "+15 Population",
-      "icon": "🛡️"
+      "bonus": "+15 Population"
     }
   ],
   "impact": {

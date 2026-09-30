@@ -4,7 +4,7 @@
   "race": "Divine Oni",
   "role": "Sword Oni & Grand Master",
   "power": "Catastrophe",
-  "portrait": "🗡️",
+  "portrait": "H",
   "image": "assets/characters/Hakuro.webp",
   "colorScheme": {
     "primary": "#b0b0b0",
@@ -83,22 +83,19 @@
       "name": "Master Swordsman",
       "type": "Combat",
       "description": "Unparalleled skill with the blade",
-      "bonus": "+25 Military",
-      "icon": "⚔️"
+      "bonus": "+25 Military"
     },
     {
       "name": "Battle Tactics",
       "type": "Leadership",
       "description": "Strategic genius in warfare",
-      "bonus": "+15 Military",
-      "icon": "📋"
+      "bonus": "+15 Military"
     },
     {
       "name": "Flawless Arts",
       "type": "Combat",
       "description": "Perfect technique in all forms of combat",
-      "bonus": "+8 Population",
-      "icon": "🎯"
+      "bonus": "+8 Population"
     }
   ],
   "impact": {

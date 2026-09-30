@@ -4,7 +4,7 @@
   "race": "Divine Oni",
   "role": "Minister of Intelligence",
   "power": "Special S",
-  "portrait": "🥷",
+  "portrait": "S",
   "image": "assets/characters/Souei.webp",
   "colorScheme": {
     "primary": "#6c7b7f",
@@ -77,22 +77,19 @@
       "name": "Shadow Clone",
       "type": "Support",
       "description": "Creates multiple copies for infiltration",
-      "bonus": "+10 Military",
-      "icon": "👥"
+      "bonus": "+10 Military"
     },
     {
       "name": "Espionage Network",
       "type": "Support",
       "description": "Gathers intelligence across vast territories",
-      "bonus": "+18 Economy",
-      "icon": "🕵️"
+      "bonus": "+18 Economy"
     },
     {
       "name": "Assassination Arts",
       "type": "Combat",
       "description": "Silent elimination of targets",
-      "bonus": "+15 Military",
-      "icon": "🗡️"
+      "bonus": "+15 Military"
     }
   ],
   "impact": {

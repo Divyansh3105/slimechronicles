@@ -4,7 +4,7 @@
   "race": "Hobgoblin",
   "role": "Village Chief",
   "power": "B-Rank",
-  "portrait": "👨",
+  "portrait": "R",
   "image": "assets/characters/Rigurd.webp",
   "colorScheme": {
     "primary": "#8b7355",
@@ -63,15 +63,13 @@
       "name": "Administration",
       "type": "Support",
       "description": "Handles administrative tasks efficiently",
-      "bonus": "+15 Economy",
-      "icon": "📋"
+      "bonus": "+15 Economy"
     },
     {
       "name": "Organization",
       "type": "Support",
       "description": "Organizes systems and processes",
-      "bonus": "+10 Population",
-      "icon": "🗂️"
+      "bonus": "+10 Population"
     }
   ],
   "impact": {

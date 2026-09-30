@@ -8,12 +8,10 @@
       {
         "event": "Reincarnation",
         "slug": "reincarnation-arc",
-        "icon": "🌟",
         "title": "Reincarnation Arc",
         "events": [
           {
             "importance": "high",
-            "icon": "💫",
             "title": "Satoru Mikami's Death & Reincarnation",
             "date": "Day 1",
             "description": "Satoru Mikami, a 37-year-old corporate worker, dies and is reincarnated as a slime in the Great Jura Forest with unique abilities.",
@@ -39,7 +37,6 @@
           },
           {
             "importance": "high",
-            "icon": "🐺",
             "title": "Goblin Village Alliance",
             "date": "Day 15",
             "description": "Rimuru saves a goblin village from dire wolves and forms the first alliance, becoming their leader.",
@@ -75,12 +72,10 @@
     "arcs": [
       {
         "event": "Orc_Disaster",
-        "icon": "🐗",
         "title": "Orc Disaster Arc",
         "events": [
           {
             "importance": "high",
-            "icon": "⚔️",
             "title": "Orc Lord Invasion",
             "date": "Spring",
             "description": "The Orc Lord leads a massive army threatening the forest. Rimuru forms an alliance with the Lizardmen and Ogres to stop the invasion.",
@@ -123,12 +118,10 @@
     "arcs": [
       {
         "event": "Falmuth_War",
-        "icon": "👑",
         "title": "Falmuth Incident Arc",
         "events": [
           {
             "importance": "high",
-            "icon": "💀",
             "title": "Tempest Massacre",
             "date": "Late Summer",
             "description": "The Kingdom of Falmuth attacks Tempest while Rimuru is away, resulting in the deaths of many citizens including Shion.",
@@ -155,7 +148,6 @@
           },
           {
             "importance": "high",
-            "icon": "🌟",
             "title": "Demon Lord Awakening",
             "date": "Fall",
             "description": "Rimuru evolves into a True Demon Lord through the Harvest Festival, gaining immense power and transforming Tempest forever.",
@@ -184,11 +176,9 @@
       },
       {
         "event": "Walpurgis",
-        "icon": "🎭",
         "title": "Walpurgis Arc",
         "events": [
           {
-            "icon": "🏛️",
             "title": "First Walpurgis Council",
             "date": "Winter",
             "description": "Rimuru attends his first Walpurgis as a newly awakened Demon Lord, meeting the other members of the Octagram and establishing his position in the supernatural hierarchy.",
@@ -231,11 +221,9 @@
     "arcs": [
       {
         "event": "Eastern_Empire",
-        "icon": "🏰",
         "title": "Eastern Empire Arc",
         "events": [
           {
-            "icon": "⚔️",
             "title": "Empire Invasion",
             "date": "Spring",
             "description": "The Eastern Empire launches a massive invasion against Tempest, underestimating the power of the newly awakened Demon Lord and his evolved subordinates.",
@@ -261,7 +249,6 @@
             ]
           },
           {
-            "icon": "🤝",
             "title": "Imperial Peace Treaty",
             "date": "Summer",
             "description": "Following the decisive defeat, the Eastern Empire negotiates a comprehensive peace treaty with Tempest, marking a new era of cooperation and mutual respect.",
@@ -291,11 +278,9 @@
     "navLabel": "Dragon",
     "arcs": [
       {
-        "icon": "🐉",
         "title": "True Dragon Arc",
         "events": [
           {
-            "icon": "❄️",
             "title": "Velzard's Arrival",
             "date": "Early Spring",
             "description": "Velzard, the Ice Dragon and Veldora's sister, arrives in Tempest to investigate her brother's freedom and assess the threat level of Rimuru Tempest.",
@@ -321,7 +306,6 @@
             ]
           },
           {
-            "icon": "🔥",
             "title": "Velgrynd's Investigation",
             "date": "Late Spring",
             "description": "Velgrynd, the Scorch Dragon, conducts her own investigation into Tempest and Rimuru's capabilities, leading to unexpected revelations about parallel worlds and dimensional travel.",
@@ -349,11 +333,9 @@
         ]
       },
       {
-        "icon": "🌀",
         "title": "Labyrinth Arc",
         "events": [
           {
-            "icon": "🏗️",
             "title": "Great Labyrinth Construction",
             "date": "Summer",
             "description": "Rimuru and Ramiris collaborate to construct the Great Labyrinth of Tempest, creating a massive dungeon system that serves as both defense mechanism and training ground.",
@@ -390,12 +372,10 @@
     "arcs": [
       {
         "event": "Tenma_War",
-        "icon": "⚔️",
         "title": "Tenma War Arc",
         "events": [
           {
             "importance": "high",
-            "icon": "�",
             "title": "Empire's Final Assault",
             "date": "Early Spring",
             "description": "The Eastern Empire launches its ultimate invasion against Tempest with overwhelming military force, including advanced magical weapons and elite soldiers, in a desperate attempt to eliminate the growing threat of Rimuru's nation.",
@@ -428,7 +408,6 @@
           },
           {
             "importance": "high",
-            "icon": "🔥",
             "title": "Velgrynd's Intervention",
             "date": "Spring",
             "description": "Velgrynd, the Scorch Dragon, intervenes in the war between Tempest and the Empire, leading to a dramatic confrontation with Veldora and revealing deeper connections between the True Dragons and the ongoing conflict.",
@@ -457,12 +436,10 @@
       },
       {
         "event": "Saint_Monster_Confrontation",
-        "icon": "⚖️",
         "title": "Saint-Monster Confrontation Arc",
         "events": [
           {
             "importance": "high",
-            "icon": "⚔️",
             "title": "Hinata's Final Challenge",
             "date": "Late Spring",
             "description": "Hinata Sakaguchi confronts Rimuru in what appears to be their final battle, but reveals deeper motivations and ultimately leads to a resolution of the conflict between the Western Holy Church and Tempest.",
@@ -489,7 +466,6 @@
           },
           {
             "importance": "medium",
-            "icon": "⛪",
             "title": "Church Reformation",
             "date": "Summer",
             "description": "The Western Holy Church undergoes major reforms under Hinata's leadership, abandoning its anti-monster policies and establishing new diplomatic relations with monster nations, particularly Tempest.",
@@ -526,12 +502,10 @@
     "arcs": [
       {
         "event": "Michael_Arc",
-        "icon": "👼",
         "title": "Michael Arc",
         "events": [
           {
             "importance": "high",
-            "icon": "⚡",
             "title": "Michael's Awakening",
             "date": "Early Spring",
             "description": "The Ultimate Skill Michael awakens and begins manipulating events from behind the scenes, seeking to establish a new world order under angelic rule and eliminate threats to its vision of perfect order.",
@@ -558,7 +532,6 @@
           },
           {
             "importance": "high",
-            "icon": "🌟",
             "title": "Angelic Domination Attempt",
             "date": "Spring",
             "description": "Michael attempts to dominate the world through manipulation of key figures and direct confrontation with the Demon Lords, leading to a cosmic-scale battle that threatens the very fabric of reality.",
@@ -593,12 +566,10 @@
       },
       {
         "event": "Phantom_King",
-        "icon": "👻",
         "title": "Phantom King Arc",
         "events": [
           {
             "importance": "high",
-            "icon": "🌌",
             "title": "Yuuki's True Nature Revealed",
             "date": "Summer",
             "description": "Yuuki Kagurazaka reveals his true nature as a multiversal threat, having gained power across multiple timelines and realities. His ambition extends beyond mere world domination to complete universal control.",
@@ -625,7 +596,6 @@
           },
           {
             "importance": "high",
-            "icon": "⭐",
             "title": "Ultimate Skill Mastery",
             "date": "Late Summer",
             "description": "Rimuru achieves complete mastery over multiple Ultimate Skills, transcending normal limitations and preparing for the final confrontation with cosmic-level threats. Ciel evolves to become an independent consciousness.",
@@ -663,12 +633,10 @@
     "arcs": [
       {
         "event": "Ivarage_Arc",
-        "icon": "🌑",
         "title": "Ivarage Arc",
         "events": [
           {
             "importance": "high",
-            "icon": "🌌",
             "title": "Ivarage's Awakening",
             "date": "Early Spring",
             "description": "The ancient evil Ivarage awakens, representing a threat that transcends even the True Dragons and Demon Lords. This primordial entity seeks to return the world to primordial chaos, threatening all existence.",
@@ -701,7 +669,6 @@
           },
           {
             "importance": "high",
-            "icon": "⚡",
             "title": "Final Confrontation",
             "date": "Spring",
             "description": "The ultimate battle against Ivarage brings together all of Rimuru's allies and former enemies in a desperate fight for existence itself. This confrontation determines the fate of not just their world, but all possible realities.",
@@ -743,12 +710,10 @@
       },
       {
         "event": "Epilogue_Arc",
-        "icon": "🌅",
         "title": "Epilogue Arc",
         "events": [
           {
             "importance": "medium",
-            "icon": "🌍",
             "title": "New World Order",
             "date": "Summer",
             "description": "With all major threats eliminated, a new world order emerges with Tempest at its center. Rimuru, now recognized as a true god-like being, works to establish lasting peace and prosperity across all nations and species.",

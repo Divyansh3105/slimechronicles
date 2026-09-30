@@ -4,7 +4,7 @@
   "race": "Lizardman",
   "role": "Lizardman Warrior",
   "power": "A-Rank",
-  "portrait": "🦎",
+  "portrait": "G",
   "image": "assets/characters/Gabiru.webp",
   "colorScheme": {
     "primary": "#228b22",
@@ -58,15 +58,13 @@
       "name": "Enthusiastic Charge",
       "type": "Combat",
       "description": "Charges with great enthusiasm",
-      "bonus": "+10 Military",
-      "icon": "🦎"
+      "bonus": "+10 Military"
     },
     {
       "name": "Loyalty Boost",
       "type": "Support",
       "description": "Boosts morale through loyalty",
-      "bonus": "+5 Population",
-      "icon": "❤️"
+      "bonus": "+5 Population"
     }
   ],
   "impact": {

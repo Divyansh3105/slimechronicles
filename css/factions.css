@@ -515,7 +515,7 @@ body {
 
   .faction-card {
     animation-duration: 0.2s !important;
-    transition-duration: 0.2s;
+    transition-duration: 0.2s !important;
   }
 
   .faction-header h2,
@@ -2309,20 +2309,20 @@ body {
 }
 
 .faction-header h2 {
-  font-size: 1.6rem;
+  font-size: 1.6rem !important;
   filter: drop-shadow(0 0 20px rgba(77, 212, 255, 0.4)) !important;
-  font-weight: 700;
-  letter-spacing: 1px;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
 }
 
 .factions-controls input,
 .factions-controls select {
   padding: 1rem 1.5rem !important;
   border-radius: 14px !important;
-  border: 2px solid rgba(77, 212, 255, 0.4);
+  border: 2px solid rgba(77, 212, 255, 0.4) !important;
   background: rgba(10, 14, 39, 0.9) !important;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
   box-shadow:
     0 4px 15px rgba(0, 0, 0, 0.3),
     0 2px 8px rgba(0, 0, 0, 0.2) inset !important;
@@ -2344,7 +2344,7 @@ body {
   background: linear-gradient(90deg, rgba(10, 14, 39, 0.8), rgba(77, 212, 255, 0.15)) !important;
   border-radius: 12px !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) inset !important;
-  border: 1px solid rgba(77, 212, 255, 0.2);
+  border: 1px solid rgba(77, 212, 255, 0.2) !important;
 }
 
 .power-bar div {
@@ -2358,26 +2358,26 @@ body {
 .faction-tag {
   padding: 0.5rem 1.2rem !important;
   border-radius: 25px !important;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 1.2px;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.2px !important;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px) !important;
 }
 
 .faction-tag.nation {
   background: linear-gradient(135deg, rgba(77, 212, 255, 0.3), rgba(77, 212, 255, 0.15)) !important;
-  border: 2px solid rgba(77, 212, 255, 0.5);
+  border: 2px solid rgba(77, 212, 255, 0.5) !important;
 }
 
 .faction-tag.council {
   background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 215, 0, 0.15)) !important;
-  border: 2px solid rgba(255, 215, 0, 0.5);
+  border: 2px solid rgba(255, 215, 0, 0.5) !important;
 }
 
 .faction-tag.military {
   background: linear-gradient(135deg, rgba(255, 99, 71, 0.3), rgba(255, 99, 71, 0.15)) !important;
-  border: 2px solid rgba(255, 99, 71, 0.5);
+  border: 2px solid rgba(255, 99, 71, 0.5) !important;
 }
 
 .faction-tag.guild {
@@ -2386,48 +2386,48 @@ body {
     rgba(144, 238, 144, 0.3),
     rgba(144, 238, 144, 0.15)
   ) !important;
-  border: 2px solid rgba(144, 238, 144, 0.5);
+  border: 2px solid rgba(144, 238, 144, 0.5) !important;
 }
 
 .faction-tag.race {
   background: linear-gradient(135deg, rgba(186, 85, 211, 0.3), rgba(186, 85, 211, 0.15)) !important;
-  border: 2px solid rgba(186, 85, 211, 0.5);
+  border: 2px solid rgba(186, 85, 211, 0.5) !important;
 }
 
 .modal-faction-title {
-  font-size: 2.5rem;
+  font-size: 2.5rem !important;
   filter: drop-shadow(0 0 30px rgba(77, 212, 255, 0.5)) !important;
-  font-weight: 700;
-  letter-spacing: 2px;
+  font-weight: 700 !important;
+  letter-spacing: 2px !important;
 }
 
 .modal-power-snapshot {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.6), rgba(10, 14, 39, 0.6)) !important;
-  border: 2px solid rgba(77, 212, 255, 0.4);
+  border: 2px solid rgba(77, 212, 255, 0.4) !important;
   border-radius: 20px !important;
   padding: 2rem !important;
   box-shadow:
     0 10px 40px rgba(0, 0, 0, 0.4),
     0 0 0 1px rgba(255, 255, 255, 0.08) inset !important;
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px) !important;
 }
 
 .modal-power-snapshot h3 {
-  font-size: 1.6rem;
+  font-size: 1.6rem !important;
   filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4)) !important;
-  font-weight: 700;
-  letter-spacing: 2px;
+  font-weight: 700 !important;
+  letter-spacing: 2px !important;
 }
 
 .modal-detail-section {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.5), rgba(10, 14, 39, 0.5)) !important;
-  border: 2px solid rgba(77, 212, 255, 0.3);
+  border: 2px solid rgba(77, 212, 255, 0.3) !important;
   border-radius: 18px !important;
   padding: 1.8rem !important;
   box-shadow:
     0 6px 25px rgba(0, 0, 0, 0.3),
     0 0 0 1px rgba(255, 255, 255, 0.05) inset !important;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px) !important;
 }
 
 .modal-detail-section:hover {
@@ -2439,20 +2439,20 @@ body {
 }
 
 .modal-detail-section h4 {
-  font-size: 1.3rem;
+  font-size: 1.3rem !important;
   filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3)) !important;
-  font-weight: 700;
-  letter-spacing: 1.5px;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
 }
 
 .dependency-grid span {
   padding: 0.5rem 0.9rem !important;
-  font-size: 0.8rem;
+  font-size: 0.8rem !important;
   border-radius: 12px !important;
   background: linear-gradient(135deg, rgba(77, 212, 255, 0.2), rgba(77, 212, 255, 0.1)) !important;
   border: 2px solid rgba(77, 212, 255, 0.4) !important;
-  font-weight: 600;
-  backdrop-filter: blur(10px);
+  font-weight: 600 !important;
+  backdrop-filter: blur(10px) !important;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
 }
 
@@ -2465,14 +2465,14 @@ body {
 .clear-filters-btn {
   padding: 1rem 1.5rem !important;
   border-radius: 14px !important;
-  border: 2px solid rgba(255, 99, 71, 0.5);
+  border: 2px solid rgba(255, 99, 71, 0.5) !important;
   background: linear-gradient(135deg, rgba(255, 99, 71, 0.15), rgba(255, 99, 71, 0.08)) !important;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px !important;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3) !important;
-  backdrop-filter: blur(10px);
-  text-transform: uppercase;
-  font-size: 0.9rem;
+  backdrop-filter: blur(10px) !important;
+  text-transform: uppercase !important;
+  font-size: 0.9rem !important;
 }
 
 .clear-filters-btn:hover {
@@ -2486,9 +2486,9 @@ body {
   width: 55px !important;
   height: 55px !important;
   background: linear-gradient(135deg, rgba(77, 212, 255, 0.95), rgba(77, 212, 255, 0.8)) !important;
-  border: 3px solid rgba(77, 212, 255, 0.6);
+  border: 3px solid rgba(77, 212, 255, 0.6) !important;
   box-shadow: 0 6px 25px rgba(77, 212, 255, 0.4) !important;
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px) !important;
 }
 
 .scroll-to-top:hover {
@@ -2498,29 +2498,29 @@ body {
 }
 
 .page-subtitle {
-  font-size: 1.15rem;
-  line-height: 1.7;
+  font-size: 1.15rem !important;
+  line-height: 1.7 !important;
   color: rgba(232, 240, 255, 0.9) !important;
   filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.4)) !important;
-  font-weight: 500;
+  font-weight: 500 !important;
 }
 
 .faction-summary {
-  font-size: 1rem;
-  line-height: 1.7;
+  font-size: 1rem !important;
+  line-height: 1.7 !important;
   color: rgba(232, 240, 255, 0.95) !important;
-  padding-left: 1.2rem;
-  border-left: 3px solid rgba(77, 212, 255, 0.4);
-  font-weight: 500;
+  padding-left: 1.2rem !important;
+  border-left: 3px solid rgba(77, 212, 255, 0.4) !important;
+  font-weight: 500 !important;
 }
 
 .faction-modal .modal-close {
   width: 50px !important;
   height: 50px !important;
   background: linear-gradient(135deg, rgba(255, 87, 87, 0.2), rgba(255, 87, 87, 0.1)) !important;
-  border: 2px solid rgba(255, 87, 87, 0.4);
-  font-size: 1.6rem;
-  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 87, 87, 0.4) !important;
+  font-size: 1.6rem !important;
+  backdrop-filter: blur(15px) !important;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
 }
 
@@ -2533,24 +2533,24 @@ body {
 
 .impact-section ul li {
   padding: 0.7rem 0.7rem 0.7rem 1.8rem !important;
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.7rem !important;
   border-radius: 10px !important;
-  font-weight: 500;
-  backdrop-filter: blur(5px);
+  font-weight: 500 !important;
+  backdrop-filter: blur(5px) !important;
 }
 
 .impact-positive {
-  border-left: 4px solid #90ee90;
+  border-left: 4px solid #90ee90 !important;
   background: linear-gradient(90deg, rgba(144, 238, 144, 0.1), transparent) !important;
 }
 
 .impact-negative {
-  border-left: 4px solid #ff6347;
+  border-left: 4px solid #ff6347 !important;
   background: linear-gradient(90deg, rgba(255, 99, 71, 0.1), transparent) !important;
 }
 
 .impact-neutral {
-  border-left: 4px solid #ffd700;
+  border-left: 4px solid #ffd700 !important;
   background: linear-gradient(90deg, rgba(255, 215, 0, 0.1), transparent) !important;
 }
 
@@ -2575,13 +2575,13 @@ body {
 }
 
 .modal-faction-summary {
-  font-size: 1.15rem;
-  line-height: 1.8;
+  font-size: 1.15rem !important;
+  line-height: 1.8 !important;
   color: rgba(232, 240, 255, 0.95) !important;
-  font-weight: 500;
+  font-weight: 500 !important;
   padding: 1rem 1.5rem !important;
   background: linear-gradient(135deg, rgba(77, 212, 255, 0.05), transparent) !important;
-  border-left: 4px solid rgba(77, 212, 255, 0.4);
+  border-left: 4px solid rgba(77, 212, 255, 0.4) !important;
   border-radius: 0 12px 12px 0 !important;
 }
 
@@ -2596,16 +2596,16 @@ body {
 
 .timeline-section {
   background: linear-gradient(135deg, rgba(21, 27, 61, 0.6), rgba(10, 14, 39, 0.6)) !important;
-  border: 2px solid rgba(77, 212, 255, 0.4);
+  border: 2px solid rgba(77, 212, 255, 0.4) !important;
   padding: 1.8rem !important;
   border-radius: 18px !important;
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3) !important;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px) !important;
 }
 
 @media (max-width: 767px) {
   .page-title {
-    font-size: 2.5rem;
+    font-size: 2.5rem !important;
   }
 
   .faction-card {
@@ -2724,7 +2724,7 @@ body {
 }
 
 .faction-modal {
-  backdrop-filter: blur(12px) saturate(150%);
+  backdrop-filter: blur(12px) saturate(150%) !important;
   background: rgba(0, 0, 0, 0.9) !important;
 }
 
@@ -2757,7 +2757,7 @@ body {
 .faction-modal .modal-body::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #4dd4ff, #ffd700) !important;
   border-radius: 12px !important;
-  border: 2px solid rgba(10, 14, 39, 0.6);
+  border: 2px solid rgba(10, 14, 39, 0.6) !important;
 }
 
 .faction-modal .modal-body::-webkit-scrollbar-thumb:hover {

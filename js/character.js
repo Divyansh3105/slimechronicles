@@ -235,7 +235,7 @@ class CharacterDataLoader {
         race: "True Dragon (Ultimate Slime)",
         role: "Demon Lord & Founder",
         power: "Catastrophe",
-        portrait: "🌀",
+        portrait: "R",
         image: "assets/characters/Rimuru.webp",
         colorScheme: {
           primary: "#00c8ff",
@@ -249,7 +249,7 @@ class CharacterDataLoader {
         race: "Daemon (Primordial Black)",
         role: "Second Secretary",
         power: "Catastrophe",
-        portrait: "😈",
+        portrait: "D",
         image: "assets/characters/Diablo.webp",
         colorScheme: {
           primary: "#aa55ff",
@@ -1504,7 +1504,7 @@ function generateSkillsSection(character) {
                 <div class="skill-card-glow"></div>
                 <div class="skill-card-header">
                   <div class="skill-card-icon-container">
-                    <div class="skill-card-icon">${skill.icon}</div>
+                    <div class="skill-card-icon">${skill.icon || skill.name.charAt(0)}</div>
                     <div class="skill-rarity ${getSkillRarity(skill)}"></div>
                   </div>
                   <div class="skill-card-info">
@@ -2759,26 +2759,6 @@ function applyCharacterTheme(colorScheme, characterId) {
   document.title = `${characterId.charAt(0).toUpperCase() + characterId.slice(1)} - Character Profile`;
 }
 
-function createFloatingElements(character) {
-  const container = document.getElementById("floating-elements");
-  if (!container) return;
-
-  const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
-  const particleCount = isMobile ? 3 : 6;
-
-  container.innerHTML = "";
-
-  for (let i = 0; i < particleCount; i++) {
-    const element = document.createElement("div");
-    element.className = "floating-element";
-    element.textContent = character.portrait || "✨";
-    element.style.left = Math.random() * 100 + "%";
-    element.style.animationDelay = Math.random() * 20 + "s";
-    element.style.animationDuration = 15 + Math.random() * 10 + "s";
-    container.appendChild(element);
-  }
-}
-
 async function loadCharacterProfile() {
   const characterId = window.getURLParameter("id");
 
@@ -2841,7 +2821,6 @@ async function loadCharacterProfile() {
     }
 
     applyCharacterTheme(basicCharacter.colorScheme, characterId);
-    createFloatingElements(basicCharacter);
     renderBasicCharacterProfile(basicCharacter);
 
     const detailedCharacter = await window.GameState.getCharacter(characterId);

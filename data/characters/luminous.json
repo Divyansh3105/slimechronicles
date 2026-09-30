@@ -4,7 +4,7 @@
   "race": "Vampire (Demon Lord)",
   "role": "Demon Lord",
   "power": "Catastrophe+",
-  "portrait": "🧛",
+  "portrait": "L",
   "image": "assets/characters/Luminous.webp",
   "colorScheme": {
     "primary": "#8b008b",
@@ -58,22 +58,19 @@
       "name": "Light Magic",
       "type": "Magic",
       "description": "Mastery over light and holy magic",
-      "bonus": "+30 Magic",
-      "icon": "✨"
+      "bonus": "+30 Magic"
     },
     {
       "name": "Regeneration",
       "type": "Support",
       "description": "Incredible healing and regeneration",
-      "bonus": "+20 Population",
-      "icon": "💫"
+      "bonus": "+20 Population"
     },
     {
       "name": "Blood Magic",
       "type": "Magic",
       "description": "Controls blood and life force",
-      "bonus": "+25 Magic",
-      "icon": "🩸"
+      "bonus": "+25 Magic"
     }
   ],
   "impact": {

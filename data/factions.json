@@ -56,7 +56,7 @@
         "title": "Strategic Dependencies",
         "cls": "dependency-section",
         "kind": "dependencies",
-        "items": ["⚔ Military", "✨ Magic", "🔩 Technology", "🧠 Intelligence"]
+        "items": ["Military", "Magic", "Technology", "Intelligence"]
       },
       {
         "title": "Leadership Structure",
@@ -215,23 +215,23 @@
         "links": [
           {
             "href": "character.html?name=Rimuru",
-            "text": "👑 Rimuru Tempest"
+            "text": "Rimuru Tempest"
           },
           {
             "href": "character.html?name=Benimaru",
-            "text": "👑 Benimaru"
+            "text": "Benimaru"
           },
           {
             "href": "character.html?name=Shion",
-            "text": "👑 Shion"
+            "text": "Shion"
           },
           {
             "href": "chronicle.html?event=Falmuth_War",
-            "text": "📜 Falmuth War"
+            "text": "Falmuth War"
           },
           {
             "href": "chronicle.html?event=Walpurgis",
-            "text": "📜 Walpurgis Council"
+            "text": "Walpurgis Council"
           }
         ]
       },
@@ -312,7 +312,7 @@
         "title": "Strategic Dependencies",
         "cls": "dependency-section",
         "kind": "dependencies",
-        "items": ["⚔ Military", "🔩 Technology", "🌾 Agriculture"]
+        "items": ["Military", "Technology", "Agriculture"]
       },
       {
         "title": "Royal Leadership",
@@ -447,19 +447,19 @@
         "links": [
           {
             "href": "character.html?id=gazef",
-            "text": "👑 King Gazel"
+            "text": "King Gazel"
           },
           {
             "href": "character.html?name=Kaijin",
-            "text": "👑 Kaijin"
+            "text": "Kaijin"
           },
           {
             "href": "chronicle.html?event=Dwargon_Alliance",
-            "text": "📜 Dwargon Alliance"
+            "text": "Dwargon Alliance"
           },
           {
             "href": "chronicle.html?event=Technology_Exchange",
-            "text": "📜 Technology Exchange"
+            "text": "Technology Exchange"
           }
         ]
       },
@@ -540,7 +540,7 @@
         "title": "Strategic Dependencies",
         "cls": "dependency-section",
         "kind": "dependencies",
-        "items": ["⚔ Military", "🌾 Agriculture", "🧠 Intelligence"]
+        "items": ["Military", "Agriculture", "Intelligence"]
       },
       {
         "title": "Royal Government",
@@ -675,15 +675,15 @@
         "links": [
           {
             "href": "character.html?name=Yuuki",
-            "text": "👑 Yuuki Kagurazaka"
+            "text": "Yuuki Kagurazaka"
           },
           {
             "href": "chronicle.html?event=Ingrassia_Alliance",
-            "text": "📜 Ingrassia Alliance"
+            "text": "Ingrassia Alliance"
           },
           {
             "href": "chronicle.html?event=Free_Guild_Formation",
-            "text": "📜 Free Guild Formation"
+            "text": "Free Guild Formation"
           }
         ]
       },
@@ -764,7 +764,7 @@
         "title": "Strategic Dependencies",
         "cls": "dependency-section",
         "kind": "dependencies",
-        "items": ["⚔ Military", "✨ Magic", "🧠 Intelligence"]
+        "items": ["Military", "Magic", "Intelligence"]
       },
       {
         "title": "Dual Leadership",
@@ -894,19 +894,19 @@
         "links": [
           {
             "href": "character.html?name=Luminous",
-            "text": "👑 Luminous Valentine"
+            "text": "Luminous Valentine"
           },
           {
             "href": "character.html?name=Hinata",
-            "text": "👑 Hinata Sakaguchi"
+            "text": "Hinata Sakaguchi"
           },
           {
             "href": "chronicle.html?event=Holy_War",
-            "text": "📜 Holy War"
+            "text": "Holy War"
           },
           {
             "href": "chronicle.html?event=Walpurgis",
-            "text": "📜 Walpurgis Council"
+            "text": "Walpurgis Council"
           }
         ]
       },
@@ -987,7 +987,7 @@
         "title": "Strategic Dependencies",
         "cls": "dependency-section",
         "kind": "dependencies",
-        "items": ["⚔ Military", "🔩 Technology", "🧠 Intelligence", "🌾 Agriculture"]
+        "items": ["Military", "Technology", "Intelligence", "Agriculture"]
       },
       {
         "title": "Imperial Leadership",
@@ -1116,19 +1116,19 @@
         "links": [
           {
             "href": "character.html?name=Rudra",
-            "text": "👑 Emperor Rudra"
+            "text": "Emperor Rudra"
           },
           {
             "href": "character.html?name=Kondou",
-            "text": "👑 General Kondou"
+            "text": "General Kondou"
           },
           {
             "href": "chronicle.html?event=Eastern_Empire_War",
-            "text": "📜 Eastern Empire War"
+            "text": "Eastern Empire War"
           },
           {
             "href": "chronicle.html?event=Imperial_Invasion",
-            "text": "📜 Imperial Invasion"
+            "text": "Imperial Invasion"
           }
         ]
       },
@@ -1209,7 +1209,7 @@
         "title": "Strategic Dependencies",
         "cls": "dependency-section",
         "kind": "dependencies",
-        "items": ["🧠 Intelligence", "🌾 Agriculture"]
+        "items": ["Intelligence", "Agriculture"]
       },
       {
         "title": "Royal Leadership",
@@ -1344,15 +1344,15 @@
         "links": [
           {
             "href": "character.html?name=Fuze",
-            "text": "👑 Guild Master Fuze"
+            "text": "Guild Master Fuze"
           },
           {
             "href": "chronicle.html?event=Blumund_Alliance",
-            "text": "📜 Blumund Alliance"
+            "text": "Blumund Alliance"
           },
           {
             "href": "chronicle.html?event=First_Contact",
-            "text": "📜 First Contact"
+            "text": "First Contact"
           }
         ]
       },
@@ -1433,7 +1433,7 @@
         "title": "Strategic Dependencies",
         "cls": "dependency-section",
         "kind": "dependencies",
-        "items": ["⚔ Military", "🌾 Agriculture", "✨ Magic"]
+        "items": ["Military", "Agriculture", "Magic"]
       },
       {
         "title": "Demon Lord Leadership",
@@ -1568,15 +1568,15 @@
         "links": [
           {
             "href": "character.html?name=Carrion",
-            "text": "👑 Demon Lord Carrion"
+            "text": "Demon Lord Carrion"
           },
           {
             "href": "chronicle.html?event=Beastmen_Alliance",
-            "text": "📜 Beastmen Alliance"
+            "text": "Beastmen Alliance"
           },
           {
             "href": "chronicle.html?event=Agricultural_Exchange",
-            "text": "📜 Agricultural Exchange"
+            "text": "Agricultural Exchange"
           }
         ]
       },
@@ -1657,7 +1657,7 @@
         "title": "Strategic Dependencies",
         "cls": "dependency-section",
         "kind": "dependencies",
-        "items": ["🌾 Agriculture", "🧠 Intelligence"]
+        "items": ["Agriculture", "Intelligence"]
       },
       {
         "title": "New Royal Leadership",
@@ -1792,15 +1792,15 @@
         "links": [
           {
             "href": "character.html?name=Youm",
-            "text": "👑 King Youm"
+            "text": "King Youm"
           },
           {
             "href": "chronicle.html?event=Falmuth_War",
-            "text": "📜 Falmuth War"
+            "text": "Falmuth War"
           },
           {
             "href": "chronicle.html?event=Farmenas_Reconstruction",
-            "text": "📜 Reconstruction"
+            "text": "Reconstruction"
           }
         ]
       },
@@ -1882,7 +1882,7 @@
         "title": "Strategic Dependencies",
         "cls": "dependency-section",
         "kind": "dependencies",
-        "items": ["⚔ Military", "✨ Magic", "🧠 Intelligence"]
+        "items": ["Military", "Magic", "Intelligence"]
       },
       {
         "title": "Current Members",
@@ -2020,23 +2020,23 @@
         "links": [
           {
             "href": "character.html?name=Guy",
-            "text": "👑 Guy Crimson"
+            "text": "Guy Crimson"
           },
           {
             "href": "character.html?name=Milim",
-            "text": "👑 Milim Nava"
+            "text": "Milim Nava"
           },
           {
             "href": "character.html?name=Rimuru",
-            "text": "👑 Rimuru Tempest"
+            "text": "Rimuru Tempest"
           },
           {
             "href": "chronicle.html?event=Walpurgis",
-            "text": "📜 Walpurgis Council"
+            "text": "Walpurgis Council"
           },
           {
             "href": "chronicle.html?event=Clayman_Trial",
-            "text": "📜 Clayman Trial"
+            "text": "Clayman Trial"
           }
         ]
       },
@@ -2117,7 +2117,7 @@
         "title": "Strategic Dependencies",
         "cls": "dependency-section",
         "kind": "dependencies",
-        "items": ["🧠 Intelligence", "🌾 Agriculture"]
+        "items": ["Intelligence", "Agriculture"]
       },
       {
         "title": "Organizational Structure",
@@ -2252,15 +2252,15 @@
         "links": [
           {
             "href": "character.html?name=Fuze",
-            "text": "👑 Guild Master Fuze"
+            "text": "Guild Master Fuze"
           },
           {
             "href": "chronicle.html?event=Guild_Formation",
-            "text": "📜 Guild Formation"
+            "text": "Guild Formation"
           },
           {
             "href": "chronicle.html?event=Adventurer_System",
-            "text": "📜 Adventurer System"
+            "text": "Adventurer System"
           }
         ]
       },
@@ -2341,7 +2341,7 @@
         "title": "Strategic Dependencies",
         "cls": "dependency-section",
         "kind": "dependencies",
-        "items": ["🔩 Technology", "🌾 Agriculture", "🧠 Intelligence"]
+        "items": ["Technology", "Agriculture", "Intelligence"]
       },
       {
         "title": "Alliance Leadership",
@@ -2476,23 +2476,23 @@
         "links": [
           {
             "href": "character.html?name=Rimuru",
-            "text": "👑 Rimuru Tempest"
+            "text": "Rimuru Tempest"
           },
           {
             "href": "character.html?id=gazef",
-            "text": "👑 King Gazel"
+            "text": "King Gazel"
           },
           {
             "href": "character.html?name=Youm",
-            "text": "👑 King Youm"
+            "text": "King Youm"
           },
           {
             "href": "chronicle.html?event=Trade_Alliance_Formation",
-            "text": "📜 Alliance Formation"
+            "text": "Alliance Formation"
           },
           {
             "href": "chronicle.html?event=Economic_Cooperation",
-            "text": "📜 Economic Cooperation"
+            "text": "Economic Cooperation"
           }
         ]
       },
@@ -2573,7 +2573,7 @@
         "title": "Strategic Dependencies",
         "cls": "dependency-section",
         "kind": "dependencies",
-        "items": ["⚔ Military", "✨ Magic"]
+        "items": ["Military", "Magic"]
       },
       {
         "title": "Religious Hierarchy",
@@ -2709,19 +2709,19 @@
         "links": [
           {
             "href": "character.html?name=Hinata",
-            "text": "👑 Hinata Sakaguchi"
+            "text": "Hinata Sakaguchi"
           },
           {
             "href": "character.html?name=Luminous",
-            "text": "👑 Luminous Valentine"
+            "text": "Luminous Valentine"
           },
           {
             "href": "chronicle.html?event=Holy_War",
-            "text": "📜 Holy War"
+            "text": "Holy War"
           },
           {
             "href": "chronicle.html?event=Crusade_Against_Monsters",
-            "text": "📜 Crusade Against Monsters"
+            "text": "Crusade Against Monsters"
           }
         ]
       },
@@ -2802,7 +2802,7 @@
         "title": "Strategic Dependencies",
         "cls": "dependency-section",
         "kind": "dependencies",
-        "items": ["🧠 Intelligence", "🔩 Technology"]
+        "items": ["Intelligence", "Technology"]
       },
       {
         "title": "Shadow Leadership",
@@ -2937,15 +2937,15 @@
         "links": [
           {
             "href": "character.html?name=Yuuki",
-            "text": "👑 Yuuki Kagurazaka"
+            "text": "Yuuki Kagurazaka"
           },
           {
             "href": "chronicle.html?event=Cerberus_Operations",
-            "text": "📜 Cerberus Operations"
+            "text": "Cerberus Operations"
           },
           {
             "href": "chronicle.html?event=Shadow_War",
-            "text": "📜 Shadow War"
+            "text": "Shadow War"
           }
         ]
       },
@@ -3059,19 +3059,19 @@
         "links": [
           {
             "href": "character.html?name=Edmaris",
-            "text": "👑 Former King Edmaris"
+            "text": "Former King Edmaris"
           },
           {
             "href": "character.html?name=Youm",
-            "text": "👑 King Youm"
+            "text": "King Youm"
           },
           {
             "href": "chronicle.html?event=Falmuth_War",
-            "text": "📜 Falmuth War"
+            "text": "Falmuth War"
           },
           {
             "href": "chronicle.html?event=Kingdom_Dissolution",
-            "text": "📜 Kingdom Dissolution"
+            "text": "Kingdom Dissolution"
           }
         ]
       },
@@ -3153,7 +3153,7 @@
         "title": "Strategic Dependencies",
         "cls": "dependency-section",
         "kind": "dependencies",
-        "items": ["⚔ Military", "🌾 Agriculture"]
+        "items": ["Military", "Agriculture"]
       },
       {
         "title": "Leadership",
@@ -3210,19 +3210,19 @@
         "links": [
           {
             "href": "character.html?name=Rigurd",
-            "text": "👑 Chief Rigurd"
+            "text": "Chief Rigurd"
           },
           {
             "href": "character.html?name=Rimuru",
-            "text": "👑 Rimuru Tempest"
+            "text": "Rimuru Tempest"
           },
           {
             "href": "chronicle.html?event=First_Naming",
-            "text": "📜 First Naming"
+            "text": "First Naming"
           },
           {
             "href": "chronicle.html?event=Goblin_Evolution",
-            "text": "📜 Goblin Evolution"
+            "text": "Goblin Evolution"
           }
         ]
       },
@@ -3304,7 +3304,7 @@
         "title": "Strategic Dependencies",
         "cls": "dependency-section",
         "kind": "dependencies",
-        "items": ["⚔ Military", "✨ Magic"]
+        "items": ["Military", "Magic"]
       },
       {
         "title": "Leadership",
@@ -3370,19 +3370,19 @@
         "links": [
           {
             "href": "character.html?name=Ranga",
-            "text": "👑 Alpha Ranga"
+            "text": "Alpha Ranga"
           },
           {
             "href": "character.html?name=Rimuru",
-            "text": "👑 Rimuru Tempest"
+            "text": "Rimuru Tempest"
           },
           {
             "href": "chronicle.html?event=Wolf_Submission",
-            "text": "📜 Wolf Submission"
+            "text": "Wolf Submission"
           },
           {
             "href": "chronicle.html?event=Star_Wolf_Evolution",
-            "text": "📜 Star Wolf Evolution"
+            "text": "Star Wolf Evolution"
           }
         ]
       },
@@ -3464,7 +3464,7 @@
         "title": "Strategic Dependencies",
         "cls": "dependency-section",
         "kind": "dependencies",
-        "items": ["⚔ Military", "🌾 Agriculture"]
+        "items": ["Military", "Agriculture"]
       },
       {
         "title": "Leadership",
@@ -3521,19 +3521,19 @@
         "links": [
           {
             "href": "character.html?name=Gabiru",
-            "text": "👑 Leader Gabiru"
+            "text": "Leader Gabiru"
           },
           {
             "href": "character.html?name=Rimuru",
-            "text": "👑 Rimuru Tempest"
+            "text": "Rimuru Tempest"
           },
           {
             "href": "chronicle.html?event=Orc_Lord_Crisis",
-            "text": "📜 Orc Lord Crisis"
+            "text": "Orc Lord Crisis"
           },
           {
             "href": "chronicle.html?event=Lizardmen_Integration",
-            "text": "📜 Lizardmen Integration"
+            "text": "Lizardmen Integration"
           }
         ]
       },

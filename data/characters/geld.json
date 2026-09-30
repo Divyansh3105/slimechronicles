@@ -4,7 +4,7 @@
   "race": "High Orc",
   "role": "Minister of Infrastructure",
   "power": "Special S",
-  "portrait": "🏗️",
+  "portrait": "G",
   "image": "assets/characters/Geld.webp",
   "colorScheme": {
     "primary": "#654321",
@@ -72,22 +72,19 @@
       "name": "Construction Mastery",
       "type": "Crafting",
       "description": "Builds structures with incredible efficiency",
-      "bonus": "+25 Economy",
-      "icon": "🏗️"
+      "bonus": "+25 Economy"
     },
     {
       "name": "Engineering Genius",
       "type": "Crafting",
       "description": "Designs advanced infrastructure systems",
-      "bonus": "+20 Population",
-      "icon": "⚙️"
+      "bonus": "+20 Population"
     },
     {
       "name": "Orc Leadership",
       "type": "Leadership",
       "description": "Commands construction teams effectively",
-      "bonus": "+8 Military",
-      "icon": "👷"
+      "bonus": "+8 Military"
     }
   ],
   "impact": {

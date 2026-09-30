@@ -4,7 +4,7 @@
   "race": "True Dragon",
   "role": "Guardian Deity",
   "power": "Catastrophe+",
-  "portrait": "🐉",
+  "portrait": "V",
   "image": "assets/characters/Veldora.webp",
   "colorScheme": {
     "primary": "#ffd700",
@@ -79,22 +79,19 @@
       "name": "Storm Dragon",
       "type": "Combat",
       "description": "Catastrophic weather manipulation",
-      "bonus": "+40 Military",
-      "icon": "🌪️"
+      "bonus": "+40 Military"
     },
     {
       "name": "Probability Manipulation",
       "type": "Magic",
       "description": "Alters the fabric of reality itself",
-      "bonus": "+35 Magic",
-      "icon": "🎲"
+      "bonus": "+35 Magic"
     },
     {
       "name": "True Dragon Aura",
       "type": "Support",
       "description": "Radiates overwhelming presence",
-      "bonus": "+25 Population",
-      "icon": "👑"
+      "bonus": "+25 Population"
     }
   ],
   "impact": {

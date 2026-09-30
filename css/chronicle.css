@@ -1627,8 +1627,8 @@ body {
   margin: 0 auto 2rem auto !important;
   display: block !important;
   width: 100% !important;
-  max-width: calc(100vw - 4rem);
-  box-sizing: border-box;
+  max-width: calc(100vw - 4rem) !important;
+  box-sizing: border-box !important;
 }
 
 .timeline-line {
@@ -1637,11 +1637,11 @@ body {
 }
 
 .timeline-arc {
-  margin-left: 0;
-  margin-right: 0;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
   width: 100% !important;
-  max-width: calc(100vw - 4rem);
-  box-sizing: border-box;
+  max-width: calc(100vw - 4rem) !important;
+  box-sizing: border-box !important;
 }
 
 /* Visibility and display overrides for timeline components */

@@ -4,7 +4,7 @@
   "race": "Demon Lord",
   "role": "Former Demon Lord",
   "power": "Catastrophe",
-  "portrait": "🎭",
+  "portrait": "C",
   "image": "assets/characters/Clayman.webp",
   "colorScheme": {
     "primary": "#8b4513",
@@ -52,22 +52,19 @@
       "name": "Marionette Master",
       "type": "Magic",
       "description": "Controls puppets and marionettes",
-      "bonus": "+20 Magic",
-      "icon": "🎭"
+      "bonus": "+20 Magic"
     },
     {
       "name": "Manipulation",
       "type": "Support",
       "description": "Manipulates others to do his bidding",
-      "bonus": "+15 Military",
-      "icon": "🧠"
+      "bonus": "+15 Military"
     },
     {
       "name": "Doll Creation",
       "type": "Magic",
       "description": "Creates and controls dolls",
-      "bonus": "+10 Magic",
-      "icon": "🎎"
+      "bonus": "+10 Magic"
     }
   ],
   "impact": {

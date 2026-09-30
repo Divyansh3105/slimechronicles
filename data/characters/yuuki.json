@@ -4,7 +4,7 @@
   "race": "Human (Otherworlder)",
   "role": "Otherworlder & Strategist",
   "power": "Catastrophe",
-  "portrait": "🎭",
+  "portrait": "Y",
   "image": "assets/characters/Yuuki Kagurazaka.webp",
   "colorScheme": {
     "primary": "#9370db",
@@ -63,22 +63,19 @@
       "name": "Otherworlder Knowledge",
       "type": "Support",
       "description": "Uses knowledge from previous world",
-      "bonus": "+25 Population",
-      "icon": "🌐"
+      "bonus": "+25 Population"
     },
     {
       "name": "Strategic Mind",
       "type": "Support",
       "description": "Calculates all possibilities",
-      "bonus": "+30 Military",
-      "icon": "🧠"
+      "bonus": "+30 Military"
     },
     {
       "name": "Manipulation",
       "type": "Support",
       "description": "Manipulates situations to advantage",
-      "bonus": "+20 Economy",
-      "icon": "🎭"
+      "bonus": "+20 Economy"
     }
   ],
   "impact": {

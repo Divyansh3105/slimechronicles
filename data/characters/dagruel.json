@@ -4,7 +4,7 @@
   "race": "Giant (Giant King)",
   "role": "Demon Lord",
   "power": "Catastrophe+",
-  "portrait": "🗿",
+  "portrait": "D",
   "image": "assets/characters/Dagruel.webp",
   "colorScheme": {
     "primary": "#696969",
@@ -63,22 +63,19 @@
       "name": "Colossal Strength",
       "type": "Combat",
       "description": "Immense physical power",
-      "bonus": "+35 Military",
-      "icon": "💪"
+      "bonus": "+35 Military"
     },
     {
       "name": "Earth Magic",
       "type": "Magic",
       "description": "Controls earth and stone",
-      "bonus": "+25 Magic",
-      "icon": "🌍"
+      "bonus": "+25 Magic"
     },
     {
       "name": "Giant Transformation",
       "type": "Combat",
       "description": "Transforms into massive form",
-      "bonus": "+20 Military",
-      "icon": "🗿"
+      "bonus": "+20 Military"
     }
   ],
   "impact": {

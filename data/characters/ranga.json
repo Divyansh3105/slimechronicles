@@ -4,7 +4,7 @@
   "race": "Tempest Wolf",
   "role": "Rimuru's Companion",
   "power": "Special S",
-  "portrait": "🐺",
+  "portrait": "R",
   "image": "assets/characters/Ranga.webp",
   "colorScheme": {
     "primary": "#2f4f4f",
@@ -63,22 +63,19 @@
       "name": "Storm Magic",
       "type": "Magic",
       "description": "Controls storms and lightning",
-      "bonus": "+20 Magic",
-      "icon": "⚡"
+      "bonus": "+20 Magic"
     },
     {
       "name": "Lightning Speed",
       "type": "Support",
       "description": "Extremely fast movement",
-      "bonus": "+15 Military",
-      "icon": "💨"
+      "bonus": "+15 Military"
     },
     {
       "name": "Pack Leadership",
       "type": "Leadership",
       "description": "Leads wolf packs effectively",
-      "bonus": "+10 Population",
-      "icon": "🐺"
+      "bonus": "+10 Population"
     }
   ],
   "impact": {

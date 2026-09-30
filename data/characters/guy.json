@@ -4,7 +4,7 @@
   "race": "Daemon (Primordial Red)",
   "role": "Demon Lord",
   "power": "Catastrophe+",
-  "portrait": "👹",
+  "portrait": "G",
   "image": "assets/characters/Guy.webp",
   "colorScheme": {
     "primary": "#8b0000",
@@ -58,22 +58,19 @@
       "name": "Frost Magic",
       "type": "Magic",
       "description": "Absolute zero and ice manipulation",
-      "bonus": "+40 Magic",
-      "icon": "❄️"
+      "bonus": "+40 Magic"
     },
     {
       "name": "Prideful King",
       "type": "Leadership",
       "description": "Maintains balance through authority",
-      "bonus": "+35 Military",
-      "icon": "👑"
+      "bonus": "+35 Military"
     },
     {
       "name": "Strategic Mind",
       "type": "Support",
       "description": "Calculates all possibilities",
-      "bonus": "+20 Population",
-      "icon": "🧠"
+      "bonus": "+20 Population"
     }
   ],
   "impact": {

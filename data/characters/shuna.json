@@ -4,7 +4,7 @@
   "race": "Wicked Oni",
   "role": "Minister of Production",
   "power": "Special S",
-  "portrait": "🌸",
+  "portrait": "S",
   "image": "assets/characters/Shuna.webp",
   "colorScheme": {
     "primary": "#ffb3d9",
@@ -77,22 +77,19 @@
       "name": "Analytical Appraisal",
       "type": "Support",
       "description": "Perfectly analyzes any item or material",
-      "bonus": "+15 Economy",
-      "icon": "🔍"
+      "bonus": "+15 Economy"
     },
     {
       "name": "Master Craftsman",
       "type": "Crafting",
       "description": "Creates items of exceptional quality",
-      "bonus": "+20 Economy",
-      "icon": "🎨"
+      "bonus": "+20 Economy"
     },
     {
       "name": "Spirit Magic",
       "type": "Magic",
       "description": "Commands elemental spirits",
-      "bonus": "+12 Magic",
-      "icon": "✨"
+      "bonus": "+12 Magic"
     }
   ],
   "impact": {

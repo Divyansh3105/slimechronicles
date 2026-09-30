@@ -4,7 +4,7 @@
   "race": "Fairy (Fairy Queen)",
   "role": "Fairy Queen & Former Demon Lord",
   "power": "Catastrophe",
-  "portrait": "🧚",
+  "portrait": "R",
   "image": "assets/characters/Ramiris.webp",
   "colorScheme": {
     "primary": "#98fb98",
@@ -63,22 +63,19 @@
       "name": "Labyrinth Creation",
       "type": "Magic",
       "description": "Creates dimensional labyrinths",
-      "bonus": "+25 Magic",
-      "icon": "🏛️"
+      "bonus": "+25 Magic"
     },
     {
       "name": "Fairy Magic",
       "type": "Magic",
       "description": "Powerful fairy magic",
-      "bonus": "+20 Magic",
-      "icon": "🧚"
+      "bonus": "+20 Magic"
     },
     {
       "name": "Ancient Wisdom",
       "type": "Support",
       "description": "Provides guidance through experience",
-      "bonus": "+15 Population",
-      "icon": "📚"
+      "bonus": "+15 Population"
     }
   ],
   "impact": {

@@ -4,7 +4,7 @@
   "race": "Wicked Oni",
   "role": "First Secretary",
   "power": "Chaos",
-  "portrait": "⚔️",
+  "portrait": "S",
   "image": "assets/characters/Shion.webp",
   "colorScheme": {
     "primary": "#aa55ff",
@@ -78,106 +78,91 @@
       "name": "Hercules Strength",
       "type": "Combat",
       "description": "Supernatural physical strength that can shatter mountains and level fortresses",
-      "bonus": "+25 Combat",
-      "icon": "💪"
+      "bonus": "+25 Combat"
     },
     {
       "name": "Ultra-Speed Regeneration",
       "type": "Support",
       "description": "Rapidly recovers from any injury, even fatal wounds, within moments",
-      "bonus": "+20 Endurance",
-      "icon": "💚"
+      "bonus": "+20 Endurance"
     },
     {
       "name": "Master Chef",
       "type": "Crafting",
       "description": "Reality-altering cooking abilities that can change the fundamental properties of ingredients",
-      "bonus": "+8 Crafting",
-      "icon": "🍳"
+      "bonus": "+8 Crafting"
     },
     {
       "name": "Sword Mastery",
       "type": "Combat",
       "description": "Legendary skill with bladed weapons, capable of cutting through any material",
-      "bonus": "+24 Weapon Skill",
-      "icon": "⚔️"
+      "bonus": "+24 Weapon Skill"
     },
     {
       "name": "Berserker Mode",
       "type": "Combat",
       "description": "Enters a rage state that dramatically increases all combat abilities",
-      "bonus": "+22 Fury",
-      "icon": "😤"
+      "bonus": "+22 Fury"
     },
     {
       "name": "Bodyguard Instinct",
       "type": "Support",
       "description": "Supernatural awareness of threats to protected individuals",
-      "bonus": "+18 Protection",
-      "icon": "🛡️"
+      "bonus": "+18 Protection"
     },
     {
       "name": "Intimidating Presence",
       "type": "Combat",
       "description": "Natural aura that can paralyze enemies with fear before combat begins",
-      "bonus": "+16 Intimidation",
-      "icon": "👹"
+      "bonus": "+16 Intimidation"
     },
     {
       "name": "Administrative Excellence",
       "type": "Leadership",
       "description": "Perfect organizational skills for managing complex schedules and tasks",
-      "bonus": "+19 Administration",
-      "icon": "📋"
+      "bonus": "+19 Administration"
     },
     {
       "name": "Loyalty Aura",
       "type": "Leadership",
       "description": "Inspires absolute devotion and loyalty in subordinates through example",
-      "bonus": "+17 Leadership",
-      "icon": "💖"
+      "bonus": "+17 Leadership"
     },
     {
       "name": "Battle Frenzy",
       "type": "Combat",
       "description": "Combat effectiveness increases exponentially as battle intensity rises",
-      "bonus": "+21 Battle Rage",
-      "icon": "🔥"
+      "bonus": "+21 Battle Rage"
     },
     {
       "name": "Perfect Guard",
       "type": "Combat",
       "description": "Ability to intercept and block any attack directed at protected targets",
-      "bonus": "+23 Defense",
-      "icon": "🛡️"
+      "bonus": "+23 Defense"
     },
     {
       "name": "Oni Transformation",
       "type": "Combat",
       "description": "Can temporarily assume true Oni form for maximum combat effectiveness",
-      "bonus": "+26 Transformation",
-      "icon": "👺"
+      "bonus": "+26 Transformation"
     },
     {
       "name": "Weapon Creation",
       "type": "Crafting",
       "description": "Ability to forge weapons of exceptional quality and supernatural sharpness",
-      "bonus": "+15 Smithing",
-      "icon": "🔨"
+      "bonus": "+15 Smithing"
     },
     {
       "name": "Tactical Awareness",
       "type": "Support",
       "description": "Instinctive understanding of battlefield conditions and optimal positioning",
-      "bonus": "+14 Tactics",
-      "icon": "🎯"
+      "bonus": "+14 Tactics"
     },
     {
       "name": "Unbreakable Will",
       "type": "Support",
       "description": "Mental fortitude that cannot be shaken by any form of manipulation or fear",
-      "bonus": "+20 Mental Resistance",
-      "icon": "🧠"
+      "bonus": "+20 Mental Resistance"
     }
   ],
   "impact": {

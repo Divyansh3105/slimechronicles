@@ -46,7 +46,7 @@ async function getAllSkills() {
                 name: skill.name,
                 type: skill.type || "Unknown",
                 description: skill.description || "No description available",
-                icon: skill.icon || getSkillIcon(skill.type),
+                icon: skill.name.charAt(0),
                 characters: [],
                 prerequisites: generatePrerequisites(skill.type),
                 applications: generateApplications(skill.type),
@@ -87,18 +87,6 @@ function updateLoadingProgress(current, total) {
     progressBar.style.width = `${percentage}%`;
     loadingText.textContent = `Loading Skills... ${percentage}%`;
   }
-}
-
-function getSkillIcon(type) {
-  const icons = {
-    Combat: "⚔️",
-    Magic: "✨",
-    Support: "🛡️",
-    Leadership: "👑",
-    Crafting: "🔨",
-    Unknown: "❓",
-  };
-  return icons[type] || "✨";
 }
 
 function getSkillRarity(type) {
@@ -324,7 +312,7 @@ function renderSkills(skills) {
           name: skill.name || "Unknown Skill", // Ensure skill has a name
           type: skill.type || "Unknown", // Ensure skill has a type
           description: skill.description || "No description available", // Provide default description
-          icon: skill.icon || "✨", // Provide default icon
+          icon: skill.icon || (skill.name || "?").charAt(0),
           characters: skill.characters || [], // Ensure characters array exists
           prerequisites: skill.prerequisites || [], // Ensure prerequisites array exists
           applications: skill.applications || [], // Ensure applications array exists
@@ -410,7 +398,7 @@ function renderSkills(skills) {
                         .map((char) => {
                           const safeName = char.name || "Unknown"; // Ensure character has name
                           const safeId = char.id || ""; // Ensure character has ID
-                          const safePortrait = char.portrait || "👤"; // Provide default portrait
+                          const safePortrait = char.portrait || "?";
 
                           return `
                             <div class="character-tag" onclick="event.stopPropagation(); viewCharacter('${safeId}')" title="View ${safeName}'s profile">
@@ -714,7 +702,7 @@ function openSkillDetail(skillName) {
                 .map(
                   (char) => `
                 <div class="character-tag" onclick="event.stopPropagation(); viewCharacter('${char.id || ""}')" title="View ${char.name}'s profile" tabindex="0" role="button" aria-label="View ${char.name}'s profile">
-                  <span class="character-tag-icon">${char.portrait || "👤"}</span>
+                  <span class="character-tag-icon">${char.portrait || "?"}</span>
                   <span>${char.name}</span>
                 </div>
               `
@@ -996,7 +984,7 @@ function setupSearchSuggestions() {
           suggestions.push({
             type: "character",
             text: char.name,
-            icon: char.portrait || "👤",
+            icon: char.portrait || "?",
           });
         }
       });

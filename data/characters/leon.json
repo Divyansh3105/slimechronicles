@@ -4,7 +4,7 @@
   "race": "Demon Lord",
   "role": "Demon Lord",
   "power": "Catastrophe+",
-  "portrait": "👑",
+  "portrait": "L",
   "image": "assets/characters/Leon.webp",
   "colorScheme": {
     "primary": "#4169e1",
@@ -58,22 +58,19 @@
       "name": "Disintegration",
       "type": "Magic",
       "description": "Ultimate destruction magic",
-      "bonus": "+35 Magic",
-      "icon": "💥"
+      "bonus": "+35 Magic"
     },
     {
       "name": "Prideful King",
       "type": "Leadership",
       "description": "Maintains control through pride",
-      "bonus": "+30 Military",
-      "icon": "👑"
+      "bonus": "+30 Military"
     },
     {
       "name": "Spatial Domination",
       "type": "Magic",
       "description": "Controls space and dimensions",
-      "bonus": "+25 Magic",
-      "icon": "🌀"
+      "bonus": "+25 Magic"
     }
   ],
   "impact": {

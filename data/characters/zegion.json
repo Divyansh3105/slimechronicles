@@ -4,7 +4,7 @@
   "race": "Insect (Mystic Insect)",
   "role": "Insect Commander",
   "power": "Catastrophe",
-  "portrait": "🦋",
+  "portrait": "Z",
   "image": "assets/characters/Zegion.webp",
   "colorScheme": {
     "primary": "#4b0082",
@@ -63,22 +63,19 @@
       "name": "Absolute Defense",
       "type": "Defense",
       "description": "Impenetrable defensive abilities",
-      "bonus": "+30 Military",
-      "icon": "🛡️"
+      "bonus": "+30 Military"
     },
     {
       "name": "Spatial Domination",
       "type": "Magic",
       "description": "Controls space and dimensions",
-      "bonus": "+25 Magic",
-      "icon": "🌀"
+      "bonus": "+25 Magic"
     },
     {
       "name": "Insect Magic",
       "type": "Magic",
       "description": "Controls insects and swarms",
-      "bonus": "+20 Magic",
-      "icon": "🦋"
+      "bonus": "+20 Magic"
     }
   ],
   "impact": {

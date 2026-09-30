@@ -4,7 +4,7 @@
   "race": "Divine Oni (Flame Soul Oni)",
   "role": "Commander-in-Chief",
   "power": "Catastrophe",
-  "portrait": "🔥",
+  "portrait": "B",
   "image": "assets/characters/Benimaru.webp",
   "colorScheme": {
     "primary": "#ff3366",
@@ -58,106 +58,91 @@
       "name": "Hell Flare",
       "type": "Combat",
       "description": "Devastating flame-based area attack that can incinerate entire battlefields",
-      "bonus": "+26 Combat",
-      "icon": "🔥"
+      "bonus": "+26 Combat"
     },
     {
       "name": "Black Lightning",
       "type": "Magic",
       "description": "Combines flame and lightning into ultimate destructive force that pierces any defense",
-      "bonus": "+24 Magic",
-      "icon": "⚡"
+      "bonus": "+24 Magic"
     },
     {
       "name": "Samurai General",
       "type": "Leadership",
       "description": "Commands troops with legendary tactical prowess and inspirational presence",
-      "bonus": "+22 Leadership",
-      "icon": "⚔️"
+      "bonus": "+22 Leadership"
     },
     {
       "name": "Flame Mastery",
       "type": "Magic",
       "description": "Complete control over all forms of fire, from gentle warmth to apocalyptic infernos",
-      "bonus": "+25 Fire Magic",
-      "icon": "🔥"
+      "bonus": "+25 Fire Magic"
     },
     {
       "name": "Strategic Genius",
       "type": "Leadership",
       "description": "Ability to analyze complex battle situations and devise winning strategies instantly",
-      "bonus": "+23 Strategy",
-      "icon": "🧠"
+      "bonus": "+23 Strategy"
     },
     {
       "name": "Warrior's Pride",
       "type": "Combat",
       "description": "Unshakeable confidence that enhances all combat abilities and inspires allies",
-      "bonus": "+18 Morale",
-      "icon": "👑"
+      "bonus": "+18 Morale"
     },
     {
       "name": "Phoenix Rebirth",
       "type": "Support",
       "description": "Can resurrect from death once per battle through the power of flames",
-      "bonus": "+20 Resurrection",
-      "icon": "🔥"
+      "bonus": "+20 Resurrection"
     },
     {
       "name": "Army Coordination",
       "type": "Leadership",
       "description": "Perfect synchronization with all military units under command",
-      "bonus": "+21 Coordination",
-      "icon": "🎯"
+      "bonus": "+21 Coordination"
     },
     {
       "name": "Flame Barrier",
       "type": "Support",
       "description": "Creates protective walls of fire that can defend entire armies",
-      "bonus": "+19 Defense",
-      "icon": "🛡️"
+      "bonus": "+19 Defense"
     },
     {
       "name": "Intimidating Roar",
       "type": "Combat",
       "description": "Battle cry that can shatter enemy morale and boost ally effectiveness",
-      "bonus": "+17 Intimidation",
-      "icon": "🦁"
+      "bonus": "+17 Intimidation"
     },
     {
       "name": "Weapon Mastery",
       "type": "Combat",
       "description": "Expert proficiency with all forms of weapons, especially swords and polearms",
-      "bonus": "+22 Weapon Skill",
-      "icon": "⚔️"
+      "bonus": "+22 Weapon Skill"
     },
     {
       "name": "Tactical Formation",
       "type": "Leadership",
       "description": "Ability to organize troops into optimal battle formations for any situation",
-      "bonus": "+20 Formation",
-      "icon": "📐"
+      "bonus": "+20 Formation"
     },
     {
       "name": "Fire Immunity",
       "type": "Support",
       "description": "Complete resistance to all forms of heat and flame-based attacks",
-      "bonus": "+16 Resistance",
-      "icon": "🔥"
+      "bonus": "+16 Resistance"
     },
     {
       "name": "Leadership Aura",
       "type": "Leadership",
       "description": "Natural charisma that makes others want to follow and fight alongside him",
-      "bonus": "+24 Charisma",
-      "icon": "✨"
+      "bonus": "+24 Charisma"
     },
     {
       "name": "Combat Instinct",
       "type": "Combat",
       "description": "Supernatural awareness of danger and optimal combat responses",
-      "bonus": "+21 Instinct",
-      "icon": "👁️"
+      "bonus": "+21 Instinct"
     }
   ],
   "impact": {

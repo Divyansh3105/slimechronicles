@@ -4,7 +4,7 @@
   "race": "Undead (Archbishop)",
   "role": "Undead Commander",
   "power": "Special S",
-  "portrait": "💀",
+  "portrait": "A",
   "image": "assets/characters/Adalmann.webp",
   "colorScheme": {
     "primary": "#4a4a4a",
@@ -58,22 +58,19 @@
       "name": "Death Magic",
       "type": "Magic",
       "description": "Mastery over death and necromancy",
-      "bonus": "+20 Magic",
-      "icon": "💀"
+      "bonus": "+20 Magic"
     },
     {
       "name": "Undead Summoning",
       "type": "Combat",
       "description": "Commands legions of undead",
-      "bonus": "+15 Military",
-      "icon": "👻"
+      "bonus": "+15 Military"
     },
     {
       "name": "Bone Magic",
       "type": "Magic",
       "description": "Manipulates bones and skeletons",
-      "bonus": "+10 Magic",
-      "icon": "🦴"
+      "bonus": "+10 Magic"
     }
   ],
   "impact": {

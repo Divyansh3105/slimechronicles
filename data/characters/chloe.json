@@ -4,7 +4,7 @@
   "race": "Human (Hero)",
   "role": "Hero & Time Manipulator",
   "power": "Catastrophe+",
-  "portrait": "⏰",
+  "portrait": "C",
   "image": "assets/characters/Chloe.webp",
   "colorScheme": {
     "primary": "#9370db",
@@ -63,22 +63,19 @@
       "name": "Time Manipulation",
       "type": "Magic",
       "description": "Controls the flow of time",
-      "bonus": "+35 Magic",
-      "icon": "⏰"
+      "bonus": "+35 Magic"
     },
     {
       "name": "Hero Abilities",
       "type": "Combat",
       "description": "Powers of a Hero",
-      "bonus": "+30 Military",
-      "icon": "⚔️"
+      "bonus": "+30 Military"
     },
     {
       "name": "Timeline Protection",
       "type": "Support",
       "description": "Protects the timeline from destruction",
-      "bonus": "+20 Population",
-      "icon": "🛡️"
+      "bonus": "+20 Population"
     }
   ],
   "impact": {

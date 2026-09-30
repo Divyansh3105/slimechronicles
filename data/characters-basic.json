@@ -5,7 +5,7 @@
     "race": "True Dragon (Ultimate Slime)",
     "role": "Demon Lord & Founder",
     "power": "Catastrophe",
-    "portrait": "💧",
+    "portrait": "R",
     "image": "assets/characters/Rimuru.webp",
     "colorScheme": {
       "primary": "#00c8ff",
@@ -19,7 +19,7 @@
     "race": "Divine Oni (Flame Soul Oni)",
     "role": "Commander-in-Chief",
     "power": "Catastrophe",
-    "portrait": "🔥",
+    "portrait": "B",
     "image": "assets/characters/Benimaru.webp",
     "colorScheme": {
       "primary": "#ff3366",
@@ -33,7 +33,7 @@
     "race": "Wicked Oni",
     "role": "First Secretary",
     "power": "Chaos",
-    "portrait": "⚔️",
+    "portrait": "S",
     "image": "assets/characters/Shion.webp",
     "colorScheme": {
       "primary": "#aa55ff",
@@ -47,7 +47,7 @@
     "race": "Wicked Oni",
     "role": "Minister of Production",
     "power": "Special S",
-    "portrait": "🌸",
+    "portrait": "S",
     "image": "assets/characters/Shuna.webp",
     "colorScheme": {
       "primary": "#ffb3d9",
@@ -61,7 +61,7 @@
     "race": "Divine Oni",
     "role": "Sword Oni & Grand Master",
     "power": "Catastrophe",
-    "portrait": "🗡️",
+    "portrait": "H",
     "image": "assets/characters/Hakuro.webp",
     "colorScheme": {
       "primary": "#b0b0b0",
@@ -75,7 +75,7 @@
     "race": "Divine Oni",
     "role": "Minister of Intelligence",
     "power": "Special S",
-    "portrait": "🥷",
+    "portrait": "S",
     "image": "assets/characters/Souei.webp",
     "colorScheme": {
       "primary": "#6c7b7f",
@@ -89,7 +89,7 @@
     "race": "High Orc",
     "role": "Minister of Infrastructure",
     "power": "Special S",
-    "portrait": "🏗️",
+    "portrait": "G",
     "image": "assets/characters/Geld.webp",
     "colorScheme": {
       "primary": "#654321",
@@ -103,7 +103,7 @@
     "race": "Daemon (Primordial Black)",
     "role": "Second Secretary",
     "power": "Catastrophe",
-    "portrait": "😈",
+    "portrait": "D",
     "image": "assets/characters/Diablo.webp",
     "colorScheme": {
       "primary": "#aa55ff",
@@ -117,7 +117,7 @@
     "race": "True Dragon",
     "role": "Guardian Deity",
     "power": "Catastrophe+",
-    "portrait": "🐉",
+    "portrait": "V",
     "image": "assets/characters/Veldora.webp",
     "colorScheme": {
       "primary": "#ffd700",
@@ -131,7 +131,7 @@
     "race": "Dragonoid (True Dragon)",
     "role": "Demon Lord Ally",
     "power": "Catastrophe+",
-    "portrait": "⚡",
+    "portrait": "M",
     "image": "assets/characters/Milim.webp",
     "colorScheme": {
       "primary": "#ff1493",
@@ -145,7 +145,7 @@
     "race": "Undead (Archbishop)",
     "role": "Undead Commander",
     "power": "Special S",
-    "portrait": "💀",
+    "portrait": "A",
     "image": "assets/characters/Adalmann.webp",
     "colorScheme": {
       "primary": "#4a4a4a",
@@ -159,7 +159,7 @@
     "race": "Honeybee (Queen Bee)",
     "role": "Scout & Messenger",
     "power": "A-Rank",
-    "portrait": "🐝",
+    "portrait": "A",
     "image": "assets/characters/Apito.webp",
     "colorScheme": {
       "primary": "#ffd700",
@@ -173,7 +173,7 @@
     "race": "Golem (Doll)",
     "role": "Ramiris's Protector",
     "power": "Special S",
-    "portrait": "🎎",
+    "portrait": "B",
     "image": "assets/characters/Beretta.webp",
     "colorScheme": {
       "primary": "#c0c0c0",
@@ -187,7 +187,7 @@
     "race": "Daemon (Primordial)",
     "role": "Primordial Demon",
     "power": "Catastrophe",
-    "portrait": "💥",
+    "portrait": "C",
     "image": "assets/characters/Carrera.webp",
     "colorScheme": {
       "primary": "#ff4500",
@@ -201,7 +201,7 @@
     "race": "Human (Hero)",
     "role": "Hero & Time Manipulator",
     "power": "Catastrophe+",
-    "portrait": "⏰",
+    "portrait": "C",
     "image": "assets/characters/Chloe.webp",
     "colorScheme": {
       "primary": "#9370db",
@@ -215,7 +215,7 @@
     "race": "Demon Lord",
     "role": "Former Demon Lord",
     "power": "Catastrophe",
-    "portrait": "🎭",
+    "portrait": "C",
     "image": "assets/characters/Clayman.webp",
     "colorScheme": {
       "primary": "#8b4513",
@@ -229,7 +229,7 @@
     "race": "Giant (Giant King)",
     "role": "Demon Lord",
     "power": "Catastrophe+",
-    "portrait": "🗿",
+    "portrait": "D",
     "image": "assets/characters/Dagruel.webp",
     "colorScheme": {
       "primary": "#696969",
@@ -243,7 +243,7 @@
     "race": "Lizardman",
     "role": "Lizardman Warrior",
     "power": "A-Rank",
-    "portrait": "🦎",
+    "portrait": "G",
     "image": "assets/characters/Gabiru.webp",
     "colorScheme": {
       "primary": "#228b22",
@@ -257,7 +257,7 @@
     "race": "Human",
     "role": "Human Warrior",
     "power": "Special A",
-    "portrait": "⚔️",
+    "portrait": "G",
     "image": "assets/characters/Gazef.webp",
     "colorScheme": {
       "primary": "#4169e1",
@@ -271,7 +271,7 @@
     "race": "Daemon (Primordial Red)",
     "role": "Demon Lord",
     "power": "Catastrophe+",
-    "portrait": "👹",
+    "portrait": "G",
     "image": "assets/characters/Guy.webp",
     "colorScheme": {
       "primary": "#8b0000",
@@ -285,7 +285,7 @@
     "race": "Human (Hero)",
     "role": "Hero & Crusader Leader",
     "power": "Catastrophe",
-    "portrait": "⚔️",
+    "portrait": "H",
     "image": "assets/characters/Hinata Sakaguchi.webp",
     "colorScheme": {
       "primary": "#ff69b4",
@@ -299,7 +299,7 @@
     "race": "Nine-Tailed Fox",
     "role": "Spirit Beast",
     "power": "Special S",
-    "portrait": "🦊",
+    "portrait": "K",
     "image": "assets/characters/Kumara.webp",
     "colorScheme": {
       "primary": "#ff8c00",
@@ -313,7 +313,7 @@
     "race": "Demon Lord",
     "role": "Demon Lord",
     "power": "Catastrophe+",
-    "portrait": "👑",
+    "portrait": "L",
     "image": "assets/characters/Leon.webp",
     "colorScheme": {
       "primary": "#4169e1",
@@ -327,7 +327,7 @@
     "race": "Vampire (Demon Lord)",
     "role": "Demon Lord",
     "power": "Catastrophe+",
-    "portrait": "🧛",
+    "portrait": "L",
     "image": "assets/characters/Luminous.webp",
     "colorScheme": {
       "primary": "#8b008b",
@@ -341,7 +341,7 @@
     "race": "Fairy (Fairy Queen)",
     "role": "Fairy Queen & Former Demon Lord",
     "power": "Catastrophe",
-    "portrait": "🧚",
+    "portrait": "R",
     "image": "assets/characters/Ramiris.webp",
     "colorScheme": {
       "primary": "#98fb98",
@@ -355,7 +355,7 @@
     "race": "Tempest Wolf",
     "role": "Rimuru's Companion",
     "power": "Special S",
-    "portrait": "🐺",
+    "portrait": "R",
     "image": "assets/characters/Ranga.webp",
     "colorScheme": {
       "primary": "#2f4f4f",
@@ -369,7 +369,7 @@
     "race": "Hobgoblin",
     "role": "Village Chief",
     "power": "B-Rank",
-    "portrait": "👨",
+    "portrait": "R",
     "image": "assets/characters/Rigurd.webp",
     "colorScheme": {
       "primary": "#8b7355",
@@ -383,7 +383,7 @@
     "race": "Daemon (Primordial)",
     "role": "Primordial Demon",
     "power": "Catastrophe",
-    "portrait": "🌹",
+    "portrait": "T",
     "image": "assets/characters/Testarossa.webp",
     "colorScheme": {
       "primary": "#dc143c",
@@ -397,7 +397,7 @@
     "race": "Daemon (Primordial)",
     "role": "Primordial Demon",
     "power": "Catastrophe",
-    "portrait": "🕷️",
+    "portrait": "U",
     "image": "assets/characters/Ultima.webp",
     "colorScheme": {
       "primary": "#8b008b",
@@ -411,7 +411,7 @@
     "race": "True Dragon",
     "role": "Scorch Dragon",
     "power": "Catastrophe+",
-    "portrait": "🔥",
+    "portrait": "V",
     "image": "assets/characters/Velgrynd.webp",
     "colorScheme": {
       "primary": "#ff4500",
@@ -425,7 +425,7 @@
     "race": "True Dragon",
     "role": "Frost Dragon",
     "power": "Catastrophe+",
-    "portrait": "❄️",
+    "portrait": "V",
     "image": "assets/characters/Velzard.webp",
     "colorScheme": {
       "primary": "#00ced1",
@@ -439,7 +439,7 @@
     "race": "Human (Otherworlder)",
     "role": "Otherworlder & Strategist",
     "power": "Catastrophe",
-    "portrait": "🎭",
+    "portrait": "Y",
     "image": "assets/characters/Yuuki Kagurazaka.webp",
     "colorScheme": {
       "primary": "#9370db",
@@ -453,7 +453,7 @@
     "race": "Insect (Mystic Insect)",
     "role": "Insect Commander",
     "power": "Catastrophe",
-    "portrait": "🦋",
+    "portrait": "Z",
     "image": "assets/characters/Zegion.webp",
     "colorScheme": {
       "primary": "#4b0082",

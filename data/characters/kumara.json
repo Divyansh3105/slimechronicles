@@ -4,7 +4,7 @@
   "race": "Nine-Tailed Fox",
   "role": "Spirit Beast",
   "power": "Special S",
-  "portrait": "🦊",
+  "portrait": "K",
   "image": "assets/characters/Kumara.webp",
   "colorScheme": {
     "primary": "#ff8c00",
@@ -63,22 +63,19 @@
       "name": "Illusion Magic",
       "type": "Magic",
       "description": "Creates powerful illusions",
-      "bonus": "+25 Magic",
-      "icon": "🌀"
+      "bonus": "+25 Magic"
     },
     {
       "name": "Fire Magic",
       "type": "Magic",
       "description": "Controls fire and flames",
-      "bonus": "+20 Magic",
-      "icon": "🔥"
+      "bonus": "+20 Magic"
     },
     {
       "name": "Spirit Beast Form",
       "type": "Combat",
       "description": "Transforms into powerful fox form",
-      "bonus": "+15 Military",
-      "icon": "🦊"
+      "bonus": "+15 Military"
     }
   ],
   "impact": {

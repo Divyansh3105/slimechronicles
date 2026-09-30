@@ -4,7 +4,7 @@
   "race": "True Dragon",
   "role": "Frost Dragon",
   "power": "Catastrophe+",
-  "portrait": "❄️",
+  "portrait": "V",
   "image": "assets/characters/Velzard.webp",
   "colorScheme": {
     "primary": "#00ced1",
@@ -53,22 +53,19 @@
       "name": "Frost Dragon",
       "type": "Magic",
       "description": "Ultimate ice and cold control",
-      "bonus": "+40 Magic",
-      "icon": "❄️"
+      "bonus": "+40 Magic"
     },
     {
       "name": "True Dragon Power",
       "type": "Combat",
       "description": "Overwhelming dragon power",
-      "bonus": "+35 Military",
-      "icon": "🐉"
+      "bonus": "+35 Military"
     },
     {
       "name": "Eternal Wisdom",
       "type": "Support",
       "description": "Provides guidance through eternity",
-      "bonus": "+20 Population",
-      "icon": "📜"
+      "bonus": "+20 Population"
     }
   ],
   "impact": {

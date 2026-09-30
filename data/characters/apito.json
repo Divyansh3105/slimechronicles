@@ -4,7 +4,7 @@
   "race": "Honeybee (Queen Bee)",
   "role": "Scout & Messenger",
   "power": "A-Rank",
-  "portrait": "🐝",
+  "portrait": "A",
   "image": "assets/characters/Apito.webp",
   "colorScheme": {
     "primary": "#ffd700",
@@ -53,15 +53,13 @@
       "name": "Aerial Speed",
       "type": "Support",
       "description": "Extremely fast flight for scouting",
-      "bonus": "+10 Military",
-      "icon": "🐝"
+      "bonus": "+10 Military"
     },
     {
       "name": "Scout Network",
       "type": "Support",
       "description": "Coordinates intelligence gathering",
-      "bonus": "+5 Population",
-      "icon": "📡"
+      "bonus": "+5 Population"
     }
   ],
   "impact": {

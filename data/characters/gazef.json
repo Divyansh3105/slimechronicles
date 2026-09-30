@@ -4,7 +4,7 @@
   "race": "Human",
   "role": "Human Warrior",
   "power": "Special A",
-  "portrait": "⚔️",
+  "portrait": "G",
   "image": "assets/characters/Gazef.webp",
   "colorScheme": {
     "primary": "#4169e1",
@@ -58,15 +58,13 @@
       "name": "Swordsmanship",
       "type": "Combat",
       "description": "Master-level sword skills",
-      "bonus": "+15 Military",
-      "icon": "⚔️"
+      "bonus": "+15 Military"
     },
     {
       "name": "Warrior's Honor",
       "type": "Support",
       "description": "Inspires through honor",
-      "bonus": "+10 Population",
-      "icon": "🛡️"
+      "bonus": "+10 Population"
     }
   ],
   "impact": {

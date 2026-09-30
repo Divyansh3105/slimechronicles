@@ -4,7 +4,7 @@
   "race": "True Dragon",
   "role": "Scorch Dragon",
   "power": "Catastrophe+",
-  "portrait": "🔥",
+  "portrait": "V",
   "image": "assets/characters/Velgrynd.webp",
   "colorScheme": {
     "primary": "#ff4500",
@@ -53,22 +53,19 @@
       "name": "Scorch Dragon",
       "type": "Magic",
       "description": "Ultimate fire and heat control",
-      "bonus": "+40 Magic",
-      "icon": "🔥"
+      "bonus": "+40 Magic"
     },
     {
       "name": "True Dragon Power",
       "type": "Combat",
       "description": "Overwhelming dragon power",
-      "bonus": "+35 Military",
-      "icon": "🐉"
+      "bonus": "+35 Military"
     },
     {
       "name": "Ancient Wisdom",
       "type": "Support",
       "description": "Provides guidance through experience",
-      "bonus": "+20 Population",
-      "icon": "📜"
+      "bonus": "+20 Population"
     }
   ],
   "impact": {

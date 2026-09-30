@@ -4,7 +4,7 @@
   "race": "Daemon (Primordial)",
   "role": "Primordial Demon",
   "power": "Catastrophe",
-  "portrait": "🌹",
+  "portrait": "T",
   "image": "assets/characters/Testarossa.webp",
   "colorScheme": {
     "primary": "#dc143c",
@@ -58,22 +58,19 @@
       "name": "Death Magic",
       "type": "Magic",
       "description": "Mastery over death and curses",
-      "bonus": "+30 Magic",
-      "icon": "💀"
+      "bonus": "+30 Magic"
     },
     {
       "name": "Strategic Mind",
       "type": "Support",
       "description": "Calculates all possibilities",
-      "bonus": "+25 Population",
-      "icon": "🧠"
+      "bonus": "+25 Population"
     },
     {
       "name": "Analytical Thinking",
       "type": "Support",
       "description": "Analyzes situations perfectly",
-      "bonus": "+20 Economy",
-      "icon": "📊"
+      "bonus": "+20 Economy"
     }
   ],
   "impact": {

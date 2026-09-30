@@ -4,7 +4,7 @@
   "race": "Dragonoid (True Dragon)",
   "role": "Demon Lord Ally",
   "power": "Catastrophe+",
-  "portrait": "⚡",
+  "portrait": "M",
   "image": "assets/characters/Milim.webp",
   "colorScheme": {
     "primary": "#ff1493",
@@ -79,22 +79,19 @@
       "name": "Drago Nova",
       "type": "Combat",
       "description": "Ultimate dragon-type destruction magic",
-      "bonus": "+45 Military",
-      "icon": "🐲"
+      "bonus": "+45 Military"
     },
     {
       "name": "Milim Eye",
       "type": "Magic",
       "description": "Sees through all illusions and barriers",
-      "bonus": "+30 Magic",
-      "icon": "👁️"
+      "bonus": "+30 Magic"
     },
     {
       "name": "Dragon's Wrath",
       "type": "Combat",
       "description": "Channels pure draconic fury",
-      "bonus": "+20 Military",
-      "icon": "💥"
+      "bonus": "+20 Military"
     }
   ],
   "impact": {

@@ -4,7 +4,7 @@
   "race": "Daemon (Primordial)",
   "role": "Primordial Demon",
   "power": "Catastrophe",
-  "portrait": "🕷️",
+  "portrait": "U",
   "image": "assets/characters/Ultima.webp",
   "colorScheme": {
     "primary": "#8b008b",
@@ -58,22 +58,19 @@
       "name": "Poison Magic",
       "type": "Magic",
       "description": "Mastery over poison and toxins",
-      "bonus": "+25 Magic",
-      "icon": "☠️"
+      "bonus": "+25 Magic"
     },
     {
       "name": "Insect Magic",
       "type": "Magic",
       "description": "Controls insects and swarms",
-      "bonus": "+20 Magic",
-      "icon": "🕷️"
+      "bonus": "+20 Magic"
     },
     {
       "name": "Playful Combat",
       "type": "Combat",
       "description": "Fights with joy and enthusiasm",
-      "bonus": "+20 Military",
-      "icon": "⚔️"
+      "bonus": "+20 Military"
     }
   ],
   "impact": {
